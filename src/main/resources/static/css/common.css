@@ -1,0 +1,134 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'MonoplexKR-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_Monoplex-kr@1.0/MonoplexKR-Regular.woff2') format('woff2');
+    font-weight: 400, 600, 700;
+    font-style: normal;
+}
+
+/* 공통 적용 */
+body {
+	width: 100vw;
+	min-width: 1024px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0;
+	margin: 0;
+}
+
+body * {
+	box-sizing: border-box;
+	font-family: 'MonoplexKR-Regular';
+	font-weight: 400;
+	color: #000000;
+}
+
+ul, ol, a {
+	list-style: none;
+	text-decoration: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* header.jsp */
+header {
+	width: 100%;
+	height: 130px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1% 0;
+	border-bottom: 2px solid #4E21A8;
+}
+
+header > nav {
+	width: 100%;
+	max-width: 1280px;
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 3%;
+}
+
+#header-nav-top {
+	width: 100%;
+	height: 55%;
+}
+
+#header-nav-top .logo-title {
+	width: 20%;
+	display: block;
+}
+
+#header-nav-top .logo-title > img {
+	width: 100%;
+}
+
+#header-nav-top .searchBar {
+	width: 50%;
+	display: flex;
+	align-items: center;
+	padding: 0 1%;
+	margin-left: 3%;
+	border: 2px solid #4E21A8;
+	border-radius: 50px;
+}
+
+#header-nav-top .searchBar > input {
+	width: 90%;
+	padding: 0 1%;
+	border: 0;
+	outline: none;
+	font-size: 13pt;
+}
+
+#header-nav-top .searchBar > button {
+	width: 10%;
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+}
+
+#header-nav-top .searchBar > button > img {
+	width: 100%;
+	height: 100%;
+}
+
+#header-nav-top .login-menu {
+	width: 20%;
+	display: flex;
+	flex-dierction: center;
+	align-items: center;
+	gap: 3%;
+	margin-left: auto;
+}
+
+#header-nav-top .login-menu > * {
+	font-weight: 600;
+	font-size: 10pt;
+	color: #B4A3DB;
+}
+
+#header-nav-bottom {
+	
+}
+
+#header-nav-bottom .menu {
+	width: 100%;
+	display: flex;
+	flex-direction: flex-start;
+	align-items: center;
+	gap: 3%;
+}
+
+#header-nav-bottom .menu > li > a {
+	font-weight: 600;
+	font-size: 15pt;
+}
+
+#header-nav-bottom .menu > li > a:hover {
+	font-weight: 700;
+	color: #4E21A8;
+}

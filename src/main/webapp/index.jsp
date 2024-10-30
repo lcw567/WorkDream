@@ -41,7 +41,9 @@
 		- <input> 태그에 제대로 name 속성을 지정해놨던가?
 		=> 꼭!! 확인하기!!! input은 모두 name 속성을 쓰지 않더라도 필수로 적어둘것!
 	 --%>
-	 
+	
+	<c:import url="/views/common/header.jsp" />
+	
 	<h2>개발환경 버전</h2><hr>
 	<span>서버  </span>: 
 	<%=application.getServerInfo() %><br>
@@ -49,8 +51,6 @@
 	<%= application.getMajorVersion() %>.<%= application.getMinorVersion() %><br>
 	<span>JSP  </span>: 
 	<%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %><br>
-	
-	<c:import url="/views/common/header.jsp" />
 	
 	<c:import url="/views/common/footer.jsp" />
 </body>
