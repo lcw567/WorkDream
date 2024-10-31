@@ -94,3 +94,135 @@
 #applicantsStatus-section-position .positionStatus > a:hover {
 	text-decoration: underline 1.5px solid #4E21A8;
 }
+
+
+/* applicantsList.jsp */
+#applicantsList-main {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 3% 1%;
+}
+
+#applicantsList-main .returnStatus {
+	align-self: flex-start;
+	font-family: 'MonoplexKR-Bold';
+	font-size: 1rem;
+	color: #4E21A8;
+}
+
+#applicantsList-main > section {
+	width: 100%;
+	max-width: 1280px;
+	display: flex;
+}
+
+#applicantsList-section-board {
+	height: 200px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 2rem 0;
+}
+
+#applicantsList-section-board > article {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+#applicantsList-section-board .postionInfo {
+	width: 48%;
+	justify-content: center;
+	padding: 1% 0;
+	border: 2px solid #4E21A8;
+	border-radius: 15px;
+}
+
+#applicantsList-section-board .postionInfo > h2 {
+	width: 55%;
+	white-space: wrap;
+	text-align: center;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1.4rem;
+}
+
+#applicantsList-section-board .postionInfo > div {
+	width: 40%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-left: 1.3px solid #E1DEF1;
+}
+
+#applicantsList-section-board .postionInfo > div > * {
+	margin: 0.2rem 0;
+	text-align: center;
+}
+
+#applicantsList-section-board .postionInfo > div > h4 {
+	font-family: 'MonoplexKR-Bold';
+	font-size: 1.2rem;
+}
+
+#applicantsList-section-board .postionInfo > div > p {
+	font-size: 0.9rem;
+}
+
+#applicantsList-section-board .postionInfo > div > h5 {
+	width: 5rem;
+	height: 1.5rem;
+	background-color: #4E21A8;
+	border: 1px solid #4E21A8;
+	border-radius: 0.3rem;
+	line-height: 1.4rem;
+	font-size: 1rem;
+	color: #FFFFFF;
+}
+
+#applicantsList-section-board .positionStats {
+	width: 50%;
+	justify-content: space-between;
+}
+
+#applicantsList-section-board .positionStats > div {
+	width: 30%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid #4E21A8;
+	border-radius: 15px;
+}
+
+#applicantsList-section-board .positionStats > div > * {
+	margin: 0;
+}
+
+#applicantsList-section-board .positionStats > div > h6 {
+	font-family: 'MonoplexKR-Regular';
+	font-size: 1.1rem;
+}
+
+#applicantsList-section-board .positionStats > div > h1 {
+	font-family: 'MonoplexKR-Bold';
+	font-size: 3rem;
+}
+
+#applicantsList-section-list {
+	min-height: 600px;
+	flex-direction: column;
+	align-items: center;
+}
+
+#applicantsList-section-list > * {
+	width: 100%;
+}
+
+#applicantsList-section-list .applicantsListTable {
+	width: 100%;
+}
