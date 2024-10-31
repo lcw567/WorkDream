@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+/* applicantsStatus.jsp */
+#applicantsStatus-main {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#applicantsStatus-main > section {
+	width: 95%;
+	max-width: 1280px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#applicantsStatus-section-all {
+	padding: 1.5rem 0;
+	border-bottom: 1px solid #4E21A8;
+}
+
+#applicantsStatus-section-all .allStatus {
+	width: 80%;
+}
+
+#applicantsStatus-section-all .allStatus tr {
+	height: 3rem;
+}
+
+#applicantsStatus-section-all .allStatus th, #applicantsStatus-section-all .allStatus td {
+	text-align: center;
+	vertical-align: center;
+	font-family: 'MonoplexKR-SemiBold';
+}
+
+#applicantsStatus-section-all .allStatus th {
+	font-size: 1.3rem;
+}
+
+#applicantsStatus-section-all .allStatus td {
+	font-size: 1.5rem;
+}
+
+#applicantsStatus-section-position {
+	min-height: 600px;
+	padding: 0.5%;
+}
+
+#applicantsStatus-section-position .positionStatus {
+	width: 100%;
+	height: 5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1% 3%;
+	margin: 1rem 0;
+	border: 2px solid #4E21A8;
+	border-radius: 10px;
+}
+
+#applicantsStatus-section-position .positionStatus > h1 {
+	min-width: 200px;
+	margin: 0;
+	text-align: left;
+	white-space: nowrap;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1.5rem;
+}
+
+#applicantsStatus-section-position .positionStatus > table {
+	min-width: 450px;
+}
+
+#applicantsStatus-section-position .positionStatus > table th {
+	width: 7rem;
+	font-size: 0.875rem;
+	color: #4E21A8;
+}
+
+#applicantsStatus-section-position .positionStatus > table td {
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+#applicantsStatus-section-position .positionStatus > a {
+	min-width: 100px;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1.3rem;
+	color: #4E21A8;
+}
+
+#applicantsStatus-section-position .positionStatus > a:hover {
+	text-decoration: underline 1.5px solid #4E21A8;
+}

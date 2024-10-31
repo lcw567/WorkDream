@@ -7,6 +7,8 @@
 	<title>Footer</title>
 </head>
 <body>
-	<h1>푸터 연결 테스트</h1>
+	<footer>
+		<h1>푸터 연결 테스트</h1>
+	</footer>
 </body>
 </html>

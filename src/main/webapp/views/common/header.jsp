@@ -19,7 +19,7 @@
     			<img alt="HOME" src="${pageContext.request.contextPath}/img/logo_title.png" />
     		</a>
     		<div class="searchBar">
-    			<input type="text" name="keyword" />
+    			<input type="text" id="keyword" name="keyword" />
     			<button>
     				<img alt="검색" src="${pageContext.request.contextPath}/img/btn_search.png" />
     			</button>
