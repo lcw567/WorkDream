@@ -1,0 +1,198 @@
+* {
+    font-size: 1.1rem;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    padding: 40px;
+}
+
+.home-container {
+    max-width: 1000px;
+    margin: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title h1 {
+    padding: 1rem;
+    background-color: #ffffff;
+}
+
+.notice, .community-categories, .post-list, .popular-week {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #E1DEF1;
+    border-radius: 8px;
+}
+
+.realtime-posts {
+    display: flex;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 공지사항 내용 */
+.notice-content h5 {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* 검색 바 스타일 */
+.search-bar {
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬 */
+    gap: 0.5rem;
+}
+
+.search-bar input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid #B8B1D7;
+    border-radius: 20px; /* 둥근 모서리 */
+    outline: none;
+    width: 200px; /* 너비 조절 */
+}
+
+.search-bar button {
+    padding: 0.5rem;
+    background-color: #ffffff;
+    color: #4E21A8;
+    border: 1px solid #4E21A8;
+    border-radius: 50%; /* 원형 버튼 */
+    cursor: pointer;
+}
+
+/* 인기글 섹션 스타일 */
+
+.popular-week h3 {
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+}
+
+/* 인기글 리스트 스타일 */
+.popular-week ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popular-week li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.popular-week li span {
+    margin-left: 4rem;
+    color: #4E21A8;
+}
+
+/* 아이콘 간 간격 조정 */
+.popular-week li span {
+    margin-left: 0.5rem;
+    color: #4E21A8;
+}
+
+/* 댓글과 조회수 아이콘 컨테이너 */
+.popular-week li .icon-group {
+    display: flex;
+    gap: 1rem; /* 간격 조정 */
+    align-items: center;
+}
+/* 주제별 커뮤니티 태그 */
+
+.community-categories {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.category-tags button {
+    padding: 1rem 1.5rem;
+    border: 1.5px solid #4E21A8;
+    background-color: #ffffff;
+    color: #4E21A8;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: calc(100% / 6 - 1rem); /* 한 줄에 여섯 개 배치 */
+    text-align: center;
+    min-width: 50px;
+}
+
+.post-list {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 두 열로 배치 */
+    gap: 1rem; /* 카드 사이의 간격 */
+}
+
+.post-category {
+    background-color: #E1DEF1;;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.post-category h3 {
+    display: flex;
+    justify-content: space-between;
+    color: #6A1B9A;
+    font-size: 1.1rem;
+}
+
+.post-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-category li span {
+    margin-left: 0.2rem; /* 간격을 좁게 조정 */
+    color: #4E21A8;
+}
+
+.post-category li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #D6CFE9;
+}
+
+
+
+.category-tags button:hover,
+.category-tags button:focus {
+    background-color: #E1DEF1;
+}

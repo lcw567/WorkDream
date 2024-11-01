@@ -1,10 +1,16 @@
 body{
     font-family: "Noto Sans KR", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    
 }
 
 footer{
-	position: absolute;
+	margin-top: auto;
 	bottom: 0;
+	height: 10rem;
 }
 
 
