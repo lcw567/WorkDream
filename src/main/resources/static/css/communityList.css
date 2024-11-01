@@ -1,19 +1,19 @@
-
-/* 湲곕낯 �뒪���씪 */
+/* 기본 스타일 */
 * {
-    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, sans-serif;
-    color: #000000;
-    margin: 0;
-    padding: 0;
+    color: #ffffff;
     background-color: #ffffff;
     padding: 40px;
 }
 
-.list-container {
+.post-container {
+	width: 100%;
     max-width: 1000px;
     margin: 30px;
     padding: 20px;
