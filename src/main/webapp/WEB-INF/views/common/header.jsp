@@ -88,9 +88,52 @@
         </nav>
     </header>
     
-    <!-- 하위 메뉴 -->
-    <div id="menu-all" class="header-dropdown">
+    <%-- 하위 메뉴 --%>
+    <div id="header-dropdown">
+    	<%-- 전체 메뉴 --%>
+    	<table class="menu-table">
+    		<tr>
+    			<th>테스트</th>
+    		</tr>
+    	</table>
     
+    	<%-- 채용정보 --%>
+    	<ul class="menu-list">
+    		<li><a href="">지역별</a></li>
+       		<li><a href="">직업별</a></li>
+       		<li><a href="">역세권별</a></li>
+       		<li><a href="">헤드헌팅</a></li>
+       		<li><a href="">외국인채용</a></li>
+    	</ul>
+    	
+    	<%-- 공채정보 --%>
+    	<ul class="menu-list">
+    		<li><a href="">공채달력</a></li>
+       		<li><a href="">공공기관 채용일정</a></li>
+    	</ul>
+    	
+    	<%-- 신입·인턴 --%>
+    	<ul class="menu-list">
+    		<li><a href="">실시간 공고</a></li>
+       		<li><a href="">채용달력</a></li>
+       		<li><a href="">신입연봉</a></li>
+    	</ul>
+    	
+    	<%-- 기업·연봉 --%>
+    	<ul class="menu-list">
+    		<li><a href="">기업리뷰</a></li>
+       		<li><a href="">연봉정보</a></li>
+       		<li><a href="">역세권별</a></li>
+       		<li><a href="">면접후기</a></li>
+    	</ul>
+    	
+    	<%-- 커리어 --%>
+    	<ul class="menu-list">
+    		<li><a href="">합격자소서</a></li>
+       		<li><a href="">인적성 면접후기</a></li>
+       		<li><a href="">공기업 모의고사</a></li>
+       		<li><a href="">문서 서식 자료</a></li>
+    	</ul>
     </div>
 </body>
 </html>
