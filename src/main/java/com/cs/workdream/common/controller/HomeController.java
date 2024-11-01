@@ -5,8 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping({"/spring/index", "/spring"})
+    @GetMapping("/index")
     public String index() {
         return "index";
+    }
+    
+    // 테스트용
+    @GetMapping("/appList")
+    public String appList() {
+        return "business/applicantsList"; // /views/business/applicantsList.jsp를 찾음
     }
 }

@@ -45,10 +45,10 @@
 	 	-!※※※  css/js/img 폴더 경로만 맵핑해둔거라 다른 폴더를 따로 만들면 적용되지 않습니다!!!
 	 --%>
 	
-	<c:import url="/views/common/header.jsp" />
+	<c:import url="/WEB-INF/views/common/header.jsp" />
 	
 	서버 연결 성공.
 	
-	<c:import url="/views/common/footer.jsp" />
+	<c:import url="/WEB-INF//views/common/footer.jsp" />
 </body>
 </html>
