@@ -2,11 +2,13 @@ package com.cs.workdream.board.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/board") // 최상위 경로 추가
 public class BoardController {
 
-	@GetMapping("/communityHome")
+    @GetMapping("/communityHome")
     public String showCommunityHome() {
         return "board/communityHome"; // communityHome.jsp
     }
@@ -17,7 +19,7 @@ public class BoardController {
     }
 
     @GetMapping("/communityView")
-    public String showCommunityWrite() {
+    public String showCommunityView() {
         return "board/communityView"; // communityView.jsp
     }
 
