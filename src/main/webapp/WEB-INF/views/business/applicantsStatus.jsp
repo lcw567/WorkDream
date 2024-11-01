@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicants.css">
 </head>
 <body>
-	<c:import url="/views/common/header.jsp" />
+	<c:import url="/WEB-INF/views/common/header.jsp" />
 	
 	<!-- 메인 -->
 	<main id="applicantsStatus-main">
@@ -95,6 +95,6 @@
 		</section>
 	</main>
 	
-	<c:import url="/views/common/footer.jsp" />
+	<c:import url="/WEB-INF//views/common/footer.jsp" />
 </body>
 </html>
