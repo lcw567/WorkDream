@@ -1,0 +1,399 @@
+body{
+    font-family: "Noto Sans KR", sans-serif;
+    margin: 0 10% 0 10%;
+}
+
+strong{
+    margin-right: 10px;
+    font-size: 20px;
+}
+.resume_title{
+    display: flex;
+
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px
+}
+.resume_name{
+    box-sizing: border-box;
+    border: 2px solid #4e21a8;
+    border-radius: 20px;
+    border-color: #4e21a8;
+    box-shadow: none;
+    width: 600px;
+    height: 45px;
+    padding-left: 20px;
+    padding-top: 6px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+}
+
+.resume_name:focus{
+    outline: none;
+}
+
+.resume_name::placeholder{
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.basicInfo  p {
+    margin: 0;
+}
+
+.basicInfo, .ed, .sk{
+    width: 1200px;
+}
+
+.name_info, .phone, .email, .address, .detail_ad{
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.Education_Lv, .basic_Info, .skill_Lv, .career_Lv, .EXP {
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 670px;
+    border-radius: 5px;
+}
+
+input:focus{
+    outline: none;
+}
+
+.basic_info{
+    font-size: 30px;
+}
+
+input, #gender{
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: none;
+    height: 33px;
+    padding-left: 20px;
+    padding-bottom: 6px;
+}
+
+option{
+    height: 10px;
+}
+
+.gender_info, .birth{
+    padding-left: 20px;
+}
+
+.email, .address, .detail_ad{
+    padding-top: 40px;
+}
+
+.basic_total{
+    margin: 20px;
+    padding-left: 50px;
+}
+
+.email_check{
+    box-sizing: border-box;
+    border: none;
+    margin-left: 20px;
+    border-radius: 5px;
+    height: 50px;
+    width: 80px;
+    background-color:  #4E21A8;
+    color: white;
+    cursor: pointer;
+    font-family: "Noto Sans KR", sans-serif;
+    position: relative;
+    top: 5px;
+}
+
+.picture_add{
+    position: relative;
+    margin-left: 100px;
+    width: 100px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    top: 15px
+}
+
+.picture_add img{
+    position: relative;
+    right: 8px;
+    bottom: 3px;
+}
+
+.picture_add label{
+    position: relative;
+    font-size: 19px;
+    left: 4px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.name, .Birth, .Phone, .Email, .Address, .Detail_ad{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid #4e21a8;
+    height: 60px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+#name, #birth, #phone, #email, #address, #detail_ad{
+    text-align: left;
+    margin-left: 20px;
+}
+
+.Gender{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid #4e21a8;
+    height: 65px;
+    width: 70px;
+    border-radius: 5px;
+}
+
+#gender{
+    background-color: transparent;
+    text-align: center;
+    padding: 0;
+    position: relative;
+    bottom: 0;
+}
+
+.gender{
+    position: relative;
+    box-sizing: border-box;
+    border: none;
+    bottom: 5px;
+    left: 11px;
+}
+
+.ed, .career, .experience{
+    width: 1200px;
+}
+
+.Education_Lv {
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(17, 42, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 251px;
+    border-radius: 5px;
+}
+
+#Education_Lv{
+    font-size: 30px;
+}
+
+.education{
+    border-radius: 5px;
+    width: 300px;
+    border: 1px solid #4e21a8;
+}
+
+#education, #Skill{
+    margin: 20px;
+    margin-top: 30px;
+    padding-left: 50px;
+}
+
+#edu{
+    box-sizing: border-box;
+    border: none;
+    width: 300px;
+    position: relative;
+    bottom: 3px;
+}
+
+#edu:focus{
+    outline: none;
+}
+
+.skill{
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 700px;
+    border: 1px solid #4e21a8;
+    height: 60px;
+    display: inline-block;
+}
+
+.inputskill{
+    width: 250px;
+    position: relative;
+    bottom: 6px;
+    padding-left: 0 !important;
+}
+
+#btn_skill{
+    box-sizing: border-box;
+    border: none;
+    margin-left: 20px;
+    border-radius: 5px;
+    height: 50px;
+    width: 80px;
+    background-color:  #4E21A8;
+    color: white;
+    cursor: pointer;
+    font-family: "Noto Sans KR", sans-serif;
+    position: relative;
+    top: -6px;
+}
+
+#Skill{
+    margin-left: 121px;
+}
+
+#dlf{
+    box-sizing: border-box;
+    border: 2px solid rgb(26, 82, 131);
+    width: 80px;   
+    border-radius: 30px;
+    margin-left: 200px;
+    font-size: 15px;
+}
+
+.skill_Lv{
+    height: 200px !important;
+}
+
+#Skill_Lv{
+    font-size: 30px;
+}
+
+#career_title, #epr_title{
+    font-size: 30px;
+}
+
+.career_inner{
+    margin-top: 40px;
+}
+
+.career_inner2{
+    margin-top: 70px;
+}
+
+.career_inner3{
+    margin-top: 70px;
+}
+
+.career_inner fieldset{
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #4e21a8;
+    height: 60px;
+    border-radius: 5px;
+    width: 200px;
+    margin-left: 73px;
+}
+
+.career_inner2 fieldset{
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #4e21a8;
+    height: 60px;
+    border-radius: 5px;
+    width: 200px;
+    margin-left: 73px;
+}
+
+.career_inner3 fieldset{
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #4e21a8;
+    height: 300px;
+    border-radius: 5px;
+    width: 985px;
+    margin-left: 73px;
+}
+
+.career_inner fieldset input{
+    box-sizing: border-box;
+    position: relative;
+    bottom: 5px;
+    width: 200px;
+}
+
+.career_inner2 fieldset input{
+    box-sizing: border-box;
+    position: relative;
+    bottom: 5px;
+    width: 250px;
+}
+
+.career_check{
+    display: inline;
+    margin-left: 60px;
+    position: relative;
+    top: 5px;
+}
+
+.car_checked{
+    position: relative;
+    bottom: 11px;
+}
+
+#car_content{
+    width: 100%;
+    height: 200px;
+    border: none;
+    resize: none;
+}
+
+#car_content:focus{
+    outline: none;
+}
+
+.experience_inner{
+    margin-top: 40px;
+}
+
+.experience_inner2{
+    margin-top: 70px;
+}
+
+.experience_inner3{
+    margin-top: 70px;
+}
+
+.EXP fieldset{
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #4e21a8;
+    height: 60px;
+    border-radius: 5px;
+    width: 200px;
+    margin-left: 73px;
+}
+
+.EXP fieldset input{
+    box-sizing: border-box;
+    position: relative;
+    bottom: 5px;
+    width: 200px;
+}
+
+#exp_content{
+    width: 100%;
+    height: 200px;
+    border: none;
+    resize: none;
+}
+
+.experience_inner3 fieldset{
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #4e21a8;
+    height: 300px;
+    border-radius: 5px;
+    width: 878px;
+    margin-left: 73px;
+}
+
+#exp_content:focus{
+    outline: none;
+}
