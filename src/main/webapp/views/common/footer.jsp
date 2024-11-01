@@ -21,19 +21,19 @@
 </head>
 <body>
 	<footer>
-		<div class="footer_header">
-        <ul>
-            <li><a href="#">회사소개</a></li>
-            <li><a href="#">인재채용</a></li>
-            <li><a href="#">회원약관</a></li>
-            <li><a href="#">개인정보처리방침</a></li>
-            <li><a href="#">이메일무단수정거부</a></li>
-            <li><a href="#">고객센터</a></li>
+		    <div class="footer_header">
+        <ul class="footer_title">
+            <li class="footer_content"><a href="" class="btn">회사소개</a></li>
+            <li class="footer_content"><a href="" class="btn">인재채용</a></li>
+            <li class="footer_content"><a href="" class="btn">회원약관</a></li>
+            <li class="footer_content"><a href="" class="btn">개인정보처리방침</a></li>
+            <li class="footer_content"><a href="" class="btn">이메일무단수정거부</a></li>
+            <li class="footer_content"><a href="" class="btn">고객센터</a></li>
         </ul>
         <div class="footer_inner">
-            <a href=""><img src="${pageContext.request.contextPath}/img/logo_icon.png" alt="" class="logo_icon"></a>
+            <a href="" class="btn"><img src="${pageContext.request.contextPath}/img/logo_icon.png" alt="" class="logo_icon"></a>
             <div class="content">
-                <p>
+                <p class="content">
                     사람인 고객센터 02-2025-4733 (평일 09:00~19:00, 주말·공휴일 휴무)
                     <br>
                     이메일 : help@workdream.co.kr, Fax : 02-6937-0039(대표), 02-6937-0035(세금계산서) 
@@ -41,7 +41,7 @@
                 <p>
                     (주)워크드림, 우 : 08378, 강남구 테헤란로 34길 43, 3층, 대표 : kh정보교육원
                     <br>
-                    	사업자등록 : 113-86-00917, 직업정보제공사업 : 서울 관악 제 2005-6호, <br>통신판매업 : 제 2005-02339호
+                    사업자등록 : 113-86-00917, 직업정보제공사업 : 서울 관악 제 2005-6호, 통신판매업 : 제 2005-02339호
                     <br>
                     Copyright (c) (주)사람인. All rights reserved.
                 </p>
