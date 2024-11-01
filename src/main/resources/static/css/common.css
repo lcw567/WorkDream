@@ -57,7 +57,7 @@ button {
 /* header.jsp */
 header {
 	width: 100%;
-	min-height: 130px;
+	height: 130px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -192,19 +192,6 @@ header > nav {
 	width: 1.3rem;
 	height: 1.3rem;
 	margin-top: 0.05rem;
-}
-
-#header-nav-bottom.down {
-	padding: 1% 0 0 7%;
-}
-
-#header-nav-bottom.down .menu > li > a {
-	font-family: 'MonoplexKR-Regular';
-	font-size: 0.8rem;
-}
-
-#header-nav-bottom.down .menu > li.On > a {
-	color: #4E21A8;
 }
 
 
