@@ -36,6 +36,13 @@
 		=> class는 복수 개체 / id는 단일 개체에 주로 사용한다는 점을 염두에 두기
 		(css는 id가 우선 적용이란 점도 생각해두기 -> #id-name{}가 .class-name{}보다 우선 적용됨)
 		- 파일을 다 따로 만들지 말고 관련 페이지끼리는 묶어주세요 (ex. 마이페이지와 관련된 css 및 js -> mypage.css + mypage.js 파일 하나로 통일)
+	 
+	 	[css/js/img 리소스 경로 설정!!]
+	 	- src/main/resourecs/ 내에서 파일 형식에 따라 분류
+	 	- 삽입 경로: ${pageContext.request.contextPath}/폴더명/파일이름.확장자
+	 	-> ex) ${pageContext.request.contextPath}/css/common.css
+	 	
+	 	-!※※※  css/js/img 폴더 경로만 맵핑해둔거라 다른 폴더를 따로 만들면 적용되지 않습니다!!!
 	 --%>
 	
 	<c:import url="/views/common/header.jsp" />
