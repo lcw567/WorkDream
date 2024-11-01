@@ -154,7 +154,7 @@
         </div>
         
     </section>
-    <c:import url="/WEB-INF/views/common/footer.jsp" />
+   
 </div>
     
 </body>
