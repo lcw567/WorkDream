@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	// 테스트용 (차후 서블릿 연결 후에 수정됩니다)
+	int menuNo = 1;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +21,12 @@
         integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
         crossorigin="anonymous"></script>
     
-    <!-- 외부 css 연결 -->
+    <!-- 외부 css / js 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+    <script>const contextPath = "${pageContext.request.contextPath}";</script>
     <script src="${pageContext.request.contextPath}/js/common.js" defer></script>
 </head>
-<body>
+<body onload="activeMenu(<%=menuNo%>)">
     <!-- 헤더 -->
     <header>
     	<!-- 로고, 검색창 등 -->
@@ -69,6 +74,7 @@
         	<%-- 로그인 전 --%>
             <ul class="menu">
                 <li id="menuButton"><a><img src="${pageContext.request.contextPath}/img/btn_menu.png" /></a></li>
+                <li><a href="#">채용정보</a></li>
                 <li><a href="#">공채정보</a></li>
                 <li><a href="#">신입·인턴</a></li>
                 <li><a href="#">기업·연봉</a></li>
@@ -81,5 +87,7 @@
             </ul>
         </nav>
     </header>
+    
+    <!-- 하위 메뉴 -->
 </body>
 </html>
