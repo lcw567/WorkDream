@@ -14,7 +14,7 @@
 	<!-- 메인 -->
 	<main id="applicantsList-main">
 		<!-- 지원자 현황 페이지로 돌아가기 -->
-		<a class="returnStatus" href="./applicantsStatus.jsp">&lt; 지원자 현황</a>
+		<a class="returnStatus" href="${pageContext.request.contextPath}/business/applicantsStatus">&lt; 지원자 현황</a>
 		
 		<!-- 지원자 대시보드 -->
 		<section id="applicantsList-section-board">

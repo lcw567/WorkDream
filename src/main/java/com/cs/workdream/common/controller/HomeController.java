@@ -9,10 +9,4 @@ public class HomeController {
     public String index() {
         return "index";
     }
-    
-    // 테스트용
-    @GetMapping("/appList")
-    public String appList() {
-        return "business/applicantsList"; // /views/business/applicantsList.jsp를 찾음
-    }
 }

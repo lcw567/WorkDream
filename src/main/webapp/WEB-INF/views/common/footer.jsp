@@ -17,6 +17,7 @@
         crossorigin="anonymous"></script>
 	
 	<!-- 외부 css 연결 -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 <body>
