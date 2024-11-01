@@ -1,4 +1,4 @@
-package com.cs.common.config;
+package com.cs.workdream.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

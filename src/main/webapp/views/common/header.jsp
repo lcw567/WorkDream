@@ -18,6 +18,7 @@
     
     <!-- 외부 css 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+    <script src="${pageContext.request.contextPath}/js/common.js"></script>
 </head>
 <body>
     <!-- 헤더 -->
@@ -33,6 +34,7 @@
     				<img alt="검색" src="${pageContext.request.contextPath}/img/btn_search.png" />
     			</button>
     		</div>
+    		<%-- 로그인 전 --%>
     		<div class="login-menu">
     			<a href="#">로그인</a>
     			<b>|</b>
@@ -43,6 +45,7 @@
     	
         <!-- 대메뉴 -->
         <nav id="header-nav-bottom">
+        	<%-- 로그인 전 --%>
             <ul class="menu">
                 <li><a href="#"><img src="${pageContext.request.contextPath}/img/btn_menu.png" /></a></li>
                 <li><a href="#">공채정보</a></li>

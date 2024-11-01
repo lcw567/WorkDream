@@ -47,14 +47,19 @@
 		
 		<!-- 지원자 목록 -->
 		<section id="applicantsList-section-list">
-			<!-- 탭 -->
+			<!-- 탭, 상단 버튼 -->
 			<aside>
-			
+				<!-- 탭 -->
+				<ul class="list-tab">
+					<li class="On">전체</li>
+				</ul>
+				
+				<!-- 필터 -->
 			</aside>
 			
 			<!-- 목록 테이블 -->
 			<article>
-				<table class="applicantsListTable">
+				<table class="list-table">
 					<!-- 상단 -->
 					<thead>
 						<tr>

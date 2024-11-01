@@ -1,4 +1,4 @@
-package com.cs.common.controller;
+package com.cs.workdream.common.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

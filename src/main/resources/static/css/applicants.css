@@ -223,6 +223,10 @@
 	width: 100%;
 }
 
-#applicantsList-section-list .applicantsListTable {
+#applicantsList-section-list .list-tab {
+	display: flex;
+}
+
+#applicantsList-section-list .list-table {
 	width: 100%;
 }
