@@ -1,0 +1,56 @@
+body{
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+footer{
+	position: absolute;
+	bottom: 0;
+}
+
+
+ul, li{
+    list-style: none;
+    display: inline;
+    font-size: 12px;
+}
+
+ul{
+    display: flex;
+    margin: 10px auto 0;
+    width: 1260px;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+.footer_inner{
+    box-sizing: border-box;
+    position: relative;
+    margin: 0 auto;
+    padding: 25px 0 25px 200px;
+    width: 733px;
+    top: 19px;
+}
+
+.logo_icon{
+    position: absolute;
+    display: block;
+    left: 20px;
+    top: 15px;
+    width: 100px;
+    height: 100px;
+}
+
+p{
+    font-size: 12px;
+}
+
+a{
+    text-decoration-line: none;
+    color:black;
+    font-weight: bold;
+}
+
+a:hover{
+    color : #4e21a8;
+}
