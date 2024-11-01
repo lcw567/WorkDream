@@ -13,6 +13,7 @@ body {
 }
 
 .post-container {
+	width: 100%;
     max-width: 1000px;
     margin: 30px;
     padding: 20px;
