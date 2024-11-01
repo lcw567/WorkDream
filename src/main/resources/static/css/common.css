@@ -61,6 +61,7 @@ header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	position: relative;
 	padding: 1% 0;
 	border-bottom: 2px solid #4E21A8;
 }
@@ -180,11 +181,7 @@ header > nav {
 	font-size: 1rem;
 }
 
-#header-nav-bottom .menu > li.On a {
-	color: #4E21A8;
-}
-
-#header-nav-bottom .menu > li > a:hover {
+#header-nav-bottom .menu > li > a:hover, #header-nav-bottom .menu > li.On a {
 	color: #4E21A8;
 }
 
@@ -194,6 +191,43 @@ header > nav {
 	margin-top: 0.05rem;
 }
 
+#header-dropdown {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    position: absolute;
+    top: 130px;
+    left: 0;
+    z-index: 1;
+    padding-left: 7%;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #4E21A8;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+#header-dropdown > * {
+	width: 100%;
+	max-width: 1280px;
+}
+
+#header-dropdown .menu-list {
+	height: 50px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 3%;
+}
+
+#header-dropdown .menu-list > li > a {
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 0.9rem;
+	color: #807E85;
+}
+
+#header-dropdown .menu-list > li > a:hover, #header-dropdown .menu-list > li.On > a {
+	color: #4E21A8;
+}
 
 /* footer.jsp */
 footer {

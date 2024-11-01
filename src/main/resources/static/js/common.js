@@ -30,7 +30,12 @@ menuButton.addEventListener('mouseenter', changeMenuImg);
 menuButton.addEventListener('mouseleave', changeMenuImg);
 menuButton.addEventListener('click', changeMenuImg);
 
-// 대메뉴 판별
+// 소메뉴
+function dropMenu(index) {
+
+}
+
+// 메뉴탭 활성화
 function activeMenu(menuNo) {
     const menuItems = document.querySelectorAll("#header-nav-bottom .menu > li");
     menuItems[menuNo].classList.add("On");
