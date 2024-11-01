@@ -55,7 +55,7 @@
 						<td>0 / 1</td>
 					</tr>
 				</table>
-				<a href="./applicantsList.jsp">지원자 목록 &gt;</a>
+				<a href="${pageContext.request.contextPath}/business/applicantsList">지원자 목록 &gt;</a>
 			</article>
 			<article class="positionStatus">
 				<h1>DB 관리자</h1>
@@ -73,7 +73,7 @@
 						<td>0 / 1</td>
 					</tr>
 				</table>
-				<a href="./applicantsList.jsp">지원자 목록 &gt;</a>
+				<a href="${pageContext.request.contextPath}/business/applicantsList">지원자 목록 &gt;</a>
 			</article><article class="positionStatus">
 				<h1>그래픽 디자이너</h1>
 				<table>
@@ -90,7 +90,7 @@
 						<td>0 / 1</td>
 					</tr>
 				</table>
-				<a href="./applicantsList.jsp">지원자 목록 &gt;</a>
+				<a href="${pageContext.request.contextPath}/business/applicantsList">지원자 목록 &gt;</a>
 			</article>
 		</section>
 	</main>
