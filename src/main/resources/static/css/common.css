@@ -180,6 +180,10 @@ header > nav {
 	font-size: 1rem;
 }
 
+#header-nav-bottom .menu > li.On a {
+	color: #4E21A8;
+}
+
 #header-nav-bottom .menu > li > a:hover {
 	color: #4E21A8;
 }
