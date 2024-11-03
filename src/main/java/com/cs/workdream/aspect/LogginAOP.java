@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 @Component
 public class LogginAOP {
-	// [ log cannot be resolbed ] 에러 해결법
+	// [ log cannot be resolved ] 에러 해결법
 	// 프로젝트에 포함된 Maven Dependaencies > lombok.jar 찾기 (Maven 3.9.9 기준 lombok-1.18.34.jar로 되어있음)
 	// 우클릭 > Run As > Java Application
 	// 인스톨 실행 > 설치 경로 설정 > Spring이 깔려있는 폴더의 STS.ini 파일 선택. (ex. sts-3.9.13.RELEASE/STS.ini)
