@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>커뮤니티 홈</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityHome.css">
-   
+    <script src="${pageContext.request.contextPath}/js/communityHome.js" defer></script>
 </head>
 
 <body>
+<input type="hidden" id="contextPath" value="${pageContext.request.contextPath}"/>
 <c:import url="/WEB-INF/views/common/header.jsp" />
     <div class="home-container"> 
     <section class="title">
@@ -38,6 +39,8 @@
                 <br>
                 올바르고 재미있는 커뮤니티가 될 수 있도록 진심이도 노력하겠습니다! <br>
                 많은 이용 부탁드립니다 <br>
+                <br>
+                <!-- 이하 공지사항 내용 그대로 유지 -->
             </h5>
         </div>
     </section>
@@ -46,116 +49,74 @@
     <!-- 실시간 전체글 박스 -->
     <section class="realtime-posts-container">
         <div class="realtime-posts">
-            <h2>실시간 전체글 99,999 개</h2>
+            <h2 id="postCount">실시간 전체글 99,999 개</h2> <!-- ID 추가 -->
             <div class="search-bar">
                 <input type="text" placeholder="검색어를 입력하세요">
                 <button>🔍</button>
             </div>
         </div>
-    
+
         <!-- 오늘의 인기글 -->
         <div class="popular-week">
             <h3>이번주 전체의 인기글 🔥 <a href="#">더보기 ></a></h3>
-            <ul>
-                <li>게시글 제목 1 <div class="icon-group"><span>🗨️</span><span>👁️‍🗨️</span></div></li>
-                <br>
-                <li>게시글 제목 2 <div class="icon-group"><span>🗨️</span><span>👁️‍🗨️</span></div></li>
-                <br>
-                <li>게시글 제목 3 <div class="icon-group"><span>🗨️</span><span>👁️‍🗨️</span></div></li>
-                <br>
-                <li>게시글 제목 4 <div class="icon-group"><span>🗨️</span><span>👁️‍🗨️</span></div></li>
-                <br>
-                <li>게시글 제목 5 <div class="icon-group"><span>🗨️</span><span>👁️‍🗨️</span></div></li>
+            <ul id="popularPostList"> <!-- 인기글 목록에 ID 추가 -->
+                <!-- 여기서부터 JavaScript로 동적 생성 -->
             </ul>
         </div>
     </section>
     <br><br>
+
     <!-- 주제별 커뮤니티 -->
     <section class="community-categories">
         <h2>주제별 커뮤니티</h2>
         <br><br>
         <div class="category-tags">
-            <button>인기글</button>
-            <button>신입</button>
-            <button>채용공고</button>
-            <button>취준</button>
-            <button>자소서</button>
-            <button>자격증</button> 
-           
-            <button >Q&A</button>
-            <button>커리어</button>
-            <button>이직</button>
-            <button>잡담</button>
-            <button>면접</button>
+            <!-- 각 버튼에 카테고리별 ID 추가 -->
+            <button data-category="전체글">전체글</button> 
+            <button data-category="인기글">인기글</button>
+            <button data-category="신입">신입</button>
+            <button data-category="채용공고">채용공고</button>
+            <button data-category="취준">취준</button>
+            <button data-category="자소서">자소서</button>
+            <button data-category="자격증">자격증</button> 
+            <button data-category="Q&A">Q&A</button>
+            <button data-category="커리어">커리어</button>
+            <button data-category="이직">이직</button>
+            <button data-category="잡담">잡담</button>
+            <button data-category="면접">면접</button>
         </div>
     </section>
 
     <!-- 게시글 리스트 -->
     <section class="post-list">
+        <!-- 각각의 리스트에 카테고리 ID 추가 -->
         <div class="post-category">
-            <h3>전체글 <a href="#">더보기 ></a></h3>
-            <ul>
-                <li>게시글 제목 1  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 2  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 3  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 4  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 5  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-            </ul>
+            <h3>전체글 <a href="#" data-category="전체글">더보기 ></a></h3>
+            <ul id="allPostsList"></ul>
         </div>
         <div class="post-category">
-            <h3>신입 <a href="#">더보기 ></a></h3>
-            <ul>
-                <li>게시글 제목 1  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 2  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 3  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 4  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 5  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-            </ul>
+            <h3>신입 <a href="#" data-category="신입">더보기 ></a></h3>
+            <ul id="newPostsList"></ul>
         </div>
         <div class="post-category">
-            <h3>취준 <a href="#">더보기 ></a></h3>
-            <ul>
-                <li>게시글 제목 1  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 2  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 3  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 4  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 5  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-            </ul>
+            <h3>취준 <a href="#" data-category="취준">더보기 ></a></h3>
+            <ul id="prepPostsList"></ul>
         </div>
         <div class="post-category">
-            <h3>채용공고 <a href="#">더보기 ></a></h3>
-            <ul>
-                <li>게시글 제목 1  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 2  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 3  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 4  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 5  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-            </ul>
+            <h3>채용공고 <a href="#" data-category="채용공고">더보기 ></a></h3>
+            <ul id="jobPostsList"></ul>
         </div>
         <div class="post-category">
-            <h3>자소서 <a href="#">더보기 ></a></h3>
-            <ul>
-                <li>게시글 제목 1  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 2  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 3  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 4  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 5  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-            </ul>
+            <h3>자소서 <a href="#" data-category="자소서">더보기 ></a></h3>
+            <ul id="coverLetterPostsList"></ul>
         </div>
         <div class="post-category">
-            <h3>면접 <a href="#">더보기 ></a></h3>
-            <ul>
-                <li>게시글 제목 1  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 2  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 3  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 4  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-                <li>게시글 제목 5  <div class="icon-group"><span>🗨️</span><span>38</span></div></li>
-            </ul>
+            <h3>면접 <a href="#" data-category="면접">더보기 ></a></h3>
+            <ul id="interviewPostsList"></ul>
         </div>
-        
     </section>
    
 </div>
-    <c:import url="/WEB-INF/views/common/footer.jsp" />
+<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
-</html>
+</html>  
