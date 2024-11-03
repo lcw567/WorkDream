@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글 작성</title>
-     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityPost.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityPost.css">
+    <script src="${pageContext.request.contextPath}/js/communityPost.js" defer></script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/header.jsp" />
@@ -16,16 +17,16 @@
     <div class="category-select">
         <label for="category">카테고리</label>
         <select id="category">
-            <option value="" selected>신입</option>
-            <option value="">채용공고</option>
-            <option value="">취준</option>
-            <option value="">자소서</option>
-            <option value="">자격증</option>
-            <option value="">Q&A</option>
-            <option value="">커리어</option>
-            <option value="">이직</option>
-            <option value="">잡담</option>
-            <option value="">면접</option>
+            <option value="신입">신입</option>
+            <option value="채용공고">채용공고</option>
+            <option value="취준">취준</option>
+            <option value="자소서">자소서</option>
+            <option value="자격증">자격증</option>
+            <option value="Q&A">Q&A</option>
+            <option value="커리어">커리어</option>
+            <option value="이직">이직</option>
+            <option value="잡담">잡담</option>
+            <option value="면접">면접</option>
         </select>
     </div>
 
@@ -44,21 +45,25 @@
 
     <!-- 이미지 첨부 -->
     <div class="image-upload">
-        <label>
-            <input type="file" accept="image/*" style="display: none;">
-            📷 이미지 첨부
-        </label>
-    </div>
+    <label>
+        <input type="file" accept="image/*" style="display: none;" id="imageInput">
+	        📷 이미지 첨부
+	    </label>
+	</div>
+	
+	<div class="image-preview" id="imagePreview">
+	    <!-- 선택한 이미지가 여기에 미리보기로 표시 -->
+	</div>
 
     <!-- 해시태그 입력 -->
     <div class="hashtag-input">
         <label># 해시태그 입력</label>
         <div class="hashtag-box">
-            <span class="hashtag">#신입</span>
             <input type="text" placeholder="입력 (최대 5개)">
         </div>
     </div>
 
+    <!-- 직무 카테고리 선택 (단일 선택 가능) -->
     <div class="job-category-container">
         <table class="job-category-table">
             <tr>
@@ -104,8 +109,6 @@
     </div>
 </div>
 
-    
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
-
 </html>
