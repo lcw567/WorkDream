@@ -17,7 +17,7 @@ public class BusinessController {
         return "business/applicantsStatus";
     }
 	
-    @GetMapping(" ")
+    @GetMapping("/business/applicantsList")
     public String appList() {
         return "business/applicantsList";
     }
