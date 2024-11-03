@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class LogginAOP {
 	// [ log cannot be resolved ] 에러 해결법
-	// 프로젝트에 포함된 Maven Dependaencies > lombok.jar 찾기 (Maven 3.9.9 기준 lombok-1.18.34.jar로 되어있음)
+	// 프로젝트에 포함된 Maven Dependencies > lombok.jar 찾기 (Maven 3.9.9 기준 lombok-1.18.34.jar로 되어있음)
 	// 우클릭 > Run As > Java Application
 	// 인스톨 실행 > 설치 경로 설정 > Spring이 깔려있는 폴더의 STS.ini 파일 선택. (ex. sts-3.9.13.RELEASE/STS.ini)
 	// 선택 후 STS와 이클립스 두 가지가 경로에 나타난다면 정상적으로 선택된 겁니다. (이클립스가 뜨지 않으면 따로 이클립스 설치 폴더 > ini 파일 추가)

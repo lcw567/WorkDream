@@ -234,6 +234,71 @@ header > nav {
 footer {
 	width: 100%;
 	height: 200px;
-	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1% 0;
 	background-color: #E1DEF1;
+}
+
+footer > * {
+	width: 100%;
+	max-width: 1280px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 3%;
+}
+
+#footer-nav {
+	height: 20%;
+}
+
+#footer-nav > ul {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 3%;
+}
+
+#footer-nav > ul > li > a {
+	font-family: 'MonoplexKR-Bold';
+	font-size: 0.7rem;
+}
+
+#footer-nav > ul > li > a:hover {
+	text-decoration: underline 1.2px solid #000000;
+}
+
+#footer-address {
+	height: 80%;
+}
+
+#footer-address > * {
+	height: 100%;
+}
+
+#footer-address .logo-icon {
+	width: 20%;
+}
+
+#footer-address .logo-icon > img {
+	height: 100%;
+	margin: auto 0;
+}
+
+#footer-address .address-info {
+	width: 80%;
+	padding: 2% 0;
+}
+
+#footer-address .address-info > ul {
+	width: 100%;
+	height: 100%;
+}
+
+#footer-address .address-info > ul > li {
+	font-style: normal;
+	height: 1.03rem;
 }
