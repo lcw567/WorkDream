@@ -103,7 +103,7 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 3% 1%;
+	padding: 1%;
 }
 
 #applicantsList-main .returnStatus {
@@ -221,10 +221,111 @@
 
 #applicantsList-section-list > * {
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #applicantsList-section-list .list-tab {
+	width: 100%;
+	height: 2.5rem;
 	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	border-collapse: collapse;
+	border-bottom: 2px solid #E1DEF1;
+}
+
+#applicantsList-section-list .list-tab > li {
+	min-width: 8rem;
+	height: 100%;
+	margin-block-end: -0.2rem;
+	border-collapse: collapse;
+	cursor: pointer;
+	text-align: center;
+}
+
+#applicantsList-section-list .list-tab > li > a {
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1.2rem;
+}
+
+#applicantsList-section-list .list-tab > li:hover {
+	border-bottom: 2px solid #6D47B7;
+}
+
+#applicantsList-section-list .list-tab > li:hover > a {
+	color: #6D47B7;
+}
+
+#applicantsList-section-list .list-tab > li.On {
+	border-bottom: 2px solid #4E21A8;
+}
+
+#applicantsList-section-list .list-tab > li.On > a {
+	font-family: 'MonoplexKR-Bold';
+	color: #4E21A8;
+}
+
+#applicantsList-section-list .list-button {
+	width: 100%;
+	height: 2.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 1%;
+}
+
+#applicantsList-section-list .list-button > ol {
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#applicantsList-section-list .list-button > ol * {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	vertical-align: middle;
+	font-family: 'MonoplexKR-Bold';
+}
+
+#applicantsList-section-list .list-button > ol.leftSide * {
+	font-size: 0.9rem;
+	color: #4E21A8;
+}
+
+#applicantsList-section-list .list-button > ol.leftSide li {
+	min-width: 5rem;
+	height: 80%;
+	margin-right: 1rem;
+}
+
+#applicantsList-section-list .list-button > ol.leftSide button {
+	line-height: 1;
+}
+
+#applicantsList-section-list .list-button > ol.leftSide img {
+	width: 1.2rem;
+	height: 1.2rem;
+}
+
+#applicantsList-section-list .list-button > ol.rightSide * {
+	font-size: 0.7rem;
+	color: #6D47B7;
+}
+
+#applicantsList-section-list .list-button > ol.rightSide li {
+	min-width: 3.5rem;
+	margin-right: 0.5rem;
+}
+
+#applicantsList-section-list .list-button > ol.rightSide img {
+	width: 1rem;
+	height: 1rem;
 }
 
 #applicantsList-section-list .list-table {
@@ -234,20 +335,105 @@
 }
 
 #applicantsList-section-list .list-table th {
+	min-width: 2rem;
 	height: 3rem;
 	font-family: 'MonoplexKR-Regular';
-	font-weight: normal;
 	font-size: 0.8rem;
 }
 
 #applicantsList-section-list .list-table thead th {
-	background-color: #B4A3DB;
+	background-color: #E1DEF1;
 }
 
 #applicantsList-section-list .list-table tbody td {
-	height: 5rem;
+	height: 7rem;
 	border-bottom: 1.2px solid #E1DEF1;
+	vertical-align: middle;
 	text-align: center;
+}
+
+#applicantsList-section-list .list-table tbody td, #applicantsList-section-list .list-table tbody td * {
 	font-family: 'MonoplexKR-SemiBold';
-	font-size: 0.9rem;
+	font-size: 0.95rem;
+}
+
+#applicantsList-section-list .list-table label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#applicantsList-section-list .list-table label > input[type="checkbox"] {
+	display: none;
+}
+
+#applicantsList-section-list .list-table label > span {
+	width: 1rem;
+	height: 1rem;
+	display: inline-block;
+	background-color: #FFFFFF;
+	border: 1px solid #6D47B7;
+	border-radius: 0.2rem;
+}
+
+#applicantsList-section-list .list-table tbody td.btnList {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#applicantsList-section-list .list-table tbody td.btnList > button {
+	width: 1rem;
+	height: 1rem;
+	margin: 0 -1.3rem 0 0.3rem;
+	background-color: rgba(0, 0, 0, 0);
+	border: 0;
+}
+
+#applicantsList-section-list .list-table tbody td.btnList > button > img {
+	width: 100%;
+	height: 100%;
+}
+
+#applicantsList-section-list .list-table tbody td.photo > span {
+	width: 5rem;
+	height: 5.5rem;
+	display: inline-block;
+	background: url("../img/icon_notPhoto.png");
+	background-size: 1.5rem 1.5rem;
+	background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #E1DEF1;
+}
+
+#applicantsList-section-list .list-table tbody td.photo > span > img {
+	width: 100%;
+	height: 100%;
+}
+
+#applicantsList-section-list .list-table tbody td.profile > * {
+	width: 100%;
+	text-align: left;
+}
+
+#applicantsList-section-list .list-table tbody td.profile > h1 {
+	margin-bottom: 0.5rem;
+	font-family: 'MonoplexKR-Bold';
+	font-size: 1rem;
+}
+
+#applicantsList-section-list .list-table tbody td.profile > p {
+	font-family: 'MonoplexKR-Regular';
+}
+
+#applicantsList-section-list .list-table tbody td.pass > select {
+	width: 90%;
+	height: 2rem;
+	border: 1.5px solid #6D47B7; 
+	text-align: center;
+	font-family: 'MonoplexKR-Regular';
+}
+
+#applicantsList-section-list .list-table tbody td.pass > select > option {
+	font-family: 'MonoplexKR-Regular';
 }

@@ -26,7 +26,7 @@
 }
 
 body {
-	width: 100vw;
+	width: 100%;
 	min-width: 1024px;
 	height: 100%;
 	display: flex;
@@ -49,7 +49,11 @@ ul, ol, a {
 	margin: 0;
 }
 
-button {
+input, select, input:focus, select:focus {
+	outline: none;
+}
+
+a, button {
 	cursor: pointer;
 }
 
@@ -106,7 +110,6 @@ header > nav {
 	height: 100%;
 	padding: 0 3%;
 	border: 0;
-	outline: none;
 	font-size: 0.875rem;
 }
 
