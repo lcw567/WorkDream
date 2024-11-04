@@ -1,399 +1,395 @@
-body{
-    font-family: "Noto Sans KR", sans-serif;
-    margin: 0 10% 0 10%;
+strong {
+    margin-right: 10px !important;
+    font-size: 20px !important;
 }
 
-strong{
-    margin-right: 10px;
-    font-size: 20px;
-}
-.resume_title{
-    display: flex;
-
-    align-items: center;
-    margin-top: 40px;
-    margin-bottom: 40px
-}
-.resume_name{
-    box-sizing: border-box;
-    border: 2px solid #4e21a8;
-    border-radius: 20px;
-    border-color: #4e21a8;
-    box-shadow: none;
-    width: 600px;
-    height: 45px;
-    padding-left: 20px;
-    padding-top: 6px;
-    font-family: "Noto Sans KR", sans-serif;
-    font-weight: bold;
+.resume_title {
+    display: flex !important;
+    align-items: center !important;
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
 }
 
-.resume_name:focus{
-    outline: none;
+.resume_name {
+    box-sizing: border-box !important;
+    border: 2px solid #4e21a8 !important;
+    border-radius: 20px !important;
+    border-color: #4e21a8 !important;
+    box-shadow: none !important;
+    width: 600px !important;
+    height: 45px !important;
+    padding-left: 20px !important;
+    padding-top: 6px !important;
+    font-family: 'MonoplexKR-Regular' !important;
+    font-weight: bold !important;
 }
 
-.resume_name::placeholder{
-    font-family: "Noto Sans KR", sans-serif;
+.resume_name:focus {
+    outline: none !important;
 }
 
-.basicInfo  p {
-    margin: 0;
+.resume_name::placeholder {
+    font-family: "Noto Sans KR", sans-serif !important;
 }
 
-.basicInfo, .ed, .sk{
-    width: 1200px;
+.basicInfo p {
+    margin: 0 !important;
 }
 
-.name_info, .phone, .email, .address, .detail_ad{
-    display: flex;
-    text-align: center;
-    align-items: center;
+.basicInfo, .ed, .sk {
+    width: 1200px !important;
+}
+
+.name_info, .phone, .email, .address, .detail_ad {
+    display: flex !important;
+    text-align: center !important;
+    align-items: center !important;
 }
 
 .Education_Lv, .basic_Info, .skill_Lv, .career_Lv, .EXP {
-    border: none;
-    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
-    border-top: 5px solid #4e21a8;
-    height: 670px;
-    border-radius: 5px;
+    border: none !important;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08) !important;
+    border-top: 5px solid #4e21a8 !important;
+    height: 670px !important;
+    border-radius: 5px !important;
 }
 
-input:focus{
-    outline: none;
+input:focus {
+    outline: none !important;
 }
 
-.basic_info{
-    font-size: 30px;
+.basic_info {
+    font-size: 30px !important;
 }
 
-input, #gender{
-    border-radius: 10px;
-    box-sizing: border-box;
-    border: none;
-    height: 33px;
-    padding-left: 20px;
-    padding-bottom: 6px;
+input, #gender {
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
+    border: none !important;
+    height: 33px !important;
+    padding-left: 20px !important;
+    padding-bottom: 6px !important;
 }
 
-option{
-    height: 10px;
+option {
+    height: 10px !important;
 }
 
-.gender_info, .birth{
-    padding-left: 20px;
+.gender_info, .birth {
+    padding-left: 20px !important;
 }
 
-.email, .address, .detail_ad{
-    padding-top: 40px;
+.email, .address, .detail_ad {
+    padding-top: 40px !important;
 }
 
-.basic_total{
-    margin: 20px;
-    padding-left: 50px;
+.basic_total {
+    margin: 20px !important;
+    padding-left: 50px !important;
 }
 
-.email_check{
-    box-sizing: border-box;
-    border: none;
-    margin-left: 20px;
-    border-radius: 5px;
-    height: 50px;
-    width: 80px;
-    background-color:  #4E21A8;
-    color: white;
-    cursor: pointer;
-    font-family: "Noto Sans KR", sans-serif;
-    position: relative;
-    top: 5px;
+.email_check {
+    box-sizing: border-box !important;
+    border: none !important;
+    margin-left: 20px !important;
+    border-radius: 5px !important;
+    height: 50px !important;
+    width: 80px !important;
+    background-color: #4E21A8 !important;
+    color: white !important;
+    cursor: pointer !important;
+    font-family: "Noto Sans KR", sans-serif !important;
+    position: relative !important;
+    top: 5px !important;
 }
 
-.picture_add{
-    position: relative;
-    margin-left: 100px;
-    width: 100px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    top: 15px
+.picture_add {
+    position: relative !important;
+    margin-left: 100px !important;
+    width: 100px !important;
+    border: none !important;
+    background-color: transparent !important;
+    cursor: pointer !important;
+    top: 15px !important;
 }
 
-.picture_add img{
-    position: relative;
-    right: 8px;
-    bottom: 3px;
+.picture_add img {
+    position: relative !important;
+    right: 8px !important;
+    bottom: 3px !important;
 }
 
-.picture_add label{
-    position: relative;
-    font-size: 19px;
-    left: 4px;
-    font-family: "Noto Sans KR", sans-serif;
+.picture_add label {
+    position: relative !important;
+    font-size: 19px !important;
+    left: 4px !important;
+    font-family: "Noto Sans KR", sans-serif !important;
 }
 
-.name, .Birth, .Phone, .Email, .Address, .Detail_ad{
-    display: flex;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: 1px solid #4e21a8;
-    height: 60px;
-    border-radius: 5px;
-    width: 300px;
+.name, .Birth, .Phone, .Email, .Address, .Detail_ad {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    border: 1px solid #4e21a8 !important;
+    height: 60px !important;
+    border-radius: 5px !important;
+    width: 300px !important;
 }
 
-#name, #birth, #phone, #email, #address, #detail_ad{
-    text-align: left;
-    margin-left: 20px;
+#name, #birth, #phone, #email, #address, #detail_ad {
+    text-align: left !important;
+    margin-left: 20px !important;
 }
 
-.Gender{
-    display: flex;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: 1px solid #4e21a8;
-    height: 65px;
-    width: 70px;
-    border-radius: 5px;
+.Gender {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    border: 1px solid #4e21a8 !important;
+    height: 65px !important;
+    width: 70px !important;
+    border-radius: 5px !important;
 }
 
-#gender{
-    background-color: transparent;
-    text-align: center;
-    padding: 0;
-    position: relative;
-    bottom: 0;
+#gender {
+    background-color: transparent !important;
+    text-align: center !important;
+    padding: 0 !important;
+    position: relative !important;
+    bottom: 0 !important;
 }
 
-.gender{
-    position: relative;
-    box-sizing: border-box;
-    border: none;
-    bottom: 5px;
-    left: 11px;
+.gender {
+    position: relative !important;
+    box-sizing: border-box !important;
+    border: none !important;
+    bottom: 5px !important;
+    left: 11px !important;
 }
 
-.ed, .career, .experience{
-    width: 1200px;
+.ed, .career, .experience {
+    width: 1200px !important;
 }
 
 .Education_Lv {
-    border: none;
-    box-shadow: 0 4px 16px 0 rgba(17, 42, 128, 0.08);
-    border-top: 5px solid #4e21a8;
-    height: 251px;
-    border-radius: 5px;
+    border: none !important;
+    box-shadow: 0 4px 16px 0 rgba(17, 42, 128, 0.08) !important;
+    border-top: 5px solid #4e21a8 !important;
+    height: 251px !important;
+    border-radius: 5px !important;
 }
 
-#Education_Lv{
-    font-size: 30px;
+#Education_Lv {
+    font-size: 30px !important;
 }
 
-.education{
-    border-radius: 5px;
-    width: 300px;
-    border: 1px solid #4e21a8;
+.education {
+    border-radius: 5px !important;
+    width: 300px !important;
+    border: 1px solid #4e21a8 !important;
 }
 
-#education, #Skill{
-    margin: 20px;
-    margin-top: 30px;
-    padding-left: 50px;
+#education, #Skill {
+    margin: 20px !important;
+    margin-top: 30px !important;
+    padding-left: 50px !important;
 }
 
-#edu{
-    box-sizing: border-box;
-    border: none;
-    width: 300px;
-    position: relative;
-    bottom: 3px;
+#edu {
+    box-sizing: border-box !important;
+    border: none !important;
+    width: 300px !important;
+    position: relative !important;
+    bottom: 3px !important;
 }
 
-#edu:focus{
-    outline: none;
+#edu:focus {
+    outline: none !important;
 }
 
-.skill{
-    box-sizing: border-box;
-    border-radius: 5px;
-    width: 700px;
-    border: 1px solid #4e21a8;
-    height: 60px;
-    display: inline-block;
+.skill {
+    box-sizing: border-box !important;
+    border-radius: 5px !important;
+    width: 700px !important;
+    border: 1px solid #4e21a8 !important;
+    height: 60px !important;
+    display: inline-block !important;
 }
 
-.inputskill{
-    width: 250px;
-    position: relative;
-    bottom: 6px;
+.inputskill {
+    width: 250px !important;
+    position: relative !important;
+    bottom: 6px !important;
     padding-left: 0 !important;
 }
 
-#btn_skill{
-    box-sizing: border-box;
-    border: none;
-    margin-left: 20px;
-    border-radius: 5px;
-    height: 50px;
-    width: 80px;
-    background-color:  #4E21A8;
-    color: white;
-    cursor: pointer;
-    font-family: "Noto Sans KR", sans-serif;
-    position: relative;
-    top: -6px;
+#btn_skill {
+    box-sizing: border-box !important;
+    border: none !important;
+    margin-left: 20px !important;
+    border-radius: 5px !important;
+    height: 50px !important;
+    width: 80px !important;
+    background-color: #4E21A8 !important;
+    color: white !important;
+    cursor: pointer !important;
+    font-family: "Noto Sans KR", sans-serif !important;
+    position: relative !important;
+    top: -6px !important;
 }
 
-#Skill{
-    margin-left: 121px;
+#Skill {
+    margin-left: 121px !important;
 }
 
-#dlf{
-    box-sizing: border-box;
-    border: 2px solid rgb(26, 82, 131);
-    width: 80px;   
-    border-radius: 30px;
-    margin-left: 200px;
-    font-size: 15px;
+#dlf {
+    box-sizing: border-box !important;
+    border: 2px solid rgb(26, 82, 131) !important;
+    width: 80px !important;
+    border-radius: 30px !important;
+    margin-left: 200px !important;
+    font-size: 15px !important;
 }
 
-.skill_Lv{
+.skill_Lv {
     height: 200px !important;
 }
 
-#Skill_Lv{
-    font-size: 30px;
+#Skill_Lv {
+    font-size: 30px !important;
 }
 
-#career_title, #epr_title{
-    font-size: 30px;
+#career_title, #epr_title {
+    font-size: 30px !important;
 }
 
-.career_inner{
-    margin-top: 40px;
+.career_inner {
+    margin-top: 40px !important;
 }
 
-.career_inner2{
-    margin-top: 70px;
+.career_inner2 {
+    margin-top: 70px !important;
 }
 
-.career_inner3{
-    margin-top: 70px;
+.career_inner3 {
+    margin-top: 70px !important;
 }
 
-.career_inner fieldset{
-    display: inline-block;
-    box-sizing: border-box;
-    border: 1px solid #4e21a8;
-    height: 60px;
-    border-radius: 5px;
-    width: 200px;
-    margin-left: 73px;
+.career_inner fieldset {
+    display: inline-block !important;
+    box-sizing: border-box !important;
+    border: 1px solid #4e21a8 !important;
+    height: 60px !important;
+    border-radius: 5px !important;
+    width: 200px !important;
+    margin-left: 73px !important;
 }
 
-.career_inner2 fieldset{
-    display: inline-block;
-    box-sizing: border-box;
-    border: 1px solid #4e21a8;
-    height: 60px;
-    border-radius: 5px;
-    width: 200px;
-    margin-left: 73px;
+.career_inner2 fieldset {
+    display: inline-block !important;
+    box-sizing: border-box !important;
+    border: 1px solid #4e21a8 !important;
+    height: 60px !important;
+    border-radius: 5px !important;
+    width: 200px !important;
+    margin-left: 73px !important;
 }
 
-.career_inner3 fieldset{
-    display: inline-block;
-    box-sizing: border-box;
-    border: 1px solid #4e21a8;
-    height: 300px;
-    border-radius: 5px;
-    width: 985px;
-    margin-left: 73px;
+.career_inner3 fieldset {
+    display: inline-block !important;
+    box-sizing: border-box !important;
+    border: 1px solid #4e21a8 !important;
+    height: 300px !important;
+    border-radius: 5px !important;
+    width: 985px !important;
+    margin-left: 73px !important;
 }
 
-.career_inner fieldset input{
-    box-sizing: border-box;
-    position: relative;
-    bottom: 5px;
-    width: 200px;
+.career_inner fieldset input {
+    box-sizing: border-box !important;
+    position: relative !important;
+    bottom: 5px !important;
+    width: 200px !important;
 }
 
-.career_inner2 fieldset input{
-    box-sizing: border-box;
-    position: relative;
-    bottom: 5px;
-    width: 250px;
+.career_inner2 fieldset input {
+    box-sizing: border-box !important;
+    position: relative !important;
+    bottom: 5px !important;
+    width: 250px !important;
 }
 
-.career_check{
-    display: inline;
-    margin-left: 60px;
-    position: relative;
-    top: 5px;
+.career_check {
+    display: inline !important;
+    margin-left: 60px !important;
+    position: relative !important;
+    top: 5px !important;
 }
 
-.car_checked{
-    position: relative;
-    bottom: 11px;
+.car_checked {
+    position: relative !important;
+    bottom: 11px !important;
 }
 
-#car_content{
-    width: 100%;
-    height: 200px;
-    border: none;
-    resize: none;
+#car_content {
+    width: 100% !important;
+    height: 200px !important;
+    border: none !important;
+    resize: none !important;
 }
 
-#car_content:focus{
-    outline: none;
+#car_content:focus {
+    outline: none !important;
 }
 
-.experience_inner{
-    margin-top: 40px;
+.experience_inner {
+    margin-top: 40px !important;
 }
 
-.experience_inner2{
-    margin-top: 70px;
+.experience_inner2 {
+    margin-top: 70px !important;
 }
 
-.experience_inner3{
-    margin-top: 70px;
+.experience_inner3 {
+    margin-top: 70px !important;
 }
 
-.EXP fieldset{
-    display: inline-block;
-    box-sizing: border-box;
-    border: 1px solid #4e21a8;
-    height: 60px;
-    border-radius: 5px;
-    width: 200px;
-    margin-left: 73px;
+.EXP fieldset {
+    display: inline-block !important;
+    box-sizing: border-box !important;
+    border: 1px solid #4e21a8 !important;
+    height: 60px !important;
+    border-radius: 5px !important;
+    width: 200px !important;
+    margin-left: 73px !important;
 }
 
-.EXP fieldset input{
-    box-sizing: border-box;
-    position: relative;
-    bottom: 5px;
-    width: 200px;
+.EXP fieldset input {
+    box-sizing: border-box !important;
+    position: relative !important;
+    bottom: 5px !important;
+    width: 200px !important;
 }
 
-#exp_content{
-    width: 100%;
-    height: 200px;
-    border: none;
-    resize: none;
+#exp_content {
+    width: 100% !important;
+    height: 200px !important;
+    border: none !important;
+    resize: none !important;
 }
 
-.experience_inner3 fieldset{
-    display: inline-block;
-    box-sizing: border-box;
-    border: 1px solid #4e21a8;
-    height: 300px;
-    border-radius: 5px;
-    width: 878px;
-    margin-left: 73px;
+.experience_inner3 fieldset {
+    display: inline-block !important;
+    box-sizing: border-box !important;
+    border: 1px solid #4e21a8 !important;
+    height: 300px !important;
+    border-radius: 5px !important;
+    width: 878px !important;
+    margin-left: 73px !important;
 }
 
-#exp_content:focus{
-    outline: none;
+#exp_content:focus {
+    outline: none !important;
 }
