@@ -59,12 +59,14 @@ body {
     background-color: #E1DEF1;
 }
 
-/* �쟾泥� 寃뚯떆湲�*/
+
 .total-count {
     font-size: 1.3rem;
     color: #333;
     font-weight: bold;
+    margin-bottom : 1rem;
 }
+
 
 
 .filter-section {

@@ -15,7 +15,7 @@
 <div class="post-container">
     <!-- 카테고리 선택 -->
     <div class="category-select">
-        <label for="category">카테고리</label>
+        <label for="category"><h4>카테고리</h4></label>
         <select id="category">
             <option value="신입">신입</option>
             <option value="채용공고">채용공고</option>
@@ -57,7 +57,7 @@
 
     <!-- 해시태그 입력 -->
     <div class="hashtag-input">
-        <label># 해시태그 입력</label>
+        <label style= "font-size: 1.3rem;"># 해시태그 입력</label>
         <div class="hashtag-box">
             <input type="text" placeholder="입력 (최대 5개)">
         </div>

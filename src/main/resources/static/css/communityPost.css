@@ -1,4 +1,4 @@
-/* ±âº» ½ºÅ¸ÀÏ */
+/* ï¿½âº» ï¿½ï¿½Å¸ï¿½ï¿½ */
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +22,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-/* Ä«Å×°í¸® ¼±ÅÃ */
+/* Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 .category-select {
     display: flex;
     align-items: center;
@@ -43,7 +43,11 @@ body {
     cursor: pointer;
 }
 
-/* Á¦¸ñ ÀÔ·Â */
+.category-select h4 {
+	font-size: 1.3rem;
+}
+
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ */
 .title-input input[type="text"] {
     width: 100%;
     padding: 0.8rem;
@@ -54,7 +58,7 @@ body {
     outline: none;
 }
 
-/* ³»¿ë ÀÔ·Â */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ */
 .content-input textarea {
     width: 100%;
     height: 300px;
@@ -73,7 +77,7 @@ body {
     line-height: 1.4;
 }
 
-/* ÀÌ¹ÌÁö Ã·ºÎ */
+/* ï¿½Ì¹ï¿½ï¿½ï¿½ Ã·ï¿½ï¿½ */
 .image-upload {
     margin-top: 1rem;
     font-size: 1rem;
@@ -85,9 +89,10 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
+    font-size: 1rem;
 }
 
-/* ÀÌ¹ÌÁö ¹Ì¸®º¸±â ½ºÅ¸ÀÏ */
+/* ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 .image-preview {
     margin-top: 1rem;
     max-width: 100%;
@@ -105,11 +110,16 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ÇØ½ÃÅÂ±× ÀÔ·Â */
+/* ï¿½Ø½ï¿½ï¿½Â±ï¿½ ï¿½Ô·ï¿½ */
 .hashtag-input {
     margin-top: 1.5rem;
     font-weight: bold;
     color: #4E21A8;
+    font-size: 1.3rem;
+}
+
+.hashtag-inpu label{
+	font-size: 1.3rem;
 }
 
 .hashtag-box {
@@ -143,7 +153,7 @@ body {
 
 .hashtag .remove-btn {
     margin-left: 0.5rem;
-    font-size: 2rem; /* Å©±â¸¦ Á¶±Ý ´õ Å©°Ô Á¶Á¤ */
+    font-size: 2rem; /* Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     color: #4E21A8;
     cursor: pointer;
     transition: color 0.2s ease;
@@ -165,7 +175,7 @@ body {
 }
 
 
-/* Á÷¹« ¼±ÅÃ Å×ÀÌºí ½ºÅ¸ÀÏ */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 .job-category-container {
     margin-top: 1.5rem;
 }
@@ -179,7 +189,7 @@ body {
 }
 
 .job-category-table td {
-    width: 16.6%; /* °¢ ¼¿ÀÇ °¡·Î ÆøÀ» µ¿ÀÏÇÏ°Ô */
+    width: 16.6%; /* ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ */
     padding: 1rem 0.5rem;
     border: 1px solid #ddd;
     color: #333;
@@ -196,7 +206,7 @@ body {
     margin-right: 0.5rem;
 }
 
-/* °Ô½Ã±Û µî·Ï ¹öÆ° ½ºÅ¸ÀÏ */
+/* ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½Å¸ï¿½ï¿½ */
 .submit-button-container {
     display: flex;
     justify-content: center;
