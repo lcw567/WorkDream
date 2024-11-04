@@ -1,4 +1,4 @@
-/* 기본 스타일 */
+/* 湲곕낯 �뒪���씪 */
 * {
     margin: 0;
     padding: 0;
@@ -23,7 +23,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* �젣紐� �뒪���씪 */
+/* 占쎌젫筌륅옙 占쎈뮞占쏙옙占쎌뵬 */
 .title h1 {
     text-align: center;
     font-size: 2.5rem;
@@ -32,7 +32,7 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* 移댄뀒怨좊━ 踰꾪듉 */
+/* 燁삳똾�믤�⑥쥓�봺 甕곌쑵�뱣 */
 .category-tags {
     display: flex;
     flex-wrap: wrap;
@@ -49,7 +49,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    width: calc(100% / 6 - 1rem); /* �븳 以꾩뿉 �뿬�꽢 媛� 諛곗튂 */
+    width: calc(100% / 6 - 1rem); /* 占쎈립 餓κ쑴肉� 占쎈연占쎄숱 揶쏉옙 獄쏄퀣�뒄 */
     text-align: center;
     min-width: 50px;
 }
@@ -59,7 +59,7 @@ body {
     background-color: #E1DEF1;
 }
 
-/* �쟾泥� 寃뚯떆湲�*/
+/* 占쎌읈筌ｏ옙 野껊슣�뻻疫뀐옙*/
 .total-count {
     font-size: 1.3rem;
     color: #333;
@@ -71,7 +71,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 1.5rem;
-    gap: 2rem; /* �븘�꽣 �꽮�뀡�쓽 媛� �슂�냼 �궗�씠 媛꾧꺽 */
+    gap: 2rem; /* 占쎈툡占쎄숲 占쎄쉰占쎈�∽옙�벥 揶쏉옙 占쎌뒄占쎈꺖 占쎄텢占쎌뵠 揶쏄쑨爰� */
 }
 
 
@@ -93,11 +93,11 @@ body {
     
 }
 
-/* 寃뚯떆湲� 紐⑸줉怨� 寃��깋諛붾�� 媛숈� 以꾩뿉 諛곗튂 */
+/* 野껊슣�뻻疫뀐옙 筌뤴뫖以됪�⑨옙 野껓옙占쎄퉳獄쏅뗀占쏙옙 揶쏆늿占� 餓κ쑴肉� 獄쏄퀣�뒄 */
 .header-search-bar {
     display: flex;
-    justify-content: space-between; /* �뼇履� �걹�뿉 諛곗튂 */
-    align-items: center; /* �꽭濡� 媛��슫�뜲 �젙�젹 */
+    justify-content: space-between; /* 占쎈펶筌잞옙 占쎄국占쎈퓠 獄쏄퀣�뒄 */
+    align-items: center; /* 占쎄쉭嚥∽옙 揶쏉옙占쎌뒲占쎈쑓 占쎌젟占쎌졊 */
     margin-bottom: 1rem;
 }
 
@@ -121,7 +121,7 @@ body {
     border: 1.5px solid #4E21A8;
     border-radius: 20px;
     overflow: hidden;
-    width: 500px; /* 寃��깋 諛� �꼫鍮� �꽕�젙 */
+    width: 500px; /* 野껓옙占쎄퉳 獄쏉옙 占쎄섐�뜮占� 占쎄퐬占쎌젟 */
 }
 
 
@@ -146,7 +146,7 @@ body {
     justify-content: center;
 }
 
-/* 寃뚯떆湲� 紐⑸줉 �뀒�씠釉� */
+/* 野껊슣�뻻疫뀐옙 筌뤴뫖以� 占쎈�믭옙�뵠�뇡占� */
 .post-list table {
     width: 100%;
     border-collapse: collapse;
@@ -173,12 +173,12 @@ body {
 
 
 .post-list tbody tr:hover {
-    background-color: #E1DEF1; /* 留덉슦�뒪瑜� �삱�졇�쓣 �븣�쓽 諛곌꼍�깋 */
+    background-color: #E1DEF1; /* 筌띾뜆�뒭占쎈뮞�몴占� 占쎌궞占쎌죬占쎌뱽 占쎈르占쎌벥 獄쏄퀗瑗랃옙源� */
     cursor: pointer;
 }
 
 
-/* �럹�씠吏��꽕�씠�뀡 �뒪���씪 */
+/* 占쎈읂占쎌뵠筌욑옙占쎄퐬占쎌뵠占쎈�� 占쎈뮞占쏙옙占쎌뵬 */
 .pagination {
     display: flex;
     align-items: center;
