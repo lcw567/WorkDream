@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicants.css">
 </head>
 <body>
-	<c:import url="/WEB-INF/views/common/header.jsp" />
+	<c:import url="/WEB-INF/views/common/header_biz.jsp" />
 	
 	<!-- 메인 -->
 	<main id="applicantsStatus-main">
