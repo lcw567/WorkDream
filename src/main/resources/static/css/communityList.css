@@ -59,12 +59,18 @@ body {
     background-color: #E1DEF1;
 }
 
+<<<<<<< HEAD
 /* 占쎌읈筌ｏ옙 野껊슣�뻻疫뀐옙*/
+=======
+
+>>>>>>> 3f396ec4751fc394bd3c44527da0dcdc2eda142d
 .total-count {
     font-size: 1.3rem;
     color: #333;
     font-weight: bold;
+    margin-bottom : 1rem;
 }
+
 
 
 .filter-section {

@@ -22,7 +22,7 @@
         <!-- 게시글 정보 -->
         <div class="post-header">
             <div class="post-user-info">
-                <img src="user-icon.png" alt="User Icon" class="user-icon">
+                <img src="user-icon.png"  class="user-icon">
                 <div class="user-details">
                     <span class="user-name">홍길동</span>
                     <span class="post-date">2024.06.28 작성</span>
@@ -51,7 +51,7 @@
         <!-- 댓글 입력 박스 -->
         <div class="comment-box">
             <div class="comment-header">
-                <img src="user-icon.png" alt="User Icon" class="comment-user-icon">
+                <img src="user-icon.png"  class="comment-user-icon">
                 <span class="comment-user-name">홍길동</span>
                 <button class="comment-submit-button">댓글 등록</button>
             </div>
