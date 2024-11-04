@@ -19,13 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 @Component
 public class LogginAOP {
-	// [ log cannot be resolved ] ì—ëŸ¬ í•´ê²°ë²•
-	// í”„ë¡œì íŠ¸ì— í¬í•¨ëœ Maven Dependencies > lombok.jar ì°¾ê¸° (Maven 3.9.9 ê¸°ì¤€ lombok-1.18.34.jarë¡œ ë˜ì–´ìˆìŒ)
-	// ìš°í´ë¦­ > Run As > Java Application
-	// ì¸ìŠ¤í†¨ ì‹¤í–‰ > ì„¤ì¹˜ ê²½ë¡œ ì„¤ì • > Springì´ ê¹”ë ¤ìˆëŠ” í´ë”ì˜ STS.ini íŒŒì¼ ì„ íƒ. (ex. sts-3.9.13.RELEASE/STS.ini)
-	// ì„ íƒ í›„ STSì™€ ì´í´ë¦½ìŠ¤ ë‘ ê°€ì§€ê°€ ê²½ë¡œì— ë‚˜íƒ€ë‚œë‹¤ë©´ ì •ìƒì ìœ¼ë¡œ ì„ íƒëœ ê²ë‹ˆë‹¤. (ì´í´ë¦½ìŠ¤ê°€ ëœ¨ì§€ ì•Šìœ¼ë©´ ë”°ë¡œ ì´í´ë¦½ìŠ¤ ì„¤ì¹˜ í´ë” > ini íŒŒì¼ ì¶”ê°€)
-	// ì¸ìŠ¤í†¨ì´ ì™„ë£Œë˜ë©´ Project > Clean ë˜ëŠ” Maven > Update Project ì‹¤í–‰ (ìˆœì„œëŒ€ë¡œ ë‘˜ ë‹¤ í•˜ëŠ” ê²ƒì„ ì¶”ì²œ)
-	// â€» í•´ë‹¹ ì˜¤ë¥˜ëŠ” ì†ŒìŠ¤ë¥¼ ìƒˆë¡œ ë°›ì„ ë•Œë§ˆë‹¤ ëœë¤í•˜ê²Œ ì¼ì–´ë‚  ìˆ˜ ìˆìœ¼ë¯€ë¡œ í•´ê²° ë°©ë²•ì„ ê¼­ ìˆ™ì§€í•´ë‘ì„¸ìš”.
+	// [ log cannot be resolved ] ¿¡·¯ ÇØ°á¹ı
+	// ÇÁ·ÎÁ§Æ®¿¡ Æ÷ÇÔµÈ Maven Dependencies > lombok.jar Ã£±â (Maven 3.9.9 ±âÁØ lombok-1.18.34.jar·Î µÇ¾îÀÖÀ½)
+	// ¿ìÅ¬¸¯ > Run As > Java Application
+	// ÀÎ½ºÅç ½ÇÇà > ¼³Ä¡ °æ·Î ¼³Á¤ > SpringÀÌ ±ò·ÁÀÖ´Â Æú´õÀÇ STS.ini ÆÄÀÏ ¼±ÅÃ. (ex. sts-3.9.13.RELEASE/STS.ini)
+	// ¼±ÅÃ ÈÄ STS¿Í ÀÌÅ¬¸³½º µÎ °¡Áö°¡ °æ·Î¿¡ ³ªÅ¸³­´Ù¸é Á¤»óÀûÀ¸·Î ¼±ÅÃµÈ °Ì´Ï´Ù. (ÀÌÅ¬¸³½º°¡ ¶ßÁö ¾ÊÀ¸¸é µû·Î ÀÌÅ¬¸³½º ¼³Ä¡ Æú´õ > ini ÆÄÀÏ Ãß°¡)
+	// ÀÎ½ºÅçÀÌ ¿Ï·áµÇ¸é Project > Clean ¶Ç´Â Maven > Update Project ½ÇÇà (¼ø¼­´ë·Î µÑ ´Ù ÇÏ´Â °ÍÀ» ÃßÃµ)
+	// ¡Ø ÇØ´ç ¿À·ù´Â ¼Ò½º¸¦ »õ·Î ¹ŞÀ» ¶§¸¶´Ù ·£´ıÇÏ°Ô ÀÏ¾î³¯ ¼ö ÀÖÀ¸¹Ç·Î ÇØ°á ¹æ¹ıÀ» ²À ¼÷ÁöÇØµÎ¼¼¿ä.
 	
 	@Pointcut("execution(* com.cs.workdream..controller.*.*(..) )")
 	private void cut() {}
@@ -54,7 +54,7 @@ public class LogginAOP {
 	public Object displayLogInfo(ProceedingJoinPoint pJoinPoint) throws Throwable {
 		long start = System.currentTimeMillis();// 0
 		
-		Object result = pJoinPoint.proceed(); // ì›ë˜ í•´ì•¼ë˜ëŠ” ê¸°ëŠ¥ì„ ì‹¤í–‰í•´ì¤€ë‹¤.
+		Object result = pJoinPoint.proceed(); // ¿ø·¡ ÇØ¾ßµÇ´Â ±â´ÉÀ» ½ÇÇàÇØÁØ´Ù.
 		
 		long end = System.currentTimeMillis(); // 10
 		
