@@ -229,4 +229,25 @@
 
 #applicantsList-section-list .list-table {
 	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9rem;
+}
+
+#applicantsList-section-list .list-table th {
+	height: 3rem;
+	font-family: 'MonoplexKR-Regular';
+	font-weight: normal;
+	font-size: 0.8rem;
+}
+
+#applicantsList-section-list .list-table thead th {
+	background-color: #B4A3DB;
+}
+
+#applicantsList-section-list .list-table tbody td {
+	height: 5rem;
+	border-bottom: 1.2px solid #E1DEF1;
+	text-align: center;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 0.9rem;
 }
