@@ -17,4 +17,11 @@ public class EnrollResume {
     public String showSelfIntroDashboard() {
         return "member/selfIntroDashboard"; // selfIntroDashboard.jsp
     }
+	
+	@GetMapping("/selfIntro")
+    public String selfIntro() {
+        return "member/selfIntro"; // selfIntro.jsp
+    }
 }
+
+
