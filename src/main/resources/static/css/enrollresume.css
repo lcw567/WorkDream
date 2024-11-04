@@ -1,395 +1,208 @@
-strong {
-    margin-right: 10px !important;
-    font-size: 20px !important;
+.resume_title{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-right: 520px;
 }
 
-.resume_title {
-    display: flex !important;
-    align-items: center !important;
-    margin-top: 40px !important;
-    margin-bottom: 40px !important;
+.resume_title h1{
+	font-size: 1.5rem;
+	display: inline-block;
+    padding-right: 30px;
 }
 
-.resume_name {
-    box-sizing: border-box !important;
-    border: 2px solid #4e21a8 !important;
-    border-radius: 20px !important;
-    border-color: #4e21a8 !important;
-    box-shadow: none !important;
-    width: 600px !important;
-    height: 45px !important;
-    padding-left: 20px !important;
-    padding-top: 6px !important;
-    font-family: 'MonoplexKR-Regular' !important;
-    font-weight: bold !important;
+.resume_title input{
+    box-sizing: border-box;
+    border: 2px solid #4e21a8;
+    width: 500px;
+    height: 30px;
+    border-radius: 30px;
+    border-color: #4E21A8;
+    padding-left: 20px;
+    position: relative;
+    bottom: 2px;
+    font-size: 1rem;
 }
 
-.resume_name:focus {
-    outline: none !important;
+input:focus{
+    outline: none;
 }
 
-.resume_name::placeholder {
-    font-family: "Noto Sans KR", sans-serif !important;
+#basic1{
+    display: flex;
+}
+.basic_info{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 365px;
+    border-radius: 5px;
 }
 
-.basicInfo p {
-    margin: 0 !important;
+.b_Info{
+    font-size: 1.5rem;
+    margin-left: 50px;
 }
 
-.basicInfo, .ed, .sk {
-    width: 1200px !important;
+.name{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
 }
 
-.name_info, .phone, .email, .address, .detail_ad {
-    display: flex !important;
-    text-align: center !important;
-    align-items: center !important;
+.name input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
 }
 
-.Education_Lv, .basic_Info, .skill_Lv, .career_Lv, .EXP {
-    border: none !important;
-    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08) !important;
-    border-top: 5px solid #4e21a8 !important;
-    height: 670px !important;
-    border-radius: 5px !important;
+input:focus{
+    outline: none;
 }
 
-input:focus {
-    outline: none !important;
+.username, .userbirth, .useremail, .userphone, .useraddress, .userdtaddress{
+    font-size: 0.8rem;
+    margin-left: 15px;
 }
 
-.basic_info {
-    font-size: 30px !important;
+.gender{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 31px;
+    height: 44px;
+    display: flex;
 }
 
-input, #gender {
-    border-radius: 10px !important;
-    box-sizing: border-box !important;
-    border: none !important;
-    height: 33px !important;
-    padding-left: 20px !important;
-    padding-bottom: 6px !important;
+.usergender{
+    position: relative;
+    height: 42px;
+    top: 33px;
+    width: 120px;
+    margin-left: 34px;
 }
 
-option {
-    height: 10px !important;
+#selectgender{
+	border: none;
+    width: 154px;
+    font-size: 0.9rem;
+    padding-left: 10px;
 }
 
-.gender_info, .birth {
-    padding-left: 20px !important;
+.birthday{
+	border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
 }
 
-.email, .address, .detail_ad {
-    padding-top: 40px !important;
+.birthday input{
+	border: none;
+    margin-top: 5px;
+    width: 190px;
+    padding-left: 15px;
+    padding-right: 14px;
+    font-size: 0.9rem;
 }
 
-.basic_total {
-    margin: 20px !important;
-    padding-left: 50px !important;
+#basic2{
+    display: flex;
+}
+.email{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
 }
 
-.email_check {
-    box-sizing: border-box !important;
-    border: none !important;
-    margin-left: 20px !important;
-    border-radius: 5px !important;
-    height: 50px !important;
-    width: 80px !important;
-    background-color: #4E21A8 !important;
-    color: white !important;
-    cursor: pointer !important;
-    font-family: "Noto Sans KR", sans-serif !important;
-    position: relative !important;
-    top: 5px !important;
+.email input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
 }
 
-.picture_add {
-    position: relative !important;
-    margin-left: 100px !important;
-    width: 100px !important;
-    border: none !important;
-    background-color: transparent !important;
-    cursor: pointer !important;
-    top: 15px !important;
+.email_check{
+    height: 44px;
+    width: 85px;
+    margin-top: 32px;
+    margin-left: 50px;
+    border: none;
+    color: white;
+    background-color: #5E35B0;
+    border-radius: 5px;
 }
 
-.picture_add img {
-    position: relative !important;
-    right: 8px !important;
-    bottom: 3px !important;
+#basic3{
+    display: flex;
+}
+.phone{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
 }
 
-.picture_add label {
-    position: relative !important;
-    font-size: 19px !important;
-    left: 4px !important;
-    font-family: "Noto Sans KR", sans-serif !important;
+.phone input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
 }
 
-.name, .Birth, .Phone, .Email, .Address, .Detail_ad {
-    display: flex !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    border: 1px solid #4e21a8 !important;
-    height: 60px !important;
-    border-radius: 5px !important;
-    width: 300px !important;
+.phone_check{
+    height: 44px;
+    width: 85px;
+    margin-top: 32px;
+    margin-left: 50px;
+    border: none;
+    color: white;
+    background-color: #5E35B0;
+    border-radius: 5px;
 }
 
-#name, #birth, #phone, #email, #address, #detail_ad {
-    text-align: left !important;
-    margin-left: 20px !important;
+#basic4{
+    display: flex;
 }
 
-.Gender {
-    display: flex !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    border: 1px solid #4e21a8 !important;
-    height: 65px !important;
-    width: 70px !important;
-    border-radius: 5px !important;
+.address{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
 }
 
-#gender {
-    background-color: transparent !important;
-    text-align: center !important;
-    padding: 0 !important;
-    position: relative !important;
-    bottom: 0 !important;
+.address input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 7px;
+    padding-left: 15px;
+    font-size: 0.8rem;
+    width: 300px;
 }
 
-.gender {
-    position: relative !important;
-    box-sizing: border-box !important;
-    border: none !important;
-    bottom: 5px !important;
-    left: 11px !important;
+.dtaddress{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
 }
 
-.ed, .career, .experience {
-    width: 1200px !important;
-}
-
-.Education_Lv {
-    border: none !important;
-    box-shadow: 0 4px 16px 0 rgba(17, 42, 128, 0.08) !important;
-    border-top: 5px solid #4e21a8 !important;
-    height: 251px !important;
-    border-radius: 5px !important;
-}
-
-#Education_Lv {
-    font-size: 30px !important;
-}
-
-.education {
-    border-radius: 5px !important;
-    width: 300px !important;
-    border: 1px solid #4e21a8 !important;
-}
-
-#education, #Skill {
-    margin: 20px !important;
-    margin-top: 30px !important;
-    padding-left: 50px !important;
-}
-
-#edu {
-    box-sizing: border-box !important;
-    border: none !important;
-    width: 300px !important;
-    position: relative !important;
-    bottom: 3px !important;
-}
-
-#edu:focus {
-    outline: none !important;
-}
-
-.skill {
-    box-sizing: border-box !important;
-    border-radius: 5px !important;
-    width: 700px !important;
-    border: 1px solid #4e21a8 !important;
-    height: 60px !important;
-    display: inline-block !important;
-}
-
-.inputskill {
-    width: 250px !important;
-    position: relative !important;
-    bottom: 6px !important;
-    padding-left: 0 !important;
-}
-
-#btn_skill {
-    box-sizing: border-box !important;
-    border: none !important;
-    margin-left: 20px !important;
-    border-radius: 5px !important;
-    height: 50px !important;
-    width: 80px !important;
-    background-color: #4E21A8 !important;
-    color: white !important;
-    cursor: pointer !important;
-    font-family: "Noto Sans KR", sans-serif !important;
-    position: relative !important;
-    top: -6px !important;
-}
-
-#Skill {
-    margin-left: 121px !important;
-}
-
-#dlf {
-    box-sizing: border-box !important;
-    border: 2px solid rgb(26, 82, 131) !important;
-    width: 80px !important;
-    border-radius: 30px !important;
-    margin-left: 200px !important;
-    font-size: 15px !important;
-}
-
-.skill_Lv {
-    height: 200px !important;
-}
-
-#Skill_Lv {
-    font-size: 30px !important;
-}
-
-#career_title, #epr_title {
-    font-size: 30px !important;
-}
-
-.career_inner {
-    margin-top: 40px !important;
-}
-
-.career_inner2 {
-    margin-top: 70px !important;
-}
-
-.career_inner3 {
-    margin-top: 70px !important;
-}
-
-.career_inner fieldset {
-    display: inline-block !important;
-    box-sizing: border-box !important;
-    border: 1px solid #4e21a8 !important;
-    height: 60px !important;
-    border-radius: 5px !important;
-    width: 200px !important;
-    margin-left: 73px !important;
-}
-
-.career_inner2 fieldset {
-    display: inline-block !important;
-    box-sizing: border-box !important;
-    border: 1px solid #4e21a8 !important;
-    height: 60px !important;
-    border-radius: 5px !important;
-    width: 200px !important;
-    margin-left: 73px !important;
-}
-
-.career_inner3 fieldset {
-    display: inline-block !important;
-    box-sizing: border-box !important;
-    border: 1px solid #4e21a8 !important;
-    height: 300px !important;
-    border-radius: 5px !important;
-    width: 985px !important;
-    margin-left: 73px !important;
-}
-
-.career_inner fieldset input {
-    box-sizing: border-box !important;
-    position: relative !important;
-    bottom: 5px !important;
-    width: 200px !important;
-}
-
-.career_inner2 fieldset input {
-    box-sizing: border-box !important;
-    position: relative !important;
-    bottom: 5px !important;
-    width: 250px !important;
-}
-
-.career_check {
-    display: inline !important;
-    margin-left: 60px !important;
-    position: relative !important;
-    top: 5px !important;
-}
-
-.car_checked {
-    position: relative !important;
-    bottom: 11px !important;
-}
-
-#car_content {
-    width: 100% !important;
-    height: 200px !important;
-    border: none !important;
-    resize: none !important;
-}
-
-#car_content:focus {
-    outline: none !important;
-}
-
-.experience_inner {
-    margin-top: 40px !important;
-}
-
-.experience_inner2 {
-    margin-top: 70px !important;
-}
-
-.experience_inner3 {
-    margin-top: 70px !important;
-}
-
-.EXP fieldset {
-    display: inline-block !important;
-    box-sizing: border-box !important;
-    border: 1px solid #4e21a8 !important;
-    height: 60px !important;
-    border-radius: 5px !important;
-    width: 200px !important;
-    margin-left: 73px !important;
-}
-
-.EXP fieldset input {
-    box-sizing: border-box !important;
-    position: relative !important;
-    bottom: 5px !important;
-    width: 200px !important;
-}
-
-#exp_content {
-    width: 100% !important;
-    height: 200px !important;
-    border: none !important;
-    resize: none !important;
-}
-
-.experience_inner3 fieldset {
-    display: inline-block !important;
-    box-sizing: border-box !important;
-    border: 1px solid #4e21a8 !important;
-    height: 300px !important;
-    border-radius: 5px !important;
-    width: 878px !important;
-    margin-left: 73px !important;
-}
-
-#exp_content:focus {
-    outline: none !important;
+.dtaddress input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 7px;
+    padding-left: 15px;
+    font-size: 0.8rem;
+    width: 310px;
 }
