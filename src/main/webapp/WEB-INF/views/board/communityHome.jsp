@@ -14,9 +14,9 @@
 <input type="hidden" id="contextPath" value="${pageContext.request.contextPath}"/>
 <c:import url="/WEB-INF/views/common/header.jsp" />
     <div class="home-container"> 
-    <section class="title">
+    <div class="title">
         <h1>커뮤니티 홈</h1>
-    </section>
+    </div>
 
     <!-- 공지사항  -->
     <section class="notice">
@@ -49,7 +49,10 @@
     <!-- 실시간 전체글 박스 -->
     <section class="realtime-posts-container">
         <div class="realtime-posts">
-            <h2 id="postCount">실시간 전체글 99,999 개</h2> <!-- ID 추가 -->
+        	<div class = "postCountTitle">
+        		<h2 id="postCount">실시간 전체글 99,999 개</h2> <!-- ID 추가 -->
+        	</div>
+            
             <div class="search-bar">
                 <input type="text" placeholder="검색어를 입력하세요">
                 <button>🔍</button>

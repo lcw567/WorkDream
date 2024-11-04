@@ -43,9 +43,10 @@
 
         <br><br>
 
+
         <!-- 게시글 개수 -->
         <section class="count">
-            <p class="total-count">전체 <strong>10,000</strong>건</p>    
+            <p class="total-count">전체 <strong style ="font-size: 1.3rem;">10,000</strong>건</p>    
         </section>
 
         <!-- 필터 섹션 -->
