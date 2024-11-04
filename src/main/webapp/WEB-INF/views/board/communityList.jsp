@@ -6,89 +6,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>커뮤니티 리스트</title>
-    < <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityList.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityList.css">
+    <script src="${pageContext.request.contextPath}/js/communityList.js" defer></script>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/common/header.jsp" />
-	
+    <c:import url="/WEB-INF/views/common/header.jsp" />
+    
     <div class="list-container"> 
 
-    <!-- 상단 제목 -->
-    <section class="title">
-        <h1>인기글 </h1>
-    </section>
+        <!-- 상단 제목 -->
+        <%
+		    String category = request.getParameter("category");
+		    if (category == null || category.isEmpty()) {
+		        category = "인기글"; // 기본값 설정
+		    }
+		%>
+        <section class="title">
+            <h1><%= category %></h1>
+        </section>
 
-    <!-- 카테고리 버튼 -->
-    <section class="category-tags">
-        <button>인기글</button>
-        <button>신입</button>
-        <button>채용공고</button>
-        <button>취준</button>
-        <button>자소서</button>
-        <button>자격증</button>
-        <button>Q&A</button>
-        <button>커리어</button>
-        <button>이직</button>
-        <button>잡담</button>
-        <button>면접</button>
-    </section>
+        <!-- 카테고리 버튼 -->
+        <section class="category-tags">
+        	<button data-category="전체글">전체글</button>
+            <button data-category="인기글">인기글</button>
+            <button data-category="신입">신입</button>
+            <button data-category="채용공고">채용공고</button>
+            <button data-category="취준">취준</button>
+            <button data-category="자소서">자소서</button>
+            <button data-category="자격증">자격증</button>
+            <button data-category="Q&A">Q&A</button>
+            <button data-category="커리어">커리어</button>
+            <button data-category="이직">이직</button>
+            <button data-category="잡담">잡담</button>
+            <button data-category="면접">면접</button>
+        </section>
 
-    <br><br>
+        <br><br>
 
-    <section class="count">
-    <p class="total-count">전체 <strong>10,000</strong>건</p>    
-    </section>
+        <!-- 게시글 개수 -->
+        <section class="count">
+            <p class="total-count">전체 <strong>10,000</strong>건</p>    
+        </section>
 
-    
-    <!-- 필터 섹션 -->
-    <section class="filter-section">
-        
-        <div class="filters">
-            <select>
-                <option value="">직무/직업 전체</option>
-                <option value="">기획•전략</option>
-                <option value="">마케팅•홍보•조사</option>
-                <option value="">회계•세무•재무</option>
-                <option value="">인사•노무•HRD</option>
-                <option value="">총무•법무•사무</option>
-                <option value="">IT개발•데이터</option>
-                <option value="">디자인</option>
-                <option value="">영업•판매•무역</option>
-                <option value="">고객상담•TM</option>
-                <option value="">구매•자재•물류</option>
-                <option value="">상품기획•MD</option>
-                <option value="">운전•운송•배송</option>
-                <option value="">서비스</option>
-                <option value="">생산</option>
-                <option value="">건설•건축</option>
-                <option value="">의료</option>
-                <option value="">연구•R&D</option>
-                <option value="">교육</option>
-                <option value="">미디어•문화•스포츠</option>
-                <option value="">금융•보험</option>
-                <option value="">공공•복지</option>
-            </select>
-            <select>
-                <option>인기순</option>
-                <option>최신순</option>
-                <option>조회순</option>
-                <option>공감 많은 순</option>
-            </select>
-        
+        <!-- 필터 섹션 -->
+        <section class="filter-section">
+            <div class="filters">
+                <select>
+                    <option value="">직무/직업 전체</option>
+                    <option value="기획•전략">기획•전략</option>
+                    <option value="마케팅•홍보•조사">마케팅•홍보•조사</option>
+                    <option value="회계•세무•재무">회계•세무•재무</option>
+                    <option value="인사•노무•HRD">인사•노무•HRD</option>
+                    <option value="총무•법무•사무">총무•법무•사무</option>
+                    <option value="IT개발•데이터">IT개발•데이터</option>
+                    <option value="디자인">디자인</option>
+                    <option value="영업•판매•무역">영업•판매•무역</option>
+                    <option value="고객상담•TM">고객상담•TM</option>
+                    <option value="구매•자재•물류">구매•자재•물류</option>
+                    <option value="상품기획•MD">상품기획•MD</option>
+                    <option value="운전•운송•배송">운전•운송•배송</option>
+                    <option value="서비스">서비스</option>
+                    <option value="생산">생산</option>
+                    <option value="건설•건축">건설•건축</option>
+                    <option value="의료">의료</option>
+                    <option value="연구•R&D">연구•R&D</option>
+                    <option value="교육">교육</option>
+                    <option value="미디어•문화•스포츠">미디어•문화•스포츠</option>
+                    <option value="금융•보험">금융•보험</option>
+                    <option value="공공•복지">공공•복지</option>
+                </select>
+                <select>
+                    <option value="최신순">최신순</option>
+                    <option value="조회순">조회순</option>
+                    <option value="공감 많은 순">공감 많은 순</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="header-search-bar">
+            <h2>게시글 목록</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="검색어를 입력하세요">
+                <button>🔍</button>
+            </div>
         </div>
-    </section>
 
-    <div class="header-search-bar">
-        <h2>게시글 목록</h2>
-        <div class="search-bar">
-            <input type="text" placeholder="검색어를 입력하세요">
-            <button>🔍</button>
-        </div>
-    </div>
-
-    <!-- 게시글 목록 테이블 -->
+        <!-- 게시글 목록 테이블 -->
         <section class="post-list">
-            
             <table>
                 <thead>
                     <tr>
@@ -102,39 +106,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Example rows -->
-                    <tr>
-                        <td>2</td>
-                        <td>IT개발·데이터</td>
-                        <td>스타트업, 창업</td>
-                        <td>홍길동</td>
-                        <td>3분전</td>
-                        <td>38</td>
-                        <td>38</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>교육</td>
-                        <td>[현직자 상담] 미래 진로에 대한 고민...</td>
-                        <td>이길동</td>
-                        <td>4분전</td>
-                        <td>38</td>
-                        <td>38</td>
-                    </tr>
-                    
+                    <!-- JavaScript로 동적 생성 -->
                 </tbody>
             </table>
         </section>
-    </section>
 
-    <br><br><br>
-    <!-- 페이지네이션 컨트롤 -->
-    <div class="pagination">
-        <button id="prevPage" disabled>&#9664;</button>
-        <span id="pageNumber">1</span>
-        <button id="nextPage">&#9654;</button>
+        <br><br><br>
+
+        <!-- 페이지네이션 컨트롤 -->
+        <div class="pagination">
+            <button id="prevPage" disabled>&#9664;</button>
+            <span id="pageNumber">1</span>
+            <button id="nextPage">&#9654;</button>
+        </div>
     </div>
-</div>
-<c:import url="/WEB-INF/views/common/footer.jsp" />
+    <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
