@@ -232,7 +232,6 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	border-collapse: collapse;
 	border-bottom: 2px solid #E1DEF1;
 }
 
@@ -330,7 +329,6 @@
 
 #applicantsList-section-list .list-table {
 	width: 100%;
-	border-collapse: collapse;
 	font-size: 0.9rem;
 }
 

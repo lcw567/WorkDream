@@ -21,4 +21,9 @@ public class BusinessController {
     public String appList() {
         return "business/applicantsList";
     }
+ 
+    @GetMapping("/business/bookmark")
+    public String bookmarkList() {
+        return "business/bookmarkList";
+    }
 }
