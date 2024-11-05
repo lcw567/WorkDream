@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자소서 관리dsfdsf</title>
+    <title>구직자 마이페이지</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicantsMypage.css">
 </head>
 <body>
@@ -79,7 +80,7 @@
 
         <section class="banner">
             <div class="plannerBanner">
-                <a href="plannerPage.html">
+                <a href="plannerPage 예정">
                 <img src="${pageContext.request.contextPath}/img/plannerBanner.PNG" />
                 </a>
             </div>
