@@ -1,3 +1,4 @@
+/* 기본 설정 */
 html {
     font-size: 16px; 
 }
@@ -11,19 +12,23 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    color: #ffffff;
+    color: #000000; /* 텍스트 색상을 검정으로 변경 */
     background-color: #ffffff;
     padding: 40px;
 }
 
+/* 메인 컨테이너 */
 .main-container {
     width: 100%;
     max-width: 1000px;
-    margin: 30px;
+    margin: 30px auto; /* 좌우 중앙 정렬 */
     padding: 20px;
     background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* 제목 스타일 */
 .tag-title h2, .application-status h2 {
     color: #4b2e83;
     margin-bottom: 15px;
@@ -48,15 +53,16 @@ body {
     background-color: #4b2e83;
     color: #ffffff;
     border: none;
-    padding: 5px 15px;
-    border-radius: 15px;
+    padding: 10px 20px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .messenger:hover {
-    background-color:  #E1DEF1;
+    background-color: #E1DEF1;
+    color: #4b2e83; /* 호버 시 텍스트 색상 변경 */
 }
 
 /* 관심태그 스타일 */
@@ -86,7 +92,7 @@ body {
 }
 
 .edit-tag:hover {
-    background-color: #4b2e83;
+    background-color: #6a4da4; /* 호버 시 배경색 변경 */
 }
 
 .tags {
@@ -97,13 +103,14 @@ body {
 
 .tag-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
 .tag {
     background-color: #B4A3DB;
     border: none;
-    padding: 25px;
+    padding: 15px 20px;
     flex: 1;
     text-align: center;
     border-radius: 15px;
@@ -116,6 +123,7 @@ body {
 
 .tag:hover {
     background-color: #4b2e83;
+    color: #ffffff; /* 호버 시 텍스트 색상 변경 */
     transform: scale(1.02);
 }
 
@@ -123,11 +131,17 @@ body {
     background-color: #4b2e83;
     color: white;
     align-self: stretch;
-    padding: 25px;
+    padding: 15px 20px;
     font-size: 1.5rem;
     border-radius: 8px;
     text-align: center;
     margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.all:hover {
+    background-color: #6a4da4;
 }
 
 /* 지원현황 스타일 */
@@ -158,7 +172,6 @@ body {
 .application-status .status-cards {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
     margin-top: 20px;
 }
 
@@ -189,21 +202,22 @@ body {
 .actions .action-buttons {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 40px;
-    margin-top: 40px;
+    margin: 40px 0;
 }
 
 .action {
     background-color: #E1DEF1;
     border-radius: 8px;
     padding: 25px;
-    flex: 1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s;
     cursor: pointer;
     height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .action:hover {
@@ -212,8 +226,7 @@ body {
 
 .action h3 {
     color: #4b2e83;
-    margin-bottom: 30px;
-    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 1.5rem;
 }
 
@@ -239,8 +252,132 @@ body {
     height: auto;
     border-radius: 8px;
     cursor: pointer; 
+    transition: box-shadow 0.3s;
 }
 
-.plannerBanner img:hover {
+.plannerBanner img:hover, .mainBanner img:hover {
     box-shadow: 0 6px 12px #B4A3DB;
+}
+
+
+/* 관심태그 팝업 스타일링 */
+.tag-edit-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    background-color: white;
+    border: 1px solid #4b2e83;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    display: none;
+}
+
+.tag-edit-popup .title-popup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.tag-edit-popup .title-popup h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.tag-edit-popup .title-popup .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.tag-edit-popup .modal-content {
+    padding: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.tag-edit-popup .tag-input-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag-edit-popup .tag-input-container .tag-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.tag-edit-popup .tag-input-container .add-tag-button {
+    padding: 8px 12px;
+    background-color: #4b2e83;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.tag-edit-popup .tag-input-container .add-tag-button:hover {
+    background-color: #6a4da4;
+}
+
+.tag-edit-popup .tag-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 8px;
+}
+
+.tag-edit-popup .tag-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #E1DEF1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.tag-edit-popup .tag-item .remove-tag {
+    background: none;
+    border: none;
+    color: #000000;
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+.tag-edit-popup .tag-item .remove-tag:hover {
+    color: #4b2e83;
+}
+
+.tag-edit-popup .save-tag {
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+.tag-edit-popup .save-tag .save-button {
+    padding: 10px 20px;
+    background-color: #4b2e83;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.tag-edit-popup .save-tag .save-button:hover {
+    background-color: #6a4da4;
 }
