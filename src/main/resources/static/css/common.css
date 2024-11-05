@@ -321,10 +321,6 @@ header.biz > nav > ul > li > a {
 	color: #807E85;
 }
 
-#biz-nav-right > li.logout {
-	margin-top: 0.1rem;
-}
-
 #biz-nav-right > li.logout > a:hover {
 	text-decoration: none;
 	color: #6D47B7;

@@ -81,13 +81,13 @@
 							<button><img src="${pageContext.request.contextPath}/img/btn_print.png" />&nbsp;인쇄</button>
 						</li>
 						<li>
-							<button><img src="${pageContext.request.contextPath}/img/btn_download.png" />&nbsp;저장</button>&emsp;
+							<button><img src="${pageContext.request.contextPath}/img/btn_save.png" />&nbsp;저장</button>&emsp;
 						</li>
 						<li>
 							<button><img src="${pageContext.request.contextPath}/img/btn_reset.png" />&nbsp;초기화 |</button>
 						</li>
 						<li>
-							<button><img src="${pageContext.request.contextPath}/img/btn_download.png" />&nbsp;검색 |</button>
+							<button><img src="${pageContext.request.contextPath}/img/btn_search(sub).png" />&nbsp;검색 |</button>
 						</li>
 						<li>
 							<button><img src="${pageContext.request.contextPath}/img/btn_filter.png" />&nbsp;조건</button>

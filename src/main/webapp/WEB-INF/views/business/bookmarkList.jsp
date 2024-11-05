@@ -43,20 +43,18 @@
 									<input type="checkbox" id="allCheck" />
 									<span></span>
 								</label>
-								<button>선택 삭제</button>
 							</th>
-							<th><b>|</b></th>
-							<th colspan="2">
+							<th colspan="4">
+								<button>선택 삭제</button>
+								<b>&emsp;&#124;&emsp;</b>
 								<button><img src="${pageContext.request.contextPath}/img/btn_folder_add.png"> 그룹 추가</button>
 								<button><img src="${pageContext.request.contextPath}/img/btn_folder_sub.png"> 그룹 삭제</button>
 								<button><img src="${pageContext.request.contextPath}/img/btn_setting.png"> 그룹 관리</button>
+								<b>&emsp;&#124;&emsp;</b>
+								<button><img src="${pageContext.request.contextPath}/img/btn_print(black).png"> 인쇄</button>
+								<button><img src="${pageContext.request.contextPath}/img/btn_save(black).png"> 저장</button>
 							</th>
-							<th>
-								<button><img src="${pageContext.request.contextPath}/img/btn_print.png"> 인쇄</button>
-								<button><img src="${pageContext.request.contextPath}/img/btn_download.png"> 저장</button>
-							</th>
-							<th>|</th>
-							<th>
+							<th colspan="2">
 								<select>
 									<option value="20">20개</option>
 									<option value="30">30개</option>
@@ -81,19 +79,21 @@
 									<span>&ensp;</span>
 								</label>
 							</td>
-							<td colspan="2">
+							<td>
 								<span class="photo"></span>
+							</td>
+							<td>
 								<span class="profile">김아무개</span>
 							</td>
 							<td>
-								<button><img src="${pageContext.request.contextPath}/img/btn_folder.png" /> 미분류</button>
+								<button class="no-group"><img src="${pageContext.request.contextPath}/img/btn_folder_none.png" /> 미분류</button>
 							</td>
 							<td>지원일 2024.11.05</td>
 							<td>
 								<button><img src="${pageContext.request.contextPath}/img/btn_preview.png" /> 이력서 열람</button>
 							</td>
 							<td colspan="2">
-								<button><img src="${pageContext.request.contextPath}/img/btn_call.png" /></button>
+								<button disabled><img src="${pageContext.request.contextPath}/img/btn_call.png" /></button>
 								<button><img src="${pageContext.request.contextPath}/img/btn_mail.png" /></button>
 								<button><img src="${pageContext.request.contextPath}/img/btn_chat.png" /></button>
 							</td>
