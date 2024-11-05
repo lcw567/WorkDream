@@ -89,6 +89,42 @@
             </div>
         </section>
     </div>
+    
+    <div class="overlay"></div>
+
+    <div class="tag-edit-popup">
+        <div class="title-popup">
+            <h2>관심태그 수정</h2>
+            <button class="close-button">&times;</button>
+        </div>
+        <div class="modal-content">
+            <div class="tag-input-container">
+                <input type="text" placeholder="관심태그를 입력하세요..." class="tag-input">
+                <button class="add-tag-button">관심태그 추가</button>
+            </div>
+            <div class="tag-list">
+                <div class="tag-item">건강검진 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">성과금 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">야근수당 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">퇴직연금 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">특근수당 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">4대보험 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">직책수당 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">연차수당 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">건강검진 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">성과금 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">야근수당 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">퇴직연금 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">특근수당 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">4대보험 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">직책수당 <span class="remove-tag">&times;</span></div>
+                <div class="tag-item">연차수당 <span class="remove-tag">&times;</span></div>   
+            </div>
+        </div>
+        <div class="save-tag">
+            <button class="save-button">관심태그 저장하기</button>
+        </div>
+    </div>
 
 </body>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
