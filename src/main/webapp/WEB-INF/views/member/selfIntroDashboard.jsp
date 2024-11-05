@@ -8,6 +8,7 @@
     <title>자소서 관리</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/selfIntroDashboard.css">
+	<script src="${pageContext.request.contextPath}/js/selfIntroDashboard.js"></script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/header.jsp" />
@@ -33,7 +34,7 @@
         <main>
             <div class="total-count">총 3건</div>
             <div class="intro-list">
-                <div class="intro-item">
+                <div class="intro-item" data-id="intro1">
                     <div class="intro-info">
                         <div class="intro-name">작성한 자소서 이름 1</div>
                         <div class="intro-date">2024.10.22 14:38:11 수정</div>
@@ -46,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="intro-item">
+                <div class="intro-item" data-id="intro2">
                     <div class="intro-info">
                         <div class="intro-name">작성한 자소서 이름 2</div>
                         <div class="intro-date">2024.10.22 14:38:11 수정</div>
@@ -59,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="intro-item">
+                <div class="intro-item" data-id="intro3">
                     <div class="intro-info">
                         <div class="intro-name">작성한 자소서 이름 3</div>
                         <div class="intro-date">2024.10.22 14:38:11 수정</div>

@@ -221,3 +221,7 @@ body {
     margin-bottom: 5px;
     font-size: 1rem;
 }
+
+.dropdown-menu.show {
+    display: block;
+}
