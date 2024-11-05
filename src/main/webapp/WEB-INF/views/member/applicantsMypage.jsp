@@ -90,7 +90,6 @@
         </section>
     </div>
     
-    <div class="overlay"></div>
 
     <div class="tag-edit-popup">
         <div class="title-popup">

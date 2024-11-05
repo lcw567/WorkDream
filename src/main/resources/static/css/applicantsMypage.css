@@ -271,6 +271,8 @@ body {
     border: 1px solid #4b2e83;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    display: none;
 }
 
 .tag-edit-popup .title-popup {
