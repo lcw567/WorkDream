@@ -26,22 +26,9 @@ public class BusinessController {
     public String appList() {
         return "business/applicantsList";
     }
-<<<<<<< HEAD
     
-<<<<<<< HEAD
     @GetMapping("/business/bookmark")
     public String bookmarkList() {
         return "business/bookmarkList";
-=======
-	@GetMapping("/business/jobPostingRegistration")
-    public String jobRegistration() {
-        return "business/jobPostingRegistration";
->>>>>>> 2b038cb2521d541d6247fb6d21b7cb6cc57f86f3
-=======
-  
-    @GetMapping("/business/bookmark")
-    public String bookmarkList() {
-        return "business/bookmarkList";
->>>>>>> 60706d483b474c6f5a480c5990d6624eb7de310c
     }
 }
