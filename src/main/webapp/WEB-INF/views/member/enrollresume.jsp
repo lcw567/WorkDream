@@ -373,6 +373,20 @@
                     </div>
                 </fieldset>
             </div>
+            <div id="Skill">
+                <fieldset class="skill">
+                    <legend class="skill_name">스킬</legend>
+                    <div id="sk_title1">
+                        <fieldset class="skill_title">
+                            <input type="text" name="sk_title" placeholder="툴/직무역량/소프트스킬을 입력해주세요.">
+                        </fieldset>
+                        <button>추가하기</button>
+                    </div>
+                    <div id="sk_title2">
+
+                    </div>
+                </fieldset>
+            </div>
         </div>
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
