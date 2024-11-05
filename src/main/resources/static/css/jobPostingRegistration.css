@@ -1,0 +1,257 @@
+#Job_Posting {
+    border: none;
+    padding: 8px;
+    width: 95%;
+    max-width: 1264px;
+    height: 100%;
+}
+
+#Job_Posting_Registration {
+    border: none;
+    height: 60px;
+    width: 100%;
+    padding-top: 10px;
+}
+
+#Job_Posting_Registration h2 {
+    margin: 0;
+    color: #7A35B9;
+    font-size: 1.2rem;
+    font-weight: 800;
+    padding-left: 20px;
+    padding-bottom: 15px;
+}
+
+#Job_Posting hr {
+    color: #3333ff;
+    height: 2px;
+    border: 2px solid #7A35B9;
+}
+
+#Job_Posting_Registration_content {
+    margin-left: 100px;
+}
+
+#Job_Posting_Registration_content h2 {
+    font-size: 1.2rem;
+}
+
+#Job_Posting_Registration_Index {
+    width: 90%;
+    height: 50px;
+    background-color: #D9D9D9;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+#Job_Posting_Registration_Index_One {
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+#Job_Posting_Registration_Index_One p {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#Job_Posting_Registration_Index_One img {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+#Job_Posting_Registration_Index_One hr {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+    border: 2px solid black;
+}
+
+.Contact_Information_Title {
+    border: none;
+    display: flex;
+    align-items: center;
+    height: 28px;
+}
+
+.Contact_Information_Title h2 {
+    margin: 0px;
+}
+
+.Contact_Information_Title p {
+    border: none;
+    margin-left: 5px;
+    font-size: 15px;
+    height: 9px;
+}
+
+.Contact_Information p {
+    margin-top: 0px;
+    margin-bottom: 11px;
+    color: #656565;
+    font-weight: 200;
+}
+
+#Contact_Information_Name {
+    display: flex;
+    align-items: center;
+    height: 38px;
+}
+
+#Contact_Information_Name input {
+    height: 32px;
+    width: 180px;
+    margin-left: 51px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+#Contact_Information_Department {
+    display: flex;
+    align-items: center;
+    height: 38px;
+}
+
+#Contact_Information_Department input {
+    height: 32px;
+    width: 180px;
+    margin-left: 51px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+#Contact_Information_Email {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    margin-bottom: 40px;
+}
+
+#Contact_Information_Email input {
+    height: 32px;
+    width: 300px;
+    margin-left: 35px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+#Contact_Information_Company_Name {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    margin-bottom: 40px;
+}
+
+#Website_Address {
+    margin-bottom: 40px;
+}
+
+#Website_Address input {
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 350px;
+    height: 40px;
+    padding-left: 10px;
+    background-color: #E1DEF1;
+}
+
+#Website_Address button {
+    margin-left: 8px;
+    width: 65px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #4E21A8;
+    color: white;
+    font-weight: 600;
+}
+
+#Website_Address button:hover {
+    background-color: #3d1a85;
+    /* 호버 시 색상 */
+}
+
+#Company_logo {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 120px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D9D9;
+    margin-bottom: 20px;
+}
+
+#Company_logo img {
+    width: 65px;
+    height: 65px;
+}
+
+#Company_logo_file {
+    margin-bottom: 8px;
+}
+
+#Company_logo_file input[type="text"] {
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 250px;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #4E21A8;
+    color: white;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.custom-file-upload:hover {
+    background-color: #3d1a85;
+    /* 호버 시 색상 */
+}
+
+#Job_Posting_division_zones {
+    border: none;
+    width: 100%;
+    height: 50px;
+    background-color: #F4F4F4;
+}
+
+.Next_Or_Back{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 100px;
+}
+
+.Cancel_Push{
+    padding: 12px 34px;
+    background-color: #747474;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.Next_Push{
+    margin: 0 8px;
+    padding: 12px 34px;
+    background-color: #4E21A8;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    font-size: 13px;
+}

@@ -36,16 +36,31 @@
     				<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logo_icon.png" /></a>
     			</li>
     			<li class="On"><a href="">기업 홈</a></li>
-    			<li><a href="">채용공고관리</a></li>
-    			<li><a href="">지원자 현황</a></li>
-    			<li><a href="">인재풀 검색</a></li>
-    			<li><a href="">기업정보수정</a></li>
-    			<li><a href="">커뮤니티</a></li>
+    			<li><a href="${pageContext.request.contextPath}/business/recruitmentStatus">채용공고관리</a></li>
+    			<li><a href="${pageContext.request.contextPath}/business/applicantsStatus">지원자 현황</a></li>
+    			<li><a href="#">인재풀 검색</a></li>
+    			<li><a href="#">기업정보수정</a></li>
+    			<li><a href="#">커뮤니티</a></li>
     		</ul>
     		
     		<!-- 유저메뉴 -->
     		<ul id="biz-nav-right">
-    			<li><a href="">워크드림</a></li>
+    			<li>
+    				<a href="#"><img src="${pageContext.request.contextPath}/img/btn_chat.png" /></a>
+    			</li>
+    			<li>
+    				<a href=""><img src="${pageContext.request.contextPath}/img/btn_notification.png" /></a>
+    			</li>
+    			<li>
+    				<a href="${pageContext.request.contextPath}/business/bookmark"><img src="${pageContext.request.contextPath}/img/btn_bookmark.png" /></a>
+    			</li>
+    			<li class="user">
+    				<a href="#">
+    					<span></span>
+    				</a>
+    				<a href="#">워크드림</a>
+    			</li>
+    			<li class="logout"><a href="/logout">로그아웃</a></li>
     		</ul>
     	</nav>
     </header>
