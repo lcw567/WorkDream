@@ -1,0 +1,246 @@
+html {
+    font-size: 16px; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1.1rem; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    background-color: #ffffff;
+    padding: 40px;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.tag-title h2, .application-status h2 {
+    color: #4b2e83;
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+/* 구직자명 섹션 스타일 */
+.applicants-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.applicants-name h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: #4b2e83;
+}
+
+.messenger {
+    background-color: #4b2e83;
+    color: #ffffff;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.messenger:hover {
+    background-color:  #E1DEF1;
+}
+
+/* 관심태그 스타일 */
+.tag-container {
+    background-color: #E1DEF1;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.tag-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.edit-tag {
+    background-color: #4b2e83;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.edit-tag:hover {
+    background-color: #4b2e83;
+}
+
+.tags {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tag-group {
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
+    background-color: #B4A3DB;
+    border: none;
+    padding: 25px;
+    flex: 1;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: bold;
+    color: #000000;
+    font-size: 1.4rem;
+}
+
+.tag:hover {
+    background-color: #4b2e83;
+    transform: scale(1.02);
+}
+
+.all {
+    background-color: #4b2e83;
+    color: white;
+    align-self: stretch;
+    padding: 25px;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* 지원현황 스타일 */
+.application-status .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.add-button {
+    background-color: #4b2e83;
+    color: #ffffff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-button:hover {
+    background-color: #6a4da4;
+    transform: scale(1.1);
+}
+
+.application-status .status-cards {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.status-card {
+    background-color: #ffffff;
+    border: 2px solid #4b2e83;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status-card span {
+    font-weight: bold;
+    color: #4b2e83;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.status-card p {
+    font-size: 2.5rem;
+    color: #666;
+}
+
+/* 주요 액션 스타일 */
+.actions .action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.action {
+    background-color: #E1DEF1;
+    border-radius: 8px;
+    padding: 25px;
+    flex: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+    height: 160px;
+}
+
+.action:hover {
+    box-shadow: 0 6px 12px #B4A3DB;
+}
+
+.action h3 {
+    color: #4b2e83;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    font-size: 1.5rem;
+}
+
+.action p {
+    color: #000000;
+    font-size: 1.2rem;
+}
+
+/* 배너 스타일 */
+.banner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.plannerBanner, .mainBanner {
+    text-align: center;
+}
+
+.plannerBanner img, .mainBanner img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer; 
+}
+
+.plannerBanner img:hover {
+    box-shadow: 0 6px 12px #B4A3DB;
+}

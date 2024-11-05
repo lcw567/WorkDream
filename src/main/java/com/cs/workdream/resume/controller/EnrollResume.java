@@ -22,6 +22,11 @@ public class EnrollResume {
     public String selfIntro() {
         return "member/selfIntro"; // selfIntro.jsp
     }
+	
+	@GetMapping("/applicantsMypage")
+    public String applicantsMypage() {
+        return "member/applicantsMypage"; // applicantsMypage.jsp
+    }
 }
 
 
