@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="recruitmentStatus.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/recruitmentStatus.css">
     <script src="recruitmentStatus.js" defer></script>
 </head>
 
@@ -38,7 +38,7 @@
                 <div id="Registration_sava_bar" style="display: flex; flex-direction: row;">
                     <b>임시저장</b>
                     <div class="dropdown-container">
-                        <button type="button" class="dropdownButton"><img src="../사진/kebab.png"></button>
+                        <button type="button" class="dropdownButton"><img src="${pageContext.request.contextPath}/img/kebab.png"></button>
                         <ul  class="dropdownMenu dropdown-menu">
                             <li><a href="#">공고 수정</a></li>
                             <li><a href="#">공고 삭제</a></li>
@@ -50,7 +50,7 @@
                 <a href="#"></a><h2>제목이 입력되지 않았습니다.</h2></a>
 
                 <div id="Recruitment_Status_Calender">
-                    <img src="../사진/calendar-blank.png">
+                    <img src="${pageContext.request.contextPath}/img/calendar-blank.png">
                     <b>게시기간 입력 되지 않음</b>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div id="Registration_sava_bar" style="display: flex; flex-direction: row;">
                     <b>임시저장</b>
                     <div class="dropdown-container">
-                        <button type="button" class="dropdownButton"><img src="../사진/kebab.png"></button>
+                        <button type="button" class="dropdownButton"><img src="${pageContext.request.contextPath}/img/kebab.png"></button>
                         <ul  class="dropdownMenu dropdown-menu">
                             <li><a href="#">공고 수정</a></li>
                             <li><a href="#">공고 삭제</a></li>
@@ -72,7 +72,7 @@
                 <a href="#"></a><h2>제목이 입력되지 않았습니다.</h2></a>
 
                 <div id="Recruitment_Status_Calender">
-                    <img src="../사진/calendar-blank.png">
+                    <img src="${pageContext.request.contextPath}/img/calendar-blank.png">
                     <b>게시기간 입력 되지 않음</b>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                 <div id="Registration_sava_bar" style="display: flex; flex-direction: row;">
                     <b>임시저장</b>
                     <div class="dropdown-container">
-                        <button type="button" class="dropdownButton"><img src="../사진/kebab.png"></button>
+                        <button type="button" class="dropdownButton"><img src="${pageContext.request.contextPath}/img/kebab.png"></button>
                         <ul  class="dropdownMenu dropdown-menu">
                             <li><a href="#">공고 수정</a></li>
                             <li><a href="#">공고 삭제</a></li>
@@ -93,7 +93,7 @@
                 <a href="#"></a><h2>제목이 입력되지 않았습니다.</h2></a>
 
                 <div id="Recruitment_Status_Calender">
-                    <img src="../사진/calendar-blank.png">
+                    <img src="${pageContext.request.contextPath}/img/calendar-blank.png">
                     <b>게시기간 입력 되지 않음</b>
                 </div>
             </div>
@@ -102,7 +102,7 @@
                 <div id="Registration_sava_bar" style="display: flex; flex-direction: row;">
                     <b>임시저장</b>
                     <div class="dropdown-container">
-                        <button type="button" class="dropdownButton"><img src="../사진/kebab.png"></button>
+                        <button type="button" class="dropdownButton"><img src="${pageContext.request.contextPath}/img/kebab.png"></button>
                         <ul  class="dropdownMenu dropdown-menu">
                             <li><a href="#">공고 수정</a></li>
                             <li><a href="#">공고 삭제</a></li>
@@ -114,7 +114,7 @@
                 <a href="#"></a><h2>제목이 입력되지 않았습니다.</h2></a>
 
                 <div id="Recruitment_Status_Calender">
-                    <img src="../사진/calendar-blank.png">
+                    <img src="${pageContext.request.contextPath}/img/calendar-blank.png">
                     <b>게시기간 입력 되지 않음</b>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                 <div id="Registration_sava_bar" style="display: flex; flex-direction: row;">
                     <b>임시저장</b>
                     <div class="dropdown-container">
-                        <button type="button" class="dropdownButton"><img src="../사진/kebab.png"></button>
+                        <button type="button" class="dropdownButton"><img src="${pageContext.request.contextPath}/img/kebab.png"></button>
                         <ul  class="dropdownMenu dropdown-menu">
                             <li><a href="#">공고 수정</a></li>
                             <li><a href="#">공고 삭제</a></li>
@@ -136,7 +136,7 @@
                 <a href="#"></a><h2>제목이 입력되지 않았습니다.</h2></a>
 
                 <div id="Recruitment_Status_Calender">
-                    <img src="../사진/calendar-blank.png">
+                    <img src="${pageContext.request.contextPath}/img/calendar-blank.png">
                     <b>게시기간 입력 되지 않음</b>
                 </div>
             </div>
@@ -153,6 +153,8 @@
         </div>
 
     </div>
+    
+    <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 
 </html>
