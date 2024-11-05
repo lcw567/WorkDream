@@ -12,6 +12,11 @@ public class BusinessController {
         return "business/recruitmentStatus";
     }
 	
+	@GetMapping("/business/jobPostingRegistration")
+    public String jobRegistration() {
+        return "business/jobPostingRegistration";
+    }
+	
 	@GetMapping("/business/applicantsStatus")
     public String appStatus() {
         return "business/applicantsStatus";
@@ -21,9 +26,9 @@ public class BusinessController {
     public String appList() {
         return "business/applicantsList";
     }
-    
-	@GetMapping("/business/jobPostingRegistration")
-    public String jobRegistration() {
-        return "business/jobPostingRegistration";
+  
+    @GetMapping("/business/bookmark")
+    public String bookmarkList() {
+        return "business/bookmarkList";
     }
 }

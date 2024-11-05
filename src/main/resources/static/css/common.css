@@ -49,6 +49,10 @@ ul, ol, a {
 	margin: 0;
 }
 
+ul, ol, table {
+	border-collapse: collapse;
+}
+
 input, select, input:focus, select:focus {
 	outline: none;
 }
@@ -273,7 +277,7 @@ header.biz > nav > ul > li > a {
 
 #biz-nav-right {
 	justify-content: flex-end;
-	gap: 5%;
+	gap: 7%;
 }
 
 #biz-nav-right > li > a > img {

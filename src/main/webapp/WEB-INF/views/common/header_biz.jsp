@@ -49,7 +49,10 @@
     				<a href="#"><img src="${pageContext.request.contextPath}/img/btn_chat.png" /></a>
     			</li>
     			<li>
-    				<a href="#"><img src="${pageContext.request.contextPath}/img/btn_notify.png" /></a>
+    				<a href=""><img src="${pageContext.request.contextPath}/img/btn_notification.png" /></a>
+    			</li>
+    			<li>
+    				<a href="${pageContext.request.contextPath}/business/bookmark"><img src="${pageContext.request.contextPath}/img/btn_bookmark.png" /></a>
     			</li>
     			<li class="user">
     				<a href="#">
