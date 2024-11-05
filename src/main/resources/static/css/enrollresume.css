@@ -13,8 +13,8 @@
 .resume_title input{
     box-sizing: border-box;
     border: 2px solid #4e21a8;
-    width: 500px;
-    height: 30px;
+    width: 562px;
+    height: 50px;
     border-radius: 30px;
     border-color: #4E21A8;
     padding-left: 20px;
@@ -222,9 +222,10 @@ input:focus{
     border: none;
     box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
     border-top: 5px solid #4e21a8;
-    height: 300px;
+    height: 150px;
     border-radius: 5px;
     margin-bottom: 50px;
+    transition: height 0.3s;
 }
 
 /* 공통 스타일 */
@@ -458,9 +459,10 @@ input:focus{
     border: none;
     box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
     border-top: 5px solid #4e21a8;
-    height: 230px;
+    height: 175px;
     border-radius: 5px;
     margin-bottom: 50px;
+    transition: height 0.3s;
 }
 
 .skill_name{
@@ -674,7 +676,167 @@ input:focus{
     padding: 20px;
     resize: none;
     border: none;
-    width: 1006px;
+    width: 1090px;
     height: 250px;
     font-size: 0.8rem;
 }
+
+#e_content:focus{
+    outline: none;
+}
+
+.awa{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.select_awards{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 145px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    transition: height 0.3s;
+}
+
+.select_inner{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.select_inner select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.select_inner legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.awards2,
+.awards3 {
+    display: none;
+}
+
+.awards2{
+    display: flex;
+}
+
+.certi_title{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+.certi_title input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.certi_title legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.institution{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+.institution input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.institution legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.pass_status{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.pass_status select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.pass_status legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.awards3{
+    display: flex;
+}
+
+.pass_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.pass_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.pass_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.awards3 button{
+    height: 50px;
+    margin-left: 840px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
