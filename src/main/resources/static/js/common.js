@@ -7,7 +7,7 @@ const menuImg = menuButton.querySelector("img");
 function changeMenuImg(event) {
     switch (event.type) {
         case 'mouseenter':
-            menuImg.src = contextPath + "/img/btn_menu(on).png";
+            menuImg.src = contextPath + "/img/btn_menu_on.png";
             break;
         case 'mouseleave':
             if (!menuButton.classList.contains('On')) {
@@ -17,7 +17,7 @@ function changeMenuImg(event) {
         case 'click' :
             if (!menuButton.classList.contains('On')) {
                 menuButton.classList.add('On');
-                menuImg.src = contextPath + "/img/btn_menu(on).png";
+                menuImg.src = contextPath + "/img/btn_menu_on.png";
             } else {
                 menuButton.classList.remove('On');
                 menuImg.src = contextPath + "/img/btn_menu.png";
