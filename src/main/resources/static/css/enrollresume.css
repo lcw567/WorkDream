@@ -146,6 +146,7 @@ input:focus{
     color: white;
     background-color: #5E35B0;
     border-radius: 5px;
+    font-size: 0.8rem;
 }
 
 #basic3{
@@ -176,6 +177,7 @@ input:focus{
     color: white;
     background-color: #5E35B0;
     border-radius: 5px;
+    font-size: 0.8rem;
 }
 
 #basic4{
@@ -449,5 +451,60 @@ input:focus{
 }
 
 #j_content:focus{
+    outline: none;
+}
+
+.skill{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 200px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.skill_name{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.skill_title input{
+    border: none;
+    margin-top: 15px;
+    width: 390px;
+    padding-left: 15px;
+    padding-right: 14px;
+    font-size: 0.9rem;
+}
+
+#sk_title1{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#sk_title1 fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 20px;
+    margin-top: 25px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+#sk_title1 button{
+    height: 50px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+#sk_title1 button:focus{
     outline: none;
 }
