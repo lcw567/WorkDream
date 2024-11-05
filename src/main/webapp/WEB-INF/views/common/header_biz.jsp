@@ -45,6 +45,12 @@
     		
     		<!-- 유저메뉴 -->
     		<ul id="biz-nav-right">
+    			<li>
+    				<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/btn_chat.png" /></a>
+    			</li>
+    			<li>
+    				<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/btn_notify.png" /></a>
+    			</li>
     			<li><a href="">워크드림</a></li>
     		</ul>
     	</nav>
