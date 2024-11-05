@@ -383,7 +383,9 @@
                         <button>추가하기</button>
                     </div>
                     <div id="sk_title2">
-
+                        <div id="MYsk">
+                            <h1>나의 스킬</h1>
+                        </div>
                     </div>
                 </fieldset>
             </div>

@@ -458,7 +458,7 @@ input:focus{
     border: none;
     box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
     border-top: 5px solid #4e21a8;
-    height: 200px;
+    height: 230px;
     border-radius: 5px;
     margin-bottom: 50px;
 }
@@ -507,4 +507,40 @@ input:focus{
 
 #sk_title1 button:focus{
     outline: none;
+}
+
+#sk_title2 h1 {
+    font-size: 1rem;
+    margin: 0; /* h1 태그의 기본 여백 제거 */
+    line-height: normal; /* h1의 높이 조정 */
+}
+
+#MYsk {
+    margin-top: 30px;
+    margin-left: 45px;
+    display: flex;
+    align-items: center; /* h1과 myskill1 높이를 맞춤 */
+}
+
+.myskill1 {
+    margin-left: 30px;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #2C2C2C;
+    background-color: #E1DEF1;
+    border: 1px solid #E1DEF1;
+    border-radius: 15px;
+    font-family: Arial, sans-serif;
+    gap: 8px; /* 아이콘 간격 조정 */
+}
+
+.delete-icon {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    color: #D9534F; /* 삭제 아이콘에 마우스를 올렸을 때 색상 */
 }
