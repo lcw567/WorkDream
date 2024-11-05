@@ -389,6 +389,47 @@
                     </div>
                 </fieldset>
             </div>
+            <div id="Experience">
+                <fieldset class="experience">
+                    <legend class="exp">경험/활동/교육</legend>
+                    <div class="exp1">
+                        <fieldset class="activity">
+                            <legend>활동구분선택</legend>
+                            <select name="activity" class="select_activity">
+                                <option value="working">교내활동</option>
+                                <option value="retire">인턴</option>
+                                <option value="retire_plan">자원봉사</option>
+                                <option value="retire_plan">동아리</option>
+                                <option value="retire_plan">아르바이트</option>
+                                <option value="retire_plan">사회활동</option>
+                                <option value="retire_plan">수행과제</option>
+                                <option value="retire_plan">해외연수</option>
+                                <option value="retire_plan">교육이수내역</option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="place">
+                            <legend class="place_name">기관/장소</legend>
+                            <input type="text" name="place">
+                        </fieldset>
+                        <fieldset class="start_date">
+                            <legend>시작년월</legend>
+                            <input type="date" class="start" name="start_date">
+                        </fieldset>
+                        <fieldset class="finish_date">
+                            <legend>종료년월</legend>
+                            <input type="date" class="finish" name="finish_date">
+                        </fieldset>
+                    </div>
+                    <div class="exp2">
+                        <fieldset class="exp_content">
+                            <legend>활동설명</legend>
+                            <textarea name="exp_content" id="e_content" placeholder="
+
+경험/활동 상세내용 입력"></textarea>
+                        </fieldset>
+                    </div>
+                </fieldset>
+            </div>
         </div>
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
