@@ -93,7 +93,39 @@
     	<%-- 전체 메뉴 --%>
     	<table class="menu-table">
     		<tr>
-    			<th>테스트</th>
+    			<th>채용정보</th>
+    			<td><a href="">지역별</a></td>
+    			<td><a href="">직업별</a></td>
+    			<td><a href="">역세권별</a></td>
+    			<td><a href="">헤드헌팅</a></td>
+    			<td><a href="">외국인 채용</a></td>
+    		</tr>
+    		<tr>
+    			<th>공채정보</th>
+    			<td><a href="">공채달력</a></td>
+    			<td><a href="">공공기관 채용일정</a></td>
+    		</tr>
+    		<tr>
+    			<th>신입·인턴</th>
+    			<td><a href="">실시간 공고</a></td>
+    			<td><a href="">채용달력</a></td>
+    			<td><a href="">신입연봉</a></td>
+    		</tr>
+    		<tr>
+    			<th>기업·연봉</th>
+    			<td><a href="">기업리뷰</a></td>
+    			<td><a href="">연봉정보</a></td>
+    			<td><a href="">면접후기</a></td>
+    		</tr>
+    		<tr>
+    			<th>커리어</th>
+    			<td><a href="">합격자소서</a></td>
+    			<td><a href="">인적성 면접후기</a></td>
+    			<td><a href="">공기업 모의고사</a></td>
+    			<td><a href="">문서 서식 자료</a></td>
+    		</tr>
+    		<tr>
+    			<th>커뮤니티</th>
     		</tr>
     	</table>
     
@@ -123,7 +155,6 @@
     	<ul class="menu-list">
     		<li><a href="">기업리뷰</a></li>
        		<li><a href="">연봉정보</a></li>
-       		<li><a href="">역세권별</a></li>
        		<li><a href="">면접후기</a></li>
     	</ul>
     	

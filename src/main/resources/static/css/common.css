@@ -199,7 +199,9 @@ header > nav {
 }
 
 #header-dropdown {
-	width: 100%;
+	width: auto;
+	min-width: 100%;
+	height: auto;
 	display: none;
 	justify-content: center;
 	align-items: center;
@@ -207,7 +209,7 @@ header > nav {
     top: 130px;
     left: 0;
     z-index: 1;
-    padding-left: 7%;
+    padding: 0 7%;
     background-color: #FFFFFF;
     border-bottom: 1px solid #4E21A8;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
@@ -219,8 +221,50 @@ header > nav {
 	display: none;
 }
 
+#header-dropdown .menu-table {
+	text-align: left;
+	font-family: 'MonoplexKR-SemiBold';
+}
+
+#header-dropdown .menu-table tbody {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 1% 0;
+}
+
+#header-dropdown .menu-table tr {
+	width: 100%;
+	display: inline-grid;
+	white-space: nowrap;
+	word-spacing: -0.3rem;
+}
+
+#header-dropdown .menu-table th {
+	min-width: 10rem;
+	height: 2rem;
+	font-size: 1rem;
+}
+
+#header-dropdown .menu-table td {
+	height: 1.5rem;
+}
+
+#header-dropdown .menu-table td > a {
+	vertical-align: center;
+	white-space: nowrap;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 0.9rem;
+	color: #807E85;
+}
+
+#header-dropdown .menu-table td:hover > a {
+	color: #4E21A8;
+}
+
 #header-dropdown .menu-list {
-	height: 50px;
+	height: 100%;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
