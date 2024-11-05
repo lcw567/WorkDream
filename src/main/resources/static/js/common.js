@@ -3,6 +3,9 @@
 // 햄버거 버튼 전용
 const menuButton = document.getElementById("menuButton");
 const menuImg = menuButton.querySelector("img");
+const menuDrop = document.getElementById("header-dropdown");
+const dropTable = menuDrop.querySelector("table");
+const dropUls = menuDrop.querySelectorAll("ul");
 
 function changeMenuImg(event) {
     switch (event.type) {
@@ -18,9 +21,16 @@ function changeMenuImg(event) {
             if (!menuButton.classList.contains('On')) {
                 menuButton.classList.add('On');
                 menuImg.src = contextPath + "/img/btn_menu_on.png";
+                menuDrop.style.display = "flex";
+                dropTable.style.display = "table";
+                dropUls.forEach((ul) => {
+                    ul.style.display = "none";
+                });
             } else {
                 menuButton.classList.remove('On');
                 menuImg.src = contextPath + "/img/btn_menu.png";
+                menuDrop.style.display = "none";
+                dropTable.style.display = "none";
             }
             break;
     }
