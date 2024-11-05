@@ -533,7 +533,7 @@ input:focus{
     border: 1px solid #E1DEF1;
     border-radius: 15px;
     font-family: Arial, sans-serif;
-    gap: 8px; /* 아이콘 간격 조정 */
+    gap: 8px;
 }
 
 .delete-icon {
@@ -542,5 +542,139 @@ input:focus{
 }
 
 .delete-icon:hover {
-    color: #D9534F; /* 삭제 아이콘에 마우스를 올렸을 때 색상 */
+    color: #D9534F;
+}
+
+.experience{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 450px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.exp{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.exp1{
+    display: flex;
+}
+
+.activity{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.activity legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.select_activity{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.place{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.place legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.place input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.start_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 30px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.finish_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 30px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+
+.start_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.start_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.finish_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.finish_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.exp2 fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: fit-content;
+}
+
+.exp2 legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+#e_content{
+    padding: 20px;
+    resize: none;
+    border: none;
+    width: 1006px;
+    height: 250px;
+    font-size: 0.8rem;
 }
