@@ -17,6 +17,11 @@ public class BusinessController {
         return "business/jobPostingRegistration";
     }
 	
+	@GetMapping("/business/announcementinformation")
+    public String announcement() {
+        return "business/announcementinformation";
+    }
+	
 	@GetMapping("/business/applicantsStatus")
     public String appStatus() {
         return "business/applicantsStatus";

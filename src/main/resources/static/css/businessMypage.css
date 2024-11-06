@@ -58,11 +58,7 @@ body {
 
 .contact-info span {
     margin: 0 5px;
-}
-
-.contact-info a {
-    color: #4b2e83;
-    text-decoration: none;
+    font-size: 1rem;
 }
 
 
@@ -135,7 +131,7 @@ body {
 .status-header h2 {
     color: #4b2e83;
     margin-bottom: 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .add-status-button {
@@ -176,7 +172,7 @@ body {
     color: #4b2e83;
     display: block;
     margin-bottom: 10px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .status-card p {
@@ -222,7 +218,7 @@ body {
 
 .action-item p {
     color: #000000;
-    font-size: 1.5rem; 
+    font-size: 1.4rem; 
 }
 
 /* 배너 섹션 */

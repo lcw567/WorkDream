@@ -27,12 +27,12 @@
 		<div id="Job_Posting_Registration_content">
 			<div id="Job_Posting_Registration_Index">
 				<div id="Job_Posting_Registration_Index_One">
-					<img src="${pageContext.request.contextPath}/img/icons8-1-원-24.png">
+					<img src="${pageContext.request.contextPath}/img/icons8-1-24.png">
 					<p>기업 정보</p>
 
 					<hr>
 
-					<img src="${pageContext.request.contextPath}/img/icons8-2-원-48.png">
+					<img src="${pageContext.request.contextPath}/img/icons8-2-48.png">
 					<p>공고 정보</p>
 
 				</div>
@@ -102,7 +102,7 @@
 
 					<div id="Company_logo">
 						<img
-							src="${pageContext.request.contextPath}/img/icons8-이미지-편집-48.png">
+							src="${pageContext.request.contextPath}/img/icons8-img-48.png">
 					</div>
 					<div id="Company_logo_file">
 						<input type="text" placeholder=".png"> <input type="file"

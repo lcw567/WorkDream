@@ -56,6 +56,12 @@
                 </div>
             </div>
         </section>
+        
+        <section class="banner-section">
+            <div class="banner">
+                <img src= "${pageContext.request.contextPath}/img/lineBanner.PNG" alt="Line Banner">             
+            </div>
+        </section>
 
         <section class="actions">
             <div class="action-buttons">
