@@ -114,12 +114,10 @@ document.getElementById('sortation').addEventListener('change', function() {
     }
 });
 
-
-
 document.querySelector('.awards3 button').addEventListener('click', function() {
     // 입력 필드에서 값 가져오기
-    var certificateTitle = document.querySelector('input[name="certificate_title"]').value;
-    var institutionTitle = document.querySelector('input[name="institution_title"]').value;
+    var certificateTitle = document.querySelector('input[name="certificate_title"]').value.trim();
+    var institutionTitle = document.querySelector('input[name="institution_title"]').value.trim();
     var passStatus = document.getElementById('pass_menu').value;
     var passDate = document.querySelector('input[name="pass_date"]').value;
 
@@ -135,8 +133,8 @@ document.querySelector('.awards3 button').addEventListener('click', function() {
     listItem.innerHTML = `
         <div>
             <strong>${certificateTitle}</strong> (${passStatus}) | ${passDate.replace(/-/g, ".")}
+            <div>${institutionTitle}</div>
         </div>
-        <div>${institutionTitle}</div>
         <div class="actions">
             <button class="edit">✏️</button>
             <button class="delete">🗑️</button>
@@ -162,8 +160,28 @@ document.querySelector('.awards3 button').addEventListener('click', function() {
         selectAwards.style.height = selectAwards.scrollHeight + "px"; // 높이 재조정
     });
 
-    // 수정 버튼 이벤트 핸들러 추가 (필요시 구현)
+    // 수정 버튼 이벤트 핸들러 추가
+    listItem.querySelector('.edit').addEventListener('click', function() {
+        // 기존 값 가져오기
+        var currentTitle = listItem.querySelector('strong').textContent;
+        var currentInstitution = listItem.querySelector('div:nth-of-type(2)').textContent;
+        var currentPassStatus = passStatus;
+        var currentPassDate = passDate;
+
+        // 입력 필드에 기존 값 설정
+        document.querySelector('input[name="certificate_title"]').value = currentTitle;
+        document.querySelector('input[name="institution_title"]').value = currentInstitution;
+        document.getElementById('pass_menu').value = currentPassStatus;
+        document.querySelector('input[name="pass_date"]').value = currentPassDate;
+
+        // 기존 항목 삭제
+        listItem.remove();
+
+        // select_awards 높이 조정
+        selectAwards.style.height = selectAwards.scrollHeight + "px";
+    });
 });
+
 
 window.addEventListener('load', function() {
     var militarySelect = document.getElementById('military_status');

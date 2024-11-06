@@ -686,6 +686,9 @@
                     </div>
                 </fieldset>
             </div>
+            <div>
+                <button class="final_save">작성 완료</button>
+            </div>
         </div>
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
