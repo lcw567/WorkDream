@@ -53,8 +53,9 @@
 	</div>
 	
 	<div class="image-preview" id="imagePreview">
-	    <!-- 선택한 이미지가 여기에 미리보기로 표시 -->
+	    <!-- 선택한 이미지 미리보기로 표시 -->
 	</div>
+
 
     <!-- 해시태그 입력 -->
     <div class="hashtag-input">
