@@ -13,8 +13,8 @@
     <c:import url="/WEB-INF/views/common/header_biz.jsp" />
     <div class="main-container">
         <div class="profile-section">
-            <!-- 로그인 시 -->
-            <h5>로그인 했을 때</h5>
+
+        
             <article class="login-box logged-in" aria-hidden="false">
                 <h2 class="company-name">기업명</h2>
                 <p class="company-description">포털 및 기타 인터넷 정보매개 서비스업</p>
@@ -23,16 +23,6 @@
                     <span>www.aaaaaaa.com</span> |
                     <span>서울특별시 000로00길</span>
                 </div>
-                <div class="button-group">
-                    <button class="btn btn-company-info">기업 정보</button>
-                    <button class="btn btn-messenger">메신저</button>
-                </div>
-            </article>
-        
-            <!-- 로그인 안 했을 시 -->
-            <h5>로그인 안 했을 때</h5>
-            <article class="login-box not-logged-in" aria-hidden="true">
-                <p class="login-message">로그인이 필요한 서비스입니다</p>
                 <div class="button-group">
                     <button class="btn btn-company-info">기업 정보</button>
                     <button class="btn btn-messenger">메신저</button>
