@@ -272,6 +272,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
 	padding: 0 1%;
 }
 
@@ -325,6 +326,77 @@
 #applicantsList-section-list .list-button > ol.rightSide img {
 	width: 1rem;
 	height: 1rem;
+}
+
+#applicantsList-section-list .list-filter {
+	width: 100%;
+	min-width: 1000px;
+	max-width: 1280px;
+	display: none;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	position: absolute;
+	top: calc(330px + 2.5rem);
+	z-index: 1;
+	padding: 3% 5%;
+	background-color: #FFFFFF;
+	border: 1px solid #E1DEF1;
+	border-radius: 10px;
+    box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+#applicantsList-section-list .list-filter table {
+	width: 100%;
+}
+
+#applicantsList-section-list .list-filter table td {
+	vertical-align: top;
+}
+
+#applicantsList-section-list .list-filter table td * {
+	white-space: nowrap;
+	font-family: 'MonoplexKR-Regular';
+	font-weight: 400;
+	font-size: 0.9rem
+}
+
+#applicantsList-section-list .list-filter table td > span {
+	width: 100%;
+	min-height: 2rem;
+	display: inline-flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 1rem;
+}
+
+#applicantsList-section-list .list-filter table td > span > h1 {
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1rem;
+}
+
+#applicantsList-section-list .list-filter table td > span > input[type="number"] {
+	width: 5rem;
+	height: 1.5rem;
+}
+
+#applicantsList-section-list .list-filter table td > button {
+	width: 5rem;
+	height: 2rem;
+	margin: 0.3rem 0 0.3rem 1rem;
+	border-radius: 5px;
+	font-family: 'MonoplexKR-SemiBold';
+	color: #FFFFFF;
+}
+
+#applicantsList-section-list .list-filter table td > button[type="submit"] {
+	background-color: #4E21A8;
+	border: 1px solid #4E21A8;
+}
+
+#applicantsList-section-list .list-filter table td > button[type="reset"] {
+	background-color: #B4A3DB;
+	border: 1px solid #B4A3DB;
 }
 
 #applicantsList-section-list .list-table {
