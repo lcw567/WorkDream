@@ -31,4 +31,9 @@ public class BusinessController {
     public String bookmarkList() {
         return "business/bookmarkList";
     }
+    
+    @GetMapping("/business/businessMypage")
+    public String businessMypage() {
+        return "business/businessMypage";
+    }
 }
