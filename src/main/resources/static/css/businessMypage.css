@@ -107,14 +107,6 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 로그인 메시지 */
-.login-message {
-    font-size: 2rem; 
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
 /* 지원현황 섹션 */
 .application-status {
     margin-top: 40px;

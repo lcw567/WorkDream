@@ -122,6 +122,6 @@
             <button id="nextPage">&#9654;</button>
         </div>
     </div>
-    <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
+<c:import url="/WEB-INF/views/common/footer.jsp" />
 </html>

@@ -79,17 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 직무 카테고리에서 한 개만 선택 가능하도록 설정
-    const jobCheckboxes = document.querySelectorAll(".job-category-container input[type='checkbox']");
-    jobCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener("change", function() {
-            if (checkbox.checked) {
-                jobCheckboxes.forEach(cb => {
-                    if (cb !== checkbox) cb.checked = false;
-                });
-            }
-        });
-    });
+   
 
     // 이미지 첨부 및 미리보기 기능
     const imageInput = document.getElementById("imageInput");
