@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const title = document.querySelector(".title-input input").value;
         const content = document.querySelector(".content-input textarea").value;
 
+        // 직무 카테고리 선택 가져오기
+        const selectedJobs = Array.from(document.querySelectorAll(".job-checkbox:checked"))
+                                  .map(cb => cb.value);
+
         // 유효성 검사 (예시: 제목과 내용이 비어있지 않은지 확인)
         if (!title || !content) {
             alert("제목과 내용을 입력해 주세요.");
@@ -21,7 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
             body: JSON.stringify({
                 category: category,
                 title: title,
-                content: content
+                content: content,
+                jobs: selectedJobs
             })
         })
         .then(response => response.json())
@@ -79,8 +84,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-   
-
     // 이미지 첨부 및 미리보기 기능
     const imageInput = document.getElementById("imageInput");
     const imagePreview = document.getElementById("imagePreview");
@@ -108,5 +111,29 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("이미지 파일을 선택해 주세요.");
             imageInput.value = ""; // 입력 필드 초기화
         }
+    });
+
+    // 직무 카테고리 체크박스 제어
+    const jobCheckboxes = document.querySelectorAll(".job-checkbox");
+    const jobNoneCheckbox = document.getElementById("job-none");
+
+    jobCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener("change", function() {
+            if (checkbox === jobNoneCheckbox) {
+                if (checkbox.checked) {
+                    // "선택 안 함"이 체크되면 다른 모든 체크박스 해제
+                    jobCheckboxes.forEach(function(box) {
+                        if (box !== jobNoneCheckbox) {
+                            box.checked = false;
+                        }
+                    });
+                }
+            } else {
+                if (checkbox.checked) {
+                    // 다른 체크박스가 체크되면 "선택 안 함" 해제
+                    jobNoneCheckbox.checked = false;
+                }
+            }
+        });
     });
 });

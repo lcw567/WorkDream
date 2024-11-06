@@ -66,43 +66,44 @@
 
     <!-- 직무 카테고리 선택 (단일 선택 가능) -->
     <div class="job-category-container">
-        <table class="job-category-table">
-            <tr>
-                <td><label><input type="checkbox" name="job" value="기획·전략"> 기획·전략</label></td>
-                <td><label><input type="checkbox" name="job" value="마케팅·홍보·조사"> 마케팅·홍보·조사</label></td>
-                <td><label><input type="checkbox" name="job" value="회계·세무·재무"> 회계·세무·재무</label></td>
-                <td><label><input type="checkbox" name="job" value="인사·노무·HRD"> 인사·노무·HRD</label></td>
-            </tr>
-            <tr>
-                <td><label><input type="checkbox" name="job" value="총무·법무·사무"> 총무·법무·사무</label></td>
-                <td><label><input type="checkbox" name="job" value="IT개발·데이터"> IT개발·데이터</label></td>
-                <td><label><input type="checkbox" name="job" value="디자인"> 디자인</label></td>
-                <td><label><input type="checkbox" name="job" value="영업·판매·무역"> 영업·판매·무역</label></td>
-            </tr>
-            <tr>
-                <td><label><input type="checkbox" name="job" value="고객상담·TM"> 고객상담·TM</label></td>
-                <td><label><input type="checkbox" name="job" value="구매·자재·물류"> 구매·자재·물류</label></td>
-                <td><label><input type="checkbox" name="job" value="상품기획·MD"> 상품기획·MD</label></td>
-                <td><label><input type="checkbox" name="job" value="운전·운송·배송"> 운전·운송·배송</label></td>
-            </tr>
-            <tr>
-                <td><label><input type="checkbox" name="job" value="서비스"> 서비스</label></td>
-                <td><label><input type="checkbox" name="job" value="생산"> 생산</label></td>
-                <td><label><input type="checkbox" name="job" value="건설·건축"> 건설·건축</label></td>
-                <td><label><input type="checkbox" name="job" value="의료"> 의료</label></td>
-            </tr>
-            <tr>
-                <td><label><input type="checkbox" name="job" value="연구·R&D"> 연구·R&D</label></td>
-                <td><label><input type="checkbox" name="job" value="교육"> 교육</label></td>
-                <td><label><input type="checkbox" name="job" value="미디어·문화·스포츠"> 미디어·문화·스포츠</label></td>
-                <td><label><input type="checkbox" name="job" value="금융·보험"> 금융·보험</label></td>
-            </tr>
-            <tr>
-                <td><label><input type="checkbox" name="job" value="공공·복지"> 공공·복지</label></td>
-                <td><label><input type="checkbox" name="job" value="선택 안 함"> 선택 안 함</label></td>
-            </tr>
-        </table>
-    </div>
+	    <label style="font-size: 1.3rem; font-weight: bold;">#관련 직무 선택</label>
+	    <table class="job-category-table">
+	        <tr>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="기획·전략"> 기획·전략</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="마케팅·홍보·조사"> 마케팅·홍보·조사</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="회계·세무·재무"> 회계·세무·재무</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="인사·노무·HRD"> 인사·노무·HRD</label></td>
+	        </tr>
+	        <tr>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="총무·법무·사무"> 총무·법무·사무</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="IT개발·데이터"> IT개발·데이터</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="디자인"> 디자인</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="영업·판매·무역"> 영업·판매·무역</label></td>
+	        </tr>
+	        <tr>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="고객상담·TM"> 고객상담·TM</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="구매·자재·물류"> 구매·자재·물류</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="상품기획·MD"> 상품기획·MD</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="운전·운송·배송"> 운전·운송·배송</label></td>
+	        </tr>
+	        <tr>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="서비스"> 서비스</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="생산"> 생산</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="건설·건축"> 건설·건축</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="의료"> 의료</label></td>
+	        </tr>
+	        <tr>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="연구·R&D"> 연구·R&D</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="교육"> 교육</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="미디어·문화·스포츠"> 미디어·문화·스포츠</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="금융·보험"> 금융·보험</label></td>
+	        </tr>
+	        <tr>
+	            <td><label><input type="checkbox" class="job-checkbox" name="job" value="공공·복지"> 공공·복지</label></td>
+	            <td><label><input type="checkbox" class="job-checkbox" id="job-none" name="job" value="선택 안 함"> 선택 안 함</label></td>
+	        </tr>
+	    </table>
+	</div>
     
     <!-- 게시글 등록 버튼 -->
     <div class="submit-button-container">
