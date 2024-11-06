@@ -546,6 +546,146 @@
                     <div class="result-list"></div>
                 </fieldset>
             </div>
+            <div class="Preferential">
+                <fieldset class="preferential">
+                    <legend class="pre_title">취업우대사항</legend>
+                    <div class="pre1">
+                        <fieldset class="pre_content">
+                            <legend>보훈사유</legend>
+                            <input type="text" placeholder="보훈사유 입력">
+                        </fieldset>
+                    </div>
+                    <div class="pre2">
+                        <fieldset class="mil_sub">
+                            <legend>병역대상</legend>
+                            <select name="" id="military_status">
+                                <option value="not">대상아님</option>
+                                <option value="unfulfilled">미필</option>
+                                <option value="fulfilled">군필</option>
+                                <option value="exempted">면제</option>
+                                <option value="serving">복무중</option>
+                            </select>
+                        </fieldset>
+                        <div class="EXEMPTED">
+                            <fieldset class="exempted">
+                                <legend>사유 입력</legend>
+                                <input type="text" placeholder="사유 입력">
+                            </fieldset>
+                        </div>
+                        <div class="fulfilled">
+                            <fieldset>
+                                <legend>입대일</legend>
+                                <input type="date">
+                            </fieldset>
+                            <fieldset>
+                                <legend>전역일</legend>
+                                <input type="date">
+                            </fieldset>
+                            <fieldset>
+                                <legend>군별선택</legend>
+                                <select name="" id="">
+                                    <option value="1">육군</option>
+                                    <option value="2">해군</option>
+                                    <option value="3">공군</option>
+                                    <option value="4">해병</option>
+                                    <option value="5">의경</option>
+                                    <option value="6">전경</option>
+                                    <option value="7">기타</option>
+                                    <option value="8">사회복무요원</option>
+                                    <option value="9">의무소방</option>
+                                </select>
+                            </fieldset>
+                            <fieldset>
+                                <legend>계급선택</legend>
+                                <select name="" id="">
+                                    <option value="1">이병</option>
+                                    <option value="2">일병</option>
+                                    <option value="3">상병</option>
+                                    <option value="4">병장</option>
+                                    <option value="5">하사</option>
+                                    <option value="6">중사</option>
+                                    <option value="7">상사</option>
+                                    <option value="8">원사</option>
+                                    <option value="9">준위</option>
+                                    <option value="10">소위</option>
+                                    <option value="11">중위</option>
+                                    <option value="12">대위</option>
+                                    <option value="13">소령</option>
+                                    <option value="14">중령</option>
+                                    <option value="15">대령</option>
+                                    <option value="16">준장</option>
+                                    <option value="17">소장</option>
+                                    <option value="18">중장</option>
+                                    <option value="19">대장</option>
+                                    <option value="20">기타</option>
+                                </select>
+                            </fieldset>
+                            <fieldset>
+                                <legend>전역사유 선택</legend>
+                                <select name="" id="discharge_reason">
+                                    <option value="">전역사유</option>
+                                    <option value="1">만기전역</option>
+                                    <option value="2">의가사전역</option>
+                                    <option value="3">의병전역</option>
+                                    <option value="4">소집해제</option>
+                                    <option value="5">불명예전역</option>
+                                    <option value="6">상이전역</option>
+                                    <option value="7">기타</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="serving">
+                            <fieldset>
+                                <legend>입대일</legend>
+                                <input type="date">
+                            </fieldset>
+                            <fieldset>
+                                <legend>전역일</legend>
+                                <input type="date">
+                            </fieldset>
+                            <fieldset>
+                                <legend>군별선택</legend>
+                                <select name="" id="">
+                                    <option value="1">육군</option>
+                                    <option value="2">해군</option>
+                                    <option value="3">공군</option>
+                                    <option value="4">해병</option>
+                                    <option value="5">의경</option>
+                                    <option value="6">전경</option>
+                                    <option value="7">기타</option>
+                                    <option value="8">사회복무요원</option>
+                                    <option value="9">의무소방</option>
+                                </select>
+                            </fieldset>
+                            <fieldset>
+                                <legend>계급선택</legend>
+                                <select name="" id="">
+                                    <option value="1">이병</option>
+                                    <option value="2">일병</option>
+                                    <option value="3">상병</option>
+                                    <option value="4">병장</option>
+                                    <option value="5">하사</option>
+                                    <option value="6">중사</option>
+                                    <option value="7">상사</option>
+                                    <option value="8">원사</option>
+                                    <option value="9">준위</option>
+                                    <option value="10">소위</option>
+                                    <option value="11">중위</option>
+                                    <option value="12">대위</option>
+                                    <option value="13">소령</option>
+                                    <option value="14">중령</option>
+                                    <option value="15">대령</option>
+                                    <option value="16">준장</option>
+                                    <option value="17">소장</option>
+                                    <option value="18">중장</option>
+                                    <option value="19">대장</option>
+                                    <option value="20">기타</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
         </div>
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>

@@ -1063,6 +1063,167 @@ input:focus{
     transition: height 0.3s ease;
 }
 
+.preferential{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 450px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.pre_content{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.pre_content legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.pre_content input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 1125px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.mil_sub{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.mil_sub legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.mil_sub select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.exempted{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.exempted legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.exempted input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 855px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.pre_title{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.pre2{
+    display: flex;
+}
+
+.fulfilled{
+    display: flex;
+}
+
+.fulfilled fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.fulfilled legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.fulfilled input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 112px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.fulfilled select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 118px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.serving{
+    display: flex;
+}
+
+.serving fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.serving legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.serving input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 150px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.serving select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 150px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
 
 
 

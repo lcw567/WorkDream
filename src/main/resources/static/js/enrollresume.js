@@ -61,7 +61,7 @@ document.querySelector('#sk_title1 button').addEventListener('click', function()
     }
 });
 
-window.onload = function() {
+window.addEventListener('load', function() {
     var selectAwards = document.querySelector('.select_awards');
     var awards2 = document.querySelector('.awards2');
     var awards3 = document.querySelector('.awards3');
@@ -74,7 +74,7 @@ window.onload = function() {
     awards3.style.display = 'none';
     Language.style.display = 'none';
     Contest.style.display = 'none';
-};
+});
 
 document.getElementById('sortation').addEventListener('change', function() {
     var selectAwards = document.querySelector('.select_awards');
@@ -165,5 +165,38 @@ document.querySelector('.awards3 button').addEventListener('click', function() {
     // 수정 버튼 이벤트 핸들러 추가 (필요시 구현)
 });
 
-
-
+window.addEventListener('load', function() {
+    var militarySelect = document.getElementById('military_status');
+    console.log('militarySelect:', militarySelect);
+    var exemptedDiv = document.querySelector('.EXEMPTED');
+    var fulfilledDiv = document.querySelector('.fulfilled');
+    var servingDiv = document.querySelector('.serving');
+    
+    // 페이지 로드 시 모든 섹션 숨기기
+    exemptedDiv.style.display = 'none';
+    fulfilledDiv.style.display = 'none';
+    servingDiv.style.display = 'none';
+    
+    // 선택 박스의 변경을 감지하는 이벤트 리스너 추가
+    militarySelect.addEventListener('change', function() {
+        // 모든 섹션을 우선 숨김
+        exemptedDiv.style.display = 'none';
+        fulfilledDiv.style.display = 'none';
+        servingDiv.style.display = 'none';
+    
+        var selectedValue = this.value;
+    
+        if (selectedValue === 'unfulfilled' || selectedValue === 'exempted') {
+            // 미필 또는 면제 선택 시 EXEMPTED 섹션 표시
+            exemptedDiv.style.display = 'flex';
+        } else if (selectedValue === 'fulfilled') {
+            // 군필 선택 시 fulfilled 섹션 표시
+            fulfilledDiv.style.display = 'flex';
+        } else if (selectedValue === 'serving') {
+            // 복무중 선택 시 serving 섹션 표시
+            servingDiv.style.display = 'flex';
+        }
+        // '대상아님' 또는 다른 선택 시 모든 섹션 숨김
+    });
+    
+});
