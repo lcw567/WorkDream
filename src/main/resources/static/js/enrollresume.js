@@ -63,27 +63,113 @@ document.querySelector('#sk_title1 button').addEventListener('click', function()
 
 window.onload = function() {
     var selectAwards = document.querySelector('.select_awards');
+    var awards1 = document.querySelector('.awards1');
     var awards2 = document.querySelector('.awards2');
     var awards3 = document.querySelector('.awards3');
-    
-    // 페이지 로드 시 awards2와 awards3 숨기기
-    selectAwards.style.height = '145px';
+    var Language = document.querySelector('.Language');
+    var Contest = document.querySelector('.Contest');
+
+    // 페이지 로드 시 awards1만 보이고, awards2, awards3, Language, Contest는 숨김
+    selectAwards.style.height = '170px';
+    awards1.style.display = 'block';
     awards2.style.display = 'none';
     awards3.style.display = 'none';
+    Language.style.display = 'none';
+    Contest.style.display = 'none';
 };
 
 document.getElementById('sortation').addEventListener('change', function() {
     var selectAwards = document.querySelector('.select_awards');
+    var awards1 = document.querySelector('.awards1');
     var awards2 = document.querySelector('.awards2');
     var awards3 = document.querySelector('.awards3');
+    var Language = document.querySelector('.Language');
+    var Contest = document.querySelector('.Contest');
 
-    if (this.value !== "") {
-        selectAwards.style.height = '300px';
+    if (this.value === 'certificate') {
+        // '자격증/면허증' 선택 시 관련 영역 표시, 나머지 숨기기
+        selectAwards.style.height = '315px';
+        awards1.style.display = 'block';
         awards2.style.display = 'flex';
         awards3.style.display = 'flex';
-    } else {
-        selectAwards.style.height = '145px';
+        Language.style.display = 'none';
+        Contest.style.display = 'none';
+    } else if (this.value === 'language') {
+        // '어학시험' 선택 시 관련 영역 표시, 나머지 숨기기
+        selectAwards.style.height = '315px';
+        awards1.style.display = 'none';
         awards2.style.display = 'none';
         awards3.style.display = 'none';
+        Language.style.display = 'block';
+        Contest.style.display = 'none';
+    } else if (this.value === 'award_details') {
+        // '수상/공모전' 선택 시 관련 영역 표시, 나머지 숨기기
+        selectAwards.style.height = '290px';
+        awards1.style.display = 'none';
+        awards2.style.display = 'none';
+        awards3.style.display = 'none';
+        Language.style.display = 'none';
+        Contest.style.display = 'block';
+    } else {
+        // 다른 선택 시 모두 숨기기
+        selectAwards.style.height = '170px';
+        awards1.style.display = 'none';
+        awards2.style.display = 'none';
+        awards3.style.display = 'none';
+        Language.style.display = 'none';
+        Contest.style.display = 'none';
     }
 });
+
+
+document.querySelector('.awards3 button').addEventListener('click', function() {
+    // 입력 필드에서 값 가져오기
+    var certificateTitle = document.querySelector('input[name="certificate_title"]').value;
+    var institutionTitle = document.querySelector('input[name="institution_title"]').value;
+    var passStatus = document.getElementById('pass_menu').value;
+    var passDate = document.querySelector('input[name="pass_date"]').value;
+
+    // 빈 입력 방지
+    if (!certificateTitle || !institutionTitle || !passStatus || !passDate) {
+        alert("모든 필드를 입력해주세요.");
+        return;
+    }
+
+    // 새로운 항목을 생성
+    var listItem = document.createElement('div');
+    listItem.classList.add('list-item');
+    listItem.innerHTML = `
+        <div>
+            <strong>${certificateTitle}</strong> (${passStatus}) | ${passDate.replace(/-/g, ".")}
+        </div>
+        <div>${institutionTitle}</div>
+        <div class="actions">
+            <button class="edit">✏️</button>
+            <button class="delete">🗑️</button>
+        </div>
+    `;
+
+    // 리스트에 항목 추가
+    document.querySelector('.result-list').appendChild(listItem);
+
+    // 입력 필드 초기화
+    document.querySelector('input[name="certificate_title"]').value = '';
+    document.querySelector('input[name="institution_title"]').value = '';
+    document.getElementById('pass_menu').value = '';
+    document.querySelector('input[name="pass_date"]').value = '';
+
+    // select_awards 높이 조정
+    var selectAwards = document.querySelector('.select_awards');
+    selectAwards.style.height = selectAwards.scrollHeight + "px";
+
+    // 삭제 버튼 이벤트 핸들러 추가
+    listItem.querySelector('.delete').addEventListener('click', function() {
+        listItem.remove();
+        selectAwards.style.height = selectAwards.scrollHeight + "px"; // 높이 재조정
+    });
+
+    // 수정 버튼 이벤트 핸들러 추가 (필요시 구현)
+});
+
+
+

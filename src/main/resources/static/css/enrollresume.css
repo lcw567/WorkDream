@@ -840,3 +840,231 @@ input:focus{
     background-color: #4e21a8;
 }
 
+.language1{
+    display: flex;
+}
+
+.lang_title{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.lang_title input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.lang_title legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.level{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.level select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.level legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.lang_category{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.lang_category select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.lang_category legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.awards3 button{
+    height: 50px;
+    margin-left: 840px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+.get_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.get_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.get_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.language2 button{
+    height: 50px;
+    margin-left: 840px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+.language2{
+    display: flex;
+}
+
+.contest1{
+    display: flex;
+}
+
+.contest_title{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.contest_title legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.contest_title input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.contest_place{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.contest_place legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.contest_place input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.acquire_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.acquire_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.acquire_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 295px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.contest2{
+    display: flex;
+}
+
+.contest2 button{
+    height: 50px;
+    margin-left: 1077px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+.select_awards{
+    min-height: 170px;
+    padding: 15px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+
+
+
+
+
