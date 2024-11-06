@@ -62,6 +62,53 @@ a, button {
 }
 
 
+/* 체크박스 디자인 통일 */
+/*
+	[형식]
+	<label for="idName">
+		<input type="checkbox" id="idName" name="checkboxName" value="" />
+		<span></span>
+	</label>
+*/
+label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+label > input[type="checkbox"] {
+	display: none;
+}
+
+label > span {
+	width: 1rem;
+	height: 1rem;
+	display: inline-block;
+	position: relative;
+	background-color: #FFFFFF;
+	border: 1px solid #6D47B7;
+	border-radius: 0.2rem;
+}
+
+/* 체크된 경우 색 변경 */
+label input[type="checkbox"]:checked + span {
+  background-color: #4E21A8;
+  border-color: #4E21A8;
+}
+
+/* 체크박스 내부의 체크 표시 (체크된 상태) */
+label input[type="checkbox"]:checked + span::before {
+  content: '✔';  /* 체크 표시 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: white;
+}
+
+
 /* header.jsp */
 header {
 	width: 100%;
