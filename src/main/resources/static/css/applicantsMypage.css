@@ -103,11 +103,24 @@ body {
 
 .tag-group {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
     gap: 10px;
 }
 
+.tag-group.show-all {
+    flex-wrap: wrap; /* 여러 줄로 나눔 */
+    max-height: none; /* 높이 제한 해제 */
+    overflow: visible; /* 모든 태그 표시 */
+}
+
+.tag-group.show-all .tag {
+    flex: 0 0 23%; /* 한 줄에 4개씩 */
+}
+
+
 .tag {
+	flex: 0 0 23%;
     background-color: #B4A3DB;
     border: none;
     padding: 15px 20px;
@@ -118,7 +131,7 @@ body {
     transition: background-color 0.3s, transform 0.3s;
     font-weight: bold;
     color: #000000;
-    font-size: 1.4rem;
+    font-size: 1rem;
 }
 
 .tag:hover {

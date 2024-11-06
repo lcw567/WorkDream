@@ -8,6 +8,7 @@
     <title>구직자 마이페이지</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicantsMypage.css">
+    <script src="${pageContext.request.contextPath}/js/applicantsMypage.js" defer></script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
@@ -23,10 +24,7 @@
             </div>
             <div class="tags">
                 <div class="tag-group">
-                    <button class="tag">건강검진</button>
-                    <button class="tag">성과금</button>
-                    <button class="tag">야근수당</button>
-                    <button class="tag">퇴직연금</button>
+
                 </div>
                 <button class="tag all">관심태그 전체보기</button>
             </div>
@@ -86,9 +84,7 @@
 
         <section class="banner">
             <div class="plannerBanner">
-                <a href="plannerPage 예정">
                 <img src="${pageContext.request.contextPath}/img/plannerBanner.PNG" />
-                </a>
             </div>
             <div class="mainBanner">
                 <img src="${pageContext.request.contextPath}/img/banner.PNG" />
@@ -108,22 +104,7 @@
                 <button class="add-tag-button">관심태그 추가</button>
             </div>
             <div class="tag-list">
-                <div class="tag-item">건강검진 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">성과금 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">야근수당 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">퇴직연금 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">특근수당 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">4대보험 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">직책수당 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">연차수당 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">건강검진 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">성과금 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">야근수당 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">퇴직연금 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">특근수당 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">4대보험 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">직책수당 <span class="remove-tag">&times;</span></div>
-                <div class="tag-item">연차수당 <span class="remove-tag">&times;</span></div>   
+
             </div>
         </div>
         <div class="save-tag">
