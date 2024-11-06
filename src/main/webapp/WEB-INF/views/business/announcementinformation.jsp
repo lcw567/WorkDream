@@ -46,12 +46,16 @@
 
             <div>
                 <div id="WorkDream_Applied">
-                    <input type="radio">
-                    <h2>워크드림 프로필로 간편 지원</h2>
+                    <label style="display: flex;">
+                        <input type="radio" name="workdream" checked>
+                        <h2>워크드림 프로필로 간편 지원</h2>
+                    </label>
                 </div>
                 <div id="Homepage_Applied">
-                    <input type="radio">
-                    <h2>자사 홈페이지에서 지원</h2>
+                    <label style="display: flex;">
+                        <input type="radio" name="workdream">
+                        <h2>자사 홈페이지에서 지원</h2>
+                    </label>
                 </div>
             </div>
 
@@ -137,7 +141,7 @@
             </div>
             <div id="Announcement_Post_Time">
                 <input type="datetime-local" id="Post_First_Time">
-                <p>~</p>
+                <p style="margin-bottom: 10px;">~</p>
                 <input type="datetime-local" id="Post_End_Time">
             </div>
 
@@ -151,9 +155,9 @@
             <div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
                 <h2 style="padding: 0 20px; width: 150px;">자격요건</h2>
                 <div class="Need_Input_Infomation">
-                    <div class="Check_And_Text" style="width: 90px;"><input type="checkbox">외국어 능력</div>
-                    <div class="Check_And_Text" style="width: 60px;"><input type="checkbox">자격증</div>
-                    <div class="Check_And_Text" style="width: 85px;"><input type="checkbox">포트폴리오</div>
+                    <label class="Check_And_Text" style="width: 90px;"><input type="checkbox">외국어 능력</label>
+                    <label class="Check_And_Text" style="width: 60px;"><input type="checkbox">자격증</label>
+                    <label class="Check_And_Text" style="width: 85px;"><input type="checkbox">포트폴리오</label>
                 </div>
             </div>
 
@@ -162,9 +166,9 @@
             <div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
                 <h2 style="padding: 0 20px; width: 150px;">우대사항</h2>
                 <div class="Need_Input_Infomation">
-                    <div class="Check_And_Text"><input type="checkbox">보훈 여부</div>
-                    <div class="Check_And_Text"><input type="checkbox">장애 여부</div>
-                    <div class="Check_And_Text"><input type="checkbox">병역 정보</div>
+                    <label class="Check_And_Text"><input type="checkbox">보훈 여부</label>
+                    <label class="Check_And_Text"><input type="checkbox">장애 여부</label>
+                    <label class="Check_And_Text"><input type="checkbox">병역 정보</label>
                 </div>
 
             </div>
@@ -174,9 +178,9 @@
             <div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
                 <h2 style="padding: 0 20px; width: 150px;">개인정보</h2>
                 <div class="Need_Input_Infomation">
-                    <div class="Check_And_Text"><input type="checkbox">출생연도</div>
-                    <div class="Check_And_Text" style="width: 50px;"><input type="checkbox">성별</div>
-                    <div class="Check_And_Text"><input type="checkbox">현재연봉</div>
+                    <label class="Check_And_Text"><input type="checkbox">출생연도</label>
+                    <label class="Check_And_Text" style="width: 50px;"><input type="checkbox">성별</label>
+                    <label class="Check_And_Text"><input type="checkbox">현재연봉</label>
                 </div>
 
             </div>
