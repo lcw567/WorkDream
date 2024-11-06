@@ -69,7 +69,7 @@ window.addEventListener('load', function() {
     var Contest = document.querySelector('.Contest');
 
     // 페이지 로드 시 모든 섹션 숨기기
-    selectAwards.style.height = '500px';
+    selectAwards.style.height = '800px';
     awards2.style.display = 'none';
     awards3.style.display = 'none';
     Language.style.display = 'none';
@@ -85,28 +85,28 @@ document.getElementById('sortation').addEventListener('change', function() {
 
     if (this.value === 'certificate') {
         // '자격증/면허증' 선택 시 관련 영역 표시
-        selectAwards.style.height = '315px';
+        selectAwards.style.height = '800px';
         awards2.style.display = 'flex';
         awards3.style.display = 'flex';
         Language.style.display = 'none';
         Contest.style.display = 'none';
     } else if (this.value === 'language') {
         // '어학시험' 선택 시 관련 영역 표시
-        selectAwards.style.height = '315px';
+        selectAwards.style.height = '800px';
         awards2.style.display = 'none';
         awards3.style.display = 'none';
         Language.style.display = 'block';
         Contest.style.display = 'none';
     } else if (this.value === 'award_details') {
         // '수상내역/공모전' 선택 시 관련 영역 표시
-        selectAwards.style.height = '290px';
+        selectAwards.style.height = '800px';
         awards2.style.display = 'none';
         awards3.style.display = 'none';
         Language.style.display = 'none';
         Contest.style.display = 'block';
     } else {
         // 다른 선택 시 모두 숨기기
-        selectAwards.style.height = '500px';
+        selectAwards.style.height = '800px';
         awards2.style.display = 'none';
         awards3.style.display = 'none';
         Language.style.display = 'none';
