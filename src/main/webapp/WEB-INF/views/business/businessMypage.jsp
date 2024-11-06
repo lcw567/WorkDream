@@ -20,7 +20,7 @@
                 <p class="company-description">포털 및 기타 인터넷 정보매개 서비스업</p>
                 <div class="contact-info">
                     <span>010-0000-0000</span> |
-                    <span><a href="http://www.aaaaaaa.com" target="_blank" rel="noopener noreferrer">www.aaaaaaa.com</a></span> |
+                    <span>www.aaaaaaa.com</span> |
                     <span>서울특별시 000로00길</span>
                 </div>
                 <div class="button-group">
