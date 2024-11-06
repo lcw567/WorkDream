@@ -63,15 +63,13 @@ document.querySelector('#sk_title1 button').addEventListener('click', function()
 
 window.onload = function() {
     var selectAwards = document.querySelector('.select_awards');
-    var awards1 = document.querySelector('.awards1');
     var awards2 = document.querySelector('.awards2');
     var awards3 = document.querySelector('.awards3');
     var Language = document.querySelector('.Language');
     var Contest = document.querySelector('.Contest');
 
-    // 페이지 로드 시 awards1만 보이고, awards2, awards3, Language, Contest는 숨김
+    // 페이지 로드 시 모든 섹션 숨기기
     selectAwards.style.height = '170px';
-    awards1.style.display = 'block';
     awards2.style.display = 'none';
     awards3.style.display = 'none';
     Language.style.display = 'none';
@@ -80,32 +78,28 @@ window.onload = function() {
 
 document.getElementById('sortation').addEventListener('change', function() {
     var selectAwards = document.querySelector('.select_awards');
-    var awards1 = document.querySelector('.awards1');
     var awards2 = document.querySelector('.awards2');
     var awards3 = document.querySelector('.awards3');
     var Language = document.querySelector('.Language');
     var Contest = document.querySelector('.Contest');
 
     if (this.value === 'certificate') {
-        // '자격증/면허증' 선택 시 관련 영역 표시, 나머지 숨기기
+        // '자격증/면허증' 선택 시 관련 영역 표시
         selectAwards.style.height = '315px';
-        awards1.style.display = 'block';
         awards2.style.display = 'flex';
         awards3.style.display = 'flex';
         Language.style.display = 'none';
         Contest.style.display = 'none';
     } else if (this.value === 'language') {
-        // '어학시험' 선택 시 관련 영역 표시, 나머지 숨기기
+        // '어학시험' 선택 시 관련 영역 표시
         selectAwards.style.height = '315px';
-        awards1.style.display = 'none';
         awards2.style.display = 'none';
         awards3.style.display = 'none';
         Language.style.display = 'block';
         Contest.style.display = 'none';
     } else if (this.value === 'award_details') {
-        // '수상/공모전' 선택 시 관련 영역 표시, 나머지 숨기기
+        // '수상내역/공모전' 선택 시 관련 영역 표시
         selectAwards.style.height = '290px';
-        awards1.style.display = 'none';
         awards2.style.display = 'none';
         awards3.style.display = 'none';
         Language.style.display = 'none';
@@ -113,13 +107,13 @@ document.getElementById('sortation').addEventListener('change', function() {
     } else {
         // 다른 선택 시 모두 숨기기
         selectAwards.style.height = '170px';
-        awards1.style.display = 'none';
         awards2.style.display = 'none';
         awards3.style.display = 'none';
         Language.style.display = 'none';
         Contest.style.display = 'none';
     }
 });
+
 
 
 document.querySelector('.awards3 button').addEventListener('click', function() {
