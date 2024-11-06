@@ -100,24 +100,6 @@
 				<form class="list-filter" action="#" method="post">
 					<table>
 						<tr>
-							<!-- 나이 -->
-							<td>
-								<span>
-									<h1>나이</h1>
-									<label>
-										<input type="checkbox" id="checkAge" />
-										<span></span> 무관
-									</label>
-								</span>
-								<br />
-								<span>
-									<input type="number" id="age" name="minAge" />
-									<b>~</b>
-									<input type="number" id="age" name="maxAge" />
-									<b>세</b>
-								</span>
-							</td>
-							
 							<!-- 경력 -->
 							<td>
 								<span>
@@ -135,7 +117,7 @@
 									<b>년</b>
 								</span>
 							</td>
-						
+							
 							<!-- 최종학력 -->
 							<td>
 								<span>
@@ -153,6 +135,23 @@
 										<li><input type="radio" id="academic" name="academicAbility" value="C4" /> 대학교 졸업(4년제)</li>
 										<li><input type="radio" id="academic" name="academicAbility" value="DH" /> 석사 이상</li>
 									</ol>
+								</span>
+							</td>
+						
+							<!-- 지원일 -->
+							<td>
+								<span>
+									<h1>지원일</h1>
+									<label>
+										<input type="checkbox" id="checkDate" />
+										<span></span> 무관
+									</label>
+								</span>
+								<br />
+								<span>
+									<input type="date" id="date" name="date" />
+									<input type="time" id="date" name="time" />
+									<b>까지</b>
 								</span>
 							</td>
 							
@@ -183,6 +182,24 @@
 							</td>
 						</tr>
 						<tr>
+							<!-- 나이 -->
+							<td>
+								<span>
+									<h1>나이</h1>
+									<label>
+										<input type="checkbox" id="checkAge" />
+										<span></span> 무관
+									</label>
+								</span>
+								<br />
+								<span>
+									<input type="number" id="age" name="minAge" />
+									<b>~</b>
+									<input type="number" id="age" name="maxAge" />
+									<b>세</b>
+								</span>
+							</td>
+						
 							<!-- 희망연봉 -->
 							<td>
 								<span>
@@ -198,22 +215,6 @@
 									<b>~</b>
 									<input type="number" id="salay" name="maxSalary" />
 									<b>원</b>
-								</span>
-							</td>
-						
-							<!-- 지원일 -->
-							<td>
-								<span>
-									<h1>지원일</h1>
-									<label>
-										<input type="checkbox" id="checkDate" />
-										<span></span> 무관
-									</label>
-								</span>
-								<br />
-								<span>
-									<input type="date" id="date" name="date" />
-									<b>까지</b>
 								</span>
 							</td>
 							
@@ -233,6 +234,11 @@
 									<input type="number" id="status" name="status" />
 									<b>/ 10 점 이상</b>
 								</span>
+							</td>
+							
+							<!-- 닫기 버튼 -->
+							<td>
+								<button type="button" onClick="filterClose()">X 닫기</button>
 							</td>
 						</tr>
 					</table>
@@ -300,8 +306,8 @@
 						</tr>
 						<tr>
 							<td class="btnList">
-								<label for="checkbox1">
-									<input type="checkbox" id="checkbox1" name="applicantNo" />
+								<label for="checkbox2">
+									<input type="checkbox" id="checkbox2" name="applicantNo" />
 									<span>&ensp;</span>
 								</label>
 								<button><img src="${pageContext.request.contextPath}/img/btn_star_on.png" /></button>

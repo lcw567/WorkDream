@@ -13,3 +13,9 @@ function listFilter(event) {
         filter.style.display = "none";
     }
 }
+
+// 필터창 닫기 버튼
+function filterClose() {
+	const filter = document.querySelector(".list-filter");
+	filter.style.display = "none";
+}
