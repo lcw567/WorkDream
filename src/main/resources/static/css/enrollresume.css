@@ -1243,6 +1243,68 @@ input:focus{
     outline: none;
 }
 
+.result-list {
+    margin-top: 20px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.2s;
+}
+
+.list-item:hover {
+    background-color: #f0f0f0;
+}
+
+.item-content div {
+    font-size: 1rem;
+    margin-left: 60px; /* select와 동일한 margin-left 값 적용 */
+}
+
+strong {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.status, .date {
+    font-size: 1rem;
+}
+
+.institution {
+    color: #777;
+    font-size: 0.9rem;
+    margin-left: 60px; /* select와 동일한 margin-left 값 적용 */
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+button.edit,
+button.delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #555;
+    transition: color 0.2s;
+}
+
+button.edit:hover,
+button.delete:hover {
+    color: #000;
+}
+
+button.edit:focus,
+button.delete:focus {
+    outline: none;
+}
+
 
 
 

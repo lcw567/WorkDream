@@ -69,7 +69,7 @@ window.addEventListener('load', function() {
     var Contest = document.querySelector('.Contest');
 
     // 페이지 로드 시 모든 섹션 숨기기
-    selectAwards.style.height = '170px';
+    selectAwards.style.height = '500px';
     awards2.style.display = 'none';
     awards3.style.display = 'none';
     Language.style.display = 'none';
@@ -106,7 +106,7 @@ document.getElementById('sortation').addEventListener('change', function() {
         Contest.style.display = 'block';
     } else {
         // 다른 선택 시 모두 숨기기
-        selectAwards.style.height = '170px';
+        selectAwards.style.height = '500px';
         awards2.style.display = 'none';
         awards3.style.display = 'none';
         Language.style.display = 'none';
