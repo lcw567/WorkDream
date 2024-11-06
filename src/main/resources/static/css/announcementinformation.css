@@ -1,0 +1,398 @@
+        /* 공통 적용 */
+        body {
+            width: 100vw;
+            min-width: 1024px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            overflow-x: auto;
+        }
+
+        body * {
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'MonoplexKR-Regular';
+            font-size: 0.688rem;
+            color: #000000;
+        }
+
+        ul,
+        ol,
+        a {
+            list-style: none;
+            text-decoration: none;
+            margin: 0;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #Job_Announcement_Information {
+            border: none;
+            padding: 8px;
+            width: 95%;
+            max-width: 1264px;
+            height: 100%;
+        }
+
+        #announcement_Information {
+            border: none;
+            height: 60px;
+            width: 100%;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #announcement_Information h2 {
+            margin: 0;
+            color: #7A35B9;
+            font-size: 1.2rem;
+            font-weight: 800;
+            padding-left: 20px;
+            padding-bottom: 15px;
+        }
+
+        #Job_Announcement_Information hr {
+            color: #3333ff;
+            height: 2px;
+            border: 2px solid #7A35B9;
+        }
+
+        #preview_and_TemporarySave {
+            display: flex;
+        }
+
+        #preview {
+            height: 30px;
+            width: 75px;
+            border-radius: 7px;
+            border: 1px solid black;
+            font-weight: 900;
+            font-size: 0.8rem;
+            align-items: center;
+            background-color: white;
+        }
+
+        #TemporarySave {
+            margin-right: 20px;
+            margin-left: 8px;
+            height: 30px;
+            width: 75px;
+            border-radius: 7px;
+            border: 1px solid black;
+            font-weight: 900;
+            font-size: 0.8rem;
+            align-items: center;
+            background-color: white;
+        }
+
+        #Job_Announcement_Information_content {
+            margin: 0 100px;
+        }
+
+        #Job_Announcement_Information_content h2 {
+            font-size: 1.1rem;
+        }
+
+        #Job_Announcement_Information_Index {
+            width: 100%;
+            height: 50px;
+            background-color: #D9D9D9;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        #Job_Announcement_Information_Index_One {
+            display: flex;
+            align-items: center;
+            border: none;
+        }
+
+        #Job_Announcement_Information_Index_One p {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        #Job_Announcement_Information_Index_One img {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            margin-right: 5px;
+        }
+
+        #Job_Announcement_Information_Index_One hr {
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 100px;
+            border: 2px solid black;
+        }
+
+        .Contact_Announcement_Information_Title {
+            border: none;
+            display: flex;
+            align-items: center;
+            height: 28px;
+        }
+
+        .Contact_Announcement_Information_Title h2 {
+            margin: 0px;
+        }
+
+        .Contact_Announcement_Information_Title p {
+            border: none;
+            margin-left: 5px;
+            font-size: 15px;
+            height: 21px;
+        }
+
+        #WorkDream_Applied {
+            display: flex;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 8px;
+            height: 45px;
+            width: 350px;
+            margin-top: 8px;
+        }
+
+        #WorkDream_Applied input {
+            margin-left: 15px;
+        }
+
+        #WorkDream_Applied h2 {
+            margin-left: 10px;
+        }
+
+        #Homepage_Applied {
+            display: flex;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 8px;
+            height: 45px;
+            width: 350px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        #Homepage_Applied input {
+            margin-left: 15px;
+        }
+
+        #Homepage_Applied h2 {
+            margin-left: 10px;
+        }
+
+        #Announcement_Title {
+            border: 1px solid black;
+            border-radius: 8px;
+            height: 40px;
+            width: 500px;
+            margin-top: 10px;
+            padding-left: 10px;
+            padding-top: 3px;
+        }
+
+        input::placeholder {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #A09F9F;
+        }
+
+        .Job_duty {
+            border: 2px solid black;
+            border-radius: 30px;
+            width: 100%;
+            height: 32px;
+            background-color: #4E21A8;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .Job_duty p {
+            color: white;
+            padding-left: 15px;
+            font-size: 13px;
+            width: 840px;
+        }
+
+        .Job_duty button {
+            border: none;
+            margin-right: 8px;
+            height: 25px;
+            background-color: #4E21A8;
+        }
+
+        .Add_Duty {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100px;
+            height: 32px;
+            margin-top: 10px;
+            margin-bottom: 40px;
+            border-radius: 20px;
+            border: 1px solid black;
+        }
+
+        .Add_Duty img {
+            width: 15px;
+            height: 15px;
+        }
+
+        .Add_Duty p {
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        #Announcement_Introduction_img {
+            border: 1px solid black;
+            border-radius: 5px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            width: 400px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #D9D9D9;
+        }
+
+        #Announcement_Introduction_img img {
+            width: 150px;
+            height: 150px;
+        }
+
+        #Announcement_Introduction_file {
+            margin-bottom: 8px;
+        }
+
+        #Announcement_Introduction_file input[type="text"] {
+            border-radius: 5px;
+            border: 1px solid black;
+            width: 280px;
+            height: 40px;
+            padding-left: 10px;
+        }
+
+        #Announcement_custom-file-upload {
+            display: inline-block;
+            padding: 10px 28px;
+            border-radius: 5px;
+            border: 1px solid black;
+            background-color: #4E21A8;
+            color: white;
+            font-weight: 600;
+            margin-left: 8px;
+            font-size: 14px;
+        }
+
+        #Announcement_custom-file-upload:hover {
+            background-color: #3d1a85;
+        }
+
+        .Text_Container {
+            margin-top: 10px;
+            width: 100%;
+            height: 150px;
+            border-radius: 5px;
+            padding-top: 10px;
+            margin-bottom: 50px;
+            line-height: 1;
+            padding-left: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #000000;
+            vertical-align: top;
+            resize: none;
+        }
+
+        .Text_Container::placeholder {
+            padding-top: 2px;
+            padding-left: 2px;
+            line-height: 1;
+            font-size: large;
+            font-weight: 100;
+        }
+
+        #Announcement_Post_Time {
+            display: flex;
+            border: none;
+            width: 380px;
+            justify-content: space-between;
+            margin-bottom: 90px;
+        }
+
+        #Post_First_Time {
+            border-radius: 5px;
+            width: 170px;
+            height: 45px;
+            padding: 0 10px;
+        }
+
+        #Post_End_Time {
+            border-radius: 5px;
+            width: 170px;
+            padding: 0 10px;
+        }
+
+        .Need_Input_Infomation {
+            border: none;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .Check_And_Text {
+            width: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        #Job_Posting_division_zones {
+            border: none;
+            width: 100%;
+            height: 50px;
+            background-color: #F4F4F4;
+        }
+
+        .Next_Or_Back {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 100px;
+        }
+
+        .Cancel_Push {
+            padding: 12px 34px;
+            background-color: #747474;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .Next_Push {
+            margin: 0 5px;
+            margin-right: 30px;
+            padding: 12px 34px;
+            background-color: #4E21A8;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            font-weight: 600;
+            font-size: 13px;
+        }
