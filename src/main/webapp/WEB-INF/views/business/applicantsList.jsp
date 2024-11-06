@@ -9,6 +9,7 @@
 	
 	<!-- 외부 css 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicants.css">
+    <script src="${pageContext.request.contextPath}/js/applicants.js" defer></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header_biz.jsp" />
@@ -90,10 +91,152 @@
 							<button><img src="${pageContext.request.contextPath}/img/btn_search(sub).png" />&nbsp;검색 |</button>
 						</li>
 						<li>
-							<button><img src="${pageContext.request.contextPath}/img/btn_filter.png" />&nbsp;조건</button>
+							<button onclick="listFilter(event)"><img src="${pageContext.request.contextPath}/img/btn_filter.png" />&nbsp;조건</button>
 						</li>
 					</ol>
 				</div>
+				
+				<!-- 필터창 -->
+				<form class="list-filter" action="#" method="post">
+					<table>
+						<tr>
+							<!-- 나이 -->
+							<td>
+								<span>
+									<h1>나이</h1>
+									<label>
+										<input type="checkbox" id="checkAge" />
+										<span></span> 무관
+									</label>
+								</span>
+								<br />
+								<span>
+									<input type="number" id="age" name="minAge" />
+									<b>~</b>
+									<input type="number" id="age" name="maxAge" />
+									<b>세</b>
+								</span>
+							</td>
+							
+							<!-- 경력 -->
+							<td>
+								<span>
+									<h1>경력</h1>
+									<label>
+										<input type="checkbox" id="checkC" />
+										<span></span> 무관
+									</label>
+								</span>
+								<br />
+								<span>
+									<input type="number" id="careere" name="minCareere" />
+									<b>~</b>
+									<input type="number" id="careere" name="maxCareere" />
+									<b>년</b>
+								</span>
+							</td>
+						
+							<!-- 최종학력 -->
+							<td>
+								<span>
+									<h1>최종학력</h1>
+									<label>
+										<input type="checkbox" id="checkAcademic" />
+										<span></span> 무관
+									</label>
+								</span>
+								<br />
+								<span>
+									<ol>
+										<li><input type="radio" id="academic" name="academicAbility" value="HS" /> 고등학교 졸업</li>
+										<li><input type="radio" id="academic" name="academicAbility" value="C2" /> 대학교 졸업(2년제)</li>
+										<li><input type="radio" id="academic" name="academicAbility" value="C4" /> 대학교 졸업(4년제)</li>
+										<li><input type="radio" id="academic" name="academicAbility" value="DH" /> 석사 이상</li>
+									</ol>
+								</span>
+							</td>
+							
+							<!-- 평가여부 -->
+							<td>
+								<span>
+									<h1>평가여부</h1>
+									<label>
+										<input type="checkbox" id="checkStatus" />
+										<span></span> 무관
+									</label>
+								</span>
+								<br />
+								<span>
+									<ol>
+										<li><input type="radio" id="status" name="status" value="none" /> 이력서 미열람</li>
+										<li><input type="radio" id="status" name="status" value="none" /> 평가 미완료</li>
+										<li><input type="radio" id="status" name="status" value="NP" /> 합격 여부 미정</li>
+									</ol>
+								</span>
+							</td>
+							
+							<!-- 버튼 -->
+							<td>
+								<button type="submit">적용</button>
+								<br />
+								<button type="reset">초기화</button>
+							</td>
+						</tr>
+						<tr>
+							<!-- 희망연봉 -->
+							<td>
+								<span>
+									<h1>희망연봉</h1>
+									<label>
+										<input type="checkbox" id="checkAge" />
+										<span></span> 무관
+									</label>
+								</span>
+								<br />
+								<span>
+									<input type="number" id="salary" name="minSalary" />
+									<b>~</b>
+									<input type="number" id="salay" name="maxSalary" />
+									<b>원</b>
+								</span>
+							</td>
+						
+							<!-- 지원일 -->
+							<td>
+								<span>
+									<h1>지원일</h1>
+									<label>
+										<input type="checkbox" id="checkDate" />
+										<span></span> 무관
+									</label>
+								</span>
+								<br />
+								<span>
+									<input type="date" id="date" name="date" />
+									<b>까지</b>
+								</span>
+							</td>
+							
+							<td></td>
+							
+							<!-- 점수 -->
+							<td>
+								<span>
+									<h1>평가점수</h1>
+									<label>
+										<input type="checkbox" id="checkScore" />
+										<span></span> 무관
+									</label>
+								</span>
+								<br />
+								<span>
+									<input type="number" id="status" name="status" />
+									<b>/ 10 점 이상</b>
+								</span>
+							</td>
+						</tr>
+					</table>
+				</form>
 			</aside>
 			
 			<!-- 목록 테이블 -->
