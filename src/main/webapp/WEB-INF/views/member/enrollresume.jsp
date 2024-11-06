@@ -432,45 +432,43 @@
                 <fieldset class="select_awards">
                     <legend class="awa">자격/어학/수상</legend>
                     <div class="AWARDS">
-                        <div class="awards1">
-                            <fieldset class="select_inner">
-                                <legend>구분</legend>
-                                <select name="sortation" id="sortation">
-                                    <option value="">구분*</option>
-                                    <option value="certificate">자격증/면허증</option>
-                                    <option value="language">어학시험</option>
-                                    <option value="award_details">수상내역/공모전</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                        <div class="awards2">
-                            <fieldset class="certi_title">
-                                <legend>자격증명</legend>
-                                <input type="text" name="certificate_title">
-                            </fieldset>
-                            <fieldset class="institution">
-                                <legend>발행처/기관</legend>
-                                <input type="text" name="institution_title">
-                            </fieldset>
-                            <fieldset class="pass_status">
-                                <legend>합격구분</legend>
-                                <select name="pass_status" id="pass_menu">
-                                    <option value="">합격구분*</option>
-                                    <option value="1pass">1차합격</option>
-                                    <option value="2pass">2차합격</option>
-                                    <option value="writtenpass">필기합격</option>
-                                    <option value="practicepass">실기합격</option>
-                                    <option value="finalpass">최종합격</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                        <div class="awards3">
-                            <fieldset class="pass_date">
-                                <legend>시작년월</legend>
-                                <input type="date" class="pass" name="pass_date">
-                            </fieldset>
-                            <button>추가하기</button>
-                        </div>
+                        <fieldset class="select_inner">
+                            <legend>구분</legend>
+                            <select name="sortation" id="sortation">
+                                <option value="">구분*</option>
+                                <option value="certificate">자격증/면허증</option>
+                                <option value="language">어학시험</option>
+                                <option value="award_details">수상내역/공모전</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="awards2">
+                        <fieldset class="certi_title">
+                            <legend>자격증명</legend>
+                            <input type="text" name="certificate_title">
+                        </fieldset>
+                        <fieldset class="institution">
+                            <legend>발행처/기관</legend>
+                            <input type="text" name="institution_title">
+                        </fieldset>
+                        <fieldset class="pass_status">
+                            <legend>합격구분</legend>
+                            <select name="pass_status" id="pass_menu">
+                                <option value="">합격구분*</option>
+                                <option value="1pass">1차합격</option>
+                                <option value="2pass">2차합격</option>
+                                <option value="writtenpass">필기합격</option>
+                                <option value="practicepass">실기합격</option>
+                                <option value="finalpass">최종합격</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="awards3">
+                        <fieldset class="pass_date">
+                            <legend>시작년월</legend>
+                            <input type="date" class="pass" name="pass_date">
+                        </fieldset>
+                        <button>추가하기</button>
                     </div>
                     <div class="Language">
                         <div class="Lang">
