@@ -330,9 +330,15 @@
             justify-content: space-between;
             margin-bottom: 90px;
         }
+        
+        #Announcement_Post_Time p{
+        	font-size: 13px;
+        	font-weight: 600;
+        }
 
         #Post_First_Time {
             border-radius: 5px;
+            border: 1px solid black;
             width: 170px;
             height: 45px;
             padding: 0 10px;
@@ -340,7 +346,9 @@
 
         #Post_End_Time {
             border-radius: 5px;
+            border: 1px solid black;
             width: 170px;
+            height: 45px;
             padding: 0 10px;
         }
 
