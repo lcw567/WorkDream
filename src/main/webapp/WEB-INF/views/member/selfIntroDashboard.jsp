@@ -20,7 +20,12 @@
         	</div>
             <div class="search-bar">
                 <input type="text" placeholder="검색어를 입력하세요">
+<<<<<<< HEAD
                 <button><img src="${pageContext.request.contextPath}/img/btn_search.png" alt="검색"></button>
+=======
+                <button><img src= "${pageContext.request.contextPath}/img/btn_search.png" alt="검색">  </button>
+                 
+>>>>>>> f0739fb1670210d19eb76eb3d5e80a8a7aae5356
             </div>
         </div>
 
