@@ -18,14 +18,13 @@ body {
 }
 
 .dashboard-container {
-	width: 100%;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 1300px;
     margin: 30px;
-    padding: 20px;
+    border: none;
     background-color: #fff;
-    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .dashboard-header {
@@ -80,7 +79,7 @@ body {
     justify-content: center;
 }
 
-.header-right > .search-bar > button > img{
+.dashboard-header > .search-bar > button > img{
     width: 30px;
     height: 30px;
     margin: 0 auto;
@@ -200,20 +199,28 @@ body {
     background-color: #f1f1f1;
 }
 
+.notice-container{
+    background-color: #fcf9fd;
+    border-radius: 15px;
+    height: 120px;
+}
+
 .notice {
     margin-top: 60px;
+    padding-top: 26px;
+    padding-left: 30px;
     font-weight: bold;
-    color: #4E21A8;
+    color: #000000;
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .notice::before {
     content: 'ⓘ';
-    font-size: 1.5rem;
-    color: #4E21A8;
+    font-size: 1.2rem;
+    color: #000000;
 }
 
 .notice-list {
@@ -221,11 +228,12 @@ body {
     padding: 0;
     list-style: none;
     color: #555;
+    padding-left: 65px;
 }
 
 .notice-list li {
     margin-bottom: 5px;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .dropdown-menu.show {

@@ -18,12 +18,9 @@
         	<div class = "page-name">
         		<h1>자소서 관리</h1>
         	</div>
-           
-            <div class="header-right">
-                <div class="search-bar">
-                    <input type="text" placeholder="검색어를 입력하세요">
-                    <button><img src="/workdream/img/btn_search.png" alt="검색"></button>
-                </div>
+            <div class="search-bar">
+                <input type="text" placeholder="검색어를 입력하세요">
+                <button><img src="/workdream/img/btn_search.png" alt="검색"></button>
             </div>
         </div>
 
@@ -77,10 +74,13 @@
         </main>
         <div class="notice-container">
             <div class="notice">확인사항</div>
-            <ul class="notice-list">
-                <li>자소서는 공백포함 500자 까지 작성 가능 합니다.</li>
-                <li>자소서는 총 100개까지 등록 가능합니다.</li>
-            </ul>
+            <div class="notice2">
+                <ul class="notice-list">
+                    <li>자소서는 공백포함 500자 까지 작성 가능 합니다.</li>
+                    <li>자소서는 총 100개까지 등록 가능합니다.</li>
+                </ul>
+            </div>
+        </div>
         </div>
     </div>
 
