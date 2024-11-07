@@ -33,9 +33,9 @@ body {
 .input-name {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
+    border: 1px solid #888;
 }
 
 .confirm-btn, .help-btn {
@@ -79,7 +79,7 @@ label {
     width: 100%;
     height: 400px;
     padding: 20px;
-    border: 2px solid #4E21A8;
+    border: 1px solid #888;
     border-radius: 8px;
     resize: none;
     font-size: 1rem;
@@ -140,7 +140,7 @@ label {
     top: 100%;
     left: 100%;
     transform: translateX(-50%);
-    width: 400px;
+    width: 280px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     font-size: 1rem;
     z-index: 1;
@@ -149,7 +149,8 @@ label {
 
 .tooltip p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.7rem;
+    color: #888;
 }
 
 .help-btn:hover .tooltip {
