@@ -1,4 +1,4 @@
-package com.cs.workdream.resume.controller;
+package com.cs.workdream.member.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/member")
-public class EnrollResume {
+public class MemberController {
 	
 	@GetMapping("/enrollresume")
 	public String enrollresume() {
