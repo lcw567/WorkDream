@@ -29,23 +29,32 @@ checkboxes.forEach(checkbox => {
 
 // 그룹 추가, 이동, 삭제
 const popupSection = document.getElementById("bookmark-popup");
+const popupList = popupSection.querySelectorAll("div");
+
+// 팝업 닫기 (공용)
+function colseGroup() {
+    popupSection.classList.remove("show");
+    popupList.forEach(item => {
+        item.classList.remove('show');
+    });
+}
 
 // 그룹 추가
 function addGroup() {
     const popup = popupSection.querySelector("#bookmark-popup-group");
     const btnClose = popup.querySelector(".btnClose");
 
-    popupSection.style.display = "flex";
-    popup.style.display = "flex";
+    popupSection.classList.add("show");
+    popup.classList.add("show");
 
     btnClose.addEventListener("click", function() {
-        popup.style.display = "none";
-        popupSection.style.display = "none";
+        colseGroup();
     });
 
-    popupSection.addEventListener("click", function() {
-        popup.style.display = "none";
-        popupSection.style.display = "none";
+    popupSection.addEventListener("click", function(event) {
+        if(event.target == popupSection) {
+            colseGroup();
+        }
     });
 }
 
