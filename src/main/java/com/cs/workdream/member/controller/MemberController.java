@@ -27,9 +27,15 @@ public class MemberController {
     public String applicantsMypage() {
         return "member/applicantsMypage"; // applicantsMypage.jsp
     }
+	
 	@GetMapping("/resumeDashboard")
 	public String ResumDacsboard() {
 		return "member/resumeDashboard";
+	}
+
+	@GetMapping("/previewresume")
+	public String previewResume() {
+		return "member/previewresume";
 	}
 }
 
