@@ -296,7 +296,7 @@
                     </b>
                 </div>
 
-                <div style="display: flex; width: 80%; justify-content: space-between;">
+                <div style="display: flex; width: 90%; justify-content: space-between;">
                     <div class="Currently_Employed">
                         <div class="Employment_Status">
                             <div>
