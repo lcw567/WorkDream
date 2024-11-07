@@ -1,3 +1,36 @@
+/* 공통 적용 */
+body {
+    width: 100vw;
+    min-width: 1024px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+}
+
+body * {
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'MonoplexKR-Regular';
+    font-size: 0.688rem;
+    color: #000000;
+}
+
+ul,
+ol,
+a {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
 #Job_Posting {
     border: none;
     padding: 8px;
