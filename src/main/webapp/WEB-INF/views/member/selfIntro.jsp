@@ -29,7 +29,6 @@
             </button>
         </div>
         <div class="content">
-            <label for="content-input">내용</label>
             <textarea id="content-input" placeholder="내용을 입력하세요" maxlength="500"></textarea>
             <div class="notice">
                 <span class="char-count">500자 공백 포함</span>
