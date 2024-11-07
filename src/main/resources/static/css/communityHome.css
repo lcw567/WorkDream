@@ -59,28 +59,43 @@ body {
 
 .search-bar {
     display: flex;
-    align-items: center; 
-    gap: 0.5rem;
+    align-items: center;
+    border: 1.5px solid #4E21A8;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 500px; 
+}
+
+.search-icon {
+    width: 30px;
+    height: 30px;
 }
 
 .search-bar input[type="text"] {
-    padding: 0.5rem;
-    border: 1px solid #B8B1D7;
-    border-radius: 20px; 
+    padding: 0.5rem 0.8rem;
+    border: none;
     outline: none;
-    width: 200px; 
+    width: 100%;
+    font-size: 1rem;
+    color: #000000; 
 }
 
 .search-bar button {
     padding: 0.5rem;
     background-color: #ffffff;
     color: #4E21A8;
-    border: 1px solid #4E21A8;
-    border-radius: 50%; /* ���� ��ư */
+    border: none;
     cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* �α�� ���� ��Ÿ�� */
+.search-icon {
+    width: 30px;
+    height: 30px;
+}
 
 .popular-week h3 {
     color: #000000;
@@ -89,7 +104,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* �α�� ����Ʈ ��Ÿ�� */
+
 .popular-week ul {
     list-style: none;
     padding: 0;
@@ -110,7 +125,7 @@ body {
     color: #4E21A8;
 }
 
-/* ������ �� ���� ���� */
+
 .popular-week li span {
     margin-left: 0.5rem;
     color: #4E21A8;
@@ -119,10 +134,10 @@ body {
 /* ��۰� ��ȸ�� ������ �����̳� */
 .popular-week li .icon-group {
     display: flex;
-    gap: 1rem; /* ���� ���� */
+    gap: 1rem; 
     align-items: center;
 }
-/* ������ Ŀ�´�Ƽ �±� */
+
 
 .community-categories {
     margin: 1rem;
@@ -151,7 +166,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    width: calc(100% / 6 - 1rem); /* �� �ٿ� ���� �� ��ġ */
+    width: calc(100% / 6 - 1rem);
     text-align: center;
     min-width: 50px;
 }
@@ -165,8 +180,8 @@ body {
 
 .post-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* �� ���� ��ġ */
-    gap: 1rem; /* ī�� ������ ���� */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1rem; 
 }
 
 .post-category {
@@ -189,7 +204,7 @@ body {
 }
 
 .post-category li span {
-    margin-left: 0.2rem; /* ������ ���� ���� */
+    margin-left: 0.2rem; 
     color: #4E21A8;
 }
 
