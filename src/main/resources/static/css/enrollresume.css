@@ -1268,7 +1268,7 @@ input:focus{
     border: none;
 }
 
-strong {
+.result-list strong {
     font-size: 1rem;
     font-weight: bold;
 }
