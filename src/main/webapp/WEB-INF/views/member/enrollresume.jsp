@@ -544,42 +544,7 @@
                         </div>
                     </div>
                     <div class="result-list">
-                        <div class="list-item">
-                            <div class="item-content">
-                                <div>
-                                    <strong>SQL개발자(SQLD자격)</strong> (1차합격) | 2024.01
-                                </div>
-                                <div class="institution">한국데이터베이스진흥센터</div>
-                            </div>
-                            <div class="actions">
-                                <button class="edit" title="수정">✏️</button>
-                                <button class="delete" title="삭제">🗑️</button>
-                            </div>
-                        </div>
-                        <div class="list-item">
-                            <div class="item-content">
-                                <div>
-                                    <strong>정보처리기사</strong> (2차합격) | 2024.02
-                                </div>
-                                <div class="institution">한국산업인력공단</div>
-                            </div>
-                            <div class="actions">
-                                <button class="edit" title="수정">✏️</button>
-                                <button class="delete" title="삭제">🗑️</button>
-                            </div>
-                        </div>
-                        <div class="list-item">
-                            <div class="item-content">
-                                <div>
-                                    <strong>2종보통운전면허</strong> (2차합격) | 2024.02
-                                </div>
-                                <div class="institution">경찰청(운전면허시험관리단)</div>
-                            </div>
-                            <div class="actions">
-                                <button class="edit" title="수정">✏️</button>
-                                <button class="delete" title="삭제">🗑️</button>
-                            </div>
-                        </div>
+                        
                     </div>
                 </fieldset>
             </div>

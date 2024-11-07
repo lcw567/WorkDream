@@ -694,8 +694,10 @@ input:focus{
 .select_awards{
     border: none;
     box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
-    border-top: 5px solid #4e21a8;
-    height: 145px;
+    min-height: 170px;
+    height: auto;  /* 높이를 자동으로 조정 */
+    overflow: visible;
+    padding: 15px;
     border-radius: 5px;
     margin-bottom: 50px;
     transition: height 0.3s;
@@ -1056,13 +1058,6 @@ input:focus{
     background-color: #4e21a8;
 }
 
-.select_awards{
-    min-height: 170px;
-    padding: 15px;
-    overflow: hidden;
-    transition: height 0.3s ease;
-}
-
 .preferential{
     border: none;
     box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
@@ -1245,6 +1240,10 @@ input:focus{
 
 .result-list {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
 }
 
 .list-item {
@@ -1253,7 +1252,10 @@ input:focus{
     align-items: center;
     padding: 15px;
     border-bottom: 1px solid #ddd;
-    transition: background-color 0.2s;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background: #fff;
 }
 
 .list-item:hover {
@@ -1262,7 +1264,8 @@ input:focus{
 
 .item-content div {
     font-size: 1rem;
-    margin-left: 60px; /* select와 동일한 margin-left 값 적용 */
+    margin-left: 60px;
+    border: none;
 }
 
 strong {
@@ -1270,14 +1273,10 @@ strong {
     font-weight: bold;
 }
 
-.status, .date {
-    font-size: 1rem;
-}
-
 .institution {
     color: #777;
     font-size: 0.9rem;
-    margin-left: 60px; /* select와 동일한 margin-left 값 적용 */
+    margin-left: 60px;
 }
 
 .actions {
@@ -1304,8 +1303,6 @@ button.edit:focus,
 button.delete:focus {
     outline: none;
 }
-
-
 
 
 
