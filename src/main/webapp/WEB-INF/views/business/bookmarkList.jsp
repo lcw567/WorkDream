@@ -48,8 +48,8 @@
 							<th colspan="4">
 								<button>선택 삭제</button>
 								<b>&emsp;&#124;&emsp;</b>
-								<button><img src="${pageContext.request.contextPath}/img/btn_folder_add.png"> 그룹 추가</button>
-								<button><img src="${pageContext.request.contextPath}/img/btn_folder_sub.png"> 그룹 삭제</button>
+								<button onClick="addGroup()"><img src="${pageContext.request.contextPath}/img/btn_folder_add.png"> 그룹 추가</button>
+								<button onClick="subGroup()"><img src="${pageContext.request.contextPath}/img/btn_folder_sub.png"> 그룹 삭제</button>
 								<button><img src="${pageContext.request.contextPath}/img/btn_setting.png"> 그룹 관리</button>
 								<b>&emsp;&#124;&emsp;</b>
 								<button><img src="${pageContext.request.contextPath}/img/btn_print(black).png"> 인쇄</button>
@@ -87,7 +87,7 @@
 								<span class="profile">김아무개</span>
 							</td>
 							<td>
-								<button class="no-group"><img src="${pageContext.request.contextPath}/img/btn_folder_none.png" /> 미분류</button>
+								<button class="no-group" onClick="addGroup()"><img src="${pageContext.request.contextPath}/img/btn_folder_none.png" /> 미분류</button>
 							</td>
 							<td>지원일 2024.11.05</td>
 							<td>
@@ -104,6 +104,15 @@
 			</article>
 		</section>
 	</main>
+	
+	<%-- 팝업 영역 --%>
+	<section id="bookmark-popup">
+		<!-- 그룹 지정 -->
+		<div id="bookmark-popup-group">
+			테스트
+			<button class="btnClose">X</button>
+		</div>
+	</section>
 
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
