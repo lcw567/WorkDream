@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자소서 관리</title>
+    <title>이력서 관리</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/selfIntroDashboard.css">
 	<script src="${pageContext.request.contextPath}/js/selfIntroDashboard.js"></script>
@@ -13,14 +13,14 @@
 <body>
 <c:import url="/WEB-INF/views/common/header.jsp" />
 
-    <div class="dashboard-container">
-        <div class="dashboard-header">
+    <div class="resumedashboard-container">
+        <div class="resumedashboard-header">
         	<div class = "page-name">
-        		<h1>자소서 관리</h1>
+        		<h1>이력서 관리</h1>
         	</div>
             <div class="search-bar">
                 <input type="text" placeholder="검색어를 입력하세요">
-                <button><img src="/workdream/img/btn_search.png" alt="검색"></button>
+                <button><img src="${pageContext.request.contextPath}/img/btn_search.png" alt="검색"></button>
             </div>
         </div>
 
