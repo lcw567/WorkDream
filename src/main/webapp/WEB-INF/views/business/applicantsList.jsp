@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>워크드림 | 지원자 목록</title>
 	
-	<!-- 외부 css 연결 -->
+	<!-- 외부 css / js 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicants.css">
     <script src="${pageContext.request.contextPath}/js/applicants.js" defer></script>
 </head>
@@ -281,7 +281,7 @@
 									<input type="checkbox" id="checkbox1" name="applicantNo" />
 									<span>&ensp;</span>
 								</label>
-								<button><img src="${pageContext.request.contextPath}/img/btn_star_off.png" /></button>
+								<button onClick="bookmark(event, 1)"><img src="${pageContext.request.contextPath}/img/btn_star_off.png" /></button>
 							</td>
 							<td>서류전형</td>
 							<td class="photo">
@@ -310,7 +310,7 @@
 									<input type="checkbox" id="checkbox2" name="applicantNo" />
 									<span>&ensp;</span>
 								</label>
-								<button><img src="${pageContext.request.contextPath}/img/btn_star_on.png" /></button>
+								<button class="On" onClick="bookmark(event, 1)"><img src="${pageContext.request.contextPath}/img/btn_star_on.png" /></button>
 							</td>
 							<td>서류전형</td>
 							<td class="photo">
