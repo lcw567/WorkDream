@@ -1,4 +1,4 @@
-/* �⺻ ��Ÿ�� */
+
 * {
     margin: 0;
     padding: 0;
@@ -22,7 +22,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-/* ī�װ� ���� */
+
 .category-select {
     display: flex;
     align-items: center;
@@ -47,7 +47,7 @@ body {
 	font-size: 1.3rem;
 }
 
-/* ���� �Է� */
+
 .title-input input[type="text"] {
     width: 100%;
     padding: 0.8rem;
@@ -58,7 +58,7 @@ body {
     outline: none;
 }
 
-/* ���� �Է� */
+
 .content-input textarea {
     width: 100%;
     height: 300px;
@@ -77,7 +77,7 @@ body {
     line-height: 1.4;
 }
 
-/* �̹��� ÷�� */
+
 .image-upload {
     margin-top: 1rem;
     font-size: 1rem;
@@ -90,9 +90,11 @@ body {
     align-items: center;
     cursor: pointer;
     font-size: 1rem;
+    justify-content: flex-start;
+    margin-top: 10px;
 }
 
-/* �̹��� �̸����� ��Ÿ�� */
+
 .image-preview {
     margin-top: 1rem;
     max-width: 100%;
@@ -110,7 +112,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* �ؽ��±� �Է� */
+
 .hashtag-input {
     margin-top: 1.5rem;
     font-weight: bold;
@@ -118,8 +120,18 @@ body {
     font-size: 1.3rem;
 }
 
-.hashtag-inpu label {
+.job-category-label{
 	font-size: 1.3rem;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.hashtag-input label {
+	font-size: 1.3rem;
+	margin-bottom: 20px;
+    justify-content: flex-start;
 }
 
 .hashtag-box {
@@ -153,7 +165,7 @@ body {
 
 .hashtag .remove-btn {
     margin-left: 0.5rem;
-    font-size: 2rem; /* ũ�⸦ ���� �� ũ�� ���� */
+    font-size: 2rem; 
     color: #4E21A8;
     cursor: pointer;
     transition: color 0.2s ease;
@@ -175,7 +187,7 @@ body {
 }
 
 
-/* ���� ���� ���̺� ��Ÿ�� */
+
 .job-category-container {
     margin-top: 1.5rem;
 }
@@ -189,7 +201,7 @@ body {
 }
 
 .job-category-table td {
-    width: 16.6%; /* �� ���� ���� ���� �����ϰ� */
+    width: 16.6%; 
     padding: 1rem 0.5rem;
     border: 1px solid #ddd;
     color: #333;
@@ -200,13 +212,18 @@ body {
     align-items: center;
     font-size: 0.9rem;
     cursor: pointer;
+    justify-content: flex-start;
+    margin-left: 15px;
+    gap: 15px;
 }
+
+
 
 .job-category-table input[type="checkbox"] {
     margin-right: 0.5rem;
 }
 
-/* �Խñ� ��� ��ư ��Ÿ�� */
+
 .submit-button-container {
     display: flex;
     justify-content: center;
