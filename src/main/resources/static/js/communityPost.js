@@ -1,20 +1,28 @@
+// communityPost.js
+
 document.addEventListener("DOMContentLoaded", function() {
     // 게시글 등록 버튼 클릭 시 이벤트
-    document.querySelector(".submit-button").addEventListener("click", function() {
+    document.querySelector(".submit-button").addEventListener("click", function(event) {
+        event.preventDefault(); // 기본 폼 제출 방지
+
         // 선택된 카테고리, 제목, 내용 가져오기
         const category = document.getElementById("category").value;
-        const title = document.querySelector(".title-input input").value;
-        const content = document.querySelector(".content-input textarea").value;
+        const title = document.querySelector(".title-input input").value.trim();
+        const content = document.querySelector(".content-input textarea").value.trim();
 
         // 직무 카테고리 선택 가져오기
         const selectedJobs = Array.from(document.querySelectorAll(".job-checkbox:checked"))
                                   .map(cb => cb.value);
 
-        // 유효성 검사 (예시: 제목과 내용이 비어있지 않은지 확인)
+        // 유효성 검사
         if (!title || !content) {
             alert("제목과 내용을 입력해 주세요.");
             return;
         }
+
+        // 해시태그 가져오기
+        const hashtags = Array.from(document.querySelectorAll(".hashtag"))
+                              .map(tag => tag.textContent.replace("#", "").replace("×", "").trim());
 
         // 서버에 게시글 데이터를 저장하는 비동기 요청 (예시)
         fetch("/api/posts", {
@@ -26,7 +34,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 category: category,
                 title: title,
                 content: content,
-                jobs: selectedJobs
+                jobs: selectedJobs,
+                hashtags: hashtags
             })
         })
         .then(response => response.json())
@@ -46,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     hashtagInput.addEventListener("keydown", function(event) {
         if (event.key === "Enter" && hashtagInput.value.trim() !== "") {
+            event.preventDefault(); // 기본 엔터 동작 방지
+
             const newHashtag = hashtagInput.value.trim();
 
             // 중복 해시태그 검사
@@ -56,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function() {
             if (existingHashtags.includes(newHashtag)) {
                 alert("이미 추가된 해시태그입니다.");
                 hashtagInput.value = "";
-                event.preventDefault();
                 return;
             }
 
@@ -64,23 +74,21 @@ document.addEventListener("DOMContentLoaded", function() {
             if (existingHashtags.length >= 5) {
                 alert("최대 5개의 해시태그만 추가할 수 있습니다.");
                 hashtagInput.value = "";
-                event.preventDefault();
                 return;
             }
 
             // 해시태그 추가
             const hashtag = document.createElement("span");
             hashtag.classList.add("hashtag");
-            hashtag.innerHTML = `#${newHashtag} <span class="remove-hashtag">×</span>`;
+            hashtag.innerHTML = `#${newHashtag} <span class="remove-btn">×</span>`;
 
             // 삭제 버튼 (x) 클릭 시 해시태그 삭제
-            hashtag.querySelector(".remove-hashtag").addEventListener("click", function() {
+            hashtag.querySelector(".remove-btn").addEventListener("click", function() {
                 hashtag.remove();
             });
 
             hashtagContainer.insertBefore(hashtag, hashtagInput);
             hashtagInput.value = "";
-            event.preventDefault();
         }
     });
 
@@ -115,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 직무 카테고리 체크박스 제어
     const jobCheckboxes = document.querySelectorAll(".job-checkbox");
-    const jobNoneCheckbox = document.getElementById("job-none");
+    const jobNoneCheckbox = document.getElementById("job-NONE");
 
     jobCheckboxes.forEach(function(checkbox) {
         checkbox.addEventListener("change", function() {
