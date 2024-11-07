@@ -113,5 +113,6 @@
     </div>
 
 </body>
-<c:import url="/WEB-INF/views/common/footer.jsp" />
+
 </html>
+<c:import url="/WEB-INF/views/common/footer.jsp" />
