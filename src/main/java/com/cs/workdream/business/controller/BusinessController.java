@@ -46,4 +46,9 @@ public class BusinessController {
     public String businessMypage() {
         return "business/businessMypage";
     }
+    
+    @GetMapping("/business/businessProfilePost")
+    public String businessProfilePost() {
+        return "business/businessProfilePost";
+    }
 }
