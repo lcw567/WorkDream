@@ -1,7 +1,4 @@
-/* 기본 스타일 설정 */
-html {
-    font-size: 16px; 
-}
+
 
 * {
     margin: 0;
@@ -17,7 +14,7 @@ body {
     padding: 40px;
 }
 
-/* 메인 컨테이너 */
+
 .post-container {
     width: 100%;
     max-width: 1100px;
@@ -27,7 +24,7 @@ body {
     border-radius: 12px;
 }
 
-/* 헤더 컨테이너: 제목과 버튼을 가로로 배치 */
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -35,14 +32,14 @@ body {
     margin-bottom: 20px; /* 제목과 버튼 사이의 간격 */
 }
 
-/* 제목 스타일 */
+
 .header h1 {
     font-size: 1.5rem;
     color: rgb(0, 0, 0);
     text-align: left;
 }
 
-/* 등록 버튼 스타일 */
+
 .register-btn {
     background-color: #4E21A8;
     color: white;
@@ -50,27 +47,26 @@ body {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    /* float: right; */ /* Flexbox로 대체 */
 }
 
 .register-btn:hover {
     background-color: #6D47B7;
 }
 
-/* 테이블을 감싸는 div 스타일 */
+
 .table-wrapper {
-    border-radius: 10px; /* 상단과 하단만 둥글게 */
-    overflow: hidden; /* 모서리 잘림 방지 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 선택 사항: 그림자 */
-    margin-bottom: 20px; /* 테이블 간의 간격 추가 */
+    border-radius: 10px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 25px; 
 }
 
-/* 모든 테이블에 동일한 스타일 적용 */
+
 .main-profile {
     width: 100%;
-    border-collapse: separate; /* border-radius 적용을 위해 */
-    border-spacing: 0; /* 셀 간 간격 제거 */
-    background-color: #ffffff; /* 배경색 설정 */
+    border-collapse: separate; 
+    border-spacing: 0; 
+    background-color: #ffffff;
 }
 
 .main-profile th, .main-profile td {
@@ -80,12 +76,12 @@ body {
 }
 
 .main-profile th {
-    background-color: #4E21A8;
-    color: #fff;
+    background-color: #E1DEF1;
+    color: #000000;
     width: 20%;
 }
 
-/* 테이블 상단과 하단만 둥글게 */
+
 .main-profile tr:first-child th:first-child {
     border-top-left-radius: 10px;
 }
@@ -187,22 +183,16 @@ label {
     border-radius: 15px;
     margin-right: 10px;
     margin-top: 5px;
-    position: relative;
+    vertical-align: middle;
 }
 
 #benefits-list .benefit-item .remove-benefit {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
+    background-color: transparent;
+    color: black; 
+    border: none; 
     cursor: pointer;
-    font-size: 12px;
-    line-height: 16px;
-    text-align: center;
+    font-size: 14px; 
+    margin-left: 5px;
     padding: 0;
+    line-height: 1; 
 }
