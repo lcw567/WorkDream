@@ -1247,7 +1247,6 @@ input:focus{
     color: white;
     background-color: #4e21a8;
     margin-bottom: 90px;
-    float: right;
 }
 
 .final_save button:focus{
@@ -1320,5 +1319,23 @@ button.delete:focus {
     outline: none;
 }
 
+.btn_select{
+    display: flex;
+    float: right;
+}
+
+.preview{
+    height: 50px;
+    position: relative;
+    top: 17px;
+    border: 1px solid #4e21a8;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: #4e21a8;
+    background-color: #ffffff;
+    margin-bottom: 90px;
+    margin-right: 40px;
+}
 
 

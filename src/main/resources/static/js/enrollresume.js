@@ -346,3 +346,15 @@ window.addEventListener('load', function() {
     });
     
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // 요소 선택
+    const registerButton = document.querySelector('.preview');
+
+if (registerButton) {
+    registerButton.addEventListener('click', function () {
+        window.location.href = `${contextPath}/member/previewresume`;
+    });
+}
+
+});

@@ -693,7 +693,8 @@
                     </div>
                 </fieldset>
             </div>
-            <div>
+            <div class="btn_select">
+                <button class="preview">미리 보기</button>
                 <button class="final_save">작성 완료</button>
             </div>
         </div>
