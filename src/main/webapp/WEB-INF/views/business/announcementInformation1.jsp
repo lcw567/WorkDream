@@ -2,15 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/jobPostingRegistration.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/announcementInformation1.css">
+<script src="${pageContext.request.contextPath}/js/announcementInformation1.js" defer></script>
 </head>
 
 <body>
@@ -48,19 +47,19 @@
 				<p>공고에서 공개되지 않으며, 공고 내용을 검토 하면서 필요 시 관리자가 아래 연락처로 연락드릴 수 있습니다.</p>
 
 				<div id="Contact_Information_Name">
-					<h3 style="font-weight: 900; font-size: 1.0rem; color: #A09F9F;">이름</h3>
-					<input type="text">
-				</div>
+                    <h3 style="font-weight: 900; font-size: 1.0rem; color: #A09F9F;">이름</h3>
+                    <input type="text" placeholder="이름을 입력해주세요">
+                </div>
 
-				<div id="Contact_Information_Department">
-					<h3 style="font-weight: 900; font-size: 1.0rem; color: #A09F9F;">부서</h3>
-					<input type="text">
-				</div>
+                <div id="Contact_Information_Department">
+                    <h3 style="font-weight: 900; font-size: 1.0rem; color: #A09F9F;">부서</h3>
+                    <input type="text" placeholder="부서를 입력해주세요">
+                </div>
 
-				<div id="Contact_Information_Email">
-					<h3 style="font-weight: 900; font-size: 1.0rem; color: #A09F9F;">이메일</h3>
-					<input type="email">
-				</div>
+                <div id="Contact_Information_Email">
+                    <h3 style="font-weight: 900; font-size: 1.0rem; color: #A09F9F;">이메일</h3>
+                    <input type="email" placeholder="이메일을 입력해주세요">
+                </div>
 
 				<div class="Contact_Information">
 					<div class="Contact_Information_Title" style="margin-bottom: 8px;">
@@ -86,10 +85,10 @@
 						</b>
 					</div>
 
-					<div id="Website_Address">
-						<input type="text" placeholder="https://codesync.com">
-						<button type="submit">수정</button>
-					</div>
+                    <div id="Website_Address">
+                        <input type="text" id="websiteInput" placeholder="https://codesync.com">
+                        <button type="button" id="editButton" onclick="enableWebsiteInput()">수정</button>
+                    </div>
 				</div>
 
 				<div class="Contact_Information" style="margin-bottom: 80px;">
@@ -102,15 +101,14 @@
 
 					<div id="Company_logo">
 						<img
-							src="${pageContext.request.contextPath}/img/icons8-img-48.png">
+							src="${pageContext.request.contextPath}/img/icons8-img-48.png" id="logoPreview" style="max-width: 100px; display: block;">
 					</div>
 					<div id="Company_logo_file">
-						<input type="text" placeholder=".png"> <input type="file"
-							id="real-file" hidden> <label for="real-file"
-							class="custom-file-upload">파일첨부</label>
+						<input type="text" id="logoFileName" placeholder=".png" disabled> 
+						<input type="file" id="real-file" hidden onchange="updateFileName()"> 
+						<label for="real-file" class="custom-file-upload">파일첨부</label>
 					</div>
-					<p style="color: #000000; font-weight: 900;">* 최소 120 x 120px
-						이상, 1MB 이하의 정방형 이미지</p>
+					<p style="color: #000000; font-weight: 900;">* 최소 120 x 120px 이상, 1MB 이하의 정방형 이미지</p>
 				</div>
 
 			</div>

@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/announcementinformation.css">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/announcementInformation2.css">
+	<script src="${pageContext.request.contextPath}/js/announcementInformation2.js" defer></script>
 </head>
 
 <body>
@@ -67,8 +67,9 @@
             </div>
 
             <input id="Announcement_Title" type="text" placeholder="공고 제목을 입력해주세요.">
-            <p style="color: #000000; font-weight: 900; margin-top: 3px; margin-bottom: 40px;">* 25자 이내의 글자 수를 입력해주세요.
-            </p>
+            <div style="display: flex;">
+            <p style="color: #000000; font-weight: 900; margin-top: 3px; margin-bottom: 1px;">* 25자 이내의 글자 수를 입력해주세요.</p>
+            </div><div id="charCount" style="font-size: 0.8rem; color: #757575; margin-bottom: 40px; margin-left: 5px;">현재 글자 수: 0/25</div>
 
             <div class="Contact_Announcement_Information_Title">
                 <h2>직무</h2>
