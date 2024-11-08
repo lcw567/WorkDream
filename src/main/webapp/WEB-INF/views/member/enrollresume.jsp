@@ -648,7 +648,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>전역일</legend>
-                                <input type="date">
+                                <input type="date" readonly>
                             </fieldset>
                             <fieldset>
                                 <legend>군별선택</legend>
