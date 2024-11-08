@@ -12,14 +12,14 @@ public class BusinessController {
         return "business/recruitmentStatus";
     }
 	
-	@GetMapping("/business/jobPostingRegistration")
+	@GetMapping("/business/announcementInformation1")
     public String jobRegistration() {
-        return "business/jobPostingRegistration";
+        return "business/announcementInformation1";
     }
 	
-	@GetMapping("/business/announcementinformation")
+	@GetMapping("/business/announcementInformation2")
     public String announcement() {
-        return "business/announcementinformation";
+        return "business/announcementInformation2";
     }
 	
 	@GetMapping("/business/positionAndCareer")

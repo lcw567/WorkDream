@@ -50,6 +50,7 @@
                     <span>즐겨찾기 지원자</span>
                     <p>0</p>
                 </div>
+                
                 <div class="status-card">
                     <span>합격</span>
                     <p>0</p>
