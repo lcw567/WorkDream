@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkDream - 기업 정보 등록</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/businessProfilePost.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/businessProfilePost.css">
+    <script src="${pageContext.request.contextPath}/js/businessProfilePost.js" defer></script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header_biz.jsp" />
