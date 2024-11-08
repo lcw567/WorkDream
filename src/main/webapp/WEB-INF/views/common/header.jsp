@@ -60,7 +60,7 @@
     			<%-- 로그인 전 --%>
     			<c:otherwise>
     				<div class="login-menu">
-		    			<a href="#">로그인</a>
+		    			<a href="${pageContext.request.contextPath}/login">로그인</a>
 		    			<b>|</b>
 		    			<a href="#">회원가입</a>
 		    			<button id="btn-bizService">기업서비스 &#8744;</button>
