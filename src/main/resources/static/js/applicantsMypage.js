@@ -50,6 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
     addTagButton.addEventListener("click", function () {
         const tagText = tagInput.value.trim();
         if (tagText) {
+            // 중복 태그 검사
+            const existingTags = Array.from(tagList.querySelectorAll(".tag-item")).map(tag => tag.textContent.replace("\u00d7", "").trim());
+            if (existingTags.includes(tagText)) {
+                alert("이미 존재하는 태그입니다."); // 중복 시 경고 메시지
+                return;
+            }
+
             const newTag = document.createElement("div");
             newTag.classList.add("tag-item");
             newTag.innerHTML = `${tagText} <span class="remove-tag">&times;</span>`;
@@ -93,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!showAll && index >= 4) return;
             const button = document.createElement("button");
             button.classList.add("tag");
-            button.textContent = tag.textContent.replace("×", "").trim();
+            button.textContent = tag.textContent.replace("\u00d7", "").trim();
             tagGroup.appendChild(button);
         });
 

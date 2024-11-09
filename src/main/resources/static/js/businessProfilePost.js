@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    //  대표 기업 로고 이미지 미리보기
+    // 대표 기업 로고 이미지 미리보기
     const companyLogoInput = document.getElementById('company-logo');
     const logoPreview = document.getElementById('logo-preview');
 
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
     const benefitsInput = document.getElementById('benefits-input');
     const benefitsList = document.getElementById('benefits-list');
 
@@ -27,25 +26,31 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const benefitText = benefitsInput.value.trim();
             if (benefitText !== '') {
-                const benefitItem = document.createElement('span');
-                benefitItem.classList.add('benefit-item');
-                benefitItem.textContent = benefitText;
+                // 중복 확인
+                const existingBenefits = [...benefitsList.children].map(child => child.textContent.replace('×', '').trim());
+                if (!existingBenefits.includes(benefitText)) {
+                    const benefitItem = document.createElement('span');
+                    benefitItem.classList.add('benefit-item');
+                    benefitItem.textContent = benefitText;
 
-                const removeBtn = document.createElement('button');
-                removeBtn.classList.add('remove-benefit');
-                removeBtn.textContent = '×';
-                removeBtn.addEventListener('click', () => {
-                    benefitsList.removeChild(benefitItem);
-                });
+                    const removeBtn = document.createElement('button');
+                    removeBtn.classList.add('remove-benefit');
+                    removeBtn.textContent = '×';
+                    removeBtn.addEventListener('click', () => {
+                        benefitsList.removeChild(benefitItem);
+                    });
 
-                benefitItem.appendChild(removeBtn);
-                benefitsList.appendChild(benefitItem);
-                benefitsInput.value = '';
+                    benefitItem.appendChild(removeBtn);
+                    benefitsList.appendChild(benefitItem);
+                    benefitsInput.value = '';
+                } else {
+                    alert('이미 추가된 복리후생 항목입니다.');
+                }
             }
         }
     });
 
-    //  사내 근무 환경 이미지 첨부 및 변경
+    // 사내 근무 환경 이미지 첨부 및 변경
     const imageItems = document.querySelectorAll('.image-item');
 
     imageItems.forEach(item => {
