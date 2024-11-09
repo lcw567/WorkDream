@@ -24,7 +24,7 @@
                     <span>서울특별시 000로00길</span>
                 </div>
                 <div class="button-group">
-                    <button class="btn btn-company-info">기업 정보</button>
+                    <button class="btn btn-company-info" onclick="location.href='${pageContext.request.contextPath}/business/businessProfileView'">기업 정보</button>
                     <button class="btn btn-messenger">메신저</button>
                 </div>
             </article>
@@ -35,7 +35,7 @@
         <section class="application-status">
             <div class="status-header">
                 <h2>지원현황 전체보기</h2>
-                <button class="add-status-button" aria-label="지원현황 추가">+</button>
+                <button class="add-status-button" aria-label="지원현황 추가" onclick="location.href='${pageContext.request.contextPath}/business/applicantsStatus'">+</button>
             </div>
             <div class="status-cards">
                 <div class="status-card">
@@ -68,19 +68,19 @@
         <!-- 주요 액션 섹션 -->
         <section class="action-section">
             <div class="action-buttons">
-                <div class="action-item">
+                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/recruitmentStatus'">
                     <h3>채용 공고 등록</h3>
                     <p>이상적인 인재를 손쉽게 모집하세요</p>
                 </div>
-                <div class="action-item">
+                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/applicantsStatus'">
                     <h3>채용 공고 현황</h3>
                     <p>등록된 공고를 한눈에 확인하세요</p>
                 </div>
-                <div class="action-item">
+                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/applicantsList'">
                     <h3>지원자 현황</h3>
                     <p>지원자의 정보를 확인하고 검토하세요</p>
                 </div>
-                <div class="action-item">
+                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/bookmark'">
                     <h3>관심 구직자</h3>
                     <p>관심있는 인재를 빠르게 찾으세요</p>
                 </div>
