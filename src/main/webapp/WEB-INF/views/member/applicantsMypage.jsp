@@ -33,7 +33,7 @@
         <section class="application-status">
             <div class="header">
                 <h2>지원현황 전체보기</h2>
-                <button class="add-button">+</button>
+                <button class="add-button" onclick="location.href='${pageContext.request.contextPath}/member/applicationmanage'">+</button>
             </div>
             <div class="status-cards">
                 <div class="status-card">
@@ -63,19 +63,19 @@
 
         <section class="actions">
             <div class="action-buttons">
-                <div class="action">
+                <div class="action" onclick="location.href='${pageContext.request.contextPath}/member/resumeDashboard'">
                     <h3>이력서 등록</h3>
                     <p>이력서를 등록하고 검토하세요</p>
                 </div>
-                <div class="action">
+                <div class="action" onclick="location.href='${pageContext.request.contextPath}/member/selfIntroDashboard'">
                     <h3>자기소개서 등록</h3>
                     <p>자기소개서를 등록하고 검토하세요</p>
                 </div>
-                <div class="action">
+                <div class="action" onclick="location.href='#'">
                     <h3>포트폴리오 등록</h3>
                     <p>포트폴리오를 등록하고 검토하세요</p>
                 </div>
-                <div class="action">
+                <div class="action" onclick="location.href='#'">
                     <h3>즐겨찾기 공고/기업</h3>
                     <p>즐겨찾기 목록을 한눈에 확인하세요</p>
                 </div>
@@ -84,7 +84,7 @@
 
         <section class="banner">
             <div class="plannerBanner">
-                <img src="${pageContext.request.contextPath}/img/plannerBanner.PNG" />
+                <img src="${pageContext.request.contextPath}/img/plannerBanner.PNG" onclick="location.href='#'" />
             </div>
             <div class="mainBanner">
                 <img src="${pageContext.request.contextPath}/img/banner.PNG" />

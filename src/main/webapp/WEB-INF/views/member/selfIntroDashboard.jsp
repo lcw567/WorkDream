@@ -13,8 +13,8 @@
 <body>
 <c:import url="/WEB-INF/views/common/header.jsp" />
 
-    <div class="resumedashboard-container">
-        <div class="resumedashboard-header">
+    <div class="dashboard-container">
+        <div class="dashboard-header">
         	<div class = "page-name">
         		<h1>이력서 관리</h1>
         	</div>
