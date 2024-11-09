@@ -51,4 +51,9 @@ public class BusinessController {
     public String businessProfilePost() {
         return "business/businessProfilePost";
     }
+    
+    @GetMapping("/business/businessProfileView")
+    public String businessProfileView() {
+        return "business/businessProfileView";
+    }
 }
