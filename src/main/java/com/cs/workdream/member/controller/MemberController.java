@@ -37,6 +37,11 @@ public class MemberController {
 	public String previewResume() {
 		return "member/previewresume";
 	}
+	
+	@GetMapping("/applicationmanage")
+	public String applicationmanage() {
+		return "member/applicationmanage";
+	}
 }
 
 
