@@ -47,6 +47,11 @@ public class MemberController {
 	public String clipping() {
 		return "member/clipping";
 	}
+	
+	@GetMapping("/clippingcompany")
+	public String clippingcompany() {
+		return "member/clippingcompany";
+	}
 }
 
 

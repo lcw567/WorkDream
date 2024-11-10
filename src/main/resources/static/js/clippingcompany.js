@@ -7,12 +7,12 @@ function handleClick(button) {
     // 클릭된 버튼에만 'active' 클래스 추가
     button.classList.add('active');
 
-    if (button.classList.contains('btntype2')) {
-        const contextPath = document.getElementsByTagName('body')[0].getAttribute('data-context-path');
-        window.location.href = `${contextPath}/member/clippingcompany`;
-    } else if (button.classList.contains('btntype1')) {
+    if (button.classList.contains('btntype1')) {
         const contextPath = document.getElementsByTagName('body')[0].getAttribute('data-context-path');
         window.location.href = `${contextPath}/member/clipping`;
+    } else if (button.classList.contains('btntype2')) {
+        const contextPath = document.getElementsByTagName('body')[0].getAttribute('data-context-path');
+        window.location.href = `${contextPath}/member/clippingcompany`;
     }
 
 }

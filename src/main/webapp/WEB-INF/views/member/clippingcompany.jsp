@@ -7,17 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관심공고</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/clipping.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/clippingcompany.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
-    <script src="${pageContext.request.contextPath}/js/clipping.js" defer></script>
+    <script src="${pageContext.request.contextPath}/js/clippingcompany.js" defer></script>
 </head>
 <c:import url="/WEB-INF/views/common/header.jsp" />
 <body data-context-path="${pageContext.request.contextPath}">
     <div class="main-container">
         <div class="select">
             <div class="tabs">
-                <a href="javascript:void(0);" class="btntype1 active" onclick="handleClick(this)">스크랩<span class="badge1">12</span></a>
-                <a href="javascript:void(0);" class="btntype2" onclick="handleClick(this)">관심기업<span class="badge2">14</span></a>
+                <a href="javascript:void(0);" class="btntype1" onclick="handleClick(this)">스크랩<span class="badge1">12</span></a>
+                <a href="javascript:void(0);" class="btntype2 active" onclick="handleClick(this)">관심기업<span class="badge2">14</span></a>
             </div>
             <div class="option">
                 <label for="selectAll">
@@ -47,9 +47,8 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -63,9 +62,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -79,9 +78,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -95,9 +94,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -111,9 +110,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -127,9 +126,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -143,9 +142,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -159,9 +158,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -175,9 +174,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -191,9 +190,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -207,9 +206,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
@@ -223,9 +222,9 @@
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
-                <div class="company-name">대보건설(주)</div>
-                <div class="job-title">대보건설 각 부문 경력직 수시채용</div>
-                <div class="job-info">경력 대학(2,3년)이상 정규직 및 계약직 서울전체</div>
+                
+                <div class="job-title">배달의 민족(주)</div>
+                <div class="job-info">포털 및 기타 인터넷 정보매개 서비스업</div>
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
