@@ -58,19 +58,19 @@
 					
 					<ol class="sns-list">
 						<li>
-							<button><img src="${pageContext.request.contextPath}/img/icon_noImg.png" /></button>
+							<button><img src="${pageContext.request.contextPath}/img/icon_naver.png" /></button>
 						</li>
 						<li>
-							<button>카카오톡</button>
+							<button><img src="${pageContext.request.contextPath}/img/icon_kakaotalk.png" /></button>
 						</li>
 						<li>
-							<button>구글</button>
+							<button><img src="${pageContext.request.contextPath}/img/icon_google.png" /></button>
 						</li>
 						<li>
-							<button>페이스북</button>
+							<button><img src="${pageContext.request.contextPath}/img/icon_facebook.png" /></button>
 						</li>
 						<li>
-							<button>애플</button>
+							<button><img src="${pageContext.request.contextPath}/img/icon_apple.png" /></button>
 						</li>
 					</ol>
 					
