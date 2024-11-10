@@ -75,7 +75,7 @@
                     <h3>포트폴리오 등록</h3>
                     <p>포트폴리오를 등록하고 검토하세요</p>
                 </div>
-                <div class="action" onclick="location.href='#'">
+                <div class="action" onclick="location.href='${pageContext.request.contextPath}/member/clippingcompany'">
                     <h3>즐겨찾기 공고/기업</h3>
                     <p>즐겨찾기 목록을 한눈에 확인하세요</p>
                 </div>
