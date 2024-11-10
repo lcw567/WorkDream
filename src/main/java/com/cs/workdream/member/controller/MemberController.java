@@ -42,6 +42,11 @@ public class MemberController {
 	public String applicationmanage() {
 		return "member/applicationmanage";
 	}
+	
+	@GetMapping("/clipping")
+	public String clipping() {
+		return "member/clipping";
+	}
 }
 
 
