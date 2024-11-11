@@ -52,13 +52,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job2">
+                <input type="checkbox" id="job2" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -68,13 +68,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job3">
+                <input type="checkbox" id="job3" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -84,13 +84,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job4">
+                <input type="checkbox" id="job4" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -100,13 +100,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job5">
+                <input type="checkbox" id="job5" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -116,13 +116,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job6">
+                <input type="checkbox" id="job6" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -132,13 +132,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job7">
+                <input type="checkbox" id="job7" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -148,13 +148,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job8">
+                <input type="checkbox" id="job8" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -164,13 +164,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job9">
+                <input type="checkbox" id="job9" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -180,13 +180,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job10">
+                <input type="checkbox" id="job10" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -196,13 +196,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job11">
+                <input type="checkbox" id="job11" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -212,13 +212,13 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
         <div class="content">
-            <label for="job1">
-                <input type="checkbox" id="job1" name="checkboxName" value="" />
+            <label for="job12">
+                <input type="checkbox" id="job12" name="checkboxName" value="" />
                 <span class="content_check"></span>
             </label>
             <div class="job-details">
@@ -228,9 +228,14 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
+        </div>
+        <div class="pagination">
+            <button id="prevPage" disabled>&#9664;</button>
+            <span id="pageNumber">1</span>
+            <button id="nextPage">&#9654;</button>
         </div>
     </div>
 </body>

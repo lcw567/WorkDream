@@ -31,6 +31,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    // 직무 추가 버튼을 가져옵니다
+    const addDutyButton = document.getElementById("addDutyButton");
+
+    // 버튼 클릭 시 페이지 이동 이벤트 추가
+    addDutyButton.addEventListener("click", function () {
+        // 이동할 페이지 URL을 지정합니다.
+        window.location.href = contextPath + "/business/positionAndCareer";  // 원하는 URL로 변경
+    });
+});
+
+
 //직무의 X버튼을 눌렀을때 div가 삭제
 document.addEventListener("DOMContentLoaded", function () {
     // 모든 삭제 버튼을 가져옵니다
@@ -52,113 +64,77 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //직무추가 버튼을 눌렀을때 직무 div가 생성되되 최대 5개로 제한
 document.addEventListener("DOMContentLoaded", function () {
-    // 최대 직무 개수 설정
+    // 최대 직무의 개수가 5개로 제한
     const maxDuties = 5;
 
-    // "직무 추가" 버튼 가져오기
-    const addDutyButton = document.querySelector(".Add_Duty");
+    // Add Duty button element
+    const addDutyButton = document.getElementById("addDutyButton");
 
-    // 새 직무를 추가하는 함수
+    // Function to add a new job duty
     function addJobDuty() {
-        // 직무 목록이 있는 컨테이너 가져오기
         const jobDutiesContainer = addDutyButton.parentElement;
-
-        // 현재 직무 개수 확인
         const currentDuties = jobDutiesContainer.querySelectorAll(".Job_duty");
 
-        // 최대 개수에 도달했는지 확인
+        // Check if the maximum number of duties is reached
         if (currentDuties.length >= maxDuties) {
             alert("직무는 최대 5개까지만 추가할 수 있습니다.");
             return;
         }
 
-        // 새로운 직무 div 생성
+        // Create a new job duty div
         const newDuty = document.createElement("div");
         newDuty.classList.add("Job_duty");
         newDuty.innerHTML = `
             <p>사원 / 경력 O년~ O년 / 학력 - 4년제 대학 졸업 / 채용시 협의</p>
-            <button><img src="${pageContext.request.contextPath}/img/letter-x_9215129.png" style="width: 25px; height: 25px;"></button>
+            <button><img src="../사진/letter-x_9215129.png" style="width: 25px; height: 25px;"></button>
         `;
 
-        // 새로 생성된 버튼에 삭제 기능 추가
+        // Add delete functionality to the new button
         newDuty.querySelector("button").addEventListener("click", function () {
             newDuty.remove();
         });
 
-        // "직무 추가" 버튼 앞에 새로운 직무 div 추가
+        // Append the new duty div before the Add Duty button
         jobDutiesContainer.insertBefore(newDuty, addDutyButton);
     }
 
-    // "직무 추가" 버튼에 이벤트 리스너 추가
+    // Add event listener to the Add Duty button
     addDutyButton.addEventListener("click", addJobDuty);
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Get the "Add Duty" button element
-    const addDutyButton = document.querySelector(".Add_Duty");
-
-    // Add a click event listener to redirect to the specified URL
-    addDutyButton.addEventListener("click", function () {
-        window.location.href = "http://localhost:3333/WorkDream/business/positionAndCareer";
-    });
-});
-
-
-//파일첨부 버튼을 눌러서 가져온 파일이름을 input에 넣기
-document.addEventListener("DOMContentLoaded", function () {
-    // 파일 선택 input과 파일 이름을 표시할 input을 가져옵니다
+document.addEventListener("DOMContentLoaded", () => {
     const fileInput = document.getElementById("Announcement-file");
-    const fileNameInput = document.querySelector("#Announcement_Introduction_file input[type='text']");
+    const fileNameInput = document.getElementById("Announcement_Introduction_fileName");
+    const imagePreviewDiv = document.getElementById("Announcement_Introduction_img");
+    const defaultImage = imagePreviewDiv.querySelector("img"); // 기존 이미지를 참조
 
-    // 파일이 선택될 때 실행되는 이벤트 리스너
-    fileInput.addEventListener("change", function () {
-        // 선택된 파일이 있는지 확인
-        const file = fileInput.files[0];
-        if (file) {
-            // 파일 이름을 텍스트 input에 표시
-            fileNameInput.value = file.name;
-        }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    // 파일 선택 input과 파일 이름을 표시할 input 요소 가져오기
-    const fileInput = document.getElementById("Announcement-file");
-    const fileNameInput = document.querySelector("#Announcement_Introduction_file input[type='text']");
-    const previewContainer = document.getElementById("Announcement_Introduction_img");
-
-    // 파일 선택 시 파일 이름과 이미지 미리보기 설정
-    fileInput.addEventListener("change", function () {
+    fileInput.addEventListener("change", () => {
         const file = fileInput.files[0];
         
         if (file) {
-            // 파일 이름을 텍스트 input에 표시
+            // 파일 이름을 input에 표시
             fileNameInput.value = file.name;
 
-            // 이미지 미리보기 설정
+            // 이미지 미리보기 생성
             const reader = new FileReader();
             reader.onload = function (e) {
-                // 이미지 요소 생성 및 src 속성 설정
-                const image = document.createElement("img");
-                image.src = e.target.result;
-                image.alt = "선택한 이미지 미리보기";
+                // 기존 기본 이미지를 숨기거나 제거
+                defaultImage.classList.add("hidden");
 
-                // 이미지가 div를 가득 채우도록 설정
-                image.style.width = "100%";
-                image.style.height = "100%";
-                image.style.objectFit = "cover"; // 이미지 비율을 유지하며 가득 채움
+                // 새 이미지 요소 생성 및 추가
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.classList.add("uploaded-image");
+                img.alt = "미리보기 이미지";
 
-                // 기존 미리보기 이미지 제거
-                previewContainer.innerHTML = '';
-                
-                // 새 이미지 추가
-                previewContainer.appendChild(image);
+                // 기존 이미지 제거 후 새 이미지 추가
+                imagePreviewDiv.innerHTML = ""; // 기존 내용을 비우기
+                imagePreviewDiv.appendChild(img);
             };
-
-            // 파일을 읽어 데이터 URL로 변환
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file); // 파일을 읽어 데이터 URL로 변환
         }
     });
 });
+
 

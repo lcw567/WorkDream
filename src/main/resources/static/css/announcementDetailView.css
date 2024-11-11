@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1.1rem; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #000000;
+    background-color: #ffffff;
+    padding: 40px;
+}
+
+.announcement-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto; 
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #b3b3b3;
+}
+
+.announcement-container h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.favorite {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.apply {
+    background-color: #5d3fd3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.favorite:hover,
+.apply:hover {
+    background-color: #B4A3DB;
+}
+
+.star {
+    margin-right: 5px;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.tech-stack-section,
+.main-duties-section,
+.qualifications-section,
+.preferred-qualifications-section,
+.additional-preferred-qualifications-section,
+.hiring-process-section,
+.benefits-section,
+.work-environment-section,
+.job-info-section,
+.company-info-section {
+    margin-top: 20px;
+}
+
+.tech-stack-section h2,
+.main-duties-section h2,
+.qualifications-section h2,
+.preferred-qualifications-section h2,
+.additional-preferred-qualifications-section h2,
+.hiring-process-section h2,
+.benefits-section h2,
+.work-environment-section h2,
+.company-info-section h2 {
+    font-size: 1.25rem;
+    color: #5d3fd3;
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+
+.tech-stack {
+    display: flex;
+    gap: 10px;
+}
+
+.tech-item {
+    background-color: #5d3fd3;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+}
+
+.announcement-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.announcement-container li {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.announcement-container p {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    font-size: 1rem;
+    color: #555;
+}
+
+table td {
+    padding: 8px;
+    font-size: 1rem;
+}
+
+table a{
+	font-size: 1rem;
+}
+
+table strong {
+    padding: 8px;
+    font-size: 1rem;
+}
+
+table td:first-child {
+    font-weight: bold;
+    width: 30%;
+    color: #333;
+}
+
+.employment-type {
+    color: #5d3fd3;
+    font-weight: bold;
+}
+
+.job-info-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 1rem;
+    color: #555;
+}
+
+.job-info-table td {
+    padding: 8px;
+}
+
+.job-info-table td:first-child {
+    font-weight: bold;
+    width: 30%;
+    color: #333;
+}
+
+.apply-button {
+    text-align: end;
+    margin-top: 20px;
+}
+
+.company-info {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fafafa;
+}
+
+.company-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.company-name {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.interest-button {
+    display: flex;
+    align-items: center;
+    background-color: #5d3fd3;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.interest-button:hover {
+    background-color: #B4A3DB;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+.company-content {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.company-details {
+    flex: 1;
+}
+
+.company-details table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.company-details td {
+    padding: 8px 5px;
+}
+
+.company-details td:first-child {
+    font-weight: bold;
+    color: #333;
+    width: 20%;
+}
+
+.company-logo {
+    width: 120px;
+    text-align: center;
+}
+
+.company-logo img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.view-more {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.view-more button {
+    background-color: #5d3fd3;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.view-more button:hover {
+    background-color: #B4A3DB;
+}
+
+.company-details td:nth-child(2),
+.company-details td:nth-child(4) {
+    max-width: 15ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

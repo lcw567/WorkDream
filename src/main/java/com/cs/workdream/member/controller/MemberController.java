@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member")
 public class MemberController {
 	
-	@GetMapping("/enrollresume")
-	public String enrollresume() {
-		return "member/enrollresume";
-	}
-	
 	@GetMapping("/selfIntroDashboard")
     public String showSelfIntroDashboard() {
         return "member/selfIntroDashboard"; // selfIntroDashboard.jsp
@@ -27,17 +22,7 @@ public class MemberController {
     public String applicantsMypage() {
         return "member/applicantsMypage"; // applicantsMypage.jsp
     }
-	
-	@GetMapping("/resumeDashboard")
-	public String ResumDacsboard() {
-		return "member/resumeDashboard";
-	}
 
-	@GetMapping("/previewresume")
-	public String previewResume() {
-		return "member/previewresume";
-	}
-	
 	@GetMapping("/applicationmanage")
 	public String applicationmanage() {
 		return "member/applicationmanage";
