@@ -5,21 +5,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/resume")
 public class Resumecontroller {
 
 	@GetMapping("/enrollresume")
 	public String enrollresume() {
-		return "member/enrollresume";
+		return "resume/enrollresume";
 	}
 	
 	@GetMapping("/resumeDashboard")
 	public String ResumDacsboard() {
-		return "member/resumeDashboard";
+		return "resume/resumeDashboard";
 	}
 	
 	@GetMapping("/previewresume")
 	public String previewResume() {
-		return "member/previewresume";
+		return "resume/previewresume";
 	}
 }
