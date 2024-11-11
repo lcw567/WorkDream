@@ -1,6 +1,6 @@
-/* header.jsp */
+/* header.jsp + 공용 */
 
-// 햄버거 버튼 전용
+// 햄버거 버튼 전용 (전체 메뉴 테이블 온오프)
 const menuButton = document.getElementById("menuButton");
 const menuImg = menuButton.querySelector("img");
 const menuDrop = document.getElementById("header-dropdown");
@@ -50,3 +50,62 @@ function activeMenu(menuNo) {
     const menuItems = document.querySelectorAll("#header-nav-bottom .menu > li");
     menuItems[menuNo].classList.add("On");
 }
+
+// 아이디칸 입력제한
+function replaceInputId(event) {
+    let value = event.target.value;
+    
+        // 영문 소문자, 숫자, '_' 외에는 입력 제한
+        value = value.replace(/[^a-zA-Z0-9_]/g, '');
+        value = value.toLowerCase();
+        event.target.value = value;
+}
+
+// 비밀번호칸 입력제한
+function replaceInputPwd(event) {
+    let value = event.target.value;
+    
+        // 띄어쓰기 제한
+        value = value.replace(/\s/g, '');
+        event.target.value = value;
+}
+
+
+/* login.jsp */
+
+// 로그인 섹션 변경
+function changeLoginSection() {
+    const personSection = document.getElementById("login-section-person");
+    const businessSection = document.getElementById("login-section-business");
+
+    if(ut === "P") {
+        personSection.classList.add("On");
+        businessSection.classList.remove("On");
+    }
+    else {
+        personSection.classList.remove("On");
+        businessSection.classList.add("On");
+    }
+}
+
+// 탭 클릭 시 섹션 변경
+function changeUserType(userType) {
+    ut = userType;
+    changeLoginSection();
+}
+
+// 초기값
+document.addEventListener("DOMContentLoaded", function() {
+    changeLoginSection();
+});
+
+// 로그인 페이지 input 제한 설정
+const loginIds = document.querySelectorAll("#loginId");
+loginIds.forEach(function(input) {
+    input.addEventListener("input", replaceInputId);
+});
+
+const loginPwds = document.querySelectorAll("#loginPwd");
+loginPwds.forEach(function(input) {
+    input.addEventListener("input", replaceInputPwd);
+});
