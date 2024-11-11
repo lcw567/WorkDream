@@ -14,7 +14,7 @@
     <div class="announcement-container">
         <h1>브랜드다즈 백엔드 개발자(자바/코틀린)</h1>
         <div class="actions">
-            <button class="favorite"><span class="star">★</span> 50</button>
+            <button class="favorite"><span class="star">★</span> 0</button>
             <button class="apply">입사지원</button>
         </div>
         <div class="image-container">
@@ -184,9 +184,9 @@
                             </tr>
                             <tr>
                                 <td><strong>설립일</strong></td>
-                                <td><strong>2024년 06월 28일</strong></td>
+                                <td>2024년 06월 28일</td>
                                 <td><strong>기업주소</strong></td>
-                                <td>서울 강남구 테헤란로 1길 3...</td>
+                                <td>서울특별시 강남구 강남구 테헤란로14길 6</td>
                             </tr>
                             <tr>
                                 <td><strong>홈페이지</strong></td>
@@ -194,7 +194,7 @@
                             </tr>
                         </table>
                         <div class="view-more">
-                            <button>기업정보 전체보기 ➔</button>
+                            <button onclick="location.href='${pageContext.request.contextPath}/business/businessProfileView'">기업정보 전체보기 ➔</button>
                         </div>
                     </div>
                     <div class="company-logo">
