@@ -16,3 +16,12 @@ function handleClick(button) {
     }
 
 }
+
+function deleteJob(element) {
+    const confirmed = confirm("삭제 하시겠어요?");
+    if (confirmed) {
+        // content div를 삭제합니다.
+        const contentDiv = element.closest('.content');
+        contentDiv.remove();
+    }
+}

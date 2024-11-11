@@ -409,6 +409,36 @@ function sample4_execDaumPostcode() {
                 guideTextBox.innerHTML = '';
                 guideTextBox.style.display = 'none';
             }
+
+            // 팝업 자동 닫기
+            window.setTimeout(function() {
+                window.close();
+            }, 100); // 100 밀리초 후 팝업 닫기
         }
     }).open();
+}
+
+// JavaScript 코드
+const imageContainer = document.querySelector('#basic5');
+
+if (imageContainer) {
+    const img = imageContainer.querySelector('.profile_img');
+    const fileInput = imageContainer.querySelector('.profile_upload');
+
+    img.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            img.src = `${pageContext.request.contextPath}/img/file.png`; // 기본 이미지로 복귀
+        }
+    });
 }
