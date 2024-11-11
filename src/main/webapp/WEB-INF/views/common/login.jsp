@@ -58,7 +58,7 @@
 					<div class="loginOther">
 						<a href="">아이디 찾기</a> |&nbsp;
 						<a href="">비밀번호 찾기</a> |&nbsp;
-						<a href="">회원가입</a>
+						<a href="${pageContext.request.contextPath}/registration">회원가입</a>
 					</div>
 				</form>
 				
@@ -123,7 +123,7 @@
 					<div class="loginOther">
 						<a href="">아이디 찾기</a> |&nbsp;
 						<a href="">비밀번호 찾기</a> |&nbsp;
-						<a href="">회원가입</a>
+						<a href="${pageContext.request.contextPath}/registration?ut=B">회원가입</a>
 					</div>
 				</form>
 				
