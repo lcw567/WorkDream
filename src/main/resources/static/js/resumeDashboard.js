@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 if (registerButton) {
     registerButton.addEventListener('click', function () {
-        window.location.href = `${contextPath}/member/enrollresume`;
+        window.location.href = `${contextPath}/resume/enrollresume`;
     });
 }
 

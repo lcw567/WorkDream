@@ -2,6 +2,7 @@ package com.cs.workdream.resume.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -13,7 +14,7 @@ public class Resumecontroller {
 		return "resume/enrollresume";
 	}
 	
-	@GetMapping("/resumeDashboard")
+	@PostMapping("/resumeDashboard")
 	public String ResumDacsboard() {
 		return "resume/resumeDashboard";
 	}
@@ -22,4 +23,5 @@ public class Resumecontroller {
 	public String previewResume() {
 		return "resume/previewresume";
 	}
+	
 }
