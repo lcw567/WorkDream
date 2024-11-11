@@ -13,7 +13,6 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
         <div id="inner">
-            <form action="resumeDashboard" method="post" id="enrollresume">
                 <div class="resume_title">
                     <h1>이력서 제목</h1> <input type="text" placeholder="이력서의 제목을 입력해주세요.">
                 </div>
@@ -67,7 +66,8 @@
                                 </fieldset>
                             </div>
                             <div id="basic5">
-                                <button><img src="${pageContext.request.contextPath}/img/file.png" alt=""></button>
+                                <img src="${pageContext.request.contextPath}/img/file.png" class="profile_img" alt="">
+                                <input type="file" class="profile_upload" accept="image/*">
                             </div>
                         </div>
                     </fieldset>
@@ -703,7 +703,6 @@
                 <div class="btn_select">
                     <button class="final_save">작성 완료</button>
                 </div>
-            </form>
             <div class="">
             <button class="preview">미리 보기</button>
             </div>

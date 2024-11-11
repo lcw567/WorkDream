@@ -52,7 +52,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -68,7 +68,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -84,7 +84,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -100,7 +100,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -116,7 +116,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -132,7 +132,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -148,7 +148,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -164,7 +164,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -180,7 +180,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -196,7 +196,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -212,7 +212,7 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
         </div>
@@ -228,9 +228,14 @@
             </div>
             <div class="job-actions">
                 <button class="apply-button">입사지원</button>
-                <div class="delete-icon">&#128465;</div>
+                <div class="delete-icon" onclick="deleteJob(this)" >&#128465;</div>
                 <div class="deadline">~ 11/03(일)</div>
             </div>
+        </div>
+        <div class="pagination">
+            <button id="prevPage" disabled>&#9664;</button>
+            <span id="pageNumber">1</span>
+            <button id="nextPage">&#9654;</button>
         </div>
     </div>
 </body>

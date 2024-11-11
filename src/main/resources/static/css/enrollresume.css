@@ -265,17 +265,25 @@ input:focus{
     height: 50px
 }
 
-#basic5{
+#basic5 {
     display: flex;
     position: relative;
     float: right;
     bottom: 270px;
-    right: 43px;
+    right: 70px;
 }
 
-#basic5 button {
-    border: none;
+.profile_img {
+    width: 103px;
+    height: 119px;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
+
+.profile_upload {
+    display: none;
+}
+
 
 .dtaddress input{
     box-sizing: border-box;
