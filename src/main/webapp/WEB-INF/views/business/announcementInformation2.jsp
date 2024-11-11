@@ -2,13 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/announcementInformation2.css">
+    <script>const contextPath = "${pageContext.request.contextPath}";</script>
 	<script src="${pageContext.request.contextPath}/js/announcementInformation2.js" defer></script>
 </head>
 
@@ -84,20 +85,20 @@
                     <p>사원 / 경력 O년~ O년 / 학력 - 4년제 대학 졸업 / 채용시 협의</p>
                     <button><img src="${pageContext.request.contextPath}/img/letter-x_9215129.png" style="width: 25px; height: 25px;"></button>
                 </div>
-                <button class="Add_Duty">
+                <button class="Add_Duty" id="addDutyButton">
                     <img src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png">
                     <p>직무 추가</p>
                 </button>
             </div>
 
-            <div class="Contact_Announcement_Information_Title">
+           <div class="Contact_Announcement_Information_Title">
                 <h2>공고 소개 이미지</h2>
             </div>
-            <div id="Announcement_Introduction_img">
+            <div id="Announcement_Introduction_img" >
                 <img src="${pageContext.request.contextPath}/img/icons8-img-48.png">
             </div>
             <div id="Announcement_Introduction_file">
-                <input type="text" placeholder=".png">
+                <input type="text" id="Announcement_Introduction_fileName" placeholder=".png" disabled>
                 <input type="file" id="Announcement-file" hidden>
                 <label for="Announcement-file" id="Announcement_custom-file-upload">파일첨부</label>
             </div>
@@ -162,6 +163,8 @@
                 </div>
             </div>
 
+
+
             <hr style="border: 1px solid #9E9E9E;">
 
             <div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
@@ -185,6 +188,7 @@
                 </div>
 
             </div>
+
 
             <hr style="border: 1px solid #9E9E9E; margin-bottom: 70px;">
 
