@@ -77,6 +77,12 @@
                             <input type="text" class="input-text" maxlength="100" placeholder="브랜드명을 입력하세요">
                         </td>
                     </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td>
+                            <input type="text" class="input-text" maxlength="100" placeholder="주소를 입력하세요">
+                        </td>
+                    </tr>
                 </table>
             </div>
 
