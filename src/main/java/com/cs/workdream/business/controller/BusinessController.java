@@ -23,9 +23,9 @@ public class BusinessController {
     }
 	
 
-	@GetMapping("/business/announcementPreview")
-    public String announcementPreview() {
-        return "business/announcementPreview";
+	@GetMapping("/business/announcementDetailView")
+    public String announcementDetailView() {
+        return "business/announcementDetailView";
 
 	}
 	@GetMapping("/business/preview")
