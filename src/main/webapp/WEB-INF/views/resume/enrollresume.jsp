@@ -8,6 +8,7 @@
 <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/enrollresume.css">
 <script src="${pageContext.request.contextPath}/js/enrollresume.js" defer></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
@@ -52,11 +53,16 @@
                         <div id="basic4">
                             <fieldset class="address">
                                 <legend class="useraddress">주소*</legend>
-                                <input type="text" name="useraddress" placeholder="주소를 입력해주세요.">
+                                <input type="text" id="sample4_postcode" placeholder="우편번호">
                             </fieldset>
-                            <fieldset class="dtaddress">
-                                <legend class="userdtaddress">상세주소*</legend>
-                                <input type="text" name="userdtaddress" placeholder="상세주소를 입력해주세요.">
+                            <input type="button" class="addressNum" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+                            <fieldset class="dtaddress1">
+                                <legend class="roadAddress">도로명주소*</legend>
+                                <input type="text" id="roadAddress" placeholder="도로명주소">
+                            </fieldset>
+                            <fieldset class="dtaddress2">
+                                <legend class="detailAddress">상세주소*</legend>
+                                <input type="text" id="detailAddress" placeholder="상세주소">
                             </fieldset>
                         </div>
                         <div id="basic5">

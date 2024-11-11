@@ -66,9 +66,45 @@ input:focus{
     outline: none;
 }
 
-.username, .userbirth, .useremail, .userphone, .useraddress, .userdtaddress{
+.username, .userbirth, .useremail, .userphone, .useraddress, .roadAddress, .detailAddress{
     font-size: 0.8rem;
     margin-left: 15px;
+}
+
+.dtaddress1{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.dtaddress2{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+#roadAddress{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 4px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 290px;
+    margin: 0;
+}
+
+#detailAddress{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 4px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 290px;
+    margin: 0;
 }
 
 .gender, .final_edu{
@@ -202,7 +238,22 @@ input:focus{
     padding-top: 7px;
     padding-left: 15px;
     font-size: 0.8rem;
-    width: 330px;
+    width: 130px;
+}
+
+.addressNum{
+    width: 110px;
+    margin-right: 7px;
+    padding: 0px;
+    position: relative;
+    bottom: -7px;
+    color: white;
+    border-radius: 4px;
+    background-color: #5e35b0;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 44px;
+    border: none;
 }
 
 .dtaddress{
