@@ -45,17 +45,22 @@
 				<h2>개인회원</h2>
 				<input type="hidden" name="userType" value="P" />
 				
-				<h6>아이디</h6>
-				<input type="text" id="registId" name="userId" placeholder="4~20자리 / 영문 소문자, 숫자, 특수문자 '_'만 사용 가능" />
+				<h6>아이디 (필수)</h6>
+				<span>
+					<input type="text" id="registId" name="userId" placeholder="4~20자리 / 영문 소문자, 숫자, 특수문자 '_'만 사용 가능" />
+					<button type="button">중복확인</button>
+				</span>
+				<p><img src="${pageContext.request.contextPath}/img/icon_check.png" />사용가능한 아이디입니다.</p>
+				<p class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />중복된 아이디입니다.</p>
 				
-				<h6>비밀번호</h6>
+				<h6>비밀번호 (필수)</h6>
 				<input type="password" id="registPwd" name="userPwd" placeholder="8~16자리 / 영문 대소문자, 숫자, 특수문자 조합" />
 				
-				<h6>비밀번호 확인</h6>
+				<h6>비밀번호 확인 (필수)</h6>
 				<input type="password" placeholder="비밀번호 재입력" />
-				<span class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />비밀번호가 틀립니다.</span>
+				<p class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />비밀번호가 틀립니다.</p>
 				
-				<h6>이메일</h6>
+				<h6>이메일 (필수)</h6>
 				<input type="email" id="registEmail" name="email" placeholder="email@workdream.co.kr" />
 				
 				<h6>휴대전화</h6>
