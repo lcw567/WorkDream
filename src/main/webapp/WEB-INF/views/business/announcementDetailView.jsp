@@ -8,6 +8,7 @@
     <title>WorkDream - 채용 공고열람</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/announcementDetailView.css">
+    <script src="${pageContext.request.contextPath}/js/announcementDetailView.js" defer></script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/header.jsp" />
