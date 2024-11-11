@@ -144,6 +144,10 @@ table td {
     font-size: 1rem;
 }
 
+table a{
+	font-size: 1rem;
+}
+
 table strong {
     padding: 8px;
     font-size: 1rem;
@@ -278,4 +282,12 @@ table td:first-child {
 
 .view-more button:hover {
     background-color: #B4A3DB;
+}
+
+.company-details td:nth-child(2),
+.company-details td:nth-child(4) {
+    max-width: 15ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
