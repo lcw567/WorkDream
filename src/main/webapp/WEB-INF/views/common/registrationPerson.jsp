@@ -12,6 +12,33 @@
     <script src="${pageContext.request.contextPath}/js/common.js" defer></script>
 </head>
 <body>
-	개인회원가입
+	<!-- 헤더 -->
+	<header class="mini">
+		<nav>
+			<ul id="mini-menu-left">
+				<li>
+					<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logo_title.png" /></a>
+				</li>
+				<li>
+					<h1>개인 회원가입</h1>
+				</li>
+			</ul>
+			
+			<ul id="mini-menu-right">
+				<li>
+					<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/icon_home.png" /> 워크드림 홈</a>
+				</li>
+				<li>|</li>
+				<li>
+					<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/icon_office.png" /> 기업 홈</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	
+	<!-- 메인 -->
+	<main>
+		개인회원가입
+	</main>
 </body>
 </html>
