@@ -968,13 +968,15 @@ footer > * {
 	margin-bottom: 5%;
 	white-space: nowrap;
 	text-align: left;
+	font-weight: 600;
 	font-size: 0.8rem;
-	color: green;
+	color: #2196f3;
 }
 
 #registPerson-form > p > img {
 	width: 1rem;
 	height: 1rem;
+	margin-right: 1%;
 }
 
 #registPerson-form > p.error {
