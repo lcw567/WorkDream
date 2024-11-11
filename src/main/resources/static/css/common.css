@@ -104,8 +104,7 @@ label input[type="checkbox"]:checked + span::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: white;
 }
 
