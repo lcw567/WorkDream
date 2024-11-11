@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkDream - 채용 공고열람</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/announcementPreview.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/announcementDetailView.css">
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/header.jsp" />
@@ -109,7 +109,7 @@
         <!-- 업무 환경 섹션 -->
         <div class="work-environment-section">
             <h2>업무 환경</h2>
-            <table class="info-table">
+            <table class="work-environment-table">
                 <tr>
                     <td><strong>근무 요일</strong></td>
                     <td>주 5일 근무</td>
