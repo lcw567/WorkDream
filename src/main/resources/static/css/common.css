@@ -505,12 +505,16 @@ footer > * {
 #login-main > section {
 	width: 100%;
 	max-width: 1000px;
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 	padding: 3%;
 	border: 1.5px solid #4E21A8;
 	border-radius: 15px;
+}
+
+#login-main > section.On {
+	display: flex;
 }
 
 #login-main > section > article {
