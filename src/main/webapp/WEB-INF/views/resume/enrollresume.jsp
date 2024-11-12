@@ -477,7 +477,7 @@
                         </div>
                         <div class="awards3">
                             <fieldset class="pass_date">
-                                <legend>시작년월</legend>
+                                <legend>발급일자</legend>
                                 <input type="date" class="pass" name="pass_date">
                             </fieldset>
                             <button>추가하기</button>
