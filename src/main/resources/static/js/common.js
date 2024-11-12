@@ -1,59 +1,4 @@
-/* header.jsp + 공용 */
-
-// 햄버거 버튼 전용 (전체 메뉴 테이블 온오프)
-try {
-    const menuButton = document.getElementById("menuButton");
-    const menuImg = menuButton.querySelector("img");
-    const menuDrop = document.getElementById("header-dropdown");
-    const dropTable = menuDrop.querySelector("table");
-    const dropUls = menuDrop.querySelectorAll("ul");
-
-    function changeMenuImg(event) {
-        switch (event.type) {
-            case 'mouseenter':
-                menuImg.src = contextPath + "/img/btn_menu_on.png";
-                break;
-            case 'mouseleave':
-                if (!menuButton.classList.contains('On')) {
-                    menuImg.src = contextPath + "/img/btn_menu.png";
-                }
-                break;
-            case 'click' :
-                if (!menuButton.classList.contains('On')) {
-                    menuButton.classList.add('On');
-                    menuImg.src = contextPath + "/img/btn_menu_on.png";
-                    menuDrop.style.display = "flex";
-                    dropTable.style.display = "table";
-                    dropUls.forEach((ul) => {
-                        ul.style.display = "none";
-                    });
-                } else {
-                    menuButton.classList.remove('On');
-                    menuImg.src = contextPath + "/img/btn_menu.png";
-                    menuDrop.style.display = "none";
-                    dropTable.style.display = "none";
-                }
-                break;
-        }
-    }
-
-    menuButton.addEventListener('mouseenter', changeMenuImg);
-    menuButton.addEventListener('mouseleave', changeMenuImg);
-    menuButton.addEventListener('click', changeMenuImg);
-} catch (error) {
-    console.error("오류 발생: ", error);
-}
-
-// 소메뉴
-function dropMenu(index) {
-
-}
-
-// 메뉴탭 활성화
-function activeMenu(menuNo) {
-    const menuItems = document.querySelectorAll("#header-nav-bottom .menu > li");
-    menuItems[menuNo].classList.add("On");
-}
+/* 공용 */
 
 // 아이디칸 입력제한
 function replaceInputId(event) {
@@ -115,6 +60,80 @@ function replaceInputPhone(event) {
     event.target.value = value;
 }
 
+// 아이디 유효성 검사
+function validateId() {
+
+}
+
+// 비밀번호 유효성 검사
+function validatePwd(password) {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
+    return regex.test(password);
+}
+
+// 이메일 유효성 검사
+function validateEmail(email) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.text(email);
+}
+
+/* header.jsp */
+
+// 햄버거 버튼 전용 (전체 메뉴 테이블 온오프)
+try {
+    const menuButton = document.getElementById("menuButton");
+    const menuImg = menuButton.querySelector("img");
+    const menuDrop = document.getElementById("header-dropdown");
+    const dropTable = menuDrop.querySelector("table");
+    const dropUls = menuDrop.querySelectorAll("ul");
+
+    function changeMenuImg(event) {
+        switch (event.type) {
+            case 'mouseenter':
+                menuImg.src = contextPath + "/img/btn_menu_on.png";
+                break;
+            case 'mouseleave':
+                if (!menuButton.classList.contains('On')) {
+                    menuImg.src = contextPath + "/img/btn_menu.png";
+                }
+                break;
+            case 'click' :
+                if (!menuButton.classList.contains('On')) {
+                    menuButton.classList.add('On');
+                    menuImg.src = contextPath + "/img/btn_menu_on.png";
+                    menuDrop.style.display = "flex";
+                    dropTable.style.display = "table";
+                    dropUls.forEach((ul) => {
+                        ul.style.display = "none";
+                    });
+                } else {
+                    menuButton.classList.remove('On');
+                    menuImg.src = contextPath + "/img/btn_menu.png";
+                    menuDrop.style.display = "none";
+                    dropTable.style.display = "none";
+                }
+                break;
+        }
+    }
+
+    menuButton.addEventListener('mouseenter', changeMenuImg);
+    menuButton.addEventListener('mouseleave', changeMenuImg);
+    menuButton.addEventListener('click', changeMenuImg);
+} catch (error) {
+    console.error("오류 발생: ", error);
+}
+
+// 소메뉴
+function dropMenu(index) {
+
+}
+
+// 메뉴탭 활성화
+function activeMenu(menuNo) {
+    const menuItems = document.querySelectorAll("#header-nav-bottom .menu > li");
+    menuItems[menuNo].classList.add("On");
+}
+
 
 /* login.jsp */
 
@@ -164,20 +183,28 @@ try {
 
 try {
     const registId = document.getElementById("registId");
+
     const registPwd = document.getElementById("registPwd");
+    const pwdPatternError = document.getElementById("pwd-error-pattern");
+
+    const registPwdRe = document.getElementById("registPwdRe");
+    const pwdMatchError = document.getElementById("pwd-error-match");
+
     const registEmail = document.getElementById("registEmail");
+    const emailPatternError = document.getElementById("email-error-pattern");
+
     const registPhone = document.getElementById("registPhone");
     const registButton = document.getElementById("btnRegist");
 
     // 유효성 검사 함수
     function validateForm() {
         const isIdValid = registId.value.trim() !== "";
-        const isPwdValid = registPwd.value.trim() !== "";
-        const isEmailValid = registEmail.value.trim() !== "";
-        const isPhoneValid = registPhone.value.trim() !== "";
+        const isPwdValid = registPwd.value.trim() !== "" && validatePwd(registPwd.value);
+        const isPwdReValid = registPwdRe.value.trim() !== "" && registPwd.value == registPwd.value;
+        const isEmailValid = registEmail.value.trim() !== "" && validateEmail(registEmail.value);
 
         // 조건을 모두 만족하면 버튼을 활성화, 아니면 비활성화
-        if (isIdValid && isPwdValid && isEmailValid && isPhoneValid) {
+        if (isIdValid && isPwdValid && isPwdReValid && isEmailValid) {
             registButton.disabled = false;  // 버튼 활성화
         } else {
             registButton.disabled = true;   // 버튼 비활성화
@@ -189,6 +216,10 @@ try {
         validateForm();
     });
     registPwd.addEventListener("input", (event) => {
+        replaceInputPwd(event);
+        validateForm();
+    });
+    registPwdRe.addEventListener("input", (event) => {
         replaceInputPwd(event); 
         validateForm();
     });
@@ -198,7 +229,6 @@ try {
     });
     registPhone.addEventListener("input", (event) => {
         replaceInputPhone(event); 
-        validateForm();
     });
 } catch(error) {
     console.error("오류 발생: ", error);
