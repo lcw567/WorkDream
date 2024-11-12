@@ -11,12 +11,12 @@ public class Resumecontroller {
 	
 	@GetMapping("/selfIntroDashboard")
     public String showSelfIntroDashboard() {
-        return "resume/selfIntroDashboard"; // selfIntroDashboard.jsp
+        return "member/selfIntroDashboard"; // selfIntroDashboard.jsp
     }
 	
 	@GetMapping("/selfIntro")
     public String selfIntro() {
-        return "resume/selfIntro"; // selfIntro.jsp
+        return "member/selfIntro"; // selfIntro.jsp
     }
 	
 	@GetMapping("/enrollresume")
