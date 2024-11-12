@@ -7,6 +7,7 @@
 <title>워크드림</title>
 <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/enrollresume.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <script src="${pageContext.request.contextPath}/js/enrollresume.js" defer></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
