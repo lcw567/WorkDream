@@ -3,7 +3,7 @@
 // 아이디칸 입력제한
 function replaceInputId(event) {
     let value = event.target.value;
-    
+
     // 영문 소문자, 숫자, '_' 외에는 입력 제한
     value = value.replace(/[^a-zA-Z0-9_]/g, '');
     value = value.toLowerCase();
@@ -13,7 +13,7 @@ function replaceInputId(event) {
 // 비밀번호칸 입력제한
 function replaceInputPwd(event) {
     let value = event.target.value;
-    
+
     // 띄어쓰기 제한
     value = value.replace(/\s/g, '');
     event.target.value = value;
@@ -54,7 +54,7 @@ function replaceInputEmail(event) {
 // 휴대폰칸 입력제한
 function replaceInputPhone(event) {
     let value = event.target.value;
-    
+
     // 띄어쓰기 제한, 숫자만 입력 가능
     value = value.replace(/[^0-9]/g, '');
     event.target.value = value;
@@ -163,13 +163,13 @@ try {
     document.addEventListener("DOMContentLoaded", function() {
         changeLoginSection();
     });
-    
+
     // 로그인 페이지 input 제한 설정
     const loginIds = document.querySelectorAll("#loginId");
     loginIds.forEach(function(input) {
         input.addEventListener("input", replaceInputId);
     });
-    
+
     const loginPwds = document.querySelectorAll("#loginPwd");
     loginPwds.forEach(function(input) {
         input.addEventListener("input", replaceInputPwd);
@@ -212,7 +212,7 @@ try {
     }
 
     registId.addEventListener("input", (event) => {
-        replaceInputId(event); 
+        replaceInputId(event);
         validateForm();
     });
     registPwd.addEventListener("input", (event) => {
@@ -220,7 +220,7 @@ try {
         validateForm();
     });
     registPwdRe.addEventListener("input", (event) => {
-        replaceInputPwd(event); 
+        replaceInputPwd(event);
         validateForm();
     });
     registEmail.addEventListener("input", (event) => {
@@ -228,7 +228,7 @@ try {
         validateForm();
     });
     registPhone.addEventListener("input", (event) => {
-        replaceInputPhone(event); 
+        replaceInputPhone(event);
     });
 } catch(error) {
     console.error("오류 발생: ", error);
