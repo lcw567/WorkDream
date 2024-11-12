@@ -773,6 +773,7 @@ input:focus{
     min-height: 170px;
     height: auto;  /* 높이를 자동으로 조정 */
     overflow: visible;
+    border-top: 5px solid #4e21a8;
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 50px;
