@@ -105,7 +105,7 @@
                                         </fieldset>
                                         <div class="exam">
                                             <label>중입 검정고시(초졸)</label>
-                                            <input type="checkbox" name="elementaryGed" class="exam_status">
+                                            <input type="checkbox" id="idName" name="checkboxName" value="" />
                                         </div>
                                     </div>
                                     <div class="form-group2">
