@@ -271,13 +271,14 @@ input:focus{
     float: right;
     bottom: 270px;
     right: 70px;
+    border: 2px solid #999999;
 }
 
 .profile_img {
     width: 103px;
     height: 119px;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin: 2px;
 }
 
 .profile_upload {

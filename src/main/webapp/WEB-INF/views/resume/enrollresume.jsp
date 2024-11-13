@@ -105,7 +105,10 @@
                                         </fieldset>
                                         <div class="exam">
                                             <label>중입 검정고시(초졸)</label>
-                                            <input type="checkbox" id="idName" name="checkboxName" value="" />
+                                            <label for="middle_exam">
+                                                <input type="checkbox" id="middle_exam" />
+                                                <span></span>&nbsp;
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="form-group2">
@@ -161,7 +164,10 @@
                                         </fieldset>
                                         <div class="exam">
                                             <label>고입 검정고시(중졸)</label>
-                                            <input type="checkbox" name="middleGed" class="exam_status">
+                                            <label for="high_exam">
+                                                <input type="checkbox" id="high_exam" />
+                                                <span></span>&nbsp;
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="form-group2">
@@ -219,7 +225,10 @@
                                         </fieldset>
                                         <div class="exam">
                                             <label>대입 검정고시</label>
-                                            <input type="checkbox" name="highGed" class="exam_status">
+                                            <label for="college_exam">
+                                                <input type="checkbox" id="college_exam" />
+                                                <span></span>&nbsp;
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="form-group2">
