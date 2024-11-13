@@ -392,6 +392,7 @@ input:focus{
     height: 520px;
     border-radius: 5px;
     margin-bottom: 50px;
+    transition: height 0.3s;
 }
 
 .career_Lv{
@@ -437,10 +438,12 @@ input:focus{
 
 .career1{
     display: flex;
+    gap: 40px;
 }
 
 .career2{
     display: flex;
+    gap: 61px;
 }
 
 .career1 fieldset{
@@ -510,6 +513,13 @@ input:focus{
     margin-right: 8px;
 }
 
+.careerYorN{
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
 .career2 input{
     border: none;
     margin-top: 5px;
@@ -523,7 +533,7 @@ input:focus{
     padding: 20px;
     resize: none;
     border: none;
-    width: 1006px;
+    width: 1130px;
     height: 250px;
     font-size: 0.8rem;
 }
