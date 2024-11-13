@@ -61,7 +61,7 @@
 				<p id="pwd-error-pattern" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />영문 대문자, 소문자, 숫자, 특수문자가 각각 하나 이상 포함되어야합니다.</p>
 				
 				<h6>비밀번호 확인 (필수)</h6>
-				<input type="password" id="registPwdRe" placeholder="비밀번호 재입력" />
+				<input type="password" id="registRePwd" placeholder="비밀번호 재입력" />
 				<p id="pwd-error-match" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />비밀번호가 틀립니다.</p>
 				
 				<h6>이메일 (필수)</h6>
@@ -76,8 +76,8 @@
 				<h6>약관</h6>
 				<div id="regist-form-terms">
 					<span class="bold">
-						<label for="allCheck">
-							<input type="checkbox" id="allCheck" />
+						<label for="allCheckTerms">
+							<input type="checkbox" id="allCheckTerms" />
 							<span></span>&ensp;전체 동의
 						</label>
 					</span>
@@ -87,41 +87,42 @@
 					
 					<span class="bold">
 						<label for="chk1">
-							<input type="checkbox" id="chk1" />
+							<input type="checkbox" id="chk1" class="terms" required />
 							<span></span>&ensp;(필수)개인회원 약관에 동의
 						</label>
 						<a href="#">&gt;</a>
 					</span>
 					<span class="bold">
 						<label for="chk2">
-							<input type="checkbox" id="chk2" />
+							<input type="checkbox" id="chk2" class="terms" required />
 							<span></span>&ensp;(필수)개인정보 수집 및 이용에 동의
 						</label>
 						<a href="#">&gt;</a>
 					</span>
 					<span>
 						<label for="chk3">
-							<input type="checkbox" id="chk3" />
+							<input type="checkbox" id="chk3" class="terms" />
 							<span></span>&ensp;(선택)위치기반서비스 이용약관에 동의
 						</label>
 						<a href="#">&gt;</a>
 					</span>
 					<span>
 						<label for="chk4">
-							<input type="checkbox" id="chk4" />
+							<input type="checkbox" id="chk4" class="terms" />
 							<span></span>&ensp;(선택)마케팅 정보 수신 동의 - 이메일
 						</label>
 						<a href="#">&gt;</a>
 					</span>
 					<span>
 						<label for="chk5">
-							<input type="checkbox" id="chk5" />
+							<input type="checkbox" id="chk5" class="terms" />
 							<span></span>&ensp;(선택)마케팅 정보 수신 동의 - SMS/MMS
 						</label>
 						<a href="#">&gt;</a>
 					</span>
 				</div>
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />(필수)항목은 반드시 동의하셔야 회원가입이 가능합니다.</p>
+				<p id="terms-error-required" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />(필수)항목에 체크해주세요.</p>
 				
 				<h6>안내</h6>
 				<div>
@@ -130,7 +131,7 @@
 					</ul>
 				</div>
 				
-				<input type="submit" id="btnRegist" value="회원가입" disabled />
+				<input type="button" id="btnRegist" value="회원가입" />
 			</form>
 		</section>
 	</main>

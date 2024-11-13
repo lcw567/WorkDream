@@ -67,14 +67,58 @@ function validateId() {
 
 // 비밀번호 유효성 검사
 function validatePwd(password) {
+    const pwdPatternError = document.getElementById("pwd-error-pattern");
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
-    return regex.test(password);
+    
+    if(regex.test(password)) {
+        pwdPatternError.style.display = "none";
+        return true;
+    } else {
+        pwdPatternError.style.display = "flex";
+        return false;
+    }
+}
+
+// 비밀번호 확인 유효성 검사
+function validateRePwd(password, rePassword) {
+    const pwdMatchError = document.getElementById("pwd-error-match");
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
+
+    if(password == rePassword && regex.test(rePassword)) {
+        pwdMatchError.style.display = "none";
+        return true;
+    } else {
+        pwdMatchError.style.display = "flex";
+        return false;
+    }
 }
 
 // 이메일 유효성 검사
 function validateEmail(email) {
+    const emailPatternError = document.getElementById("email-error-pattern");
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.text(email);
+
+    if(regex.test(email)) {
+        emailPatternError.style.display = "none";
+        return true;
+    } else {
+        emailPatternError.style.display = "flex";
+        return false;
+    }
+}
+
+// 약관 동의 유효성 검사
+function validateTerms(requiredTerms) {
+    const termsRequiredError = document.getElementById("terms-error-required");
+    const allChecked = requiredTerms.every(checkbox => checkbox.checked);
+
+    if (!allChecked) {
+        termsRequiredError.style.display = "flex";
+        return false;
+    }
+
+    termsRequiredError.style.display = "none";
+    return true;
 }
 
 /* header.jsp */
@@ -183,31 +227,50 @@ try {
 
 try {
     const registId = document.getElementById("registId");
-
     const registPwd = document.getElementById("registPwd");
-    const pwdPatternError = document.getElementById("pwd-error-pattern");
-
-    const registPwdRe = document.getElementById("registPwdRe");
-    const pwdMatchError = document.getElementById("pwd-error-match");
-
+    const registRePwd = document.getElementById("registRePwd");
     const registEmail = document.getElementById("registEmail");
-    const emailPatternError = document.getElementById("email-error-pattern");
-
     const registPhone = document.getElementById("registPhone");
+    const registTermsCheckButton = document.getElementById("allCheckTerms");
+    const registTerms = document.querySelectorAll(".terms");
     const registButton = document.getElementById("btnRegist");
 
-    // 유효성 검사 함수
+    // 약관 전체 동의/해제
+    registTermsCheckButton.addEventListener('change', function() {
+        registTerms.forEach(checkbox => {
+            checkbox.checked = registTermsCheckButton.checked;
+        })
+    });
+
+    registTerms.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (Array.from(registTerms).every(chk => chk.checked)) {
+                registTermsCheckButton.checked = true;
+                registTermsCheckButton.indeterminate = false;
+            } else if (Array.from(registTerms).every(chk => !chk.checked)) {
+                registTermsCheckButton.checked = false;
+                registTermsCheckButton.indeterminate = false;
+            } else {
+                registTermsCheckButton.checked = false;
+                registTermsCheckButton.indeterminate = true;
+            }
+        });
+    });
+
+    // 전체 유효성 검사 함수
     function validateForm() {
         const isIdValid = registId.value.trim() !== "";
-        const isPwdValid = registPwd.value.trim() !== "" && validatePwd(registPwd.value);
-        const isPwdReValid = registPwdRe.value.trim() !== "" && registPwd.value == registPwd.value;
-        const isEmailValid = registEmail.value.trim() !== "" && validateEmail(registEmail.value);
+        const isPwdValid = validatePwd(registPwd.value);
+        const isRePwdValid = validateRePwd(registPwd.value, registRePwd.value);
+        const isEmailValid = validateEmail(registEmail.value);
+        const isTermsValid = validateTerms(Array.from(registTerms).filter(terms => terms.required));
 
-        // 조건을 모두 만족하면 버튼을 활성화, 아니면 비활성화
-        if (isIdValid && isPwdValid && isPwdReValid && isEmailValid) {
-            registButton.disabled = false;  // 버튼 활성화
+        // 조건을 모두 만족하면 폼 제출
+        if (isIdValid && isPwdValid && isRePwdValid && isEmailValid && isTermsValid) {
+            form.submit();
         } else {
-            registButton.disabled = true;   // 버튼 비활성화
+            alert("정확히 입력해주세요. 필수 항목은 반드시 작성해야합니다.");
+            window.scrollTo(0, 0);
         }
     }
 
@@ -217,18 +280,21 @@ try {
     });
     registPwd.addEventListener("input", (event) => {
         replaceInputPwd(event);
-        validateForm();
+        validatePwd(registPwd.value);
     });
-    registPwdRe.addEventListener("input", (event) => {
+    registRePwd.addEventListener("input", (event) => {
         replaceInputPwd(event);
-        validateForm();
+        validateRePwd(registPwd.value, registRePwd.value);
     });
     registEmail.addEventListener("input", (event) => {
         replaceInputEmail(event);
-        validateForm();
+        validateEmail(registEmail.value);
     });
     registPhone.addEventListener("input", (event) => {
         replaceInputPhone(event);
+    });
+    registButton.addEventListener("click", (event) => {
+        validateForm();
     });
 } catch(error) {
     console.error("오류 발생: ", error);
