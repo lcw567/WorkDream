@@ -42,6 +42,10 @@
             <!-- 게시글 내용 -->
             <div class="post-content">
                 <h2 class="post-title">제목 들어가는 곳</h2>
+                 <!-- 카테고리 표시 -->
+                <p class="post-category">카테고리: <span>자소서</span></p>
+                <!-- 직무 카테고리 표시 -->
+                <p class="job-category">직무 카테고리: <span>교육${post.jobCategory}</span></p>
                 <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDEwMDRfMjk2%2FMDAxNzI4MDI4MjgxMzkw.e7edVOHLYWREj3EBGLewxjBAlTwTjJerIZY16Ra_Ih0g.hOxHSUOJ-pnVlXEB8cgtqlVpxNpZkX0ucT2TlavSAyog.JPEG%2FIMG_2540.JPG&type=l340_165"
                 alt="게시글 이미지" class="post-image">
                 <p class="post-text">
@@ -49,6 +53,12 @@
                     교육 프로그램은 디지털 트렌드 실무 기초 과정을 제공하며,<br>
                     취업 준비를 목표로 하는 청년들에게 딱 맞는 교육 기회입니다! 🎓<br>
                 </p>
+                <!-- 해시태그 표시 -->
+                <div class="hashtags">
+                    <span class="hashtag">#취업준비</span>
+                    <span class="hashtag">#면접팁</span>
+                    <span class="hashtag">#자소서작성</span>
+                </div>
             </div>
         </div>
 

@@ -369,6 +369,54 @@ body {
     cursor: pointer;
 }
 
+/* 카테고리 스타일 */
+.post-category {
+    font-size: 1rem;
+    color: #4E21A8;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.post-category span{
+	font-size: 1rem;
+}
+
+.job-category {
+    font-size: 1rem;
+    color: #4E21A8;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.job-category span{
+	font-size: 1rem;
+}
+
+/* 해시태그 컨테이너 */
+.hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* 해시태그 스타일 */
+.hashtag {
+    background-color: #E1DEF1;
+    color: #4E21A8;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.hashtag:hover {
+    background-color: #4E21A8;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+
 /* 추가 스타일 */
 
 /* 댓글의 신고 버튼 호버 */
