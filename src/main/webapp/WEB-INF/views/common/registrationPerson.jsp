@@ -38,11 +38,11 @@
 	</header>
 	
 	<!-- 메인 -->
-	<main id="registPerson-main">
+	<main id="registDetail-main">
 		<h1>워크드림 통합 개인회원 가입</h1>
 		
 		<section>
-			<form id="registPerson-form" action="#" method="post">
+			<form id="registDetail-form" action="#" method="post">
 				<h2>개인회원</h2>
 				<input type="hidden" name="userType" value="P" />
 				
@@ -74,7 +74,7 @@
 				
 				
 				<h6>약관</h6>
-				<div id="regist-form-terms">
+				<div id="registDetail-form-terms">
 					<span class="bold">
 						<label for="allCheckTerms">
 							<input type="checkbox" id="allCheckTerms" />
@@ -86,36 +86,36 @@
 					<hr />
 					
 					<span class="bold">
-						<label for="chk1">
-							<input type="checkbox" id="chk1" class="terms" required />
+						<label for="terms-required1">
+							<input type="checkbox" id="terms-required1" class="terms" required />
 							<span></span>&ensp;(필수)개인회원 약관에 동의
 						</label>
 						<a href="#">&gt;</a>
 					</span>
 					<span class="bold">
-						<label for="chk2">
-							<input type="checkbox" id="chk2" class="terms" required />
+						<label for="terms-required2">
+							<input type="checkbox" id="terms-required2" class="terms" required />
 							<span></span>&ensp;(필수)개인정보 수집 및 이용에 동의
 						</label>
 						<a href="#">&gt;</a>
 					</span>
 					<span>
-						<label for="chk3">
+						<label for="terms-required3">
 							<input type="checkbox" id="chk3" class="terms" />
 							<span></span>&ensp;(선택)위치기반서비스 이용약관에 동의
 						</label>
 						<a href="#">&gt;</a>
 					</span>
 					<span>
-						<label for="chk4">
-							<input type="checkbox" id="chk4" class="terms" />
+						<label for="terms-selection1">
+							<input type="checkbox" id="terms-selection1" class="terms" />
 							<span></span>&ensp;(선택)마케팅 정보 수신 동의 - 이메일
 						</label>
 						<a href="#">&gt;</a>
 					</span>
 					<span>
-						<label for="chk5">
-							<input type="checkbox" id="chk5" class="terms" />
+						<label for="terms-selection2">
+							<input type="checkbox" id="terms-selection2" class="terms" />
 							<span></span>&ensp;(선택)마케팅 정보 수신 동의 - SMS/MMS
 						</label>
 						<a href="#">&gt;</a>
@@ -125,7 +125,7 @@
 				<p id="terms-error-required" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />(필수)항목에 체크해주세요.</p>
 				
 				<h6>안내</h6>
-				<div>
+				<div id="registDetail-form-info">
 					<ul>
 						<li>워크드림 통합회원으로 가입하시면 하나의 ID로 워크드림이 제공하는 모든 서비스를 이용하실 수 있습니다.</li>
 					</ul>
