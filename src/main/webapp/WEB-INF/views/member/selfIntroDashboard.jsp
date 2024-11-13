@@ -16,7 +16,7 @@
     <div class="dashboard-container">
         <div class="dashboard-header">
         	<div class = "page-name">
-        		<h1>이력서 관리</h1>
+        		<h1>자소서 관리</h1>
         	</div>
             <div class="search-bar">
                 <input type="text" placeholder="검색어를 입력하세요">

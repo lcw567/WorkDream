@@ -49,7 +49,7 @@
             	<div class="category-line">
 				    <!-- 카테고리 및 직무 카테고리 표시 -->
 				    <p class="post-category">카테고리: <span>자소서</span></p>
-				    <p class="job-category">직무 카테고리: <span>교육</span></p>
+				    <p class="job-category">직무: <span>교육</span></p>
 				</div>
                 <h2 class="post-title">제목 들어가는 곳</h2>          
                 <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDEwMDRfMjk2%2FMDAxNzI4MDI4MjgxMzkw.e7edVOHLYWREj3EBGLewxjBAlTwTjJerIZY16Ra_Ih0g.hOxHSUOJ-pnVlXEB8cgtqlVpxNpZkX0ucT2TlavSAyog.JPEG%2FIMG_2540.JPG&type=l340_165"
