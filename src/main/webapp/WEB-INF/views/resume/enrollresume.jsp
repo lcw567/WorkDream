@@ -14,6 +14,7 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
         <div id="inner">
+            <form action="/workdream/insert.rs" method="post">
                 <div class="resume_title">
                     <h1>이력서 제목</h1> <input type="text" placeholder="이력서의 제목을 입력해주세요.">
                 </div>
@@ -42,14 +43,14 @@
                                     <legend class="useremail">이메일*</legend>
                                     <input type="email" name="useremail">
                                 </fieldset>
-                                <button class="email_check">인증</button>
+                                <button type="button" class="email_check">인증</button>
                             </div>
                             <div id="basic3">  
                                 <fieldset class="phone">
                                     <legend class="userphone">전화번호*</legend>
                                     <input type="text" name="userphone">
                                 </fieldset>
-                                <button class="phone_check">인증</button>
+                                <button type="button" class="phone_check">인증</button>
                             </div>
                             <div id="basic4">
                                 <fieldset class="address">
@@ -402,7 +403,7 @@
                             <fieldset class="skill_title">
                                 <input type="text" name="sk_title" placeholder="툴/직무역량/소프트스킬을 입력해주세요.">
                             </fieldset>
-                            <button>추가하기</button>
+                            <button type="button">추가하기</button>
                         </div>
                         <div id="sk_title2" style="display: none;">
                             <div id="MYsk">
@@ -490,7 +491,7 @@
                                 <legend>발급일자</legend>
                                 <input type="date" class="pass" name="pass_date">
                             </fieldset>
-                            <button>추가하기</button>
+                            <button type="button">추가하기</button>
                         </div>
                         <div class="Language">
                             <div class="Lang">
@@ -542,7 +543,7 @@
                                         <legend>취득일</legend>
                                         <input type="date" class="get" name="get_date">
                                     </fieldset>
-                                    <button>추가하기</button>
+                                    <button type="button">추가하기</button>
                                 </div>
                             </div>
                         </div>
@@ -562,7 +563,7 @@
                                 </fieldset>
                             </div>
                             <div class="contest2">
-                                <button>추가하기</button>
+                                <button type="button">추가하기</button>
                             </div>
                         </div>
                         <div class="result-list">
@@ -711,10 +712,11 @@
                     </fieldset>
                 </div>
                 <div class="btn_select">
-                    <button class="final_save">작성 완료</button>
+                    <button type="submit" class="final_save">작성 완료</button>
                 </div>
+            </form>
             <div class="">
-            <button class="preview">미리 보기</button>
+            <button type="button" class="preview">미리 보기</button>
             </div>
         </div>
     <c:import url="/WEB-INF/views/common/footer.jsp" />
