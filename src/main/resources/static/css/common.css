@@ -851,8 +851,8 @@ footer > * {
 }
 
 
-/* registrationPerson.jsp */
-#registPerson-main {
+/* registrationPerson.jsp, registrationBusiness.jsp */
+#registDetail-main {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -861,13 +861,13 @@ footer > * {
 	padding: 5%;
 }
 
-#registPerson-main > h1 {
+#registDetail-main > h1 {
 	text-align: center;
 	font-family: 'MonoplexKR-SemiBold';
 	font-size: 1.5rem;
 }
 
-#registPerson-main > section {
+#registDetail-main > section {
 	width: 100%;
 	max-width: 1000px;
 	display: flex;
@@ -879,24 +879,24 @@ footer > * {
 	border-radius: 15px;
 }
 
-#registPerson-form {
+#registDetail-form {
 	width: 50%;
 	margin: 3% 0;
 }
 
-#registPerson-form > h2 {
+#registDetail-form > h2 {
 	text-align: center;
 	font-weight: 400;
 	font-size: 1.3rem;
 }
 
-#registPerson-form > h6 {
+#registDetail-form > h6 {
 	margin-top: 5%;
 	text-align: left;
 	font-size: 0.9rem;
 }
 
-#registPerson-form > input {
+#registDetail-form > input {
 	width: 100%;
 	height: 3rem;
 	padding: 0 3%;
@@ -908,20 +908,20 @@ footer > * {
 	font-size: 1rem;
 }
 
-#registPerson-form > input::placeholder {
+#registDetail-form > input::placeholder {
 	word-spacing: -0.3rem;
 	font-size: 0.8rem;
 	color: #6D47B7;
 }
 
-#registPerson-form > input[type="button"] {
+#registDetail-form > input[type="button"] {
 	background-color: #4E21A8;
 	border-color: #4E21A8;
 	font-family: 'MonoplexKR-SemiBold';
 	color: #FFFFFF;
 }
 
-#registPerson-form > span {
+#registDetail-form > span {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -929,7 +929,7 @@ footer > * {
 	margin: 2% 0 5% 0;
 }
 
-#registPerson-form > span > input {
+#registDetail-form > span > input {
 	width: 80%;
 	height: 3rem;
 	padding: 0 3%;
@@ -940,13 +940,13 @@ footer > * {
 	font-size: 1rem;
 }
 
-#registPerson-form > span > input::placeholder {
+#registDetail-form > span > input::placeholder {
 	word-spacing: -0.3rem;
 	font-size: 0.8rem;
 	color: #6D47B7;
 }
 
-#registPerson-form > span > button {
+#registDetail-form > span > button {
 	width: 18%;
 	height: 3rem;
 	background-color: #4E21A8;
@@ -956,7 +956,7 @@ footer > * {
 	color: #FFFFFF;
 }
 
-#registPerson-form > p {
+#registDetail-form > p {
 	display: flex;
 	align-items: center;
 	padding-left: 1%;
@@ -970,23 +970,32 @@ footer > * {
 	color: #6d47b7;
 }
 
-#registPerson-form > p > img {
+#registDetail-form > p > img {
 	width: 1.2rem;
 	height: 1.2rem;
 	margin-right: 1%;
 }
 
-#registPerson-form > p.check {
+#registDetail-form > p > a {
+	margin-left: 0.5rem;
+	font-style: italic;
+}
+
+#registDetail-form > p > a:hover {
+	text-decoration: underline 1.2px solid #000;
+}
+
+#registDetail-form > p.check {
 	display: none;
 	color: #2196f3;
 }
 
-#registPerson-form > p.error {
+#registDetail-form > p.error {
 	display: none;
 	color: #ff0000;
 }
 
-#registPerson-form > div {
+#registDetail-form > div {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -996,9 +1005,51 @@ footer > * {
 	margin: 2% 0 5% 0;
 	border: 1px solid #000;
     border-radius: 10px;
+    word-spacing: -0.2rem;
 }
 
-#registPerson-form > div > span {
+#registDetail-form-file {
+	align-items: center !important;
+	background-color: #E1DEF1;
+	border: 1px dotted #B4A3DB !important;
+}
+
+#registDetail-form-file > h3 {
+	margin: 3% 0;
+	font-weight: 400;
+}
+
+#registDetail-form-file > h3, #registDetail-form-file > h3 > strong {
+	font-size: 1rem;
+}
+
+#registDetail-form-file > img {
+	width: 70%;
+	margin: 3% 0;
+}
+
+#registDetail-form-file > label {
+	width: 100%;
+	margin: 1% 0;
+	font-size: 0.9rem;
+}
+
+#registDetail-form-file > label[for="registProveImg"] > input {
+	display: none;
+}
+
+#registDetail-form-file > label[for="registProveImg"] > button {
+	width: 70%;
+	height: 2.5rem;
+	background-color: #4E21A8;
+	border: 1px solid #4E21A8;
+	border-radius: 15px;
+	word-spacing: -0.2rem;
+	font-size: 0.9rem;
+	color: #FFFFFF;
+}
+
+#registDetail-form-terms > span {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -1007,37 +1058,37 @@ footer > * {
 	margin: 2% 0;
 }
 
-#registPerson-form > div > span > label {
+#registDetail-form-terms > span > label {
 	line-height: 1;
 	font-size: 0.9rem;
 }
 
-#registPerson-form > div > span.bold > label {
+#registDetail-form-terms > span.bold > label {
 	font-family: 'MonoplexKR-SemiBold';
 }
 
-#registPerson-form > div > span > a {
+#registDetail-form-terms > span > a {
 	font-size: 1rem;
 }
 
-#registPerson-form > div > p {
+#registDetail-form-terms > p {
 	padding-left: 2rem;
 	font-size: 0.75rem;
 }
 
-#registPerson-form > div > hr {
+#registDetail-form-terms > hr {
 	width: 100%;
 	margin: 5% 0 3% 0;
 }
 
-#registPerson-form > div > ul {
+#registDetail-form-info > ul {
 	width: 100%;
 }
 
-#registPerson-form > div > ul > li {
+#registDetail-form-info > ul > li {
 	font-size: 0.9rem;
 }
 
-#registPerson-form > div > ul > li::before {
+#registDetail-form-info > ul > li::before {
 	content: "- ";
 }
