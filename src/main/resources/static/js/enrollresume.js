@@ -442,3 +442,32 @@ if (imageContainer) {
         }
     });
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const careerCheckbox = document.getElementById("CareerY");
+    const careerLabel = document.querySelector("label.careerYorN"); // "경력이 있을 경우 선택해주세요." 라벨
+    const checkboxLabel = careerCheckbox.parentElement; // 체크박스를 감싸는 라벨
+    const careerFieldset = document.querySelector("fieldset.career"); // 필드셋
+    const careerDetails = document.querySelectorAll(".career1, .career2, .career3, .career_Lv"); // 필드셋 내부의 세부 요소들
+
+    // 처음에는 필드셋 내부의 세부 요소들을 숨깁니다.
+    careerDetails.forEach(field => field.style.display = "none");
+    careerFieldset.style.height = "155px"; // 초기 높이 설정
+
+    // 체크박스 상태에 따라 요소들을 조정합니다.
+    careerCheckbox.addEventListener("change", function() {
+        if (careerCheckbox.checked) {
+            // 체크박스와 라벨을 숨깁니다.
+            careerLabel.style.display = "none";
+            checkboxLabel.style.display = "none";
+
+            // 필드셋의 높이를 변경하고, 내부 세부 요소들을 표시합니다.
+            careerFieldset.style.height = "520px";
+            careerDetails.forEach(field => field.style.display = "flex");
+        }
+    });
+});
+
+
+
+
