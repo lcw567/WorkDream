@@ -34,6 +34,11 @@
                     </div>
                 </div>
                 <div class="post-buttons">
+                	<!-- 현재 로그인한 사용자가 게시글 작성자인 경우에만 수정 및 삭제 버튼 표시 -->
+                	<c:if test="${currentUser.id == post.userId}">
+			            <button class="button edit-button" aria-label="수정">수정</button>
+			            <button class="button delete-button" aria-label="삭제">삭제</button>
+			        </c:if>
                     <button class="button like-button" aria-label="공감"><span>👍</span> <span class="like-count">0</span></button>
                     <button class="button report-button" aria-label="신고">신고</button>
                 </div>
@@ -41,11 +46,12 @@
             <hr>
             <!-- 게시글 내용 -->
             <div class="post-content">
-                <h2 class="post-title">제목 들어가는 곳</h2>
-                 <!-- 카테고리 표시 -->
-                <p class="post-category">카테고리: <span>자소서</span></p>
-                <!-- 직무 카테고리 표시 -->
-                <p class="job-category">직무 카테고리: <span>교육${post.jobCategory}</span></p>
+            	<div class="category-line">
+				    <!-- 카테고리 및 직무 카테고리 표시 -->
+				    <p class="post-category">카테고리: <span>자소서</span></p>
+				    <p class="job-category">직무 카테고리: <span>교육</span></p>
+				</div>
+                <h2 class="post-title">제목 들어가는 곳</h2>          
                 <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDEwMDRfMjk2%2FMDAxNzI4MDI4MjgxMzkw.e7edVOHLYWREj3EBGLewxjBAlTwTjJerIZY16Ra_Ih0g.hOxHSUOJ-pnVlXEB8cgtqlVpxNpZkX0ucT2TlavSAyog.JPEG%2FIMG_2540.JPG&type=l340_165"
                 alt="게시글 이미지" class="post-image">
                 <p class="post-text">
