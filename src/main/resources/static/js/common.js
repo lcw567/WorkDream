@@ -1,5 +1,4 @@
 /* 공용 */
-
 // 아이디칸 입력제한
 function replaceInputId(event) {
     let value = event.target.value;
@@ -51,8 +50,8 @@ function replaceInputEmail(event) {
     event.target.value = value;
 }
 
-// 휴대폰칸 입력제한
-function replaceInputPhone(event) {
+// 숫자칸 입력제한
+function replaceInputNumber(event) {
     let value = event.target.value;
 
     // 띄어쓰기 제한, 숫자만 입력 가능
@@ -61,8 +60,21 @@ function replaceInputPhone(event) {
 }
 
 // 아이디 유효성 검사
-function validateId() {
+function validateId(id) {
+    const idCheck = document.getElementById("id-check");
+    const idConfirmError = document.getElementById("id-error-confirm");
+    const regex = /^[a-z][a-z0-9_]{3,19}$/;
 
+    if(regex.test(id)) {
+        console.log("id 유효성 검사 통과");
+        idCheck.style.display = "flex";
+        idConfirmError.style.display = "none";
+        return true;
+    } else {
+        idCheck.style.display = "none";
+        idConfirmError.style.display = "flex";
+        return false;
+    }
 }
 
 // 비밀번호 유효성 검사
@@ -81,7 +93,7 @@ function validatePwd(password) {
 
 // 비밀번호 확인 유효성 검사
 function validateRePwd(password, rePassword) {
-    const pwdMatchError = document.getElementById("pwd-error-match");
+    const pwdMatchError = document.getElementById("pwd-error-confirm");
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
 
     if(password == rePassword && regex.test(rePassword)) {
@@ -121,8 +133,17 @@ function validateTerms(requiredTerms) {
     return true;
 }
 
-/* header.jsp */
+// 사업자등록번호 유효성 검사
+function validateNumber(registNumber) {
+    const numberCheck = document.getElementById("number-check");
+    const numberConfirmError = document.getElementById("number-error-confirm");
 
+    console.log("사업자등록번호 유효성 검사 통과");
+    numberCheck.style.display = "flex";
+    return true;
+}
+
+/* header.jsp */
 // 햄버거 버튼 전용 (전체 메뉴 테이블 온오프)
 try {
     const menuButton = document.getElementById("menuButton");
@@ -180,7 +201,6 @@ function activeMenu(menuNo) {
 
 
 /* login.jsp */
-
 // 로그인 섹션 변경
 function changeLoginSection() {
     const personSection = document.getElementById("login-section-person");
@@ -224,16 +244,15 @@ try {
 
 
 /* registrationPerson.jsp */
-
 try {
-    const registId = document.getElementById("registId");
-    const registPwd = document.getElementById("registPwd");
-    const registRePwd = document.getElementById("registRePwd");
-    const registEmail = document.getElementById("registEmail");
-    const registPhone = document.getElementById("registPhone");
-    const registTermsCheckButton = document.getElementById("allCheckTerms");
-    const registTerms = document.querySelectorAll(".terms");
-    const registButton = document.getElementById("btnRegist");
+    const registId = document.querySelector("#registDetail-form.Person #registId");
+    const registPwd = document.querySelector("#registDetail-form.Person #registPwd");
+    const registRePwd = document.querySelector("#registDetail-form.Person #registRePwd");
+    const registEmail = document.querySelector("#registDetail-form.Person #registEmail");
+    const registPhone = document.querySelector("#registDetail-form.Person #registPhone");
+    const registTermsCheckButton = document.querySelector("#registDetail-form.Person #allCheckTerms");
+    const registTerms = document.querySelectorAll("#registDetail-form.Person .terms");
+    const registButton = document.querySelector("#registDetail-form.Person #btnRegist");
 
     // 약관 전체 동의/해제
     registTermsCheckButton.addEventListener('change', function() {
@@ -259,7 +278,7 @@ try {
 
     // 전체 유효성 검사 함수
     function validateForm() {
-        const isIdValid = registId.value.trim() !== "";
+        const isIdValid = validateId(registId.value);
         const isPwdValid = validatePwd(registPwd.value);
         const isRePwdValid = validateRePwd(registPwd.value, registRePwd.value);
         const isEmailValid = validateEmail(registEmail.value);
@@ -276,7 +295,15 @@ try {
 
     registId.addEventListener("input", (event) => {
         replaceInputId(event);
-        validateForm();
+        if(registId.value.length >= 4) {
+            validateId(registId.value);
+        } else {
+            const idCheck = document.getElementById("id-check");
+            const idConfirmError = document.getElementById("id-error-confirm");
+
+            idCheck.style.display = "none";
+            idConfirmError.style.display = "none";
+        }
     });
     registPwd.addEventListener("input", (event) => {
         replaceInputPwd(event);
@@ -291,7 +318,106 @@ try {
         validateEmail(registEmail.value);
     });
     registPhone.addEventListener("input", (event) => {
-        replaceInputPhone(event);
+        replaceInputNumber(event);
+    });
+    registButton.addEventListener("click", (event) => {
+        validateForm();
+    });
+} catch(error) {
+    console.error("오류 발생: ", error);
+}
+
+
+/* registrationBusiness.jsp */
+try {
+    const registNumber = document.querySelector("#registDetail-form.Business #registNumber");
+    const registId = document.querySelector("#registDetail-form.Business #registId");
+    const registPwd = document.querySelector("#registDetail-form.Business #registPwd");
+    const registRePwd = document.querySelector("#registDetail-form.Business #registRePwd");
+    const registEmail = document.querySelector("#registDetail-form.Business #registEmail");
+    const registPhone = document.querySelector("#registDetail-form.Business #registPhone");
+    const registTermsCheckButton = document.querySelector("#registDetail-form.Business #allCheckTerms");
+    const registTerms = document.querySelectorAll("#registDetail-form.Business .terms");
+    const registButton = document.querySelector("#registDetail-form.Business #btnRegist");
+
+    // 약관 전체 동의/해제
+    registTermsCheckButton.addEventListener('change', function() {
+        registTerms.forEach(checkbox => {
+            checkbox.checked = registTermsCheckButton.checked;
+        })
+    });
+
+    registTerms.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (Array.from(registTerms).every(chk => chk.checked)) {
+                registTermsCheckButton.checked = true;
+                registTermsCheckButton.indeterminate = false;
+            } else if (Array.from(registTerms).every(chk => !chk.checked)) {
+                registTermsCheckButton.checked = false;
+                registTermsCheckButton.indeterminate = false;
+            } else {
+                registTermsCheckButton.checked = false;
+                registTermsCheckButton.indeterminate = true;
+            }
+        });
+    });
+
+    // 전체 유효성 검사 함수
+    function validateForm() {
+        const isNumberValid = validateNumber(registNumber.value);
+        const isIdValid = validateId(registId.value);
+        const isPwdValid = validatePwd(registPwd.value);
+        const isRePwdValid = validateRePwd(registPwd.value, registRePwd.value);
+        const isEmailValid = validateEmail(registEmail.value);
+        const isTermsValid = validateTerms(Array.from(registTerms).filter(terms => terms.required));
+
+        // 조건을 모두 만족하면 폼 제출
+        if (isNumberValid && isIdValid && isPwdValid && isRePwdValid && isEmailValid && isTermsValid) {
+            form.submit();
+        } else {
+            alert("정확히 입력해주세요. 필수 항목은 반드시 작성해야합니다.");
+            window.scrollTo(0, 0);
+        }
+    }
+
+    registNumber.addEventListener("input", (event) => {
+        replaceInputNumber(event);
+        if(registNumber.value.length === 10) {
+            validateNumber(registNumber.value);
+        } else {
+            const numberCheck = document.getElementById("number-check");
+            const numberConfirmError = document.getElementById("number-error-confirm");
+
+            numberCheck.style.display = "none";
+            numberConfirmError.style.display = "none";
+        }
+    });
+    registId.addEventListener("input", (event) => {
+        replaceInputId(event);
+        if(registId.value.length >= 4) {
+            validateId(registId.value);
+        } else {
+            const idCheck = document.getElementById("id-check");
+            const idConfirmError = document.getElementById("id-error-confirm");
+
+            idCheck.style.display = "none";
+            idConfirmError.style.display = "none";
+        }
+    });
+    registPwd.addEventListener("input", (event) => {
+        replaceInputPwd(event);
+        validatePwd(registPwd.value);
+    });
+    registRePwd.addEventListener("input", (event) => {
+        replaceInputPwd(event);
+        validateRePwd(registPwd.value, registRePwd.value);
+    });
+    registEmail.addEventListener("input", (event) => {
+        replaceInputEmail(event);
+        validateEmail(registEmail.value);
+    });
+    registPhone.addEventListener("input", (event) => {
+        replaceInputNumber(event);
     });
     registButton.addEventListener("click", (event) => {
         validateForm();

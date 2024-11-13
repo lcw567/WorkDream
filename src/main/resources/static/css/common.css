@@ -75,6 +75,7 @@ label {
 	justify-content: center;
 	align-items: center;
 	white-space: nowrap;
+	line-height: 1;
 }
 
 label > input[type="checkbox"] {
@@ -891,7 +892,7 @@ footer > * {
 }
 
 #registDetail-form > h6 {
-	margin-top: 5%;
+	margin-top: 7%;
 	text-align: left;
 	font-size: 0.9rem;
 }
@@ -918,41 +919,6 @@ footer > * {
 	background-color: #4E21A8;
 	border-color: #4E21A8;
 	font-family: 'MonoplexKR-SemiBold';
-	color: #FFFFFF;
-}
-
-#registDetail-form > span {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 2% 0 5% 0;
-}
-
-#registDetail-form > span > input {
-	width: 80%;
-	height: 3rem;
-	padding: 0 3%;
-	border: 1px solid #000;
-	border-radius: 10px;
-	font-family: 'MonoplexKR-Regular';
-	font-weight: 400;
-	font-size: 1rem;
-}
-
-#registDetail-form > span > input::placeholder {
-	word-spacing: -0.3rem;
-	font-size: 0.8rem;
-	color: #6D47B7;
-}
-
-#registDetail-form > span > button {
-	width: 18%;
-	height: 3rem;
-	background-color: #4E21A8;
-	border: 1px solid #4E21A8;
-	border-radius: 10px;
-	font-size: 0.9rem;
 	color: #FFFFFF;
 }
 
@@ -1059,7 +1025,6 @@ footer > * {
 }
 
 #registDetail-form-terms > span > label {
-	line-height: 1;
 	font-size: 0.9rem;
 }
 

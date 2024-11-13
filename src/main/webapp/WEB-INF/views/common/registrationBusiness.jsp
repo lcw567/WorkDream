@@ -41,14 +41,15 @@
 		<h1>워크드림 통합 기업회원 가입</h1>
 		
 		<section>
-			<form id="registDetail-form" action="#" method="post">
+			<form id="registDetail-form" class="Business" action="#" method="post">
 				<h2>기업회원</h2>
 				<input type="hidden" name="userType" value="B" />
 				
 				<h6>사업자등록번호 (필수)</h6>
-				<input type="text" id="registNumber" name="registNumber" placeholder="사업자 등록번호 직접입력(10자리)" />
+				<input type="text" id="registNumber" name="registNumber" maxlength="10" placeholder="사업자 등록번호 직접입력(10자리)" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />사업자등록번호가 없으신가요? <a href="">사업자등록번호가 없을 때</a></p>
-				<p class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />올바른 사업자등록번호가 아닙니다.</p>
+				<p id="number-check" class="check"><img src="${pageContext.request.contextPath}/img/icon_check.png" />확인 완료되었습니다.</p>
+				<p id="number-error-confirm" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />올바른 사업자등록번호가 아닙니다.</p>
 				
 				<h6>기업 인증</h6> 
 				<div id="registDetail-form-file">
@@ -59,7 +60,7 @@
 						<button type="button">파일 선택</button>
 					</label>
 					
-					<label>
+					<label for="">
 						<input type="checkbox" id="">
 						<span></span>&ensp;다음에 인증
 					</label>
@@ -67,13 +68,10 @@
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />사업자등록증명원이란?<a href="">사업자등록증명원 가이드라인</a></p>
 				
 				<h6>아이디 (필수)</h6>
-				<span>
-					<input type="text" id="registId" name="userId" placeholder="아이디 입력(4~20자리)" />
-					<button type="button">중복확인</button>
-				</span>
+				<input type="text" id="registId" name="userId" placeholder="아이디 입력(4~20자리)" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />영문 소문자, 숫자, 특수문자 '_'만 사용 가능</p>
-				<p class="check"><img src="${pageContext.request.contextPath}/img/icon_check.png" />사용가능한 아이디입니다.</p>
-				<p class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />사용할 수 없는 아이디입니다.</p>
+				<p id="id-check" class="check"><img src="${pageContext.request.contextPath}/img/icon_check.png" />사용가능한 아이디입니다.</p>
+				<p id="id-error-confirm" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />사용할 수 없는 아이디입니다.</p>
 				
 				<h6>비밀번호 (필수)</h6>
 				<input type="password" id="registPwd" name="userPwd" maxlength="16" placeholder="비밀번호 입력(8~16자리)" />
@@ -82,7 +80,7 @@
 				
 				<h6>비밀번호 확인 (필수)</h6>
 				<input type="password" id="registRePwd" placeholder="비밀번호 재입력" />
-				<p id="pwd-error-match" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />비밀번호가 틀립니다.</p>
+				<p id="pwd-error-confirm" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />비밀번호가 틀립니다.</p>
 				
 				<h6>이메일 (필수)</h6>
 				<input type="email" id="registEmail" name="email" placeholder="email@workdream.co.kr" />
