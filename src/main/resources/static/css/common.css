@@ -891,6 +891,7 @@ footer > * {
 }
 
 #registPerson-form > h6 {
+	margin-top: 5%;
 	text-align: left;
 	font-size: 0.9rem;
 }
@@ -913,17 +914,11 @@ footer > * {
 	color: #6D47B7;
 }
 
-#registPerson-form > input[type="submit"] {
+#registPerson-form > input[type="button"] {
 	background-color: #4E21A8;
 	border-color: #4E21A8;
 	font-family: 'MonoplexKR-SemiBold';
 	color: #FFFFFF;
-}
-
-#registPerson-form > input[type="submit"]:disabled {
-	background-color: #E1DEF1;
-	border-color: #B4A3DB;
-	cursor: default;
 }
 
 #registPerson-form > span {
