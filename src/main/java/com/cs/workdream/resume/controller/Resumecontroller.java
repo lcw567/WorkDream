@@ -24,7 +24,7 @@ public class Resumecontroller {
 		return "resume/enrollresume";
 	}
 	
-	@RequestMapping("/resumeDashboard")
+	@GetMapping("/resumeDashboard")
 	public String ResumDacsboard() {
 		return "resume/resumeDashboard";
 	}

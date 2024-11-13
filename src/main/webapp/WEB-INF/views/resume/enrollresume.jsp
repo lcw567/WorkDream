@@ -14,7 +14,7 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
         <div id="inner">
-            <form action="/resumeDashboard" method="post">
+            <form action="${pageContext.request.contextPath}/resume/resumeDashboard" method="get">
                 <div class="resume_title">
                     <h1>이력서 제목</h1> <input type="text" name="resumetitle" placeholder="이력서의 제목을 입력해주세요.">
                 </div>
@@ -344,12 +344,12 @@
                 </div>
                 <div class="Career">
                     <fieldset class="career">
+                        <legend class="career_Lv">경력</legend>
                         <label class="careerYorN">경력이 있을 경우 선택해주세요.</label>
                             <label for="CareerY">
                                 <input type="checkbox" id="CareerY" />
                                 <span></span>&nbsp;
                         </label>
-                        <legend class="career_Lv">경력</legend>
                         <div class="career1">
                             <fieldset class="company_title">
                                 <legend>회사명</legend>

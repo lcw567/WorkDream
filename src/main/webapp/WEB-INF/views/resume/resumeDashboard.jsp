@@ -29,10 +29,11 @@
                     </div>
                 </div> 
             </div>
-
-            <div class="button-container">
-                <button class="toenroll_page">이력서 등록하기</button>
-            </div>
+            <form action="${pageContext.request.contextPath}/resume/enrollresume">
+                <div class="button-container">
+                    <button type="submit" class="toenroll_page">이력서 등록하기</button>
+                </div>
+            </form>
         </div>
         <main>
             <div class="total-count">총 3건</div>

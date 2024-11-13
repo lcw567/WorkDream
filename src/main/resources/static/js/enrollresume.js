@@ -448,7 +448,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const careerLabel = document.querySelector("label.careerYorN"); // "경력이 있을 경우 선택해주세요." 라벨
     const checkboxLabel = careerCheckbox.parentElement; // 체크박스를 감싸는 라벨
     const careerFieldset = document.querySelector("fieldset.career"); // 필드셋
-    const careerDetails = document.querySelectorAll(".career1, .career2, .career3, .career_Lv"); // 필드셋 내부의 세부 요소들
+    const careerDetails = document.querySelectorAll(".career1, .career2, .career3"); // 필드셋 내부의 세부 요소들
 
     // 처음에는 필드셋 내부의 세부 요소들을 숨깁니다.
     careerDetails.forEach(field => field.style.display = "none");
@@ -467,6 +467,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
 
 
 

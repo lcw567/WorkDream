@@ -271,7 +271,7 @@ input:focus{
     float: right;
     bottom: 270px;
     right: 70px;
-    border: 2px solid #999999;
+    border: 2px solid #cdcdcd;
 }
 
 .profile_img {
@@ -651,6 +651,7 @@ input:focus{
 
 .exp1{
     display: flex;
+    gap: 12px;
 }
 
 .activity{
@@ -763,7 +764,7 @@ input:focus{
     padding: 20px;
     resize: none;
     border: none;
-    width: 1090px;
+    width: 1130px;
     height: 250px;
     font-size: 0.8rem;
 }
