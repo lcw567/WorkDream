@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 1. 자소서 등록하기 버튼 클릭 시 selfIntro.jsp로 이동
     if (registerButton) {
         registerButton.addEventListener('click', function () {
-            window.location.href = `${contextPath}/member/selfIntro`;
+            window.location.href = `${contextPath}/resume/selfIntro`;
         });
     }
 
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const introId = introItem.getAttribute('data-id');
                 if (introId) {
-                    window.location.href = `${contextPath}/member/selfIntro?id=${introId}`;
+                    window.location.href = `${contextPath}/resume/selfIntro?id=${introId}`;
                 } else {
                     alert('수정할 자소서의 ID가 존재하지 않습니다.');
                 }
