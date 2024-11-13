@@ -123,24 +123,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 직무 카테고리 체크박스 제어
     const jobCheckboxes = document.querySelectorAll(".job-checkbox");
-    const jobNoneCheckbox = document.getElementById("job-NONE");
 
     jobCheckboxes.forEach(function(checkbox) {
         checkbox.addEventListener("change", function() {
-            if (checkbox === jobNoneCheckbox) {
-                if (checkbox.checked) {
-                    // "선택 안 함"이 체크되면 다른 모든 체크박스 해제
-                    jobCheckboxes.forEach(function(box) {
-                        if (box !== jobNoneCheckbox) {
-                            box.checked = false;
-                        }
-                    });
-                }
-            } else {
-                if (checkbox.checked) {
-                    // 다른 체크박스가 체크되면 "선택 안 함" 해제
-                    jobNoneCheckbox.checked = false;
-                }
+            if (checkbox.checked) {
+                // 다른 모든 체크박스 해제
+                jobCheckboxes.forEach(function(box) {
+                    if (box !== checkbox) {
+                        box.checked = false;
+                    }
+                });
             }
         });
     });
