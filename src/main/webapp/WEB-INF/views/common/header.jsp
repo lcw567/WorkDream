@@ -45,14 +45,14 @@
     		<c:choose>
     			<%-- 로그인(구직자) --%>
     			<c:when test="${ !empty loginUser && loginUser.getType == 'P' }">
-    				<a href="#">로그아웃</a>
+    				<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
 	    			<b>|</b>
 	    			<a href="#">마이페이지</a>
     			</c:when>
     			
     			<%--로그인(기업) --%>
     			<c:when test="${ !empty loginUser && loginUser.getType == 'B' }">
-    				<a href="#">로그아웃</a>
+    				<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
 	    			<b>|</b>
 	    			<a href="#">기업 홈</a>
     			</c:when>
@@ -62,7 +62,7 @@
     				<div class="login-menu">
 		    			<a href="${pageContext.request.contextPath}/login">로그인</a>
 		    			<b>|</b>
-		    			<a href="#">회원가입</a>
+		    			<a href="${pageContext.request.contextPath}/registration">회원가입</a>
 		    			<button id="btn-bizService">기업서비스 &#8744;</button>
 		    		</div>
     			</c:otherwise>

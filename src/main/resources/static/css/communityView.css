@@ -392,6 +392,18 @@ body {
 	font-size: 1rem;
 }
 
+.category-line {
+    margin-bottom: 1.5rem;
+}
+
+.category-line p {
+    display: inline-block;
+    margin-right: 2rem;
+    font-size: 1rem;
+    color: #4E21A8;
+    font-weight: bold;
+}
+
 /* 해시태그 컨테이너 */
 .hashtags {
     display: flex;
@@ -416,6 +428,51 @@ body {
     cursor: pointer;
 }
 
+/* 게시글 수정 및 삭제 버튼 스타일 */
+.post-buttons .edit-button,
+.post-buttons .delete-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #4E21A8;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.post-buttons .edit-button:hover,
+.post-buttons .delete-button:hover {
+    background-color: #3a1b7d;
+}
+
+/* 댓글 삭제 버튼 스타일 */
+.comment-delete-button {
+    margin-left: 0.5rem;
+    color: #4E21A8;
+    font-size: 0.85rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.comment-delete-button:hover {
+    text-decoration: underline;
+}
+
+/* 댓글 삭제 버튼 스타일 */
+.comment-delete-button {
+    margin-left: 0.5rem;
+    color: #4E21A8;
+    font-size: 0.85rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.comment-delete-button:hover {
+    text-decoration: underline;
+}
 
 /* 추가 스타일 */
 

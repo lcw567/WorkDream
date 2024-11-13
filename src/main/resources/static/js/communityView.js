@@ -1,5 +1,3 @@
-// communityView.js
-
 document.addEventListener("DOMContentLoaded", function() {
     // 신고 버튼 클릭 시 알림창 표시
     const reportButtons = document.querySelectorAll(".report-button");
@@ -37,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 댓글의 신고, 공감, 답글 버튼 이벤트 위임
+    // 댓글의 신고, 공감, 답글, 삭제 버튼 이벤트 위임
     const commentList = document.querySelector(".comment-list");
     commentList.addEventListener("click", function(event) {
         const target = event.target;
@@ -59,6 +57,12 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (target.classList.contains("reply-action")) {
             const comment = target.closest(".comment");
             toggleReplyBox(comment);
+        } else if (target.classList.contains("comment-delete-button")) {
+            const comment = target.closest(".comment");
+            if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
+                comment.remove();
+                alert("댓글이 삭제되었습니다.");
+            }
         }
     });
 
@@ -79,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 댓글 추가 함수
+    // 댓글 추가 함수 (삭제 버튼 포함)
     function addComment(text, isReply, parentComment = null) {
         const commentList = document.querySelector(".comment-list");
         const comment = document.createElement("div");
@@ -94,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <span class="comment-user-name">홍길동</span>
                 <span class="comment-date">방금 전</span>
                 <button class="comment-report-button">신고</button>
+                <button class="comment-delete-button">삭제</button> <!-- 삭제 버튼 추가 -->
             </div>
             <p class="comment-text">${escapeHtml(text)}</p>
             <div class="comment-actions">
