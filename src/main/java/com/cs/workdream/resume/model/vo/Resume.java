@@ -16,9 +16,12 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Resume {
-	
-	private String resume_title;
+
+	private int resume_no;
+	private int person_no;
+	private String title;
 	private Date create_date;
 	private Date modified_date;
-	private Boolean delete;
+	private boolean deleted;
+
 }
