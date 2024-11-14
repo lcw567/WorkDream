@@ -61,7 +61,7 @@
 				</ul>
 				
 				<!-- 회원 로그인 -->
-				<form id="login-article-form" action="#" method="post">
+				<form id="login-article-form" action="${pageContext.request.contextPath}/login.me" method="post">
 					<input type="text" id="loginId" name="userId" inputmode="text" autocorrect="off" autocapitalize="none" placeholder="아이디" required />
 					<input type="password" id="loginPwd" name="userPwd" inputmode="text" autocorrect="off" autocapitalize="none" placeholder="비밀번호" required />
 					<input type="hidden" name="userType" value="P" />
