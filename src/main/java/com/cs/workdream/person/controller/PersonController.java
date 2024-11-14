@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PersonController {
 	@GetMapping("/applicantsMypage")
     public String applicantsMypage() {
-        return "member/applicantsMypage"; // applicantsMypage.jsp
+        return "person/applicantsMypage"; // applicantsMypage.jsp
     }
 
 	@GetMapping("/applicationmanage")
 	public String applicationmanage() {
-		return "member/applicationmanage";
+		return "person/applicationmanage";
 	}
 	
 	@GetMapping("/clipping")
 	public String clipping() {
-		return "member/clipping";
+		return "person/clipping";
 	}
 	
 	@GetMapping("/clippingcompany")
 	public String clippingcompany() {
-		return "member/clippingcompany";
+		return "person/clippingcompany";
 	}
 }

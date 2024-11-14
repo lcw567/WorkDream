@@ -33,7 +33,7 @@
         <section class="application-status">
             <div class="header">
                 <h2>지원현황 전체보기</h2>
-                <button class="add-button" onclick="location.href='${pageContext.request.contextPath}/member/applicationmanage'">+</button>
+                <button class="add-button" onclick="location.href='${pageContext.request.contextPath}/person/applicationmanage'">+</button>
             </div>
             <div class="status-cards">
                 <div class="status-card">
@@ -75,7 +75,7 @@
                     <h3>포트폴리오 등록</h3>
                     <p>포트폴리오를 등록하고 검토하세요</p>
                 </div>
-                <div class="action" onclick="location.href='${pageContext.request.contextPath}/member/clippingcompany'">
+                <div class="action" onclick="location.href='${pageContext.request.contextPath}/person/clippingcompany'">
                     <h3>즐겨찾기 공고/기업</h3>
                     <p>즐겨찾기 목록을 한눈에 확인하세요</p>
                 </div>
