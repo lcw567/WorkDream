@@ -3,18 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
   
- <configuration>
+<configuration>
  
- 	<settings>
+	<settings>
+		<!-- null값 처리 -->
  		<setting name="jdbcTypeForNull" value="NULL"/>
- 	</settings>
+	</settings>
  	
- 	<typeAliases>
- 		
- 	</typeAliases>
+	<typeAliases>
+ 		<typeAlias alias="Member" type="com.cs.workdream.member.model.vo.Member"/>
+	</typeAliases>
  	
- 	<mappers>
- 		
- 	</mappers>
+ 	<!-- mapper 경로 등록 -->
+	<mappers>
+		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/board-mapper.xml"/>
+	</mappers>
  	
- </configuration>
+</configuration>
