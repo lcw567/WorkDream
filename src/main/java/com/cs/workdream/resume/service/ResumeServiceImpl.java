@@ -1,10 +1,12 @@
 package com.cs.workdream.resume.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cs.workdream.resume.model.dao.ResumeDao;
 import com.cs.workdream.resume.model.vo.Resume;
 
+@Service
 public class ResumeServiceImpl implements ResumeService{
 	
     private final ResumeDao resumeDao;
