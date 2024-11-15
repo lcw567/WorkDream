@@ -1,3 +1,5 @@
+// communityView.js 
+
 document.addEventListener("DOMContentLoaded", function() {
     // 신고 버튼 클릭 시 알림창 표시
     const reportButtons = document.querySelectorAll(".report-button");
@@ -11,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const postLikeButton = document.querySelector(".post-buttons .like-button");
     let postLiked = false;
     postLikeButton.addEventListener("click", function() {
-        const likeCount = postLikeButton.querySelector(".like-count"); // .like-count 클래스로 변경
+        const likeCount = postLikeButton.querySelector(".like-count");
         if (postLiked) {
             postLikeButton.classList.remove("liked");
             likeCount.innerText = parseInt(likeCount.innerText) - 1;
@@ -20,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
             likeCount.innerText = parseInt(likeCount.innerText) + 1;
         }
         postLiked = !postLiked;
+        // 선택적으로, 서버에 공감 수를 전송할 수 있습니다.
     });
 
     // 댓글 등록 버튼 클릭 시 댓글 추가
@@ -28,14 +31,43 @@ document.addEventListener("DOMContentLoaded", function() {
         const commentInput = document.querySelector(".comment-input");
         const commentText = commentInput.value.trim();
         if (commentText) {
-            addComment(commentText, false);  // 댓글 추가 시 reply=false로 설정
-            commentInput.value = ""; // 입력 필드 초기화
+            // AJAX를 통해 댓글을 서버에 전송
+            const postId = new URLSearchParams(window.location.search).get('postId');
+            // 실제 사용자 정보는 세션이나 다른 방법으로 가져와야 합니다.
+            const userId = "홍길동"; // 실제 사용자 정보로 대체 필요
+            const data = {
+                postingNo: postId,
+                content: commentText
+                // userNo는 세션/사용자 컨텍스트에서 가져와야 합니다.
+            };
+
+            fetch(`${contextPath}/board/api/replies`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if(result.status === "success") {
+                    // 댓글이 성공적으로 등록되면 댓글 목록을 새로고침
+                    loadReplies();
+                    commentInput.value = "";
+                } else {
+                    alert("댓글 등록에 실패했습니다.");
+                }
+            })
+            .catch(error => {
+                console.error("Error adding reply:", error);
+                alert("댓글 등록 중 오류가 발생했습니다.");
+            });
         } else {
             alert("댓글 내용을 입력해 주세요.");
         }
     });
 
-    // 댓글의 신고, 공감, 답글, 삭제 버튼 이벤트 위임
+    // 댓글의 신고, 공감, 삭제 버튼 이벤트 위임
     const commentList = document.querySelector(".comment-list");
     commentList.addEventListener("click", function(event) {
         const target = event.target;
@@ -54,97 +86,76 @@ document.addEventListener("DOMContentLoaded", function() {
                 likeCount++;
             }
             likeCountSpan.innerText = likeCount;
-        } else if (target.classList.contains("reply-action")) {
-            const comment = target.closest(".comment");
-            toggleReplyBox(comment);
+            // 선택적으로, 서버에 공감 수를 전송할 수 있습니다.
         } else if (target.classList.contains("comment-delete-button")) {
             const comment = target.closest(".comment");
+            const replyNo = comment.getAttribute("data-reply-no");
             if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
-                comment.remove();
-                alert("댓글이 삭제되었습니다.");
+                // AJAX를 통해 댓글 삭제 요청
+                fetch(`${contextPath}/board/api/replies/${replyNo}`, {
+                    method: "DELETE"
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if(result.status === "success") {
+                        comment.remove();
+                        // 댓글 수 업데이트
+                        const rcount = document.getElementById('rcount');
+                        rcount.innerText = parseInt(rcount.innerText) - 1;
+                    } else {
+                        alert("댓글 삭제에 실패했습니다.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error deleting reply:", error);
+                    alert("댓글 삭제 중 오류가 발생했습니다.");
+                });
             }
         }
     });
 
-    // 답글 등록 버튼 클릭 시 답글 추가 (이벤트 위임)
-    document.body.addEventListener("click", function(event) {
-        if (event.target.classList.contains("reply-submit-button")) {
-            const replyBox = event.target.closest(".reply-box");
-            const replyInput = replyBox.querySelector(".reply-input");
-            const replyText = replyInput.value.trim();
-            if (replyText) {
-                const parentComment = replyBox.closest(".comment");
-                addComment(replyText, true, parentComment);  // reply=true, append to parent comment
-                replyInput.value = ""; // 입력 필드 초기화
-                replyBox.style.display = "none"; // 답글 입력 박스 숨기기
-            } else {
-                alert("답글 내용을 입력해 주세요.");
-            }
-        }
-    });
+    // 댓글 목록 로드 함수
+    function loadReplies() {
+        const postId = new URLSearchParams(window.location.search).get('postId');
 
-    // 댓글 추가 함수 (삭제 버튼 포함)
-    function addComment(text, isReply, parentComment = null) {
-        const commentList = document.querySelector(".comment-list");
-        const comment = document.createElement("div");
-        comment.classList.add("comment");
-        if (isReply) {
-            comment.classList.add("reply");  // 답글일 경우 클래스 추가
-        }
-
-        comment.innerHTML = `
-            <div class="comment-info">
-                <img src="${contextPath}/img/icon_user.png" alt="사용자 아이콘" class="comment-user-icon">
-                <span class="comment-user-name">홍길동</span>
-                <span class="comment-date">방금 전</span>
-                <button class="comment-report-button">신고</button>
-                <button class="comment-delete-button">삭제</button> <!-- 삭제 버튼 추가 -->
-            </div>
-            <p class="comment-text">${escapeHtml(text)}</p>
-            <div class="comment-actions">
-                ${!isReply ? '<button class="comment-action reply-action">답글</button>' : ''}  <!-- 댓글에는 답글 버튼 표시, 답글에는 표시 안 함 -->
-                <button class="comment-action like-button">👍 <span class="like-count">0</span></button>
-            </div>
-            ${!isReply ? '<div class="reply-section"></div>' : ''}
-        `;
-
-        // 댓글이면 리스트에 추가, 답글이면 특정 댓글의 reply-section에 추가
-        if (isReply && parentComment) {
-            const replySection = parentComment.querySelector(".reply-section");
-            if (replySection) {
-                replySection.appendChild(comment);
-            }
-        } else {
-            commentList.appendChild(comment);
-        }
+        fetch(`${contextPath}/board/api/replies?postId=${postId}`)
+            .then(response => response.json())
+            .then(data => {
+                populateReplies(data.replies);
+                setReplyCount(data.replies.length);
+            })
+            .catch(error => console.error("Error loading replies:", error));
     }
 
-    // 답글 박스 토글 함수
-    function toggleReplyBox(comment) {
-        // 먼저 모든 reply-box를 숨김
-        document.querySelectorAll(".reply-box").forEach(function(box) {
-            box.style.display = "none";
-        });
+    // 댓글 목록 업데이트 함수
+    function populateReplies(replies) {
+        const replyBody = document.querySelector(".comment-list");
+        replyBody.innerHTML = '';
 
-        // 해당 댓글에 reply-box가 없으면 생성
-        let replyBox = comment.querySelector(".reply-box");
-        if (!replyBox) {
-            replyBox = document.createElement("div");
-            replyBox.classList.add("reply-box");
-            replyBox.innerHTML = `
-                <img src="${contextPath}/img/down-right.png" alt="답글 아이콘" class="down-right">
-                <input type="text" placeholder="답변에 댓글을 입력해 보세요." class="reply-input">
-                <button class="reply-submit-button">등록</button>
+        replies.forEach(reply => {
+            const replyDiv = document.createElement("div");
+            replyDiv.classList.add("comment");
+            replyDiv.setAttribute("data-reply-no", reply.replyNo);
+            replyDiv.innerHTML = `
+                <div class="comment-info">
+                    <img src="${contextPath}/img/icon_user.png" alt="사용자 아이콘" class="comment-user-icon">
+                    <span class="comment-user-name">${reply.author}</span>
+                    <span class="comment-date">${new Date(reply.createdTime).toLocaleString()}</span>
+                    <button class="comment-report-button">신고</button>
+                    <button class="comment-delete-button">삭제</button>
+                </div>
+                <p class="comment-text">${escapeHtml(reply.content)}</p>
+                <div class="comment-actions">
+                    <button class="comment-action like-button">👍 <span class="like-count">${reply.likeCount}</span></button>
+                </div>
             `;
-            comment.appendChild(replyBox);
-        }
+            replyBody.appendChild(replyDiv);
+        });
+    }
 
-        // 토글
-        if (replyBox.style.display === "flex") {
-            replyBox.style.display = "none";
-        } else {
-            replyBox.style.display = "flex";
-        }
+    // 댓글 수 업데이트 함수
+    function setReplyCount(count) {
+        document.getElementById('rcount').innerText = count;
     }
 
     // XSS 방지용 HTML 이스케이프 함수
@@ -158,4 +169,7 @@ document.addEventListener("DOMContentLoaded", function() {
         };
         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
+
+    // 초기 로드 시 댓글 목록 불러오기
+    loadReplies();
 });
