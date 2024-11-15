@@ -27,12 +27,9 @@ public class Resume {
 	
 	private List<BasicInfo> basicInfo;
     private List<AcademicAbility> academicAbilities;
-    private List<License> licenses;
-    private List<LanguageSkill> languageSkills;
-    private List<Award> awards;
+    private List<Qualification> qualification;
     private List<Experience> experiences;
-    private EmploymentPreference employmentPreference;
-    private MilitaryService militaryService;
+    private EmploymentPreferences employmentPreference;
     private List<Skill> skills;
     private List<Career> careers;
 
