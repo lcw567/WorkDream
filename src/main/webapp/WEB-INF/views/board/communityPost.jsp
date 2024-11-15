@@ -9,64 +9,67 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css"> <!-- common.css 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityPost.css">
+    <script>
+        // JavaScript에서 contextPath를 사용할 수 있도록 변수로 전달
+        const contextPath = "${pageContext.request.contextPath}";
+    </script>
     <script src="${pageContext.request.contextPath}/js/communityPost.js" defer></script>
 </head>
 <body>
-<c:import url="/WEB-INF/views/common/header.jsp" />
-
-<div class="post-container">
-    <!-- 카테고리 선택 -->
-    <div class="category-select">
-        <label for="category"><h4>카테고리</h4></label>
-        <select id="category" name="category">
-            <option value="신입">신입</option>
-            <option value="채용공고">채용공고</option>
-            <option value="취준">취준</option>
-            <option value="자소서">자소서</option>
-            <option value="자격증">자격증</option>
-            <option value="Q&A">Q&A</option>
-            <option value="커리어">커리어</option>
-            <option value="이직">이직</option>
-            <option value="잡담">잡담</option>
-            <option value="면접">면접</option>
-        </select>
-    </div>
-
-    <!-- 제목 입력 -->
-    <div class="title-input">
-        <input type="text" placeholder="제목을 입력해주세요" name="title" required>
-    </div>
-
-    <!-- 내용 입력 -->
-    <div class="content-input">
-        <textarea placeholder="내용을 입력해주세요" name="content" required></textarea>
-        <p class="content-guidelines">
-            - 저작권 침해, 음란, 상습적 유해물, 기타 허락받지 않은 게시물은 경고 없이 삭제됩니다.
-        </p>
-    </div>
-
-    <!-- 이미지 첨부 -->
-     <div class="image-upload">
-        
-        <label for="imageInput" class="image-upload-label">
-            📷 이미지 첨부
-        </label>
-        <input type="file" accept="image/*" id="imageInput" name="image" style="display: none;" />
-    </div>
-
-    <div class="image-preview" id="imagePreview">
-        <!-- 선택한 이미지 미리보기로 표시 -->
-    </div>
-
-    <!-- 해시태그 입력 -->
-    <div class="hashtag-input">
-        <label for="hashtag"># 해시태그 입력</label>
-        <div class="hashtag-box">
-            <input type="text" id="hashtag" placeholder="입력 (최대 5개)">
+    <c:import url="/WEB-INF/views/common/header.jsp" />
+    
+    <div class="post-container">
+        <!-- 카테고리 선택 -->
+        <div class="category-select">
+            <label for="category"><h4>카테고리</h4></label>
+            <select id="category" name="category">
+                <option value="신입">신입</option>
+                <option value="채용공고">채용공고</option>
+                <option value="취준">취준</option>
+                <option value="자소서">자소서</option>
+                <option value="자격증">자격증</option>
+                <option value="Q&A">Q&A</option>
+                <option value="커리어">커리어</option>
+                <option value="이직">이직</option>
+                <option value="잡담">잡담</option>
+                <option value="면접">면접</option>
+            </select>
         </div>
-    </div>
-
-    <!-- 직무 카테고리 선택 -->
+    
+        <!-- 제목 입력 -->
+        <div class="title-input">
+            <input type="text" placeholder="제목을 입력해주세요" name="title" required>
+        </div>
+    
+        <!-- 내용 입력 -->
+        <div class="content-input">
+            <textarea placeholder="내용을 입력해주세요" name="content" required></textarea>
+            <p class="content-guidelines">
+                - 저작권 침해, 음란, 상습적 유해물, 기타 허락받지 않은 게시물은 경고 없이 삭제됩니다.
+            </p>
+        </div>
+    
+        <!-- 이미지 첨부 -->
+        <div class="image-upload">
+            <label for="imageInput" class="image-upload-label">
+                📷 이미지 첨부
+            </label>
+            <input type="file" accept="image/*" id="imageInput" name="image" style="display: none;" />
+        </div>
+    
+        <div class="image-preview" id="imagePreview">
+            <!-- 선택한 이미지 미리보기로 표시 -->
+        </div>
+    
+        <!-- 해시태그 입력 -->
+        <div class="hashtag-input">
+            <label for="hashtag"># 해시태그 입력</label>
+            <div class="hashtag-box">
+                <input type="text" id="hashtag" placeholder="입력 (최대 5개)">
+            </div>
+        </div>
+    
+        <!-- 직무 카테고리 선택 -->
     <div class="job-category-container">
         <label class="job-category-label"> 관련 직무 선택</label>
         <table class="job-category-table">
@@ -238,13 +241,13 @@
             </tr>
         </table>
     </div>
-    
-    <!-- 게시글 등록 버튼 -->
-    <div class="submit-button-container">
-        <button class="submit-button">게시글 등록</button>
+        
+        <!-- 게시글 등록 버튼 -->
+        <div class="submit-button-container">
+            <button class="submit-button">게시글 등록</button>
+        </div>
     </div>
-</div>
-
-<c:import url="/WEB-INF/views/common/footer.jsp" />
+    
+    <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

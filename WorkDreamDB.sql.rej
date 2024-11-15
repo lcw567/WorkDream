@@ -1,0 +1,38 @@
+diff a/WorkDreamDB.sql b/WorkDreamDB.sql	(rejected hunks)
+@@ -41,32 +41,12 @@
+ DROP SEQUENCE POSTING_SEQ;
+ DROP SEQUENCE REPLY_SEQ;
+ 
+-/* Member */
+-/* MEMBER ���̺� ���� */
+-CREATE TABLE MEMBER (
+-    USER_NO NUMBER NOT NULL,
+-    USER_TYPE CHAR(1) NOT NULL,
+-    USER_ID VARCHAR(20) NOT NULL,
+-    USER_PWD VARCHAR(16) NOT NULL,
+-    EMAIL VARCHAR2(30) NOT NULL,
+-    EROLL_DATE DATE,
+-    MODIFY_DATE TIMESTAMP NOT NULL,
+-    STATUS CHAR(1) DEFAULT 'Y' CHECK (STATUS IN('Y','N')),
+-    BUSINESS_NO NUMBER NULL,
+-    PERSON_NO NUMBER NULL
+-);
+ 
+-COMMENT ON COLUMN MEMBER.USER_NO IS 'ȸ����ȣ';
+-COMMENT ON COLUMN MEMBER.USER_TYPE IS 'ȸ������';
+-COMMENT ON COLUMN MEMBER.USER_ID IS 'ȸ�����̵�';
+-COMMENT ON COLUMN MEMBER.USER_PWD IS 'ȸ����й�ȣ';
+-COMMENT ON COLUMN MEMBER.EMAIL IS '�̸���';
+-COMMENT ON COLUMN MEMBER.EROLL_DATE IS 'ȸ��������';
+-COMMENT ON COLUMN MEMBER.MODIFY_DATE IS 'ȸ������������';
+-COMMENT ON COLUMN MEMBER.STATUS IS 'ȸ������(Y/N)';
+-COMMENT ON COLUMN MEMBER.BUSINESS_NO IS '�����ȣ';
+-COMMENT ON COLUMN MEMBER.PERSON_NO IS '���ι�ȣ';
++--------------------------------------------------
++-- 1. ���� ���̺� ����
++--------------------------------------------------
+ 
++<<<<<<< HEAD
+ /* POSTING ���̺� ���� */
+ CREATE TABLE POSTING (
+     POSTING_NO NUMBER NOT NULL,

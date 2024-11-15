@@ -1,6 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="boardMapper">
+
+    <!-- 카테고리 및 페이징 처리된 게시물 조회 -->
+    <select id="selectPosts" parameterType="map" resultType="com.cs.workdream.board.model.vo.Board">
+        SELECT 
+            POSTING_NO,
+            CATEGORY,
+            TITLE,
+            CONTENT,
+            IMAGE,
+            AUTHOR,
+            USER_NO,
+            CREATED_TIME,
+            UPDATED_TIME,
+            VIEW_COUNT,
+            LIKE_COUNT,
+            BUSINESS_NO,
+            PERSON_NO,
+            STATUS
+        FROM POSTING
+        WHERE 
+            (#{category} = '전체글' OR CATEGORY = #{category}) AND
+            STATUS = 'Y'
+        ORDER BY 
+            CASE 
+                WHEN #{filter} = '최신순' THEN CREATED_TIME
+                WHEN #{filter} = '조회순' THEN VIEW_COUNT
+                WHEN #{filter} = '공감 많은 순' THEN LIKE_COUNT
+            END DESC
+    </select>
+
+    <!-- 필터링된 게시물 수 조회 -->
+    <select id="countFilteredPosts" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM POSTING
+        WHERE 
+            (#{category} = '전체글' OR CATEGORY = #{category}) AND
+            STATUS = 'Y'
+    </select>
+
+    <!-- 전체 게시물 수 조회 -->
+    <select id="countAllPosts" resultType="int">
+        SELECT COUNT(*) FROM POSTING
+        WHERE STATUS = 'Y'
+    </select>
+
+    <!-- 카테고리별 게시물 수 조회 -->
+    <select id="countPostsByCategory" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM POSTING
+        WHERE CATEGORY = #{category} AND STATUS = 'Y'
+    </select>
+
+    <!-- 인기 게시물 조회 (조회수 기준 상위 5개) -->
+    <select id="selectPopularPosts" resultType="com.cs.workdream.board.model.vo.Board">
+        SELECT 
+            POSTING_NO,
+            CATEGORY,
+            TITLE,
+            CONTENT,
+            IMAGE,
+            AUTHOR,
+            USER_NO,
+            CREATED_TIME,
+            UPDATED_TIME,
+            VIEW_COUNT,
+            LIKE_COUNT,
+            BUSINESS_NO,
+            PERSON_NO,
+            STATUS
+        FROM POSTING
+        WHERE STATUS = 'Y'
+        ORDER BY VIEW_COUNT DESC
+        FETCH FIRST 5 ROWS ONLY
+    </select>
+
+    <!-- 게시글 ID로 단일 게시글 조회 -->
+    <select id="selectPost" parameterType="int" resultType="com.cs.workdream.board.model.vo.Board">
+        SELECT 
+            POSTING_NO,
+            CATEGORY,
+            TITLE,
+            CONTENT,
+            IMAGE,
+            AUTHOR,
+            USER_NO,
+            CREATED_TIME,
+            UPDATED_TIME,
+            VIEW_COUNT,
+            LIKE_COUNT,
+            BUSINESS_NO,
+            PERSON_NO,
+            STATUS
+        FROM POSTING
+        WHERE POSTING_NO = #{postingNo} AND STATUS = 'Y'
+    </select>
+
+    <!-- 새로운 게시글 삽입 -->
+    <insert id="insertPost" parameterType="com.cs.workdream.board.model.vo.Board">
+        <!-- 시퀀스에서 다음 값 가져오기 -->
+        <selectKey keyProperty="postingNo" resultType="int" order="BEFORE">
+            SELECT POSTING_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        
+        <!-- 게시글 삽입 -->
+        INSERT INTO POSTING (
+            POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, UPDATED_TIME, VIEW_COUNT, LIKE_COUNT, BUSINESS_NO, PERSON_NO, STATUS
+        ) VALUES (
+            #{postingNo}, #{category}, #{title}, #{content}, #{imagePath}, #{author}, #{userNo}, SYSDATE, NULL, 0, 0, #{businessNo}, #{personNo}, 'Y'
+        )
+    </insert>
+
+    <!-- 기존 게시글 업데이트 -->
+    <update id="updatePost" parameterType="com.cs.workdream.board.model.vo.Board">
+        UPDATE POSTING
+        SET CATEGORY = #{category},
+            TITLE = #{title},
+            CONTENT = #{content},
+            IMAGE = #{imagePath},
+            UPDATED_TIME = SYSDATE,
+            BUSINESS_NO = #{businessNo},
+            PERSON_NO = #{personNo}
+        WHERE POSTING_NO = #{postingNo} AND STATUS = 'Y'
+    </update>
+
+    <!-- 게시글 소프트 삭제 -->
+    <update id="deletePost" parameterType="int">
+        UPDATE POSTING
+        SET STATUS = 'N'
+        WHERE POSTING_NO = #{postingNo}
+    </update>
+
+    <!-- 특정 게시글의 해시태그 조회 -->
+    <select id="selectHashtags" parameterType="int" resultType="string">
+        SELECT HASHTAG FROM COMMUNITY_POST_HASHTAG
+        WHERE POSTING_NO = #{postingNo}
+    </select>
+
+    <!-- 해시태그 삽입 -->
+    <insert id="insertHashtag" parameterType="map">
+        INSERT INTO COMMUNITY_POST_HASHTAG (POSTING_NO, HASHTAG)
+        VALUES (#{postingNo}, #{hashtag})
+    </insert>
+
+    <!-- 특정 게시글의 댓글 조회 -->
+    <select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
+        SELECT 
+            REPLY_NO,
+            POSTING_NO,
+            USER_NO,
+            CONTENT,
+            CREATED_TIME,
+            LIKE_COUNT,
+            STATUS
+        FROM REPLY
+        WHERE POSTING_NO = #{postingNo} AND STATUS = 'Y'
+        ORDER BY CREATED_TIME ASC
+    </select>
+
+    <!-- 댓글 삽입 -->
+    <insert id="insertReply" parameterType="com.cs.workdream.board.model.vo.Reply" useGeneratedKeys="true" keyProperty="replyNo">
+        INSERT INTO REPLY (REPLY_NO, POSTING_NO, USER_NO, CONTENT, CREATED_TIME, LIKE_COUNT, STATUS)
+        VALUES (REPLY_SEQ.NEXTVAL, #{postingNo}, #{userNo}, #{content}, SYSDATE, 0, 'Y')
+    </insert>
+
+    <!-- 댓글 ID로 댓글 조회 -->
+    <select id="selectReplyById" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
+        SELECT 
+            REPLY_NO,
+            POSTING_NO,
+            USER_NO,
+            CONTENT,
+            CREATED_TIME,
+            LIKE_COUNT,
+            STATUS
+        FROM REPLY
+        WHERE REPLY_NO = #{replyNo} AND STATUS = 'Y'
+    </select>
+
+    <!-- 댓글 소프트 삭제 -->
+    <update id="deleteReply" parameterType="int">
+        UPDATE REPLY
+        SET STATUS = 'N'
+        WHERE REPLY_NO = #{replyNo}
+    </update>
 
 </mapper>

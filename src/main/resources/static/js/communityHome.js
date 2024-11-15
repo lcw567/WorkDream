@@ -10,18 +10,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 3. 주제별 카테고리 버튼 클릭 시 이동 처리
     document.querySelectorAll('.category-tags button').forEach(button => {
-	    button.addEventListener('click', () => {
-	        const category = button.getAttribute('data-category');
-	        location.href = `${basePath}/board/communityList?category=${category}`;
-	    });
-	});
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            location.href = `${basePath}/board/communityList?category=${encodeURIComponent(category)}`;
+        });
+    });
 
     // 4. 더보기 클릭 시 이동 처리
     document.querySelectorAll('.post-category h3 a').forEach(link => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
             const category = link.getAttribute('data-category');
-            location.href = `${basePath}/board/communityList?category=${category}`;
+            location.href = `${basePath}/board/communityList?category=${encodeURIComponent(category)}`;
         });
     });
 
@@ -53,7 +53,7 @@ function fetchPopularPosts() {
             popularPostList.innerHTML = '';
             data.posts.forEach(post => {
                 const postItem = document.createElement('li');
-                postItem.innerHTML = `<a href="/communityView?postId=${post.id}">${post.title}</a> <div class="icon-group"><span>🗨️ ${post.commentCount}</span><span>👁️ ${post.viewCount}</span></div>`;
+                postItem.innerHTML = `<a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a> <div class="icon-group"><span>🗨️ ${post.commentCount || 0}</span><span>👁️ ${post.viewCount}</span></div>`;
                 popularPostList.appendChild(postItem);
             });
         })
@@ -62,14 +62,14 @@ function fetchPopularPosts() {
 
 // 카테고리별 게시글 목록 가져오는 함수
 function fetchCategoryPosts(listId, category) {
-    fetch(`/api/posts?category=${category}`)
+    fetch(`/api/posts?category=${encodeURIComponent(category)}`)
         .then(response => response.json())
         .then(data => {
             const postList = document.getElementById(listId);
             postList.innerHTML = '';
             data.posts.forEach(post => {
                 const postItem = document.createElement('li');
-                postItem.innerHTML = `<a href="/communityView?postId=${post.id}">${post.title}</a> <div class="icon-group"><span>🗨️ ${post.commentCount}</span><span>👁️ ${post.viewCount}</span></div>`;
+                postItem.innerHTML = `<a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a> <div class="icon-group"><span>🗨️ ${post.commentCount || 0}</span><span>👁️ ${post.viewCount}</span></div>`;
                 postList.appendChild(postItem);
             });
         })

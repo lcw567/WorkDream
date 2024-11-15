@@ -22,4 +22,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.loginMember(sqlSession, m);
 	}
 
+	// 아이디 중복체크
+	@Override
+	public int idCheck(String checkId) {
+		return memberDao.idCheck(sqlSession, checkId);
+	}
+
 }
