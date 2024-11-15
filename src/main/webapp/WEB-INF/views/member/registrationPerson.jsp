@@ -10,6 +10,8 @@
 	
 	<!-- 외부 css / js 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>const contextPath = "${pageContext.request.contextPath}";</script>
     <script src="${pageContext.request.contextPath}/js/common.js" defer></script>
 </head>
 <body>
@@ -49,22 +51,21 @@
 				<h6>아이디 (필수)</h6>
 				<input type="text" id="registId" name="userId" placeholder="아이디 입력(4~20자리)" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />영문 소문자, 숫자, 특수문자 '_'만 사용 가능</p>
-				<p id="id-check" class="check"><img src="${pageContext.request.contextPath}/img/icon_check.png" />사용가능한 아이디입니다.</p>
-				<p id="id-error-confirm" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />사용할 수 없는 아이디입니다.</p>
+				<p id="id-check" class="NotChecked"></p>
 				
 				<h6>비밀번호 (필수)</h6>
 				<input type="password" id="registPwd" name="userPwd" maxlength="16" placeholder="비밀번호 입력(8~16자리)" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />영문 대소문자, 숫자, 특수문자 조합</p>
-				<p id="pwd-error-pattern" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />영문 대문자, 소문자, 숫자, 특수문자가 각각 하나 이상 포함되어야합니다.</p>
+				<p id="pwd-check" class="NotChecked"></p>
 				
 				<h6>비밀번호 확인 (필수)</h6>
 				<input type="password" id="registRePwd" placeholder="비밀번호 재입력" />
-				<p id="pwd-error-confirm" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />비밀번호가 틀립니다.</p>
+				<p id="rePwd-check" class="NotChecked"></p>
 				
 				<h6>이메일 (필수)</h6>
 				<input type="email" id="registEmail" name="email" placeholder="email@workdream.co.kr" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />취업과 관련된 정보를 받을 때 필요합니다.</p>
-				<p id="email-error-pattern" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />잘못된 이메일 양식입니다.</p>
+				<p id="email-check" class="NotChecked"></p>
 				
 				<h6>휴대전화</h6>
 				<input type="text" name="phone" id="registPhone" placeholder="'-'없이 숫자로만 입력" />
@@ -119,7 +120,7 @@
 					</span>
 				</div>
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />(필수)항목은 반드시 동의하셔야 회원가입이 가능합니다.</p>
-				<p id="terms-error-required" class="error"><img src="${pageContext.request.contextPath}/img/icon_error.png" />(필수)항목에 체크해주세요.</p>
+				<p id="terms-check" class="NotChecked"></p>
 				
 				<h6>안내</h6>
 				<div id="registDetail-form-info">

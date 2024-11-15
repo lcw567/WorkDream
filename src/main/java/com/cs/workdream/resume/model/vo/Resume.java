@@ -4,12 +4,14 @@ import java.sql.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,9 +19,9 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Resume {
-
-	private int resume_no;
-	private int person_no;
+	
+	private Integer resume_no;
+	private Integer person_no;
 	private String title;
 	private Date create_date;
 	private Date modified_date;

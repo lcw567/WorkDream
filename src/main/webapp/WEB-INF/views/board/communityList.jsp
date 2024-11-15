@@ -17,18 +17,18 @@
 
         <!-- 상단 제목 -->
         <%
-		    String category = request.getParameter("category");
-		    if (category == null || category.isEmpty()) {
-		        category = "인기글"; // 기본값 설정
-		    }
-		%>
+            String category = request.getParameter("category");
+            if (category == null || category.isEmpty()) {
+                category = "인기글"; // 기본값 설정
+            }
+        %>
         <section class="title">
             <h1><%= category %></h1>
         </section>
 
         <!-- 카테고리 버튼 -->
         <section class="category-tags">
-        	<button data-category="전체글">전체글</button>
+            <button data-category="전체글">전체글</button>
             <button data-category="인기글">인기글</button>
             <button data-category="신입">신입</button>
             <button data-category="채용공고">채용공고</button>
@@ -47,13 +47,13 @@
 
         <!-- 게시글 개수 -->
         <section class="count">
-            <p class="total-count">전체 <strong style ="font-size: 1.3rem;">10,000</strong>건</p>    
+            <p class="total-count">전체 <strong style="font-size: 1.3rem;">0</strong>건</p>    
         </section>
 
         <!-- 필터 섹션 -->
         <section class="filter-section">
             <div class="filters">
-                <select>
+                <select id="jobFilter">
                     <option value="">직무/직업 전체</option>
                     <option value="기획•전략">기획•전략</option>
                     <option value="마케팅•홍보•조사">마케팅•홍보•조사</option>
@@ -77,7 +77,7 @@
                     <option value="금융•보험">금융•보험</option>
                     <option value="공공•복지">공공•복지</option>
                 </select>
-                <select>
+                <select id="sortFilter">
                     <option value="최신순">최신순</option>
                     <option value="조회순">조회순</option>
                     <option value="공감 많은 순">공감 많은 순</option>
@@ -89,7 +89,7 @@
             <h2>게시글 목록</h2>
             <div class="search-bar">
                 <input type="text" placeholder="검색어를 입력하세요">
-                <button><img src= "${pageContext.request.contextPath}/img/btn_search.png" alt="검색" class="search-icon">  </button>
+                <button><img src="${pageContext.request.contextPath}/img/btn_search.png" alt="검색" class="search-icon">  </button>
             </div>
         </div>
 

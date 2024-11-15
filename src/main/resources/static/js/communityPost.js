@@ -24,24 +24,34 @@ document.addEventListener("DOMContentLoaded", function() {
         const hashtags = Array.from(document.querySelectorAll(".hashtag"))
                               .map(tag => tag.textContent.replace("#", "").replace("×", "").trim());
 
-        // 서버에 게시글 데이터를 저장하는 비동기 요청 (예시)
-        fetch("/api/posts", {
+        // 이미지 첨부
+        const imageInput = document.getElementById("imageInput");
+        let imageFile = imageInput.files[0];
+
+        // 폼 데이터 준비
+        const formData = new FormData();
+        formData.append("category", category);
+        formData.append("title", title);
+        formData.append("content", content);
+        if(imageFile) {
+            formData.append("image", imageFile);
+        }
+        selectedJobs.forEach(job => formData.append("jobs", job));
+        hashtags.forEach(tag => formData.append("hashtags", tag));
+
+        // 서버에 게시글 데이터를 저장하는 비동기 요청
+        fetch(`${contextPath}/board/api/posts`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                category: category,
-                title: title,
-                content: content,
-                jobs: selectedJobs,
-                hashtags: hashtags
-            })
+            body: formData
         })
         .then(response => response.json())
         .then(data => {
-            // 게시글이 성공적으로 등록되면 communityView.jsp로 이동
-            location.href = `/board/communityView?postId=${data.postId}`;
+            if (data.status === "success") {
+                // 게시글이 성공적으로 등록되면 communityView.jsp로 이동
+                location.href = `${contextPath}/board/communityView?postId=${data.postId}`;
+            } else {
+                alert(`게시글 등록에 실패했습니다: ${data.message}`);
+            }
         })
         .catch(error => {
             console.error("Error:", error);
@@ -93,10 +103,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // 이미지 첨부 및 미리보기 기능
-    const imageInput = document.getElementById("imageInput");
+    const imageInputElement = document.getElementById("imageInput");
     const imagePreview = document.getElementById("imagePreview");
 
-    imageInput.addEventListener("change", function(event) {
+    imageInputElement.addEventListener("change", function(event) {
         const file = event.target.files[0];
 
         // 파일이 이미지인지 확인
@@ -117,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             // 이미지가 아닌 파일을 선택했을 때 처리
             alert("이미지 파일을 선택해 주세요.");
-            imageInput.value = ""; // 입력 필드 초기화
+            imageInputElement.value = ""; // 입력 필드 초기화
         }
     });
 

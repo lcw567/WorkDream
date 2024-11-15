@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Qualification {
 	
+	private Integer qualification_no;
+	private Integer resume_no;
+	private int person_no;
     private String category;         // 구분 (자격증, 어학, 수상)
     private String name;             // 자격증명, 어학시험명, 수상명
     private String issuingAgency;    // 발행처/기관

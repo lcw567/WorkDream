@@ -10,8 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.workdream.member.model.vo.Member;
@@ -32,9 +32,9 @@ public class MemberController {
 	/* 로그인 관련 */
 	
 	// 로그인 페이지로 이동
-	@GetMapping("/login")
+	@RequestMapping("/login")
     public String login() {
-        return "common/login";
+        return "member/login";
     }
 	
 	// 로그인 판별
@@ -63,7 +63,7 @@ public class MemberController {
 	}
 	
 	// 로그아웃
-	@RequestMapping("logout.me")
+	@RequestMapping("logout")
 	public String logoutMember(HttpSession session) {
 		session.removeAttribute("loginUser");
 		return "redirect:/";
@@ -73,22 +73,33 @@ public class MemberController {
 	/* 회원가입 관련 */
 	
 	// 회원가입 페이지로 이동
-	@GetMapping("/registration")
+	@RequestMapping("/registration")
     public String handleRequest(HttpServletRequest request, Model model) {
     	String userType = request.getParameter("ut");
         model.addAttribute("ut", userType);
         
         // 파라미터값에 따라 개인 회원 or 기업 회원 페이지로 이동
         if("P".equals(userType)) {
-        	return "common/registrationPerson";
+        	return "member/registrationPerson";
         }
         else if("B".equals(userType)) {
-        	return "common/registrationBusiness";
+        	return "member/registrationBusiness";
         }
         else {
-        	return "common/registration";
+        	return "member/registration";
         }
     }
 	
-	// 아이디 중복 체크가 여기 들어와야함.
+	// 아이디 중복 체크
+	@RequestMapping("idCheck.me")
+	@ResponseBody
+	public String idCheck(String checkId) {
+		int result = memberService.idCheck(checkId);
+		
+		if(result > 0) {
+			return "NNNNN";
+		} else {
+			return "NNNNY";
+		}
+	}
 }

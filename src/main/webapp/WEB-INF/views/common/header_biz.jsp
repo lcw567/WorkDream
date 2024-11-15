@@ -60,7 +60,7 @@
     				</a>
     				<a href="#">워크드림</a>
     			</li>
-    			<li class="logout"><a href="/logout">로그아웃</a></li>
+    			<li class="logout"><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
     		</ul>
     	</nav>
     </header>
