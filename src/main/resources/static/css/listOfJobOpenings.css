@@ -1,0 +1,236 @@
+/* 공통 적용 */
+body {
+    width: 100vw;
+    min-width: 1024px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+}
+
+body * {
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'MonoplexKR-Regular';
+    font-size: 0.688rem;
+    color: #000000;
+}
+
+ul,
+ol,
+a {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+#List_content {
+    border: none;
+    padding: 8px;
+    max-width: 1264px;
+    height: 100%;
+}
+
+#List_Category {
+    margin-top: 25px;
+}
+
+#List_Category a {
+    margin-left: 30px;
+    font-size: 1.1rem;
+    color: black;
+}
+
+/* 활성화된 링크에 보라색 적용 */
+#List_Category a.active {
+    color: #AF24EF;
+}
+
+#List_content_Center {
+    margin-left: 30px;
+}
+
+#List_content_Filter {
+    margin-top: 40px;
+}
+
+#Filter_cantain {
+    margin-top: 10px;
+    width: 900px;
+    display: flex;
+    position: relative;
+}
+
+.choce_area {
+    border: 1px solid #A09F9F;
+    display: flex;
+    align-items: center;
+    width: 550px;
+    height: 35px;
+    position: relative;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.choce_area img {
+    width: 20px;
+    height: 20px;
+    margin-right: 7px;
+}
+
+/* 지역 선택 팝업 스타일 */
+.region_popup {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 250px;
+    border: 1px solid #D8D8D8;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.region_popup ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.region_popup ul li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.region_popup ul li:hover {
+    background-color: #f0f0f0;
+}
+
+/* 상세 구 선택 팝업 스타일 */
+.district_popup {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 260px;
+    width: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #D8D8D8;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 20;
+    padding: 10px;
+}
+
+.district_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.district_list label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.district_footer button:first-child {
+    margin-right: 10px;
+}
+
+/* 직업 선택 팝업 스타일 */
+.job_popup {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 600px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 10;
+    border-radius: 5px;
+}
+
+.job_popup input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.688rem;
+}
+
+.job_popup .job_categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.job_popup .job_category {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    font-size: 0.688rem;
+}
+
+.job_popup .job_category:hover {
+    background-color: #eaeaea;
+}
+
+.list_of_advertisements {
+    border: none;
+    width: 900px;
+    height: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.announcement {
+    border: 2px solid #D8D8D8;
+    border-radius: 15px;
+    width: 289px;
+    height: 150px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.announcement_inside {
+    border: none;
+    margin-top: 15px;
+    margin-left: 18px;
+}
+
+.announcement_inside h2 {
+    margin-bottom: 3px;
+    margin-top: 0px;
+}
+
+.announcement_inside p {
+    color: #4d4d4d;
+    margin-top: 3px;
+    margin-bottom: 6px;
+}
+
+.D_day_star-icon {
+    margin-left: 215px;
+    display: flex;
+    align-items: center;
+}
+
+.D_day_star-icon img {
+    margin-left: 5px;
+}

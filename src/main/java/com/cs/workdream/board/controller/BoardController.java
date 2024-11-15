@@ -27,4 +27,10 @@ public class BoardController {
     public String showCommunityList() {
         return "board/communityList"; // communityList.jsp
     }
+    
+    @GetMapping("/listOfJobOpening")
+    public String showjobOpeningList() {
+        return "board/listOfJobOpening"; // listOfJobOpening.jsp
+    }
+    
 }
