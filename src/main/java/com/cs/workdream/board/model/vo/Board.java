@@ -27,9 +27,7 @@ public class Board {
     private Timestamp createdTime;   
     private Timestamp updatedTime;   
     private Integer viewCount;           
-    private Integer likeCount;          
-    private Integer businessNo;  
-    private Integer personNo;       
+    private Integer likeCount;              
     private List<String> hashtags;   
     private List<String> jobCategories; 
     private String status;   
