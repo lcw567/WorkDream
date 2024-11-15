@@ -15,7 +15,6 @@
  		<typeAlias alias="Resume" type="com.cs.workdream.resume.model.vo.Resume"/>
  		<typeAlias alias="Board" type="com.cs.workdream.board.model.vo.Board"/>
  		<typeAlias alias="Reply" type="com.cs.workdream.board.model.vo.Reply"/>
-
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->
