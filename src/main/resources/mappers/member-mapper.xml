@@ -21,7 +21,7 @@
 		SELECT	USER_NO,
 				USER_TYPE,
 				USER_ID,
-				USER_PWD,
+				USER_PWD
 		  FROM	MEMBER
 		 WHERE	USER_ID = #{userId}
 		   AND	USER_PWD = #{userPwd}
