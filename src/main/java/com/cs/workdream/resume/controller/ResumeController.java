@@ -13,12 +13,12 @@ import com.cs.workdream.resume.service.ResumeService;
 
 @Controller
 @RequestMapping("/resume")
-public class Resumecontroller {
+public class ResumeController {
 	
     private final ResumeService resumeService;
 
     @Autowired
-    public Resumecontroller(ResumeService resumeService) {
+    public ResumeController(ResumeService resumeService) {
         this.resumeService = resumeService;
     }
 	
@@ -36,8 +36,8 @@ public class Resumecontroller {
     public String showEnrollResumePage() {
         return "resume/enrollresume"; // 이력서 등록 JSP 경로
     }
-	 
-    @PostMapping("/enrollresume")
+    
+    @RequestMapping("insert.re")
     public ModelAndView enrollResume(@ModelAttribute Resume resume, ModelAndView mv) {
         int result = resumeService.saveResume(resume);
 
