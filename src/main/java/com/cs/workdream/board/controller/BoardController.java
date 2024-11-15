@@ -76,8 +76,8 @@ public class BoardController {
         model.addAttribute("category", category);
         return "board/communityList"; // communityList.jsp
     }
-
-    // RESTful API 엔드포인트
+  
+  // RESTful API 엔드포인트
 
     // 게시글 수 조회
     @GetMapping("/api/postCount")
@@ -292,5 +292,11 @@ public class BoardController {
 		     session.setAttribute("currentUser", mockUser);
 		     return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
 		 }
-
+  
+    // 채용공고목록 맵핑
+    @GetMapping("/listOfJobOpening")
+    public String showjobOpeningList() {
+        return "board/listOfJobOpening"; // listOfJobOpening.jsp
+    }
+    
 }
