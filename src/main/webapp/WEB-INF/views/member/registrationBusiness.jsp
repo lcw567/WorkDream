@@ -9,6 +9,7 @@
 	
 	<!-- 외부 css / js 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>const contextPath = "${pageContext.request.contextPath}";</script>
     <script src="${pageContext.request.contextPath}/js/common.js" defer></script>
 </head>
