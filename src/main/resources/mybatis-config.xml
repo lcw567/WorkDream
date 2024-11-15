@@ -12,12 +12,10 @@
  	
 	<typeAliases>
  		<typeAlias alias="Member" type="com.cs.workdream.member.model.vo.Member"/>
-<<<<<<< HEAD
  		<typeAlias alias="Resume" type="com.cs.workdream.resume.model.vo.Resume"/>
-=======
  		<typeAlias alias="Board" type="com.cs.workdream.board.model.vo.Board"/>
  		<typeAlias alias="Reply" type="com.cs.workdream.board.model.vo.Reply"/>
->>>>>>> 6683f877e6fe6573ed374958e0d638420859fa20
+
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->
