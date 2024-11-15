@@ -14,9 +14,9 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
         <div id="inner">
-            <form action="insert.re" method="get">
+            <form action="insert.re" method="post">
                 <div class="resume_title">
-                    <h1>이력서 제목</h1> <input type="text" name="resumetitle" placeholder="이력서의 제목을 입력해주세요.">
+                    <h1>이력서 제목</h1> <input type="text" name="resumetitle" placeholder="이력서의 제목을 입력해주세요." required>
                 </div>
                 <div class="Info">
                     <fieldset class="basic_info">
