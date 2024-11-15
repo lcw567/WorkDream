@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 2. 필터 옵션 선택 시 이벤트
-    document.querySelector('.filter-section select').addEventListener('change', (event) => {
+    document.querySelector('.filter-section select#sortFilter').addEventListener('change', (event) => {
         currentFilter = event.target.value;
         currentPage = 1;
         loadPosts(currentCategory, currentFilter, currentPage);
@@ -41,8 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
         currentPage++;
         loadPosts(currentCategory, currentFilter, currentPage);
     });
+    
+    // 4. 게시글 검색 버튼 이벤트 (추가 가능)
 
-    // 4. 게시글 불러오기 함수
+    // 5. 게시글 불러오기 함수
     function loadPosts(category, filter, page) {
         const offset = (page - 1) * postsPerPage;
 
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error('Error loading posts:', error));
     }
 
-    // 5. 게시글 목록 업데이트 함수
+    // 6. 게시글 목록 업데이트 함수
     function updatePostList(posts) {
         const tbody = document.querySelector('.post-list tbody');
         tbody.innerHTML = '';
@@ -64,24 +66,24 @@ document.addEventListener("DOMContentLoaded", function () {
         posts.forEach(post => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${post.id}</td>
-                <td>${post.jobCategory}</td>
-                <td><a href="/communityView?postId=${post.id}">${post.title}</a></td>
+                <td>${post.postingNo}</td>
+                <td>${post.category}</td>
+                <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a></td>
                 <td>${post.author}</td>
-                <td>${post.createdTime}</td>
-                <td>${post.views}</td>
-                <td>${post.likes}</td>
+                <td>${new Date(post.createdTime).toLocaleString()}</td>
+                <td>${post.viewCount}</td>
+                <td>${post.likeCount}</td>
             `;
             tbody.appendChild(row);
         });
     }
 
-    // 6. 게시글 수 업데이트 함수
+    // 7. 게시글 수 업데이트 함수
     function updatePostCount(totalCount) {
         document.querySelector('.total-count strong').innerText = totalCount;
     }
 
-    // 7. 페이지네이션 상태 업데이트 함수
+    // 8. 페이지네이션 상태 업데이트 함수
     function updatePagination(totalCount) {
         const totalPages = Math.ceil(totalCount / postsPerPage);
         document.getElementById('pageNumber').innerText = currentPage;
