@@ -14,7 +14,7 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
         <div id="inner">
-            <form action="${pageContext.request.contextPath}/resume/resumeDashboard" method="get">
+            <form action="insert.re" method="get">
                 <div class="resume_title">
                     <h1>이력서 제목</h1> <input type="text" name="resumetitle" placeholder="이력서의 제목을 입력해주세요.">
                 </div>
