@@ -85,10 +85,27 @@ function validateId(id) {
         idCheck.className = "error";
         return false;
     } else {
-        // 중복확인
-        idCheck.innerHTML = checkImg + "사용가능한 아이디입니다.";
-        idCheck.className = "check";
-        return true;
+        // 중복확인 > ajax 요청
+        $.ajax({
+            url: "idCheck.me",
+            type: "GET",
+            data: {checkId: id},
+            success : function(result) {
+                if(result === "NNNNN") {
+                    // 중복된 아이디인 경우
+                    idCheck.innerHTML = errorImg + "중복된 아이디입니다.";
+                    idCheck.className = "error";
+                    return false;
+                } else {
+                    // 통과
+                    idCheck.innerHTML = checkImg + "사용가능한 아이디입니다.";
+                    idCheck.className = "check";
+                    return true;
+                }
+            }, error : function(error) {
+                console.log("아이디 중복체크 ajax 실패 : ", error);
+            }
+        })
     }
 }
 

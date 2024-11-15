@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.workdream.member.model.vo.Member;
@@ -90,7 +91,8 @@ public class MemberController {
     }
 	
 	// 아이디 중복 체크
-	@RequestMapping("/idCheck.me")
+	@RequestMapping("idCheck.me")
+	@ResponseBody
 	public String idCheck(String checkId) {
 		int result = memberService.idCheck(checkId);
 		
