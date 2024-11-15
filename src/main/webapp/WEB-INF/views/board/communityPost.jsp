@@ -9,13 +9,12 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css"> <!-- common.css 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityPost.css">
-    <script>
-        // JavaScript에서 contextPath를 사용할 수 있도록 변수로 전달
-        const contextPath = "${pageContext.request.contextPath}";
-    </script>
+    
     <script src="${pageContext.request.contextPath}/js/communityPost.js" defer></script>
 </head>
-<body>
+<body>	
+	<input type="hidden" id="contextPath" value="${pageContext.request.contextPath}"/>
+
     <c:import url="/WEB-INF/views/common/header.jsp" />
     
     <div class="post-container">

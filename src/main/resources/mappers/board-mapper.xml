@@ -73,7 +73,7 @@
         FETCH FIRST 5 ROWS ONLY
     </select>
 
-    <!-- 게시글 ID로 단일 게시글 조회 -->
+   <!-- 게시글 ID로 단일 게시글 조회 -->
 	<select id="selectPost" parameterType="int" resultType="com.cs.workdream.board.model.vo.Board">
 	    SELECT 
 	        POSTING_NO,
@@ -92,38 +92,39 @@
 	    WHERE POSTING_NO = #{value} AND STATUS = 'Y'
 	</select>
 
-    <!-- 새로운 게시글 삽입 -->
-	<insert id="insertPost" parameterType="com.cs.workdream.board.model.vo.Board">
-	    <!-- 시퀀스에서 다음 값 가져오기 -->
-	    <selectKey keyProperty="postingNo" resultType="java.lang.Integer" order="BEFORE">
-	        SELECT POSTING_SEQ.NEXTVAL FROM DUAL
-	    </selectKey>
-	    
-	    <!-- 게시글 삽입 -->
-	    INSERT INTO POSTING (
-	        POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, UPDATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS
-	    ) VALUES (
-	        #{postingNo}, #{category}, #{title}, #{content}, #{imagePath}, #{author}, #{userNo}, SYSDATE, NULL, 0, 0, 'Y'
-	    )
-	</insert>
+	<!-- 새로운 게시글 삽입 -->
+    <insert id="insertPost" parameterType="com.cs.workdream.board.model.vo.Board">
+        <!-- 시퀀스에서 다음 값 가져오기 -->
+        <selectKey keyProperty="postingNo" resultType="java.lang.Integer" order="BEFORE">
+            SELECT POSTING_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        
+        <!-- 게시글 삽입 -->
+        INSERT INTO POSTING (
+            POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, UPDATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS
+        ) VALUES (
+            #{postingNo}, #{category}, #{title}, #{content}, #{imagePath}, #{author}, #{userNo}, SYSDATE, NULL, 0, 0, 'Y'
+        )
+    </insert>
+
 
     <!-- 기존 게시글 업데이트 -->
-	<update id="updatePost" parameterType="com.cs.workdream.board.model.vo.Board">
-	    UPDATE POSTING
-	    SET CATEGORY = #{category},
-	        TITLE = #{title},
-	        CONTENT = #{content},
-	        IMAGE = #{imagePath},
-	        UPDATED_TIME = SYSDATE
-	    WHERE POSTING_NO = #{postingNo} AND STATUS = 'Y'
-	</update>
+    <update id="updatePost" parameterType="com.cs.workdream.board.model.vo.Board">
+        UPDATE POSTING
+        SET CATEGORY = #{category},
+            TITLE = #{title},
+            CONTENT = #{content},
+            IMAGE = #{imagePath},
+            UPDATED_TIME = SYSDATE
+        WHERE POSTING_NO = #{postingNo} AND STATUS = 'Y'
+    </update>
 
     <!-- 게시글 소프트 삭제 -->
-    <update id="deletePost" parameterType="int">
-        UPDATE POSTING
-        SET STATUS = 'N'
-        WHERE POSTING_NO = #{postingNo}
-    </update>
+	<update id="deletePost" parameterType="int">
+	    UPDATE POSTING
+	    SET STATUS = 'N'
+	    WHERE POSTING_NO = #{value}
+	</update>
 
     <!-- 특정 게시글의 해시태그 조회 -->
     <select id="selectHashtags" parameterType="int" resultType="string">
@@ -138,19 +139,21 @@
     </insert>
 
     <!-- 특정 게시글의 댓글 조회 -->
-    <select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
-        SELECT 
-            REPLY_NO,
-            POSTING_NO,
-            USER_NO,
-            CONTENT,
-            CREATED_TIME,
-            LIKE_COUNT,
-            STATUS
-        FROM REPLY
-        WHERE POSTING_NO = #{postingNo} AND STATUS = 'Y'
-        ORDER BY CREATED_TIME ASC
-    </select>
+	<select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
+	    SELECT 
+	        r.REPLY_NO,
+	        r.POSTING_NO,
+	        r.USER_NO,
+	        u.USER_NAME AS author, <!-- 작성자 이름 추가 -->
+	        r.CONTENT,
+	        r.CREATED_TIME,
+	        r.LIKE_COUNT,
+	        r.STATUS
+	    FROM REPLY r
+	    JOIN MEMBER u ON r.USER_NO = u.USER_NO <!-- JOIN 추가 -->
+	    WHERE r.POSTING_NO = #{postingNo} AND r.STATUS = 'Y'
+	    ORDER BY r.CREATED_TIME ASC
+	</select>
 
     <!-- 댓글 삽입 -->
     <insert id="insertReply" parameterType="com.cs.workdream.board.model.vo.Reply" useGeneratedKeys="true" keyProperty="replyNo">

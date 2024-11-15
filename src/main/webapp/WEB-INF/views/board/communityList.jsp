@@ -12,6 +12,7 @@
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
+    <input type="hidden" id="contextPath" value="${pageContext.request.contextPath}"/>
     
     <div class="list-container"> 
 
