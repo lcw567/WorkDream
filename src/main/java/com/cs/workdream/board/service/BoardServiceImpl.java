@@ -35,7 +35,12 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     @Override
     public int createPost(Board board) {
+        // 게시글 삽입
         int result = boardDao.insertPost(sqlSession, board);
+        
+        // logging to verify postingNo
+        System.out.println("After insertPost, postingNo: " + board.getPostingNo());
+        
         if(result > 0 && board.getHashtags() != null) {
             for(String hashtag : board.getHashtags()) {
                 Map<String, Object> params = new HashMap<>();
@@ -44,10 +49,8 @@ public class BoardServiceImpl implements BoardService {
                 boardDao.insertHashtag(sqlSession, params);
             }
         }
-        // 직무 카테고리 처리 필요 시 유사한 로직 구현
         return result;
     }
-
     @Override
     public int updatePost(Board board) {
         return boardDao.updatePost(sqlSession, board);
