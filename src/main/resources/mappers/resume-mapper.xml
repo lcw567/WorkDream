@@ -8,7 +8,7 @@
     <resultMap type="com.cs.workdream.resume.model.vo.Resume" id="resumeResultSet">
         <id column="RESUME_NO" property="resume_no" />
         <result column="PERSON_NO" property="person_no" />
-        <result column="TITLE" property="title" />
+        <result column="RESUMETITLE" property="resumetitle" />
         <result column="CREATE_DATE" property="create_date" />
         <result column="MODIFIED_DATE" property="modified_date" />
         <result column="DELETED" property="deleted" />
@@ -58,15 +58,15 @@
         INSERT INTO resume (
             resume_no,
             person_no,
-            title,
+            resumetitle,
             create_date,        <!-- SYSDATE로 설정 -->
             modified_date,      <!-- SYSDATE로 설정 -->
             deleted,
-            user_pic
+            userPic
         ) VALUES (
             #{resume_no},
             #{person_no},
-            #{title},
+            #{resumetitle},
             SYSDATE,             <!-- SYSDATE로 설정 -->
             SYSDATE,             <!-- SYSDATE로 설정 -->
             'N',                 <!-- 기본값 설정 (예: 'N' for not deleted) -->

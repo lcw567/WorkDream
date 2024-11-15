@@ -44,7 +44,7 @@ public class ResumeController {
         // 테스트를 위해 임시로 person_no를 설정
         Integer testPersonNo = 1; // 실제 데이터베이스에 존재하는 person_no로 설정
         resume.setPerson_no(testPersonNo); // person_no 설정
-        resume.setTitle("테스트 이력서"); // title 수동 설정
+        resume.setResumetitle("테스트용 제목"); // title 수동 설정
 
         int result = resumeService.saveResume(resume);
 
