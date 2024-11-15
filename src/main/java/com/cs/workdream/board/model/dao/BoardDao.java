@@ -23,18 +23,17 @@ public class BoardDao {
         return sqlSession.selectList("boardMapper.selectPosts", params, new org.apache.ibatis.session.RowBounds(offset, limit));
     }
 
-    // 게시글 ID로 단일 게시글 조회
-    public Board selectPost(SqlSessionTemplate sqlSession, int postingNo) {
-        return sqlSession.selectOne("boardMapper.selectPost", postingNo);
-    }
-
     // 새로운 게시글 삽입
     public int insertPost(SqlSessionTemplate sqlSession, Board board) {
         System.out.println("Inserting post with USER_NO: " + board.getUserNo());
         System.out.println("Inserting post with POSTING_NO: " + board.getPostingNo());
         return sqlSession.insert("boardMapper.insertPost", board);
     }
-
+    // 게시글 조회 메서드
+    public Board selectPost(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.selectOne("boardMapper.selectPost", postingNo);
+    }
+    
     // 기존 게시글 업데이트
     public int updatePost(SqlSessionTemplate sqlSession, Board board) {
         return sqlSession.update("boardMapper.updatePost", board);

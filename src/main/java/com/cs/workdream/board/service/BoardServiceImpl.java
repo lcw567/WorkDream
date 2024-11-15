@@ -1,9 +1,10 @@
 package com.cs.workdream.board.service;
 
-import java.util.HashMap; // HashMap import 추가
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +18,9 @@ public class BoardServiceImpl implements BoardService {
 
     @Autowired
     private BoardDao boardDao;
-
+    
     @Autowired
-    private org.mybatis.spring.SqlSessionTemplate sqlSession;
+    private SqlSessionTemplate sqlSession;
 
     // 게시판 작업
     @Override
@@ -36,9 +37,9 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int createPost(Board board) {
         // 게시글 삽입
-        int result = boardDao.insertPost(sqlSession, board);
+    	int result = boardDao.insertPost(sqlSession, board);
         
-        // logging to verify postingNo
+        // postingNo 확인 로그
         System.out.println("After insertPost, postingNo: " + board.getPostingNo());
         
         if(result > 0 && board.getHashtags() != null) {
@@ -51,6 +52,7 @@ public class BoardServiceImpl implements BoardService {
         }
         return result;
     }
+
     @Override
     public int updatePost(Board board) {
         return boardDao.updatePost(sqlSession, board);

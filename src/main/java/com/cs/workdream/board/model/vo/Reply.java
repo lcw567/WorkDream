@@ -22,4 +22,5 @@ public class Reply {
     private Timestamp createdTime;
     private int likeCount;      
     private String status;     
+    private String author; 
 }

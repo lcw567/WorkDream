@@ -1,6 +1,7 @@
-// communityPost.js
-
 document.addEventListener("DOMContentLoaded", function() {
+    // 컨텍스트 경로 가져오기
+    const contextPath = document.getElementById("contextPath").value;
+
     // 게시글 등록 버튼 클릭 시 이벤트
     document.querySelector(".submit-button").addEventListener("click", function(event) {
         event.preventDefault(); // 기본 폼 제출 방지
