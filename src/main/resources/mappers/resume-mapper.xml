@@ -1,4 +1,283 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="resumeMapper"> </mapper>
+<mapper namespace="resumeMapper">
+
+	<!-- Resume 객체의 기본 매핑 -->
+    <resultMap type="Resume" id="resumeResultSet">
+        <id column="RESUME_NO" property="resumeNo" />
+        <result column="PERSON_NO" property="personNo" />
+        <result column="TITLE" property="title" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="MODIFIED_DATE" property="modifyDate" />
+        <result column="DELETED" property="deleted" />
+        	
+         <!-- 관련 엔티티 매핑: 고용 선호사항 -->
+        <association property="employmentPreference" javaType="com.cs.workdream.resume.model.vo.EmploymentPreferences" 
+                     select="com.cs.workdream.resume.model.dao.ResumeDao.selectEmploymentPreferenceByResumeNo" 
+                     column="RESUME_NO" />
+        
+        <!-- 관련 엔티티 매핑: 기본 정보 -->
+        <collection property="basicInfo" ofType="com.cs.workdream.resume.model.vo.BasicInfo" 
+                    select="com.cs.workdream.resume.model.dao.ResumeDao.selectBasicInfoByResumeNo" 
+                    column="RESUME_NO" />
+
+        <!-- 관련 엔티티 매핑: 학력 정보 -->
+        <collection property="academicAbilities" ofType="com.cs.workdream.resume.model.vo.AcademicAbility" 
+                    select="com.cs.workdream.resume.model.dao.ResumeDao.selectAcademicAbilitiesByResumeNo" 
+                    column="RESUME_NO" />
+
+        <!-- 관련 엔티티 매핑: 자격증 -->
+        <collection property="qualification" ofType="com.cs.workdream.resume.model.vo.Qualification" 
+                    select="com.cs.workdream.resume.model.dao.ResumeDao.selectQualificationsByResumeNo" 
+                    column="RESUME_NO" />
+
+        <!-- 관련 엔티티 매핑: 경력 -->
+        <collection property="experiences" ofType="com.cs.workdream.resume.model.vo.Experience" 
+                    select="com.cs.workdream.resume.model.dao.ResumeDao.selectExperiencesByResumeNo" 
+                    column="RESUME_NO" />
+
+        <!-- 관련 엔티티 매핑: 기술 -->
+        <collection property="skills" ofType="com.cs.workdream.resume.model.vo.Skill" 
+                    select="com.cs.workdream.resume.model.dao.ResumeDao.selectSkillsByResumeNo" 
+                    column="RESUME_NO" />
+
+        <!-- 관련 엔티티 매핑: 경력 상세 -->
+        <collection property="careers" ofType="com.cs.workdream.resume.model.vo.Career" 
+                    select="com.cs.workdream.resume.model.dao.ResumeDao.selectCareersByResumeNo" 
+                    column="RESUME_NO" />
+    </resultMap>
+
+   <!-- 이력서 삽입: RESUME_NO를 시퀀스로 설정 -->
+    <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
+        <selectKey keyProperty="resume_no" resultType="int" order="BEFORE">
+            SELECT RESUME_SEQ.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO resume (
+            resume_no,
+            person_no,
+            title,
+            create_date,
+            modified_date,
+            deleted
+        ) VALUES (
+            #{resume_no},
+            #{person_no},
+            #{title},
+            #{create_date},
+            #{modified_date},
+            #{deleted}
+        )
+    </insert>
+
+    <!-- 기본 정보 삽입 -->
+    <insert id="insertBasicInfo" parameterType="com.cs.workdream.resume.model.vo.BasicInfo">
+    	<selectKey keyProperty="basic_no" resultType="int" order="BEFORE">
+            SELECT RESUME_SEQ.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO basic_info (
+            basic_no,
+            resume_no,
+            user_name,
+            user_gender,
+            user_birth,
+            user_email,
+            user_phone,
+            user_address,
+            user_roadaddress,
+            user_detailaddress,
+            user_pic
+        ) VALUES (
+            #{basic_no},
+            #{resume_no},
+            #{user_name},
+            #{user_gender},
+            #{user_birth},
+            #{user_email},
+            #{user_phone},
+            #{user_address},
+            #{user_roadaddress},
+            #{user_detailaddress},
+            #{user_pic}
+        )
+    </insert>
+
+   <!-- 학력 정보 삽입 -->
+<insert id="insertAcademicAbility" parameterType="com.cs.workdream.resume.model.vo.AcademicAbility">
+    <selectKey keyProperty="academic_no" resultType="int" order="BEFORE">
+        SELECT ACADEMIC_SEQ.NEXTVAL FROM dual
+    </selectKey>
+    INSERT INTO academic_ability (
+        academic_no,
+        resume_no,
+        person_no,
+        education_level,
+        academic_name,
+        major,
+        degree,
+        graduation_status,
+        enter_date,
+        graduation_date,
+        location,
+        exam_passed
+    ) VALUES (
+        #{academic_no},
+        #{resume_no},
+        #{person_no},
+        #{education_level},
+        #{academic_name},
+        #{major},
+        #{degree},
+        #{graduation_status},
+        #{enter_date},
+        #{graduation_date},
+        #{location},
+        #{exam_passed}
+    )
+</insert>
+
+
+    <!-- 자격증 삽입 -->
+    <insert id="insertQualification" parameterType="com.cs.workdream.resume.model.vo.Qualification">
+    	<selectKey keyProperty="qualification_no" resultType="int" order="BEFORE">
+            SELECT RESUME_SEQ.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO qualification (
+            qualification_no,
+            resume_no,
+            person_no,
+            category,
+            name,
+            issuingAgency,
+            proficiencyLevel,
+            languageType,
+            passStatus,
+            issueDate
+        ) VALUES (
+            #{qualification_no},
+            #{resume_no},
+            #{person_no},
+            #{name},
+            #{issuingAgency},
+            #{proficiencyLevel},
+            #{languageType},
+            #{passStatus},
+            #{issueDate},
+            #{issuer}
+        )
+    </insert>
+
+    <!-- 경력 삽입 -->
+    <insert id="insertExperience" parameterType="com.cs.workdream.resume.model.vo.Experience">
+    	<selectKey keyProperty="experience_no" resultType="int" order="BEFORE">
+            SELECT RESUME_SEQ.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO experience (
+            experience_no,
+            resume_no,
+            person_no,
+            activity_type,
+            organization_name,
+            start_date,
+            end_date,
+            description
+        ) VALUES (
+            #{experience_no},
+            #{resume_no},
+            #{person_no},
+            #{activity_type},
+            #{organization_name},
+            #{start_date},
+            #{end_date},
+            #{description}
+        )
+    </insert>
+
+<!-- 고용 선호사항 삽입 -->
+<insert id="insertEmploymentPreference" parameterType="com.cs.workdream.resume.model.vo.EmploymentPreferences">
+    <selectKey keyProperty="employment_preferences_no" resultType="int" order="BEFORE">
+        SELECT EMPLOYMENT_PREFERENCES_SEQ.NEXTVAL FROM dual
+    </selectKey>
+    INSERT INTO employment_preferences (
+        employment_preferences_no,
+        resume_no,
+        person_no,
+        marriage_reason,
+        service_status,
+        enlistment_date,
+        discharge_date,
+        military_branch,
+        rank,
+        discharge_reason,
+        exemption_reason,
+        unfinished_reason
+    ) VALUES (
+        #{employmentPreferencesNo},
+        #{resumeNo},
+        #{personNo},
+        #{marriageReason},
+        #{serviceStatus},
+        #{enlistmentDate},
+        #{dischargeDate},
+        #{militaryBranch},
+        #{rank},
+        #{dischargeReason},
+        #{exemptionReason},
+        #{unfinishedReason}
+    )
+</insert>
+
+    <!-- 기술 삽입 -->
+    <insert id="insertSkill" parameterType="com.cs.workdream.resume.model.vo.Skill">
+    	<selectKey keyProperty="skill_no" resultType="int" order="BEFORE">
+        	SELECT EMPLOYMENT_PREFERENCES_SEQ.NEXTVAL FROM dual
+    	</selectKey>
+        INSERT INTO skills (
+            skill_no,
+            resume_no,
+            person_no,
+            skill_name
+        ) VALUES (
+            #{skill_no},
+            #{resume_no},
+            #{person_no},
+            #{skill_name}
+        )
+    </insert>
+
+    <!-- 경력 상세 삽입 -->
+    <insert id="insertCareer" parameterType="com.cs.workdream.resume.model.vo.Career">
+    	<selectKey keyProperty="career_no" resultType="int" order="BEFORE">
+        	SELECT EMPLOYMENT_PREFERENCES_SEQ.NEXTVAL FROM dual
+    	</selectKey>
+        INSERT INTO careers (
+            career_no,
+            resume_no,
+            person_no,
+            company_title,
+			work,
+            department,
+			start_date,
+            end_date,
+			status,
+            job_content,
+            position
+        ) VALUES (
+            #{career_no},
+            #{resume_no},
+            #{person_no},
+            #{company_title},
+            #{work},
+            #{department},
+            #{start_date},
+            #{end_date},
+            #{status},
+            #{job_content},
+            #{position}
+        )
+    </insert>
+
+    <!-- 기타 관련 엔티티 삽입을 위한 매퍼 메서드 추가 -->
+
+</mapper>

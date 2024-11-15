@@ -12,6 +12,7 @@
  	
 	<typeAliases>
  		<typeAlias alias="Member" type="com.cs.workdream.member.model.vo.Member"/>
+ 		<typeAlias alias="Resume" type="com.cs.workdream.resume.model.vo.Resume"/>
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->
