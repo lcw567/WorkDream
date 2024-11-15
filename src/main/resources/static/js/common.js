@@ -1,4 +1,9 @@
 /* 공용 */
+
+// 타이핑 타이머 변수
+let typingTimer;
+const doneTypingInterval = 1000;  // 1초 대기 (1000ms)
+
 // 아이디칸 입력제한
 function replaceInputId(event) {
     let value = event.target.value;
@@ -62,85 +67,173 @@ function replaceInputNumber(event) {
 // 아이디 유효성 검사
 function validateId(id) {
     const idCheck = document.getElementById("id-check");
-    const idConfirmError = document.getElementById("id-error-confirm");
+    idCheck.className = "NotChecked";
+    idCheck.innerHTML = "";
+
+    const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+    const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
     const regex = /^[a-z][a-z0-9_]{3,19}$/;
 
-    if(regex.test(id)) {
-        console.log("id 유효성 검사 통과");
-        idCheck.style.display = "flex";
-        idConfirmError.style.display = "none";
-        return true;
-    } else {
-        idCheck.style.display = "none";
-        idConfirmError.style.display = "flex";
+    if(id == "") {
+        // 아이디 미입력
+        idCheck.innerHTML = errorImg + "필수입력항목입니다.";
+        idCheck.className = "error";
         return false;
+    } else if(!regex.test(id)) {
+        // 입력양식 미준수
+        idCheck.innerHTML = errorImg + "아이디는 4자리 이상, 20자리 이하의 영문 소문자, 숫자 '_'만으로 이루어져야합니다.";
+        idCheck.className = "error";
+        return false;
+    } else {
+        // 중복확인
+        idCheck.innerHTML = checkImg + "사용가능한 아이디입니다.";
+        idCheck.className = "check";
+        return true;
     }
 }
 
 // 비밀번호 유효성 검사
 function validatePwd(password) {
-    const pwdPatternError = document.getElementById("pwd-error-pattern");
+    const pwdCheck = document.getElementById("pwd-check");
+    pwdCheck.innerHTML = "";
+    pwdCheck.className = "NotChecked";
+
+    const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+    const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
     
-    if(regex.test(password)) {
-        pwdPatternError.style.display = "none";
-        return true;
-    } else {
-        pwdPatternError.style.display = "flex";
+    if(password.length == "") {
+        // 비밀번호 미입력
+        pwdCheck.innerHTML = errorImg  + "필수입력항목입니다.";
+        pwdCheck.className = "error";
         return false;
+    } else if(password.length < 8) {
+        // 비밀번호가 8자 이하인 경우
+        pwdCheck.innerHTML = errorImg + "비밀번호는 8자 이상, 16자 이하로 해야합니다.";
+        pwdCheck.className = "error";
+        return false;
+    } else if(!regex.test(password)) {
+        // 입력 규칙 위반
+        pwdCheck.innerHTML = errorImg + "영문 대문자, 소문자, 숫자, 특수문자가 각각 하나 이상 포함되어야합니다.";
+        pwdCheck.className = "error";
+        return false;
+    } else {
+        pwdCheck.innerHTML = checkImg + "사용가능한 비밀번호입니다.";
+        pwdCheck.className = "check";
+        return true;
     }
 }
 
 // 비밀번호 확인 유효성 검사
 function validateRePwd(password, rePassword) {
-    const pwdMatchError = document.getElementById("pwd-error-confirm");
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
+    const rePwdCheck = document.getElementById("rePwd-check");
+    rePwdCheck.className = "NotChecked";
+    rePwdCheck.innerHTML = "";
 
-    if(password == rePassword && regex.test(rePassword)) {
-        pwdMatchError.style.display = "none";
-        return true;
-    } else {
-        pwdMatchError.style.display = "flex";
+    const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+    const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
+
+    if(rePassword.length == "") {
+        // 비밀번호 확인 미입력
+        rePwdCheck.innerHTML = errorImg + "필수입력항목입니다.";
+        rePwdCheck.className = "error";
         return false;
+    } else {
+        // 기존 비밀번호 우선 검증
+        if(!validatePwd(password)) {
+            // 검증 미통과
+            const passwordInput = document.querySelector("input[name='userPwd']");
+            const pwdCheck = document.getElementById("pwd-check");
+            pwdCheck.innerHTML = errorImg  + "유효한 비밀번호가 아닙니다. 다시 입력해주세요.";
+            rePwdCheck.className = "error";
+            passwordInput.focus();
+            return false;
+        } else {
+            // 검증 통과
+            if(password != rePassword) {
+                // 비밀번호 불일치
+                rePwdCheck.innerHTML = errorImg + "비밀번호가 일치하지 않습니다. 다시 입력해주세요.";
+                rePwdCheck.className = "error";
+                return false;
+            } else {
+                // 비밀번호 일치 -> 검증 통과
+                rePwdCheck.innerHTML = checkImg + "확인완료";
+                rePwdCheck.className = "check";
+                return true;
+            }
+        }
     }
 }
 
 // 이메일 유효성 검사
 function validateEmail(email) {
-    const emailPatternError = document.getElementById("email-error-pattern");
+    const emailCheck = document.getElementById("email-check");
+    emailCheck.className = "NotChecked";
+    emailCheck.innerHTML = "";
+
+    const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+    const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if(regex.test(email)) {
-        emailPatternError.style.display = "none";
-        return true;
-    } else {
-        emailPatternError.style.display = "flex";
+    if(email == "") {
+        // 이메일 미입력
+        emailCheck.innerHTML = errorImg + "필수입력항목입니다.";
+        emailCheck.className = "error";
         return false;
+    } else if(!regex.test(email)) {
+        // 입력 양식 미준수
+        emailCheck.innerHTML = errorImg + "유효한 이메일 주소를 입력해주세요.";
+        emailCheck.className = "error";
+        return false;
+    } else {
+        emailCheck.innerHTML = checkImg + "사용가능한 메일 주소입니다.";
+        emailCheck.className = "check";
+        return true;
     }
 }
 
 // 약관 동의 유효성 검사
 function validateTerms(requiredTerms) {
-    const termsRequiredError = document.getElementById("terms-error-required");
+    const termsCheck = document.getElementById("terms-check");
+    termsCheck.className = "NotChecked";
+    termsCheck.innerHTML = "";
+
+    const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+    const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
     const allChecked = requiredTerms.every(checkbox => checkbox.checked);
 
     if (!allChecked) {
-        termsRequiredError.style.display = "flex";
+        // 필수 약관 미동의
+        termsCheck.innerHTML = errorImg + "(필수)항목에 모두 체크해주세요. 하나라도 미동의 시 가입할 수 없습니다.";
+        termsCheck.className = "error";
         return false;
+    } else {
+        termsCheck.innerHTML = checkImg + "약관 동의 완료";
+        termsCheck.className = "check";
+        return true;
     }
-
-    termsRequiredError.style.display = "none";
-    return true;
 }
 
 // 사업자등록번호 유효성 검사
 function validateNumber(registNumber) {
     const numberCheck = document.getElementById("number-check");
-    const numberConfirmError = document.getElementById("number-error-confirm");
+    numberCheck.className = "NotChecked";
+    numberCheck.innerHTML = "";
 
-    console.log("사업자등록번호 유효성 검사 통과");
-    numberCheck.style.display = "flex";
-    return true;
+    const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+    const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
+
+    if(registNumber == "") {
+        // 사업자등록번호 미입력
+        numberCheck.innerHTML = errorImg + "필수입력항목입니다.";
+        numberCheck.className = "error";
+        return false;
+    } else {
+        // 사업자등록번호 조회
+        numberCheck.innerHTML = checkImg + "확인완료";
+        numberCheck.className = "check";
+        return true;
+    }
 }
 
 /* header.jsp */
@@ -259,6 +352,8 @@ try {
         registTerms.forEach(checkbox => {
             checkbox.checked = registTermsCheckButton.checked;
         })
+
+        validateTerms(Array.from(registTerms).filter(terms => terms.required));
     });
 
     registTerms.forEach(checkbox => {
@@ -273,6 +368,8 @@ try {
                 registTermsCheckButton.checked = false;
                 registTermsCheckButton.indeterminate = true;
             }
+
+            validateTerms(Array.from(registTerms).filter(terms => terms.required));
         });
     });
 
@@ -299,23 +396,34 @@ try {
             validateId(registId.value);
         } else {
             const idCheck = document.getElementById("id-check");
-            const idConfirmError = document.getElementById("id-error-confirm");
-
-            idCheck.style.display = "none";
-            idConfirmError.style.display = "none";
+            idCheck.className = "NotChecked";
         }
     });
     registPwd.addEventListener("input", (event) => {
         replaceInputPwd(event);
-        validatePwd(registPwd.value);
+        if(registPwd.value.length >= 8) {
+            validatePwd(registPwd.value);
+        } else {
+            const pwdCheck = document.getElementById("pwd-check");
+            pwdCheck.className = "NotChecked";
+        }
     });
     registRePwd.addEventListener("input", (event) => {
         replaceInputPwd(event);
-        validateRePwd(registPwd.value, registRePwd.value);
+        if(registRePwd.value.length >= 8 && registRePwd.value >= registPwd.value) {
+            validateRePwd(registPwd.value, registRePwd.value);
+        } else {
+            const rePwdCheck = document.getElementById("rePwd-check");
+            rePwdCheck.className = "NotChecked";
+        }
     });
     registEmail.addEventListener("input", (event) => {
+        clearTimeout(typingTimer); 
+        typingTimer = setTimeout(() => {
+            validateEmail(registEmail.value);
+        }, doneTypingInterval);
+    
         replaceInputEmail(event);
-        validateEmail(registEmail.value);
     });
     registPhone.addEventListener("input", (event) => {
         replaceInputNumber(event);
@@ -345,6 +453,8 @@ try {
         registTerms.forEach(checkbox => {
             checkbox.checked = registTermsCheckButton.checked;
         })
+
+        validateTerms(Array.from(registTerms).filter(terms => terms.required));
     });
 
     registTerms.forEach(checkbox => {
@@ -359,6 +469,8 @@ try {
                 registTermsCheckButton.checked = false;
                 registTermsCheckButton.indeterminate = true;
             }
+
+            validateTerms(Array.from(registTerms).filter(terms => terms.required));
         });
     });
 
@@ -380,41 +492,40 @@ try {
         }
     }
 
-    registNumber.addEventListener("input", (event) => {
-        replaceInputNumber(event);
-        if(registNumber.value.length === 10) {
-            validateNumber(registNumber.value);
-        } else {
-            const numberCheck = document.getElementById("number-check");
-            const numberConfirmError = document.getElementById("number-error-confirm");
-
-            numberCheck.style.display = "none";
-            numberConfirmError.style.display = "none";
-        }
-    });
     registId.addEventListener("input", (event) => {
         replaceInputId(event);
         if(registId.value.length >= 4) {
             validateId(registId.value);
         } else {
             const idCheck = document.getElementById("id-check");
-            const idConfirmError = document.getElementById("id-error-confirm");
-
-            idCheck.style.display = "none";
-            idConfirmError.style.display = "none";
+            idCheck.className = "NotChecked";
         }
     });
     registPwd.addEventListener("input", (event) => {
         replaceInputPwd(event);
-        validatePwd(registPwd.value);
+        if(registPwd.value.length >= 8) {
+            validatePwd(registPwd.value);
+        } else {
+            const pwdCheck = document.getElementById("pwd-check");
+            pwdCheck.className = "NotChecked";
+        }
     });
     registRePwd.addEventListener("input", (event) => {
         replaceInputPwd(event);
-        validateRePwd(registPwd.value, registRePwd.value);
+        if(registRePwd.value.length >= 8 && registRePwd.value >= registPwd.value) {
+            validateRePwd(registPwd.value, registRePwd.value);
+        } else {
+            const rePwdCheck = document.getElementById("rePwd-check");
+            rePwdCheck.className = "NotChecked";
+        }
     });
     registEmail.addEventListener("input", (event) => {
+        clearTimeout(typingTimer); 
+        typingTimer = setTimeout(() => {
+            validateEmail(registEmail.value);
+        }, doneTypingInterval);
+    
         replaceInputEmail(event);
-        validateEmail(registEmail.value);
     });
     registPhone.addEventListener("input", (event) => {
         replaceInputNumber(event);
