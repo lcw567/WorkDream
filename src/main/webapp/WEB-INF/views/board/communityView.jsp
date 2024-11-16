@@ -51,11 +51,18 @@
                 <div class="category-line">
                     <p class="post-category">카테고리: <span><c:out value="${post.category}" /></span></p>
                     <p class="job-category">직무:
-                        <c:forEach var="job" items="${post.jobCategories}" varStatus="status">
-                            <span><c:out value="${job}" /></span>
-                            <c:if test="${!status.last}">, </c:if>
-                        </c:forEach>
-                    </p>
+					    <c:if test="${not empty post.jobCategories}">
+					        <c:forEach var="job" items="${post.jobCategories}" varStatus="status">
+					            <span><c:out value="${job}" /></span>
+					            <c:if test="${!status.last}">, </c:if>
+					        </c:forEach>
+					    </c:if>
+					    <c:if test="${empty post.jobCategories}">
+					        <span>직무 카테고리가 없습니다.</span>
+					    </c:if>
+					</p>
+					
+
                 </div>
                 <h2 class="post-title"><c:out value="${post.title}" /></h2>          
                 <c:if test="${not empty post.imagePath}">
@@ -65,7 +72,7 @@
                     <c:out value="${post.content}" escapeXml="true" />
                 </p>
                 <div class="hashtags">
-                    <c:forEach var="hashtag" items="${hashtags}">
+                    <c:forEach var="hashtag" items="${post.hashtags}">
                         <span class="hashtag">#<c:out value="${hashtag}" /></span>
                     </c:forEach>
                 </div>
@@ -99,4 +106,4 @@
 
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
-</html>
+</html>  

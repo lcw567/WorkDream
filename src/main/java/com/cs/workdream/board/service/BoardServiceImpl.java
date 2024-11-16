@@ -3,6 +3,8 @@ package com.cs.workdream.board.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int createPost(Board board) {
         // 게시글 삽입
-    	int result = boardDao.insertPost(sqlSession, board);
+        int result = boardDao.insertPost(sqlSession, board);
         
         // postingNo 확인 로그
         System.out.println("After insertPost, postingNo: " + board.getPostingNo());
@@ -125,5 +127,40 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int deleteReply(int replyNo) {
         return boardDao.deleteReply(sqlSession, replyNo);
+    }
+
+    // 직무 카테고리 조회 메서드 추가
+    @Override
+    public List<String> getJobCategories(int postingNo) {
+        return boardDao.selectJobCategoriesByPostId(sqlSession, postingNo);
+    }
+
+    // 게시글 조회 시 직무 카테고리 포함 메서드 추가
+    @Override
+    public Board getPostWithJobCategories(int postingNo) {
+        Board post = boardDao.selectPost(sqlSession, postingNo);
+        if(post != null) {
+            // 해시태그 조회
+            List<String> hashtags = boardDao.selectHashtags(sqlSession, postingNo);
+            post.setHashtags(hashtags);
+
+            // 직무 카테고리 조회
+            List<String> jobCategories = boardDao.selectJobCategoriesByPostId(sqlSession, postingNo);
+            
+            // 데이터 정제: null 값 제거 및 공백 제거
+            if(jobCategories != null) {
+                jobCategories = jobCategories.stream()
+                    .filter(Objects::nonNull)
+                    .map(String::trim)
+                    .filter(job -> !job.isEmpty())
+                    .collect(Collectors.toList());
+            }
+
+            post.setJobCategories(jobCategories);
+
+            // 로그 출력
+            System.out.println("Retrieved Job Categories for postId=" + postingNo + ": " + jobCategories);
+        }
+        return post;
     }
 }

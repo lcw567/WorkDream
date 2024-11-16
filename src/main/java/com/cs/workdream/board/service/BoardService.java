@@ -24,4 +24,8 @@ public interface BoardService {
     Reply getReplyById(int replyNo);
     int addReply(Reply reply);
     int deleteReply(int replyNo);
+
+    // 직무 카테고리 작업
+    List<String> getJobCategories(int postingNo); // 추가
+    Board getPostWithJobCategories(int postingNo); // 추가
 }
