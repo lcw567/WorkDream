@@ -92,6 +92,18 @@ public class BoardDao {
     public List<Reply> selectReplies(SqlSessionTemplate sqlSession, int postingNo) {
         return sqlSession.selectList("boardMapper.selectReplies", postingNo);
     }
+    
+    public List<String> selectJobCategoriesByPostId(SqlSessionTemplate sqlSession, int postId) {
+        return sqlSession.selectList("boardMapper.selectJobCategoriesByPostId", postId);
+    }
+
+    public int insertJobCategory(SqlSessionTemplate sqlSession, int postingNo, String jobCategory) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("postingNo", postingNo);
+        params.put("jobCategory", jobCategory);
+        return sqlSession.insert("boardMapper.insertJobCategory", params);
+    }
+
 
     // 댓글 삽입
     public int insertReply(SqlSessionTemplate sqlSession, Reply reply) {

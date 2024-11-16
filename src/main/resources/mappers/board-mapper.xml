@@ -131,6 +131,19 @@
         SELECT HASHTAG FROM COMMUNITY_POST_HASHTAG
         WHERE POSTING_NO = #{postingNo}
     </select>
+    
+    <!-- selectJobCategoriesByPostId 쿼리 -->
+	<select id="selectJobCategoriesByPostId" parameterType="int" resultType="string">
+	    SELECT JOB_CATEGORY
+	    FROM COMMUNITY_POST_JOB_CATEGORY
+	    WHERE POSTING_NO = #{postId}
+	</select>
+	
+	<!-- insertJobCategory 쿼리 -->
+	<insert id="insertJobCategory" parameterType="map">
+	    INSERT INTO COMMUNITY_POST_JOB_CATEGORY (POSTING_NO, JOB_CATEGORY)
+	    VALUES (#{postingNo}, #{jobCategory})
+	</insert>
 
     <!-- 해시태그 삽입 -->
     <insert id="insertHashtag" parameterType="map">
