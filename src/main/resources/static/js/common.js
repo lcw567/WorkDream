@@ -2,7 +2,6 @@
 
 // 타이핑 타이머 변수
 let typingTimer;
-const doneTypingInterval = 1000;  // 1초 대기 (1000ms)
 
 // 아이디칸 입력제한
 function replaceInputId(event) {
@@ -104,6 +103,9 @@ function validateId(id) {
                 }
             }, error : function(error) {
                 console.log("아이디 중복체크 ajax 실패 : ", error);
+                idCheck.innerHTML = errorImg + "다시 입력해주세요.";
+                idCheck.className = "error";
+                return false;
             }
         })
     }
@@ -118,7 +120,7 @@ function validatePwd(password) {
     const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
     const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
-    
+
     if(password.length == "") {
         // 비밀번호 미입력
         pwdCheck.innerHTML = errorImg  + "필수입력항목입니다.";
@@ -246,10 +248,34 @@ function validateNumber(registNumber) {
         numberCheck.className = "error";
         return false;
     } else {
-        // 사업자등록번호 조회
-        numberCheck.innerHTML = checkImg + "확인완료";
-        numberCheck.className = "check";
-        return true;
+        // 사업자등록번호 조회 (오픈 API 1.1.0)
+        $.ajax({
+            url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=gOn%2FFXCdwGgJ1DcdEYhnW%2BZ%2BNfxmcUslrsWA3MYlh4FLh2aUVeHUWn8y%2BUm07ed43SjDtsNA0xNV5ry2lbN0FQ%3D%3D",
+            type: "POST",
+            data: JSON.stringify({
+                "b_no": [registNumber]
+            }),
+            dataType: "JSON",
+            contentType: "application/json",
+            accept: "application/json",
+            success: function(result) {
+                if(result.data[0].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다." || result.data[0].tax_type === "") {
+                    // 조회 실패
+                    numberCheck.innerHTML = errorImg + "등록되지않은 사업자등록번호입니다.";
+                    numberCheck.className = "error";
+                    return false;
+                } else {
+                    // 조회 성공
+                    numberCheck.innerHTML = checkImg + "확인완료";
+                    numberCheck.className = "check";
+                    return true;
+                }
+            },
+            error: function(result) {
+                // API 호출 오류
+                console.log(result.responseText);
+            }
+        });
     }
 }
 
@@ -295,7 +321,7 @@ try {
     menuButton.addEventListener('mouseleave', changeMenuImg);
     menuButton.addEventListener('click', changeMenuImg);
 } catch (error) {
-    console.error("오류 발생: ", error);
+    console.log("heder-menu: ", error);
 }
 
 // 소메뉴
@@ -312,27 +338,27 @@ function activeMenu(menuNo) {
 
 /* login.jsp */
 // 로그인 섹션 변경
-function changeLoginSection() {
-    const personSection = document.getElementById("login-section-person");
-    const businessSection = document.getElementById("login-section-business");
-
-    if(ut === "P") {
-        personSection.classList.add("On");
-        businessSection.classList.remove("On");
-    }
-    else {
-        personSection.classList.remove("On");
-        businessSection.classList.add("On");
-    }
-}
-
-// 탭 클릭 시 섹션 변경
-function changeUserType(userType) {
-    ut = userType;
-    changeLoginSection();
-}
-
 try {
+    function changeLoginSection() {
+        const personSection = document.getElementById("login-section-person");
+        const businessSection = document.getElementById("login-section-business");
+
+        if(ut === "P") {
+            personSection.classList.add("On");
+            businessSection.classList.remove("On");
+        }
+        else {
+            personSection.classList.remove("On");
+            businessSection.classList.add("On");
+        }
+    }
+
+    // 탭 클릭 시 섹션 변경
+    function changeUserType(userType) {
+        ut = userType;
+        changeLoginSection();
+    }
+
     // 섹션 초기값
     document.addEventListener("DOMContentLoaded", function() {
         changeLoginSection();
@@ -349,7 +375,7 @@ try {
         input.addEventListener("input", replaceInputPwd);
     });
 } catch (error) {
-    console.error("오류 발생: ", error);
+    console.log("login-section: ", error);
 }
 
 
@@ -435,11 +461,11 @@ try {
         }
     });
     registEmail.addEventListener("input", (event) => {
-        clearTimeout(typingTimer); 
+        clearTimeout(typingTimer);
         typingTimer = setTimeout(() => {
             validateEmail(registEmail.value);
-        }, doneTypingInterval);
-    
+        }, 1000);
+
         replaceInputEmail(event);
     });
     registPhone.addEventListener("input", (event) => {
@@ -449,7 +475,7 @@ try {
         validateForm();
     });
 } catch(error) {
-    console.error("오류 발생: ", error);
+    console.log("registration-Person: ", error);
 }
 
 
@@ -509,6 +535,15 @@ try {
         }
     }
 
+    registNumber.addEventListener("input", (event) => {
+        replaceInputNumber(event);
+        if(registNumber.value.length == 10) {
+            validateNumber(registNumber.value);
+        } else {
+            const numberCheck = document.getElementById("number-check");
+            numberCheck.className = "NotChecked";
+        }
+    })
     registId.addEventListener("input", (event) => {
         replaceInputId(event);
         if(registId.value.length >= 4) {
@@ -537,11 +572,11 @@ try {
         }
     });
     registEmail.addEventListener("input", (event) => {
-        clearTimeout(typingTimer); 
+        clearTimeout(typingTimer);
         typingTimer = setTimeout(() => {
             validateEmail(registEmail.value);
-        }, doneTypingInterval);
-    
+        }, 1000);
+
         replaceInputEmail(event);
     });
     registPhone.addEventListener("input", (event) => {
@@ -551,5 +586,5 @@ try {
         validateForm();
     });
 } catch(error) {
-    console.error("오류 발생: ", error);
+    console.log("registration-Business: ", error);
 }
