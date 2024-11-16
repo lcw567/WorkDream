@@ -11,14 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*; // 필요한 어노테이션 임포트
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.board.model.vo.Board;
@@ -47,37 +40,38 @@ public class BoardController {
     // 게시글 보기 페이지 표시
     @GetMapping("/communityView")
     public String showCommunityView(@RequestParam("postId") int postId, Model model, HttpSession session) {
-        Board post = boardService.getPost(postId);
+        // 게시글 조회 (직무 카테고리 포함)
+        Board post = boardService.getPostWithJobCategories(postId);
         if(post != null && "Y".equals(post.getStatus())) {
-            // 선택적으로 조회수 증가
+            // 조회수 증가
             post.setViewCount(post.getViewCount() + 1);
             boardService.updatePost(post);
 
-            List<String> hashtags = boardService.getHashtags(postId);
+            // 모델에 게시글 추가
             model.addAttribute("post", post);
-            model.addAttribute("hashtags", hashtags);
 
-            // 현재 사용자 정보 모킹 (실제 사용자 조회 로직으로 대체 필요)
-            Map<String, Object> currentUser = (Map<String, Object>) session.getAttribute("currentUser");
-            if(currentUser != null) {
-                model.addAttribute("currentUser", currentUser);
+            // 현재 사용자 정보 (로그인 사용자 정보)
+            Object currentUserObj = session.getAttribute("currentUser");
+            if(currentUserObj != null) {
+                // currentUser 객체를 모델에 추가
+                model.addAttribute("currentUser", currentUserObj);
             }
 
             return "board/communityView"; // communityView.jsp
         } else {
             model.addAttribute("errorMsg", "게시글을 찾을 수 없습니다.");
-            return "common/errorPage";
+            return "common/errorPage"; // 에러 페이지
         }
     }
-
+    
     // 커뮤니티 게시판 목록 페이지 표시
     @GetMapping("/communityList")
     public String showCommunityList(@RequestParam(value="category", defaultValue="인기글") String category, Model model) {
         model.addAttribute("category", category);
         return "board/communityList"; // communityList.jsp
     }
-  
-  // RESTful API 엔드포인트
+
+    // RESTful API 엔드포인트
 
     // 게시글 수 조회
     @GetMapping("/api/postCount")
@@ -108,20 +102,8 @@ public class BoardController {
             @RequestParam(value="offset", defaultValue="0") int offset,
             @RequestParam(value="limit", defaultValue="10") int limit) {
         
-        List<Board> posts;
-        int totalCount;
-
-        if("최신순".equals(filter)) {
-            posts = boardService.getFilteredPosts(category, filter, offset, limit);
-            totalCount = boardService.countFilteredPosts(category, filter);
-        } else if("조회순".equals(filter) || "공감 많은 순".equals(filter)) {
-            posts = boardService.getFilteredPosts(category, filter, offset, limit);
-            totalCount = boardService.countFilteredPosts(category, filter);
-        } else {
-            // 기본적으로 최신순으로 설정
-            posts = boardService.getFilteredPosts(category, "최신순", offset, limit);
-            totalCount = boardService.countFilteredPosts(category, "최신순");
-        }
+        List<Board> posts = boardService.getFilteredPosts(category, filter, offset, limit);
+        int totalCount = boardService.countFilteredPosts(category, filter);
 
         Map<String, Object> response = new HashMap<>();
         response.put("posts", posts);
@@ -280,23 +262,20 @@ public class BoardController {
         }
         return response;
     }
-    
-	
-		
-		 // 임시 로그인 엔드포인트 (개발용)
-		 @GetMapping("/testLogin")
-		 public String testLogin(HttpSession session) {
-		     Map<String, Object> mockUser = new HashMap<>();
-		     mockUser.put("userNo", 1); // 실제 사용자 번호로 변경
-		     mockUser.put("userName", "테스트 사용자");
-		     session.setAttribute("currentUser", mockUser);
-		     return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
-		 }
-  
+
+    // 임시 로그인 엔드포인트 (개발용)
+    @GetMapping("/testLogin")
+    public String testLogin(HttpSession session) {
+        Map<String, Object> mockUser = new HashMap<>();
+        mockUser.put("userNo", 1); // 실제 사용자 번호로 변경
+        mockUser.put("userName", "테스트 사용자");
+        session.setAttribute("currentUser", mockUser);
+        return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
+    }
+
     // 채용공고목록 맵핑
     @GetMapping("/listOfJobOpening")
     public String showjobOpeningList() {
         return "board/listOfJobOpening"; // listOfJobOpening.jsp
     }
-    
 }

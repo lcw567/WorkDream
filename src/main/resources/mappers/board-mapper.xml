@@ -74,25 +74,25 @@
     </select>
 
    <!-- 게시글 ID로 단일 게시글 조회 -->
-	<select id="selectPost" parameterType="int" resultType="com.cs.workdream.board.model.vo.Board">
-	    SELECT 
-	        POSTING_NO,
-	        CATEGORY,
-	        TITLE,
-	        CONTENT,
-	        IMAGE,
-	        AUTHOR,
-	        USER_NO,
-	        CREATED_TIME,
-	        UPDATED_TIME,
-	        VIEW_COUNT,
-	        LIKE_COUNT,
-	        STATUS
-	    FROM POSTING
-	    WHERE POSTING_NO = #{value} AND STATUS = 'Y'
-	</select>
+    <select id="selectPost" parameterType="int" resultType="com.cs.workdream.board.model.vo.Board">
+        SELECT 
+            POSTING_NO,
+            CATEGORY,
+            TITLE,
+            CONTENT,
+            IMAGE,
+            AUTHOR,
+            USER_NO,
+            CREATED_TIME,
+            UPDATED_TIME,
+            VIEW_COUNT,
+            LIKE_COUNT,
+            STATUS
+        FROM POSTING
+        WHERE POSTING_NO = #{value} AND STATUS = 'Y'
+    </select>
 
-	<!-- 새로운 게시글 삽입 -->
+    <!-- 새로운 게시글 삽입 -->
     <insert id="insertPost" parameterType="com.cs.workdream.board.model.vo.Board">
         <!-- 시퀀스에서 다음 값 가져오기 -->
         <selectKey keyProperty="postingNo" resultType="java.lang.Integer" order="BEFORE">
@@ -120,17 +120,30 @@
     </update>
 
     <!-- 게시글 소프트 삭제 -->
-	<update id="deletePost" parameterType="int">
-	    UPDATE POSTING
-	    SET STATUS = 'N'
-	    WHERE POSTING_NO = #{value}
-	</update>
+    <update id="deletePost" parameterType="int">
+        UPDATE POSTING
+        SET STATUS = 'N'
+        WHERE POSTING_NO = #{value}
+    </update>
 
     <!-- 특정 게시글의 해시태그 조회 -->
     <select id="selectHashtags" parameterType="int" resultType="string">
         SELECT HASHTAG FROM COMMUNITY_POST_HASHTAG
         WHERE POSTING_NO = #{postingNo}
     </select>
+    
+    <!-- 직무 카테고리 조회 -->
+    <select id="selectJobCategoriesByPostId" parameterType="map" resultType="string">
+	    SELECT JOB_CATEGORY
+	    FROM COMMUNITY_POST_JOB_CATEGORY
+	    WHERE POSTING_NO = #{postingNo}
+	</select>
+
+    <!-- insertJobCategory 쿼리 -->
+    <insert id="insertJobCategory" parameterType="map">
+        INSERT INTO COMMUNITY_POST_JOB_CATEGORY (POSTING_NO, JOB_CATEGORY)
+        VALUES (#{postingNo}, #{jobCategory})
+    </insert>
 
     <!-- 해시태그 삽입 -->
     <insert id="insertHashtag" parameterType="map">
@@ -139,21 +152,21 @@
     </insert>
 
     <!-- 특정 게시글의 댓글 조회 -->
-	<select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
-	    SELECT 
-	        r.REPLY_NO,
-	        r.POSTING_NO,
-	        r.USER_NO,
-	        u.USER_NAME AS author, <!-- 작성자 이름 추가 -->
-	        r.CONTENT,
-	        r.CREATED_TIME,
-	        r.LIKE_COUNT,
-	        r.STATUS
-	    FROM REPLY r
-	    JOIN MEMBER u ON r.USER_NO = u.USER_NO <!-- JOIN 추가 -->
-	    WHERE r.POSTING_NO = #{postingNo} AND r.STATUS = 'Y'
-	    ORDER BY r.CREATED_TIME ASC
-	</select>
+    <select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
+        SELECT 
+            r.REPLY_NO,
+            r.POSTING_NO,
+            r.USER_NO,
+            u.USER_NAME AS author, <!-- 작성자 이름 추가 -->
+            r.CONTENT,
+            r.CREATED_TIME,
+            r.LIKE_COUNT,
+            r.STATUS
+        FROM REPLY r
+        JOIN MEMBER u ON r.USER_NO = u.USER_NO <!-- JOIN 추가 -->
+        WHERE r.POSTING_NO = #{postingNo} AND r.STATUS = 'Y'
+        ORDER BY r.CREATED_TIME ASC
+    </select>
 
     <!-- 댓글 삽입 -->
     <insert id="insertReply" parameterType="com.cs.workdream.board.model.vo.Reply" useGeneratedKeys="true" keyProperty="replyNo">

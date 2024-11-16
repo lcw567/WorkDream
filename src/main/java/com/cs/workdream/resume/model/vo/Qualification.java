@@ -1,24 +1,25 @@
 package com.cs.workdream.resume.model.vo;
 
-import java.sql.Date;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.YearMonth;
+import org.springframework.format.annotation.DateTimeFormat;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Qualification {
-	
-	private Integer qualification_no;
-	private Integer resume_no;
-	private int person_no;
-    private String category;         // 구분 (자격증, 어학, 수상)
-    private String name;             // 자격증명, 어학시험명, 수상명
-    private String issuingAgency;    // 발행처/기관
-    private Integer proficiencyLevel; // 급수 (어학에만 사용)
-    private String languageType;     // 언어 종류 (어학에만 사용)
-    private String passStatus;       // 합격 구분 (자격증에만 사용)
-    private Date issueDate;          // 발급일자/수상일자
+    private Integer qualificationNo;
+    private Integer resumeNo;
+    private int personNo;
+    private String category;
+    private String name;
+    private String issuingAgency;
+    private Integer proficiencyLevel;
+    private String languageType;
+    private String passStatus;
+
+    @DateTimeFormat(pattern = "yyyy-MM") // 날짜 형식을 yyyy-MM으로 설정
+    private YearMonth issueDate;
 }

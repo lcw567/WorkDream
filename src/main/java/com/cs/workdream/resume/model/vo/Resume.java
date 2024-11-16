@@ -1,17 +1,17 @@
 package com.cs.workdream.resume.model.vo;
 
 import lombok.Data;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
 public class Resume {
-    private Integer resume_no;
-    private Integer person_no;
-    private String resumetitle;
-    private Date create_date;
-    private Date modified_date;
+    private Integer resumeNo;
+    private Integer personNo;
+    private String resumeTitle;
+    private LocalDate createDate;
+    private LocalDate modifiedDate;
     private char deleted;
     private String userPic;
 
