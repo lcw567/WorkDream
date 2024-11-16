@@ -212,3 +212,25 @@ body {
     font-weight: bold;
     color: #4E21A8;
 }
+
+.post-create-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.post-create-button-container button {
+    padding: 0.8rem 1.5rem;
+    background-color: #4E21A8;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.post-create-button-container button:hover {
+    background-color: #3B1B84;
+}

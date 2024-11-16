@@ -50,6 +50,16 @@ public class BoardServiceImpl implements BoardService {
                 boardDao.insertHashtag(sqlSession, params);
             }
         }
+        
+        // 직무 카테고리 삽입
+        if(board.getJobCategories() != null) {
+            for(String job : board.getJobCategories()) {
+                if(!"선택 안 함".equals(job)) { 
+                    boardDao.insertJobCategory(sqlSession, board.getPostingNo(), job);
+                }
+            }
+        }
+    
         return result;
     }
 

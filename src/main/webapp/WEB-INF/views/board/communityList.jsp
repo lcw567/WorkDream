@@ -93,6 +93,11 @@
                 <button><img src="${pageContext.request.contextPath}/img/btn_search.png" alt="검색" class="search-icon">  </button>
             </div>
         </div>
+        <div class="post-create-button-container">
+	        <button onclick="location.href='${pageContext.request.contextPath}/board/communityPost'">
+	            게시글 등록
+	        </button>
+	    </div>
 
         <!-- 게시글 목록 테이블 -->
         <section class="post-list">

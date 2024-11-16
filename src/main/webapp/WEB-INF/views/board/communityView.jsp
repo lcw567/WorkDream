@@ -29,39 +29,44 @@
                 <div class="post-user-info">
                     <img src="${pageContext.request.contextPath}/img/icon_user.png" alt="사용자 아이콘" class="user-icon">
                     <div class="user-details">
-                        <span class="user-name">${post.author}</span>
-                        <span class="post-date">${post.createdTime} 작성</span>
+                        <span class="user-name"><c:out value="${post.author}" /></span>
+                        <span class="post-date"><c:out value="${post.createdTime}" /> 작성</span>
                     </div>
                 </div>
                 <div class="post-buttons">
-                    <!-- 현재 로그인한 사용자가 게시글 작성자인 경우에만 수정 및 삭제 버튼 표시 -->
-                    <c:if test="${currentUser.userNo == post.userNo}">
+                    <c:if test="${not empty currentUser and currentUser.userNo == post.userNo}">
                         <button class="button edit-button" aria-label="수정">수정</button>
                         <button class="button delete-button" aria-label="삭제">삭제</button>
                     </c:if>
-                    <button class="button like-button" aria-label="공감"><span>👍</span> <span class="like-count">${post.likeCount}</span></button>
+                    <button class="button like-button" aria-label="공감">
+                        <span role="img" aria-hidden="true">👍</span> 
+                        <span class="like-count"><c:out value="${post.likeCount}" /></span>
+                        <span class="sr-only">공감</span>
+                    </button>
                     <button class="button report-button" aria-label="신고">신고</button>
                 </div>
             </div>
             <hr>
-            <!-- 게시글 내용 -->
             <div class="post-content">
                 <div class="category-line">
-                    <!-- 카테고리 및 직무 카테고리 표시 -->
-                    <p class="post-category">카테고리: <span>${post.category}</span></p>
-                    <p class="job-category">직무: <span>${post.jobCategories}</span></p>
+                    <p class="post-category">카테고리: <span><c:out value="${post.category}" /></span></p>
+                    <p class="job-category">직무:
+                        <c:forEach var="job" items="${post.jobCategories}" varStatus="status">
+                            <span><c:out value="${job}" /></span>
+                            <c:if test="${!status.last}">, </c:if>
+                        </c:forEach>
+                    </p>
                 </div>
-                <h2 class="post-title">${post.title}</h2>          
+                <h2 class="post-title"><c:out value="${post.title}" /></h2>          
                 <c:if test="${not empty post.imagePath}">
                     <img src="${pageContext.request.contextPath}/${post.imagePath}" alt="게시글 이미지" class="post-image">
                 </c:if>
                 <p class="post-text">
-                    ${post.content}
+                    <c:out value="${post.content}" escapeXml="true" />
                 </p>
-                <!-- 해시태그 표시 -->
                 <div class="hashtags">
                     <c:forEach var="hashtag" items="${hashtags}">
-                        <span class="hashtag">#${hashtag}</span>
+                        <span class="hashtag">#<c:out value="${hashtag}" /></span>
                     </c:forEach>
                 </div>
             </div>
@@ -74,7 +79,7 @@
                     <img src="${pageContext.request.contextPath}/img/icon_user.png" alt="사용자 아이콘" class="comment-user-icon">
                     <span class="comment-user-name">
                         <c:if test="${not empty currentUser}">
-                            ${currentUser.userName}
+                            <c:out value="${currentUser.userName}" />
                         </c:if>
                         <c:if test="${empty currentUser}">
                             익명

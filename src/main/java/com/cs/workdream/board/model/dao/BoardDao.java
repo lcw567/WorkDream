@@ -27,7 +27,9 @@ public class BoardDao {
     public int insertPost(SqlSessionTemplate sqlSession, Board board) {
         System.out.println("Inserting post with USER_NO: " + board.getUserNo());
         System.out.println("Inserting post with POSTING_NO: " + board.getPostingNo());
-        return sqlSession.insert("boardMapper.insertPost", board);
+        int result = sqlSession.insert("boardMapper.insertPost", board);
+        System.out.println("After insert, POSTING_NO: " + board.getPostingNo());
+        return result;
     }
     // 게시글 조회 메서드
     public Board selectPost(SqlSessionTemplate sqlSession, int postingNo) {
@@ -90,6 +92,18 @@ public class BoardDao {
     public List<Reply> selectReplies(SqlSessionTemplate sqlSession, int postingNo) {
         return sqlSession.selectList("boardMapper.selectReplies", postingNo);
     }
+    
+    public List<String> selectJobCategoriesByPostId(SqlSessionTemplate sqlSession, int postId) {
+        return sqlSession.selectList("boardMapper.selectJobCategoriesByPostId", postId);
+    }
+
+    public int insertJobCategory(SqlSessionTemplate sqlSession, int postingNo, String jobCategory) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("postingNo", postingNo);
+        params.put("jobCategory", jobCategory);
+        return sqlSession.insert("boardMapper.insertJobCategory", params);
+    }
+
 
     // 댓글 삽입
     public int insertReply(SqlSessionTemplate sqlSession, Reply reply) {
