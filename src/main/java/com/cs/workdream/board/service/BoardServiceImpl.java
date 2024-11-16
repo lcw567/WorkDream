@@ -50,6 +50,8 @@ public class BoardServiceImpl implements BoardService {
                 boardDao.insertHashtag(sqlSession, params);
             }
         }
+        
+        
         return result;
     }
 
