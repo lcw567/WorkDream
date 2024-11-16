@@ -1,33 +1,37 @@
 package com.cs.workdream.resume.model.vo;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class AcademicAbility {
-    private Integer academic_no; // 기본 키
-    private Integer resume_no;   // 외래 키
-    private int person_no;       // 외래 키
-    private String education_level;
-    private String academic_name;
+    private Integer academicNo;         // 기본 키
+    private Integer resumeNo;           // 외래 키
+    private int personNo;               // 외래 키
+    private String educationLevel;
+    private String academicName;
     private String major;
     private String degree;
-    private String graduation_status;
-    private Date enter_date;
-    private Date graduation_date;
+    private String graduationStatus;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate enterDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate graduationDate;
+
     private String location;
-    private Character exam_passed;
+    private Character examPassed;
 }
+
