@@ -19,15 +19,12 @@ public class BoardDao {
         params.put("category", category);
         params.put("offset", offset);
         params.put("limit", limit);
-        return sqlSession.selectList("boardMapper.selectPosts", params, new org.apache.ibatis.session.RowBounds(offset, limit));
+        return sqlSession.selectList("boardMapper.selectPosts", params);
     }
 
     // 새로운 게시글 삽입
     public int insertPost(SqlSessionTemplate sqlSession, Board board) {
-        System.out.println("Inserting post with USER_NO: " + board.getUserNo());
-        System.out.println("Inserting post with POSTING_NO: " + board.getPostingNo());
         int result = sqlSession.insert("boardMapper.insertPost", board);
-        System.out.println("After insert, POSTING_NO: " + board.getPostingNo());
         return result;
     }
 
@@ -67,7 +64,7 @@ public class BoardDao {
         params.put("filter", filter);
         params.put("offset", offset);
         params.put("limit", limit);
-        return sqlSession.selectList("boardMapper.selectFilteredPosts", params, new org.apache.ibatis.session.RowBounds(offset, limit));
+        return sqlSession.selectList("boardMapper.selectFilteredPosts", params);
     }
 
     // 필터링된 게시물 수 조회
@@ -97,9 +94,7 @@ public class BoardDao {
     public List<String> selectJobCategoriesByPostId(SqlSessionTemplate sqlSession, int postingNo) {
         Map<String, Object> params = new HashMap<>();
         params.put("postingNo", postingNo); // 파라미터 이름 일관성 유지
-        List<String> jobCategories = sqlSession.selectList("boardMapper.selectJobCategoriesByPostId", params);
-        System.out.println("selectJobCategoriesByPostId returned: " + jobCategories);
-        return jobCategories;
+        return sqlSession.selectList("boardMapper.selectJobCategoriesByPostId", params);
     }
 
     public int insertJobCategory(SqlSessionTemplate sqlSession, int postingNo, String jobCategory) {
