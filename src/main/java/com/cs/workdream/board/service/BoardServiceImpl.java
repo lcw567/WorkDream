@@ -41,9 +41,6 @@ public class BoardServiceImpl implements BoardService {
         // 게시글 삽입
         int result = boardDao.insertPost(sqlSession, board);
         
-        // postingNo 확인 로그
-        System.out.println("After insertPost, postingNo: " + board.getPostingNo());
-        
         if(result > 0 && board.getHashtags() != null) {
             for(String hashtag : board.getHashtags()) {
                 Map<String, Object> params = new HashMap<>();
@@ -157,9 +154,6 @@ public class BoardServiceImpl implements BoardService {
             }
 
             post.setJobCategories(jobCategories);
-
-            // 로그 출력
-            System.out.println("Retrieved Job Categories for postId=" + postingNo + ": " + jobCategories);
         }
         return post;
     }

@@ -11,14 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*; // 필요한 어노테이션 임포트
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.board.model.vo.Board;
@@ -57,9 +50,6 @@ public class BoardController {
             // 모델에 게시글 추가
             model.addAttribute("post", post);
 
-            // 직무 카테고리 로그 출력
-            System.out.println("Job Categories for postId=" + postId + ": " + post.getJobCategories());
-
             // 현재 사용자 정보 (로그인 사용자 정보)
             Object currentUserObj = session.getAttribute("currentUser");
             if(currentUserObj != null) {
@@ -80,8 +70,8 @@ public class BoardController {
         model.addAttribute("category", category);
         return "board/communityList"; // communityList.jsp
     }
-  
-  // RESTful API 엔드포인트
+
+    // RESTful API 엔드포인트
 
     // 게시글 수 조회
     @GetMapping("/api/postCount")
@@ -112,20 +102,8 @@ public class BoardController {
             @RequestParam(value="offset", defaultValue="0") int offset,
             @RequestParam(value="limit", defaultValue="10") int limit) {
         
-        List<Board> posts;
-        int totalCount;
-
-        if("최신순".equals(filter)) {
-            posts = boardService.getFilteredPosts(category, filter, offset, limit);
-            totalCount = boardService.countFilteredPosts(category, filter);
-        } else if("조회순".equals(filter) || "공감 많은 순".equals(filter)) {
-            posts = boardService.getFilteredPosts(category, filter, offset, limit);
-            totalCount = boardService.countFilteredPosts(category, filter);
-        } else {
-            // 기본적으로 최신순으로 설정
-            posts = boardService.getFilteredPosts(category, "최신순", offset, limit);
-            totalCount = boardService.countFilteredPosts(category, "최신순");
-        }
+        List<Board> posts = boardService.getFilteredPosts(category, filter, offset, limit);
+        int totalCount = boardService.countFilteredPosts(category, filter);
 
         Map<String, Object> response = new HashMap<>();
         response.put("posts", posts);
@@ -284,23 +262,20 @@ public class BoardController {
         }
         return response;
     }
-    
-	
-		
-		 // 임시 로그인 엔드포인트 (개발용)
-		 @GetMapping("/testLogin")
-		 public String testLogin(HttpSession session) {
-		     Map<String, Object> mockUser = new HashMap<>();
-		     mockUser.put("userNo", 1); // 실제 사용자 번호로 변경
-		     mockUser.put("userName", "테스트 사용자");
-		     session.setAttribute("currentUser", mockUser);
-		     return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
-		 }
-  
+
+    // 임시 로그인 엔드포인트 (개발용)
+    @GetMapping("/testLogin")
+    public String testLogin(HttpSession session) {
+        Map<String, Object> mockUser = new HashMap<>();
+        mockUser.put("userNo", 1); // 실제 사용자 번호로 변경
+        mockUser.put("userName", "테스트 사용자");
+        session.setAttribute("currentUser", mockUser);
+        return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
+    }
+
     // 채용공고목록 맵핑
     @GetMapping("/listOfJobOpening")
     public String showjobOpeningList() {
         return "board/listOfJobOpening"; // listOfJobOpening.jsp
     }
-    
 }

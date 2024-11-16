@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // 컨텍스트 경로 가져오기
+    const contextPath = document.getElementById("contextPath").value;
+
     // URL 파라미터에서 카테고리 가져오기
     const urlParams = new URLSearchParams(window.location.search);
     let currentCategory = urlParams.get('category') || '인기글';
@@ -48,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadPosts(category, filter, page) {
         const offset = (page - 1) * postsPerPage;
 
-        fetch(`/api/posts?category=${encodeURIComponent(category)}&filter=${encodeURIComponent(filter)}&offset=${offset}&limit=${postsPerPage}`)
+        fetch(`${contextPath}/board/api/posts?category=${encodeURIComponent(category)}&filter=${encodeURIComponent(filter)}&offset=${offset}&limit=${postsPerPage}`)
             .then(response => response.json())
             .then(data => {
                 updatePostList(data.posts);
