@@ -47,29 +47,33 @@ public class BoardController {
     // 게시글 보기 페이지 표시
     @GetMapping("/communityView")
     public String showCommunityView(@RequestParam("postId") int postId, Model model, HttpSession session) {
-        Board post = boardService.getPost(postId);
+        // 게시글 조회 (직무 카테고리 포함)
+        Board post = boardService.getPostWithJobCategories(postId);
         if(post != null && "Y".equals(post.getStatus())) {
-            // 선택적으로 조회수 증가
+            // 조회수 증가
             post.setViewCount(post.getViewCount() + 1);
             boardService.updatePost(post);
 
-            List<String> hashtags = boardService.getHashtags(postId);
+            // 모델에 게시글 추가
             model.addAttribute("post", post);
-            model.addAttribute("hashtags", hashtags);
 
-            // 현재 사용자 정보 모킹 (실제 사용자 조회 로직으로 대체 필요)
-            Map<String, Object> currentUser = (Map<String, Object>) session.getAttribute("currentUser");
-            if(currentUser != null) {
-                model.addAttribute("currentUser", currentUser);
+            // 직무 카테고리 로그 출력
+            System.out.println("Job Categories for postId=" + postId + ": " + post.getJobCategories());
+
+            // 현재 사용자 정보 (로그인 사용자 정보)
+            Object currentUserObj = session.getAttribute("currentUser");
+            if(currentUserObj != null) {
+                // currentUser 객체를 모델에 추가
+                model.addAttribute("currentUser", currentUserObj);
             }
 
             return "board/communityView"; // communityView.jsp
         } else {
             model.addAttribute("errorMsg", "게시글을 찾을 수 없습니다.");
-            return "common/errorPage";
+            return "common/errorPage"; // 에러 페이지
         }
     }
-
+    
     // 커뮤니티 게시판 목록 페이지 표시
     @GetMapping("/communityList")
     public String showCommunityList(@RequestParam(value="category", defaultValue="인기글") String category, Model model) {
