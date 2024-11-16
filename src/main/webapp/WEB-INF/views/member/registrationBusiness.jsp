@@ -61,8 +61,8 @@
 						<button type="button">파일 선택</button>
 					</label>
 					
-					<label for="">
-						<input type="checkbox" id="">
+					<label for="test">
+						<input type="checkbox" id="test">
 						<span></span>&ensp;다음에 인증
 					</label>
 				</div>
