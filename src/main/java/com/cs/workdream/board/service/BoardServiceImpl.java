@@ -104,6 +104,12 @@ public class BoardServiceImpl implements BoardService {
         params.put("hashtag", hashtag);
         return boardDao.insertHashtag(sqlSession, params);
     }
+    
+    @Override
+    @Transactional
+    public void increaseViewCount(int postingNo) {
+        boardDao.increaseViewCount(sqlSession, postingNo);
+    }
 
     // 댓글 작업
     @Override

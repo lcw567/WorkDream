@@ -18,7 +18,8 @@ public interface BoardService {
     int countFilteredPosts(String category, String filter);
     List<String> getHashtags(int postingNo);
     int addHashtag(int postingNo, String hashtag);
-
+    void increaseViewCount(int postingNo);
+    
     // 댓글 작업
     List<Reply> getReplies(int postingNo);
     Reply getReplyById(int replyNo);

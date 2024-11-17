@@ -164,6 +164,7 @@
             TITLE = #{title},
             CONTENT = #{content},
             IMAGE = #{imagePath},
+            VIEW_COUNT = #{viewCount},
             UPDATED_TIME = SYSDATE
         WHERE POSTING_NO = #{postingNo} AND STATUS = 'Y'
     </update>
@@ -199,6 +200,13 @@
         INSERT INTO COMMUNITY_POST_HASHTAG (POSTING_NO, HASHTAG)
         VALUES (#{postingNo}, #{hashtag})
     </insert>
+    
+    <!-- 조회수 증가 -->
+	<update id="increaseViewCount" parameterType="int">
+	    UPDATE POSTING
+	    SET VIEW_COUNT = VIEW_COUNT + 1
+	    WHERE POSTING_NO = #{postingNo}
+	</update>
 
     <!-- 특정 게시글의 댓글 조회 -->
     <select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
@@ -243,5 +251,7 @@
         SET STATUS = 'N'
         WHERE REPLY_NO = #{replyNo}
     </update>
+    
+    
 
 </mapper>
