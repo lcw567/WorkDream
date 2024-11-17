@@ -109,6 +109,7 @@
                         <th>글쓴이</th>
                         <th>작성시간</th>
                         <th>조회수</th>
+                        <th>공감</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.author}</a></td>
                     <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${new Date(post.createdTime).toLocaleString()}</a></td>
                     <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.viewCount}</a></td>
+                    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.likeCount}</a></td>
                 `;
                 tbody.appendChild(row);
             });
