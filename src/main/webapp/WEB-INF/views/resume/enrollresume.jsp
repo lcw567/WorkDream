@@ -22,7 +22,7 @@
         <form action="insert.re" method="post" enctype="multipart/form-data">
             <div class="resume_title">
                 <h1>이력서 제목</h1> 
-                <input type="text" name="resumetitle" placeholder="이력서의 제목을 입력해주세요." required>
+                <input type="text" name="resumeTitle" placeholder="이력서의 제목을 입력해주세요." required>
             </div>
             <div class="Info">
                 <fieldset class="basic_info">
