@@ -67,8 +67,8 @@
                 </div>
                 <h2 class="post-title"><c:out value="${post.title}" /></h2>          
                 <c:if test="${not empty post.imagePath}">
-                    <img src="${pageContext.request.contextPath}/${post.imagePath}" alt="게시글 이미지" class="post-image">
-                </c:if>
+				    <img src="${pageContext.request.contextPath}/${post.imagePath}" alt="게시글 이미지" class="post-image">
+				</c:if>
                 <p class="post-text">
                     <c:out value="${post.content}" escapeXml="true" />
                 </p>

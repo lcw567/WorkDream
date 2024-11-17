@@ -140,16 +140,27 @@ public class BoardController {
             // 이미지 업로드 처리
             String imagePath = null;
             if(image != null && !image.isEmpty()) {
+                // 업로드 디렉토리 설정
                 String uploadDir = session.getServletContext().getRealPath("/uploads/");
+                if (uploadDir == null) {
+                    // getRealPath가 null을 반환하는 경우 대비
+                    uploadDir = System.getProperty("user.dir") + "/uploads/";
+                }
+                File dir = new File(uploadDir);
+                if (!dir.exists()) {
+                    dir.mkdirs(); // 디렉토리 생성
+                }
                 String originalFilename = image.getOriginalFilename();
                 String uniqueFilename = System.currentTimeMillis() + "_" + originalFilename;
-                File dest = new File(uploadDir + uniqueFilename);
+                File dest = new File(dir, uniqueFilename);
                 image.transferTo(dest);
-                imagePath = "uploads/" + uniqueFilename;
+                imagePath = "/uploads/" + uniqueFilename;
+
+                // 업로드 경로 로그 출력
+                System.out.println("Upload Directory: " + uploadDir);
             }
 
             // 세션에서 현재 사용자 정보 가져오기
-            // 실제 사용자 조회 로직으로 대체 필요
             Map<String, Object> currentUser = (Map<String, Object>) session.getAttribute("currentUser");
             if(currentUser == null) {
                 response.put("status", "fail");
@@ -185,11 +196,11 @@ public class BoardController {
         } catch(IOException e) {
             e.printStackTrace();
             response.put("status", "error");
-            response.put("message", "이미지 업로드 중 오류가 발생했습니다.");
+            response.put("message", "이미지 업로드 중 오류가 발생했습니다: " + e.getMessage());
         } catch(Exception e) {
             e.printStackTrace();
             response.put("status", "error");
-            response.put("message", "서버 오류가 발생했습니다.");
+            response.put("message", "서버 오류가 발생했습니다: " + e.getMessage());
         }
 
         return response;
