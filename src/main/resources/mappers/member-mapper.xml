@@ -35,5 +35,61 @@
 		  FROM	MEMBER
 		 WHERE	USER_ID = #{checkId}
 	</select>
-
+	
+	<!-- 신규 회원 등록 (기업) -->
+	<insert id="insertBusiness" parameterType="Member" useGeneratedKeys="true" keyProperty="businessNo">
+		INSERT	INTO BUSINESS (
+			BUSINESS_NO,
+			REGISTRATION_NUMBER
+		) VALUES (
+			SEQ_BNO.NEXTVAL,
+			#{registraionNumber}
+		);
+	</insert>
+	
+	<!-- 신규 회원 등록 (개인) -->
+	<insert id="insertPerson" parameterType="Member" useGeneratedKeys="true" keyProperty="personNo">
+		INSERT INTO PERSON (
+			PERSON_NO,
+		) VALUES (
+			SEQ_PNO.NEXTVAL,
+		)
+	</insert>
+	
+	<!-- 신규 회원 등록 (통합) -->
+	<insert id="insertMember" parameterType="Member">
+		INSERT	INTO MEMBER (
+			USER_NO,
+			USER_TYPE,
+			USER_ID,
+			USER_PWD,
+			EMAIL,
+			PHONE,
+			EROLL_DATE,
+			STATUS,
+			BUSONESS_NO,
+			PERSON_NO
+		) VALUES (
+			SEQ_UNO.NEXTVAL,
+			'B',
+			#{userId},
+			#{userPwd},
+			#{email},
+			#{phone},
+			SYSDATE,
+			'Y',
+			<choose>
+	            <when test="userType == 'B'">
+	            	<!-- 기업 회원의 경우 -->
+	                #{businessNo},
+	                NULL
+	            </when>
+	            <when test="userType == 'P'">
+	            	<!-- 개인 회원의 경우 -->
+	            	NULL,
+	                #{personNo}
+	            </when>
+	        </choose>
+		);
+	</insert>
 </mapper>
