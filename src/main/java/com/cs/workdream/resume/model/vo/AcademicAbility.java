@@ -1,6 +1,6 @@
 package com.cs.workdream.resume.model.vo;
 
-import java.time.LocalDate;
+import java.time.YearMonth;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,25 +13,22 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class AcademicAbility {
-    private Integer academicNo;         // 기본 키
-    private Integer resumeNo;           // 외래 키
-    private int personNo;               // 외래 키
-    private String educationLevel;
-    private String academicName;
-    private String major;
-    private String degree;
-    private String graduationStatus;
+    private Integer academicNo; // academic_no
+    private Integer resumeNo; // resume_no
+    private int personNo; // person_no
+    private String education_level; // education_level
+    private String academic_name; // academic_name
+    private String major_name; // major
+    private String degree; // degree
+    private String graduation_status; // graduation_status
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate enterDate;
+    @DateTimeFormat(pattern = "yyyy-MM")
+    private YearMonth enter_date; // enter_date
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate graduationDate;
+    @DateTimeFormat(pattern = "yyyy-MM")
+    private YearMonth end_date; // graduation_date
 
-    private String location;
-    private Character examPassed;
+    private String select_lo; // location
+    private Character exam_passed; // exam_passed
 }
-
