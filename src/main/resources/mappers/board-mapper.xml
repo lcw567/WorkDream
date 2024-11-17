@@ -5,6 +5,8 @@
 
 <mapper namespace="boardMapper">
 
+
+
     <!-- 카테고리 및 페이징 처리된 게시물 조회 -->
     <select id="selectPosts" parameterType="map" resultType="com.cs.workdream.board.model.vo.Board">
         SELECT 
@@ -31,6 +33,53 @@
                 WHEN #{filter} = '공감 많은 순' THEN LIKE_COUNT
             END DESC
     </select>
+    
+    
+    
+    <select id="selectFilteredPosts" parameterType="map" resultType="com.cs.workdream.board.model.vo.Board">
+	    SELECT * FROM (
+	        SELECT 
+	            A.*,
+	            ROWNUM AS RNUM
+	        FROM (
+	            SELECT 
+	                POSTING_NO AS postingNo,
+	                CATEGORY,
+	                TITLE,
+	                CONTENT,
+	                AUTHOR,
+	                USER_NO AS userNo,
+	                CREATED_TIME AS createdTime,
+	                UPDATED_TIME AS updatedTime,
+	                VIEW_COUNT AS viewCount,
+	                LIKE_COUNT AS likeCount,
+	                STATUS
+	            FROM POSTING
+	            WHERE 
+	                STATUS = 'Y'
+	                <if test="category != null and category != '전체글'">
+	                    AND CATEGORY = #{category}
+	                </if>
+	            <choose>
+	                <when test="filter == '최신순'">
+	                    ORDER BY CREATED_TIME DESC
+	                </when>
+	                <when test="filter == '조회순'">
+	                    ORDER BY VIEW_COUNT DESC
+	                </when>
+	                <when test="filter == '공감 많은 순'">
+	                    ORDER BY LIKE_COUNT DESC
+	                </when>
+	                <otherwise>
+	                    ORDER BY CREATED_TIME DESC
+	                </otherwise>
+	            </choose>
+	        ) A
+	        WHERE ROWNUM &lt;= #{offset} + #{limit}
+	    )
+	    WHERE RNUM &gt; #{offset}
+	</select>
+    
 
     <!-- 필터링된 게시물 수 조회 -->
     <select id="countFilteredPosts" parameterType="map" resultType="int">

@@ -62,11 +62,11 @@
 
             <!-- 오늘의 인기글 -->
             <div class="popular-week">
-                <h3>이번주 전체의 인기글 🔥 <a href="#">더보기 ></a></h3>
-                <ul id="popularPostList"> <!-- 인기글 목록에 ID 추가 -->
-                    <!-- 여기서부터 JavaScript로 동적 생성 -->
-                </ul>
-            </div>
+			    <h3>인기글 🔥 <a href="#">더보기 ></a></h3>
+			    <ul id="popularPostList">
+			        <!-- 여기서부터 JavaScript로 동적 생성 -->
+			    </ul>  
+			</div>
         </section>
         <br><br>
 
