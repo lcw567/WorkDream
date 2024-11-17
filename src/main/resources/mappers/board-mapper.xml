@@ -5,6 +5,8 @@
 
 <mapper namespace="boardMapper">
 
+
+
     <!-- 카테고리 및 페이징 처리된 게시물 조회 -->
     <select id="selectPosts" parameterType="map" resultType="com.cs.workdream.board.model.vo.Board">
         SELECT 
@@ -31,6 +33,53 @@
                 WHEN #{filter} = '공감 많은 순' THEN LIKE_COUNT
             END DESC
     </select>
+    
+    
+    
+    <select id="selectFilteredPosts" parameterType="map" resultType="com.cs.workdream.board.model.vo.Board">
+	    SELECT * FROM (
+	        SELECT 
+	            A.*,
+	            ROWNUM AS RNUM
+	        FROM (
+	            SELECT 
+	                POSTING_NO AS postingNo,
+	                CATEGORY,
+	                TITLE,
+	                CONTENT,
+	                AUTHOR,
+	                USER_NO AS userNo,
+	                CREATED_TIME AS createdTime,
+	                UPDATED_TIME AS updatedTime,
+	                VIEW_COUNT AS viewCount,
+	                LIKE_COUNT AS likeCount,
+	                STATUS
+	            FROM POSTING
+	            WHERE 
+	                STATUS = 'Y'
+	                <if test="category != null and category != '전체글'">
+	                    AND CATEGORY = #{category}
+	                </if>
+	            <choose>
+	                <when test="filter == '최신순'">
+	                    ORDER BY CREATED_TIME DESC
+	                </when>
+	                <when test="filter == '조회순'">
+	                    ORDER BY VIEW_COUNT DESC
+	                </when>
+	                <when test="filter == '공감 많은 순'">
+	                    ORDER BY LIKE_COUNT DESC
+	                </when>
+	                <otherwise>
+	                    ORDER BY CREATED_TIME DESC
+	                </otherwise>
+	            </choose>
+	        ) A
+	        WHERE ROWNUM &lt;= #{offset} + #{limit}
+	    )
+	    WHERE RNUM &gt; #{offset}
+	</select>
+    
 
     <!-- 필터링된 게시물 수 조회 -->
     <select id="countFilteredPosts" parameterType="map" resultType="int">
@@ -53,25 +102,33 @@
     </select>
 
     <!-- 인기 게시물 조회 (조회수 기준 상위 5개) -->
-    <select id="selectPopularPosts" resultType="com.cs.workdream.board.model.vo.Board">
-        SELECT 
-            POSTING_NO,
-            CATEGORY,
-            TITLE,
-            CONTENT,
-            IMAGE,
-            AUTHOR,
-            USER_NO,
-            CREATED_TIME,
-            UPDATED_TIME,
-            VIEW_COUNT,
-            LIKE_COUNT,
-            STATUS
-        FROM POSTING
-        WHERE STATUS = 'Y'
-        ORDER BY VIEW_COUNT DESC
-        FETCH FIRST 5 ROWS ONLY
-    </select>
+	    <select id="selectPopularPosts" resultType="com.cs.workdream.board.model.vo.Board">
+	    SELECT * FROM (
+	        SELECT 
+	            A.*,
+	            ROWNUM AS rn
+	        FROM (
+	            SELECT 
+	                POSTING_NO AS postingNo,
+	                CATEGORY,
+	                TITLE,
+	                CONTENT,
+	                IMAGE AS imagePath,
+	                AUTHOR,
+	                USER_NO AS userNo,
+	                CREATED_TIME AS createdTime,
+	                UPDATED_TIME AS updatedTime,
+	                VIEW_COUNT AS viewCount,
+	                LIKE_COUNT AS likeCount,
+	                STATUS
+	            FROM POSTING
+	            WHERE STATUS = 'Y'
+	            ORDER BY VIEW_COUNT DESC
+	        ) A
+	        WHERE ROWNUM &lt;= 5
+	    )
+	    WHERE rn &gt;= 1
+	</select>
 
    <!-- 게시글 ID로 단일 게시글 조회 -->
     <select id="selectPost" parameterType="int" resultType="com.cs.workdream.board.model.vo.Board">
@@ -115,6 +172,7 @@
             TITLE = #{title},
             CONTENT = #{content},
             IMAGE = #{imagePath},
+            VIEW_COUNT = #{viewCount},
             UPDATED_TIME = SYSDATE
         WHERE POSTING_NO = #{postingNo} AND STATUS = 'Y'
     </update>
@@ -150,6 +208,27 @@
         INSERT INTO COMMUNITY_POST_HASHTAG (POSTING_NO, HASHTAG)
         VALUES (#{postingNo}, #{hashtag})
     </insert>
+    
+    <!-- 조회수 증가 -->
+	<update id="increaseViewCount" parameterType="int">
+	    UPDATE POSTING
+	    SET VIEW_COUNT = VIEW_COUNT + 1
+	    WHERE POSTING_NO = #{postingNo}
+	</update>
+	
+	<!-- 공감 수 증가 -->
+	<update id="increaseLikeCount" parameterType="int">
+	    UPDATE POSTING
+	    SET LIKE_COUNT = LIKE_COUNT + 1
+	    WHERE POSTING_NO = #{postingNo}
+	</update>
+	
+	<!-- 공감 수 감소 -->
+	<update id="decreaseLikeCount" parameterType="int">
+	    UPDATE POSTING
+	    SET LIKE_COUNT = LIKE_COUNT - 1
+	    WHERE POSTING_NO = #{postingNo} AND LIKE_COUNT > 0
+	</update>
 
     <!-- 특정 게시글의 댓글 조회 -->
     <select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
@@ -194,5 +273,7 @@
         SET STATUS = 'N'
         WHERE REPLY_NO = #{replyNo}
     </update>
+    
+    
 
 </mapper>

@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
             currentCategory = button.innerText;
             document.querySelector('.title h1').innerText = currentCategory; // 상단 제목 변경
             currentPage = 1; // 페이지 리셋
+            // URL 파라미터 업데이트
+            const newUrl = `${window.location.pathname}?category=${encodeURIComponent(currentCategory)}`;
+            window.history.pushState({ path: newUrl }, '', newUrl);
             loadPosts(currentCategory, currentFilter, currentPage);
         });
     });
@@ -44,8 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
         currentPage++;
         loadPosts(currentCategory, currentFilter, currentPage);
     });
-    
-    // 4. 게시글 검색 버튼 이벤트 (추가 가능)
 
     // 5. 게시글 불러오기 함수
     function loadPosts(category, filter, page) {
@@ -54,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(`${contextPath}/board/api/posts?category=${encodeURIComponent(category)}&filter=${encodeURIComponent(filter)}&offset=${offset}&limit=${postsPerPage}`)
             .then(response => response.json())
             .then(data => {
+                console.log('Received data:', data); // 디버깅용 로그 추가
                 updatePostList(data.posts);
                 updatePostCount(data.totalCount);
                 updatePagination(data.totalCount);
@@ -63,22 +65,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 6. 게시글 목록 업데이트 함수
     function updatePostList(posts) {
-        const tbody = document.querySelector('.post-list tbody');
+        const tbody = document.querySelector('.post-list table tbody');
         tbody.innerHTML = '';
 
-        posts.forEach(post => {
+        if (posts.length === 0) {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${post.postingNo}</td>
-                <td>${post.category}</td>
-                <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a></td>
-                <td>${post.author}</td>
-                <td>${new Date(post.createdTime).toLocaleString()}</td>
-                <td>${post.viewCount}</td>
-                <td>${post.likeCount}</td>
-            `;
+            const cell = document.createElement('td');
+            cell.colSpan = 5;
+            cell.innerText = '게시글이 없습니다.';
+            row.appendChild(cell);
             tbody.appendChild(row);
-        });
+        } else {
+            posts.forEach(post => {
+                console.log('Post object:', post); // 디버깅용 로그 추가
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.category}</a></td>
+                    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a></td>
+                    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.author}</a></td>
+                    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${new Date(post.createdTime).toLocaleString()}</a></td>
+                    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.viewCount}</a></td>
+                    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.likeCount}</a></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
     }
 
     // 7. 게시글 수 업데이트 함수
@@ -91,6 +102,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const totalPages = Math.ceil(totalCount / postsPerPage);
         document.getElementById('pageNumber').innerText = currentPage;
         document.getElementById('prevPage').disabled = currentPage === 1;
-        document.getElementById('nextPage').disabled = currentPage === totalPages;
+        document.getElementById('nextPage').disabled = currentPage >= totalPages;
     }
+
+    // 9. popstate 이벤트 처리
+    window.addEventListener('popstate', (event) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        currentCategory = urlParams.get('category') || '인기글';
+        currentPage = 1;
+        document.querySelector('.title h1').innerText = currentCategory;
+        loadPosts(currentCategory, currentFilter, currentPage);
+    });
 });

@@ -103,6 +103,11 @@ public class BoardDao {
         params.put("jobCategory", jobCategory);
         return sqlSession.insert("boardMapper.insertJobCategory", params);
     }
+    
+    // 조회수 증가 메서드 추가
+    public int increaseViewCount(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.update("boardMapper.increaseViewCount", postingNo);
+    }
 
     // 댓글 삽입
     public int insertReply(SqlSessionTemplate sqlSession, Reply reply) {
@@ -117,5 +122,15 @@ public class BoardDao {
     // 댓글 소프트 삭제 (상태 변경)
     public int deleteReply(SqlSessionTemplate sqlSession, int replyNo) {
         return sqlSession.update("boardMapper.deleteReply", replyNo);
+    }
+    
+ // 공감 수 증가 메서드
+    public int increaseLikeCount(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.update("boardMapper.increaseLikeCount", postingNo);
+    }
+
+    // 공감 수 감소 메서드
+    public int decreaseLikeCount(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.update("boardMapper.decreaseLikeCount", postingNo);
     }
 }

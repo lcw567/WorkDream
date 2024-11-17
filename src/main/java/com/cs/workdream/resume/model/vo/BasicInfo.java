@@ -13,23 +13,22 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class BasicInfo {
-    private Integer basicNo;
-    private Integer resumeNo;
-    private int personNo;
-    private String userName;
-    private String userGender;
+    private Integer basicNo; // basic_no
+    private Integer resumeNo; // resume_no
+    private int personNo; // person_no
+    private String user_name; // user_name
+    private String user_gender; // user_gender
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate userBirth;
+    private LocalDate user_birth; // user_birth
 
-    private String userEmail;
-    private String userPhone;
-    private String userAddress;
-    private String userRoadAddress;
-    private String userDetailAddress;
-    private String userPic;
+    private String user_email; // user_email
+    private String user_phone; // user_phone
+    private String user_address; // user_address
+    private String usernumberaddress; // user_road_address
+    private String userroadaddress;
+    private String user_detailaddress; // user_detail_address
+    private String user_Pic; // user_pic
 }
 

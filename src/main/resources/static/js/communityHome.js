@@ -11,24 +11,25 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error('Error fetching post count:', error));
 
     // 2. 인기 글 목록 가져오기
-    fetch(`${contextPath}/board/api/popularPosts`)
-        .then(response => response.json())
-        .then(data => {
-            const popularPostList = document.getElementById('popularPostList');
-            popularPostList.innerHTML = '';
-            data.posts.forEach(post => {
-                const postItem = document.createElement('li');
-                postItem.innerHTML = `
-                    <a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a>
-                    <div class="icon-group">
+	fetch(`${contextPath}/board/api/popularPosts`)
+	    .then(response => response.json())
+	    .then(data => {
+	        const popularPostList = document.getElementById('popularPostList');
+	        popularPostList.innerHTML = '';
+	        data.posts.forEach((post, index) => {
+	            const postItem = document.createElement('li');	            
+	            postItem.innerHTML = `
+	                ${index + 1}. <a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a>
+	                <div class="icon-group">
                         <span>🗨️ ${post.commentCount || 0}</span>
                         <span>👁️ ${post.viewCount}</span>
                     </div>
-                `;
-                popularPostList.appendChild(postItem);
-            });
-        })
-        .catch(error => console.error('Error fetching popular posts:', error));
+	            `;
+	            popularPostList.appendChild(postItem);
+	        });
+	    })
+	    .catch(error => console.error('Error fetching popular posts:', error));
+
 
     // 3. 주제별 카테고리 버튼 클릭 시 이동 처리
     document.querySelectorAll('.category-tags button').forEach(button => {

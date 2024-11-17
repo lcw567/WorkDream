@@ -11,7 +11,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*; // 필요한 어노테이션 임포트
+// 필요한 어노테이션 임포트
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.board.model.vo.Board;
@@ -44,8 +52,7 @@ public class BoardController {
         Board post = boardService.getPostWithJobCategories(postId);
         if(post != null && "Y".equals(post.getStatus())) {
             // 조회수 증가
-            post.setViewCount(post.getViewCount() + 1);
-            boardService.updatePost(post);
+            boardService.increaseViewCount(postId);
 
             // 모델에 게시글 추가
             model.addAttribute("post", post);
@@ -53,8 +60,13 @@ public class BoardController {
             // 현재 사용자 정보 (로그인 사용자 정보)
             Object currentUserObj = session.getAttribute("currentUser");
             if(currentUserObj != null) {
-                // currentUser 객체를 모델에 추가
                 model.addAttribute("currentUser", currentUserObj);
+
+                // 사용자가 이 게시글에 공감했는지 여부 판단 로직 추가 (예시)
+                boolean userLikedPost = false; // 실제 공감 여부 판단 로직 구현 필요
+                model.addAttribute("userLikedPost", userLikedPost);
+            } else {
+                model.addAttribute("userLikedPost", false);
             }
 
             return "board/communityView"; // communityView.jsp
@@ -128,16 +140,27 @@ public class BoardController {
             // 이미지 업로드 처리
             String imagePath = null;
             if(image != null && !image.isEmpty()) {
+                // 업로드 디렉토리 설정
                 String uploadDir = session.getServletContext().getRealPath("/uploads/");
+                if (uploadDir == null) {
+                    // getRealPath가 null을 반환하는 경우 대비
+                    uploadDir = System.getProperty("user.dir") + "/uploads/";
+                }
+                File dir = new File(uploadDir);
+                if (!dir.exists()) {
+                    dir.mkdirs(); // 디렉토리 생성
+                }
                 String originalFilename = image.getOriginalFilename();
                 String uniqueFilename = System.currentTimeMillis() + "_" + originalFilename;
-                File dest = new File(uploadDir + uniqueFilename);
+                File dest = new File(dir, uniqueFilename);
                 image.transferTo(dest);
-                imagePath = "uploads/" + uniqueFilename;
+                imagePath = "/uploads/" + uniqueFilename;
+
+                // 업로드 경로 로그 출력
+                System.out.println("Upload Directory: " + uploadDir);
             }
 
             // 세션에서 현재 사용자 정보 가져오기
-            // 실제 사용자 조회 로직으로 대체 필요
             Map<String, Object> currentUser = (Map<String, Object>) session.getAttribute("currentUser");
             if(currentUser == null) {
                 response.put("status", "fail");
@@ -173,16 +196,50 @@ public class BoardController {
         } catch(IOException e) {
             e.printStackTrace();
             response.put("status", "error");
-            response.put("message", "이미지 업로드 중 오류가 발생했습니다.");
+            response.put("message", "이미지 업로드 중 오류가 발생했습니다: " + e.getMessage());
         } catch(Exception e) {
             e.printStackTrace();
             response.put("status", "error");
-            response.put("message", "서버 오류가 발생했습니다.");
+            response.put("message", "서버 오류가 발생했습니다: " + e.getMessage());
         }
 
         return response;
     }
 
+    // 공감 수 증가
+    @PostMapping("/api/posts/{postId}/like")
+    @ResponseBody
+    public Map<String, Object> likePost(@PathVariable("postId") int postId, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // 로그인 여부 및 공감 여부 확인 로직 추가 가능
+            boardService.increaseLikeCount(postId);
+            response.put("status", "success");
+        } catch(Exception e) {
+            e.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "서버 오류가 발생했습니다.");
+        }
+        return response;
+    }
+
+    // 공감 수 감소
+    @PostMapping("/api/posts/{postId}/unlike")
+    @ResponseBody
+    public Map<String, Object> unlikePost(@PathVariable("postId") int postId, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // 로그인 여부 및 공감 여부 확인 로직 추가 가능
+            boardService.decreaseLikeCount(postId);
+            response.put("status", "success");
+        } catch(Exception e) {
+            e.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "서버 오류가 발생했습니다.");
+        }
+        return response;
+    }
+    
     // 특정 게시글의 댓글 조회
     @GetMapping("/api/replies")
     @ResponseBody

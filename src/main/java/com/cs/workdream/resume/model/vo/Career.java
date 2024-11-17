@@ -19,18 +19,18 @@ public class Career {
     private Integer careerNo;
     private Integer resumeNo;
     private int personNo;
-    private String companyTitle;
+    private String company_title;
     private String work;
     private String department;
 
     @DateTimeFormat(pattern = "yyyy-MM")
-    private LocalDate startDate;
+    private LocalDate start_date;
 
     @DateTimeFormat(pattern = "yyyy-MM")
-    private LocalDate endDate;
+    private LocalDate end_date;
 
-    private String status;
-    private String jobContent;
+    private String career_status;
+    private String job_content;
     private String position;
 }
 

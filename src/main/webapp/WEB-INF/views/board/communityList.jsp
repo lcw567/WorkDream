@@ -104,8 +104,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>직무</th>
+                        <th>카테고리</th>
                         <th>제목</th>
                         <th>글쓴이</th>
                         <th>작성시간</th>
