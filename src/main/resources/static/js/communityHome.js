@@ -17,9 +17,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	        const popularPostList = document.getElementById('popularPostList');
 	        popularPostList.innerHTML = '';
 	        data.posts.forEach((post, index) => {
-	            const postItem = document.createElement('li');
+	            const postItem = document.createElement('li');	            
 	            postItem.innerHTML = `
 	                ${index + 1}. <a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a>
+	                <div class="icon-group">
+                        <span>🗨️ ${post.commentCount || 0}</span>
+                        <span>👁️ ${post.viewCount}</span>
+                    </div>
 	            `;
 	            popularPostList.appendChild(postItem);
 	        });
