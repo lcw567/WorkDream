@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cs.workdream.business.model.vo.Business;
 import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.member.service.MemberService;
+import com.cs.workdream.person.model.vo.Person;
 
 @CrossOrigin
 @Controller
@@ -97,9 +99,33 @@ public class MemberController {
 		int result = memberService.idCheck(checkId);
 		
 		if(result > 0) {
+			// 중복있음
 			return "NNNNN";
-		} else {
+		}
+		else {
+			// 중복 없음
 			return "NNNNY";
+		}
+	}
+	
+	// 신규 회원 등록
+	@RequestMapping("insert.me")
+	public String insertMember(Member m, HttpSession session, Model model) {
+		// 비밀번호 암호화
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPwd);
+		
+		int result = memberService.insertMember(m);
+		
+		if(result > 0) {
+			// 등록 성공
+			session.setAttribute("alertMsg", "회원가입이 완료되었습니다. 워크드림에 오신 걸 환영합니다!");
+			return "redirect:/";
+		}
+		else {
+			// 등록 실패
+			session.setAttribute("errorMsg", "회원가입에 실패했습니다. 다시 시도해주세요.");
+			return "common/errorPage";
 		}
 	}
 }

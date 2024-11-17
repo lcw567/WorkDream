@@ -14,13 +14,16 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Member {
-	private int userNo;
-	private String userType;
-	private String userId;
-	private String userPwd;
-	private String userName;
-	private String email;
-	private String status;
-	private int businessNo;
-	private int personNo;
+	private int userNo;			// 회원 고유키
+	private String userType;	// 가입 유형(개인: P / 기업: B)
+	private String userId;		// 유저 아이디
+	private String userPwd;		// 비밀번호
+	private String email;		// 이메일
+	private String phone;		// 전화번호
+	private String status;		// 계정 상태(가입 중: Y / 탈퇴: N)
+	private int businessNo;		// 기업 고유키
+	private int personNo;		// 개인 고유키
+	
+	// 기업 회원 전용
+	private String registraionNumber;	// 사업자등록번호
 }

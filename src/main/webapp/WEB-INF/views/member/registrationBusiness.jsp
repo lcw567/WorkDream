@@ -48,7 +48,7 @@
 				<input type="hidden" name="userType" value="B" />
 				
 				<h6>사업자등록번호 (필수)</h6>
-				<input type="text" id="registNumber" name="registNumber" maxlength="10" placeholder="사업자 등록번호 직접입력(10자리)" />
+				<input type="text" id="registNumber" name="registraionNumber" maxlength="10" placeholder="사업자 등록번호 직접입력(10자리)" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />사업자등록번호가 없으신가요? <a href="">사업자등록번호가 없을 때</a></p>
 				<p id="number-check" class="NotChecked"></p>
 				
