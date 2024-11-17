@@ -207,6 +207,20 @@
 	    SET VIEW_COUNT = VIEW_COUNT + 1
 	    WHERE POSTING_NO = #{postingNo}
 	</update>
+	
+	<!-- 공감 수 증가 -->
+	<update id="increaseLikeCount" parameterType="int">
+	    UPDATE POSTING
+	    SET LIKE_COUNT = LIKE_COUNT + 1
+	    WHERE POSTING_NO = #{postingNo}
+	</update>
+	
+	<!-- 공감 수 감소 -->
+	<update id="decreaseLikeCount" parameterType="int">
+	    UPDATE POSTING
+	    SET LIKE_COUNT = LIKE_COUNT - 1
+	    WHERE POSTING_NO = #{postingNo} AND LIKE_COUNT > 0
+	</update>
 
     <!-- 특정 게시글의 댓글 조회 -->
     <select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">

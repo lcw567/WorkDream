@@ -52,7 +52,7 @@ public class BoardController {
         Board post = boardService.getPostWithJobCategories(postId);
         if(post != null && "Y".equals(post.getStatus())) {
             // 조회수 증가
-        	boardService.increaseViewCount(postId);
+            boardService.increaseViewCount(postId);
 
             // 모델에 게시글 추가
             model.addAttribute("post", post);
@@ -60,8 +60,13 @@ public class BoardController {
             // 현재 사용자 정보 (로그인 사용자 정보)
             Object currentUserObj = session.getAttribute("currentUser");
             if(currentUserObj != null) {
-                // currentUser 객체를 모델에 추가
                 model.addAttribute("currentUser", currentUserObj);
+
+                // 사용자가 이 게시글에 공감했는지 여부 판단 로직 추가 (예시)
+                boolean userLikedPost = false; // 실제 공감 여부 판단 로직 구현 필요
+                model.addAttribute("userLikedPost", userLikedPost);
+            } else {
+                model.addAttribute("userLikedPost", false);
             }
 
             return "board/communityView"; // communityView.jsp
@@ -190,6 +195,40 @@ public class BoardController {
         return response;
     }
 
+    // 공감 수 증가
+    @PostMapping("/api/posts/{postId}/like")
+    @ResponseBody
+    public Map<String, Object> likePost(@PathVariable("postId") int postId, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // 로그인 여부 및 공감 여부 확인 로직 추가 가능
+            boardService.increaseLikeCount(postId);
+            response.put("status", "success");
+        } catch(Exception e) {
+            e.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "서버 오류가 발생했습니다.");
+        }
+        return response;
+    }
+
+    // 공감 수 감소
+    @PostMapping("/api/posts/{postId}/unlike")
+    @ResponseBody
+    public Map<String, Object> unlikePost(@PathVariable("postId") int postId, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // 로그인 여부 및 공감 여부 확인 로직 추가 가능
+            boardService.decreaseLikeCount(postId);
+            response.put("status", "success");
+        } catch(Exception e) {
+            e.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "서버 오류가 발생했습니다.");
+        }
+        return response;
+    }
+    
     // 특정 게시글의 댓글 조회
     @GetMapping("/api/replies")
     @ResponseBody

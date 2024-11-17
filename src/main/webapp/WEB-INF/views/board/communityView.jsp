@@ -9,10 +9,11 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityView.css">
     <script>
-        // JavaScript에서 contextPath를 사용할 수 있도록 변수로 전달
-        const contextPath = "${pageContext.request.contextPath}";
-    </script>
-    <script src="${pageContext.request.contextPath}/js/communityView.js" defer></script>
+    const contextPath = "${pageContext.request.contextPath}";
+    const postLiked = ${userLikedPost}; // 서버에서 전달한 값
+	</script>
+	<script src="${pageContext.request.contextPath}/js/communityView.js" defer></script>
+	<input type="hidden" id="contextPath" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
