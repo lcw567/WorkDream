@@ -110,6 +110,18 @@ public class BoardServiceImpl implements BoardService {
     public void increaseViewCount(int postingNo) {
         boardDao.increaseViewCount(sqlSession, postingNo);
     }
+    
+    @Override
+    @Transactional
+    public void increaseLikeCount(int postingNo) {
+        boardDao.increaseLikeCount(sqlSession, postingNo);
+    }
+
+    @Override
+    @Transactional
+    public void decreaseLikeCount(int postingNo) {
+        boardDao.decreaseLikeCount(sqlSession, postingNo);
+    }
 
     // 댓글 작업
     @Override

@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // 컨텍스트 경로 가져오기
     const contextPath = document.getElementById("contextPath").value;
 
-    // 신고 버튼 클릭 시 알림창 표시
     const reportButtons = document.querySelectorAll(".report-button");
     reportButtons.forEach(function(button) {
         button.addEventListener("click", function() {
@@ -12,21 +11,56 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 공감 버튼 기능 (게시글)
     const postLikeButton = document.querySelector(".post-buttons .like-button");
-    let postLiked = false;
-    if(postLikeButton) { // 요소 존재 여부 확인
+    let postLikedBool = (postLiked === 'true'); // 문자열을 불리언으로 변환
+    if(postLikeButton) {
+        if(postLikedBool) {
+            postLikeButton.classList.add("liked");
+        }
         postLikeButton.addEventListener("click", function() {
             const likeCount = postLikeButton.querySelector(".like-count");
-            if (postLiked) {
-                postLikeButton.classList.remove("liked");
-                likeCount.innerText = parseInt(likeCount.innerText) - 1;
+            const postId = new URLSearchParams(window.location.search).get('postId');
+            if (postLikedBool) {
+                // 공감 취소 요청
+                fetch(`${contextPath}/board/api/posts/${postId}/unlike`, {
+                    method: "POST"
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if(result.status === "success") {
+                        postLikeButton.classList.remove("liked");
+                        likeCount.innerText = parseInt(likeCount.innerText) - 1;
+                        postLikedBool = false;
+                    } else {
+                        alert("공감 취소에 실패했습니다: " + result.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error unliking post:", error);
+                    alert("공감 취소 중 오류가 발생했습니다.");
+                });
             } else {
-                postLikeButton.classList.add("liked");
-                likeCount.innerText = parseInt(likeCount.innerText) + 1;
+                // 공감 요청
+                fetch(`${contextPath}/board/api/posts/${postId}/like`, {
+                    method: "POST"
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if(result.status === "success") {
+                        postLikeButton.classList.add("liked");
+                        likeCount.innerText = parseInt(likeCount.innerText) + 1;
+                        postLikedBool = true;
+                    } else {
+                        alert("공감에 실패했습니다: " + result.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error liking post:", error);
+                    alert("공감 중 오류가 발생했습니다.");
+                });
             }
-            postLiked = !postLiked;
-            // 선택적으로, 서버에 공감 수를 전송할 수 있습니다.
         });
     }
+
 
     // 댓글 등록 버튼 클릭 시 댓글 추가
     const commentSubmitButton = document.querySelector(".comment-submit-button");

@@ -123,4 +123,14 @@ public class BoardDao {
     public int deleteReply(SqlSessionTemplate sqlSession, int replyNo) {
         return sqlSession.update("boardMapper.deleteReply", replyNo);
     }
+    
+ // 공감 수 증가 메서드
+    public int increaseLikeCount(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.update("boardMapper.increaseLikeCount", postingNo);
+    }
+
+    // 공감 수 감소 메서드
+    public int decreaseLikeCount(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.update("boardMapper.decreaseLikeCount", postingNo);
+    }
 }

@@ -18,7 +18,10 @@ public interface BoardService {
     int countFilteredPosts(String category, String filter);
     List<String> getHashtags(int postingNo);
     int addHashtag(int postingNo, String hashtag);
+    
     void increaseViewCount(int postingNo);
+    void increaseLikeCount(int postingNo); // 공감 수 증가 메서드
+    void decreaseLikeCount(int postingNo); // 공감 수 감소 메서드
     
     // 댓글 작업
     List<Reply> getReplies(int postingNo);
