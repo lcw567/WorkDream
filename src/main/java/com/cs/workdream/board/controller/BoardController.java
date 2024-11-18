@@ -78,7 +78,7 @@ public class BoardController {
     
     // 커뮤니티 게시판 목록 페이지 표시
     @GetMapping("/communityList")
-    public String showCommunityList(@RequestParam(value="category", defaultValue="인기글") String category, Model model) {
+    public String showCommunityList(@RequestParam(value="category", defaultValue="전체글") String category, Model model) {
         model.addAttribute("category", category);
         return "board/communityList"; // communityList.jsp
     }

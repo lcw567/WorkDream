@@ -20,7 +20,7 @@
         <%
             String category = request.getParameter("category");
             if (category == null || category.isEmpty()) {
-                category = "인기글"; // 기본값 설정
+                category = "전체글"; // 기본값 설정
             }
         %>
         <section class="title">
@@ -30,7 +30,6 @@
         <!-- 카테고리 버튼 -->
         <section class="category-tags">
             <button data-category="전체글">전체글</button>
-            <button data-category="인기글">인기글</button>
             <button data-category="신입">신입</button>
             <button data-category="채용공고">채용공고</button>
             <button data-category="취준">취준</button>
