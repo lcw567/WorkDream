@@ -244,49 +244,63 @@
 	    WHERE POSTING_NO = #{postingNo} AND LIKE_COUNT > 0
 	</update>
 
-    <!-- 특정 게시글의 댓글 조회 -->
+     <!-- 특정 게시글의 댓글 조회 -->
     <select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
         SELECT 
             r.REPLY_NO,
             r.POSTING_NO,
             r.USER_NO,
-            u.USER_NAME AS author, <!-- 작성자 이름 추가 -->
+            p.NAME AS author, <!-- PERSON 테이블의 NAME 컬럼 사용 -->
             r.CONTENT,
             r.CREATED_TIME,
             r.LIKE_COUNT,
             r.STATUS
         FROM REPLY r
-        JOIN MEMBER u ON r.USER_NO = u.USER_NO <!-- JOIN 추가 -->
-        WHERE r.POSTING_NO = #{postingNo} AND r.STATUS = 'Y'
+        JOIN MEMBER u ON r.USER_NO = u.USER_NO
+        JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO
+        WHERE r.POSTING_NO = #{value} AND r.STATUS = 'Y'
         ORDER BY r.CREATED_TIME ASC
     </select>
 
     <!-- 댓글 삽입 -->
-    <insert id="insertReply" parameterType="com.cs.workdream.board.model.vo.Reply" useGeneratedKeys="true" keyProperty="replyNo">
-        INSERT INTO REPLY (REPLY_NO, POSTING_NO, USER_NO, CONTENT, CREATED_TIME, LIKE_COUNT, STATUS)
-        VALUES (REPLY_SEQ.NEXTVAL, #{postingNo}, #{userNo}, #{content}, SYSDATE, 0, 'Y')
+    <insert id="insertReply" parameterType="com.cs.workdream.board.model.vo.Reply">
+        <!-- 시퀀스에서 다음 값 가져오기 -->
+        <selectKey keyProperty="replyNo" resultType="java.lang.Integer" order="BEFORE">
+            SELECT REPLY_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        
+        <!-- 댓글 삽입 -->
+        INSERT INTO REPLY (
+            REPLY_NO, POSTING_NO, USER_NO, CONTENT, CREATED_TIME, LIKE_COUNT, STATUS
+        ) VALUES (
+            #{replyNo}, #{postingNo}, #{userNo}, #{content}, SYSDATE, 0, 'Y'
+        )
     </insert>
 
     <!-- 댓글 ID로 댓글 조회 -->
     <select id="selectReplyById" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
         SELECT 
-            REPLY_NO,
-            POSTING_NO,
-            USER_NO,
-            CONTENT,
-            CREATED_TIME,
-            LIKE_COUNT,
-            STATUS
-        FROM REPLY
-        WHERE REPLY_NO = #{replyNo} AND STATUS = 'Y'
+            r.REPLY_NO,
+            r.POSTING_NO,
+            r.USER_NO,
+            p.NAME AS author, <!-- PERSON 테이블의 NAME 컬럼 사용 -->
+            r.CONTENT,
+            r.CREATED_TIME,
+            r.LIKE_COUNT,
+            r.STATUS
+        FROM REPLY r
+        JOIN MEMBER u ON r.USER_NO = u.USER_NO
+        JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO
+        WHERE r.REPLY_NO = #{value} AND r.STATUS = 'Y'
     </select>
 
     <!-- 댓글 소프트 삭제 -->
     <update id="deleteReply" parameterType="int">
         UPDATE REPLY
         SET STATUS = 'N'
-        WHERE REPLY_NO = #{replyNo}
+        WHERE REPLY_NO = #{value}
     </update>
+
     
     
 

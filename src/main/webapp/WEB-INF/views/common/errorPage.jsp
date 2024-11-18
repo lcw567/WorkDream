@@ -9,12 +9,7 @@
 	
 	<!-- css / js -->
 	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
-	<script>
-	    <c:if test="${not empty sessionScope.errorMsg}">
-	        alert("${sessionScope.errorMsg}");
-	        <c:remove var="errorMsg" scope="session"/>
-	    </c:if>
-	</script>
+	<script>alert(${errorMsg})</script>
 </head>
 <body>
 
