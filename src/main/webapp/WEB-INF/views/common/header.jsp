@@ -50,17 +50,21 @@
     		<%-- 로그인 메뉴 --%>
     		<c:choose>
     			<%-- 로그인(구직자) --%>
-    			<c:when test="${ !empty loginUser && loginUser.getType == 'P' }">
-    				<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
-	    			<b>|</b>
-	    			<a href="#">마이페이지</a>
+    			<c:when test="${ !empty loginUser && loginUser.userType == 'P' }">
+    				<div class="login-menu">
+		    			<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+		    			<b>|</b>
+		    			<a href="#">마이페이지</a>
+		    		</div>
     			</c:when>
     			
     			<%--로그인(기업) --%>
-    			<c:when test="${ !empty loginUser && loginUser.getType == 'B' }">
-    				<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
-	    			<b>|</b>
-	    			<a href="#">기업 홈</a>
+    			<c:when test="${ !empty loginUser && loginUser.userType == 'B' }">
+    				<div class="login-menu">
+		    			<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+		    			<b>|</b>
+		    			<a href="#">기업 홈</a>
+		    		</div>
     			</c:when>
     			
     			<%-- 로그인 전 --%>
@@ -87,7 +91,7 @@
                 <li><a href="#">커리어</a></li>
                 <li><a href="#">커뮤니티</a></li>
                 <%-- 포토폴리오 메뉴 (구직자 로그인 전용) --%>
-                <c:if test="${ !empty loginUser && loginUser.getType == 'P' }">
+                <c:if test="${ !empty loginUser && loginUser.userType == 'P' }">
                 	<li><a href="#">포토폴리오</a></li>
                 </c:if>
             </ul>

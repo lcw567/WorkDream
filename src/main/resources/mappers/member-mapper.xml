@@ -20,14 +20,10 @@
 	
 	<!-- 로그인 -->
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
-		SELECT	USER_NO,
-				USER_TYPE,
-				USER_ID,
-				USER_PWD
+		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD
 		  FROM	MEMBER
 		 WHERE	USER_ID = #{userId}
-		   AND	USER_PWD = #{userPwd}
-		   AND	USER_TYPE = #{userType}
+		   AND	USER_TYPE = #{userType, jdbcType=CHAR}
 		   AND	STATUS = 'Y'
 	</select>
 	
@@ -60,7 +56,7 @@
 	
 	<!-- 신규 회원 등록 (통합) -->
 	<insert id="insertMember" parameterType="Member">
-		<selectKey resultType="int" keyProperty="personNo" order="BEFORE">
+		<selectKey resultType="int" keyProperty="userNo" order="BEFORE">
 			SELECT SEQ_UNO.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT	INTO MEMBER (

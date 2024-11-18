@@ -286,6 +286,49 @@ function validateNumber(registNumber) {
 }
 
 
+/* login.jsp */
+try {
+    // 로그인 섹션 변경
+    function changeLoginSection() {
+        const personSection = document.getElementById("login-section-person");
+        const businessSection = document.getElementById("login-section-business");
+
+        if(ut === "P") {
+            personSection.classList.add("On");
+            businessSection.classList.remove("On");
+        }
+        else {
+            personSection.classList.remove("On");
+            businessSection.classList.add("On");
+        }
+    }
+
+    // 탭 클릭 시 섹션 변경
+    function changeUserType(userType) {
+        ut = userType;
+        changeLoginSection();
+    }
+
+    // 섹션 초기값
+    document.addEventListener("DOMContentLoaded", function() {
+        changeLoginSection();
+    });
+
+    // 로그인 페이지 input 제한 설정
+    const loginIds = document.querySelectorAll("#loginId");
+    loginIds.forEach(function(input) {
+        input.addEventListener("input", replaceInputId);
+    });
+
+    const loginPwds = document.querySelectorAll("#loginPwd");
+    loginPwds.forEach(function(input) {
+        input.addEventListener("input", replaceInputPwd);
+    });
+} catch (error) {
+    console.log("login-section: ", error);
+}
+
+
 /* registrationPerson.jsp */
 try {
     const registForm = document.querySelector("#registDetail-form.Person");
@@ -395,6 +438,7 @@ try {
 
 /* registrationBusiness.jsp */
 try {
+    const registForm = document.querySelector("#registDetail-form.Business");
     const registNumber = document.querySelector("#registDetail-form.Business #registNumber");
     const registId = document.querySelector("#registDetail-form.Business #registId");
     const registPwd = document.querySelector("#registDetail-form.Business #registPwd");
@@ -435,18 +479,24 @@ try {
     function validateForm() {
         const isNumberValid = validateNumber(registNumber.value);
         const isIdValid = validateId(registId.value);
-        const isPwdValid = validatePwd(registPwd.value);
-        const isRePwdValid = validateRePwd(registPwd.value, registRePwd.value);
-        const isEmailValid = validateEmail(registEmail.value);
-        const isTermsValid = validateTerms(Array.from(registTerms).filter(terms => terms.required));
+        const isPwdValid = Promise.resolve(validatePwd(registPwd.value));
+        const isRePwdValid = Promise.resolve(validateRePwd(registPwd.value, registRePwd.value));
+        const isEmailValid = Promise.resolve(validateEmail(registEmail.value));
+        const isTermsValid = Promise.resolve(validateTerms(Array.from(registTerms).filter(terms => terms.required)));
 
         // 조건을 모두 만족하면 폼 제출
-        if (isNumberValid && isIdValid && isPwdValid && isRePwdValid && isEmailValid && isTermsValid) {
-            form.submit();
-        } else {
+        Promise.all([isNumberValid, isIdValid, isPwdValid, isRePwdValid, isEmailValid, isTermsValid]).then(results => {
+            if(results.every(result => result == true)) {
+                registForm.submit();
+            } else {
+                alert("정확히 입력해주세요. 필수 항목은 반드시 작성해야합니다.");
+                window.scrollTo(0, 0);
+            }
+        }).catch(error => {
             alert("정확히 입력해주세요. 필수 항목은 반드시 작성해야합니다.");
+            console.error(error);
             window.scrollTo(0, 0);
-        }
+        })
     }
 
     registNumber.addEventListener("input", (event) => {
