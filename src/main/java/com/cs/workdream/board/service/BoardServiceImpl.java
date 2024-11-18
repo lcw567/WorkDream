@@ -150,7 +150,7 @@ public class BoardServiceImpl implements BoardService {
         return boardDao.deleteReply(sqlSession, replyNo);
     }
 
-    // 직무 카테고리 조회 메서드 추가
+    // 직무 카테고리 작업
     @Override
     public List<String> getJobCategories(int postingNo) {
         return boardDao.selectJobCategoriesByPostId(sqlSession, postingNo);
