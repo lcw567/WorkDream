@@ -2,7 +2,7 @@ package com.cs.workdream.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +52,7 @@ public class BoardController {
     public String showCommunityView(@RequestParam("postId") int postId, Model model, HttpSession session) {
         // 게시글 조회 (직무 카테고리 포함)
         Board post = boardService.getPostWithJobCategories(postId);
-        if(post != null && "Y".equals(post.getStatus())) {
+        if(post != null && "Y".equals(post.getStatus())) { // getStatus() 메서드 존재 확인
             // 조회수 증가
             boardService.increaseViewCount(postId);
 
@@ -181,11 +181,12 @@ public class BoardController {
             board.setImagePath(imagePath);
             board.setAuthor(author);
             board.setUserNo(userNo);
-            board.setCreatedTime(Timestamp.valueOf(LocalDateTime.now()));
+            board.setCreatedTime(Timestamp.valueOf(LocalDateTime.now())); // 또는 LocalDateTime.now()
             board.setViewCount(0);
             board.setLikeCount(0);
             board.setHashtags(hashtags);
             board.setJobCategories(jobs);
+            board.setStatus("Y"); // 게시글 상태 설정
 
             // 게시글 삽입
             int result = boardService.createPost(board);
