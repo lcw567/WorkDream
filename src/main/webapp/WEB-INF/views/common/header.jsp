@@ -24,6 +24,12 @@
     <!-- 외부 css / js 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     <script>const contextPath = "${pageContext.request.contextPath}";</script>
+    <script>
+	    <c:if test="${not empty sessionScope.alertMsg}">
+	        alert("${sessionScope.alertMsg}");
+	        <c:remove var="alertMsg" scope="session"/>
+	    </c:if>
+	</script>
     <script src="${pageContext.request.contextPath}/js/common.js" defer></script>
 </head>
 <body onload="activeMenu(<%=menuNo%>)">

@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>const contextPath = "${pageContext.request.contextPath}";</script>
-    <script src="${pageContext.request.contextPath}/js/common.js" defer></script>
+    <script src="${pageContext.request.contextPath}/js/member.js" defer></script>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -43,12 +43,12 @@
 		<h1>워크드림 통합 기업회원 가입</h1>
 		
 		<section>
-			<form id="registDetail-form" class="Business" action="#" method="post">
+			<form id="registDetail-form" class="Business" action="${pageContext.request.contextPath}/insert.me" method="post">
 				<h2>기업회원</h2>
 				<input type="hidden" name="userType" value="B" />
 				
 				<h6>사업자등록번호 (필수)</h6>
-				<input type="text" id="registNumber" name="registraionNumber" maxlength="10" placeholder="사업자 등록번호 직접입력(10자리)" />
+				<input type="text" id="registNumber" name="registrationNumber" maxlength="10" spellcheck="false" placeholder="사업자 등록번호 직접입력(10자리)" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />사업자등록번호가 없으신가요? <a href="">사업자등록번호가 없을 때</a></p>
 				<p id="number-check" class="NotChecked"></p>
 				
@@ -69,21 +69,21 @@
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />사업자등록증명원이란?<a href="">사업자등록증명원 가이드라인</a></p>
 				
 				<h6>아이디 (필수)</h6>
-				<input type="text" id="registId" name="userId" placeholder="아이디 입력(4~20자리)" />
+				<input type="text" id="registId" name="userId" maxlength="20" spellcheck="false" placeholder="아이디 입력(4~20자리)" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />영문 소문자, 숫자, 특수문자 '_'만 사용 가능</p>
 				<p id="id-check" class="NotChecked"></p>
 				
 				<h6>비밀번호 (필수)</h6>
-				<input type="password" id="registPwd" name="userPwd" maxlength="16" placeholder="비밀번호 입력(8~16자리)" />
+				<input type="password" id="registPwd" name="userPwd" maxlength="16" spellcheck="false" placeholder="비밀번호 입력(8~16자리)" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />영문 대소문자, 숫자, 특수문자 조합</p>
 				<p id="pwd-check" class="NotChecked"></p>
 				
 				<h6>비밀번호 확인 (필수)</h6>
-				<input type="password" id="registRePwd" placeholder="비밀번호 재입력" />
+				<input type="password" id="registRePwd" maxlength="16" spellcheck="false" placeholder="비밀번호 재입력" />
 				<p id="rePwd-check" class="NotChecked"></p>
 				
 				<h6>이메일 (필수)</h6>
-				<input type="email" id="registEmail" name="email" placeholder="email@workdream.co.kr" />
+				<input type="email" id="registEmail" name="email" spellcheck="false" placeholder="email@workdream.co.kr" />
 				<p><img src="${pageContext.request.contextPath}/img/icon_caution(sub).png" />기업서비스 및 서비스 관련 정보를 받을 때 필요합니다.</p>
 				<p id="email-check" class="error"></p>
 				
