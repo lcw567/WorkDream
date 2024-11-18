@@ -109,6 +109,7 @@
                         <th>작성시간</th>
                         <th>조회수</th>
                         <th>공감</th>
+                        <th>직무</th>
                     </tr>
                 </thead>
                 <tbody>

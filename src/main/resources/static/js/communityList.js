@@ -87,13 +87,13 @@ document.addEventListener("DOMContentLoaded", function () {
             posts.forEach(post => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${post.category}</td>
-                    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a></td>
-                    <td>${post.author}</td>
-                    <td>${new Date(post.createdTime).toLocaleString()}</td>
-                    <td>${post.viewCount}</td>
-                    <td>${post.likeCount}</td>
-                    <td>${post.jobCategories ? post.jobCategories.join(', ') : 'N/A'}</td>
+                    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.category}</a></td>
+				    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.title}</a></td>
+				    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.author}</a></td>
+				    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${new Date(post.createdTime).toLocaleString()}</a></td>
+				    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.viewCount}</a></td>
+				    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.likeCount}</a></td>
+				    <td><a href="${contextPath}/board/communityView?postId=${post.postingNo}">${post.jobCategories ? post.jobCategories.join(', ') : 'N/A'}</a></td>
                 `;
                 tbody.appendChild(row);
             });

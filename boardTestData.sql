@@ -1,6 +1,8 @@
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, EROLL_DATE, MODIFY_DATE, STATUS)
 VALUES (SEQ_UNO.NEXTVAL, 'U', 'user1', 'user1234', 'user1@example.com', SYSDATE, SYSTIMESTAMP, 'Y');
 
+
+set define off;
 -- 신입 카테고리 게시글
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
@@ -168,4 +170,50 @@ VALUES (POSTING_SEQ.NEXTVAL, '면접', '면접 게시글 제목 4', '면접 카테고리의 내용
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
 VALUES (POSTING_SEQ.NEXTVAL, '면접', '면접 게시글 제목 5', '면접 카테고리의 내용입니다.', NULL, 'admin', 1, SYSDATE, 59, 11, 'Y');
 
-COMMIT;
+DECLARE
+    TYPE JobCategoryArray IS TABLE OF VARCHAR2(100);
+    TYPE HashtagArray IS TABLE OF VARCHAR2(100);
+    
+    jobCategories JobCategoryArray := JobCategoryArray(
+        '기획·전략', '마케팅·홍보·조사', '회계·세무·재무', '인사·노무·HRD', '총무·법무·사무',
+        'IT개발·데이터', '디자인', '영업·판매·무역', '고객상담·TM', '구매·자재·물류',
+        '상품기획·MD', '운전·운송·배송', '서비스', '생산', '건설·건축',
+        '의료', '연구·R&D', '교육', '미디어·문화·스포츠', '금융·보험', '공공·복지'
+    );
+    
+    hashtags HashtagArray := HashtagArray(
+        '#해시태그1', '#해시태그2', '#해시태그3', '#해시태그4', '#해시태그5',
+        '#해시태그6', '#해시태그7', '#해시태그8', '#해시태그9', '#해시태그10',
+        '#해시태그11', '#해시태그12', '#해시태그13', '#해시태그14', '#해시태그15',
+        '#해시태그16', '#해시태그17', '#해시태그18', '#해시태그19', '#해시태그20',
+        '#해시태그21', '#해시태그22', '#해시태그23', '#해시태그24', '#해시태그25',
+        '#해시태그26', '#해시태그27', '#해시태그28', '#해시태그29', '#해시태그30'
+    );
+
+    v_posting_no NUMBER;
+    v_random_job VARCHAR2(100);
+    v_random_hashtag VARCHAR2(100);
+BEGIN
+    -- 모든 게시글에 대해 직무 카테고리를 랜덤으로 추가
+    FOR rec IN (SELECT POSTING_NO FROM POSTING) LOOP
+        -- 게시글 번호 저장
+        v_posting_no := rec.POSTING_NO;
+
+        -- 직무 카테고리 중 랜덤으로 선택
+        v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(1, jobCategories.COUNT + 1)));
+
+        -- COMMUNITY_POST_JOB_CATEGORY 테이블에 직무 카테고리 삽입
+        INSERT INTO COMMUNITY_POST_JOB_CATEGORY (POSTING_NO, JOB_CATEGORY)
+        VALUES (v_posting_no, v_random_job);
+
+        -- 해시태그를 랜덤으로 선택
+        v_random_hashtag := hashtags(TRUNC(DBMS_RANDOM.VALUE(1, hashtags.COUNT + 1)));
+
+        -- COMMUNITY_POST_HASHTAG 테이블에 해시태그 삽입
+        INSERT INTO COMMUNITY_POST_HASHTAG (POSTING_NO, HASHTAG)
+        VALUES (v_posting_no, v_random_hashtag);
+    END LOOP;
+
+    -- 커밋
+    COMMIT;
+END;
