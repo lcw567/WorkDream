@@ -6,69 +6,65 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.workdream.resume.model.vo.Resume;
+import com.cs.workdream.resume.model.vo.SelfIntro;
 import com.cs.workdream.resume.service.ResumeService;
+import com.cs.workdream.resume.service.SelfIntroService;
 
 @Controller
 @RequestMapping("/resume")
 public class ResumeController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ResumeController.class);
-
-    private final ResumeService resumeService;
-
-    @Autowired
-    public ResumeController(ResumeService resumeService) {
-        this.resumeService = resumeService;
+	@Autowired
+    private SelfIntroService selfIntroService;
+	
+	@GetMapping("/selfIntro")
+    public String showSelfIntroForm() {
+        return "resume/selfIntro"; // 뷰의 이름을 반환 (예: selfIntroForm.jsp)
     }
 
-    @GetMapping("/enrollresume")
-    public String showEnrollResumePage(org.springframework.ui.Model model, HttpSession session) {
-        Resume resume = new Resume();
+    @RequestMapping(value = "/insert_intro", method = RequestMethod.POST)
+    public String insertSelfIntro(@RequestParam("intro_name") String introTitle,
+                                  @RequestParam("intro_content") String introContent,
+                                  HttpSession session) {
 
-        // 기본 데이터 추가
-        resume.getBasicInfo().add(new com.cs.workdream.resume.model.vo.BasicInfo());
-        resume.getAcademicAbilities().add(new com.cs.workdream.resume.model.vo.AcademicAbility());
-        resume.getSkills().add(new com.cs.workdream.resume.model.vo.Skill());
-        resume.getExperiences().add(new com.cs.workdream.resume.model.vo.Experience());
-        resume.getQualifications().add(new com.cs.workdream.resume.model.vo.Qualification());
-        resume.getCareers().add(new com.cs.workdream.resume.model.vo.Career());
-        resume.setEmploymentPreferences(new com.cs.workdream.resume.model.vo.EmploymentPreferences());
+        // 세션에서 사용자 ID, 이력서 번호, 인물 번호를 가져옵니다.
+        String userId = (String) session.getAttribute("loginUser");
+        Integer resumeNo = (Integer) session.getAttribute("resumeNo");
+        Integer personNo = (Integer) session.getAttribute("personNo");
 
-        model.addAttribute("resume", resume);
-        return "resume/enrollresume"; // JSP 경로
-    }
+        // SelfIntro 객체 생성 및 데이터 설정
+        SelfIntro selfIntro = new SelfIntro();
+        selfIntro.setUserId(userId);
+        selfIntro.setResumeNo(resumeNo);
+        selfIntro.setPersonNo(personNo);
+        selfIntro.setIntroTitle(introTitle);
+        selfIntro.setIntroContent(introContent);
+        selfIntro.setDeleted('N');
 
-    @PostMapping("/insert.re")
-    public ModelAndView enrollResume(@ModelAttribute Resume resume, ModelAndView mv, HttpSession session) {
-        Integer personNo = (Integer) session.getAttribute("person_no");
-        if (personNo == null) {
-            mv.addObject("errorMsg", "로그인이 필요합니다.");
-            mv.setViewName("member/login");
-            return mv;
+        // 서비스 계층에 데이터 저장 요청
+        int result = selfIntroService.insertSelfIntro(selfIntro);
+
+        if (result > 0) {
+            // 성공 시 리다이렉트
+            return "redirect:/resume/selfIntroDashboard";
+        } else {
+            // 실패 시 에러 페이지로 이동
+            return "redirect:/errorPage";
         }
-        resume.setPersonNo(personNo);
-        resumeService.saveResume(resume);
-        mv.setViewName("redirect:/resume/resumeDashboard");
-        return mv;
     }
-
-
-    @GetMapping("/resumeDashboard")
-    public String resumeDashboard() {
-        return "resume/resumeDashboard";
-    }
-
-    @GetMapping("/testLogin")
-    public String testLogin(HttpSession session) {
-        session.setAttribute("person_no", 2);
-        logger.info("테스트 로그인 완료. person_no=2");
-        return "redirect:/resume/enrollresume";
+    
+    @GetMapping("/selfIntroDashboard")
+    public String showSelfIntroDashboard() {
+        return "resume/selfIntroDashboard"; // 뷰의 이름을 반환 (예: selfIntroForm.jsp)
     }
 }

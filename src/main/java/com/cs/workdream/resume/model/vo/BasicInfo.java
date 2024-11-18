@@ -26,9 +26,8 @@ public class BasicInfo {
     private String user_email; // user_email
     private String user_phone; // user_phone
     private String user_address; // user_address
-    private String usernumberaddress; // user_road_address
     private String userroadaddress;
     private String user_detailaddress; // user_detail_address
-    private String user_Pic; // user_pic
+    private String user_pic; // user_pic
 }
 

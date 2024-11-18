@@ -5,19 +5,23 @@
 <mapper namespace="resumeMapper">
 
     <!-- Resume 삽입 -->
-    <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume" useGeneratedKeys="true" keyProperty="resumeNo">
+    <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
         INSERT INTO RESUME (
             RESUME_NO,
             PERSON_NO,
             DELETED,
             USERPIC,
-            TITLE
+            TITLE,
+            CREATE_DATE,
+            MODIFIED_DATE
         ) VALUES (
             RESUME_SEQ.NEXTVAL,
             #{personNo},
             'N',
-            #{userPic},
-            #{resumeTitle}
+            #{user_pic},
+            #{resumeTitle},
+            SYSDATE,
+            SYSDATE
         )
     </insert>
 
@@ -38,6 +42,8 @@
         )
     </foreach>
 </insert>
+
+
 
 
     <!-- 기타 필요한 매퍼 구문을 유지 또는 주석 처리 -->

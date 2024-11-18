@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cs.workdream.resume.mapper.SelfIntroMapper">
+
+    <resultMap type="SelfIntro" id="selfintroResultSet">
+        <result column="SELF_INTRODUCTION_NO" property="selfintroNo" />
+        <result column="RESUME_NO" property="resumeNo" />
+        <result column="USER_ID" property="userId" />
+        <result column="TITLE" property="introTitle" />
+        <result column="CONTENT" property="introContent" />
+        <result column="CREATED_DATE" property="createDate" />
+        <result column="MODIFIED_DATE" property="modifiedDate" />
+        <result column="DELETED" property="deleted" />
+        <result column="PERSON_NO" property="personNo" />
+    </resultMap>
+    
+    <insert id="insertSelfIntro" parameterType="com.cs.workdream.resume.model.vo.SelfIntro">
+        <selectKey keyProperty="selfintroNo" resultType="int" order="BEFORE">
+            SELECT SELF_INTRO_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO SELF_INTRODUCTION (
+            SELF_INTRODUCTION_NO,
+            RESUME_NO,
+            USER_ID,
+            TITLE,
+            CONTENT,
+            CREATED_DATE,
+            MODIFIED_DATE,
+            DELETED,
+            PERSON_NO
+        )
+        VALUES (
+           5, -- SELF_INTRODUCTION_NO
+		    1, -- RESUME_NO (외래 키)
+		    'testUser', -- USER_ID
+		    #{introTitle}, -- TITLE
+		    #{introContent}, -- CONTENT
+		    SYSDATE, -- CREATED_DATE
+		    NULL, -- MODIFIED_DATE
+		    'N', -- DELETED
+		    1  -- PERSON_NO (외래 키)
+        )
+    </insert>
+
+</mapper>
