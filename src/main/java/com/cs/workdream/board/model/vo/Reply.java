@@ -15,12 +15,12 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Reply {
-    private int replyNo;     
-    private int postingNo;    
-    private int userNo;      
+    private Integer replyNo;     
+    private Integer postingNo;    
+    private Integer userNo;      
     private String content;  
     private Timestamp createdTime;
-    private int likeCount;      
+    private Integer likeCount;      
     private String status;     
     private String author; 
 }

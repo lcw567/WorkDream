@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-// 필요한 어노테이션 임포트
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cs.workdream.board.model.vo.Board;
 import com.cs.workdream.board.model.vo.Reply;
 import com.cs.workdream.board.service.BoardService;
+import com.cs.workdream.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/board")
@@ -58,11 +58,11 @@ public class BoardController {
             model.addAttribute("post", post);
 
             // 현재 사용자 정보 (로그인 사용자 정보)
-            Object currentUserObj = session.getAttribute("currentUser");
-            if(currentUserObj != null) {
-                model.addAttribute("currentUser", currentUserObj);
+            Member currentUser = (Member) session.getAttribute("loginUser");
+            if(currentUser != null) {
+                model.addAttribute("currentUser", currentUser);
 
-                // 사용자가 이 게시글에 공감했는지 여부 판단 로직 추가 (예시)
+                // 사용자가 이 게시글에 공감했는지 여부 판단 로직 추가 가능
                 boolean userLikedPost = false; // 실제 공감 여부 판단 로직 구현 필요
                 model.addAttribute("userLikedPost", userLikedPost);
             } else {
@@ -138,6 +138,16 @@ public class BoardController {
         
         Map<String, Object> response = new HashMap<>();
         try {
+            // 현재 로그인한 사용자 정보 가져오기
+            Member currentUser = (Member) session.getAttribute("loginUser");
+            if(currentUser == null) {
+                response.put("status", "fail");
+                response.put("message", "로그인이 필요합니다.");
+                return response;
+            }
+            int userNo = currentUser.getUserNo();
+            String author = currentUser.getUserId(); // 필요에 따라 변경
+
             // 이미지 업로드 처리
             String imagePath = null;
             if(image != null && !image.isEmpty()) {
@@ -160,16 +170,6 @@ public class BoardController {
                 // 업로드 경로 로그 출력
                 System.out.println("Upload Directory: " + uploadDir);
             }
-
-            // 세션에서 현재 사용자 정보 가져오기
-            Map<String, Object> currentUser = (Map<String, Object>) session.getAttribute("currentUser");
-            if(currentUser == null) {
-                response.put("status", "fail");
-                response.put("message", "로그인이 필요합니다.");
-                return response;
-            }
-            int userNo = (int) currentUser.get("userNo");
-            String author = (String) currentUser.get("userName");
 
             // Board 객체 생성
             Board board = new Board();
@@ -213,7 +213,16 @@ public class BoardController {
     public Map<String, Object> likePost(@PathVariable("postId") int postId, HttpSession session) {
         Map<String, Object> response = new HashMap<>();
         try {
-            // 로그인 여부 및 공감 여부 확인 로직 추가 가능
+            // 로그인 여부 확인
+            Member currentUser = (Member) session.getAttribute("loginUser");
+            if(currentUser == null) {
+                response.put("status", "fail");
+                response.put("message", "로그인이 필요합니다.");
+                return response;
+            }
+
+            // 공감 로직 추가 가능 (예: 중복 공감 방지)
+
             boardService.increaseLikeCount(postId);
             response.put("status", "success");
         } catch(Exception e) {
@@ -230,7 +239,16 @@ public class BoardController {
     public Map<String, Object> unlikePost(@PathVariable("postId") int postId, HttpSession session) {
         Map<String, Object> response = new HashMap<>();
         try {
-            // 로그인 여부 및 공감 여부 확인 로직 추가 가능
+            // 로그인 여부 확인
+            Member currentUser = (Member) session.getAttribute("loginUser");
+            if(currentUser == null) {
+                response.put("status", "fail");
+                response.put("message", "로그인이 필요합니다.");
+                return response;
+            }
+
+            // 공감 취소 로직 추가 가능 (예: 공감 기록 삭제)
+
             boardService.decreaseLikeCount(postId);
             response.put("status", "success");
         } catch(Exception e) {
@@ -258,13 +276,13 @@ public class BoardController {
         Map<String, Object> response = new HashMap<>();
         try {
             // 세션에서 현재 사용자 정보 가져오기
-            Map<String, Object> currentUser = (Map<String, Object>) session.getAttribute("currentUser");
+            Member currentUser = (Member) session.getAttribute("loginUser");
             if(currentUser == null) {
                 response.put("status", "fail");
                 response.put("message", "로그인이 필요합니다.");
                 return response;
             }
-            int userNo = (int) currentUser.get("userNo");
+            int userNo = currentUser.getUserNo();
             reply.setUserNo(userNo);
             // author 필드는 MyBatis selectReplies에서 JOIN을 통해 가져오기 때문에 서버에서 설정할 필요 없음
 
@@ -290,8 +308,7 @@ public class BoardController {
         Map<String, Object> response = new HashMap<>();
         try {
             // 세션에서 현재 사용자 정보 가져오기
-            // 권한 검증 로직 필요
-            Map<String, Object> currentUser = (Map<String, Object>) session.getAttribute("currentUser");
+            Member currentUser = (Member) session.getAttribute("loginUser");
             if(currentUser == null) {
                 response.put("status", "fail");
                 response.put("message", "로그인이 필요합니다.");
@@ -300,7 +317,7 @@ public class BoardController {
 
             // 댓글 소유자 확인
             Reply existingReply = boardService.getReplyById(replyNo);
-            if(existingReply == null || existingReply.getUserNo() != (int) currentUser.get("userNo")) {
+            if(existingReply == null || existingReply.getUserNo() != currentUser.getUserNo()) {
                 response.put("status", "fail");
                 response.put("message", "권한이 없습니다.");
                 return response;
@@ -327,7 +344,8 @@ public class BoardController {
         Map<String, Object> mockUser = new HashMap<>();
         mockUser.put("userNo", 1); // 실제 사용자 번호로 변경
         mockUser.put("userName", "테스트 사용자");
-        session.setAttribute("currentUser", mockUser);
+        mockUser.put("userId", "testuser"); // userId 추가
+        session.setAttribute("loginUser", mockUser);
         return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
     }
 

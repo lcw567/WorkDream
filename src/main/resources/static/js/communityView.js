@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     // 컨텍스트 경로 가져오기
     const contextPath = window.contextPath; // 글로벌 변수로 설정된 contextPath 사용
-
+    const initialPostLiked = (postLiked === true); // 서버에서 전달한 값이 true인지 확인
+    
+    // 신고 버튼 기능 (게시글)
     const reportButtons = document.querySelectorAll(".report-button");
     reportButtons.forEach(function(button) {
         button.addEventListener("click", function() {
@@ -11,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 공감 버튼 기능 (게시글)
     const postLikeButton = document.querySelector(".post-buttons .like-button");
-    let postLikedBool = Boolean(postLiked); // 불리언으로 변환
+    let postLikedBool = initialPostLiked; // 불리언 값으로 설정
     if(postLikeButton) {
         if(postLikedBool) {
             postLikeButton.classList.add("liked");
@@ -61,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-
     // 댓글 등록 버튼 클릭 시 댓글 추가
     const commentSubmitButton = document.querySelector(".comment-submit-button");
     if(commentSubmitButton) { // 요소 존재 여부 확인
@@ -71,12 +72,10 @@ document.addEventListener("DOMContentLoaded", function() {
             if (commentText) {
                 // AJAX를 통해 댓글을 서버에 전송
                 const postId = new URLSearchParams(window.location.search).get('postId');
-                // 실제 사용자 정보는 세션이나 다른 방법으로 가져와야 합니다.
-                // const userId = "홍길동"; // 실제 사용자 정보로 대체 필요
                 const data = {
                     postingNo: parseInt(postId, 10), // 숫자로 변환
                     content: commentText
-                    // userNo는 세션/사용자 컨텍스트에서 가져와야 합니다.
+                    // userNo는 서버에서 처리됨
                 };
 
                 fetch(`${contextPath}/board/api/replies`, {
@@ -116,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("신고되었습니다.");
             } else if (target.classList.contains("like-button")) {
                 const likeBtn = target;
-                const likeCountSpan = likeBtn.querySelector("span");
+                const likeCountSpan = likeBtn.querySelector(".like-count");
                 let likeCount = parseInt(likeCountSpan.innerText);
                 if (likeBtn.classList.contains("liked")) {
                     likeBtn.classList.remove("liked");
