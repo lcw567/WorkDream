@@ -22,15 +22,20 @@ public class MemberDao {
 	
 	// 신규 회원 등록
 	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
-		// 회원 유형 판별
-		if ("B".equals(m.getUserType().toString())) {
-			// 기업 회원의 경우 > Business에 insert
-			sqlSession.insert("memberMapper.insertBusiness", m);
-		} else {
-			// 개인 회원의 경우 > Person에 insert
-			sqlSession.insert("memberMapper.insertPerson", m);
-		}
-		
-		return sqlSession.insert("memberMapper.insertMember", m);
+	    // 회원 유형 판별
+	    if ("B".equals(m.getUserType())) {
+	        // 기업 회원의 경우 > Business에 insert
+	        sqlSession.insert("memberMapper.insertBusiness", m);
+	    } else {
+	        // 개인 회원의 경우 > Person에 insert
+	        sqlSession.insert("memberMapper.insertPerson", m);
+	    }
+	    
+	    System.out.println("Business No: " + m.getBusinessNo());
+	    System.out.println("Person No: " + m.getPersonNo());
+
+	    // personNo나 businessNo가 설정된 후 insertMember 호출
+	    return sqlSession.insert("memberMapper.insertMember", m);
 	}
+	
 }

@@ -18,13 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 @Component
 public class LogginAOP {
-	// [ log cannot be resolved ] ¿¡·¯ ÇØ°á¹ý
-	// ÇÁ·ÎÁ§Æ®¿¡ Æ÷ÇÔµÈ Maven Dependencies > lombok.jar Ã£±â (Maven 3.9.9 ±âÁØ lombok-1.18.34.jar·Î µÇ¾îÀÖÀ½)
-	// ¿ìÅ¬¸¯ > Run As > Java Application
-	// ÀÎ½ºÅç ½ÇÇà > ¼³Ä¡ °æ·Î ¼³Á¤ > SpringÀÌ ±ò·ÁÀÖ´Â Æú´õÀÇ STS.ini ÆÄÀÏ ¼±ÅÃ. (ex. sts-3.9.13.RELEASE/STS.ini)
-	// ¼±ÅÃ ÈÄ STS¿Í ÀÌÅ¬¸³½º µÎ °¡Áö°¡ °æ·Î¿¡ ³ªÅ¸³­´Ù¸é Á¤»óÀûÀ¸·Î ¼±ÅÃµÈ °Ì´Ï´Ù. (ÀÌÅ¬¸³½º°¡ ¶ßÁö ¾ÊÀ¸¸é µû·Î ÀÌÅ¬¸³½º ¼³Ä¡ Æú´õ > ini ÆÄÀÏ Ãß°¡)
-	// ÀÎ½ºÅçÀÌ ¿Ï·áµÇ¸é Project > Clean ¶Ç´Â Maven > Update Project ½ÇÇà (¼ø¼­´ë·Î µÑ ´Ù ÇÏ´Â °ÍÀ» ÃßÃµ)
-	// ¡Ø ÇØ´ç ¿À·ù´Â ¼Ò½º¸¦ »õ·Î ¹ÞÀ» ¶§¸¶´Ù ·£´ýÇÏ°Ô ÀÏ¾î³¯ ¼ö ÀÖÀ¸¹Ç·Î ÇØ°á ¹æ¹ýÀ» ²À ¼÷ÁöÇØµÎ¼¼¿ä.
+	// [ log cannot be resolved ] ï¿½ï¿½ï¿½ï¿½ ï¿½Ø°ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ôµï¿½ Maven Dependencies > lombok.jar Ã£ï¿½ï¿½ (Maven 3.9.9 ï¿½ï¿½ï¿½ï¿½ lombok-1.18.34.jarï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½)
+	// ï¿½ï¿½Å¬ï¿½ï¿½ > Run As > Java Application
+	// ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ > ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ > Springï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ STS.ini ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. (ex. sts-3.9.13.RELEASE/STS.ini)
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ STSï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Ì´Ï´ï¿½. (ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ > ini ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½)
+	// ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¸ï¿½ Project > Clean ï¿½Ç´ï¿½ Maven > Update Project ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµ)
+	// ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï¾î³¯ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ø°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÎ¼ï¿½ï¿½ï¿½.
 	
 	@Pointcut("execution(* com.cs.workdream..controller.*.*(..) )")
 	private void cut() {}
@@ -40,20 +40,20 @@ public class LogginAOP {
 		log.info("------------------------API Controller-----------------------------");
 		log.info("Information     :  " + methodSignature);
 		log.info("Method Name     :  " + method);
-		log.info("Parameter     :  " + Arrays.toString(args));
+		log.info("Parameter     :  " + Arrays.toString(args) + "\n");
 	}
 	
 	@AfterReturning(value = "cut()", returning = "obj")
 	public void afterReturn(JoinPoint joinPoint, Object obj) {
 		log.info("=============================END=================================");
-		log.info("Object     :  " + obj);
+		log.info("Object     :  " + obj + "\n");
 	}
 	
 	@Around("cut()")
 	public Object displayLogInfo(ProceedingJoinPoint pJoinPoint) throws Throwable {
 		long start = System.currentTimeMillis();// 0
 		
-		Object result = pJoinPoint.proceed(); // ¿ø·¡ ÇØ¾ßµÇ´Â ±â´ÉÀ» ½ÇÇàÇØÁØ´Ù.
+		Object result = pJoinPoint.proceed(); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ßµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 		
 		long end = System.currentTimeMillis(); // 10
 		
