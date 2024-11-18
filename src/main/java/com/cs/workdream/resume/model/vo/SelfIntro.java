@@ -13,7 +13,7 @@ public class SelfIntro {
 	private String introTitle;
 	private String introContent;
 	private Date createDate;
-	private Date modifiedDae;
-	private char deleted;
-	private Integer personNo;
+	private Date modifiedDate;
+	private String deleted;
+
 }

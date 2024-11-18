@@ -29,48 +29,30 @@
         </div>
         
         <main>
-            <div class="total-count">총 3건</div>
-            <div class="intro-list">
-                <div class="intro-item" data-id="intro1">
-                    <div class="intro-info">
-                        <div class="intro-name">작성한 자소서 이름 1</div>
-                        <div class="intro-date">2024.10.22 14:38:11 수정</div>
-                    </div>
-                    <div class="more-options">
-                        <button class="more-button" aria-label="더보기">⋮</button>
-                        <div class="dropdown-menu">
-                            <button class="edit-button">수정</button>
-                            <button class="delete-button">삭제</button>
-                        </div>
-                    </div>
+            <div class="total-count">총 ${selfIntroList.size()}건</div>
+    <div class="intro-list">
+        <c:forEach var="intro" items="${selfIntroList}">
+            <div class="intro-item" data-id="${intro.selfintroNo}">
+                <div class="intro-info">
+                    <div class="intro-name">${intro.introTitle}</div>
+                    <div class="intro-date">${intro.createDate} 수정</div>
                 </div>
-                <div class="intro-item" data-id="intro2">
-                    <div class="intro-info">
-                        <div class="intro-name">작성한 자소서 이름 2</div>
-                        <div class="intro-date">2024.10.22 14:38:11 수정</div>
-                    </div>
-                    <div class="more-options">
-                        <button class="more-button" aria-label="더보기">⋮</button>
-                        <div class="dropdown-menu">
-                            <button class="edit-button">수정</button>
-                            <button class="delete-button">삭제</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="intro-item" data-id="intro3">
-                    <div class="intro-info">
-                        <div class="intro-name">작성한 자소서 이름 3</div>
-                        <div class="intro-date">2024.10.22 14:38:11 수정</div>
-                    </div>
-                    <div class="more-options">
-                        <button class="more-button" aria-label="더보기">⋮</button>
-                        <div class="dropdown-menu">
-                            <button class="edit-button">수정</button>
-                            <button class="delete-button">삭제</button>
-                        </div>
+                <div class="more-options">
+                    <button class="more-button" aria-label="더보기">⋮</button>
+                    <div class="dropdown-menu">
+                        <form action="/editIntro" method="get">
+                            <input type="hidden" name="id" value="${intro.selfintroNo}">
+                            <button type="submit" class="edit-button">수정</button>
+                        </form>
+                        <form action="/deleteIntro" method="post" >
+                            <input type="hidden" name="id" value="${intro.selfintroNo}">
+                            <button type="submit" class="delete-button">삭제</button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </c:forEach>
+    </div>
         </main>
         <div class="notice-container">
             <div class="notice">확인사항</div>

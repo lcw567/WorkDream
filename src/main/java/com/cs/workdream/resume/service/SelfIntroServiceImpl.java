@@ -1,7 +1,10 @@
 package com.cs.workdream.resume.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cs.workdream.resume.model.dao.SelfIntroDao;
 import com.cs.workdream.resume.model.vo.SelfIntro;
@@ -16,4 +19,14 @@ public class SelfIntroServiceImpl implements SelfIntroService{
 		return selfIntroDao.insertSelfIntro(selfIntro);
 	}
 
+	@Override
+	public List<SelfIntro> selectSelfIntroList(String userId) {
+		return selfIntroDao.selectSelfIntroList(userId);
+	}
+
+	@Override
+	@Transactional
+	public int deleteSelfIntro(Integer selfIntroNo) {
+	    return selfIntroDao.deleteSelfIntro(selfIntroNo);
+	}
 }
