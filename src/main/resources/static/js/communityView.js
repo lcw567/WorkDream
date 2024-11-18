@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // 컨텍스트 경로 가져오기
-    const contextPath = document.getElementById("contextPath").value;
+    const contextPath = window.contextPath; // 글로벌 변수로 설정된 contextPath 사용
 
     const reportButtons = document.querySelectorAll(".report-button");
     reportButtons.forEach(function(button) {
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 공감 버튼 기능 (게시글)
     const postLikeButton = document.querySelector(".post-buttons .like-button");
-    let postLikedBool = (postLiked === 'true'); // 문자열을 불리언으로 변환
+    let postLikedBool = Boolean(postLiked); // 불리언으로 변환
     if(postLikeButton) {
         if(postLikedBool) {
             postLikeButton.classList.add("liked");
@@ -72,9 +72,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 // AJAX를 통해 댓글을 서버에 전송
                 const postId = new URLSearchParams(window.location.search).get('postId');
                 // 실제 사용자 정보는 세션이나 다른 방법으로 가져와야 합니다.
-                const userId = "홍길동"; // 실제 사용자 정보로 대체 필요
+                // const userId = "홍길동"; // 실제 사용자 정보로 대체 필요
                 const data = {
-                    postingNo: postId,
+                    postingNo: parseInt(postId, 10), // 숫자로 변환
                     content: commentText
                     // userNo는 세션/사용자 컨텍스트에서 가져와야 합니다.
                 };

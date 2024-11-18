@@ -258,7 +258,6 @@ public class BoardController {
         Map<String, Object> response = new HashMap<>();
         try {
             // 세션에서 현재 사용자 정보 가져오기
-            // 실제 사용자 조회 로직으로 대체 필요
             Map<String, Object> currentUser = (Map<String, Object>) session.getAttribute("currentUser");
             if(currentUser == null) {
                 response.put("status", "fail");
@@ -267,6 +266,7 @@ public class BoardController {
             }
             int userNo = (int) currentUser.get("userNo");
             reply.setUserNo(userNo);
+            // author 필드는 MyBatis selectReplies에서 JOIN을 통해 가져오기 때문에 서버에서 설정할 필요 없음
 
             int result = boardService.addReply(reply);
             if(result > 0) {

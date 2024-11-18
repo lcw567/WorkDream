@@ -257,7 +257,7 @@
             r.STATUS
         FROM REPLY r
         JOIN MEMBER u ON r.USER_NO = u.USER_NO
-        JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO <!-- PERSON 테이블과 JOIN -->
+        JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO
         WHERE r.POSTING_NO = #{value} AND r.STATUS = 'Y'
         ORDER BY r.CREATED_TIME ASC
     </select>
@@ -291,15 +291,16 @@
         FROM REPLY r
         JOIN MEMBER u ON r.USER_NO = u.USER_NO
         JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO
-        WHERE r.REPLY_NO = #{replyNo} AND r.STATUS = 'Y'
+        WHERE r.REPLY_NO = #{value} AND r.STATUS = 'Y'
     </select>
 
     <!-- 댓글 소프트 삭제 -->
     <update id="deleteReply" parameterType="int">
         UPDATE REPLY
         SET STATUS = 'N'
-        WHERE REPLY_NO = #{replyNo}
+        WHERE REPLY_NO = #{value}
     </update>
+
     
     
 
