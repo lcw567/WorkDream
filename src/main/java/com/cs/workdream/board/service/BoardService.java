@@ -14,8 +14,8 @@ public interface BoardService {
     int deletePost(int postingNo);
     int countPosts(String category);
     List<Board> getPopularPosts();
-    List<Board> getFilteredPosts(String category, String filter, int offset, int limit);
-    int countFilteredPosts(String category, String filter);
+    List<Board> getFilteredPosts(String category, String filter, String jobFilter, int offset, int limit);
+    int countFilteredPosts(String category, String filter, String jobFilter);
     List<String> getHashtags(int postingNo);
     int addHashtag(int postingNo, String hashtag);
     
@@ -32,4 +32,6 @@ public interface BoardService {
     // 직무 카테고리 작업
     List<String> getJobCategories(int postingNo); // 추가
     Board getPostWithJobCategories(int postingNo); // 추가
+    
+    
 }
