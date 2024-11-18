@@ -228,6 +228,13 @@ document.addEventListener("DOMContentLoaded", function() {
         return date.toLocaleString();
     }
 
+    // 날짜 형식 지정 함수
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        if(isNaN(date)) return 'Invalid Date';
+        return date.toLocaleString();
+    }
+
     // 초기 로드 시 댓글 목록 불러오기
     loadReplies();
 });
