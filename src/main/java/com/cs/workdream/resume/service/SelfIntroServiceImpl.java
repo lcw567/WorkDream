@@ -29,4 +29,14 @@ public class SelfIntroServiceImpl implements SelfIntroService{
 	public int deleteSelfIntro(Integer selfIntroNo) {
 	    return selfIntroDao.deleteSelfIntro(selfIntroNo);
 	}
+
+	@Override
+	public SelfIntro getSelfIntroById(int selfintroNo) {
+		return selfIntroDao.selectSelfIntroById(selfintroNo);
+	}
+
+	@Override
+	public int updateSelfIntro(SelfIntro selfIntro) {
+		return selfIntroDao.updateSelfIntro(selfIntro);
+	}
 }

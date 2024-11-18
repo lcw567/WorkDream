@@ -1,5 +1,6 @@
 package com.cs.workdream.resume.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -78,8 +80,9 @@ public class ResumeController {
     
     @RequestMapping(value = "/deleteIntro", method = RequestMethod.POST)
     public String deleteSelfIntro(@RequestParam("id") int selfintroNo, HttpSession session) {
-        System.out.println("Deleting SelfIntro with ID: " + selfintroNo); // 로그 추가
+        System.out.println("Controller: Deleting SelfIntro with ID: " + selfintroNo); // 로그 추가
         int result = selfIntroService.deleteSelfIntro(selfintroNo);
+        System.out.println("Controller delete result: " + result); // 로그 추가
 
         if (result > 0) {
             return "redirect:/resume/selfIntroDashboard";
@@ -87,5 +90,53 @@ public class ResumeController {
             return "redirect:/errorPage";
         }
     }
+    
+ // ResumeController.java
+
+    @GetMapping("/editIntro")
+    public String showEditIntroForm(@RequestParam("id") int selfintroNo, HttpSession session, Model model) {
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            return "redirect:/login?error=sessionExpired";
+        }
+
+        SelfIntro selfIntro = selfIntroService.getSelfIntroById(selfintroNo);
+        if (selfIntro == null || !selfIntro.getUserId().equals(loginUser.getUserId())) {
+            return "redirect:/errorPage";
+        }
+
+        model.addAttribute("selfIntro", selfIntro);
+        return "resume/editSelfIntro";
+    }
+    
+ // ResumeController.java
+
+    @PostMapping("/updateIntro")
+    public String updateSelfIntro(@RequestParam("selfintroNo") int selfintroNo,
+                                  @RequestParam("intro_name") String introTitle,
+                                  @RequestParam("intro_content") String introContent,
+                                  HttpSession session) {
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            return "redirect:/login?error=sessionExpired";
+        }
+
+        SelfIntro selfIntro = new SelfIntro();
+        selfIntro.setSelfintroNo(selfintroNo);
+        selfIntro.setUserId(loginUser.getUserId());
+        selfIntro.setIntroTitle(introTitle);
+        selfIntro.setIntroContent(introContent);
+        selfIntro.setModifiedDate(new Date(System.currentTimeMillis()));
+
+        int result = selfIntroService.updateSelfIntro(selfIntro);
+        if (result > 0) {
+            return "redirect:/resume/selfIntroDashboard";
+        } else {
+            return "redirect:/errorPage";
+        }
+    }
+
+
+
 
 }

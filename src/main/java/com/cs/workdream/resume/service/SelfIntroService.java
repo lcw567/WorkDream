@@ -10,4 +10,9 @@ public interface SelfIntroService {
     List<SelfIntro> selectSelfIntroList(String userId);
     
     int deleteSelfIntro(Integer selfIntroId);
+    
+    SelfIntro getSelfIntroById(int selfintroNo);
+
+    int updateSelfIntro(SelfIntro selfIntro);
+
 }

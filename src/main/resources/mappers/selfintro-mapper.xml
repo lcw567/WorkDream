@@ -52,11 +52,39 @@
 	    ORDER BY CREATED_DATE DESC
 	</select>
 	
-	<update id="deleteSelfIntro" parameterType="java.lang.Integer">
+	<!-- SelfIntroMapper.xml -->
+	<update id="deleteSelfIntro" parameterType="map">
 	    UPDATE SELF_INTRODUCTION
 	    SET DELETED = 'Y'
-	    WHERE SELF_INTRODUCTION_NO = #{_parameter}
+	    WHERE SELF_INTRODUCTION_NO = #{selfIntroNo}
 	</update>
 
+
+<!-- SelfIntroMapper.xml -->
+
+	<!-- 자소서 조회 -->
+	<select id="selectSelfIntroById" parameterType="int" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
+	    SELECT SELF_INTRODUCTION_NO AS selfintroNo,
+	           RESUME_NO AS resumeNo,
+	           USER_ID AS userId,
+	           TITLE AS introTitle,
+	           CONTENT AS introContent,
+	           CREATED_DATE AS createDate,
+	           MODIFIED_DATE AS modifiedDate,
+	           DELETED AS deleted
+	    FROM SELF_INTRODUCTION
+	    WHERE SELF_INTRODUCTION_NO = #{selfintroNo}
+	      AND DELETED = 'N'
+	</select>
+	
+	<!-- 자소서 업데이트 -->
+	<update id="updateSelfIntro" parameterType="com.cs.workdream.resume.model.vo.SelfIntro">
+	    UPDATE SELF_INTRODUCTION
+	    SET TITLE = #{introTitle},
+	        CONTENT = #{introContent},
+	        MODIFIED_DATE = SYSDATE
+	    WHERE SELF_INTRODUCTION_NO = #{selfintroNo}
+	      AND USER_ID = #{userId}
+	</update>
 
 </mapper>
