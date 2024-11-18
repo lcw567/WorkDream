@@ -40,27 +40,27 @@ public class MemberController {
 	// 로그인 판별
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
-		Member loginMember = memberService.loginMember(m);
-		System.out.println(m.toString());
-		
-		if(loginMember == null || !bcryptPasswordEncoder.matches(m.getUserPwd(), loginMember.getUserPwd())) {
-			// 로그인 실패
-			mv.addObject("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다.");
-			mv.setViewName("common/errorPage");
-		}
-		else {
-			// 로그인 성공
-			Cookie ck = new Cookie("saveId", loginMember.getUserId());
-			if(saveId == null) {
-				ck.setMaxAge(0);
-			}
-			response.addCookie(ck);
-			
-			session.setAttribute("loginUser", loginMember);
-			mv.setViewName("redirect:/");
-		}
-		
-		return mv;
+	    Member loginMember = memberService.loginMember(m);
+	    System.out.println(m.toString());
+	    
+	    if(loginMember == null || !bcryptPasswordEncoder.matches(m.getUserPwd(), loginMember.getUserPwd())) {
+	        // 로그인 실패
+	        mv.addObject("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다.");
+	        mv.setViewName("common/errorPage");
+	    }
+	    else {
+	        // 로그인 성공
+	        Cookie ck = new Cookie("saveId", loginMember.getUserId());
+	        if(saveId == null) {
+	            ck.setMaxAge(0);
+	        }
+	        response.addCookie(ck);
+	        
+	        session.setAttribute("loginUser", loginMember);
+	        mv.setViewName("redirect:/");
+	    }
+	    
+	    return mv;
 	}
 	
 	// 로그아웃
