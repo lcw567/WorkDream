@@ -30,7 +30,7 @@ public class Board {
     private List<String> jobCategories;
     
    
-    private Integer commentCount;
+    private int commentCount;
 
     private String status; // status 필드 추가
 }

@@ -116,17 +116,28 @@
     </select>
 
     <!-- 인기 게시물 조회 (조회수 기준 상위 5개) -->
-	    <select id="selectPopularPosts" resultType="com.cs.workdream.board.model.vo.Board">
-	    SELECT * FROM (
+	<select id="selectPopularPosts" resultType="com.cs.workdream.board.model.vo.Board">
+	    <![CDATA[
 	        SELECT 
-	            A.*,
-	            ROWNUM AS rn
+	            A.postingNo,
+	            A.category,
+	            A.title,
+	            A.content,
+	            A.imagePath,
+	            A.author,
+	            A.userNo,
+	            A.createdTime,
+	            A.updatedTime,
+	            A.viewCount,
+	            A.likeCount,
+	            A.status,
+	            NVL(C.commentCount, 0) AS commentCount
 	        FROM (
 	            SELECT 
 	                POSTING_NO AS postingNo,
 	                CATEGORY,
 	                TITLE,
-	                CONTENT,
+	                DBMS_LOB.SUBSTR(CONTENT, 4000, 1) AS content, 
 	                IMAGE AS imagePath,
 	                AUTHOR,
 	                USER_NO AS userNo,
@@ -139,9 +150,16 @@
 	            WHERE STATUS = 'Y'
 	            ORDER BY VIEW_COUNT DESC
 	        ) A
-	        WHERE ROWNUM &lt;= 5
-	    )
-	    WHERE rn &gt;= 1
+	        LEFT JOIN (
+	            SELECT 
+	                POSTING_NO, 
+	                COUNT(*) AS commentCount
+	            FROM REPLY
+	            WHERE STATUS = 'Y'
+	            GROUP BY POSTING_NO
+	        ) C ON A.postingNo = C.POSTING_NO
+	        WHERE ROWNUM <= 5
+	    ]]>
 	</select>
 
    <!-- 게시글 ID로 단일 게시글 조회 -->
