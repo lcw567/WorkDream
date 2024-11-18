@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cs.workdream.business.model.vo.Business;
 import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.member.service.MemberService;
-import com.cs.workdream.person.model.vo.Person;
 
 @CrossOrigin
 @Controller
