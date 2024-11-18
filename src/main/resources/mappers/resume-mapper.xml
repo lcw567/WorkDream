@@ -5,29 +5,34 @@
 <mapper namespace="resumeMapper">
 
     <!-- Resume 삽입 -->
-    <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume" useGeneratedKeys="true" keyProperty="resumeNo">
+    <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
         INSERT INTO RESUME (
             RESUME_NO,
             PERSON_NO,
             DELETED,
             USERPIC,
-            TITLE
+            TITLE,
+            CREATE_DATE,
+            MODIFIED_DATE
         ) VALUES (
             RESUME_SEQ.NEXTVAL,
             #{personNo},
             'N',
-            #{userPic},
-            #{resumeTitle}
+            #{user_pic},
+            #{resumeTitle},
+            SYSDATE,
+            SYSDATE
         )
     </insert>
 
-   <insert id="insertBasicInfo" parameterType="com.cs.workdream.resume.model.vo.BasicInfo" useGeneratedKeys="true" keyProperty="resumeNo">
+    <insert id="batchInsertBasicInfo" parameterType="list">
     INSERT INTO BASIC_INFO (
         BASIC_NO, RESUME_NO, PERSON_NO, USER_NAME, USER_GENDER,
         USER_BIRTH, USER_EMAIL, USER_PHONE, USER_ADDRESS,
         USER_ROAD_ADDRESS, USER_DETAIL_ADDRESS, USER_PIC
     )
     VALUES
+    <foreach collection="list" item="info" separator=",">
         (
             BASICINFO_SEQ.NEXTVAL, #{info.resumeNo}, #{info.personNo},
             #{user_name}, #{user_gender},
@@ -35,7 +40,10 @@
             #{user_phone}, #{user_address}, #{usernumberaddress},
             #{userroadaddress}, #{user_detailaddress}, #{.user_Pic}
         )
+    </foreach>
 </insert>
+
+
 
 
     <!-- 기타 필요한 매퍼 구문을 유지 또는 주석 처리 -->

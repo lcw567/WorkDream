@@ -15,6 +15,7 @@
  		<typeAlias alias="Resume" type="com.cs.workdream.resume.model.vo.Resume"/>
  		<typeAlias alias="Board" type="com.cs.workdream.board.model.vo.Board"/>
  		<typeAlias alias="Reply" type="com.cs.workdream.board.model.vo.Reply"/>
+ 		<typeAlias alias="SelfIntro" type="com.cs.workdream.resume.model.vo.SelfIntro"/>
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->
@@ -22,6 +23,7 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/resume-mapper.xml"/>
+		<mapper resource="mappers/selfintro-mapper.xml"/>
 	</mappers>
  	
 </configuration>
