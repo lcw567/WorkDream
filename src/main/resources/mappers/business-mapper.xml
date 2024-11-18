@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="businessMapper">
+
+    <!-- 담당자 정보 저장 -->
+    <insert id="insertRepresentativeInfo">
+        INSERT INTO JOB_POSTING (RECRUITMENT_NO, REPRESENTATIVE_NAME, REPRESENTATIVE_DEPT, REPRESENTATIVE_EMAIL)
+        VALUES (#{recruitmentNo}, #{representativeName}, #{representativeDept}, #{representativeEmail})
+    </insert>
+
+    <!-- 홈페이지 주소 저장 -->
+    <update id="saveWebsite">
+        UPDATE JOB_POSTING
+        SET WEBSITE = #{website}
+        WHERE RECRUITMENT_NO = #{recruitmentNo}
+    </update>
+
+    <!-- 로고 경로 저장 -->
+    <update id="saveLogoPath">
+        UPDATE JOB_POSTING
+        SET LOGO_PATH = #{logoPath}
+        WHERE RECRUITMENT_NO = #{recruitmentNo}
+    </update>
+
+    <!-- 특정 공고 조회 -->
+    <select id="selectJobPostingById" resultType="com.cs.workdream.business.model.vo.JobPosting1">
+        SELECT 
+            RECRUITMENT_NO, BUSINESS_NO, REPRESENTATIVE_NAME, REPRESENTATIVE_DEPT, REPRESENTATIVE_EMAIL, 
+            COMPANY_NAME, WEBSITE, LOGO_PATH
+        FROM JOB_POSTING
+        WHERE RECRUITMENT_NO = #{recruitmentNo}
+    </select>
+
+</mapper>
