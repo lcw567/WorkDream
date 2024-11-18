@@ -30,4 +30,7 @@ public class Member {
 	
 	// 기업 회원 전용
 	private String registrationNumber;	// 사업자등록번호
+	
+	// 개인 회원 전용
+	private String userName;			// 회원 이름
 }

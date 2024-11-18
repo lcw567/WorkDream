@@ -244,6 +244,7 @@ header.mini > nav > ul {
 }
 
 
+/* registration 관련 */
 /* registration.jsp */
 #regist-main {
 	width: 100%;
@@ -567,4 +568,113 @@ header.mini > nav > ul {
 
 #registDetail-form-info > ul > li::before {
 	content: "- ";
+}
+
+
+/* findMember 관련 */
+#findMember-main {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 3% 5%;
+}
+
+#findMember-main > section {
+	width: 80%;
+	max-width: 1000px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#findMember-main > section > * {
+	width: 100%;
+}
+
+#findMember-main > section > h1 {
+	margin: 2% 0 3% 0;
+	text-align: left;
+	font-size: 1.3rem;
+}
+
+#findMember-main > section > article {
+	display: none;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 3%;
+	border: 1px solid #000;
+	border-top: 0;
+}
+
+#findMember-main > section > article.On {
+	display: flex;
+}
+
+#findMember-article-tab {
+	height: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#findMember-article-tab > li {
+	width: 100%;
+	height: 100%;
+	background-color: #E1DEF1;
+	border: 1px solid #E1DEF1;
+	border-bottom: 1px solid #000;
+	line-height: 3;
+	text-align: center;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1rem;
+}
+
+#findMember-article-tab > li.On {
+	background-color: #FFFFFF;
+	border: 1px solid #000;
+	border-bottom: 0;
+}
+
+#findMember-form {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#findMember-form > table {
+	width: 80%;
+	margin: 3% 0;
+}
+
+#findMember-form > table th, #findMember-form > table td {
+	height: 3rem;
+	padding: 1% 0;
+	text-align: left;
+	font-weight: normal;
+	font-size: 1rem;
+}
+
+#findMember-form > table td input {
+	width: 100%;
+	height: 2.5rem;
+	padding: 0 3%;
+	margin-bottom: 1%;
+	font-size: 1rem;
+}
+
+#findMember-form > input[type="button"] {
+	width: 30%;
+	height: 2.3rem;
+	background-color: #4E21A8;
+	border: 1px solid #4E21A8;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 0.9rem;
+	color: #FFFFFF;
 }

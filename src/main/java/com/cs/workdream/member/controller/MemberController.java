@@ -127,4 +127,31 @@ public class MemberController {
 			return "common/errorPage";
 		}
 	}
+	
+	
+	/* 회원 정보 조회 */
+	
+	// 아이디, 비밀번호 조회 페이지로 이동
+	@RequestMapping("/findUser")
+	public String handleRequest1(HttpServletRequest request, Model model) {
+		// 개인회원, 기업회원 확인용
+		String userType = request.getParameter("ut");
+		model.addAttribute("ut", userType);
+		
+		// findMember에서 사용할 변수값 set
+		String findData = request.getParameter("fd");
+		model.addAttribute("fd", findData);
+		String findMethod = request.getParameter("fm");
+		model.addAttribute("fm", findMethod);
+		
+		// 파라미터값에 따라 개인회원 or 기업회원 전용 페이지로 이동
+		if("B".equals(userType)) {
+			// 기업 전용으로 이동
+        	return "member/findMemberBusiness";
+        }
+        else {
+        	// 개인 전용으로 이동
+        	return "member/findMemberPerson";
+        }
+	}
 }
