@@ -57,7 +57,7 @@ public class BoardDao {
         return sqlSession.selectList("boardMapper.selectPopularPosts");
     }
 
-    // 필터링된 게시물 조회 (카테고리 및 정렬 기준)
+    // 필터링된 게시물 조회 (카테고리, 정렬 기준, 직무 필터) 및 페이징 처리
     public List<Board> selectFilteredPosts(SqlSessionTemplate sqlSession, String category, String filter, String jobFilter, int offset, int limit) {
         Map<String, Object> params = new HashMap<>();
         params.put("category", category);
@@ -80,16 +80,16 @@ public class BoardDao {
     public List<String> selectHashtags(SqlSessionTemplate sqlSession, int postingNo) {
         return sqlSession.selectList("boardMapper.selectHashtags", postingNo);
     }
-
+    
     // 게시글에 해시태그 삽입
     public int insertHashtag(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
         return sqlSession.insert("boardMapper.insertHashtag", paramMap);
     }
 
-    // 직무 카테고리 조회 메서드 수정
+    // 직무 카테고리 조회
     public List<String> selectJobCategoriesByPostId(SqlSessionTemplate sqlSession, int postingNo) {
         Map<String, Object> params = new HashMap<>();
-        params.put("postingNo", postingNo); // 파라미터 이름 일관성 유지
+        params.put("postingNo", postingNo);
         return sqlSession.selectList("boardMapper.selectJobCategoriesByPostId", params);
     }
 
