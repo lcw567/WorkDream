@@ -105,7 +105,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public int addHashtag(int postingNo, String hashtag) {
-        Map<String, Object> params = new HashMap<>(); // HashMap 사용
+        Map<String, Object> params = new HashMap<>();
         params.put("postingNo", postingNo);
         params.put("hashtag", hashtag);
         return boardDao.insertHashtag(sqlSession, params);

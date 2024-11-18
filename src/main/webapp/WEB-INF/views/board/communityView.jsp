@@ -10,11 +10,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityView.css">
     <script>
         window.contextPath = "${pageContext.request.contextPath}";
-        const postLiked = ${userLikedPost}; // 서버에서 전달한 값
+        const postLiked = ${userLikedPost ? 'true' : 'false'}; // 서버에서 전달한 값이 boolean 형태로 설정
     </script>
     <script src="${pageContext.request.contextPath}/js/communityView.js" defer></script>
-    <!-- 숨은 필드 제거 -->
-    <!-- <input type="hidden" id="contextPath" value="${pageContext.request.contextPath}"/> -->
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
@@ -36,7 +34,7 @@
                     </div>
                 </div>
                 <div class="post-buttons">
-                    <c:if test="${not empty currentUser and currentUser.userNo == post.userNo}">
+                    <c:if test="${not empty loginUser and loginUser.userNo == post.userNo}">
                         <button class="button edit-button" aria-label="수정">수정</button>
                         <button class="button delete-button" aria-label="삭제">삭제</button>
                     </c:if>
@@ -82,21 +80,21 @@
         <div class="comment-section">
             <h3>댓글 <span id="rcount">0</span></h3> <!-- 댓글 수 표시 -->
             <!-- 댓글 입력 박스 -->
-            <div class="comment-box">
-                <div class="comment-header">
-                    <img src="${pageContext.request.contextPath}/img/icon_user.png" alt="사용자 아이콘" class="comment-user-icon">
-                    <span class="comment-user-name">
-                        <c:if test="${not empty currentUser}">
-                            <c:out value="${currentUser.userName}" />
-                        </c:if>
-                        <c:if test="${empty currentUser}">
-                            익명
-                        </c:if>
-                    </span>
-                    <button class="comment-submit-button" aria-label="댓글 등록">댓글 등록</button>
+            <c:if test="${not empty loginUser}">
+                <div class="comment-box">
+                    <div class="comment-header">
+                        <img src="${pageContext.request.contextPath}/img/icon_user.png" alt="사용자 아이콘" class="comment-user-icon">
+                        <span class="comment-user-name">
+                            <c:out value="${loginUser.userId}" />
+                        </span>
+                        <button class="comment-submit-button" aria-label="댓글 등록">댓글 등록</button>
+                    </div>
+                    <textarea class="comment-input" placeholder="위 고민과 같은 경험이 있거나, 알고 계신 정보가 있다면 조언 부탁드려요!"></textarea>
                 </div>
-                <textarea class="comment-input" placeholder="위 고민과 같은 경험이 있거나, 알고 계신 정보가 있다면 조언 부탁드려요!"></textarea>
-            </div>
+            </c:if>
+            <c:if test="${empty loginUser}">
+                <p>댓글을 작성하려면 <a href="${pageContext.request.contextPath}/login">로그인</a>하세요.</p>
+            </c:if>
         
             <!-- 댓글 리스트 -->
             <div class="comment-list">
