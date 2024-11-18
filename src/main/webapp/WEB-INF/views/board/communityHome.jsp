@@ -118,7 +118,7 @@
                 <ul id="interviewPostsList"></ul>
             </div>
         </section>
-       
+   
     </div>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
