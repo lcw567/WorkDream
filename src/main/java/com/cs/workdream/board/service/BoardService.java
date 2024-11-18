@@ -32,6 +32,4 @@ public interface BoardService {
     // 직무 카테고리 작업
     List<String> getJobCategories(int postingNo); // 추가
     Board getPostWithJobCategories(int postingNo); // 추가
-    
-    
 }

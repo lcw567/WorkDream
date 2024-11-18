@@ -244,13 +244,25 @@
 	    WHERE POSTING_NO = #{postingNo} AND LIKE_COUNT > 0
 	</update>
 
-     <!-- 특정 게시글의 댓글 조회 -->
-    <select id="selectReplies" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
+    <!-- Reply ResultMap -->
+    <resultMap id="ReplyResultMap" type="com.cs.workdream.board.model.vo.Reply">
+        <id property="replyNo" column="REPLY_NO" />
+        <result property="postingNo" column="POSTING_NO" />
+        <result property="userNo" column="USER_NO" />
+        <result property="author" column="AUTHOR" />
+        <result property="content" column="CONTENT" />
+        <result property="createdTime" column="CREATED_TIME" />
+        <result property="likeCount" column="LIKE_COUNT" />
+        <result property="status" column="STATUS" />
+    </resultMap>
+
+    <!-- 특정 게시글의 댓글 조회 -->
+    <select id="selectReplies" parameterType="int" resultMap="ReplyResultMap">
         SELECT 
             r.REPLY_NO,
             r.POSTING_NO,
             r.USER_NO,
-            p.NAME AS author, <!-- PERSON 테이블의 NAME 컬럼 사용 -->
+            u.USER_ID AS AUTHOR, 
             r.CONTENT,
             r.CREATED_TIME,
             r.LIKE_COUNT,
@@ -260,6 +272,23 @@
         JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO
         WHERE r.POSTING_NO = #{value} AND r.STATUS = 'Y'
         ORDER BY r.CREATED_TIME ASC
+    </select>
+
+    <!-- 댓글 ID로 댓글 조회 -->
+    <select id="selectReplyById" parameterType="int" resultMap="ReplyResultMap">
+        SELECT 
+            r.REPLY_NO,
+            r.POSTING_NO,
+            r.USER_NO,
+            u.USER_ID AS AUTHOR, 
+            r.CONTENT,
+            r.CREATED_TIME,
+            r.LIKE_COUNT,
+            r.STATUS
+        FROM REPLY r
+        JOIN MEMBER u ON r.USER_NO = u.USER_NO
+        JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO
+        WHERE r.REPLY_NO = #{value} AND r.STATUS = 'Y'
     </select>
 
     <!-- 댓글 삽입 -->
@@ -276,23 +305,6 @@
             #{replyNo}, #{postingNo}, #{userNo}, #{content}, SYSDATE, 0, 'Y'
         )
     </insert>
-
-    <!-- 댓글 ID로 댓글 조회 -->
-    <select id="selectReplyById" parameterType="int" resultType="com.cs.workdream.board.model.vo.Reply">
-        SELECT 
-            r.REPLY_NO,
-            r.POSTING_NO,
-            r.USER_NO,
-            p.NAME AS author, <!-- PERSON 테이블의 NAME 컬럼 사용 -->
-            r.CONTENT,
-            r.CREATED_TIME,
-            r.LIKE_COUNT,
-            r.STATUS
-        FROM REPLY r
-        JOIN MEMBER u ON r.USER_NO = u.USER_NO
-        JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO
-        WHERE r.REPLY_NO = #{value} AND r.STATUS = 'Y'
-    </select>
 
     <!-- 댓글 소프트 삭제 -->
     <update id="deleteReply" parameterType="int">
