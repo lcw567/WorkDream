@@ -302,8 +302,9 @@ public class BoardController {
             response.put("message", "서버 오류가 발생했습니다.");
         }
         return response;
-    }
+    }   
 
+    
     // 댓글 삭제
     @DeleteMapping("/api/replies/{replyNo}")
     @ResponseBody
