@@ -8,6 +8,9 @@
 	<settings>
 		<!-- null값 처리 -->
  		<setting name="jdbcTypeForNull" value="NULL"/>
+ 		
+ 		<!-- 로깅 -->
+ 		<setting name="logImpl" value="SLF4J"/>
 	</settings>
  	
 	<typeAliases>
