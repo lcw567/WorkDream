@@ -15,6 +15,7 @@
 	
 	<!-- css / js 연결 -->
 	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member.css">
 	<script>let ut = "<%=userType%>"</script>
 	<script src="${pageContext.request.contextPath}/js/member.js" defer></script>
 </head>
