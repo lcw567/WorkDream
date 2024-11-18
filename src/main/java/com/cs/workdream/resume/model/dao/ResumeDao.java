@@ -25,15 +25,15 @@ public class ResumeDao {
     }
 
     // 기본 정보 삽입 메서드
-    public int batchInsertBasicInfo(List<BasicInfo> basicInfoList) {
-        return sqlSession.insert("resumeMapper.batchInsertBasicInfo", basicInfoList);
+    public int InsertBasicInfo(BasicInfo basicInfo) {
+        return sqlSession.insert("resumeMapper.InsertBasicInfo", basicInfo);
     }
 
     // 이력서와 기본 정보를 저장하는 메서드
-    public int saveResumeAndBasicInfo(Resume resume) {
+    public int insertBasicInfo(Resume resume) {
         int result = insertResume(resume); // 이력서 삽입
         if (result > 0 && resume.getBasicInfo() != null) {
-            batchInsertBasicInfo(resume.getBasicInfo()); // 기본 정보 삽입
+            InsertBasicInfo(resume.getBasicInfo()); // 기본 정보 삽입
             System.out.println("DAO 전달 Resume 객체: " + resume);
             
         }
