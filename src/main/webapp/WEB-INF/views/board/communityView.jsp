@@ -9,8 +9,8 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityView.css">
     <script>
-    const contextPath = "${pageContext.request.contextPath}";
-    const postLiked = ${userLikedPost}; // 서버에서 전달한 값
+	    window.contextPath = "${pageContext.request.contextPath}";
+	    const postLiked = ${userLikedPost}; // 서버에서 전달한 값
 	</script>
 	<script src="${pageContext.request.contextPath}/js/communityView.js" defer></script>
 	<input type="hidden" id="contextPath" value="${pageContext.request.contextPath}"/>
