@@ -144,6 +144,8 @@ public class BoardServiceImpl implements BoardService {
     public int addReply(Reply reply) {
         return boardDao.insertReply(sqlSession, reply);
     }
+    
+    
 
     @Override
     public int deleteReply(int replyNo) {
