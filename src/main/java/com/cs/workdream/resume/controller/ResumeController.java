@@ -46,7 +46,6 @@ public class ResumeController {
         SelfIntro selfIntro = new SelfIntro();
         selfIntro.setUserId(userId);
         selfIntro.setResumeNo(resumeNo);
-        selfIntro.setPersonNo(personNo);
         selfIntro.setIntroTitle(introTitle);
         selfIntro.setIntroContent(introContent);
         selfIntro.setDeleted('N');

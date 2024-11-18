@@ -20,27 +20,24 @@
             SELECT SELF_INTRO_SEQ.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO SELF_INTRODUCTION (
-            SELF_INTRODUCTION_NO,
-            RESUME_NO,
-            USER_ID,
-            TITLE,
-            CONTENT,
-            CREATED_DATE,
-            MODIFIED_DATE,
-            DELETED,
-            PERSON_NO
-        )
-        VALUES (
-           5, -- SELF_INTRODUCTION_NO
-		    1, -- RESUME_NO (외래 키)
-		    'testUser', -- USER_ID
-		    #{introTitle}, -- TITLE
-		    #{introContent}, -- CONTENT
-		    SYSDATE, -- CREATED_DATE
-		    NULL, -- MODIFIED_DATE
-		    'N', -- DELETED
-		    1  -- PERSON_NO (외래 키)
-        )
+        SELF_INTRODUCTION_NO,
+        RESUME_NO,
+        USER_ID,
+        TITLE,
+        CONTENT,
+        CREATED_DATE,
+        MODIFIED_DATE,
+        DELETED
+    ) VALUES (
+        #{selfintroNo},    -- SELF_INTRODUCTION_NO
+        1,       -- RESUME_NO
+        'dlcndgur',         -- USER_ID
+        #{introTitle},     -- TITLE
+        #{introContent},   -- CONTENT
+        SYSDATE,           -- CREATED_DATE
+        NULL,              -- MODIFIED_DATE
+        'N'               -- DELETED
+    )
     </insert>
 
 </mapper>

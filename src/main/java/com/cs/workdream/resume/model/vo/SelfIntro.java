@@ -15,5 +15,4 @@ public class SelfIntro {
 	private Date createDate;
 	private Date modifiedDae;
 	private char deleted;
-	private Integer personNo;
 }
