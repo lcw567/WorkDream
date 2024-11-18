@@ -21,14 +21,16 @@ public class Board {
     private String title;
     private String content;
     private String imagePath;
-    private String author; // USER_ID
+    private String author; 
     private Integer userNo;
     private Timestamp createdTime;
     private Integer viewCount;
     private Integer likeCount;
     private List<String> hashtags;
     private List<String> jobCategories;
+    
+   
     private Integer commentCount;
 
-
+    private String status; // status 필드 추가
 }
