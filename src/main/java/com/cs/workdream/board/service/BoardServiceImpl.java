@@ -83,13 +83,19 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> getFilteredPosts(String category, String filter, int offset, int limit) {
-        return boardDao.selectFilteredPosts(sqlSession, category, filter, offset, limit);
+    public List<Board> getFilteredPosts(String category, String filter, String jobFilter, int offset, int limit) {
+        List<Board> posts = boardDao.selectFilteredPosts(sqlSession, category, filter, jobFilter, offset, limit);
+        // 각 게시글에 대해 직무 카테고리 설정
+        for (Board post : posts) {
+            List<String> jobCategories = boardDao.selectJobCategoriesByPostId(sqlSession, post.getPostingNo());
+            post.setJobCategories(jobCategories);
+        }
+        return posts;
     }
 
     @Override
-    public int countFilteredPosts(String category, String filter) {
-        return boardDao.countFilteredPosts(sqlSession, category, filter);
+    public int countFilteredPosts(String category, String filter, String jobFilter) {
+        return boardDao.countFilteredPosts(sqlSession, category, filter, jobFilter);
     }
 
     @Override
