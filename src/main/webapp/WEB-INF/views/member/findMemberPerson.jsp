@@ -39,9 +39,45 @@
 	
 	<!-- 메인 -->
 	<main id="findMember-main" >
-		<!-- 개인회원 아이디 찾기 -->
-		<section>
+		<!-- 아이디 찾기 -->
+		<section id="findMember-section-id">
+			<h1>개인회원 아이디 찾기</h1>
 			
+			<!-- 탭 -->
+			<ul id="findMember-article-tab">
+				<li class="On">이메일 주소로 찾기</li>
+				<li>휴대폰 번호로 찾기</li>
+			</ul>
+		
+			<!-- 이메일 주소로 찾기 -->
+			<article class="On">
+				<form id="findMember-form" action="" method="POST">
+					<input type="hidden" name="userType" value="P">
+					
+					<table>
+						<tr>
+							<th>이름</th>
+							<td><input type="text" name="userName" spellcheck="false"></td>
+						</tr>
+						<tr>
+							<th>이메일 주소</th>
+							<td><input type="email" name="email" spellcheck="false"></td>
+						</tr>
+					</table>
+					
+					<input type="button" id="btnFindMember" value="조회">
+				</form>
+			</article>
+			
+			<!-- 휴대폰 번호로 찾기 -->
+			<article>
+			
+			</article>
+		</section>
+		
+		<!-- 비밀번호 찾기 -->
+		<section>
+		
 		</section>
 	</main>
 

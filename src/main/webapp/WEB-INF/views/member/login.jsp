@@ -81,8 +81,8 @@
 					<input type="submit" value="로그인" />
 					
 					<div class="loginOther">
-						<a href="">아이디 찾기</a> |&nbsp;
-						<a href="">비밀번호 찾기</a> |&nbsp;
+						<a href="${pageContext.request.contextPath}/findUser?ut=P&fd=id&fm=email">아이디 찾기</a> |&nbsp;
+						<a href="${pageContext.request.contextPath}/findUser?ut=P&fd=pwd&fm=email">비밀번호 찾기</a> |&nbsp;
 						<a href="${pageContext.request.contextPath}/registration">회원가입</a>
 					</div>
 				</form>
@@ -146,8 +146,8 @@
 					<input type="submit" value="로그인" />
 					
 					<div class="loginOther">
-						<a href="">아이디 찾기</a> |&nbsp;
-						<a href="">비밀번호 찾기</a> |&nbsp;
+						<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=id&fm=email">아이디 찾기</a> |&nbsp;
+						<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=id&fm=email">비밀번호 찾기</a> |&nbsp;
 						<a href="${pageContext.request.contextPath}/registration?ut=B">회원가입</a>
 					</div>
 				</form>

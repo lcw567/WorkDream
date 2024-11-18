@@ -15,7 +15,8 @@
 		<result column="STATUS" property="status" />
 		<result column="BUSINESS_NO" property="businessNo" />
 		<result column="PERSON_NO" property="personNo" />
-		 <result column="REGISTRATION_NUMBER" property="registrationNumber"/>
+		<result column="REGISTRATION_NUMBER" property="registrationNumber"/>
+		<result column="NAME" property="userName" />
 	</resultMap>
 	
 	<!-- 로그인 -->
