@@ -58,20 +58,21 @@ public class BoardDao {
     }
 
     // 필터링된 게시물 조회 (카테고리 및 정렬 기준)
-    public List<Board> selectFilteredPosts(SqlSessionTemplate sqlSession, String category, String filter, int offset, int limit) {
+    public List<Board> selectFilteredPosts(SqlSessionTemplate sqlSession, String category, String filter, String jobFilter, int offset, int limit) {
         Map<String, Object> params = new HashMap<>();
         params.put("category", category);
         params.put("filter", filter);
+        params.put("jobFilter", jobFilter);
         params.put("offset", offset);
         params.put("limit", limit);
         return sqlSession.selectList("boardMapper.selectFilteredPosts", params);
     }
 
-    // 필터링된 게시물 수 조회
-    public int countFilteredPosts(SqlSessionTemplate sqlSession, String category, String filter) {
+    public int countFilteredPosts(SqlSessionTemplate sqlSession, String category, String filter, String jobFilter) {
         Map<String, Object> params = new HashMap<>();
         params.put("category", category);
         params.put("filter", filter);
+        params.put("jobFilter", jobFilter);
         return sqlSession.selectOne("boardMapper.countFilteredPosts", params);
     }
 

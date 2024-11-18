@@ -78,7 +78,7 @@ public class BoardController {
     
     // 커뮤니티 게시판 목록 페이지 표시
     @GetMapping("/communityList")
-    public String showCommunityList(@RequestParam(value="category", defaultValue="인기글") String category, Model model) {
+    public String showCommunityList(@RequestParam(value="category", defaultValue="전체글") String category, Model model) {
         model.addAttribute("category", category);
         return "board/communityList"; // communityList.jsp
     }
@@ -111,11 +111,12 @@ public class BoardController {
     public Map<String, Object> getPosts(
             @RequestParam(value="category", defaultValue="전체글") String category,
             @RequestParam(value="filter", defaultValue="최신순") String filter,
+            @RequestParam(value="jobFilter", required=false) String jobFilter,
             @RequestParam(value="offset", defaultValue="0") int offset,
             @RequestParam(value="limit", defaultValue="10") int limit) {
-        
-        List<Board> posts = boardService.getFilteredPosts(category, filter, offset, limit);
-        int totalCount = boardService.countFilteredPosts(category, filter);
+
+        List<Board> posts = boardService.getFilteredPosts(category, filter, jobFilter, offset, limit);
+        int totalCount = boardService.countFilteredPosts(category, filter, jobFilter);
 
         Map<String, Object> response = new HashMap<>();
         response.put("posts", posts);

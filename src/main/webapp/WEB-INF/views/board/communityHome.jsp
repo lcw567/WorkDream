@@ -77,7 +77,6 @@
             <div class="category-tags">
                 <!-- 각 버튼에 카테고리별 ID 추가 -->
                 <button data-category="전체글">전체글</button> 
-                <button data-category="인기글">인기글</button>
                 <button data-category="신입">신입</button>
                 <button data-category="채용공고">채용공고</button>
                 <button data-category="취준">취준</button>

@@ -43,35 +43,41 @@
 	            ROWNUM AS RNUM
 	        FROM (
 	            SELECT 
-	                POSTING_NO AS postingNo,
-	                CATEGORY,
-	                TITLE,
-	                CONTENT,
-	                AUTHOR,
-	                USER_NO AS userNo,
-	                CREATED_TIME AS createdTime,
-	                UPDATED_TIME AS updatedTime,
-	                VIEW_COUNT AS viewCount,
-	                LIKE_COUNT AS likeCount,
-	                STATUS
-	            FROM POSTING
+	                p.POSTING_NO AS postingNo,
+	                p.CATEGORY,
+	                p.TITLE,
+	                p.CONTENT,
+	                p.AUTHOR,
+	                p.USER_NO AS userNo,
+	                p.CREATED_TIME AS createdTime,
+	                p.UPDATED_TIME AS updatedTime,
+	                p.VIEW_COUNT AS viewCount,
+	                p.LIKE_COUNT AS likeCount,
+	                p.STATUS
+	            FROM POSTING p
 	            WHERE 
-	                STATUS = 'Y'
+	                p.STATUS = 'Y'
 	                <if test="category != null and category != '전체글'">
-	                    AND CATEGORY = #{category}
+	                    AND p.CATEGORY = #{category}
+	                </if>
+	                <if test="jobFilter != null and jobFilter != ''">
+	                    AND EXISTS (
+	                        SELECT 1 FROM COMMUNITY_POST_JOB_CATEGORY c
+	                        WHERE c.POSTING_NO = p.POSTING_NO AND c.JOB_CATEGORY = #{jobFilter}
+	                    )
 	                </if>
 	            <choose>
-	                <when test="filter == '최신순'">
-	                    ORDER BY CREATED_TIME DESC
+	                <when test="filter eq '최신순'">
+	                    ORDER BY p.CREATED_TIME DESC
 	                </when>
-	                <when test="filter == '조회순'">
-	                    ORDER BY VIEW_COUNT DESC
+	                <when test="filter eq '조회순'">
+	                    ORDER BY p.VIEW_COUNT DESC
 	                </when>
-	                <when test="filter == '공감 많은 순'">
-	                    ORDER BY LIKE_COUNT DESC
+	                <when test="filter eq '공감 많은 순'">
+	                    ORDER BY p.LIKE_COUNT DESC
 	                </when>
 	                <otherwise>
-	                    ORDER BY CREATED_TIME DESC
+	                    ORDER BY p.CREATED_TIME DESC
 	                </otherwise>
 	            </choose>
 	        ) A
@@ -79,15 +85,23 @@
 	    )
 	    WHERE RNUM &gt; #{offset}
 	</select>
-    
+	
+	<!-- 필터링된 게시물 수 조회 -->
+	<select id="countFilteredPosts" parameterType="map" resultType="int">
+	    SELECT COUNT(*) FROM POSTING p
+	    WHERE 
+	        p.STATUS = 'Y'
+	        <if test="category != null and category != '전체글'">
+	            AND p.CATEGORY = #{category}
+	        </if>
+	        <if test="jobFilter != null and jobFilter != ''">
+	            AND EXISTS (
+	                SELECT 1 FROM COMMUNITY_POST_JOB_CATEGORY c
+	                WHERE c.POSTING_NO = p.POSTING_NO AND c.JOB_CATEGORY = #{jobFilter}
+	            )
+	        </if>
+	</select>
 
-    <!-- 필터링된 게시물 수 조회 -->
-    <select id="countFilteredPosts" parameterType="map" resultType="int">
-        SELECT COUNT(*) FROM POSTING
-        WHERE 
-            (#{category} = '전체글' OR CATEGORY = #{category}) AND
-            STATUS = 'Y'
-    </select>
 
     <!-- 전체 게시물 수 조회 -->
     <select id="countAllPosts" resultType="int">
