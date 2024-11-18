@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     // 컨텍스트 경로 가져오기
     const contextPath = window.contextPath; // 글로벌 변수로 설정된 contextPath 사용
-    const initialPostLiked = (postLiked === true); // 서버에서 전달한 값이 true인지 확인
-    
-    // 신고 버튼 기능 (게시글)
+    let postLikedBool = Boolean(postLiked); // 'let'으로 변경하여 재할당 가능하도록 설정
+
+    // 신고 버튼 기능
     const reportButtons = document.querySelectorAll(".report-button");
     reportButtons.forEach(function(button) {
         button.addEventListener("click", function() {
@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 공감 버튼 기능 (게시글)
     const postLikeButton = document.querySelector(".post-buttons .like-button");
-    let postLikedBool = initialPostLiked; // 불리언 값으로 설정
     if(postLikeButton) {
         if(postLikedBool) {
             postLikeButton.classList.add("liked");
@@ -163,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch(`${contextPath}/board/api/replies?postId=${postId}`)
             .then(response => response.json())
             .then(data => {
+                console.log('Received data:', data); // 디버깅용 로그
                 populateReplies(data.replies);
                 setReplyCount(data.replies.length);
             })
@@ -182,8 +182,8 @@ document.addEventListener("DOMContentLoaded", function() {
             replyDiv.innerHTML = `
                 <div class="comment-info">
                     <img src="${contextPath}/img/icon_user.png" alt="사용자 아이콘" class="comment-user-icon">
-                    <span class="comment-user-name">${reply.author}</span>
-                    <span class="comment-date">${new Date(reply.createdTime).toLocaleString()}</span>
+                    <span class="comment-user-name">${escapeHtml(reply.author)}</span>
+                    <span class="comment-date">${formatDate(reply.createdTime)}</span>
                     <button class="comment-report-button">신고</button>
                     <button class="comment-delete-button">삭제</button>
                 </div>
@@ -194,6 +194,9 @@ document.addEventListener("DOMContentLoaded", function() {
             `;
             replyBody.appendChild(replyDiv);
         });
+
+        // 댓글 수 업데이트
+        setReplyCount(replies.length);
     }
 
     // 댓글 수 업데이트 함수
@@ -202,10 +205,12 @@ document.addEventListener("DOMContentLoaded", function() {
         if(rcount) {
             rcount.innerText = count;
         }
+        
     }
 
     // XSS 방지용 HTML 이스케이프 함수
     function escapeHtml(text) {
+        if(!text) return '';
         const map = {
             '&': '&amp;',
             '<': '&lt;',
@@ -214,6 +219,13 @@ document.addEventListener("DOMContentLoaded", function() {
             "'": '&#039;'
         };
         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    } 
+
+    // 날짜 형식 지정 함수
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        if(isNaN(date)) return 'Invalid Date';
+        return date.toLocaleString();
     }
 
     // 초기 로드 시 댓글 목록 불러오기

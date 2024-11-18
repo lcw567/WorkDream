@@ -2,6 +2,7 @@ package com.cs.workdream.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -179,7 +180,7 @@ public class BoardController {
             board.setImagePath(imagePath);
             board.setAuthor(author);
             board.setUserNo(userNo);
-            board.setCreatedTime(new java.sql.Timestamp(System.currentTimeMillis()));
+            board.setCreatedTime(Timestamp.valueOf(LocalDateTime.now()));
             board.setViewCount(0);
             board.setLikeCount(0);
             board.setHashtags(hashtags);
@@ -317,7 +318,7 @@ public class BoardController {
 
             // 댓글 소유자 확인
             Reply existingReply = boardService.getReplyById(replyNo);
-            if(existingReply == null || existingReply.getUserNo() != currentUser.getUserNo()) {
+            if(existingReply == null || !existingReply.getUserNo().equals(currentUser.getUserNo())) {
                 response.put("status", "fail");
                 response.put("message", "권한이 없습니다.");
                 return response;
@@ -341,17 +342,17 @@ public class BoardController {
     // 임시 로그인 엔드포인트 (개발용)
     @GetMapping("/testLogin")
     public String testLogin(HttpSession session) {
-        Map<String, Object> mockUser = new HashMap<>();
-        mockUser.put("userNo", 1); // 실제 사용자 번호로 변경
-        mockUser.put("userName", "테스트 사용자");
-        mockUser.put("userId", "testuser"); // userId 추가
+        Member mockUser = new Member();
+        mockUser.setUserNo(1); // 실제 사용자 번호로 변경
+        mockUser.setUserId("testuser123"); // userId 설정
+        // 필요한 다른 필드도 설정
         session.setAttribute("loginUser", mockUser);
         return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
     }
 
     // 채용공고목록 맵핑
     @GetMapping("/listOfJobOpening")
-    public String showjobOpeningList() {
+    public String showJobOpeningList() {
         return "board/listOfJobOpening"; // listOfJobOpening.jsp
     }
 }

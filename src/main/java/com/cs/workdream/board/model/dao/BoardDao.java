@@ -86,7 +86,6 @@ public class BoardDao {
         return sqlSession.insert("boardMapper.insertHashtag", paramMap);
     }
 
-
     // 직무 카테고리 조회 메서드 수정
     public List<String> selectJobCategoriesByPostId(SqlSessionTemplate sqlSession, int postingNo) {
         Map<String, Object> params = new HashMap<>();
@@ -126,7 +125,7 @@ public class BoardDao {
         return sqlSession.update("boardMapper.deleteReply", replyNo);
     }
     
- // 공감 수 증가 메서드
+    // 공감 수 증가 메서드
     public int increaseLikeCount(SqlSessionTemplate sqlSession, int postingNo) {
         return sqlSession.update("boardMapper.increaseLikeCount", postingNo);
     }
