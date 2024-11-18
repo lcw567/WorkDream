@@ -40,6 +40,7 @@
 	    SELECT * FROM (
 	        SELECT 
 	            A.*,
+	            NVL(C.commentCount, 0) AS commentCount, -- 댓글 수 추가
 	            ROWNUM AS RNUM
 	        FROM (
 	            SELECT 
@@ -81,9 +82,16 @@
 	                </otherwise>
 	            </choose>
 	        ) A
-	        WHERE ROWNUM &lt;= #{offset} + #{limit}
+	        LEFT JOIN (
+	            SELECT 
+	                POSTING_NO, 
+	                COUNT(*) AS commentCount
+	            FROM REPLY
+	            WHERE STATUS = 'Y'
+	            GROUP BY POSTING_NO
+	        ) C ON A.postingNo = C.POSTING_NO
 	    )
-	    WHERE RNUM &gt; #{offset}
+	    WHERE RNUM &gt; #{offset} AND RNUM &lt;= #{offset} + #{limit}
 	</select>
 	
 	<!-- 필터링된 게시물 수 조회 -->
