@@ -12,11 +12,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>워크드림 | 로그인</title>
-	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
 	
-	<!-- 외부 css / js 연결 -->
+	<!-- css / js 연결 -->
+	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
 	<script>let ut = "<%=userType%>"</script>
-	<script src="${pageContext.request.contextPath}/js/common.js" defer></script>
+	<script src="${pageContext.request.contextPath}/js/member.js" defer></script>
 </head>
 <body>
 	<!-- 헤더 -->

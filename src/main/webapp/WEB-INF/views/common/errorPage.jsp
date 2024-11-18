@@ -6,7 +6,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ERROR</title>
+	
+	<!-- css / js -->
 	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
+	<script>
+	    <c:if test="${not empty sessionScope.errorMsg}">
+	        alert("${sessionScope.errorMsg}");
+	        <c:remove var="errorMsg" scope="session"/>
+	    </c:if>
+	</script>
 </head>
 <body>
 
