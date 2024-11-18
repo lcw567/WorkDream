@@ -8,18 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cs.workdream.member.model.vo.Member;
-import com.cs.workdream.person.model.vo.Person;
-import com.cs.workdream.person.service.PersonService;
 
 @Controller
 @RequestMapping("/person")
 public class PersonController {
-	private final PersonService personService;
-	
-	@Autowired
-	public PersonController(PersonService personService) {
-		this.personService = personService;
-	}
 	
 	@GetMapping("/applicantsMypage")
     public String applicantsMypage() {
