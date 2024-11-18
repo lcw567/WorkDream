@@ -43,7 +43,7 @@ public class ResumeController {
         selfIntro.setResumeNo((Integer) session.getAttribute("resumeNo"));
         selfIntro.setIntroTitle(introTitle);
         selfIntro.setIntroContent(introContent);
-        selfIntro.setDeleted('N');
+        selfIntro.setDeleted("N");
 
         try {
             int result = selfIntroService.insertSelfIntro(selfIntro);
@@ -65,33 +65,25 @@ public class ResumeController {
             return "redirect:/login?error=sessionExpired";
         }
 
+        // 최신 데이터를 DB에서 가져오기
         String userId = loginUser.getUserId();
         List<SelfIntro> selfIntroList = selfIntroService.selectSelfIntroList(userId);
+
+        // 데이터를 클라이언트로 전달
         model.addAttribute("selfIntroList", selfIntroList);
 
         return "resume/selfIntroDashboard";
     }
+
     
     @RequestMapping(value = "/deleteIntro", method = RequestMethod.POST)
-    public String deleteSelfIntro(@RequestParam("id") int selfIntroId, HttpSession session) {
-        // 세션에서 로그인 사용자 확인
-        Member loginUser = (Member) session.getAttribute("loginUser");
-        if (loginUser == null) {
-            return "redirect:/login?error=sessionExpired";
-        }
+    public String deleteSelfIntro(@RequestParam("id") int selfintroNo, HttpSession session) {
+        System.out.println("Deleting SelfIntro with ID: " + selfintroNo); // 로그 추가
+        int result = selfIntroService.deleteSelfIntro(selfintroNo);
 
-        // 서비스 계층에 삭제 요청
-        try {
-            int result = selfIntroService.deleteSelfIntro(selfIntroId);
-            if (result > 0) {
-                // 성공적으로 삭제되었으면 대시보드로 리다이렉트
-                return "redirect:/resume/selfIntroDashboard";
-            } else {
-                // 삭제 실패 시 오류 페이지로 이동
-                return "redirect:/errorPage";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (result > 0) {
+            return "redirect:/resume/selfIntroDashboard";
+        } else {
             return "redirect:/errorPage";
         }
     }

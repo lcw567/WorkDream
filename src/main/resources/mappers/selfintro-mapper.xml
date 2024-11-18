@@ -41,19 +41,22 @@
     </insert>
 
 	<select id="selectSelfIntroList" parameterType="String" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
-        SELECT SELF_INTRODUCTION_NO AS selfintroNo,
-               RESUME_NO AS resumeNo,
-               USER_ID AS userId,
-               TITLE AS introTitle,
-               CREATED_DATE AS createDate
-        FROM SELF_INTRODUCTION
-        WHERE USER_ID = #{userId}
-          AND DELETED = 'N'
-        ORDER BY CREATED_DATE DESC
-    </select>
-    
-    <delete id="deleteSelfIntro" parameterType="int">
-    DELETE FROM SELF_INTRODUCTION
-    WHERE SELF_INTRODUCTION_NO = #{selfintroNo}
-	</delete>
+	    SELECT SELF_INTRODUCTION_NO AS selfintroNo,
+	           RESUME_NO AS resumeNo,
+	           USER_ID AS userId,
+	           TITLE AS introTitle,
+	           CREATED_DATE AS createDate
+	    FROM SELF_INTRODUCTION
+	    WHERE USER_ID = #{userId}
+	      AND DELETED = 'N'
+	    ORDER BY CREATED_DATE DESC
+	</select>
+	
+	<update id="deleteSelfIntro" parameterType="java.lang.Integer">
+	    UPDATE SELF_INTRODUCTION
+	    SET DELETED = 'Y'
+	    WHERE SELF_INTRODUCTION_NO = #{_parameter}
+	</update>
+
+
 </mapper>

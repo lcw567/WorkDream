@@ -1,6 +1,8 @@
 package com.cs.workdream.resume.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,10 @@ public class SelfIntroDao {
         return sqlSession.selectList(NAMESPACE + "selectSelfIntroList", userId);
     }
     
-    public int deleteSelfIntro(int selfIntroId) {
-        return sqlSession.delete(NAMESPACE + "deleteSelfIntro", selfIntroId);
+    public int deleteSelfIntro(Integer selfIntroNo) {
+        return sqlSession.update(NAMESPACE + "deleteSelfIntro", selfIntroNo);
     }
+
+
 }
 

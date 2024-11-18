@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cs.workdream.resume.model.dao.SelfIntroDao;
 import com.cs.workdream.resume.model.vo.SelfIntro;
@@ -24,8 +25,8 @@ public class SelfIntroServiceImpl implements SelfIntroService{
 	}
 
 	@Override
-	public int deleteSelfIntro(int selfIntroId) {
-		return selfIntroDao.deleteSelfIntro(selfIntroId);
+	@Transactional
+	public int deleteSelfIntro(Integer selfIntroNo) {
+	    return selfIntroDao.deleteSelfIntro(selfIntroNo);
 	}
-
 }

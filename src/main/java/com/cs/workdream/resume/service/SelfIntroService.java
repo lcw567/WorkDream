@@ -9,5 +9,5 @@ public interface SelfIntroService {
     
     List<SelfIntro> selectSelfIntroList(String userId);
     
-    int deleteSelfIntro(int selfIntroId);
+    int deleteSelfIntro(Integer selfIntroId);
 }
