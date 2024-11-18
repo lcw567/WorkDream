@@ -41,6 +41,7 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
 		Member loginMember = memberService.loginMember(m);
+		System.out.println(m.toString());
 		
 		if(loginMember == null || !bcryptPasswordEncoder.matches(m.getUserPwd(), loginMember.getUserPwd())) {
 			// 로그인 실패

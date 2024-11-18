@@ -31,8 +31,10 @@ public class MemberDao {
 	        sqlSession.insert("memberMapper.insertPerson", m);
 	    }
 	    
+	    System.out.println("===== 고유키 반환 =====");
 	    System.out.println("Business No: " + m.getBusinessNo());
 	    System.out.println("Person No: " + m.getPersonNo());
+	    System.out.println(m.toString());
 
 	    // personNo나 businessNo가 설정된 후 insertMember 호출
 	    return sqlSession.insert("memberMapper.insertMember", m);
