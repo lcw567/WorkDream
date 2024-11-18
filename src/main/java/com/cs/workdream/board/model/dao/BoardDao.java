@@ -86,10 +86,6 @@ public class BoardDao {
         return sqlSession.insert("boardMapper.insertHashtag", paramMap);
     }
 
-    // 특정 게시글의 댓글 조회
-    public List<Reply> selectReplies(SqlSessionTemplate sqlSession, int postingNo) {
-        return sqlSession.selectList("boardMapper.selectReplies", postingNo);
-    }
 
     // 직무 카테고리 조회 메서드 수정
     public List<String> selectJobCategoriesByPostId(SqlSessionTemplate sqlSession, int postingNo) {
@@ -109,15 +105,20 @@ public class BoardDao {
     public int increaseViewCount(SqlSessionTemplate sqlSession, int postingNo) {
         return sqlSession.update("boardMapper.increaseViewCount", postingNo);
     }
-
-    // 댓글 삽입
-    public int insertReply(SqlSessionTemplate sqlSession, Reply reply) {
-        return sqlSession.insert("boardMapper.insertReply", reply);
+    
+    // 특정 게시글의 댓글 조회
+    public List<Reply> selectReplies(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.selectList("boardMapper.selectReplies", postingNo);
     }
 
     // 댓글 ID로 댓글 조회
     public Reply selectReplyById(SqlSessionTemplate sqlSession, int replyNo) {
         return sqlSession.selectOne("boardMapper.selectReplyById", replyNo);
+    }  
+
+    // 댓글 삽입
+    public int insertReply(SqlSessionTemplate sqlSession, Reply reply) {
+        return sqlSession.insert("boardMapper.insertReply", reply);
     }
 
     // 댓글 소프트 삭제 (상태 변경)

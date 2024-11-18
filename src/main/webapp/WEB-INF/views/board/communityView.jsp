@@ -9,11 +9,12 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/communityView.css">
     <script>
-	    window.contextPath = "${pageContext.request.contextPath}";
-	    const postLiked = ${userLikedPost}; // 서버에서 전달한 값
-	</script>
-	<script src="${pageContext.request.contextPath}/js/communityView.js" defer></script>
-	<input type="hidden" id="contextPath" value="${pageContext.request.contextPath}"/>
+        window.contextPath = "${pageContext.request.contextPath}";
+        const postLiked = ${userLikedPost}; // 서버에서 전달한 값
+    </script>
+    <script src="${pageContext.request.contextPath}/js/communityView.js" defer></script>
+    <!-- 숨은 필드 제거 -->
+    <!-- <input type="hidden" id="contextPath" value="${pageContext.request.contextPath}"/> -->
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
@@ -52,23 +53,21 @@
                 <div class="category-line">
                     <p class="post-category">카테고리: <span><c:out value="${post.category}" /></span></p>
                     <p class="job-category">직무:
-					    <c:if test="${not empty post.jobCategories}">
-					        <c:forEach var="job" items="${post.jobCategories}" varStatus="status">
-					            <span><c:out value="${job}" /></span>
-					            <c:if test="${!status.last}">, </c:if>
-					        </c:forEach>
-					    </c:if>
-					    <c:if test="${empty post.jobCategories}">
-					        <span>직무 카테고리가 없습니다.</span>
-					    </c:if>
-					</p>
-					
-
+                        <c:if test="${not empty post.jobCategories}">
+                            <c:forEach var="job" items="${post.jobCategories}" varStatus="status">
+                                <span><c:out value="${job}" /></span>
+                                <c:if test="${!status.last}">, </c:if>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${empty post.jobCategories}">
+                            <span>직무 카테고리가 없습니다.</span>
+                        </c:if>
+                    </p>
                 </div>
                 <h2 class="post-title"><c:out value="${post.title}" /></h2>          
                 <c:if test="${not empty post.imagePath}">
-				    <img src="${pageContext.request.contextPath}/${post.imagePath}" alt="게시글 이미지" class="post-image">
-				</c:if>
+                    <img src="${pageContext.request.contextPath}/${post.imagePath}" alt="게시글 이미지" class="post-image">
+                </c:if>
                 <p class="post-text">
                     <c:out value="${post.content}" escapeXml="true" />
                 </p>
@@ -81,6 +80,7 @@
         </div>
 
         <div class="comment-section">
+            <h3>댓글 <span id="rcount">0</span></h3> <!-- 댓글 수 표시 -->
             <!-- 댓글 입력 박스 -->
             <div class="comment-box">
                 <div class="comment-header">
@@ -107,4 +107,4 @@
 
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
-</html>  
+</html>   
