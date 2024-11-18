@@ -1,5 +1,8 @@
 package com.cs.workdream.business.model.dao;
 
-public class BusinessDao {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface BusinessDao {
 
 }
