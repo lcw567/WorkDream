@@ -54,7 +54,7 @@
     				<div class="login-menu">
 		    			<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
 		    			<b>|</b>
-		    			<a href="#">마이페이지</a>
+		    			<a href="${pageContext.request.contextPath}/person/applicantsMypage">마이페이지</a>
 		    		</div>
     			</c:when>
     			
