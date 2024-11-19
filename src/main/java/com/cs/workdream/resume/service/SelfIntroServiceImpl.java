@@ -32,13 +32,13 @@ public class SelfIntroServiceImpl implements SelfIntroService {
     }
 
     @Override
-    public SelfIntro getSelfIntroById(int id) {
-        return selfIntroDao.selectSelfIntroById(id);
-    }
-
-    @Override
     public void updateSelfIntro(SelfIntro intro) {
         selfIntroDao.updateSelfIntro(intro);
     }
+
+	@Override
+	public SelfIntro findIntroById(int id) {
+		return selfIntroDao.selectSelfIntroById(id); 
+	}
 }
 

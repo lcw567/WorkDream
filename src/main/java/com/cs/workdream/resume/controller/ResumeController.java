@@ -58,10 +58,6 @@ public class ResumeController {
         return "resume/selfIntro";
     }
 
-    @GetMapping("/editIntro")
-    public String showeditSelfIntro() {
-        return "resume/editSelfIntro";
-    }
     
     @RequestMapping(value = "/insert_intro", method = RequestMethod.POST)
     public String insertSelfIntro(@RequestParam("intro_name") String introTitle,
@@ -122,13 +118,4 @@ public class ResumeController {
             return "redirect:/errorPage";
         }
     }
-
-    // 수정된 내용 저장
-    @PostMapping("/updateIntro")
-    public String updateIntro(@ModelAttribute SelfIntro intro) {
-        selfIntroService.updateSelfIntro(intro);
-        return "redirect:/selfIntroDashboard"; // 수정 후 목록 페이지로 리다이렉트
-    }
-
-    
 }
