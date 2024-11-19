@@ -62,7 +62,7 @@
 				</ul>
 				
 				<!-- 회원 로그인 -->
-				<form id="login-article-form" action="${pageContext.request.contextPath}/login.me" method="post">
+				<form id="login-article-form" action="${pageContext.request.contextPath}/login.me" method="POST">
 					<input type="text" id="loginId" name="userId" inputmode="text" autocorrect="off" autocapitalize="none" placeholder="아이디" required />
 					<input type="password" id="loginPwd" name="userPwd" inputmode="text" autocorrect="off" autocapitalize="none" placeholder="비밀번호" required />
 					<input type="hidden" name="userType" value="P" />
@@ -131,7 +131,7 @@
 				</ul>
 				
 				<!-- 기업 로그인 -->
-				<form id="login-article-form" action="#" method="post">
+				<form id="login-article-form" action="${pageContext.request.contextPath}/login.me" method="POST">
 					<input type="text" id="loginId" name="userId" inputmode="text" autocorrect="off" autocapitalize="none" placeholder="아이디" required />
 					<input type="password" id="loginPwd" name="userPwd" inputmode="text" autocorrect="off" autocapitalize="none" placeholder="비밀번호" required />
 					<input type="hidden" name="userType" value="B" />
@@ -147,7 +147,7 @@
 					
 					<div class="loginOther">
 						<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=id&fm=email">아이디 찾기</a> |&nbsp;
-						<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=id&fm=email">비밀번호 찾기</a> |&nbsp;
+						<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=pwd&fm=email">비밀번호 찾기</a> |&nbsp;
 						<a href="${pageContext.request.contextPath}/registration?ut=B">회원가입</a>
 					</div>
 				</form>

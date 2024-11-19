@@ -241,48 +241,51 @@ function validateTerms(requiredTerms) {
 
 // 사업자등록번호 유효성 검사
 function validateNumber(registNumber) {
-    const numberCheck = document.getElementById("number-check");
-    numberCheck.className = "NotChecked";
-    numberCheck.innerHTML = "";
+    return new Promise((resolve, reject) => {
+        const numberCheck = document.getElementById("number-check");
+        numberCheck.className = "NotChecked";
+        numberCheck.innerHTML = "";
 
-    const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
-    const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
+        const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+        const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
 
-    if(registNumber == "") {
-        // 사업자등록번호 미입력
-        numberCheck.innerHTML = errorImg + "필수입력항목입니다.";
-        numberCheck.className = "error";
-        return false;
-    } else {
-        // 사업자등록번호 조회 (오픈 API 1.1.0)
-        $.ajax({
-            url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=gOn%2FFXCdwGgJ1DcdEYhnW%2BZ%2BNfxmcUslrsWA3MYlh4FLh2aUVeHUWn8y%2BUm07ed43SjDtsNA0xNV5ry2lbN0FQ%3D%3D",
-            type: "POST",
-            data: JSON.stringify({
-                "b_no": [registNumber]
-            }),
-            dataType: "JSON",
-            contentType: "application/json",
-            accept: "application/json",
-            success: function(result) {
-                if(result.data[0].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다." || result.data[0].tax_type === "") {
-                    // 조회 실패
-                    numberCheck.innerHTML = errorImg + "등록되지않은 사업자등록번호입니다.";
-                    numberCheck.className = "error";
-                    return false;
-                } else {
-                    // 조회 성공
-                    numberCheck.innerHTML = checkImg + "확인완료";
-                    numberCheck.className = "check";
-                    return true;
+        if(registNumber == "") {
+            // 사업자등록번호 미입력
+            numberCheck.innerHTML = errorImg + "필수입력항목입니다.";
+            numberCheck.className = "error";
+            reject(false);
+        } else {
+            // 사업자등록번호 조회 (오픈 API 1.1.0)
+            $.ajax({
+                url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=gOn%2FFXCdwGgJ1DcdEYhnW%2BZ%2BNfxmcUslrsWA3MYlh4FLh2aUVeHUWn8y%2BUm07ed43SjDtsNA0xNV5ry2lbN0FQ%3D%3D",
+                type: "POST",
+                data: JSON.stringify({
+                    "b_no": [registNumber]
+                }),
+                dataType: "JSON",
+                contentType: "application/json",
+                accept: "application/json",
+                success: function(result) {
+                    if(result.data[0].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다." || result.data[0].tax_type === "") {
+                        // 조회 실패
+                        numberCheck.innerHTML = errorImg + "등록되지않은 사업자등록번호입니다.";
+                        numberCheck.className = "error";
+                        reject(false);
+                    } else {
+                        // 조회 성공
+                        numberCheck.innerHTML = checkImg + "확인완료";
+                        numberCheck.className = "check";
+                        resolve(true);
+                    }
+                },
+                error: function(result) {
+                    // API 호출 오류
+                    console.log(result.responseText);
+                    reject(false);
                 }
-            },
-            error: function(result) {
-                // API 호출 오류
-                console.log(result.responseText);
-            }
-        });
-    }
+            });
+        }
+    });
 }
 
 
@@ -551,4 +554,68 @@ try {
     });
 } catch(error) {
     console.log("registration-Business: ", error);
+}
+
+
+/* findMember 전용 */
+try {
+    // 섹션 변경
+    function changeFindSection() {
+        const idSection = document.getElementById("findMember-section-id");
+        const pwdSection = document.getElementById("findMember-section-pwd");
+        let tabItems;
+        let emailArticle;
+        let phoneArticle;
+
+        if(fd === "id") {
+            idSection.classList.add("On");
+            pwdSection.classList.remove("On");
+
+            tabItems = idSection.querySelectorAll("#findMember-article-tab li");
+            emailArticle = idSection.querySelector("#findMember-article-email");
+            phoneArticle = idSection.querySelector("#findMember-article-phone");
+        }
+        else {
+            idSection.classList.remove("On");
+            pwdSection.classList.add("On");
+
+            tabItems = pwdSection.querySelectorAll("#findMember-article-tab li");
+            emailArticle = pwdSection.querySelector("#findMember-article-email");
+            phoneArticle = pwdSection.querySelector("#findMember-article-phone");
+        }
+
+        // 아티클 변경
+        if(fm === "email") {
+            emailArticle.classList.add("On");
+            phoneArticle.classList.remove("On");
+
+            tabItems.forEach(item => item.classList.remove("On"));
+            tabItems[0].classList.add("On");
+        } else {
+            emailArticle.classList.remove("On");
+            phoneArticle.classList.add("On");
+
+            tabItems.forEach(item => item.classList.remove("On"));
+            tabItems[1].classList.add("On");
+        }
+    }
+
+    // 섹션 초기값
+    document.addEventListener("DOMContentLoaded", function() {
+        changeFindSection();
+    });
+
+    // 링크 클릭 시 섹션 변경
+    function changeFindData(findData) {
+        fd = findData;
+        changeFindSection();
+    }
+
+    // 탭 클릭 시 아티클 변경
+    function changeFindMethod(findMethod) {
+        fm = findMethod;
+        changeFindSection();
+    }
+} catch(error) {
+    console.log("find-Person: ", error);
 }
