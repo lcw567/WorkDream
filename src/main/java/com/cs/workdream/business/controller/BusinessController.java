@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,8 +14,8 @@ import com.cs.workdream.business.model.vo.JobPosting1;
 import com.cs.workdream.business.service.BusinessService;
 
 @Controller
+@RequestMapping("/business")
 public class BusinessController {
-	@Autowired
 	private BusinessService businessService;
 	
 	@Autowired
@@ -23,65 +24,65 @@ public class BusinessController {
 	}
 	
 	// 맵핑
-	@GetMapping("/business/recruitmentStatus")
+	@GetMapping("/recruitmentStatus")
     public String reStatus() {
-        return "business/recruitmentStatus";
+        return "/recruitmentStatus";
     }
 	
-	@GetMapping("/business/announcementInformation2")
+	@GetMapping("/announcementInformation2")
     public String announcement() {
         return "business/announcementInformation2";
     }
 	
 
-	@GetMapping("/business/announcementDetailView")
+	@GetMapping("/announcementDetailView")
     public String announcementDetailView() {
         return "business/announcementDetailView";
 
 	}
-	@GetMapping("/business/preview")
+	@GetMapping("/preview")
     public String preview() {
         return "business/preview";
 
     }
 	
-	@GetMapping("/business/positionAndCareer")
+	@GetMapping("/positionAndCareer")
     public String positionCareer() {
         return "business/positionAndCareer";
     }
 	
-	@GetMapping("/business/applicantsStatus")
+	@GetMapping("/applicantsStatus")
     public String appStatus() {
         return "business/applicantsStatus";
     }
 	
-    @GetMapping("/business/applicantsList")
+    @GetMapping("/applicantsList")
     public String appList() {
         return "business/applicantsList";
     }
     
-    @GetMapping("/business/bookmark")
+    @GetMapping("/bookmark")
     public String bookmarkList() {
         return "business/bookmarkList";
     }
     
-    @GetMapping("/business/businessMypage")
+    @GetMapping("/businessMypage")
     public String businessMypage() {
         return "business/businessMypage";
     }
     
-    @GetMapping("/business/businessProfilePost")
+    @GetMapping("/businessProfilePost")
     public String businessProfilePost() {
         return "business/businessProfilePost";
     }
     
-    @GetMapping("/business/businessProfileView")
+    @GetMapping("/businessProfileView")
     public String businessProfileView() {
         return "business/businessProfileView";
     }
     
     // 페이지 매핑
-    @GetMapping("/business/announcementInformation1")
+    @GetMapping("/announcementInformation1")
     public String jobRegistration() {
         return "business/announcementInformation1";
     }

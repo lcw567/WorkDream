@@ -491,3 +491,47 @@ footer > * {
 	font-style: normal;
 	height: 1.03rem;
 }
+
+
+/* index.jsp */
+#index-main {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#index-main > section {
+	width: 100%;
+	
+	background-color: rgba(225, 222, 241, 0.3);
+}
+
+#index-main > section > h1 {
+	margin: 5%;
+	text-align: center;
+	font-size: 2rem;
+}
+
+#index-section-menu {
+	height: 300px;
+}
+
+#index-section-list {
+	height: 500px;
+}
+
+#index-main .index-ad {
+	width: 100%;
+	height: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 3% 0;
+	background-color: #E1DEF1;
+}
+
+#index-main .index-ad > img {
+	height: 100%;
+}
