@@ -574,6 +574,7 @@ header.mini > nav > ul {
 /* findMember 관련 */
 #findMember-main {
 	width: 100%;
+	min-height: 70vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -584,10 +585,14 @@ header.mini > nav > ul {
 #findMember-main > section {
 	width: 80%;
 	max-width: 1000px;
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+}
+
+#findMember-main > section.On {
+	display: flex;
 }
 
 #findMember-main > section > * {
@@ -608,6 +613,7 @@ header.mini > nav > ul {
 	padding: 3%;
 	border: 1px solid #000;
 	border-top: 0;
+	border-bottom: 0;
 }
 
 #findMember-main > section > article.On {
@@ -627,6 +633,7 @@ header.mini > nav > ul {
 	background-color: #E1DEF1;
 	border: 1px solid #E1DEF1;
 	border-bottom: 1px solid #000;
+	cursor: pointer;
 	line-height: 3;
 	text-align: center;
 	font-family: 'MonoplexKR-SemiBold';
@@ -668,7 +675,7 @@ header.mini > nav > ul {
 	font-size: 1rem;
 }
 
-#findMember-form > input[type="button"] {
+#findMember-form > input[type="submit"] {
 	width: 30%;
 	height: 2.3rem;
 	background-color: #4E21A8;
@@ -677,4 +684,34 @@ header.mini > nav > ul {
 	text-align: center;
 	font-size: 0.9rem;
 	color: #FFFFFF;
+}
+
+#findMember-aside {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #000;
+	border-top: 0;
+}
+
+#findMember-aside * {
+	text-align: center;
+	font-size: 0.8rem;
+}
+
+#findMember-aside > span {
+	margin: 3% 0 1% 0;
+}
+
+#findMember-aside > p {
+	margin: 1% 0 3% 0;
+}
+
+#findMember-aside > p > a {
+	font-family: 'MonoplexKR-SemiBold';
+}
+
+#findMember-aside > p > a:hover {
+	text-decoration: 1.2px underline #000;
 }
