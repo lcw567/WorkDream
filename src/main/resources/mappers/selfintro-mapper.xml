@@ -15,6 +15,7 @@
         <result column="PERSON_NO" property="personNo" />
     </resultMap>
     
+    
     <insert id="insertSelfIntro" parameterType="com.cs.workdream.resume.model.vo.SelfIntro">
         <selectKey keyProperty="selfintroNo" resultType="int" order="BEFORE">
             SELECT SELF_INTRO_SEQ.NEXTVAL FROM DUAL
@@ -63,25 +64,19 @@
 
 	<!-- SelfIntroMapper.xml -->
 
-    <select id="selectSelfIntroById" parameterType="int" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
-        SELECT selfintro_no AS selfintroNo,
-               resume_no AS resumeNo,
-               user_id AS userId,
-               intro_title AS introTitle,
-               intro_content AS introContent,
-               create_date AS createDate,
-               modified_date AS modifiedDate,
-               deleted
-        FROM self_intro
-        WHERE selfintro_no = #{id}
+   <select id="selectSelfIntroById" resultMap="selfintroResultSet">
+        SELECT 
+            SELF_INTRODUCTION_NO,
+            RESUME_NO,
+            USER_ID,
+            TITLE,
+            CONTENT,
+            CREATED_DATE,
+            MODIFIED_DATE,
+            DELETED,
+            PERSON_NO
+        FROM SELF_INTRODUCTION
+        WHERE SELF_INTRODUCTION_NO = #{id} AND DELETED = 'N'
     </select>
-
-    <update id="updateSelfIntro" parameterType="com.cs.workdream.resume.model.vo.SelfIntro">
-        UPDATE self_intro
-        SET intro_title = #{introTitle},
-            intro_content = #{introContent},
-            modified_date = NOW()
-        WHERE selfintro_no = #{selfintroNo}
-    </update>
 
 </mapper>

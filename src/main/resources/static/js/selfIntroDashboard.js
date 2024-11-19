@@ -68,19 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 }
             }
-
-            // 수정 버튼 클릭 처리
-            if (target.classList.contains('edit-button')) {
-                const introItem = target.closest('.intro-item');
-                if (!introItem) return;
-
-                const introId = introItem.getAttribute('data-id');
-                if (introId) {
-                    window.location.href = `${contextPath}/resume/editIntro?id=${introId}`;
-                } else {
-                    alert('수정할 자소서의 ID가 존재하지 않습니다.');
-                }
-            }
         });
     }
 

@@ -29,9 +29,9 @@ public class SelfIntroDao {
     public int deleteSelfIntro(Integer selfIntroNo) {
         return sqlSession.update(NAMESPACE + "deleteSelfIntro", selfIntroNo);
     }
-
+    
     public SelfIntro selectSelfIntroById(int id) {
-        return sqlSession.selectOne("SelfIntroMapper.selectSelfIntroById", id);
+        return sqlSession.selectOne(NAMESPACE + "selectSelfIntroById", id);
     }
 
     public void updateSelfIntro(SelfIntro intro) {
