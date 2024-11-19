@@ -10,24 +10,24 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/selfIntro.css">
 </head>
 <body>
-<c:import url="/WEB-INF/views/common/header.jsp" />
-
-<div class="intro-container">
-    <h1>자소서 수정</h1>
-    <form action="${pageContext.request.contextPath}/resume/updateIntro" method="post">
-        <input type="hidden" name="selfintroNo" value="${selfIntro.selfintroNo}">
-        <div class="form-group">
-            <label for="intro_name">제목:</label>
-            <input type="text" id="intro_name" name="intro_name" value="${selfIntro.introTitle}" required>
+    <c:import url="/WEB-INF/views/common/header.jsp" />
+    
+        <div class="intro-container">
+            <form action="${pageContext.request.contextPath}/updateIntro" method="post">
+                <!-- 자기소개서 ID를 전달하기 위한 hidden input -->
+                <input type="hidden" name="selfintroNo" value="${intro.selfintroNo}">
+                <div class="intro-title">
+                    <input type="text" class="input-name" placeholder="자소서 이름을 입력하세요" name="introTitle" value="${intro.introTitle}">
+                    <!-- 기타 요소들 -->
+                </div>
+                <div class="content">
+                    <textarea id="content-input" placeholder="내용을 입력하세요" maxlength="500" name="introContent">${intro.introContent}</textarea>
+                    <!-- 기타 요소들 -->
+                </div>
+                <button type="submit" class="complete-btn">수정 완료</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="intro_content">내용:</label>
-            <textarea id="intro_content" name="intro_content" required>${selfIntro.introContent}</textarea>
-        </div>
-        <button type="submit">수정하기</button>
-    </form>
-</div>
-
-<c:import url="/WEB-INF/views/common/footer.jsp" />
+    
+    <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

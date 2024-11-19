@@ -9,34 +9,36 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cs.workdream.resume.model.dao.SelfIntroDao;
 import com.cs.workdream.resume.model.vo.SelfIntro;
 @Service
-public class SelfIntroServiceImpl implements SelfIntroService{
 
-	 @Autowired
-	 private SelfIntroDao selfIntroDao;
-	
-	@Override
-	public int insertSelfIntro(SelfIntro selfIntro) {
-		return selfIntroDao.insertSelfIntro(selfIntro);
-	}
+public class SelfIntroServiceImpl implements SelfIntroService {
 
-	@Override
-	public List<SelfIntro> selectSelfIntroList(String userId) {
-		return selfIntroDao.selectSelfIntroList(userId);
-	}
+    @Autowired
+    private SelfIntroDao selfIntroDao;
 
-	@Override
-	@Transactional
-	public int deleteSelfIntro(Integer selfIntroNo) {
-	    return selfIntroDao.deleteSelfIntro(selfIntroNo);
-	}
+    @Override
+    public int insertSelfIntro(SelfIntro selfIntro) {
+        return selfIntroDao.insertSelfIntro(selfIntro);
+    }
 
-	@Override
-	public SelfIntro getSelfIntroById(int selfintroNo) {
-		return selfIntroDao.selectSelfIntroById(selfintroNo);
-	}
+    @Override
+    public List<SelfIntro> selectSelfIntroList(String userId) {
+        return selfIntroDao.selectSelfIntroList(userId);
+    }
 
-	@Override
-	public int updateSelfIntro(SelfIntro selfIntro) {
-		return selfIntroDao.updateSelfIntro(selfIntro);
-	}
+    @Override
+    @Transactional
+    public int deleteSelfIntro(Integer selfIntroNo) {
+        return selfIntroDao.deleteSelfIntro(selfIntroNo);
+    }
+
+    @Override
+    public SelfIntro getSelfIntroById(int id) {
+        return selfIntroDao.selectSelfIntroById(id);
+    }
+
+    @Override
+    public void updateSelfIntro(SelfIntro intro) {
+        selfIntroDao.updateSelfIntro(intro);
+    }
 }
+

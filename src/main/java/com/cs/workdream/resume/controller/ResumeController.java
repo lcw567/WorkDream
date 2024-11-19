@@ -1,6 +1,5 @@
 package com.cs.workdream.resume.controller;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,27 +8,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+// import org.springframework.web.bind.annotation.PostMapping; // 이미 사용 중
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cs.workdream.member.model.vo.Member;
+import com.cs.workdream.resume.model.vo.Resume;
 import com.cs.workdream.resume.model.vo.SelfIntro;
+import com.cs.workdream.resume.service.ResumeService;
 import com.cs.workdream.resume.service.SelfIntroService;
 
 @Controller
 @RequestMapping("/resume")
 public class ResumeController {
 
+	private final ResumeService resumeService;
+
     @Autowired
     private SelfIntroService selfIntroService;
+    public ResumeController(ResumeService resumeService) {
+        this.resumeService = resumeService;
+    }
+    
+    @GetMapping("/enrollresume")
+    public String showEnrollResumePage(org.springframework.ui.Model model, HttpSession session) {
+        Resume resume = new Resume();
+        resume.getBasicInfo().add(new com.cs.workdream.resume.model.vo.BasicInfo());
+        resume.getAcademicAbilities().add(new com.cs.workdream.resume.model.vo.AcademicAbility());
+        resume.getSkills().add(new com.cs.workdream.resume.model.vo.Skill());
+        resume.getExperiences().add(new com.cs.workdream.resume.model.vo.Experience());
+        resume.getQualifications().add(new com.cs.workdream.resume.model.vo.Qualification());
+        resume.getCareers().add(new com.cs.workdream.resume.model.vo.Career());
+        resume.setEmploymentPreferences(new com.cs.workdream.resume.model.vo.EmploymentPreferences());
 
+        model.addAttribute("resume", resume);
+        return "resume/enrollresume"; // JSP 경로
+    }
+
+    @GetMapping("/resumeDashboard")
+    public String resumeDashboard() {
+        return "resume/resumeDashboard";
+    }
+    
     @GetMapping("/selfIntro")
     public String showSelfIntroForm() {
         return "resume/selfIntro";
     }
 
+    @GetMapping("/editIntro")
+    public String showeditSelfIntro() {
+        return "resume/editSelfIntro";
+    }
+    
     @RequestMapping(value = "/insert_intro", method = RequestMethod.POST)
     public String insertSelfIntro(@RequestParam("intro_name") String introTitle,
                                   @RequestParam("intro_content") String introContent,
@@ -77,7 +110,6 @@ public class ResumeController {
         return "resume/selfIntroDashboard";
     }
 
-    
     @RequestMapping(value = "/deleteIntro", method = RequestMethod.POST)
     public String deleteSelfIntro(@RequestParam("id") int selfintroNo, HttpSession session) {
         System.out.println("Controller: Deleting SelfIntro with ID: " + selfintroNo); // 로그 추가
@@ -90,53 +122,13 @@ public class ResumeController {
             return "redirect:/errorPage";
         }
     }
-    
- // ResumeController.java
 
-    @GetMapping("/editIntro")
-    public String showEditIntroForm(@RequestParam("id") int selfintroNo, HttpSession session, Model model) {
-        Member loginUser = (Member) session.getAttribute("loginUser");
-        if (loginUser == null) {
-            return "redirect:/login?error=sessionExpired";
-        }
-
-        SelfIntro selfIntro = selfIntroService.getSelfIntroById(selfintroNo);
-        if (selfIntro == null || !selfIntro.getUserId().equals(loginUser.getUserId())) {
-            return "redirect:/errorPage";
-        }
-
-        model.addAttribute("selfIntro", selfIntro);
-        return "resume/editSelfIntro";
-    }
-    
- // ResumeController.java
-
+    // 수정된 내용 저장
     @PostMapping("/updateIntro")
-    public String updateSelfIntro(@RequestParam("selfintroNo") int selfintroNo,
-                                  @RequestParam("intro_name") String introTitle,
-                                  @RequestParam("intro_content") String introContent,
-                                  HttpSession session) {
-        Member loginUser = (Member) session.getAttribute("loginUser");
-        if (loginUser == null) {
-            return "redirect:/login?error=sessionExpired";
-        }
-
-        SelfIntro selfIntro = new SelfIntro();
-        selfIntro.setSelfintroNo(selfintroNo);
-        selfIntro.setUserId(loginUser.getUserId());
-        selfIntro.setIntroTitle(introTitle);
-        selfIntro.setIntroContent(introContent);
-        selfIntro.setModifiedDate(new Date(System.currentTimeMillis()));
-
-        int result = selfIntroService.updateSelfIntro(selfIntro);
-        if (result > 0) {
-            return "redirect:/resume/selfIntroDashboard";
-        } else {
-            return "redirect:/errorPage";
-        }
+    public String updateIntro(@ModelAttribute SelfIntro intro) {
+        selfIntroService.updateSelfIntro(intro);
+        return "redirect:/selfIntroDashboard"; // 수정 후 목록 페이지로 리다이렉트
     }
 
-
-
-
+    
 }

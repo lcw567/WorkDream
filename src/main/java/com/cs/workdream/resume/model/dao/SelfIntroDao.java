@@ -21,27 +21,22 @@ public class SelfIntroDao {
     public int insertSelfIntro(SelfIntro selfIntro) {
         return sqlSession.insert(NAMESPACE + "insertSelfIntro", selfIntro);
     }
-    
+
     public List<SelfIntro> selectSelfIntroList(String userId) {
         return sqlSession.selectList(NAMESPACE + "selectSelfIntroList", userId);
     }
-    
+
     public int deleteSelfIntro(Integer selfIntroNo) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("selfIntroNo", selfIntroNo);
-        int result = sqlSession.update(NAMESPACE + "deleteSelfIntro", params);
-        System.out.println("DAO: Delete result: " + result); // 로그 추가
-        return result;
+        return sqlSession.update(NAMESPACE + "deleteSelfIntro", selfIntroNo);
     }
 
-    public SelfIntro selectSelfIntroById(int selfintroNo) {
-        return sqlSession.selectOne(NAMESPACE + "selectSelfIntroById", selfintroNo);
+    public SelfIntro selectSelfIntroById(int id) {
+        return sqlSession.selectOne("SelfIntroMapper.selectSelfIntroById", id);
     }
 
-    public int updateSelfIntro(SelfIntro selfIntro) {
-        return sqlSession.update(NAMESPACE + "updateSelfIntro", selfIntro);
+    public void updateSelfIntro(SelfIntro intro) {
+        sqlSession.update("SelfIntroMapper.updateSelfIntro", intro);
     }
-
-
 }
+
 
