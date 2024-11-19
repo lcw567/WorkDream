@@ -61,20 +61,21 @@ document.querySelector('#sk_title1 button').addEventListener('click', function()
     }
 });
 
+// 페이지 로드 시 섹션 숨기기
 window.addEventListener('load', function() {
-    var selectAwards = document.querySelector('.select_awards');
     var awards2 = document.querySelector('.awards2');
     var awards3 = document.querySelector('.awards3');
     var Language = document.querySelector('.Language');
     var Contest = document.querySelector('.Contest');
 
-    // 페이지 로드 시 모든 섹션 숨기기
+    // 모든 섹션 숨기기
     awards2.style.display = 'none';
     awards3.style.display = 'none';
     Language.style.display = 'none';
     Contest.style.display = 'none';
 });
 
+// 선택에 따라 섹션 표시
 document.getElementById('sortation').addEventListener('change', function() {
     var awards2 = document.querySelector('.awards2');
     var awards3 = document.querySelector('.awards3');
@@ -106,22 +107,22 @@ document.getElementById('sortation').addEventListener('change', function() {
 });
 
 // 어학시험 추가하기 버튼에 대한 이벤트 리스너
-document.querySelector('.language2 button').addEventListener('click', function(event) {
+document.querySelector('.addLanguageButton').addEventListener('click', function(event) {
     event.preventDefault();
 
-    const languageTitle = document.querySelector('input[name="language_title"]').value.trim();
-    
+    const languageTitle = document.querySelector('input[name="qualification[1].name"]').value.trim();
+
     // 옵션의 텍스트를 가져옵니다.
-    const languageLevelSelect = document.querySelector('select[name="certificate_level"]');
+    const languageLevelSelect = document.querySelector('select[name="qualification[1].proficiencyLevel"]');
     const languageLevel = languageLevelSelect.options[languageLevelSelect.selectedIndex].textContent;
 
-    const languageCategorySelect = document.querySelector('select[name="lang_category"]');
+    const languageCategorySelect = document.querySelector('select[name="qualification[1].languageType"]');
     const languageCategory = languageCategorySelect.options[languageCategorySelect.selectedIndex].textContent;
 
-    const getDate = document.querySelector('input[name="get_date"]').value;
+    const getDate = document.querySelector('input[name="qualification[1].issueDate"]').value;
 
     // 빈 입력 방지
-    if (!languageTitle || !languageLevel || !languageCategory || !getDate) {
+    if (!languageTitle || !languageLevelSelect.value || !languageCategorySelect.value || !getDate) {
         alert("모든 필드를 입력해주세요.");
         return;
     }
@@ -166,27 +167,26 @@ document.querySelector('.language2 button').addEventListener('click', function(e
     document.querySelector('.result-list').appendChild(listItem);
 
     // 입력 필드 초기화
-    document.querySelector('input[name="language_title"]').value = '';
-    document.querySelector('select[name="certificate_level"]').value = '';
-    document.querySelector('select[name="lang_category"]').value = '';
-    document.querySelector('input[name="get_date"]').value = '';
+    document.querySelector('input[name="qualification[1].name"]').value = '';
+    document.querySelector('select[name="qualification[1].proficiencyLevel"]').value = '';
+    document.querySelector('select[name="qualification[1].languageType"]').value = '';
+    document.querySelector('input[name="qualification[1].issueDate"]').value = '';
 });
 
 // 자격증/면허증 추가하기 버튼에 대한 이벤트 리스너
-document.querySelector('.awards3 button').addEventListener('click', function(event) {
+document.querySelector('.addQualificationButton').addEventListener('click', function(event) {
     event.preventDefault();
 
-    const certificateTitle = document.querySelector('input[name="certificate_title"]').value.trim();
-    const institutionTitle = document.querySelector('input[name="institution_title"]').value.trim();
-    
-    // 선택된 옵션의 텍스트를 가져옵니다.
-    var select = document.querySelector('select[name="pass_status"]');
-    var passStatus = select.options[select.selectedIndex].textContent;  // 수정된 부분
-    
-    const passDate = document.querySelector('input[name="pass_date"]').value;
+    const certificateTitle = document.querySelector('input[name="qualification[0].name"]').value.trim();
+    const institutionTitle = document.querySelector('input[name="qualification[0].issuingAgency"]').value.trim();
+
+    var select = document.querySelector('select[name="qualification[0].passStatus"]');
+    var passStatus = select.options[select.selectedIndex].textContent;
+
+    const passDate = document.querySelector('input[name="qualification[0].issueDate"]').value;
 
     // 빈 입력 방지
-    if (!certificateTitle || !institutionTitle || !passStatus || !passDate) {
+    if (!certificateTitle || !institutionTitle || !select.value || !passDate) {
         alert("모든 필드를 입력해주세요.");
         return;
     }
@@ -199,7 +199,7 @@ document.querySelector('.awards3 button').addEventListener('click', function(eve
 
     const titleDiv = document.createElement('div');
     titleDiv.innerHTML = `<strong>${certificateTitle}</strong> (${passStatus}) | ${passDate.replace(/-/g, ".")}`;
-    
+
     const institutionDiv = document.createElement('div');
     institutionDiv.className = 'institution';
     institutionDiv.textContent = institutionTitle;
@@ -236,19 +236,19 @@ document.querySelector('.awards3 button').addEventListener('click', function(eve
     document.querySelector('.result-list').appendChild(listItem);
 
     // 입력 필드 초기화
-    document.querySelector('input[name="certificate_title"]').value = '';
-    document.querySelector('input[name="institution_title"]').value = '';
-    document.querySelector('select[name="pass_status"]').value = '';
-    document.querySelector('input[name="pass_date"]').value = '';
+    document.querySelector('input[name="qualification[0].name"]').value = '';
+    document.querySelector('input[name="qualification[0].issuingAgency"]').value = '';
+    document.querySelector('select[name="qualification[0].passStatus"]').value = '';
+    document.querySelector('input[name="qualification[0].issueDate"]').value = '';
 });
 
 // 수상내역/공모전 추가하기 버튼에 대한 이벤트 리스너
-document.querySelector('.contest2 button').addEventListener('click', function(event) {
+document.querySelector('.addAwardButton').addEventListener('click', function(event) {
     event.preventDefault();
 
-    const contestTitle = document.querySelector('input[name="contest_title"]').value.trim();
-    const contestPlace = document.querySelector('input[name="contest_place"]').value.trim();
-    const acquireDate = document.querySelector('input[name="acquire_date"]').value;
+    const contestTitle = document.querySelector('input[name="award[0].award_name"]').value.trim();
+    const contestPlace = document.querySelector('input[name="award[0].organizer"]').value.trim();
+    const acquireDate = document.querySelector('input[name="award[0].award_date"]').value;
 
     // 빈 입력 방지
     if (!contestTitle || !contestPlace || !acquireDate) {
@@ -301,10 +301,11 @@ document.querySelector('.contest2 button').addEventListener('click', function(ev
     document.querySelector('.result-list').appendChild(listItem);
 
     // 입력 필드 초기화
-    document.querySelector('input[name="contest_title"]').value = '';
-    document.querySelector('input[name="contest_place"]').value = '';
-    document.querySelector('input[name="acquire_date"]').value = '';
+    document.querySelector('input[name="award[0].award_name"]').value = '';
+    document.querySelector('input[name="award[0].organizer"]').value = '';
+    document.querySelector('input[name="award[0].award_date"]').value = '';
 });
+
 
 
 
