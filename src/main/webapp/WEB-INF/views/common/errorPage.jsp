@@ -11,6 +11,7 @@
 	<!-- css / js -->
 	<script>
 	    alert('<c:out value="${errorMsg}" />');
+	    window.location.href = '${pageContext.request.contextPath}' + '<c:out value="${location}" />';
 	</script>
 </head>
 <body>
