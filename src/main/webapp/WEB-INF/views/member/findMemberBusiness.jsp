@@ -13,29 +13,7 @@
 	<script src="${pageContext.request.contextPath}/js/member.js" defer></script>
 </head>
 <body>
-	<!-- 헤더 -->
-	<header class="mini">
-		<nav>
-			<ul id="mini-menu-left">
-				<li>
-					<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logo_title.png" /></a>
-				</li>
-				<li>
-					<h1>통합 로그인</h1>
-				</li>
-			</ul>
-			
-			<ul id="mini-menu-right">
-				<li>
-					<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/icon_home.png" /> 워크드림 홈</a>
-				</li>
-				<li>|</li>
-				<li>
-					<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/icon_office.png" /> 기업 홈</a>
-				</li>
-			</ul>
-		</nav>
-	</header>
+	<c:import url="/WEB-INF/views/common/header.jsp" />
 	
 	<!-- 메인 -->
 	<main id="findMember-main">

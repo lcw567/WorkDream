@@ -555,3 +555,67 @@ try {
 } catch(error) {
     console.log("registration-Business: ", error);
 }
+
+
+/* findMember 전용 */
+try {
+    // 섹션 변경
+    function changeFindSection() {
+        const idSection = document.getElementById("findMember-section-id");
+        const pwdSection = document.getElementById("findMember-section-pwd");
+        let tabItems;
+        let emailArticle;
+        let phoneArticle;
+
+        if(fd === "id") {
+            idSection.classList.add("On");
+            pwdSection.classList.remove("On");
+
+            tabItems = idSection.querySelectorAll("#findMember-article-tab li");
+            emailArticle = idSection.querySelector("#findMember-article-email");
+            phoneArticle = idSection.querySelector("#findMember-article-phone");
+        }
+        else {
+            idSection.classList.remove("On");
+            pwdSection.classList.add("On");
+
+            tabItems = pwdSection.querySelectorAll("#findMember-article-tab li");
+            emailArticle = pwdSection.querySelector("#findMember-article-email");
+            phoneArticle = pwdSection.querySelector("#findMember-article-phone");
+        }
+
+        // 아티클 변경
+        if(fm === "email") {
+            emailArticle.classList.add("On");
+            phoneArticle.classList.remove("On");
+
+            tabItems.forEach(item => item.classList.remove("On"));
+            tabItems[0].classList.add("On");
+        } else {
+            emailArticle.classList.remove("On");
+            phoneArticle.classList.add("On");
+
+            tabItems.forEach(item => item.classList.remove("On"));
+            tabItems[1].classList.add("On");
+        }
+    }
+
+    // 섹션 초기값
+    document.addEventListener("DOMContentLoaded", function() {
+        changeFindSection();
+    });
+
+    // 링크 클릭 시 섹션 변경
+    function changeFindData(findData) {
+        fd = findData;
+        changeFindSection();
+    }
+
+    // 탭 클릭 시 아티클 변경
+    function changeFindMethod(findMethod) {
+        fm = findMethod;
+        changeFindSection();
+    }
+} catch(error) {
+    console.log("find-Person: ", error);
+}

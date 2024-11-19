@@ -147,7 +147,7 @@
 					
 					<div class="loginOther">
 						<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=id&fm=email">아이디 찾기</a> |&nbsp;
-						<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=id&fm=email">비밀번호 찾기</a> |&nbsp;
+						<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=pwd&fm=email">비밀번호 찾기</a> |&nbsp;
 						<a href="${pageContext.request.contextPath}/registration?ut=B">회원가입</a>
 					</div>
 				</form>
