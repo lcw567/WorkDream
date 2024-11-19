@@ -610,8 +610,8 @@ header.mini > nav > ul {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 3%;
-	border: 1px solid #000;
+	padding: 5% 3%;
+	border: 1px solid #4E21A8;;
 	border-top: 0;
 	border-bottom: 0;
 }
@@ -642,8 +642,16 @@ header.mini > nav > ul {
 
 #findMember-article-tab > li.On {
 	background-color: #FFFFFF;
-	border: 1px solid #000;
+	border: 1px solid #4E21A8;;
 	border-bottom: 0;
+}
+
+#findMember-article-tab > li:first-child {
+	border-radius: 10px 0 0 0;
+}
+
+#findMember-article-tab > li:last-child {
+	border-radius: 0 10px 0 0;
 }
 
 #findMember-form {
@@ -691,8 +699,9 @@ header.mini > nav > ul {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid #000;
+	border: 1px solid #4E21A8;;
 	border-top: 0;
+	border-radius: 0 0 10px 10px;
 }
 
 #findMember-aside * {
@@ -710,6 +719,7 @@ header.mini > nav > ul {
 
 #findMember-aside > p > a {
 	font-family: 'MonoplexKR-SemiBold';
+	font-style: italic;
 }
 
 #findMember-aside > p > a:hover {
