@@ -39,26 +39,26 @@
 					<table>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="userName" spellcheck="false" required></td>
+							<td><input type="text" name="userName" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>이메일 주소</th>
 							<td>
-								<input type="email" name="email" spellcheck="false" placeholder="example@workdream.co.kr" required>
+								<input type="email" name="email" spellcheck="false" placeholder="example@workdream.co.kr">
 								<button type="button" id="btnConfirm">인증번호 발송</button>
 							</td>
 						</tr>
 						<tr>
 							<th>인증번호</th>
 							<td>
-								<input type="text">
+								<input type="text" maxlength="6" placeholder="인증번호 입력(6자리)">
 								<div id="confirm-check">미인증</div>
 							</td>
 							
 						</tr>
 					</table>
 					
-					<input type="submit" id="btnFindMember" value="아이디 조회">
+					<input type="button" id="btnFindMember" value="아이디 조회">
 				</form>
 			</article>
 			
@@ -70,15 +70,25 @@
 					<table>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="userName" spellcheck="false" required></td>
+							<td><input type="text" name="userName" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>휴대폰 번호</th>
-							<td><input type="text" name="phone" spellcheck="false" placeholder="하이픈(-)없이 숫자만 입력" required></td>
+							<td>
+								<input type="text" name="phone" spellcheck="false" placeholder="하이픈(-)없이 숫자만 입력">
+								<button type="button" id="btnConfirm">인증번호 발송</button>
+							</td>
+						</tr>
+						<tr>
+							<th>인증번호</th>
+							<td>
+								<input type="text" maxlength="6" placeholder="인증번호 입력(6자리)">
+								<div id="confirm-check">미인증</div>
+							</td>
 						</tr>
 					</table>
 					
-					<input type="submit" id="btnFindMember" value="조회">
+					<input type="button" id="btnFindMember" value="아이디 조회">
 				</form>
 			</article>
 			
@@ -111,19 +121,29 @@
 					<table>
 						<tr>
 							<th>아이디</th>
-							<td><input type="text" name="userId" spellcheck="false" required></td>
+							<td><input type="text" name="userId" maxlength="20" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="userName" spellcheck="false" required></td>
+							<td><input type="text" name="userName" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>이메일 주소</th>
-							<td><input type="email" name="email" spellcheck="false" placeholder="example@workdream.co.kr" required></td>
+							<td>
+								<input type="email" name="email" spellcheck="false" placeholder="example@workdream.co.kr">
+								<button type="button" id="btnConfirm">인증번호 발송</button>
+							</td>
+						</tr>
+						<tr>
+							<th>인증번호</th>
+							<td>
+								<input type="text" maxlength="6" placeholder="인증번호 입력(6자리)">
+								<div id="confirm-check">미인증</div>
+							</td>
 						</tr>
 					</table>
 					
-					<input type="submit" id="btnFindMember" value="조회">
+					<input type="button" id="btnFindMember" value="비밀번호 조회">
 				</form>
 			</article>
 			
@@ -135,19 +155,29 @@
 					<table>
 						<tr>
 							<th>아이디</th>
-							<td><input type="text" name="userId" spellcheck="false" required></td>
+							<td><input type="text" name="userId" maxlength="20" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="userName" spellcheck="false" required></td>
+							<td><input type="text" name="userName" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>휴대폰 번호</th>
-							<td><input type="text" name="phone" spellcheck="false" placeholder="하이픈(-)없이 숫자만 입력" required></td>
+							<td>
+								<input type="text" name="phone" spellcheck="false" placeholder="하이픈(-)없이 숫자만 입력">
+								<button type="button" id="btnConfirm">인증번호 발송</button>
+							</td>
+						</tr>
+						<tr>
+							<th>인증번호</th>
+							<td>
+								<input type="text" maxlength="6" placeholder="인증번호 입력(6자리)">
+								<div id="confirm-check">미인증</div>
+							</td>
 						</tr>
 					</table>
 					
-					<input type="submit" id="btnFindMember" value="조회">
+					<input type="button" id="btnFindMember" value="비밀번호 조회">
 				</form>
 			</article>
 			
