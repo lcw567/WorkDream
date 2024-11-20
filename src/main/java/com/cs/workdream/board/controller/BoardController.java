@@ -2,6 +2,7 @@ package com.cs.workdream.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -11,7 +12,9 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -188,12 +191,8 @@ public class BoardController {
             // 이미지 업로드 처리
             String imagePath = null;
             if(image != null && !image.isEmpty()) {
-                // 업로드 디렉토리 설정
-                String uploadDir = session.getServletContext().getRealPath("/uploads/");
-                if (uploadDir == null) {
-                    // getRealPath가 null을 반환하는 경우 대비
-                    uploadDir = System.getProperty("user.dir") + "/uploads/";
-                }
+                // 고정된 업로드 디렉토리 설정
+                String uploadDir = "C:/uploads/";
                 File dir = new File(uploadDir);
                 if (!dir.exists()) {
                     dir.mkdirs(); // 디렉토리 생성
@@ -202,10 +201,10 @@ public class BoardController {
                 String uniqueFilename = System.currentTimeMillis() + "_" + originalFilename;
                 File dest = new File(dir, uniqueFilename);
                 image.transferTo(dest);
-                imagePath = "/uploads/" + uniqueFilename;
+                imagePath = uniqueFilename; // 이미지 파일명만 저장
 
                 // 업로드 경로 로그 출력
-                System.out.println("Upload Directory: " + uploadDir);
+                System.out.println("Image uploaded to: " + dest.getAbsolutePath());
             }
 
             // Board 객체 생성
@@ -216,7 +215,7 @@ public class BoardController {
             board.setImagePath(imagePath);
             board.setAuthor(author);
             board.setUserNo(userNo);
-            board.setCreatedTime(Timestamp.valueOf(LocalDateTime.now())); // 또는 LocalDateTime.now()
+            board.setCreatedTime(Timestamp.valueOf(LocalDateTime.now()));
             board.setViewCount(0);
             board.setLikeCount(0);
             board.setHashtags(hashtags);
@@ -304,7 +303,6 @@ public class BoardController {
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
-    // **게시글 수정 API 수정됨 (PUT에서 POST로 변경)**
     // 게시글 수정 API (REST API)
     @PostMapping("/api/posts/{postingNo}/update")
     @ResponseBody
@@ -348,12 +346,8 @@ public class BoardController {
             // 이미지 업로드 처리 (기존 이미지 유지 또는 새로운 이미지로 대체)
             String imagePath = existingPost.getImagePath(); // 기존 이미지 경로 유지
             if(image != null && !image.isEmpty()) {
-                // 업로드 디렉토리 설정
-                String uploadDir = session.getServletContext().getRealPath("/uploads/");
-                if (uploadDir == null) {
-                    // getRealPath가 null을 반환하는 경우 대비
-                    uploadDir = System.getProperty("user.dir") + "/uploads/";
-                }
+                // 고정된 업로드 디렉토리 설정
+                String uploadDir = "C:/uploads/";
                 File dir = new File(uploadDir);
                 if (!dir.exists()) {
                     dir.mkdirs(); // 디렉토리 생성
@@ -362,18 +356,19 @@ public class BoardController {
                 String uniqueFilename = System.currentTimeMillis() + "_" + originalFilename;
                 File dest = new File(dir, uniqueFilename);
                 image.transferTo(dest);
-                imagePath = "/uploads/" + uniqueFilename;
+                imagePath = uniqueFilename; // 이미지 파일명만 저장
 
                 // 기존 이미지 파일 삭제 (선택 사항)
                 if(existingPost.getImagePath() != null) {
-                    File oldImage = new File(session.getServletContext().getRealPath(existingPost.getImagePath()));
+                    File oldImage = new File("C:/uploads/" + existingPost.getImagePath());
                     if(oldImage.exists()) {
                         oldImage.delete();
+                        System.out.println("Deleted old image: " + oldImage.getAbsolutePath());
                     }
                 }
 
                 // 업로드 경로 로그 출력
-                System.out.println("Upload Directory: " + uploadDir);
+                System.out.println("Image updated to: " + dest.getAbsolutePath());
             }
 
             // Board 객체 생성 및 업데이트할 필드 설정
@@ -507,7 +502,6 @@ public class BoardController {
             return response;
         }
     }   
-
     
     // 댓글 삭제 (REST API)
     @DeleteMapping("/api/replies/{replyNo}")
@@ -545,4 +539,32 @@ public class BoardController {
         }
         return response;
     }
+
+    // 이미지 서빙을 위한 컨트롤러 메서드 추가
+    @GetMapping("/uploads/{filename}")
+    @ResponseBody
+    public ResponseEntity<byte[]> serveImage(@PathVariable("filename") String filename) {
+        try {
+            // 고정된 업로드 디렉토리 설정
+            String uploadDir = "C:/uploads/";
+            File imageFile = new File(uploadDir, filename);
+            if (!imageFile.exists()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            byte[] imageBytes = Files.readAllBytes(imageFile.toPath());
+            String mimeType = Files.probeContentType(imageFile.toPath());
+            if (mimeType == null) {
+                mimeType = "application/octet-stream";
+            }
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType(mimeType));
+            return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+        } catch(IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
