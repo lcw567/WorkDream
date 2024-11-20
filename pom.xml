@@ -149,6 +149,13 @@
 		    <version>2.0.6</version>
 		</dependency>
 		
+		<!-- JSONObject -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20210307</version>
+		</dependency>
+		
 		<!--커넥션풀을 사용하기위한 라이브러리 -->
 		<dependency>
 		    <groupId>commons-dbcp</groupId>

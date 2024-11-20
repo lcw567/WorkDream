@@ -664,7 +664,7 @@ header.mini > nav > ul {
 
 #findMember-form > table {
 	width: 80%;
-	margin: 3% 0;
+	margin: 4% 0;
 }
 
 #findMember-form > table th, #findMember-form > table td {
@@ -672,6 +672,7 @@ header.mini > nav > ul {
 	display: inline-flex;
 	align-items: center;
 	padding: 1% 0;
+	margin-bottom: 1%;
 	text-align: left;
 	font-weight: normal;
 	font-size: 1rem;
@@ -718,9 +719,9 @@ header.mini > nav > ul {
 
 #findMember-form #confirm-check {
 	width: 40%;
-	height: 2.5rem;
+	height: 100%;
 	margin-left: 1%;
-	line-height: 2.8;
+	line-height: 2.5;
 	text-align: center;
 	font-weight: 600;
 	font-size: 0.9rem;
@@ -730,6 +731,7 @@ header.mini > nav > ul {
 #findMember-form #btnFindMember {
 	width: 30%;
 	height: 2.3rem;
+	margin-left: 5%;
 	background-color: #4E21A8;
 	border: 1px solid #4E21A8;
 	border-radius: 10px;

@@ -255,20 +255,14 @@ function validateNumber(registNumber) {
             numberCheck.className = "error";
             reject(false);
         } else {
-            // 사업자등록번호 조회 (오픈 API 1.1.0)
-            // 서비스키
-            const serviceKey = "gOn%2FFXCdwGgJ1DcdEYhnW%2BZ%2BNfxmcUslrsWA3MYlh4FLh2aUVeHUWn8y%2BUm07ed43SjDtsNA0xNV5ry2lbN0FQ%3D%3D";
+            // 사업자등록번호 조회 (오픈 API 연결)
             $.ajax({
-                url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=" + serviceKey,
+                url: "numberCheck.api",
                 type: "POST",
-                data: JSON.stringify({
-                    "b_no": [registNumber]
-                }),
-                dataType: "JSON",
                 contentType: "application/json",
-                accept: "application/json",
+                data: JSON.stringify({ checkNumber: registNumber }),
                 success: function(result) {
-                    if(result.data[0].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다." || result.data[0].tax_type === "") {
+                    if(!result) {
                         // 조회 실패
                         numberCheck.innerHTML = errorImg + "등록되지않은 사업자등록번호입니다.";
                         numberCheck.className = "error";
@@ -279,10 +273,11 @@ function validateNumber(registNumber) {
                         numberCheck.className = "check";
                         resolve(true);
                     }
-                },
-                error: function(result) {
+                }, error: function(error) {
                     // API 호출 오류
-                    console.log(result.responseText);
+                    console.error(error);
+                    numberCheck.innerHTML = errorImg + "오류가 발생했습니다. 다시 시도해주세요.";
+                    numberCheck.className = "error";
                     reject(false);
                 }
             });
