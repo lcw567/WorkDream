@@ -11,7 +11,7 @@ public interface SelfIntroService {
     
     int deleteSelfIntro(Integer selfIntroNo);
     
-    SelfIntro findIntroById(int id);
+    SelfIntro getSelfIntroById(Integer selfintroNo);
     
-    void updateSelfIntro(SelfIntro intro);
+    void updateSelfIntro(SelfIntro selfIntro);
 }
