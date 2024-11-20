@@ -26,8 +26,14 @@ public interface BoardService {
 
     // 조회수 및 공감 수 관련 메서드
     void increaseViewCount(int postingNo);
-    void increaseLikeCount(int postingNo);
-    void decreaseLikeCount(int postingNo);
+
+    /* 게시글 공감 관련 메서드 */
+    boolean likePost(int postingNo, int userNo);
+    boolean unlikePost(int postingNo, int userNo);
+
+    /* 댓글 공감 관련 메서드 */
+    boolean likeReply(int replyNo, int userNo);
+    boolean unlikeReply(int replyNo, int userNo);
 
     // 댓글 관련 메서드
     List<Reply> getReplies(int postingNo);

@@ -255,19 +255,6 @@
 	    WHERE POSTING_NO = #{postingNo}
 	</update>
 	
-	<!-- 공감 수 증가 -->
-	<update id="increaseLikeCount" parameterType="int">
-	    UPDATE POSTING
-	    SET LIKE_COUNT = LIKE_COUNT + 1
-	    WHERE POSTING_NO = #{postingNo}
-	</update>
-	
-	<!-- 공감 수 감소 -->
-	<update id="decreaseLikeCount" parameterType="int">
-	    UPDATE POSTING
-	    SET LIKE_COUNT = LIKE_COUNT - 1
-	    WHERE POSTING_NO = #{postingNo} AND LIKE_COUNT > 0
-	</update>
 
     <!-- Reply ResultMap -->
     <resultMap id="ReplyResultMap" type="com.cs.workdream.board.model.vo.Reply">
@@ -336,6 +323,72 @@
         UPDATE REPLY
         SET STATUS = 'N'
         WHERE REPLY_NO = #{value}
+    </update>
+    
+     <!-- 게시글 공감 기록 존재 여부 확인 -->
+    <select id="existsPostLike" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM POST_LIKE
+        WHERE POSTING_NO = #{postingNo} AND USER_NO = #{userNo}
+    </select>
+
+    <!-- 게시글 공감 기록 삽입 -->
+    <insert id="insertPostLike" parameterType="map">
+        INSERT INTO POST_LIKE (LIKE_NO, POSTING_NO, USER_NO, LIKED_TIME)
+        VALUES (POST_LIKE_SEQ.NEXTVAL, #{postingNo}, #{userNo}, SYSDATE)
+    </insert>
+
+    <!-- 게시글 공감 기록 삭제 -->
+    <delete id="deletePostLike" parameterType="map">
+        DELETE FROM POST_LIKE
+        WHERE POSTING_NO = #{postingNo} AND USER_NO = #{userNo}
+    </delete>
+
+    <!-- 게시글 공감 수 증가 -->
+    <update id="increasePostLikeCount" parameterType="int">
+        UPDATE POSTING
+        SET LIKE_COUNT = LIKE_COUNT + 1
+        WHERE POSTING_NO = #{value} AND STATUS = 'Y'
+    </update>
+
+    <!-- 게시글 공감 수 감소 -->
+    <update id="decreasePostLikeCount" parameterType="int">
+        UPDATE POSTING
+        SET LIKE_COUNT = LIKE_COUNT - 1
+        WHERE POSTING_NO = #{value} AND LIKE_COUNT > 0 AND STATUS = 'Y'
+    </update>
+
+    <!-- 댓글 공감 기록 존재 여부 확인 -->
+    <select id="existsReplyLike" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM REPLY_LIKE
+        WHERE REPLY_NO = #{replyNo} AND USER_NO = #{userNo}
+    </select>
+
+    <!-- 댓글 공감 기록 삽입 -->
+    <insert id="insertReplyLike" parameterType="map">
+        INSERT INTO REPLY_LIKE (LIKE_NO, REPLY_NO, USER_NO, LIKED_TIME)
+        VALUES (REPLY_LIKE_SEQ.NEXTVAL, #{replyNo}, #{userNo}, SYSDATE)
+    </insert>
+
+    <!-- 댓글 공감 기록 삭제 -->
+    <delete id="deleteReplyLike" parameterType="map">
+        DELETE FROM REPLY_LIKE
+        WHERE REPLY_NO = #{replyNo} AND USER_NO = #{userNo}
+    </delete>
+
+    <!-- 댓글 공감 수 증가 -->
+    <update id="increaseReplyLikeCount" parameterType="int">
+        UPDATE REPLY
+        SET LIKE_COUNT = LIKE_COUNT + 1
+        WHERE REPLY_NO = #{value} AND STATUS = 'Y'
+    </update>
+
+    <!-- 댓글 공감 수 감소 -->
+    <update id="decreaseReplyLikeCount" parameterType="int">
+        UPDATE REPLY
+        SET LIKE_COUNT = LIKE_COUNT - 1
+        WHERE REPLY_NO = #{value} AND LIKE_COUNT > 0 AND STATUS = 'Y'
     </update>
 
     

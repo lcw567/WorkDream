@@ -117,17 +117,76 @@ public class BoardServiceImpl implements BoardService {
         boardDao.increaseViewCount(sqlSession, postingNo);
     }
     
+    /* 게시글 공감 메서드 */
     @Override
     @Transactional
-    public void increaseLikeCount(int postingNo) {
-        boardDao.increaseLikeCount(sqlSession, postingNo);
+    public boolean likePost(int postingNo, int userNo) {
+        // 이미 공감했는지 확인
+        if(boardDao.existsPostLike(sqlSession, postingNo, userNo)) {
+            return false; // 이미 공감한 경우
+        }
+        // 공감 기록 삽입
+        int insertResult = boardDao.insertPostLike(sqlSession, postingNo, userNo);
+        if(insertResult > 0) {
+            // LIKE_COUNT 증가
+            boardDao.increasePostLikeCount(sqlSession, postingNo);
+            return true;
+        }
+        return false;
     }
 
     @Override
     @Transactional
-    public void decreaseLikeCount(int postingNo) {
-        boardDao.decreaseLikeCount(sqlSession, postingNo);
+    public boolean unlikePost(int postingNo, int userNo) {
+        // 공감 기록이 있는지 확인
+        if(!boardDao.existsPostLike(sqlSession, postingNo, userNo)) {
+            return false; // 공감하지 않은 경우
+        }
+        // 공감 기록 삭제
+        int deleteResult = boardDao.deletePostLike(sqlSession, postingNo, userNo);
+        if(deleteResult > 0) {
+            // LIKE_COUNT 감소
+            boardDao.decreasePostLikeCount(sqlSession, postingNo);
+            return true;
+        }
+        return false;
     }
+
+    /* 댓글 공감 메서드 */
+    @Override
+    @Transactional
+    public boolean likeReply(int replyNo, int userNo) {
+        // 이미 공감했는지 확인
+        if(boardDao.existsReplyLike(sqlSession, replyNo, userNo)) {
+            return false; // 이미 공감한 경우
+        }
+        // 공감 기록 삽입
+        int insertResult = boardDao.insertReplyLike(sqlSession, replyNo, userNo);
+        if(insertResult > 0) {
+            // LIKE_COUNT 증가
+            boardDao.increaseReplyLikeCount(sqlSession, replyNo);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    @Transactional
+    public boolean unlikeReply(int replyNo, int userNo) {
+        // 공감 기록이 있는지 확인
+        if(!boardDao.existsReplyLike(sqlSession, replyNo, userNo)) {
+            return false; // 공감하지 않은 경우
+        }
+        // 공감 기록 삭제
+        int deleteResult = boardDao.deleteReplyLike(sqlSession, replyNo, userNo);
+        if(deleteResult > 0) {
+            // LIKE_COUNT 감소
+            boardDao.decreaseReplyLikeCount(sqlSession, replyNo);
+            return true;
+        }
+        return false;
+    }
+
 
     // 댓글 작업
     @Override

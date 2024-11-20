@@ -408,10 +408,10 @@ public class BoardController {
         }
     }
 
-    // 공감 수 증가 (REST API)
-    @PostMapping("/api/posts/{postId}/like")
+
+    @PostMapping("/api/posts/{postingNo}/like")
     @ResponseBody
-    public Map<String, Object> likePost(@PathVariable("postId") int postId, HttpSession session) {
+    public Map<String, Object> likePost(@PathVariable("postingNo") int postingNo, HttpSession session) {
         Map<String, Object> response = new HashMap<>();
         try {
             // 로그인 여부 확인
@@ -422,10 +422,16 @@ public class BoardController {
                 return response;
             }
 
-            // 공감 로직 추가 가능 (예: 중복 공감 방지)
+            // 공감 로직
+            boolean success = boardService.likePost(postingNo, currentUser.getUserNo());
 
-            boardService.increaseLikeCount(postId);
-            response.put("status", "success");
+            if(success) {
+                response.put("status", "success");
+                response.put("message", "공감했습니다.");
+            } else {
+                response.put("status", "fail");
+                response.put("message", "이미 공감했거나, 공감에 실패했습니다.");
+            }
         } catch(Exception e) {
             e.printStackTrace();
             response.put("status", "error");
@@ -434,10 +440,10 @@ public class BoardController {
         return response;
     }
 
-    // 공감 수 감소 (REST API)
-    @PostMapping("/api/posts/{postId}/unlike")
+    /* 게시글 공감 취소 API */
+    @PostMapping("/api/posts/{postingNo}/unlike")
     @ResponseBody
-    public Map<String, Object> unlikePost(@PathVariable("postId") int postId, HttpSession session) {
+    public Map<String, Object> unlikePost(@PathVariable("postingNo") int postingNo, HttpSession session) {
         Map<String, Object> response = new HashMap<>();
         try {
             // 로그인 여부 확인
@@ -448,10 +454,16 @@ public class BoardController {
                 return response;
             }
 
-            // 공감 취소 로직 추가 가능 (예: 공감 기록 삭제)
+            // 공감 취소 로직
+            boolean success = boardService.unlikePost(postingNo, currentUser.getUserNo());
 
-            boardService.decreaseLikeCount(postId);
-            response.put("status", "success");
+            if(success) {
+                response.put("status", "success");
+                response.put("message", "공감을 취소했습니다.");
+            } else {
+                response.put("status", "fail");
+                response.put("message", "공감을 하지 않았거나, 취소에 실패했습니다.");
+            }
         } catch(Exception e) {
             e.printStackTrace();
             response.put("status", "error");
@@ -459,6 +471,71 @@ public class BoardController {
         }
         return response;
     }
+
+    /* 댓글 공감 API */
+    @PostMapping("/api/replies/{replyNo}/like")
+    @ResponseBody
+    public Map<String, Object> likeReply(@PathVariable("replyNo") int replyNo, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // 로그인 여부 확인
+            Member currentUser = (Member) session.getAttribute("loginUser");
+            if(currentUser == null) {
+                response.put("status", "fail");
+                response.put("message", "로그인이 필요합니다.");
+                return response;
+            }
+
+            // 공감 로직
+            boolean success = boardService.likeReply(replyNo, currentUser.getUserNo());
+
+            if(success) {
+                response.put("status", "success");
+                response.put("message", "공감했습니다.");
+            } else {
+                response.put("status", "fail");
+                response.put("message", "이미 공감했거나, 공감에 실패했습니다.");
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "서버 오류가 발생했습니다.");
+        }
+        return response;
+    }
+
+    /* 댓글 공감 취소 API */
+    @PostMapping("/api/replies/{replyNo}/unlike")
+    @ResponseBody
+    public Map<String, Object> unlikeReply(@PathVariable("replyNo") int replyNo, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // 로그인 여부 확인
+            Member currentUser = (Member) session.getAttribute("loginUser");
+            if(currentUser == null) {
+                response.put("status", "fail");
+                response.put("message", "로그인이 필요합니다.");
+                return response;
+            }
+
+            // 공감 취소 로직
+            boolean success = boardService.unlikeReply(replyNo, currentUser.getUserNo());
+
+            if(success) {
+                response.put("status", "success");
+                response.put("message", "공감을 취소했습니다.");
+            } else {
+                response.put("status", "fail");
+                response.put("message", "공감을 하지 않았거나, 취소에 실패했습니다.");
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "서버 오류가 발생했습니다.");
+        }
+        return response;
+    }
+
     
     // 특정 게시글의 댓글 조회 (REST API)
     @GetMapping("/api/replies")

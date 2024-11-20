@@ -39,11 +39,12 @@
                         <button class="button delete-button" aria-label="삭제">삭제</button>
                     </c:if>
 
-                    <button class="button like-button" aria-label="공감">
-                        <span role="img" aria-hidden="true">👍</span> 
-                        <span class="like-count"><c:out value="${post.likeCount}" /></span>
-                        <span class="sr-only">공감</span>
-                    </button>
+                    <!-- 게시글 공감 버튼 -->
+					<button class="button like-button" aria-label="공감" data-post-no="${post.postingNo}">
+					    <span role="img" aria-hidden="true">👍</span> 
+					    <span class="like-count"><c:out value="${post.likeCount}" /></span>
+					    <span class="sr-only">공감</span>
+					</button>
                     <button class="button report-button" aria-label="신고">신고</button>
                 </div>
             </div>
@@ -103,6 +104,7 @@
             </div>
         </div>
     </div>
+    
     
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
