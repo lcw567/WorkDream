@@ -11,16 +11,11 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.board.model.vo.Board;
@@ -34,6 +29,10 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
+
+    // -------------------
+    // 웹 뷰 관련 메서드
+    // -------------------
 
     // 커뮤니티 홈 페이지 표시
     @GetMapping("/communityHome")
@@ -78,6 +77,27 @@ public class BoardController {
         }
     }
     
+    // 게시글 수정 페이지 표시
+    @GetMapping("/editPost")
+    public String showEditPost(@RequestParam("postId") int postId, Model model, HttpSession session) {
+        // 게시글 조회
+        Board post = boardService.getPostWithJobCategories(postId);
+        if(post != null && "Y".equals(post.getStatus())) {
+            // 현재 사용자 정보
+            Member currentUser = (Member) session.getAttribute("loginUser");
+            if(currentUser != null && post.getUserNo() == currentUser.getUserNo()) {
+                model.addAttribute("post", post);
+                return "board/editPost"; // editPost.jsp
+            } else {
+                model.addAttribute("errorMsg", "게시글을 수정할 권한이 없습니다.");
+                return "common/errorPage";
+            }
+        } else {
+            model.addAttribute("errorMsg", "게시글을 찾을 수 없습니다.");
+            return "common/errorPage"; // 에러 페이지
+        }
+    }
+
     // 커뮤니티 게시판 목록 페이지 표시
     @GetMapping("/communityList")
     public String showCommunityList(@RequestParam(value="category", defaultValue="전체글") String category, Model model) {
@@ -85,9 +105,28 @@ public class BoardController {
         return "board/communityList"; // communityList.jsp
     }
 
-    // RESTful API 엔드포인트
+    // 임시 로그인 엔드포인트 (개발용)
+    @GetMapping("/testLogin")
+    public String testLogin(HttpSession session) {
+        Member mockUser = new Member();
+        mockUser.setUserNo(1); // 실제 사용자 번호로 변경
+        mockUser.setUserId("testuser123"); // userId 설정
+        // 필요한 다른 필드도 설정
+        session.setAttribute("loginUser", mockUser);
+        return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
+    }
+    
+    // 채용공고목록 맵핑
+    @GetMapping("/listOfJobOpening")
+    public String showJobOpeningList() {
+        return "board/listOfJobOpening"; // listOfJobOpening.jsp
+    }
+    
+    // -------------------
+    // REST API 관련 메서드
+    // -------------------
 
-    // 게시글 수 조회
+    // 게시글 수 조회 (REST API)
     @GetMapping("/api/postCount")
     @ResponseBody
     public Map<String, Object> getPostCount() {
@@ -97,7 +136,7 @@ public class BoardController {
         return response;
     }
 
-    // 인기 게시글 조회
+    // 인기 게시글 조회 (REST API)
     @GetMapping("/api/popularPosts")
     @ResponseBody
     public Map<String, Object> getPopularPosts() {
@@ -107,7 +146,7 @@ public class BoardController {
         return response;
     }
 
-    // 카테고리 및 필터에 따른 게시글 조회
+    // 카테고리 및 필터에 따른 게시글 조회 (REST API)
     @GetMapping("/api/posts")
     @ResponseBody
     public Map<String, Object> getPosts(
@@ -126,7 +165,7 @@ public class BoardController {
         return response;
     }
 
-    // 새로운 게시글 생성
+    // 새로운 게시글 생성 (REST API)
     @PostMapping("/api/posts")
     @ResponseBody
     public Map<String, Object> createPost(
@@ -210,7 +249,112 @@ public class BoardController {
         return response;
     }
 
-    // 공감 수 증가
+    // 게시글 삭제 API (REST API)
+    @DeleteMapping("/api/posts/{postingNo}")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> deletePost(
+            @PathVariable("postingNo") int postingNo,
+            HttpSession session) { // 세션을 통해 사용자 정보 가져오기
+
+        Map<String, Object> response = new HashMap<>();
+
+        // 현재 사용자 정보 가져오기 (세션을 통해)
+        Member currentUser = (Member) session.getAttribute("loginUser");
+        if(currentUser == null) {
+            response.put("status", "fail");
+            response.put("message", "로그인이 필요합니다.");
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
+        int currentUserNo = currentUser.getUserNo();
+
+        // 게시글 정보 조회
+        Board post = boardService.getPost(postingNo);
+        if (post == null || !"Y".equals(post.getStatus())) {
+            response.put("status", "fail");
+            response.put("message", "게시글을 찾을 수 없습니다.");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
+        // 작성자 확인
+        if (post.getUserNo() != currentUserNo) {
+            response.put("status", "fail");
+            response.put("message", "본인의 게시글만 삭제할 수 있습니다.");
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
+
+        // 게시글 삭제
+        int result = boardService.deletePost(postingNo);
+        if (result > 0) {
+            response.put("status", "success");
+            response.put("message", "게시글이 삭제되었습니다.");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } else {
+            response.put("status", "fail");
+            response.put("message", "게시글 삭제에 실패했습니다.");
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // 게시글 조회 API (REST API)
+    @GetMapping("/api/posts/{postingNo}")
+    @ResponseBody
+    public ResponseEntity<Board> getPost(@PathVariable("postingNo") int postingNo) {
+        Board post = boardService.getPostWithJobCategories(postingNo);
+        if (post == null || !"Y".equals(post.getStatus())) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        // 조회수 증가
+        boardService.increaseViewCount(postingNo);
+        return new ResponseEntity<>(post, HttpStatus.OK);
+    }
+
+    // 게시글 수정 API (REST API)
+    @PutMapping("/api/posts/{postingNo}")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> updatePost(
+            @PathVariable("postingNo") int postingNo,
+            @RequestBody Board board,
+            HttpSession session) {
+
+        Map<String, Object> response = new HashMap<>();
+        Member currentUser = (Member) session.getAttribute("loginUser");
+        if(currentUser == null) {
+            response.put("status", "fail");
+            response.put("message", "로그인이 필요합니다.");
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
+        int currentUserNo = currentUser.getUserNo();
+
+        // 게시글 정보 조회
+        Board existingPost = boardService.getPost(postingNo);
+        if (existingPost == null || !"Y".equals(existingPost.getStatus())) {
+            response.put("status", "fail");
+            response.put("message", "게시글을 찾을 수 없습니다.");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
+        // 작성자 확인
+        if (existingPost.getUserNo() != currentUserNo) {
+            response.put("status", "fail");
+            response.put("message", "본인의 게시글만 수정할 수 있습니다.");
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
+
+        // 게시글 수정
+        board.setPostingNo(postingNo); // 경로 변수로 받은 postingNo 설정
+        int result = boardService.updatePost(board);
+        if (result > 0) {
+            response.put("status", "success");
+            response.put("message", "게시글이 수정되었습니다.");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } else {
+            response.put("status", "fail");
+            response.put("message", "게시글 수정에 실패했습니다.");
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // 공감 수 증가 (REST API)
     @PostMapping("/api/posts/{postId}/like")
     @ResponseBody
     public Map<String, Object> likePost(@PathVariable("postId") int postId, HttpSession session) {
@@ -236,7 +380,7 @@ public class BoardController {
         return response;
     }
 
-    // 공감 수 감소
+    // 공감 수 감소 (REST API)
     @PostMapping("/api/posts/{postId}/unlike")
     @ResponseBody
     public Map<String, Object> unlikePost(@PathVariable("postId") int postId, HttpSession session) {
@@ -262,7 +406,7 @@ public class BoardController {
         return response;
     }
     
-    // 특정 게시글의 댓글 조회
+    // 특정 게시글의 댓글 조회 (REST API)
     @GetMapping("/api/replies")
     @ResponseBody
     public Map<String, Object> getReplies(@RequestParam("postId") int postId) {
@@ -272,7 +416,7 @@ public class BoardController {
         return response;
     }
 
-    // 댓글 추가
+    // 댓글 추가 (REST API)
     @PostMapping("/api/replies")
     @ResponseBody
     public Map<String, Object> addReply(@RequestBody Reply reply, HttpSession session) {
@@ -296,16 +440,17 @@ public class BoardController {
                 response.put("status", "fail");
                 response.put("message", "댓글 등록에 실패했습니다.");
             }
+            return response;
         } catch(Exception e) {
             e.printStackTrace();
             response.put("status", "error");
             response.put("message", "서버 오류가 발생했습니다.");
+            return response;
         }
-        return response;
     }   
 
     
-    // 댓글 삭제
+    // 댓글 삭제 (REST API)
     @DeleteMapping("/api/replies/{replyNo}")
     @ResponseBody
     public Map<String, Object> deleteReply(@PathVariable("replyNo") int replyNo, HttpSession session) {
@@ -321,7 +466,7 @@ public class BoardController {
 
             // 댓글 소유자 확인
             Reply existingReply = boardService.getReplyById(replyNo);
-            if(existingReply == null || !existingReply.getUserNo().equals(currentUser.getUserNo())) {
+            if(existingReply == null || existingReply.getUserNo() != currentUser.getUserNo()) {
                 response.put("status", "fail");
                 response.put("message", "권한이 없습니다.");
                 return response;
@@ -340,22 +485,5 @@ public class BoardController {
             response.put("message", "서버 오류가 발생했습니다.");
         }
         return response;
-    }
-
-    // 임시 로그인 엔드포인트 (개발용)
-    @GetMapping("/testLogin")
-    public String testLogin(HttpSession session) {
-        Member mockUser = new Member();
-        mockUser.setUserNo(1); // 실제 사용자 번호로 변경
-        mockUser.setUserId("testuser123"); // userId 설정
-        // 필요한 다른 필드도 설정
-        session.setAttribute("loginUser", mockUser);
-        return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
-    }
-
-    // 채용공고목록 맵핑
-    @GetMapping("/listOfJobOpening")
-    public String showJobOpeningList() {
-        return "board/listOfJobOpening"; // listOfJobOpening.jsp
     }
 }

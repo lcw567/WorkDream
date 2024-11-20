@@ -34,10 +34,12 @@
                     </div>
                 </div>
                 <div class="post-buttons">
-                    <c:if test="${not empty loginUser and loginUser.userNo == post.userNo}">
-                        <button class="button edit-button" aria-label="수정">수정</button>
-                        <button class="button delete-button" aria-label="삭제">삭제</button>
-                    </c:if>
+                    <c:if test="${not empty currentUser and currentUser.userNo eq post.userNo}">
+					    <button class="button edit-button" aria-label="수정">수정</button>
+					    <button class="button delete-button" aria-label="삭제">삭제</button>
+					</c:if>
+
+
                     <button class="button like-button" aria-label="공감">
                         <span role="img" aria-hidden="true">👍</span> 
                         <span class="like-count"><c:out value="${post.likeCount}" /></span>
@@ -102,6 +104,12 @@
             </div>
         </div>
     </div>
+    
+    <p>현재 사용자 번호: <c:out value="${currentUser.userNo}" /></p>
+	<p>게시글 작성자 번호: <c:out value="${post.userNo}" /></p>
+	<p>조건 결과: <c:out value="${not empty currentUser and currentUser.userNo eq post.userNo}" /></p>
+
+    
 
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>

@@ -172,22 +172,22 @@
 
    <!-- 게시글 ID로 단일 게시글 조회 -->
     <select id="selectPost" parameterType="int" resultType="com.cs.workdream.board.model.vo.Board">
-        SELECT 
-            POSTING_NO,
-            CATEGORY,
-            TITLE,
-            CONTENT,
-            IMAGE,
-            AUTHOR,
-            USER_NO,
-            CREATED_TIME,
-            UPDATED_TIME,
-            VIEW_COUNT,
-            LIKE_COUNT,
-            STATUS
-        FROM POSTING
-        WHERE POSTING_NO = #{value} AND STATUS = 'Y'
-    </select>
+	    SELECT 
+	        POSTING_NO AS postingNo,
+	        CATEGORY AS category,
+	        TITLE AS title,
+	        CONTENT AS content,
+	        IMAGE AS imagePath,
+	        AUTHOR AS author,
+	        USER_NO AS userNo,
+	        CREATED_TIME AS createdTime,
+	        UPDATED_TIME AS updatedTime,
+	        VIEW_COUNT AS viewCount,
+	        LIKE_COUNT AS likeCount,
+	        STATUS AS status
+	    FROM POSTING
+	    WHERE POSTING_NO = #{value} AND STATUS = 'Y'
+	</select>
 
     <!-- 새로운 게시글 삽입 -->
     <insert id="insertPost" parameterType="com.cs.workdream.board.model.vo.Board">
