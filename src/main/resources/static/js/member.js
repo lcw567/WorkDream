@@ -256,8 +256,10 @@ function validateNumber(registNumber) {
             reject(false);
         } else {
             // 사업자등록번호 조회 (오픈 API 1.1.0)
+            // 서비스키
+            const serviceKey = "gOn%2FFXCdwGgJ1DcdEYhnW%2BZ%2BNfxmcUslrsWA3MYlh4FLh2aUVeHUWn8y%2BUm07ed43SjDtsNA0xNV5ry2lbN0FQ%3D%3D";
             $.ajax({
-                url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=gOn%2FFXCdwGgJ1DcdEYhnW%2BZ%2BNfxmcUslrsWA3MYlh4FLh2aUVeHUWn8y%2BUm07ed43SjDtsNA0xNV5ry2lbN0FQ%3D%3D",
+                url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=" + serviceKey,
                 type: "POST",
                 data: JSON.stringify({
                     "b_no": [registNumber]

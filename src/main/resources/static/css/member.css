@@ -621,7 +621,7 @@ header.mini > nav > ul {
 }
 
 #findMember-article-tab {
-	height: 3rem;
+	height: 4rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -634,7 +634,7 @@ header.mini > nav > ul {
 	border: 1px solid #E1DEF1;
 	border-bottom: 1px solid #000;
 	cursor: pointer;
-	line-height: 3;
+	line-height: 4;
 	text-align: center;
 	font-family: 'MonoplexKR-SemiBold';
 	font-size: 1rem;
@@ -669,27 +669,72 @@ header.mini > nav > ul {
 
 #findMember-form > table th, #findMember-form > table td {
 	height: 3rem;
+	display: inline-flex;
+	align-items: center;
 	padding: 1% 0;
 	text-align: left;
 	font-weight: normal;
 	font-size: 1rem;
 }
 
+#findMember-form > table th {
+	width: 20%;
+	justify-content: flex-start;
+}
+
+#findMember-form > table td {
+	width: 80%;
+	justify-content: space-between;
+}
+
 #findMember-form > table td input {
 	width: 100%;
 	height: 2.5rem;
 	padding: 0 3%;
-	margin-bottom: 1%;
+	border: 1px solid #000;
+    border-radius: 10px;
+    font-weight: 400;
 	font-size: 1rem;
 }
 
-#findMember-form > input[type="submit"] {
+#findMember-form > table td input::placeholder {
+	word-spacing: -0.3rem;
+	font-size: 0.8rem;
+	color: #6D47B7;
+}
+
+#findMember-form #btnConfirm {
+	width: 40%;
+	height: 2.5rem;
+	margin-left: 1%;
+	background-color: #FFD000;
+	border: 1px solid #FFD000;
+	border-radius: 10px;
+	word-spacing: -0.3rem;
+	text-align: center;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 0.8rem;
+}
+
+#findMember-form #confirm-check {
+	width: 40%;
+	height: 2.5rem;
+	margin-left: 1%;
+	line-height: 2.8;
+	text-align: center;
+	font-weight: 600;
+	font-size: 0.9rem;
+	color: #6D47B7;
+}
+
+#findMember-form #btnFindMember {
 	width: 30%;
 	height: 2.3rem;
 	background-color: #4E21A8;
 	border: 1px solid #4E21A8;
 	border-radius: 10px;
 	text-align: center;
+	font-family: 'MonoplexKR-SemiBold';
 	font-size: 0.9rem;
 	color: #FFFFFF;
 }
