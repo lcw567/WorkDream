@@ -75,7 +75,7 @@
 						<tr>
 							<th>휴대폰 번호</th>
 							<td>
-								<input type="text" name="phone" spellcheck="false" placeholder="하이픈(-)없이 숫자만 입력">
+								<input type="text" name="phone" maxlength="11" spellcheck="false" placeholder="하이픈(-)없이 숫자만 입력">
 								<button type="button" id="btnConfirm">인증번호 발송</button>
 							</td>
 						</tr>
@@ -164,7 +164,7 @@
 						<tr>
 							<th>휴대폰 번호</th>
 							<td>
-								<input type="text" name="phone" spellcheck="false" placeholder="하이픈(-)없이 숫자만 입력">
+								<input type="text" name="phone" maxlength="11" spellcheck="false" placeholder="하이픈(-)없이 숫자만 입력">
 								<button type="button" id="btnConfirm">인증번호 발송</button>
 							</td>
 						</tr>

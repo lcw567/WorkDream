@@ -663,7 +663,8 @@ header.mini > nav > ul {
 }
 
 #findMember-form > table {
-	width: 80%;
+	width: 90%;
+	max-width: 1000px;
 	margin: 4% 0;
 }
 
@@ -673,18 +674,19 @@ header.mini > nav > ul {
 	align-items: center;
 	padding: 1% 0;
 	margin-bottom: 1%;
+	white-space: nowrap;
 	text-align: left;
 	font-weight: normal;
 	font-size: 1rem;
 }
 
 #findMember-form > table th {
-	width: 20%;
+	width: 30%;
 	justify-content: flex-start;
 }
 
 #findMember-form > table td {
-	width: 80%;
+	width: 70%;
 	justify-content: space-between;
 }
 
