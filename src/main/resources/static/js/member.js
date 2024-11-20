@@ -556,7 +556,7 @@ try {
 
 /* findMember 전용 */
 try {
-    // 섹션 변경
+    // 섹션 요소 변경
     function changeFindSection() {
         const idSection = document.getElementById("findMember-section-id");
         const pwdSection = document.getElementById("findMember-section-pwd");
@@ -610,9 +610,43 @@ try {
 
     // 탭 클릭 시 아티클 변경
     function changeFindMethod(findMethod) {
+        // 입력값 초기화
+        const inputs = document.querySelectorAll("input[type='text'");
+        inputs.forEach(input => {
+            input.value = "";
+        });
+
         fm = findMethod;
         changeFindSection();
     }
+
+    // 인증번호 랜덤 생성 (6자리)
+    function generateConfirmNumber() {
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let confirmNumber = "";
+
+        for(let i = 0; i < 6; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            confirmNumber += characters[randomIndex];
+        }
+
+        return confirmNumber;
+    }
+
+    // input 입력 제한
+    const emailInputs = document.querySelectorAll("input[name='email'");
+    const phoneInputs = document.querySelectorAll("input[name='phone'");
+
+    emailInputs.forEach(input => {
+        input.addEventListener("input", (event) => {
+            replaceInputEmail(event);
+        })
+    })
+    phoneInputs.forEach(input => {
+        input.addEventListener("input", (event) => {
+            replaceInputNumber(event);
+        })
+    })
 } catch(error) {
     console.log("find-Person: ", error);
 }
