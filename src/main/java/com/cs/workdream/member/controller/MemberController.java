@@ -42,6 +42,7 @@ public class MemberController {
 	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
 	    Member loginMember = memberService.loginMember(m);
 	    System.out.println(m.toString());
+	    System.out.println("암호화: " + bcryptPasswordEncoder.encode(m.getUserPwd()));
 	    
 	    if(loginMember == null || !bcryptPasswordEncoder.matches(m.getUserPwd(), loginMember.getUserPwd())) {
 	        // 로그인 실패
