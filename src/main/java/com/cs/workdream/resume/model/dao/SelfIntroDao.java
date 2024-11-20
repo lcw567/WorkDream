@@ -8,12 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cs.workdream.resume.controller.ResumeController;
 import com.cs.workdream.resume.model.vo.SelfIntro;
 
 @Repository
 public class SelfIntroDao {
-	private static final Logger logger = LoggerFactory.getLogger(ResumeController.class);
+    private static final Logger logger = LoggerFactory.getLogger(SelfIntroDao.class);
 
     @Autowired
     private SqlSession sqlSession;

@@ -35,7 +35,7 @@
             <div class="intro-item" data-id="${intro.selfintroNo}">
                 <div class="intro-info">
                     <div class="intro-name">${intro.introTitle}</div>
-                    <div class="intro-date">${intro.createDate} 수정</div>
+                    <div class="intro-date">${intro.modifiedDate} 수정</div>
                 </div>
                 <div class="more-options">
                     <button class="more-button" aria-label="더보기">⋮</button>
