@@ -35,10 +35,9 @@
                 </div>
                 <div class="post-buttons">
                     <c:if test="${not empty currentUser and currentUser.userNo eq post.userNo}">
-					    <button class="button edit-button" aria-label="수정">수정</button>
-					    <button class="button delete-button" aria-label="삭제">삭제</button>
-					</c:if>
-
+                        <button class="button edit-button" aria-label="수정">수정</button>
+                        <button class="button delete-button" aria-label="삭제">삭제</button>
+                    </c:if>
 
                     <button class="button like-button" aria-label="공감">
                         <span role="img" aria-hidden="true">👍</span> 
@@ -66,7 +65,7 @@
                 </div>
                 <h2 class="post-title"><c:out value="${post.title}" /></h2>          
                 <c:if test="${not empty post.imagePath}">
-                    <img src="${pageContext.request.contextPath}/${post.imagePath}" alt="게시글 이미지" class="post-image">
+                    <img src="${pageContext.request.contextPath}/board/uploads/${post.imagePath}" alt="게시글 이미지" class="post-image">
                 </c:if>
                 <p class="post-text">
                     <c:out value="${post.content}" escapeXml="true" />
@@ -105,12 +104,6 @@
         </div>
     </div>
     
-    <p>현재 사용자 번호: <c:out value="${currentUser.userNo}" /></p>
-	<p>게시글 작성자 번호: <c:out value="${post.userNo}" /></p>
-	<p>조건 결과: <c:out value="${not empty currentUser and currentUser.userNo eq post.userNo}" /></p>
-
-    
-
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
-</html>   
+</html>
