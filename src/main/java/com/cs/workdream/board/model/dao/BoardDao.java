@@ -125,13 +125,75 @@ public class BoardDao {
         return sqlSession.update("boardMapper.deleteReply", replyNo);
     }
     
-    // 공감 수 증가 메서드
-    public int increaseLikeCount(SqlSessionTemplate sqlSession, int postingNo) {
-        return sqlSession.update("boardMapper.increaseLikeCount", postingNo);
+ // 게시글 공감 기록 존재 여부 확인
+    public boolean existsPostLike(SqlSessionTemplate sqlSession, int postingNo, int userNo) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("postingNo", postingNo);
+        params.put("userNo", userNo);
+        Integer count = sqlSession.selectOne("boardMapper.existsPostLike", params);
+        return count != null && count > 0;
     }
 
-    // 공감 수 감소 메서드
-    public int decreaseLikeCount(SqlSessionTemplate sqlSession, int postingNo) {
-        return sqlSession.update("boardMapper.decreaseLikeCount", postingNo);
+    // 게시글 공감 기록 삽입
+    public int insertPostLike(SqlSessionTemplate sqlSession, int postingNo, int userNo) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("postingNo", postingNo);
+        params.put("userNo", userNo);
+        return sqlSession.insert("boardMapper.insertPostLike", params);
+    }
+
+    // 게시글 공감 기록 삭제
+    public int deletePostLike(SqlSessionTemplate sqlSession, int postingNo, int userNo) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("postingNo", postingNo);
+        params.put("userNo", userNo);
+        return sqlSession.delete("boardMapper.deletePostLike", params);
+    }
+
+    // 게시글 공감 수 증가
+    public int increasePostLikeCount(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.update("boardMapper.increasePostLikeCount", postingNo);
+    }
+
+    // 게시글 공감 수 감소
+    public int decreasePostLikeCount(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.update("boardMapper.decreasePostLikeCount", postingNo);
+    }
+
+    /* 댓글 공감 관련 메서드 */
+
+    // 댓글 공감 기록 존재 여부 확인
+    public boolean existsReplyLike(SqlSessionTemplate sqlSession, int replyNo, int userNo) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("replyNo", replyNo);
+        params.put("userNo", userNo);
+        Integer count = sqlSession.selectOne("boardMapper.existsReplyLike", params);
+        return count != null && count > 0;
+    }
+
+    // 댓글 공감 기록 삽입
+    public int insertReplyLike(SqlSessionTemplate sqlSession, int replyNo, int userNo) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("replyNo", replyNo);
+        params.put("userNo", userNo);
+        return sqlSession.insert("boardMapper.insertReplyLike", params);
+    }
+
+    // 댓글 공감 기록 삭제
+    public int deleteReplyLike(SqlSessionTemplate sqlSession, int replyNo, int userNo) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("replyNo", replyNo);
+        params.put("userNo", userNo);
+        return sqlSession.delete("boardMapper.deleteReplyLike", params);
+    }
+
+    // 댓글 공감 수 증가
+    public int increaseReplyLikeCount(SqlSessionTemplate sqlSession, int replyNo) {
+        return sqlSession.update("boardMapper.increaseReplyLikeCount", replyNo);
+    }
+
+    // 댓글 공감 수 감소
+    public int decreaseReplyLikeCount(SqlSessionTemplate sqlSession, int replyNo) {
+        return sqlSession.update("boardMapper.decreaseReplyLikeCount", replyNo);
     }
 }
