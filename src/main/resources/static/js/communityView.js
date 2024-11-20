@@ -3,6 +3,49 @@ document.addEventListener("DOMContentLoaded", function() {
     const contextPath = window.contextPath; // 글로벌 변수로 설정된 contextPath 사용
     let postLikedBool = Boolean(postLiked); // 'let'으로 변경하여 재할당 가능하도록 설정
 
+    // 수정 버튼 기능
+    const editButton = document.querySelector(".edit-button");
+    if (editButton) {
+        editButton.addEventListener("click", function() {
+            const postId = new URLSearchParams(window.location.search).get('postId');
+            window.location.href = `${contextPath}/board/editPost?postId=${postId}`;
+        });
+    }
+
+    // 삭제 버튼 기능
+    const deleteButton = document.querySelector(".delete-button");
+    if (deleteButton) {
+        deleteButton.addEventListener("click", function() {
+            if (confirm("정말로 이 게시글을 삭제하시겠습니까?")) {
+                const postId = new URLSearchParams(window.location.search).get('postId');
+                fetch(`${contextPath}/board/api/posts/${postId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('네트워크 응답이 올바르지 않습니다');
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    if (result.status === "success") {
+                        alert("게시글이 삭제되었습니다.");
+                        window.location.href = `${contextPath}/board/communityList`;
+                    } else {
+                        alert("게시글 삭제에 실패했습니다: " + result.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("게시글 삭제 중 오류가 발생했습니다:", error);
+                    alert("게시글 삭제 중 오류가 발생했습니다.");
+                });
+            }
+        });
+    }
+
     // 신고 버튼 기능
     const reportButtons = document.querySelectorAll(".report-button");
     reportButtons.forEach(function(button) {
@@ -23,9 +66,17 @@ document.addEventListener("DOMContentLoaded", function() {
             if (postLikedBool) {
                 // 공감 취소 요청
                 fetch(`${contextPath}/board/api/posts/${postId}/unlike`, {
-                    method: "POST"
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('네트워크 응답이 올바르지 않습니다');
+                    }
+                    return response.json();
+                })
                 .then(result => {
                     if(result.status === "success") {
                         postLikeButton.classList.remove("liked");
@@ -36,15 +87,23 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 })
                 .catch(error => {
-                    console.error("Error unliking post:", error);
+                    console.error("공감 취소 중 오류가 발생했습니다:", error);
                     alert("공감 취소 중 오류가 발생했습니다.");
                 });
             } else {
                 // 공감 요청
                 fetch(`${contextPath}/board/api/posts/${postId}/like`, {
-                    method: "POST"
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('네트워크 응답이 올바르지 않습니다');
+                    }
+                    return response.json();
+                })
                 .then(result => {
                     if(result.status === "success") {
                         postLikeButton.classList.add("liked");
@@ -55,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 })
                 .catch(error => {
-                    console.error("Error liking post:", error);
+                    console.error("공감 중 오류가 발생했습니다:", error);
                     alert("공감 중 오류가 발생했습니다.");
                 });
             }
@@ -84,7 +143,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     },
                     body: JSON.stringify(data)
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('네트워크 응답이 올바르지 않습니다');
+                    }
+                    return response.json();
+                })
                 .then(result => {
                     if(result.status === "success") {
                         // 댓글이 성공적으로 등록되면 댓글 목록을 새로고침
@@ -95,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 })
                 .catch(error => {
-                    console.error("Error adding reply:", error);
+                    console.error("댓글 등록 중 오류가 발생했습니다:", error);
                     alert("댓글 등록 중 오류가 발생했습니다.");
                 });
             } else {
@@ -131,9 +195,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
                     // AJAX를 통해 댓글 삭제 요청
                     fetch(`${contextPath}/board/api/replies/${replyNo}`, {
-                        method: "DELETE"
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('네트워크 응답이 올바르지 않습니다');
+                        }
+                        return response.json();
+                    })
                     .then(result => {
                         if(result.status === "success") {
                             comment.remove();
@@ -147,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                     })
                     .catch(error => {
-                        console.error("Error deleting reply:", error);
+                        console.error("댓글 삭제 중 오류가 발생했습니다:", error);
                         alert("댓글 삭제 중 오류가 발생했습니다.");
                     });
                 }
@@ -160,13 +232,18 @@ document.addEventListener("DOMContentLoaded", function() {
         const postId = new URLSearchParams(window.location.search).get('postId');
 
         fetch(`${contextPath}/board/api/replies?postId=${postId}`)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('네트워크 응답이 올바르지 않습니다');
+                }
+                return response.json();
+            })
             .then(data => {
-                console.log('Received data:', data); // 디버깅용 로그
+                console.log('받은 데이터:', data); // 디버깅용 로그
                 populateReplies(data.replies);
                 setReplyCount(data.replies.length);
             })
-            .catch(error => console.error("Error loading replies:", error));
+            .catch(error => console.error("댓글 목록 불러오기 중 오류가 발생했습니다:", error));
     }
 
     // 댓글 목록 업데이트 함수
@@ -220,13 +297,6 @@ document.addEventListener("DOMContentLoaded", function() {
         };
         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
     } 
-
-    // 날짜 형식 지정 함수
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        if(isNaN(date)) return 'Invalid Date';
-        return date.toLocaleString();
-    }
 
     // 날짜 형식 지정 함수
     function formatDate(dateString) {
