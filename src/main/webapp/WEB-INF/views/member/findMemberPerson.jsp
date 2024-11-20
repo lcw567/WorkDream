@@ -43,11 +43,22 @@
 						</tr>
 						<tr>
 							<th>이메일 주소</th>
-							<td><input type="email" name="email" spellcheck="false" placeholder="example@workdream.co.kr" required></td>
+							<td>
+								<input type="email" name="email" spellcheck="false" placeholder="example@workdream.co.kr" required>
+								<button type="button" id="btnConfirm">인증번호 발송</button>
+							</td>
+						</tr>
+						<tr>
+							<th>인증번호</th>
+							<td>
+								<input type="text">
+								<div id="confirm-check">미인증</div>
+							</td>
+							
 						</tr>
 					</table>
 					
-					<input type="submit" id="btnFindMember" value="조회">
+					<input type="submit" id="btnFindMember" value="아이디 조회">
 				</form>
 			</article>
 			
