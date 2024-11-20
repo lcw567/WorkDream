@@ -2,15 +2,20 @@ package com.cs.workdream.resume.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cs.workdream.resume.controller.ResumeController;
 import com.cs.workdream.resume.model.dao.SelfIntroDao;
 import com.cs.workdream.resume.model.vo.SelfIntro;
 @Service
 
 public class SelfIntroServiceImpl implements SelfIntroService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ResumeController.class);
 
     @Autowired
     private SelfIntroDao selfIntroDao;
@@ -32,13 +37,18 @@ public class SelfIntroServiceImpl implements SelfIntroService {
     }
 
     @Override
-    public void updateSelfIntro(SelfIntro intro) {
-        selfIntroDao.updateSelfIntro(intro);
+    @Transactional
+    public void updateSelfIntro(SelfIntro selfIntro) {
+        logger.info("Updating SelfIntro in service layer: {}", selfIntro);
+        selfIntroDao.updateSelfIntro(selfIntro);
+        logger.info("SelfIntro updated successfully in service layer for id: {}", selfIntro.getSelfintroNo());
     }
 
 	@Override
-	public SelfIntro findIntroById(int id) {
-		return selfIntroDao.selectSelfIntroById(id); 
+	public SelfIntro getSelfIntroById(Integer selfintroNo) {
+		return selfIntroDao.selectSelfIntroById(selfintroNo);
 	}
+
+
 }
 

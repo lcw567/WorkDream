@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +28,11 @@ import com.cs.workdream.resume.service.SelfIntroService;
 public class ResumeController {
 
 	private final ResumeService resumeService;
+	private static final Logger logger = LoggerFactory.getLogger(ResumeController.class);
 
     @Autowired
     private SelfIntroService selfIntroService;
+    
     public ResumeController(ResumeService resumeService) {
         this.resumeService = resumeService;
     }
@@ -57,7 +61,14 @@ public class ResumeController {
     public String showSelfIntroForm() {
         return "resume/selfIntro";
     }
-
+    
+    @GetMapping("/editIntro")
+    public String showEditSelfIntro(@RequestParam("id") Integer selfintroNo, Model model) {
+        SelfIntro selfIntro = selfIntroService.getSelfIntroById(selfintroNo);
+        model.addAttribute("selfIntro", selfIntro);
+        return "resume/editselfIntro"; // JSP 파일 이름과 경로 확인
+    }
+    
     
     @RequestMapping(value = "/insert_intro", method = RequestMethod.POST)
     public String insertSelfIntro(@RequestParam("intro_name") String introTitle,
@@ -67,7 +78,7 @@ public class ResumeController {
         Member loginUser = (Member) session.getAttribute("loginUser");
         if (loginUser == null) {
             return "redirect:/login?error=sessionExpired";
-        }
+        } 
 
         SelfIntro selfIntro = new SelfIntro();
         selfIntro.setUserId(loginUser.getUserId());
@@ -118,4 +129,17 @@ public class ResumeController {
             return "redirect:/errorPage";
         }
     }
+    
+    @PostMapping("/update_intro")
+    public String updateSelfIntro(@ModelAttribute SelfIntro selfIntro, Model model) {
+        logger.info("Updating SelfIntro: {}", selfIntro);
+        if (selfIntro.getSelfintroNo() == null) {
+            logger.error("selfintroNo is null. Update failed.");
+            return "redirect:/errorPage"; // 적절한 에러 페이지로 리다이렉트
+        }
+        selfIntroService.updateSelfIntro(selfIntro);
+        logger.info("SelfIntro updated successfully for id: {}", selfIntro.getSelfintroNo());
+        return "redirect:/resume/selfIntroDashboard"; // 리다이렉션할 URL 확인
+    }
+
 }

@@ -40,11 +40,11 @@
                 <div class="more-options">
                     <button class="more-button" aria-label="더보기">⋮</button>
                     <div class="dropdown-menu">
-                        <form action="/editIntro" method="get">
+                        <form action="editIntro" method="get">
                             <input type="hidden" name="id" value="${intro.selfintroNo}">
                             <button type="submit" class="edit-button">수정</button>
                         </form>                                             
-                        <form action="/deleteIntro" method="post" >
+                        <form action="deleteIntro" method="post" >
                             <input type="hidden" name="id" value="${selfIntro.selfintroNo}">
                             <button type="submit" class="delete-button">삭제</button>
                         </form>

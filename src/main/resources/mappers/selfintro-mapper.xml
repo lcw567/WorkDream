@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.cs.workdream.resume.mapper.SelfIntroMapper">
+<mapper namespace="com.cs.workdream.resume.mapper.selfintro-mapper">
 
-    <resultMap type="SelfIntro" id="selfintroResultSet">
+    <!-- ResultMap 수정: 완전한 패키지 경로 추가 -->
+    <resultMap type="com.cs.workdream.resume.model.vo.SelfIntro" id="selfintroResultSet">
         <result column="SELF_INTRODUCTION_NO" property="selfintroNo" />
         <result column="RESUME_NO" property="resumeNo" />
         <result column="USER_ID" property="userId" />
@@ -15,57 +16,12 @@
         <result column="PERSON_NO" property="personNo" />
     </resultMap>
     
-    
+    <!-- Insert 매핑 -->
     <insert id="insertSelfIntro" parameterType="com.cs.workdream.resume.model.vo.SelfIntro">
         <selectKey keyProperty="selfintroNo" resultType="int" order="BEFORE">
             SELECT SELF_INTRO_SEQ.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO SELF_INTRODUCTION (
-        SELF_INTRODUCTION_NO,
-        RESUME_NO,
-        USER_ID,
-        TITLE,
-        CONTENT,
-        CREATED_DATE,
-        MODIFIED_DATE,
-        DELETED
-    ) VALUES (
-        #{selfintroNo},    -- SELF_INTRODUCTION_NO
-        1,       -- RESUME_NO
-        #{userId},         -- USER_ID
-        #{introTitle},     -- TITLE
-        #{introContent},   -- CONTENT
-        SYSDATE,           -- CREATED_DATE
-        NULL,              -- MODIFIED_DATE
-        'N'               -- DELETED
-    )
-    </insert>
-
-	<select id="selectSelfIntroList" parameterType="String" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
-	    SELECT SELF_INTRODUCTION_NO AS selfintroNo,
-	           RESUME_NO AS resumeNo,
-	           USER_ID AS userId,
-	           TITLE AS introTitle,
-	           CREATED_DATE AS createDate
-	    FROM SELF_INTRODUCTION
-	    WHERE USER_ID = #{userId}
-	      AND DELETED = 'N'
-	    ORDER BY CREATED_DATE DESC
-	</select>
-	
-	<!-- SelfIntroMapper.xml -->
-
-	<update id="deleteSelfIntro" parameterType="int">
-	    UPDATE SELF_INTRODUCTION
-	    SET DELETED = 'Y'
-	    WHERE SELF_INTRODUCTION_NO = #{selfIntroNo}
-	      AND DELETED = 'N'
-	</update>
-
-	<!-- SelfIntroMapper.xml -->
-
-   <select id="selectSelfIntroById" resultMap="selfintroResultSet">
-        SELECT 
             SELF_INTRODUCTION_NO,
             RESUME_NO,
             USER_ID,
@@ -73,10 +29,50 @@
             CONTENT,
             CREATED_DATE,
             MODIFIED_DATE,
-            DELETED,
-            PERSON_NO
+            DELETED
+        ) VALUES (
+            #{selfintroNo},    -- SELF_INTRODUCTION_NO
+            1,                 -- RESUME_NO
+            #{userId},         -- USER_ID
+            #{introTitle},     -- TITLE
+            #{introContent},   -- CONTENT
+            SYSDATE,           -- CREATED_DATE
+            NULL,              -- MODIFIED_DATE
+            'N'                -- DELETED
+        )
+    </insert>
+
+    <!-- Select 리스트 매핑 -->
+    <select id="selectSelfIntroList" parameterType="String" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
+        SELECT 
+            SELF_INTRODUCTION_NO AS selfintroNo,
+            RESUME_NO AS resumeNo,
+            USER_ID AS userId,
+            TITLE AS introTitle,
+            CREATED_DATE AS createDate
         FROM SELF_INTRODUCTION
-        WHERE SELF_INTRODUCTION_NO = #{id} AND DELETED = 'N'
+        WHERE USER_ID = #{userId}
+          AND DELETED = 'N'
+        ORDER BY CREATED_DATE DESC
     </select>
+    
+    <!-- Delete 매핑 -->
+    <update id="deleteSelfIntro" parameterType="int">
+        UPDATE SELF_INTRODUCTION
+        SET DELETED = 'Y'
+        WHERE SELF_INTRODUCTION_NO = #{selfIntroNo}
+          AND DELETED = 'N'
+    </update>
+
+   <update id="updateSelfIntro" parameterType="com.cs.workdream.resume.model.vo.SelfIntro">
+    UPDATE SELF_INTRODUCTION
+    SET 
+        TITLE = #{introTitle},
+        CONTENT = #{introContent},
+        MODIFIED_DATE = SYSDATE
+    WHERE 
+        SELF_INTRODUCTION_NO = #{selfintroNo}
+        AND DELETED = 'N'
+</update>
 
 </mapper>
