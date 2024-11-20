@@ -212,7 +212,6 @@
             TITLE = #{title},
             CONTENT = #{content},
             IMAGE = #{imagePath},
-            VIEW_COUNT = #{viewCount},
             UPDATED_TIME = SYSDATE
         WHERE POSTING_NO = #{postingNo} AND STATUS = 'Y'
     </update>

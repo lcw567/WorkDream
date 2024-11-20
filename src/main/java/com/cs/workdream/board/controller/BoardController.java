@@ -30,10 +30,6 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
-    // -------------------
-    // 웹 뷰 관련 메서드
-    // -------------------
-
     // 커뮤니티 홈 페이지 표시
     @GetMapping("/communityHome")
     public String showCommunityHome() {
@@ -308,48 +304,111 @@ public class BoardController {
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
+    // **게시글 수정 API 수정됨 (PUT에서 POST로 변경)**
     // 게시글 수정 API (REST API)
-    @PutMapping("/api/posts/{postingNo}")
+    @PostMapping("/api/posts/{postingNo}/update")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> updatePost(
             @PathVariable("postingNo") int postingNo,
-            @RequestBody Board board,
+            @RequestParam("category") String category,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestParam(value="image", required=false) MultipartFile image,
+            @RequestParam(value="jobs", required=false) List<String> jobs,
+            @RequestParam(value="hashtags", required=false) List<String> hashtags,
             HttpSession session) {
 
         Map<String, Object> response = new HashMap<>();
-        Member currentUser = (Member) session.getAttribute("loginUser");
-        if(currentUser == null) {
-            response.put("status", "fail");
-            response.put("message", "로그인이 필요합니다.");
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
-        }
-        int currentUserNo = currentUser.getUserNo();
 
-        // 게시글 정보 조회
-        Board existingPost = boardService.getPost(postingNo);
-        if (existingPost == null || !"Y".equals(existingPost.getStatus())) {
-            response.put("status", "fail");
-            response.put("message", "게시글을 찾을 수 없습니다.");
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-        }
+        try {
+            // 현재 사용자 정보 가져오기 (로그인 사용자 정보)
+            Member currentUser = (Member) session.getAttribute("loginUser");
+            if(currentUser == null) {
+                response.put("status", "fail");
+                response.put("message", "로그인이 필요합니다.");
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            }
+            int userNo = currentUser.getUserNo();
 
-        // 작성자 확인
-        if (existingPost.getUserNo() != currentUserNo) {
-            response.put("status", "fail");
-            response.put("message", "본인의 게시글만 수정할 수 있습니다.");
-            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
-        }
+            // 게시글 정보 조회
+            Board existingPost = boardService.getPostWithJobCategories(postingNo);
+            if(existingPost == null || !"Y".equals(existingPost.getStatus())) {
+                response.put("status", "fail");
+                response.put("message", "게시글을 찾을 수 없습니다.");
+                return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            }
 
-        // 게시글 수정
-        board.setPostingNo(postingNo); // 경로 변수로 받은 postingNo 설정
-        int result = boardService.updatePost(board);
-        if (result > 0) {
-            response.put("status", "success");
-            response.put("message", "게시글이 수정되었습니다.");
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } else {
-            response.put("status", "fail");
-            response.put("message", "게시글 수정에 실패했습니다.");
+            // 작성자 확인
+            if(existingPost.getUserNo() != userNo) {
+                response.put("status", "fail");
+                response.put("message", "본인의 게시글만 수정할 수 있습니다.");
+                return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+            }
+
+            // 이미지 업로드 처리 (기존 이미지 유지 또는 새로운 이미지로 대체)
+            String imagePath = existingPost.getImagePath(); // 기존 이미지 경로 유지
+            if(image != null && !image.isEmpty()) {
+                // 업로드 디렉토리 설정
+                String uploadDir = session.getServletContext().getRealPath("/uploads/");
+                if (uploadDir == null) {
+                    // getRealPath가 null을 반환하는 경우 대비
+                    uploadDir = System.getProperty("user.dir") + "/uploads/";
+                }
+                File dir = new File(uploadDir);
+                if (!dir.exists()) {
+                    dir.mkdirs(); // 디렉토리 생성
+                }
+                String originalFilename = image.getOriginalFilename();
+                String uniqueFilename = System.currentTimeMillis() + "_" + originalFilename;
+                File dest = new File(dir, uniqueFilename);
+                image.transferTo(dest);
+                imagePath = "/uploads/" + uniqueFilename;
+
+                // 기존 이미지 파일 삭제 (선택 사항)
+                if(existingPost.getImagePath() != null) {
+                    File oldImage = new File(session.getServletContext().getRealPath(existingPost.getImagePath()));
+                    if(oldImage.exists()) {
+                        oldImage.delete();
+                    }
+                }
+
+                // 업로드 경로 로그 출력
+                System.out.println("Upload Directory: " + uploadDir);
+            }
+
+            // Board 객체 생성 및 업데이트할 필드 설정
+            Board board = new Board();
+            board.setPostingNo(postingNo);
+            board.setCategory(category);
+            board.setTitle(title);
+            board.setContent(content);
+            board.setImagePath(imagePath);
+            board.setUserNo(userNo);
+            board.setJobCategories(jobs);
+            board.setHashtags(hashtags);
+            board.setStatus("Y"); // 상태 유지
+
+            // 게시글 업데이트
+            int result = boardService.updatePost(board);
+            if(result > 0) {
+                response.put("status", "success");
+                response.put("message", "게시글이 수정되었습니다.");
+                response.put("postId", postingNo);
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+                response.put("status", "fail");
+                response.put("message", "게시글 수정에 실패했습니다.");
+                return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            }
+        } catch(IOException e) {
+            e.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "이미지 업로드 중 오류가 발생했습니다: " + e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch(Exception e) {
+            e.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "서버 오류가 발생했습니다: " + e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
