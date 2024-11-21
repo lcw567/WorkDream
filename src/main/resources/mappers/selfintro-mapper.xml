@@ -43,48 +43,48 @@
     </insert>
 
     <!-- Select 리스트 매핑 -->
-    <select id="selectSelfIntroList" parameterType="String" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
-    SELECT 
-        SELF_INTRODUCTION_NO AS selfintroNo,
-        RESUME_NO AS resumeNo,
-        USER_ID AS userId,
-        TITLE AS introTitle,
-        CONTENT AS introContent,
-        CREATED_DATE AS createDate,
-        MODIFIED_DATE AS modifiedDate,
-        DELETED AS deleted,
-        PERSON_NO AS personNo
-    FROM SELF_INTRODUCTION
-    WHERE USER_ID = #{userId}
-      AND DELETED = 'N'
-    ORDER BY CREATED_DATE DESC
-</select>
+   <select id="selectSelfIntroList" parameterType="String" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
+	    SELECT 
+	        SELF_INTRODUCTION_NO AS selfintroNo,
+	        RESUME_NO AS resumeNo,
+	        USER_ID AS userId,
+	        TITLE AS introTitle,
+	        CONTENT AS introContent,
+	        CREATED_DATE AS createDate,
+	        MODIFIED_DATE AS modifiedDate,
+	        DELETED AS deleted,
+	        PERSON_NO AS personNo
+	    FROM SELF_INTRODUCTION
+	    WHERE USER_ID = #{userId}
+	      AND DELETED = 'N'
+	    ORDER BY CREATED_DATE DESC
+	</select>
 
     
     <!-- Select by ID 매핑 추가 -->
-    <select id="selectSelfIntroById" parameterType="int" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
-        SELECT 
-            SELF_INTRODUCTION_NO AS selfintroNo,
-            RESUME_NO AS resumeNo,
-            USER_ID AS userId,
-            TITLE AS introTitle,
-            CONTENT AS introContent,
-            CREATED_DATE AS createDate,
-            MODIFIED_DATE AS modifiedDate,
-            DELETED AS deleted,
-            PERSON_NO AS personNo
-        FROM SELF_INTRODUCTION
-        WHERE SELF_INTRODUCTION_NO = #{selfintroNo}
-          AND DELETED = 'N'
-    </select>
+   <select id="selectSelfIntroById" parameterType="int" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
+	    SELECT 
+	        SELF_INTRODUCTION_NO AS selfintroNo,
+	        RESUME_NO AS resumeNo,
+	        USER_ID AS userId,
+	        TITLE AS introTitle,
+	        CONTENT AS introContent,
+	        CREATED_DATE AS createDate,
+	        MODIFIED_DATE AS modifiedDate,
+	        DELETED AS deleted,
+	        PERSON_NO AS personNo
+	    FROM SELF_INTRODUCTION
+	    WHERE SELF_INTRODUCTION_NO = #{value}
+	      AND DELETED = 'N'
+	</select>
 
     <!-- Delete 매핑 -->
     <update id="deleteSelfIntro" parameterType="int">
-        UPDATE SELF_INTRODUCTION
-        SET DELETED = 'Y'
-        WHERE SELF_INTRODUCTION_NO = #{selfIntroNo}
-          AND DELETED = 'N'
-    </update>
+	    UPDATE SELF_INTRODUCTION
+	    SET DELETED = 'Y'
+	    WHERE SELF_INTRODUCTION_NO = #{value}
+	      AND DELETED = 'N'
+	</update>
 
     <!-- Update 매핑 -->
     <update id="updateSelfIntro" parameterType="com.cs.workdream.resume.model.vo.SelfIntro">
