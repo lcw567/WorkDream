@@ -8,15 +8,26 @@
     <title>구직자 마이페이지</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicantsMypage.css">
+    
+    <!-- 컨텍스트 패스를 JavaScript로 전달 -->
+    <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
     <script src="${pageContext.request.contextPath}/js/applicantsMypage.js" defer></script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div class="main-container">
         <section class="applicants-name">
-            <h2>구직자명</h2>
+            <c:if test="${not empty loginUser}">
+                <h2>${loginUser.userId}</h2>
+            </c:if>
+            <c:if test="${empty loginUser}">
+                <h2>로그인이 필요합니다</h2>
+            </c:if>
             <button class="messenger">메신저</button>
         </section>
+
         <section class="tag-container">
             <div class="tag-title">
                 <h2>관심태그</h2>
@@ -24,7 +35,10 @@
             </div>
             <div class="tags">
                 <div class="tag-group">
-
+                    <!-- 서버에서 현재 사용자의 관심태그를 불러와 표시 -->
+                    <c:forEach var="tag" items="${userTags}">
+                        <button class="tag">${tag.tagName}</button>
+                    </c:forEach>
                 </div>
                 <button class="tag all">관심태그 전체보기</button>
             </div>
@@ -36,28 +50,16 @@
                 <button class="add-button" onclick="location.href='${pageContext.request.contextPath}/person/applicationmanage'">+</button>
             </div>
             <div class="status-cards">
-                <div class="status-card">
-                    <span>서류 통과</span>
-                    <p>0</p>
-                </div>
-                <div class="status-card">
-                    <span>면접 대기</span>
-                    <p>0</p>
-                </div>
-                <div class="status-card">
-                    <span>최종 결과</span>
-                    <p>0</p>
-                </div>
-                <div class="status-card">
-                    <span>합격</span>
-                    <p>0</p>
-                </div>
+                <div class="status-card"><span>서류 통과</span><p>0</p></div>
+                <div class="status-card"><span>면접 대기</span><p>0</p></div>
+                <div class="status-card"><span>최종 결과</span><p>0</p></div>
+                <div class="status-card"><span>합격</span><p>0</p></div>
             </div>
         </section>
         
         <section class="banner-section">
             <div class="banner">
-                <img src= "${pageContext.request.contextPath}/img/lineBanner.PNG" alt="Line Banner">             
+                <img src="${pageContext.request.contextPath}/img/lineBanner.PNG" alt="Line Banner">             
             </div>
         </section>
 
@@ -94,8 +96,8 @@
         </section>
     </div>
     
-
-    <div class="tag-edit-popup">
+    <!-- 관심태그 수정 팝업 -->
+    <div class="tag-edit-popup" style="display: none;">
         <div class="title-popup">
             <h2>관심태그 수정</h2>
             <button class="close-button">&times;</button>
@@ -106,7 +108,13 @@
                 <button class="add-tag-button">관심태그 추가</button>
             </div>
             <div class="tag-list">
-
+                <!-- 현재 수정 중인 태그 목록 -->
+                <!-- 태그 아이템은 JavaScript로 추가 -->
+                <c:forEach var="tag" items="${userTags}">
+                    <div class="tag-item">
+                        ${tag.tagName} <span class="remove-tag">&times;</span>
+                    </div>
+                </c:forEach>
             </div>
         </div>
         <div class="save-tag">
@@ -114,7 +122,6 @@
         </div>
     </div>
 
+    <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
-
-</html>
-<c:import url="/WEB-INF/views/common/footer.jsp" />
+</html>   

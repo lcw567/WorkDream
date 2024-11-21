@@ -100,6 +100,7 @@ body {
     gap: 10px;
 }
 
+/* 수정된 태그 그룹 스타일 */
 .tag-group {
     display: flex;
     flex-wrap: nowrap;
@@ -113,17 +114,12 @@ body {
     overflow: visible; /* 모든 태그 표시 */
 }
 
-.tag-group.show-all .tag {
-    flex: 0 0 23%; /* 한 줄에 4개씩 */
-}
-
-
+/* 수정된 태그 스타일 */
 .tag {
-	flex: 0 0 23%;
+    flex: 0 0 calc(25% - 10px); /* 한 줄에 4개씩 정렬 */
     background-color: #B4A3DB;
     border: none;
     padding: 15px 20px;
-    flex: 1;
     text-align: center;
     border-radius: 15px;
     cursor: pointer;
@@ -139,6 +135,7 @@ body {
     transform: scale(1.02);
 }
 
+/* 수정된 전체보기 버튼 스타일 */
 .all {
     background-color: #4b2e83;
     color: white;
@@ -268,9 +265,6 @@ body {
     transition: box-shadow 0.3s;
 }
 
-
-
-
 /* 관심태그 팝업 스타일링 */
 .tag-edit-popup {
     position: fixed;
@@ -342,9 +336,10 @@ body {
     background-color: #6a4da4;
 }
 
+/* 수정된 태그 리스트 스타일 */
 .tag-edit-popup .tag-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개씩 */
     gap: 8px;
 }
 
@@ -391,4 +386,30 @@ body {
 
 .tag-edit-popup .save-tag .save-button:hover {
     background-color: #6a4da4;
+}
+
+/* 로딩 인디케이터 스타일 */
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4b2e83;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+/* 접근성 개선 */
+.tag:focus, .edit-tag:focus, .save-button:focus, .remove-tag:focus {
+    outline: 2px solid #6a4da4;
+    outline-offset: 2px;
 }

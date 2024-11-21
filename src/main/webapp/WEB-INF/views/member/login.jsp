@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%
-	String userType = request.getParameter("ut");
-	if(userType == null) {
-		userType = "P";
-	}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +10,9 @@
 	
 	<!-- css / js 연결 -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member.css">
-	<script>let ut = "<%=userType%>"</script>
+	<script>
+		let ut = '<c:out value="${ut}" />' || "P";
+	</script>
 	<script src="${pageContext.request.contextPath}/js/member.js" defer></script>
 </head>
 <body>
