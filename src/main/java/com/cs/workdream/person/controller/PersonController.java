@@ -13,10 +13,6 @@ import com.cs.workdream.member.model.vo.Member;
 @RequestMapping("/person")
 public class PersonController {
 	
-	@GetMapping("/applicantsMypage")
-    public String applicantsMypage() {
-        return "person/applicantsMypage"; // applicantsMypage.jsp
-    }
 
 	@GetMapping("/applicationmanage")
 	public String applicationmanage() {

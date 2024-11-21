@@ -66,10 +66,6 @@ public class BusinessController {
         return "business/bookmarkList";
     }
     
-    @GetMapping("/businessMypage")
-    public String businessMypage() {
-        return "business/businessMypage";
-    }
     
     @GetMapping("/businessProfilePost")
     public String businessProfilePost() {
