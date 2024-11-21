@@ -14,18 +14,24 @@
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div class="main-container">
         <section class="applicants-name">
-            <h2>구직자명</h2>
-            <button class="messenger">메신저</button>
-        </section>
+		    <c:if test="${not empty loginUser}">
+		        <h2>${loginUser.userId}</h2>
+		    </c:if>
+		    <c:if test="${empty loginUser}">
+		        <h2>로그인이 필요합니다</h2>
+		    </c:if>
+		    <button class="messenger">메신저</button>
+		</section>
+
+
+        
         <section class="tag-container">
             <div class="tag-title">
                 <h2>관심태그</h2>
                 <button class="edit-tag">관심태그 수정</button>
             </div>
             <div class="tags">
-                <div class="tag-group">
-
-                </div>
+                <div class="tag-group"></div>
                 <button class="tag all">관심태그 전체보기</button>
             </div>
         </section>
@@ -36,28 +42,16 @@
                 <button class="add-button" onclick="location.href='${pageContext.request.contextPath}/person/applicationmanage'">+</button>
             </div>
             <div class="status-cards">
-                <div class="status-card">
-                    <span>서류 통과</span>
-                    <p>0</p>
-                </div>
-                <div class="status-card">
-                    <span>면접 대기</span>
-                    <p>0</p>
-                </div>
-                <div class="status-card">
-                    <span>최종 결과</span>
-                    <p>0</p>
-                </div>
-                <div class="status-card">
-                    <span>합격</span>
-                    <p>0</p>
-                </div>
+                <div class="status-card"><span>서류 통과</span><p>0</p></div>
+                <div class="status-card"><span>면접 대기</span><p>0</p></div>
+                <div class="status-card"><span>최종 결과</span><p>0</p></div>
+                <div class="status-card"><span>합격</span><p>0</p></div>
             </div>
         </section>
         
         <section class="banner-section">
             <div class="banner">
-                <img src= "${pageContext.request.contextPath}/img/lineBanner.PNG" alt="Line Banner">             
+                <img src="${pageContext.request.contextPath}/img/lineBanner.PNG" alt="Line Banner">             
             </div>
         </section>
 
@@ -92,7 +86,6 @@
         </section>
     </div>
     
-
     <div class="tag-edit-popup">
         <div class="title-popup">
             <h2>관심태그 수정</h2>
@@ -103,16 +96,12 @@
                 <input type="text" placeholder="관심태그를 입력하세요..." class="tag-input">
                 <button class="add-tag-button">관심태그 추가</button>
             </div>
-            <div class="tag-list">
-
-            </div>
+            <div class="tag-list"></div>
         </div>
         <div class="save-tag">
             <button class="save-button">관심태그 저장하기</button>
         </div>
     </div>
-
 </body>
-
 </html>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
