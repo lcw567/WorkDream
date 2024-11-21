@@ -2,11 +2,14 @@ package com.cs.workdream.resume.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -118,15 +121,31 @@ public class ResumeController {
     }
 
     @RequestMapping(value = "/deleteIntro", method = RequestMethod.POST)
-    public String deleteSelfIntro(@RequestParam("id") int selfintroNo, HttpSession session) {
-        System.out.println("Controller: Deleting SelfIntro with ID: " + selfintroNo); // 로그 추가
+    public Object deleteSelfIntro(@RequestParam("id") int selfintroNo, HttpServletRequest request) {
+        logger.info("Controller: Deleting SelfIntro with ID: {}", selfintroNo);
         int result = selfIntroService.deleteSelfIntro(selfintroNo);
-        System.out.println("Controller delete result: " + result); // 로그 추가
+        logger.info("Controller delete result: {}", result);
 
-        if (result > 0) {
-            return "redirect:/resume/selfIntroDashboard";
+        // AJAX 요청인지 확인
+        String requestedWith = request.getHeader("X-Requested-With");
+        logger.info("Requested-With header: {}", requestedWith);
+
+        if ("XMLHttpRequest".equals(requestedWith)) {
+            if (result > 0) {
+                logger.info("AJAX request: Deletion successful.");
+                return ResponseEntity.ok("success");
+            } else {
+                logger.warn("AJAX request: Deletion failed.");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error");
+            }
         } else {
-            return "redirect:/errorPage";
+            if (result > 0) {
+                logger.info("Non-AJAX request: Deletion successful. Redirecting to selfIntroDashboard.");
+                return "redirect:/resume/selfIntroDashboard";
+            } else {
+                logger.warn("Non-AJAX request: Deletion failed. Redirecting to errorPage.");
+                return "redirect:/errorPage";
+            }
         }
     }
     

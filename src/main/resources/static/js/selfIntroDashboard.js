@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // 삭제 버튼 클릭 처리
             if (target.classList.contains('delete-button')) {
+                e.preventDefault(); // 폼 제출 방지
+
                 const introItem = target.closest('.intro-item');
                 if (!introItem) return;
 
@@ -47,12 +49,20 @@ document.addEventListener('DOMContentLoaded', function () {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-Requested-With': 'XMLHttpRequest', // AJAX 요청임을 명시
                             ...(csrfToken && csrfHeader ? { [csrfHeader]: csrfToken } : {})
                         },
                         body: `id=${encodeURIComponent(introId)}`
                     })
-                    .then(response => response.text())
+                    .then(response => {
+                        if (response.ok) {
+                            return response.text();
+                        } else {
+                            throw new Error('삭제 요청 실패');
+                        }
+                    })
                     .then(data => {
+                        console.log('Server response:', data); // 로그 추가
                         if (data.trim() === 'success') {
                             // 삭제 성공 시 클라이언트 측에서 항목 제거
                             introItem.remove();
