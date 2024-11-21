@@ -81,7 +81,7 @@ public class ResumeServiceImpl implements ResumeService {
             // 학력 정보 저장
             if (resume.getEducations() != null) {
                 for (AcademicAbility edu : resume.getEducations()) {
-                    edu.setResumeId(resumeId);
+                    edu.setResumeNo(resumeId);
                     resumeDao.insertEducation(edu);
                 }
             }
@@ -121,7 +121,7 @@ public class ResumeServiceImpl implements ResumeService {
             // 취업 우대 사항 저장
             EmploymentPreferences preferences = resume.getEmploymentPreferences();
             if (preferences != null) {
-                preferences.setResumeId(resumeId);
+                preferences.setResumeNo(resumeId);
                 resumeDao.insertEmploymentPreferences(preferences);
             }
 
