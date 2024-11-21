@@ -39,5 +39,18 @@ public class MemberDao {
 	    // personNo나 businessNo가 설정된 후 insertMember 호출
 	    return sqlSession.insert("memberMapper.insertMember", m);
 	}
+
+	public Member findMemberId(SqlSessionTemplate sqlSession, Member m, String method) {
+		if("email".equals(method)) {
+			// 이메일로 찾기
+			return sqlSession.selectOne("memberMapper.findMemberId", m);
+		} else if("phone".equals(method)) {
+			// 휴대폰으로 찾기
+			return null;
+		} else {
+			// 사업자등록번호로 찾기
+			return null;
+		}
+	}
 	
 }
