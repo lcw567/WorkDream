@@ -178,7 +178,22 @@ public class MemberController {
 	
 	// 비밀번호 조회
 	@RequestMapping("/findPwd.me")
-	public ModelAndView findMemberPwd(Member m, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
-		return null;
+	public ModelAndView findMemberPwd(Member m, HttpServletRequest request, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
+		String method = request.getParameter("fm");
+		
+		Member findMember = memberService.findMemberPwd(m, method);
+	    System.out.println(m.toString());
+	    
+	    if(findMember == null) {
+	    	// 조회 실패
+	        mv.addObject("errorMsg", "일치하는 회원 정보가 없습니다.");
+	        mv.addObject("location", "/login");
+	        mv.setViewName("common/errorPage");
+	    } else {
+	    	// 조회 성공
+	    	mv.setViewName("member/login");
+	    }
+	    
+	    return mv;
 	}
 }
