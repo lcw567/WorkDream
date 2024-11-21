@@ -94,4 +94,12 @@
 			</choose>
 		)
 	</insert>
+	
+	<!-- 회원 아이디 조회 -->
+	<select id="findMemberId" parameterType="Member" resultMap="memberResultSet">
+		SELECT	USER_NO, USER_TYPE, USER_ID
+		  FROM	MEMBER
+		 WHERE	USER_TYPE = #{userType}
+		   AND	EMIAL = #{email}
+	</select>
 </mapper>
