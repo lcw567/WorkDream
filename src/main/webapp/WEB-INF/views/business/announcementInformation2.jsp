@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -81,14 +82,17 @@
             <p style="margin-top: 0px; color: #757575; font-weight: 200;">최대 5개까지 추가 가능합니다.</p>
 
             <div>
-                <div class="Job_duty">
-                    <p>사원 / 경력 O년~ O년 / 학력 - 4년제 대학 졸업 / 채용시 협의</p>
-                    <button><img src="${pageContext.request.contextPath}/img/letter-x_9215129.png" style="width: 25px; height: 25px;"></button>
-                </div>
-                <button class="Add_Duty" id="addDutyButton">
-                    <img src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png">
-                    <p>직무 추가</p>
-                </button>
+    <div class="Job_duty">
+        <p id="jobDataDisplay"></p>
+        <button>
+            <img src="${pageContext.request.contextPath}/img/letter-x_9215129.png" style="width: 25px; height: 25px;">
+        </button>
+    </div>
+
+    <button class="Add_Duty" id="addDutyButton">
+        <img src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png">
+        <p>직무 추가</p>
+    </button>
             </div>
 
            <div class="Contact_Announcement_Information_Title">
