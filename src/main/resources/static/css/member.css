@@ -719,6 +719,10 @@ header.mini > nav > ul {
 	font-size: 0.8rem;
 }
 
+#findMember-form #inputConfirm:disabled {
+	background-color: #E1DEF1;
+}
+
 #findMember-form #confirm-check {
 	width: 40%;
 	height: 100%;

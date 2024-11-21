@@ -11,6 +11,7 @@
 	<!-- css / js 연결 -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member.css">
 	<script>
+		let ut = '<c:out value="${ut}" />' || "P";
 	    let fd = '<c:out value="${fd}" />';
 	    let fm = '<c:out value="${fm}" />';
 	</script>
@@ -39,7 +40,7 @@
 					<table>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="userName" spellcheck="false"></td>
+							<td><input type="text" name="userName" maxlength="15" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>이메일 주소</th>
@@ -51,7 +52,7 @@
 						<tr>
 							<th>인증번호</th>
 							<td>
-								<input type="text" maxlength="6" placeholder="인증번호 입력(6자리)">
+								<input type="text" id="inputConfirm" maxlength="6" placeholder="인증번호 입력(6자리)" disabled>
 								<div id="confirm-check">미인증</div>
 							</td>
 							
@@ -70,7 +71,7 @@
 					<table>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="userName" spellcheck="false"></td>
+							<td><input type="text" name="userName" maxlength="15" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>휴대폰 번호</th>
@@ -82,7 +83,7 @@
 						<tr>
 							<th>인증번호</th>
 							<td>
-								<input type="text" maxlength="6" placeholder="인증번호 입력(6자리)">
+								<input type="text" id="inputConfirm" maxlength="6" placeholder="인증번호 입력(6자리)" disabled>
 								<div id="confirm-check">미인증</div>
 							</td>
 						</tr>
@@ -125,7 +126,7 @@
 						</tr>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="userName" spellcheck="false"></td>
+							<td><input type="text" name="userName" maxlength="15" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>이메일 주소</th>
@@ -137,7 +138,7 @@
 						<tr>
 							<th>인증번호</th>
 							<td>
-								<input type="text" maxlength="6" placeholder="인증번호 입력(6자리)">
+								<input type="text" id="inputConfirm" maxlength="6" placeholder="인증번호 입력(6자리)" disabled>
 								<div id="confirm-check">미인증</div>
 							</td>
 						</tr>
@@ -159,7 +160,7 @@
 						</tr>
 						<tr>
 							<th>이름</th>
-							<td><input type="text" name="userName" spellcheck="false"></td>
+							<td><input type="text" name="userName" maxlength="15" spellcheck="false"></td>
 						</tr>
 						<tr>
 							<th>휴대폰 번호</th>
@@ -171,7 +172,7 @@
 						<tr>
 							<th>인증번호</th>
 							<td>
-								<input type="text" maxlength="6" placeholder="인증번호 입력(6자리)">
+								<input type="text" id="inputConfirm" maxlength="6" placeholder="인증번호 입력(6자리)" disabled>
 								<div id="confirm-check">미인증</div>
 							</td>
 						</tr>
