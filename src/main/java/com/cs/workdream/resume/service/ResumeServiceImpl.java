@@ -136,4 +136,10 @@ public class ResumeServiceImpl implements ResumeService {
             throw new RuntimeException("이력서 저장 실패", e);
         }
     }
+
+	@Override
+	public boolean saveResume(Resume resume) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

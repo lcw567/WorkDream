@@ -16,4 +16,7 @@ public interface MemberService {
 	// 회원 아이디 조회
 	Member findMemberId(Member m, String method);
 
+	// 회원 비밀번호 조회
+	Member findMemberPwd(Member m, String method);
+
 }
