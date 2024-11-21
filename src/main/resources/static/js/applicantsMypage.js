@@ -57,6 +57,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            // 최대 태그 수 검사 (20개)
+            if (existingTags.length >= 20) {
+                alert("최대 20개의 관심태그만 추가할 수 있습니다.");
+                return;
+            }
+
             const newTag = document.createElement("div");
             newTag.classList.add("tag-item");
             newTag.innerHTML = `${tagText} <span class="remove-tag">&times;</span>`;
@@ -73,9 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 관심태그 저장하기 버튼 클릭 시 메인 페이지에 태그 추가
+    // 관심태그 저장하기 버튼 클릭 시 서버에 태그 저장
     saveButton.addEventListener("click", function () {
-        updateTagGroup();
+        saveTagsToDB(); // 태그를 서버에 저장
         popup.style.display = "none";
     });
 
@@ -96,8 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
         tagGroup.innerHTML = ""; // 기존 태그 초기화
         const tags = tagList.querySelectorAll(".tag-item");
         tags.forEach((tag, index) => {
-            // 전체보기가 아닐 때 처음 4개만 표시
-            if (!showAll && index >= 4) return;
+            // 전체보기가 아닐 때 처음 20개만 표시
+            if (!showAll && index >= 20) return;
             const button = document.createElement("button");
             button.classList.add("tag");
             button.textContent = tag.textContent.replace("\u00d7", "").trim();
@@ -111,6 +117,51 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // 초기 로드 시 태그 4개만 표시
+    // 태그 그룹 업데이트 후 서버에 저장하는 함수
+    function saveTagsToDB() {
+        const userTags = Array.from(tagList.querySelectorAll(".tag-item")).map(tag => tag.textContent.replace("\u00d7", "").trim());
+
+        // 유효성 검사
+        if (userTags.length > 20) {
+            alert("최대 20개의 관심태그만 저장할 수 있습니다.");
+            return;
+        }
+
+        // AJAX 요청을 통해 서버에 태그 저장 (POST /usertags/update)
+        fetch(contextPath + "/usertags/update", { // 컨텍스트 패스 사용
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ tags: userTags })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === "success") {
+                // 태그가 성공적으로 저장되었으면 메인 페이지의 태그 그룹을 업데이트
+                tagGroup.innerHTML = "";
+                data.userTags.forEach(tag => {
+                    const button = document.createElement("button");
+                    button.classList.add("tag");
+                    button.textContent = tag.tagName;
+                    tagGroup.appendChild(button);
+                });
+                alert("관심태그가 성공적으로 저장되었습니다.");
+            } else {
+                alert(`관심태그 저장에 실패했습니다: ${data.message}`);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("관심태그 저장 중 오류가 발생했습니다.");
+        });
+    }
+
+    // 초기 로드 시 태그 20개만 표시
     updateTagGroup();
-});
+});  

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cs.workdream.usertags.model.dao.UserTagsDao">
+
+    <!-- 특정 사용자의 관심태그 목록 조회 -->
+    <select id="selectUserTagsByUserNo" parameterType="int" resultType="com.cs.workdream.usertags.model.vo.UserTag">
+        SELECT 
+            TAG_ID AS tagId,
+            USER_NO AS userNo,
+            TAG_NAME AS tagName,
+            CREATED_DATE AS createdDate
+        FROM USER_TAGS
+        WHERE USER_NO = #{userNo}
+        ORDER BY CREATED_DATE DESC
+    </select>
+
+    <!-- 새로운 관심태그 삽입 -->
+    <insert id="insertUserTag" parameterType="com.cs.workdream.usertags.model.vo.UserTag">
+        <!-- 시퀀스 값 미리 조회하여 tagId에 설정 -->
+        <selectKey keyProperty="tagId" resultType="int" order="BEFORE">
+            SELECT SEQ_TAG_ID.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO USER_TAGS (TAG_ID, USER_NO, TAG_NAME, CREATED_DATE)
+        VALUES (#{tagId}, #{userNo}, #{tagName}, SYSDATE)
+    </insert>
+
+    <!-- 특정 관심태그 삭제 -->
+    <delete id="deleteUserTag" parameterType="int">
+        DELETE FROM USER_TAGS
+        WHERE TAG_ID = #{tagId}
+    </delete>
+
+    <!-- 특정 사용자의 모든 관심태그 삭제 -->
+    <delete id="deleteUserTagsByUserNo" parameterType="int">
+        DELETE FROM USER_TAGS
+        WHERE USER_NO = #{userNo}
+    </delete>
+
+</mapper>
