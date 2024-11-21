@@ -17,7 +17,7 @@ public class AcademicAbility {
     private Integer academicNo; // academic_no
     private Integer resumeNo; // resume_no
     private int personNo; // person_no
-    private String education_level; // education_level
+    private String selectedu; // selectedu
     private String academic_name; // academic_name
     private String major_name; // major
     private String degree; // degree

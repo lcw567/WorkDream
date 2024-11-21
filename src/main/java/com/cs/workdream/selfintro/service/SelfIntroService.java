@@ -1,8 +1,8 @@
-package com.cs.workdream.resume.service;
+package com.cs.workdream.selfintro.service;
 
 import java.util.List;
 
-import com.cs.workdream.resume.model.vo.SelfIntro;
+import com.cs.workdream.selfintro.model.vo.SelfIntro;
 
 public interface SelfIntroService {
     int insertSelfIntro(SelfIntro selfIntro);

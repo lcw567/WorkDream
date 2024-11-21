@@ -339,7 +339,7 @@ input:focus{
     margin-left: 15px;
 }
 
-.element_name, .status, .enter_date, .end_date {
+.element_name, .status, .enter_date, .end_date, .graduation_date {
     box-sizing: border-box;
     border: none;
     padding-top: 5px;

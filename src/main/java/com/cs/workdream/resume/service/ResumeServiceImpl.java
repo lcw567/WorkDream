@@ -28,18 +28,21 @@ public class ResumeServiceImpl implements ResumeService {
         this.resumeDao = resumeDao;
     }
 
-    /**
-     * 이력서를 저장하는 메서드
-     * 
-     * @param resume 저장할 Resume 객체
-     * @return 저장 성공 시 1, 실패 시 0
-     */
-    @Transactional
-    @Override
-    public int saveResume(Resume resume) {
-    	System.out.println("생성된 Resume 객체: " + resume);
-    	int result = resumeDao.saveResumeAndBasicInfo(resume);
-    	return result;
-    }
+	@Override
+	public void insertResume(Resume resume) {
+		 resumeDao.insertResume(resume);
+	        
+	        // 생성된 resumeNo 가져오기 (MyBatis selectKey 사용 가정)
+	        Integer resumeNo = resume.getResumeNo();
+	        
+	        // 각 BasicInfo에 resumeNo 설정 후 저장
+	        resume.getBasicInfo().forEach(basicInfo -> {
+	            basicInfo.setResumeNo(resumeNo);
+	            resumeDao.insertBasicInfo(basicInfo);
+	        });
+		
+	}
+
+
 
 }
