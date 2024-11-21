@@ -14,14 +14,14 @@
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div class="main-container">
         <section class="applicants-name">
-		    <c:if test="${not empty loginUser}">
-		        <h2>${loginUser.userId}</h2>
-		    </c:if>
-		    <c:if test="${empty loginUser}">
-		        <h2>로그인이 필요합니다</h2>
-		    </c:if>
-		    <button class="messenger">메신저</button>
-		</section>
+	    <c:if test="${not empty loginUser}">
+	        <h2>${loginUser.userId}</h2>
+	    </c:if>
+	    <c:if test="${empty loginUser}">
+	        <h2>로그인이 필요합니다</h2>
+	    </c:if>
+	    <button class="messenger">메신저</button>
+	</section>
 
 
         

@@ -1,4 +1,4 @@
-package com.cs.workdream.mypage.dao;
+package com.cs.workdream.mypage.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
