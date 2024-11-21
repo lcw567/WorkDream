@@ -10,6 +10,7 @@
 <title>Document</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/announcementInformation1.css">
 <script src="${pageContext.request.contextPath}/js/announcementInformation1.js" defer></script>
+
 </head>
 
 <body>

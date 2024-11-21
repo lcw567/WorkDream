@@ -1,5 +1,7 @@
 package com.cs.workdream.business.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +35,14 @@ public class BusinessController {
         return "business/announcementInformation2";
     }
 	
+	@PostMapping("/business/announcementInformation2")
+	@ResponseBody
+	public Map<String, String> handleJobData(@RequestBody Map<String, String> jobData) {
+	    // 데이터 처리 로직 (DB 저장, 검증 등)
+	    // 여기서는 요청 데이터를 그대로 반환
+	    return jobData;
+	}
+	
 
 	@GetMapping("/business/announcementDetailView")
     public String announcementDetailView() {
@@ -62,7 +72,7 @@ public class BusinessController {
     
     @GetMapping("/business/bookmark")
     public String bookmarkList() {
-        return "business/bookmarkList";
+        return "business/bookmark";
     }
     
     @GetMapping("/business/businessMypage")

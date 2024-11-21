@@ -137,4 +137,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+            // 1. 로컬 스토리지에서 데이터 가져오기
+            const jobData = JSON.parse(localStorage.getItem('jobData'));
 
+            // 2. 데이터를 표시할 HTML 요소 가져오기
+            const displayElement = document.getElementById('jobDataDisplay');
+
+            // 3. 데이터가 있을 경우 화면에 표시
+            if (jobData) {
+                const formattedData = `${jobData.employmentType} / ${jobData.careerType} / 경력 ${jobData.careerMin}년 ~ ${jobData.careerMax}년 / 학력 - ${jobData.education} / ${jobData.workDays} / 예상연봉 ${jobData.salaryMin} ~ ${jobData.salaryMax}만원`;
+                displayElement.innerText = formattedData;
+            } else {
+                displayElement.innerText = '직무 데이터가 없습니다.';
+            }
+
+            // 4. 로컬 스토리지에서 데이터 삭제 (선택적)
+            localStorage.removeItem('jobData');
+        });
