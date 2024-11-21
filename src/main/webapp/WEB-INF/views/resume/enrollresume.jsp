@@ -19,7 +19,7 @@
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div id="inner">
-        <form action="insert.re" method="post" enctype="multipart/form-data">
+        <form action="insert.re" method="post">
             <div class="resume_title">
                 <h1>이력서 제목</h1> 
                 <input type="text" name="resumeTitle" placeholder="이력서의 제목을 입력해주세요." required>
@@ -594,7 +594,7 @@
                     <div class="pre1">
                         <fieldset class="pre_content">
                             <legend>보훈사유</legend>
-                            <input type="text" name="employmentPreference.marriageReason" placeholder="보훈사유 입력">
+                            <input type="text" name="employmentPreference.veteranreason" placeholder="보훈사유 입력">
                         </fieldset>
                     </div>
                     <div class="pre2">
@@ -608,7 +608,7 @@
                                 <option value="serving">복무중</option>
                             </select>
                         </fieldset>
-                        <div class="unfulfilled" id="exemptedFields" style="display: none;">
+                        <div class="unfulfilled" id="unfulfilledFields" style="display: none;">
                             <fieldset class="exempted">
                                 <legend>사유 입력</legend>
                                 <input type="text" name="employmentPreference.unfinishedReason" placeholder="사유 입력">
