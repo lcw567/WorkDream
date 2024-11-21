@@ -270,38 +270,38 @@
 
     <!-- 특정 게시글의 댓글 조회 -->
     <select id="selectReplies" parameterType="int" resultMap="ReplyResultMap">
-        SELECT 
-            r.REPLY_NO,
-            r.POSTING_NO,
-            r.USER_NO,
-            u.USER_ID AS AUTHOR, 
-            r.CONTENT,
-            r.CREATED_TIME,
-            r.LIKE_COUNT,
-            r.STATUS
-        FROM REPLY r
-        JOIN MEMBER u ON r.USER_NO = u.USER_NO
-        JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO
-        WHERE r.POSTING_NO = #{value} AND r.STATUS = 'Y'
-        ORDER BY r.CREATED_TIME ASC
-    </select>
+	    SELECT 
+	        r.REPLY_NO,
+	        r.POSTING_NO,
+	        r.USER_NO,
+	        COALESCE(u.USER_ID, b.USER_ID) AS AUTHOR, -- 작성자를 PERSON이나 BUSINESS에서 가져오기
+	        r.CONTENT,
+	        r.CREATED_TIME,
+	        r.LIKE_COUNT,
+	        r.STATUS
+	    FROM REPLY r
+	    LEFT JOIN MEMBER u ON r.USER_NO = u.USER_NO AND u.USER_TYPE = 'P' -- 개인 사용자
+	    LEFT JOIN MEMBER b ON r.USER_NO = b.USER_NO AND b.USER_TYPE = 'B' -- 기업 사용자
+	    WHERE r.POSTING_NO = #{value} AND r.STATUS = 'Y'
+	    ORDER BY r.CREATED_TIME ASC
+	</select>
 
     <!-- 댓글 ID로 댓글 조회 -->
     <select id="selectReplyById" parameterType="int" resultMap="ReplyResultMap">
-        SELECT 
-            r.REPLY_NO,
-            r.POSTING_NO,
-            r.USER_NO,
-            u.USER_ID AS AUTHOR, 
-            r.CONTENT,
-            r.CREATED_TIME,
-            r.LIKE_COUNT,
-            r.STATUS
-        FROM REPLY r
-        JOIN MEMBER u ON r.USER_NO = u.USER_NO
-        JOIN PERSON p ON u.PERSON_NO = p.PERSON_NO
-        WHERE r.REPLY_NO = #{value} AND r.STATUS = 'Y'
-    </select>
+	    SELECT 
+	        r.REPLY_NO,
+	        r.POSTING_NO,
+	        r.USER_NO,
+	        COALESCE(u.USER_ID, b.USER_ID) AS AUTHOR, -- 작성자를 PERSON이나 BUSINESS에서 가져오기
+	        r.CONTENT,
+	        r.CREATED_TIME,
+	        r.LIKE_COUNT,
+	        r.STATUS
+	    FROM REPLY r
+	    LEFT JOIN MEMBER u ON r.USER_NO = u.USER_NO AND u.USER_TYPE = 'P'
+	    LEFT JOIN MEMBER b ON r.USER_NO = b.USER_NO AND b.USER_TYPE = 'B'
+	    WHERE r.REPLY_NO = #{value} AND r.STATUS = 'Y'
+	</select>
 
     <!-- 댓글 삽입 -->
     <insert id="insertReply" parameterType="com.cs.workdream.board.model.vo.Reply">
