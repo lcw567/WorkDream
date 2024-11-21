@@ -1,11 +1,17 @@
 package com.cs.workdream.resume.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import com.cs.workdream.resume.model.vo.Resume;
 
-/**
- * ResumeService 인터페이스는 이력서 관련 비즈니스 로직을 정의합니다.
- */
 public interface ResumeService {
-    
-	  void insertResume(Resume resume);
+	boolean saveResume(Resume resume);
+
+	/**
+	 * 이력서를 저장하는 메서드
+	 * 
+	 * @param resume   저장할 이력서 객체
+	 * @param userPic  프로필 이미지 파일
+	 * @return         저장 성공 여부
+	 */
+	boolean saveResume(Resume resume, MultipartFile userPic);
 }

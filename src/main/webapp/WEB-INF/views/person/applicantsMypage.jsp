@@ -65,10 +65,12 @@
 
         <section class="actions">
             <div class="action-buttons">
-                <div class="action" onclick="location.href='${pageContext.request.contextPath}/resume/resumeDashboard'">
-                    <h3>이력서 등록</h3>
-                    <p>이력서를 등록하고 검토하세요</p>
-                </div>
+                <form action="resumeDashboard">
+                    <div class="action" onclick="location.href='${pageContext.request.contextPath}/resume/resumeDashboard'">
+                        <h3>이력서 등록</h3>
+                        <p>이력서를 등록하고 검토하세요</p>
+                    </div>
+                </form>
                 <div class="action" onclick="location.href='${pageContext.request.contextPath}/resume/selfIntroDashboard'">
                     <h3>자기소개서 등록</h3>
                     <p>자기소개서를 등록하고 검토하세요</p>

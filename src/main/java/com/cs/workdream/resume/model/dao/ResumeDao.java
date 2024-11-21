@@ -1,44 +1,56 @@
 package com.cs.workdream.resume.model.dao;
 
-import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cs.workdream.resume.model.vo.BasicInfo;
-import com.cs.workdream.resume.model.vo.Resume;
+import com.cs.workdream.resume.model.vo.*;
 
 @Repository
 public class ResumeDao {
 
-    private final SqlSession sqlSession;
-
     @Autowired
-    public ResumeDao(SqlSession sqlSession) {
-        this.sqlSession = sqlSession;
+    private SqlSessionTemplate sqlSession;
+
+    // 이력서 기본 정보 삽입
+    public void insertResume(Resume resume) {
+        sqlSession.insert("ResumeMapper.insertResume", resume);
     }
 
-    // 이력서 삽입 메서드
-    public int insertResume(Resume resume) {
-        return sqlSession.insert("resumeMapper.insertResume", resume);
+    // 기본 정보 삽입
+    public void insertBasicInfo(BasicInfo basicInfo) {
+        sqlSession.insert("ResumeMapper.insertBasicInfo", basicInfo);
     }
 
-    // 기본 정보 삽입 메서드
-    public int insertBasicInfo(BasicInfo basicInfo) {
-        return sqlSession.insert("resumeMapper.insertBasicInfo", basicInfo);
+    // 학력 정보 삽입
+    public void insertAcademicAbility(AcademicAbility academicAbility) {
+        sqlSession.insert("ResumeMapper.insertAcademicAbility", academicAbility);
     }
 
-    // 이력서와 기본 정보를 저장하는 메서드
-    public int saveResumeAndBasicInfo(Resume resume) {
-        int result = insertResume(resume); // 이력서 삽입
-        if (result > 0 && resume.getBasicInfo() != null) {
-            for (BasicInfo basicInfo : resume.getBasicInfo()) {
-                basicInfo.setResumeNo(resume.getResumeNo()); // 이력서 번호 설정
-                insertBasicInfo(basicInfo); // 기본 정보 삽입
-            }
-            System.out.println("DAO 전달 Resume 객체: " + resume);
-        }
-        return result;
+    // 자격증/어학/수상 정보 삽입
+    public void insertQualification(Qualification qualification) {
+        sqlSession.insert("ResumeMapper.insertQualification", qualification);
     }
+
+    // 경험 정보 삽입
+    public void insertExperience(Experience experience) {
+        sqlSession.insert("ResumeMapper.insertExperience", experience);
+    }
+
+    // 취업우대사항 삽입
+    public void insertEmploymentPreferences(EmploymentPreferences preferences) {
+        sqlSession.insert("ResumeMapper.insertEmploymentPreferences", preferences);
+    }
+
+    // 스킬 정보 삽입
+    public void insertSkill(Skill skill) {
+        sqlSession.insert("ResumeMapper.insertSkill", skill);
+    }
+
+    // 경력 정보 삽입
+    public void insertCareer(Career career) {
+        sqlSession.insert("ResumeMapper.insertCareer", career);
+    }
+
+    // 필요에 따라 추가적인 CRUD 메서드 구현
 }
