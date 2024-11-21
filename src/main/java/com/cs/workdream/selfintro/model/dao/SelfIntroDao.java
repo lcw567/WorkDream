@@ -1,4 +1,4 @@
-package com.cs.workdream.resume.model.dao;
+package com.cs.workdream.selfintro.model.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cs.workdream.resume.model.vo.SelfIntro;
+import com.cs.workdream.selfintro.model.vo.SelfIntro;
 
 @Repository
 public class SelfIntroDao {
