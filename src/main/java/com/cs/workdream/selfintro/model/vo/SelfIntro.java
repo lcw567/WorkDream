@@ -1,4 +1,4 @@
-package com.cs.workdream.resume.model.vo;
+package com.cs.workdream.selfintro.model.vo;
 
 import java.sql.Date;
 

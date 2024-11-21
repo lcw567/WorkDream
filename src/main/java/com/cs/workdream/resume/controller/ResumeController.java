@@ -2,11 +2,14 @@ package com.cs.workdream.resume.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cs.workdream.member.model.vo.Member;
+import com.cs.workdream.resume.model.vo.BasicInfo;
 import com.cs.workdream.resume.model.vo.Resume;
-import com.cs.workdream.resume.model.vo.SelfIntro;
 import com.cs.workdream.resume.service.ResumeService;
-import com.cs.workdream.resume.service.SelfIntroService;
+import com.cs.workdream.selfintro.model.vo.SelfIntro;
+import com.cs.workdream.selfintro.service.SelfIntroService;
 
 @Controller
 @RequestMapping("/resume")
@@ -35,21 +39,6 @@ public class ResumeController {
     
     public ResumeController(ResumeService resumeService) {
         this.resumeService = resumeService;
-    }
-    
-    @GetMapping("/enrollresume")
-    public String showEnrollResumePage(org.springframework.ui.Model model, HttpSession session) {
-        Resume resume = new Resume();
-        resume.getBasicInfo().add(new com.cs.workdream.resume.model.vo.BasicInfo());
-        resume.getAcademicAbilities().add(new com.cs.workdream.resume.model.vo.AcademicAbility());
-        resume.getSkills().add(new com.cs.workdream.resume.model.vo.Skill());
-        resume.getExperiences().add(new com.cs.workdream.resume.model.vo.Experience());
-        resume.getQualifications().add(new com.cs.workdream.resume.model.vo.Qualification());
-        resume.getCareers().add(new com.cs.workdream.resume.model.vo.Career());
-        resume.setEmploymentPreferences(new com.cs.workdream.resume.model.vo.EmploymentPreferences());
-
-        model.addAttribute("resume", resume);
-        return "resume/enrollresume"; // JSP 경로
     }
 
     @GetMapping("/resumeDashboard")
@@ -68,6 +57,39 @@ public class ResumeController {
         model.addAttribute("selfIntro", selfIntro);
         return "resume/editselfIntro"; // JSP 파일 이름과 경로 확인
     }
+    
+    @GetMapping("/enrollresume")
+    public String showEnrollResumePage(Model model, HttpSession session) {
+        Resume resume = new Resume();
+        // 기본적으로 하나의 BasicInfo를 포함
+        BasicInfo basicInfo = new BasicInfo();
+        resume.getBasicInfo().add(basicInfo);
+        model.addAttribute("resume", resume);
+        return "resume/enrollresume"; // JSP 경로
+    }
+
+    @PostMapping("/insert.re")
+    public String insertResume(@ModelAttribute Resume resume, HttpSession session, Model model) {
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            return "redirect:/login?error=sessionExpired";
+        }
+
+        // 로그인 유저의 personNo 설정 (가정)
+        resume.setPersonNo(loginUser.getPersonNo());
+
+        try {
+            // Resume 저장
+            resumeService.insertResume(resume);
+            model.addAttribute("message", "이력서가 성공적으로 저장되었습니다.");
+            return "redirect:/resume/resumeDashboard"; // 성공 시 리다이렉트할 페이지
+        } catch (Exception e) {
+            logger.error("이력서 저장 중 오류 발생: ", e);
+            model.addAttribute("errorMessage", "이력서 저장에 실패했습니다.");
+            return "redirect:/errorPage"; // 실패 시 리다이렉트할 페이지
+        }
+    }
+
     
     
     @RequestMapping(value = "/insert_intro", method = RequestMethod.POST)
@@ -118,15 +140,31 @@ public class ResumeController {
     }
 
     @RequestMapping(value = "/deleteIntro", method = RequestMethod.POST)
-    public String deleteSelfIntro(@RequestParam("id") int selfintroNo, HttpSession session) {
-        System.out.println("Controller: Deleting SelfIntro with ID: " + selfintroNo); // 로그 추가
+    public Object deleteSelfIntro(@RequestParam("id") int selfintroNo, HttpServletRequest request) {
+        logger.info("Controller: Deleting SelfIntro with ID: {}", selfintroNo);
         int result = selfIntroService.deleteSelfIntro(selfintroNo);
-        System.out.println("Controller delete result: " + result); // 로그 추가
+        logger.info("Controller delete result: {}", result);
 
-        if (result > 0) {
-            return "redirect:/resume/selfIntroDashboard";
+        // AJAX 요청인지 확인
+        String requestedWith = request.getHeader("X-Requested-With");
+        logger.info("Requested-With header: {}", requestedWith);
+
+        if ("XMLHttpRequest".equals(requestedWith)) {
+            if (result > 0) {
+                logger.info("AJAX request: Deletion successful.");
+                return ResponseEntity.ok("success");
+            } else {
+                logger.warn("AJAX request: Deletion failed.");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error");
+            }
         } else {
-            return "redirect:/errorPage";
+            if (result > 0) {
+                logger.info("Non-AJAX request: Deletion successful. Redirecting to selfIntroDashboard.");
+                return "redirect:/resume/selfIntroDashboard";
+            } else {
+                logger.warn("Non-AJAX request: Deletion failed. Redirecting to errorPage.");
+                return "redirect:/errorPage";
+            }
         }
     }
     

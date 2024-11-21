@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.cs.workdream.resume.mapper.selfintro-mapper">
+<mapper namespace="com.cs.workdream.resume.mapper.SelfIntroMapper">
 
     <!-- ResultMap 수정: 완전한 패키지 경로 추가 -->
-    <resultMap type="com.cs.workdream.resume.model.vo.SelfIntro" id="selfintroResultSet">
+    <resultMap type="com.cs.workdream.selfintro.model.vo.SelfIntro" id="selfintroResultSet">
         <result column="SELF_INTRODUCTION_NO" property="selfintroNo" />
         <result column="RESUME_NO" property="resumeNo" />
         <result column="USER_ID" property="userId" />
@@ -17,7 +17,7 @@
     </resultMap>
     
     <!-- Insert 매핑 -->
-    <insert id="insertSelfIntro" parameterType="com.cs.workdream.resume.model.vo.SelfIntro">
+    <insert id="insertSelfIntro" parameterType="com.cs.workdream.selfintro.model.vo.SelfIntro">
         <selectKey keyProperty="selfintroNo" resultType="int" order="BEFORE">
             SELECT SELF_INTRO_SEQ.NEXTVAL FROM DUAL
         </selectKey>
@@ -43,36 +43,59 @@
     </insert>
 
     <!-- Select 리스트 매핑 -->
-    <select id="selectSelfIntroList" parameterType="String" resultType="com.cs.workdream.resume.model.vo.SelfIntro">
-        SELECT 
-            SELF_INTRODUCTION_NO AS selfintroNo,
-            RESUME_NO AS resumeNo,
-            USER_ID AS userId,
-            TITLE AS introTitle,
-            CREATED_DATE AS createDate
-        FROM SELF_INTRODUCTION
-        WHERE USER_ID = #{userId}
-          AND DELETED = 'N'
-        ORDER BY CREATED_DATE DESC
-    </select>
+   <select id="selectSelfIntroList" parameterType="String" resultType="com.cs.workdream.selfintro.model.vo.SelfIntro">
+	    SELECT 
+	        SELF_INTRODUCTION_NO AS selfintroNo,
+	        RESUME_NO AS resumeNo,
+	        USER_ID AS userId,
+	        TITLE AS introTitle,
+	        CONTENT AS introContent,
+	        CREATED_DATE AS createDate,
+	        MODIFIED_DATE AS modifiedDate,
+	        DELETED AS deleted,
+	        PERSON_NO AS personNo
+	    FROM SELF_INTRODUCTION
+	    WHERE USER_ID = #{userId}
+	      AND DELETED = 'N'
+	    ORDER BY CREATED_DATE DESC
+	</select>
+
     
+    <!-- Select by ID 매핑 추가 -->
+   <select id="selectSelfIntroById" parameterType="int" resultType="com.cs.workdream.selfintro.model.vo.SelfIntro">
+	    SELECT 
+	        SELF_INTRODUCTION_NO AS selfintroNo,
+	        RESUME_NO AS resumeNo,
+	        USER_ID AS userId,
+	        TITLE AS introTitle,
+	        CONTENT AS introContent,
+	        CREATED_DATE AS createDate,
+	        MODIFIED_DATE AS modifiedDate,
+	        DELETED AS deleted,
+	        PERSON_NO AS personNo
+	    FROM SELF_INTRODUCTION
+	    WHERE SELF_INTRODUCTION_NO = #{value}
+	      AND DELETED = 'N'
+	</select>
+
     <!-- Delete 매핑 -->
     <update id="deleteSelfIntro" parameterType="int">
-        UPDATE SELF_INTRODUCTION
-        SET DELETED = 'Y'
-        WHERE SELF_INTRODUCTION_NO = #{selfIntroNo}
-          AND DELETED = 'N'
-    </update>
+	    UPDATE SELF_INTRODUCTION
+	    SET DELETED = 'Y'
+	    WHERE SELF_INTRODUCTION_NO = #{value}
+	      AND DELETED = 'N'
+	</update>
 
-   <update id="updateSelfIntro" parameterType="com.cs.workdream.resume.model.vo.SelfIntro">
-    UPDATE SELF_INTRODUCTION
-    SET 
-        TITLE = #{introTitle},
-        CONTENT = #{introContent},
-        MODIFIED_DATE = SYSDATE
-    WHERE 
-        SELF_INTRODUCTION_NO = #{selfintroNo}
-        AND DELETED = 'N'
-</update>
+    <!-- Update 매핑 -->
+    <update id="updateSelfIntro" parameterType="com.cs.workdream.selfintro.model.vo.SelfIntro">
+        UPDATE SELF_INTRODUCTION
+        SET 
+            TITLE = #{introTitle},
+            CONTENT = #{introContent},
+            MODIFIED_DATE = SYSDATE
+        WHERE 
+            SELF_INTRODUCTION_NO = #{selfintroNo}
+            AND DELETED = 'N'
+    </update>
 
 </mapper>

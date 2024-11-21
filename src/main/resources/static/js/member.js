@@ -68,53 +68,57 @@ function replaceInputNumber(event) {
 
 // 아이디 유효성 검사
 function validateId(id) {
-    return new Promise((resolve, reject) => {
-        const idCheck = document.getElementById("id-check");
-        idCheck.className = "NotChecked";
-        idCheck.innerHTML = "";
-
-        const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
-        const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
-        const regex = /^[a-z][a-z0-9_]{3,19}$/;
-
-        if(id == "") {
-            // 아이디 미입력
-            idCheck.innerHTML = errorImg + "필수입력항목입니다.";
-            idCheck.className = "error";
-            reject(false);
-        } else if(!regex.test(id)) {
-            // 입력양식 미준수
-            idCheck.innerHTML = errorImg + "아이디는 4자리 이상, 20자리 이하의 영문 소문자, 숫자 '_'만으로 이루어져야합니다.";
-            idCheck.className = "error";
-            reject(false);
-        } else {
-            // 중복확인 > ajax 요청
-            $.ajax({
-                url: "idCheck.me",
-                type: "GET",
-                data: {checkId: id},
-                success: function(result) {
-                    if(result === "NNNNN") {
-                        // 중복된 아이디인 경우
-                        idCheck.innerHTML = errorImg + "중복된 아이디입니다.";
-                        idCheck.className = "error";
-                        reject(false);
-                    } else {
-                        // 통과
-                        idCheck.innerHTML = checkImg + "사용가능한 아이디입니다.";
+    try {
+        return new Promise((resolve, reject) => {
+            const idCheck = document.getElementById("id-check");
+            idCheck.className = "NotChecked";
+            idCheck.innerHTML = "";
+    
+            const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+            const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
+            const regex = /^[a-z][a-z0-9_]{3,19}$/;
+    
+            if(id == "") {
+                // 아이디 미입력
+                idCheck.innerHTML = errorImg + "필수입력항목입니다.";
+                idCheck.className = "error";
+                reject(false);
+            } else if(!regex.test(id)) {
+                // 입력양식 미준수
+                idCheck.innerHTML = errorImg + "아이디는 4자리 이상, 20자리 이하의 영문 소문자, 숫자 '_'만으로 이루어져야합니다.";
+                idCheck.className = "error";
+                reject(false);
+            } else {
+                // 중복확인 > ajax 요청
+                $.ajax({
+                    url: "idCheck.me",
+                    type: "GET",
+                    data: {checkId: id},
+                    success: function(result) {
+                        if(result === "NNNNN") {
+                            // 중복된 아이디인 경우
+                            idCheck.innerHTML = errorImg + "중복된 아이디입니다.";
+                            idCheck.className = "error";
+                            reject(false);
+                        } else {
+                            // 통과
+                            idCheck.innerHTML = checkImg + "사용가능한 아이디입니다.";
+                            idCheck.className = "check";
+                            resolve(true);
+                        }
+                    },
+                    error: function(error) {
+                        console.log("아이디 중복체크 ajax 실패 : ", error);
+                        idCheck.innerHTML = checkImg + "오류가 발생했습니다. 다시 입력해주세요.";
                         idCheck.className = "check";
-                        resolve(true);
+                        reject(false);
                     }
-                },
-                error: function(error) {
-                    console.log("아이디 중복체크 ajax 실패 : ", error);
-                    idCheck.innerHTML = checkImg + "오류가 발생했습니다. 다시 입력해주세요.";
-                    idCheck.className = "check";
-                    reject(false);
-                }
-            });
-        }
-    })
+                });
+            }
+        });
+    } catch(error) {
+        console.log("validateId: ", error);
+    }
 }
 
 // 비밀번호 유효성 검사
@@ -192,28 +196,32 @@ function validateRePwd(password, rePassword) {
 
 // 이메일 유효성 검사
 function validateEmail(email) {
-    const emailCheck = document.getElementById("email-check");
-    emailCheck.className = "NotChecked";
-    emailCheck.innerHTML = "";
+    try {
+        const emailCheck = document.getElementById("email-check");
+        emailCheck.className = "NotChecked";
+        emailCheck.innerHTML = "";
 
-    const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
-    const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+        const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if(email == "") {
-        // 이메일 미입력
-        emailCheck.innerHTML = errorImg + "필수입력항목입니다.";
-        emailCheck.className = "error";
-        return false;
-    } else if(!regex.test(email)) {
-        // 입력 양식 미준수
-        emailCheck.innerHTML = errorImg + "유효한 이메일 주소를 입력해주세요.";
-        emailCheck.className = "error";
-        return false;
-    } else {
-        emailCheck.innerHTML = checkImg + "사용가능한 메일 주소입니다.";
-        emailCheck.className = "check";
-        return true;
+        if(email == "") {
+            // 이메일 미입력
+            emailCheck.innerHTML = errorImg + "필수입력항목입니다.";
+            emailCheck.className = "error";
+            return false;
+        } else if(!regex.test(email)) {
+            // 입력 양식 미준수
+            emailCheck.innerHTML = errorImg + "유효한 이메일 주소를 입력해주세요.";
+            emailCheck.className = "error";
+            return false;
+        } else {
+            emailCheck.innerHTML = checkImg + "사용가능한 메일 주소입니다.";
+            emailCheck.className = "check";
+            return true;
+        }
+    } catch(error) {
+        console.log("validateEmail: ", error);
     }
 }
 
@@ -241,48 +249,52 @@ function validateTerms(requiredTerms) {
 
 // 사업자등록번호 유효성 검사
 function validateNumber(registNumber) {
-    return new Promise((resolve, reject) => {
-        const numberCheck = document.getElementById("number-check");
-        numberCheck.className = "NotChecked";
-        numberCheck.innerHTML = "";
-
-        const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
-        const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
-
-        if(registNumber == "") {
-            // 사업자등록번호 미입력
-            numberCheck.innerHTML = errorImg + "필수입력항목입니다.";
-            numberCheck.className = "error";
-            reject(false);
-        } else {
-            // 사업자등록번호 조회 (오픈 API 연결)
-            $.ajax({
-                url: "numberCheck.api",
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify({ checkNumber: registNumber }),
-                success: function(result) {
-                    if(!result) {
-                        // 조회 실패
-                        numberCheck.innerHTML = errorImg + "등록되지않은 사업자등록번호입니다.";
+    try {
+        return new Promise((resolve, reject) => {
+            const numberCheck = document.getElementById("number-check");
+            numberCheck.className = "NotChecked";
+            numberCheck.innerHTML = "";
+    
+            const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
+            const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
+    
+            if(registNumber == "") {
+                // 사업자등록번호 미입력
+                numberCheck.innerHTML = errorImg + "필수입력항목입니다.";
+                numberCheck.className = "error";
+                reject(false);
+            } else {
+                // 사업자등록번호 조회 (오픈 API 연결)
+                $.ajax({
+                    url: "numberCheck.api",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ checkNumber: registNumber }),
+                    success: function(result) {
+                        if(!result) {
+                            // 조회 실패
+                            numberCheck.innerHTML = errorImg + "등록되지않은 사업자등록번호입니다.";
+                            numberCheck.className = "error";
+                            reject(false);
+                        } else {
+                            // 조회 성공
+                            numberCheck.innerHTML = checkImg + "확인완료";
+                            numberCheck.className = "check";
+                            resolve(true);
+                        }
+                    }, error: function(error) {
+                        // API 호출 오류
+                        console.error(error);
+                        numberCheck.innerHTML = errorImg + "오류가 발생했습니다. 다시 시도해주세요.";
                         numberCheck.className = "error";
                         reject(false);
-                    } else {
-                        // 조회 성공
-                        numberCheck.innerHTML = checkImg + "확인완료";
-                        numberCheck.className = "check";
-                        resolve(true);
                     }
-                }, error: function(error) {
-                    // API 호출 오류
-                    console.error(error);
-                    numberCheck.innerHTML = errorImg + "오류가 발생했습니다. 다시 시도해주세요.";
-                    numberCheck.className = "error";
-                    reject(false);
-                }
-            });
-        }
-    });
+                });
+            }
+        });
+    } catch(error) {
+        console.log("validateNumber: ", error);
+    }
 }
 
 
@@ -556,44 +568,106 @@ try {
 
 /* findMember 전용 */
 try {
-    // 섹션 변경
+    const idInputs = document.querySelectorAll("input[name='userId'");
+    const nameInputs = document.querySelectorAll("input[name='userName']");
+    const emailInputs = document.querySelectorAll("input[type='email']");
+    const phoneInputs = document.querySelectorAll("input[name='phone']");
+    const numberInputs = document.querySelectorAll("input[name='registrationNumber']");
+
+    const confirmButtons = document.querySelectorAll("#btnConfirm");
+    const confirmInputs = document.querySelectorAll("#inputConfirm");
+    const confirmChecks = document.querySelectorAll("#confirm-check");
+    let confirmNumber;
+
+    const findForms = document.querySelectorAll("#findMember-form");
+    const findButtons = document.querySelectorAll("#btnFindMember");
+
+    // 섹션 요소 변경
     function changeFindSection() {
         const idSection = document.getElementById("findMember-section-id");
         const pwdSection = document.getElementById("findMember-section-pwd");
         let tabItems;
         let emailArticle;
         let phoneArticle;
+        let numberArtice;
 
-        if(fd === "id") {
-            idSection.classList.add("On");
-            pwdSection.classList.remove("On");
+        if(ut === "P") {
+            // 섹션 변경 (개인)
+            if(fd === "id") {
+                idSection.classList.add("On");
+                pwdSection.classList.remove("On");
+    
+                tabItems = idSection.querySelectorAll("#findMember-article-tab li");
+                emailArticle = idSection.querySelector("#findMember-article-email");
+                phoneArticle = idSection.querySelector("#findMember-article-phone");
+            }
+            else {
+                idSection.classList.remove("On");
+                pwdSection.classList.add("On");
+    
+                tabItems = pwdSection.querySelectorAll("#findMember-article-tab li");
+                emailArticle = pwdSection.querySelector("#findMember-article-email");
+                phoneArticle = pwdSection.querySelector("#findMember-article-phone");
+            }
 
-            tabItems = idSection.querySelectorAll("#findMember-article-tab li");
-            emailArticle = idSection.querySelector("#findMember-article-email");
-            phoneArticle = idSection.querySelector("#findMember-article-phone");
-        }
-        else {
-            idSection.classList.remove("On");
-            pwdSection.classList.add("On");
+            // 아티클 변경 (개인)
+            if(fm === "email") {
+                emailArticle.classList.add("On");
+                phoneArticle.classList.remove("On");
 
-            tabItems = pwdSection.querySelectorAll("#findMember-article-tab li");
-            emailArticle = pwdSection.querySelector("#findMember-article-email");
-            phoneArticle = pwdSection.querySelector("#findMember-article-phone");
-        }
-
-        // 아티클 변경
-        if(fm === "email") {
-            emailArticle.classList.add("On");
-            phoneArticle.classList.remove("On");
-
-            tabItems.forEach(item => item.classList.remove("On"));
-            tabItems[0].classList.add("On");
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[0].classList.add("On");
+            } else {
+                emailArticle.classList.remove("On");
+                phoneArticle.classList.add("On");
+    
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[1].classList.add("On");
+            }
         } else {
-            emailArticle.classList.remove("On");
-            phoneArticle.classList.add("On");
+            // 섹션 변경 (기업)
+            if(fd === "id") {
+                idSection.classList.add("On");
+                pwdSection.classList.remove("On");
+    
+                tabItems = idSection.querySelectorAll("#findMember-article-tab li");
+                emailArticle = idSection.querySelector("#findMember-article-email");
+                phoneArticle = idSection.querySelector("#findMember-article-phone");
+                numberArtice = idSection.querySelector("#findMember-article-number");
+            }
+            else {
+                idSection.classList.remove("On");
+                pwdSection.classList.add("On");
+    
+                tabItems = pwdSection.querySelectorAll("#findMember-article-tab li");
+                emailArticle = pwdSection.querySelector("#findMember-article-email");
+                phoneArticle = pwdSection.querySelector("#findMember-article-phone");
+                numberArtice = pwdSection.querySelector("#findMember-article-number");
+            }
 
-            tabItems.forEach(item => item.classList.remove("On"));
-            tabItems[1].classList.add("On");
+            // 아티클 변경 (기업)
+            if(fm === "email") {
+                emailArticle.classList.add("On");
+                phoneArticle.classList.remove("On");
+                numberArtice.classList.remove("On");
+    
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[0].classList.add("On");
+            } else if(fm === "phone") {
+                emailArticle.classList.remove("On");
+                phoneArticle.classList.add("On");
+                numberArtice.classList.remove("On");
+    
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[1].classList.add("On");
+            } else {
+                emailArticle.classList.remove("On");
+                phoneArticle.classList.remove("On");
+                numberArtice.classList.add("On");
+    
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[2].classList.add("On");
+            }
         }
     }
 
@@ -602,17 +676,144 @@ try {
         changeFindSection();
     });
 
-    // 링크 클릭 시 섹션 변경
-    function changeFindData(findData) {
-        fd = findData;
-        changeFindSection();
-    }
-
     // 탭 클릭 시 아티클 변경
     function changeFindMethod(findMethod) {
+        // 입력값 초기화
+        const inputs = document.querySelectorAll("input[type='text'], input[type='email']");
+        inputs.forEach(input => {
+            input.value = "";
+        });
+        confirmButtons.forEach(button => {
+            button.innerText = "인증번호 발송";
+        })
+        confirmInputs.forEach(input => {
+            input.disabled = true;
+        })
+
         fm = findMethod;
         changeFindSection();
     }
+
+    // 인증번호 랜덤 생성 (6자리)
+    function generateConfirmNumber() {
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let confirmNumber = "";
+
+        for(let i = 0; i < 6; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            confirmNumber += characters[randomIndex];
+        }
+
+        return confirmNumber;
+    }
+
+    // 인증번호 전송
+    function sendCofirmNumber(event, index) {
+        let checkName = nameInputs[index];
+        const checkInputs = document.querySelectorAll("input[name='email'], input[name='phone'], input[name='registrationNumber']");
+        let isCheckValid = false;
+        confirmNumber = generateConfirmNumber();
+
+        if(checkInputs && checkInputs[index].value) {
+            switch(fd) {
+                case "pwd":
+                    try {
+                        const regex = /^[a-z][a-z0-9_]{3,19}$/;
+                        if(idInputs[index].value == "" || !regex.test(idInputs[index].value)) {
+                            break;
+                        }
+                    } catch(error) {
+                        console.log("sendCofirmNumber: ", error); 
+                    }
+                default:
+                    if(fm === "email") {
+                        // 이메일로 찾기
+                        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                        isCheckValid = regex.test(checkInputs[index].value);
+                    } else if(fm === "phone") {
+                        // 휴대폰 번호로 찾기
+                        isCheckValid = (checkInputs[index].value.length >= 10);
+                    } else {
+                        // 사업자등록번호로 찾기
+                        try {
+                            isCheckValid = (numberInputs[index].value == 10);
+                        } catch(error) {
+                            console.log("sendCofirmNumber: ", error);
+                        }
+                    }
+                    break;
+            }
+        }
+
+        if(checkName.value != "" && isCheckValid) {
+            alert("인증번호가 전송되었습니다.\n인증번호 : " + confirmNumber);
+            event.target.innerText = "재전송";
+            confirmInputs[index].removeAttribute("disabled");
+            confirmInputs[index].focus();
+        } else {
+            alert("회원 정보를 정확하게 입력해주세요.");
+            confirmInputs.forEach(input => {
+                input.disabled = true;
+            })
+        }
+    }
+
+    // 조회 버튼
+    function validateFindForm(event, index) {
+        // 유효성 검증
+        const nameInput = nameInputs[index];
+        const inputs = document.querySelectorAll("input[name='email'], input[name='phone'], input[name='registrationNumber']");
+        const checkInput = confirmInputs[index];
+
+        if(nameInput.value != "" &&  inputs[index].value != "" && checkInput.value != "") {
+            if(checkInput.value === confirmNumber) {
+                findForms[index].sumit();
+            } else {
+                alert("인증번호가 틀립니다. 다시 시도해주세요.");
+                checkInput.value = "";
+                checkInput.focus();
+            }
+        } else {
+            alert("회원 정보를 정확하게 입력해주세요.");
+        }
+    }
+
+    idInputs.forEach(input => {
+        input.addEventListener("input", (event) => {
+            replaceInputId(event);
+        })
+    });
+    emailInputs.forEach((input, index) => {
+        input.addEventListener("input", (event) => {
+            replaceInputEmail(event);
+        });
+    });    
+    phoneInputs.forEach(input => {
+        input.addEventListener("input", (event) => {
+            replaceInputNumber(event);
+        })
+    });
+    numberInputs.forEach(input => {
+        input.addEventListener("input", (event) => {
+            replaceInputNumber(event);
+        })
+    });
+    confirmInputs.forEach(input => {
+        input.addEventListener("input", (event) => {
+            const validInput = event.target.value.replace(/[^a-zA-Z0-9]/g, "");
+            event.target.value = validInput;
+        })
+    });
+    confirmButtons.forEach((button, index) => {
+        button.addEventListener("click", (event) => {
+            sendCofirmNumber(event, index);
+        })
+    });
+    findButtons.forEach((button, index) => {
+        button.addEventListener("click", (event) => {
+            validateFindForm(event, index);
+        })
+    })
 } catch(error) {
     console.log("find-Person: ", error);
 }

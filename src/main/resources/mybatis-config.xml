@@ -18,9 +18,8 @@
  		<typeAlias alias="Resume" type="com.cs.workdream.resume.model.vo.Resume"/>
  		<typeAlias alias="Board" type="com.cs.workdream.board.model.vo.Board"/>
  		<typeAlias alias="Reply" type="com.cs.workdream.board.model.vo.Reply"/>
- 		<typeAlias alias="SelfIntro" type="com.cs.workdream.resume.model.vo.SelfIntro"/>
  		<typeAlias alias="UserTag" type="com.cs.workdream.usertags.model.vo.UserTag"/>
- 		
+ 		<typeAlias alias="SelfIntro" type="com.cs.workdream.selfintro.model.vo.SelfIntro"/>		
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->

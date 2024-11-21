@@ -1,4 +1,4 @@
-package com.cs.workdream.resume.service;
+package com.cs.workdream.selfintro.service;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cs.workdream.resume.controller.ResumeController;
-import com.cs.workdream.resume.model.dao.SelfIntroDao;
-import com.cs.workdream.resume.model.vo.SelfIntro;
+import com.cs.workdream.selfintro.model.dao.SelfIntroDao;
+import com.cs.workdream.selfintro.model.vo.SelfIntro;
 @Service
 
 public class SelfIntroServiceImpl implements SelfIntroService {
