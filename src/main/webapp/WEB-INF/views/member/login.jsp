@@ -11,7 +11,7 @@
 	<!-- css / js 연결 -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member.css">
 	<script>
-	    let ut = '${sessionScope.ut}' || "P";
+		let ut = '<c:out value="${ut}" />' || "P";
 	</script>
 	<script src="${pageContext.request.contextPath}/js/member.js" defer></script>
 </head>
