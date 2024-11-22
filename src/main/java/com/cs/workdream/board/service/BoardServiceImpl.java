@@ -245,7 +245,13 @@ public class BoardServiceImpl implements BoardService {
     
     @Override
     public List<Board> searchPostsByTitle(String title, int offset, int limit) {
-        return boardDao.searchPostsByTitle(sqlSession, title, offset, limit);
+        List<Board> posts = boardDao.searchPostsByTitle(sqlSession, title, offset, limit);
+        // 각 게시글에 대해 직무 카테고리 설정
+        for (Board post : posts) {
+            List<String> jobCategories = boardDao.selectJobCategoriesByPostId(sqlSession, post.getPostingNo());
+            post.setJobCategories(jobCategories);
+        }
+        return posts;
     }
 
     @Override
