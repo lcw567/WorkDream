@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +34,8 @@ public class MemberController {
 	
 	// 로그인 페이지로 이동
 	@RequestMapping("/login")
-    public String login() {
+    public String login(@RequestParam("ut") String userType, HttpSession session) {
+		session.setAttribute("ut", userType);
         return "member/login";
     }
 	
@@ -47,7 +49,7 @@ public class MemberController {
 	    if(loginMember == null || !bcryptPasswordEncoder.matches(m.getUserPwd(), loginMember.getUserPwd())) {
 	        // 로그인 실패
 	        mv.addObject("errorMsg", "아이디 또는 비밀번호가 일치하지 않습니다.");
-	        mv.addObject("location", "/login");
+	        mv.addObject("returnPage", "/login?ut=" + m.getUserType());
 	        mv.setViewName("common/errorPage");
 	    }
 	    else {
@@ -124,6 +126,7 @@ public class MemberController {
 		else {
 			// 등록 실패
 			session.setAttribute("errorMsg", "회원가입에 실패했습니다. 다시 시도해주세요.");
+			session.setAttribute("returnPage", "/registration?ut=" + m.getUserType());
 			return "common/errorPage";
 		}
 	}
@@ -165,12 +168,15 @@ public class MemberController {
 	    
 	    if(findMember == null) {
 	    	// 조회 실패
+	    	String returnUrl = "/findUser?ut=" + m.getUserType() + "&fd=id" + "&fm=" + method;
+	    	
 	        mv.addObject("errorMsg", "일치하는 회원 정보가 없습니다.");
-	        mv.addObject("location", "/login");
+	        mv.addObject("returnPage", returnUrl);
 	        mv.setViewName("common/errorPage");
 	    } else {
 	    	// 조회 성공
-	    	mv.setViewName("member/login");
+	    	mv.addObject("findUser", findMember);
+	    	mv.setViewName("member/findMemberResult");
 	    }
 	    
 	    return mv;
@@ -186,12 +192,15 @@ public class MemberController {
 	    
 	    if(findMember == null) {
 	    	// 조회 실패
+	    	String returnUrl = "/findUser?ut=" + m.getUserType() + "&fd=pwd" + "&fm=" + method;
+	    	
 	        mv.addObject("errorMsg", "일치하는 회원 정보가 없습니다.");
-	        mv.addObject("location", "/login");
+	        mv.addObject("returnPage", returnUrl);
 	        mv.setViewName("common/errorPage");
 	    } else {
 	    	// 조회 성공
-	    	mv.setViewName("member/login");
+	    	mv.addObject("findUser", findMember);
+	    	mv.setViewName("member/findMemberResult");
 	    }
 	    
 	    return mv;
