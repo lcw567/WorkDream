@@ -242,4 +242,14 @@ public class BoardServiceImpl implements BoardService {
         }
         return post;
     }
+    
+    @Override
+    public List<Board> searchPostsByTitle(String title, int offset, int limit) {
+        return boardDao.searchPostsByTitle(sqlSession, title, offset, limit);
+    }
+
+    @Override
+    public int countSearchPostsByTitle(String title) {
+        return boardDao.countSearchPostsByTitle(sqlSession, title);
+    }
 }

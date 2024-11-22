@@ -391,7 +391,40 @@
         WHERE REPLY_NO = #{value} AND LIKE_COUNT > 0 AND STATUS = 'Y'
     </update>
 
-    
+    <!-- 제목으로 게시글 검색 -->
+	<select id="searchPostsByTitle" parameterType="map" resultType="com.cs.workdream.board.model.vo.Board">
+	    <![CDATA[
+	        SELECT * FROM (
+	            SELECT p.*, ROWNUM AS rnum
+	            FROM (
+	                SELECT 
+	                    POSTING_NO AS postingNo,
+	                    CATEGORY AS category,
+	                    TITLE AS title,
+	                    CONTENT AS content,
+	                    IMAGE AS imagePath,
+	                    AUTHOR AS author,
+	                    USER_NO AS userNo,
+	                    CREATED_TIME AS createdTime,
+	                    UPDATED_TIME AS updatedTime,
+	                    VIEW_COUNT AS viewCount,
+	                    LIKE_COUNT AS likeCount,
+	                    STATUS AS status
+	                FROM POSTING
+	                WHERE TITLE LIKE #{title} AND STATUS = 'Y'
+	                ORDER BY CREATED_TIME DESC
+	            ) p
+	            WHERE ROWNUM <= #{endRow}
+	        )
+	        WHERE rnum > #{offset}
+	    ]]>
+	</select>
+
+    <!-- 제목으로 검색된 게시글 수 조회 -->
+    <select id="countSearchPostsByTitle" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM POSTING
+        WHERE TITLE LIKE #{title} AND STATUS = 'Y'
+    </select>
     
 
 </mapper>

@@ -44,4 +44,9 @@ public interface BoardService {
     // 직무 카테고리 관련 메서드
     List<String> getJobCategories(int postingNo);
     Board getPostWithJobCategories(int postingNo); // 직무 카테고리 포함 게시글 조회 메서드 추가
+    
+ // 제목으로 게시글 검색
+    List<Board> searchPostsByTitle(String title, int offset, int limit);
+
+    int countSearchPostsByTitle(String title);
 }
