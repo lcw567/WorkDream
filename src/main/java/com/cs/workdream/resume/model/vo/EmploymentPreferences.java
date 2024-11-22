@@ -17,7 +17,7 @@ public class EmploymentPreferences {
     private Integer employmentPreferencesNo; // employment_preferences_no
     private Integer resumeNo; // resume_no
     private int personNo; // person_no
-    private String marriageReason; // marriage_reason
+    private String veteranreason; // marriage_reason
     private String serviceStatus; // service_status
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
