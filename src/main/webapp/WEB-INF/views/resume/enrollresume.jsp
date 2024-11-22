@@ -19,11 +19,12 @@
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div id="inner">
-        <form action="insert.re" method="post">
+        <form action="insert.re" method="post" enctype="multipart/form-data">
             <div class="resume_title">
                 <h1>이력서 제목</h1> 
                 <input type="text" name="resumeTitle" placeholder="이력서의 제목을 입력해주세요." required>
             </div>
+            <!-- 기본정보 -->
             <div class="Info">
                 <fieldset class="basic_info">
                     <legend class="b_Info">기본정보</legend>
@@ -31,62 +32,64 @@
                         <div id="basic1">
                             <fieldset class="name">
                                 <legend class="username">이름*</legend>
-                                <input type="text" name="basicInfo[0].user_name" required>
+                                <input type="text" name="userName" required>
                             </fieldset>
                             <fieldset class="gender">
-                                <select name="basicInfo[0].user_gender" id="selectgender" required>
-                                    <option value="male">남</option>
-                                    <option value="female">여</option>
+                                <select name="userGender" id="selectgender" required>
+                                    <option value="M">남</option>
+                                    <option value="F">여</option>
                                 </select>
                             </fieldset>
                             <fieldset class="birthday">
                                 <legend class="userbirth">생년월일*</legend>
-                                <input type="date" name="basicInfo[0].user_birth" required>
+                                <input type="date" name="userBirth" required>
                             </fieldset>
                         </div>
                         <div id="basic2">  
                             <fieldset class="email">
                                 <legend class="useremail">이메일*</legend>
-                                <input type="email" name="basicInfo[0].user_email" required>
+                                <input type="email" name="userEmail" required>
                             </fieldset>
                             <button type="button" class="email_check">인증</button>
                         </div>
                         <div id="basic3">  
                             <fieldset class="phone">
                                 <legend class="userphone">전화번호*</legend>
-                                <input type="text" name="basicInfo[0].user_phone" required>
+                                <input type="text" name="userPhone" required>
                             </fieldset>
                             <button type="button" class="phone_check">인증</button>
                         </div>
                         <div id="basic4">
                             <fieldset class="address">
                                 <legend class="useraddress">주소*</legend>
-                                <input type="text" id="sample4_postcode" placeholder="우편번호" name="basicInfo[0].user_address" required>
+                                <input type="text" id="sample4_postcode" placeholder="우편번호" name="userAddress" required>
                             </fieldset>
                             <input type="button" class="addressNum" name="usernumberaddress" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
                             <fieldset class="dtaddress1">
                                 <legend class="roadAddress">도로명주소*</legend>
-                                <input type="text" id="roadAddress" name="basicInfo[0].userroadaddress" placeholder="도로명주소" required>
+                                <input type="text" id="roadAddress" name="userRoadAddress" placeholder="도로명주소" required>
                             </fieldset>
                             <fieldset class="dtaddress2">
                                 <legend class="detailAddress">상세주소*</legend>
-                                <input type="text" id="detailAddress" name="basicInfo[0].user_detailaddress" placeholder="상세주소"required>
+                                <input type="text" id="detailAddress" name="userDetailAddress" placeholder="상세주소" required>
                             </fieldset>
                         </div>
                         <div id="basic5">
                             <img src="${pageContext.request.contextPath}/img/file.png" class="profile_img" alt="">
-                            <input type="file" class="profile_upload" accept="image/*" name="basicInfo[0].user_pic">
+                            <input type="file" class="profile_upload" accept="image/*" name="userPicFile">
                         </div>
                     </div>
                 </fieldset>
             </div>
+        
+            <!-- 최종 학력 -->
             <div class="education">
                 <fieldset class="education_Lv">
                     <legend class="edu_Lv">최종 학력</legend>
                     <div id="edu1">
                         <div class="edu_inner1">
                             <fieldset class="final_edu">
-                                <select name="education_level" id="selectedu" onchange="displayEducationFields()">
+                                <select name="educationLevel" id="selectedu" onchange="displayEducationFields()">
                                     <option value="select">학력 구분 선택*</option>
                                     <option value="element">초등학교</option>
                                     <option value="middle">중학교</option>
@@ -101,12 +104,12 @@
                             <div class="form-group1">
                                 <fieldset class="input-group">
                                     <legend>학교명 *</legend>
-                                    <input type="text" name="academic_name" class="element_name" >
+                                    <input type="text" name="academicName" class="element_name" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduation_status" class="status" >
+                                    <select name="graduationStatus" class="status" >
                                         <option value="graduate">졸업</option>
                                         <option value="withdraw">중퇴</option>
                                     </select>
@@ -114,7 +117,7 @@
                                 <div class="exam">
                                     <label>중입 검정고시(초졸)</label>
                                     <label for="middle_exam">
-                                        <input type="checkbox" id="middle_exam" name="exam_passed" value="Y"/>
+                                        <input type="checkbox" id="middle_exam" name="examPassed" value="Y"/>
                                         <span></span>&nbsp;
                                     </label>
                                 </div>
@@ -122,14 +125,14 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="month" name="enter_date" class="enter_date" >
+                                    <input type="month" name="enterDate" class="enter_date" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="month" name="graduation_date" class="graduation_date" >
+                                    <input type="month" name="graduationDate" class="graduation_date" >
                                 </fieldset>
-                    
+        
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location" class="select_lo" >
@@ -161,12 +164,12 @@
                             <div class="form-group1">
                                 <fieldset class="input-group">
                                     <legend>학교명 *</legend>
-                                    <input type="text" name="academic_name" class="middle_name" >
+                                    <input type="text" name="academicName" class="middle_name" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduation_status" class="status" >
+                                    <select name="graduationStatus" class="status" >
                                         <option value="graduate">졸업</option>
                                         <option value="withdraw">중퇴</option>
                                     </select>
@@ -174,7 +177,7 @@
                                 <div class="exam">
                                     <label>고입 검정고시(중졸)</label>
                                     <label for="high_exam">
-                                        <input type="checkbox" id="high_exam" name="exam_passed" value="Y"/>
+                                        <input type="checkbox" id="high_exam" name="examPassed" value="Y"/>
                                         <span></span>&nbsp;
                                     </label>
                                 </div>
@@ -182,14 +185,14 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="month" name="enter_date" class="enter_date" >
+                                    <input type="month" name="enterDate" class="enter_date" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="month" name="graduation_date" class="graduation_date" >
+                                    <input type="month" name="graduationDate" class="graduation_date" >
                                 </fieldset>
-                    
+        
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location" class="select_lo" >
@@ -221,11 +224,11 @@
                             <div class="form-group1">
                                 <fieldset class="input-group">
                                     <legend>학교명 *</legend>
-                                    <input type="text" name="academic_name" class="high_name" >
+                                    <input type="text" name="academicName" class="high_name" >
                                 </fieldset>
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduation_status" class="status" >
+                                    <select name="graduationStatus" class="status" >
                                         <option value="graduate">졸업</option>
                                         <option value="attending">재학중</option>
                                         <option value="withdraw">중퇴</option>
@@ -235,7 +238,7 @@
                                 <div class="exam">
                                     <label>대입 검정고시</label>
                                     <label for="college_exam">
-                                        <input type="checkbox" id="college_exam" name="exam_passed" value="Y"/>
+                                        <input type="checkbox" id="college_exam" name="examPassed" value="Y"/>
                                         <span></span>&nbsp;
                                     </label>
                                 </div>
@@ -243,14 +246,14 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="month" name="enter_date" class="enter_date" >
+                                    <input type="month" name="enterDate" class="enter_date" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="month" name="graduation_date" class="graduation_date" >
+                                    <input type="month" name="graduationDate" class="graduation_date" >
                                 </fieldset>
-                    
+        
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location" class="select_lo" >
@@ -282,12 +285,12 @@
                             <div class="form-group1">
                                 <fieldset class="input-group">
                                     <legend>학교명 *</legend>
-                                    <input type="text" name="academic_name" class="college_name" >
+                                    <input type="text" name="academicName" class="college_name" >
                                 </fieldset>
                 
                                 <fieldset class="input-group">
                                     <legend>전공 *</legend>
-                                    <input type="text" name="major" class="major_name" >
+                                    <input type="text" name="majorName" class="major_name" >
                                 </fieldset>
                                     
                                 <fieldset class="input-group">
@@ -303,7 +306,7 @@
                 
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduation_status" class="status" >
+                                    <select name="graduationStatus" class="status" >
                                         <option value="graduate">졸업</option>
                                         <option value="attending">재학중</option>
                                         <option value="absence">휴학중</option>
@@ -316,14 +319,14 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="month" name="enter_date" class="enter_date" >
+                                    <input type="month" name="enterDate" class="enter_date" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="month" name="graduation_date" class="graduation_date" >
+                                    <input type="month" name="graduationDate" class="graduation_date" >
                                 </fieldset>
-                    
+        
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location" class="select_lo" >
@@ -352,6 +355,8 @@
                     </div>
                 </fieldset>
             </div>
+        
+            <!-- 경력 -->
             <div class="Career">
                 <fieldset class="career">
                     <legend class="career_Lv">경력</legend>
@@ -363,19 +368,19 @@
                     <div class="career1">
                         <fieldset class="company_title">
                             <legend>회사명</legend>
-                            <input type="text" class="com_title" name="company_title" >
+                            <input type="text" class="com_title" name="companyTitle" >
                         </fieldset>
                         <fieldset class="enter_com">
                             <legend>입사년월</legend>
-                            <input type="month" class="enter_com" name="start_date" >
+                            <input type="month" name="startDateWork" >
                         </fieldset>
                         <fieldset class="retire_com">
                             <legend>퇴사년월</legend>
-                            <input type="month" class="retire_com" name="end_date">
+                            <input type="month" name="endDateWork">
                         </fieldset>
                         <fieldset class="input-group">
                             <legend>근무현황</legend>
-                            <select name="status" class="career_status" >
+                            <select name="careerStatus" class="career_status" >
                                 <option value="Y">재직중</option>
                                 <option value="N">퇴사</option>
                                 <option value="P">퇴사예정</option>
@@ -399,23 +404,25 @@
                     <div class="career3">
                         <fieldset class="job_content">
                             <legend>담당업무</legend>
-                            <textarea name="job_content" id="j_content" placeholder="담당업무를 입력해주세요.
-    
-    - 진행한 업무를 다 적기보다는 경력사항 별로 중요합니다!
-    
-    - 담당한 업무 내용을 요약해서 작성해보세요!
-    
-    - 경력별 프로젝트 내용을 적을 경우, 역할/팀구성/기여도/성과를 기준으로 요약해서 작성해보세요!" ></textarea>
+                            <textarea name="jobContent" id="j_content" placeholder="담당업무를 입력해주세요.
+            
+            - 진행한 업무를 다 적기보다는 경력사항 별로 중요합니다!
+            
+            - 담당한 업무 내용을 요약해서 작성해보세요!
+            
+            - 경력별 프로젝트 내용을 적을 경우, 역할/팀구성/기여도/성과를 기준으로 요약해서 작성해보세요!" ></textarea>
                         </fieldset>
                     </div>
                 </fieldset>
             </div>
+        
+            <!-- 스킬 -->
             <div id="Skill">
                 <fieldset class="skill">
                     <legend class="skill_name">스킬</legend>
                     <div id="sk_title1">
                         <fieldset class="skill_title">
-                            <input type="text" name="skill_name" placeholder="툴/직무역량/소프트스킬을 입력해주세요.">
+                            <input type="text" name="skillName" placeholder="툴/직무역량/소프트스킬을 입력해주세요.">
                         </fieldset>
                         <button type="button" class="addSkillButton">추가하기</button>
                     </div>
@@ -426,13 +433,15 @@
                     </div>
                 </fieldset>
             </div>
+        
+            <!-- 경험/활동/교육 -->
             <div id="Experience">
                 <fieldset class="experience">
                     <legend class="exp">경험/활동/교육</legend>
                     <div class="exp1">
                         <fieldset class="activity">
                             <legend>활동구분선택</legend>
-                            <select name="activity_type" class="select_activity" >
+                            <select name="activityType" class="select_activity" >
                                 <option value="working">교내활동</option>
                                 <option value="intern">인턴</option>
                                 <option value="volunteer">자원봉사</option>
@@ -446,15 +455,15 @@
                         </fieldset>
                         <fieldset class="place">
                             <legend class="place_name">기관/장소</legend>
-                            <input type="text" name="organization_name" >
+                            <input type="text" name="organizationName" >
                         </fieldset>
                         <fieldset class="start_date">
                             <legend>시작년월</legend>
-                            <input type="month" class="start" name="start_date" >
+                            <input type="month" name="startDateAct" >
                         </fieldset>
                         <fieldset class="finish_date">
                             <legend>종료년월</legend>
-                            <input type="month" class="finish" name="end_date">
+                            <input type="month" name="endDateAct">
                         </fieldset>
                     </div>
                     <div class="exp2">
@@ -465,6 +474,8 @@
                     </div>
                 </fieldset>
             </div>
+        
+            <!-- 자격/어학/수상 -->
             <div class="awards">
                 <fieldset class="select_awards">
                     <legend class="awa">자격/어학/수상</legend>
@@ -483,7 +494,7 @@
                     <div class="awards2" id="certificateFields" style="display: none;">
                         <fieldset class="certi_title">
                             <legend>자격증명</legend>
-                            <input type="text" name="name">
+                            <input type="text" name="qualificationName">
                         </fieldset>
                         <fieldset class="institution">
                             <legend>발행처/기관</legend>
@@ -514,7 +525,7 @@
                             <div class="language1">
                                 <fieldset class="lang_title">
                                     <legend>어학시험명</legend>
-                                    <input type="text" name="name">
+                                    <input type="text" name="languageName">
                                 </fieldset>
                                 <fieldset class="level">
                                     <legend>급수</legend>
@@ -545,9 +556,9 @@
                                         <option value="japan">일본어</option>
                                         <option value="china">중국어</option>
                                         <option value="german">독일어</option>
-                                        <option value="French">불어</option>
-                                        <option value="Spanish">스페인어</option>
-                                        <option value="Russian">러시아어</option>
+                                        <option value="french">불어</option>
+                                        <option value="spanish">스페인어</option>
+                                        <option value="russian">러시아어</option>
                                         <option value="italy">이탈리아어</option>
                                         <option value="korean">한국어</option>
                                         <option value="etc">기타</option>
@@ -568,7 +579,7 @@
                         <div class="contest1">
                             <fieldset class="contest_title">
                                 <legend>수상/공모전명</legend>
-                                <input type="text" name="award_name">
+                                <input type="text" name="awardName">
                             </fieldset>
                             <fieldset class="contest_place">
                                 <legend>주최기관</legend>
@@ -576,7 +587,7 @@
                             </fieldset>
                             <fieldset class="acquire_date">
                                 <legend>취득일</legend>
-                                <input type="month" class="acquire" name="award_date">
+                                <input type="month" class="acquire" name="awardDate">
                             </fieldset>
                         </div>
                         <div class="contest2">
@@ -588,19 +599,21 @@
                     </div>
                 </fieldset>
             </div>
+        
+            <!-- 취업우대사항 -->
             <div class="Preferential">
                 <fieldset class="preferential">
                     <legend class="pre_title">취업우대사항</legend>
                     <div class="pre1">
                         <fieldset class="pre_content">
                             <legend>보훈사유</legend>
-                            <input type="text" name="employmentPreference.veteranreason" placeholder="보훈사유 입력">
+                            <input type="text" name="veteranReason" placeholder="보훈사유 입력">
                         </fieldset>
                     </div>
                     <div class="pre2">
                         <fieldset class="mil_sub">
                             <legend>병역대상</legend>
-                            <select name="employmentPreference.serviceStatus" id="military_status">
+                            <select name="serviceStatus" id="military_status">
                                 <option value="not">대상아님</option>
                                 <option value="unfulfilled">미필</option>
                                 <option value="fulfilled">군필</option>
@@ -611,27 +624,27 @@
                         <div class="unfulfilled" id="unfulfilledFields" style="display: none;">
                             <fieldset class="exempted">
                                 <legend>사유 입력</legend>
-                                <input type="text" name="employmentPreference.unfinishedReason" placeholder="사유 입력">
+                                <input type="text" name="unfinishedReason" placeholder="사유 입력">
                             </fieldset>
                         </div>
                         <div class="EXEMPTED" id="exemptedFields" style="display: none;">
                             <fieldset class="exempted">
                                 <legend>사유 입력</legend>
-                                <input type="text" name="employmentPreference.exemptionReason" placeholder="사유 입력">
+                                <input type="text" name="exemptionReason" placeholder="사유 입력">
                             </fieldset>
                         </div>
                         <div class="fulfilled" id="fulfilledFields" style="display: none;">
                             <fieldset>
                                 <legend>입대일</legend>
-                                <input type="month" name="militaryService.enlistmentDate">
+                                <input type="month" name="enlistmentDate">
                             </fieldset>
                             <fieldset>
                                 <legend>전역일</legend>
-                                <input type="month" name="militaryService.dischargeDate">
+                                <input type="month" name="dischargeDate">
                             </fieldset>
                             <fieldset>
                                 <legend>군별선택</legend>
-                                <select name="militaryService.militarySelection">
+                                <select name="militaryBranch">
                                     <option value="1">육군</option>
                                     <option value="2">해군</option>
                                     <option value="3">공군</option>
@@ -645,7 +658,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
-                                <select name="militaryService.classSelection">
+                                <select name="rank">
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>
                                     <option value="3">상병</option>
@@ -670,7 +683,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>전역사유 선택</legend>
-                                <select name="militaryService.dischargeReason" id="discharge_reason">
+                                <select name="dischargeReason" id="discharge_reason">
                                     <option value="">전역사유</option>
                                     <option value="1">만기전역</option>
                                     <option value="2">의가사전역</option>
@@ -685,15 +698,15 @@
                         <div class="serving" id="servingFields" style="display: none;">
                             <fieldset>
                                 <legend>입대일</legend>
-                                <input type="month" name="militaryService.enlistmentDate">
+                                <input type="month" name="enlistmentDate">
                             </fieldset>
                             <fieldset>
                                 <legend>전역일</legend>
-                                <input type="month" name="militaryService.dischargeDate" readonly>
+                                <input type="month" name="dischargeDate" readonly>
                             </fieldset>
                             <fieldset>
                                 <legend>군별선택</legend>
-                                <select name="militaryService.militarySelection">
+                                <select name="militaryBranch">
                                     <option value="1">육군</option>
                                     <option value="2">해군</option>
                                     <option value="3">공군</option>
@@ -707,7 +720,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
-                                <select name="militaryService.classSelection">
+                                <select name="rank">
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>
                                     <option value="3">상병</option>
@@ -734,10 +747,13 @@
                     </div>
                 </fieldset>
             </div>
+        
+            <!-- 제출 버튼 -->
             <div class="btn_select">
                 <button type="submit" class="final_save">작성 완료</button>
             </div>
         </form>
+        
         <div class="">
             <button type="button" class="preview">미리 보기</button>
         </div>

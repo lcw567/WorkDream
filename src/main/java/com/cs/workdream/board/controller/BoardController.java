@@ -112,7 +112,7 @@ public class BoardController {
         mockUser.setUserId("testuser123"); // userId 설정
         // 필요한 다른 필드도 설정
         session.setAttribute("loginUser", mockUser);
-        return "redirect:/board/communityPost"; // 로그인 후 리다이렉트할 페이지
+        return "redirect:/resume/enrollresume"; // 로그인 후 리다이렉트할 페이지
     }
     
     // 채용공고목록 맵핑
