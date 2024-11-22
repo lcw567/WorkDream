@@ -1,26 +1,87 @@
 package com.cs.workdream.resume.model.vo;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
 @Data
 public class Resume {
-    private Integer resumeNo; // resume_no
-    private Integer personNo; // person_no
-    private String resumeTitle; // resume_title
-    private Date createDate; // create_date
-    private Date modifiedDate; // modified_date
-    private char deleted; // deleted
+    // 이력서 기본 정보
+    private Integer resumeNo;
+    private int personNo;
+    private String resumeTitle;
+    private LocalDate createDate;
+    private LocalDate modifiedDate;
+    private Character deleted;
 
-    private List<BasicInfo> basicInfo = new ArrayList<>();
-    private List<AcademicAbility> academicAbilities = new ArrayList<>();
-    private List<Qualification> qualifications = new ArrayList<>();
-    private List<Experience> experiences = new ArrayList<>();
-    private EmploymentPreferences employmentPreferences;
-    private List<Skill> skills = new ArrayList<>();
-    private List<Career> careers = new ArrayList<>();
+    // 기본 정보
+    private String userName;
+    private String userGender;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date userBirth;
+    private String userEmail;
+    private String userPhone;
+    private String userAddress;
+    private String userRoadAddress;
+    private String userDetailAddress;
+    private String userPic; // 파일명 저장
 
+    // 최종 학력
+    private String educationLevel;
+    private String academicName;
+    private String majorName;
+    private String degree;
+    private String graduationStatus;
+    private YearMonth enterDate;
+    private YearMonth graduationDate;
+    private String location;
+    private Character examPassed;
+
+    // 경력
+    private String companyTitle;
+    private String work;
+    private String department;
+    private YearMonth startDateWork;
+    private YearMonth endDateWork;
+    private String careerStatus;
+    private String jobContent;
+    private String position;
+
+    // 스킬
+    private String skillName;
+
+    // 경험/활동/교육
+    private String activityType;
+    private String organizationName;
+    private YearMonth startDateAct;
+    private YearMonth endDateAct;
+    private String description;
+
+    // 자격/어학/수상
+    private String category;
+    private String name;
+    private String issuingAgency;
+    private String proficiencyLevel;
+    private String languageType;
+    private String passStatus;
+    private String awardName;
+    private String organizer;
+    private LocalDate awardDate;
+    private YearMonth issueDate;
+
+    // 취업우대사항
+    private String veteranReason;
+    private String serviceStatus;
+    private String unfinishedReason;
+    private String exemptionReason;
+    private YearMonth enlistmentDate;
+    private YearMonth dischargeDate;
+    private String militaryBranch;
+    private String rank;
+    private String dischargeReason;
 }

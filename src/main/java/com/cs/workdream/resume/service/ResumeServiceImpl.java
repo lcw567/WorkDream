@@ -7,25 +7,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.resume.model.dao.ResumeDao;
-import com.cs.workdream.resume.model.vo.AcademicAbility;
-import com.cs.workdream.resume.model.vo.EmploymentPreferences;
-import com.cs.workdream.resume.model.vo.Experience;
-import com.cs.workdream.resume.model.vo.Qualification;
 import com.cs.workdream.resume.model.vo.Resume;
-import com.cs.workdream.resume.model.vo.BasicInfo;
-import com.cs.workdream.resume.model.vo.Skill;
-import com.cs.workdream.resume.model.vo.Career;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * ResumeServiceImpl 클래스는 ResumeService 인터페이스를 구현하며,
- * 이력서와 관련된 비즈니스 로직을 처리합니다.
- */
 @Service
 public class ResumeServiceImpl implements ResumeService {
 
@@ -41,17 +31,37 @@ public class ResumeServiceImpl implements ResumeService {
         this.resumeDao = resumeDao;
     }
 
-	@Override
-	public boolean saveResume(Resume resume) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    @Transactional
+    public boolean saveResume(Resume resume, MultipartFile userPicFile) {
+        try {
+            // 프로필 이미지 업로드 처리
+            if (userPicFile != null && !userPicFile.isEmpty()) {
+                String originalFilename = userPicFile.getOriginalFilename();
+                String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+                String newFilename = UUID.randomUUID().toString() + extension;
+                File destination = new File(uploadDir + File.separator + newFilename);
+                userPicFile.transferTo(destination);
+                resume.setUserPic(newFilename);
+                logger.info("프로필 이미지 업로드 성공: {}", newFilename);
+            }
 
-	@Override
-	public boolean saveResume(Resume resume, MultipartFile userPic) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+            // 이력서 정보 저장
+            boolean isResumeInserted = resumeDao.insertResume(resume);
+            if (!isResumeInserted) {
+                logger.error("이력서 정보 저장 실패");
+                return false;
+            }
 
+            // 추가적인 정보 저장이 필요하다면 여기에 구현
 
+            return true;
+        } catch (IOException e) {
+            logger.error("파일 업로드 중 오류 발생", e);
+            return false;
+        } catch (Exception e) {
+            logger.error("이력서 저장 중 오류 발생", e);
+            return false;
+        }
+    }
 }

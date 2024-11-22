@@ -5,52 +5,42 @@
 
 <mapper namespace="ResumeMapper">
 
-    <!-- 이력서 기본 정보 삽입 -->
+    
     <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume" useGeneratedKeys="true" keyProperty="resumeNo">
-        INSERT INTO resume (person_no, resume_title, create_date, modified_date, deleted)
-        VALUES (#{personNo}, #{resumeTitle}, NOW(), NOW(), 'N')
-    </insert>
+    INSERT INTO RESUME (
+        RESUME_NO, PERSON_NO, RESUME_TITLE, CREATE_DATE, MODIFIED_DATE, DELETED,
+        USER_NAME, USER_GENDER, USER_BIRTH, USER_EMAIL, USER_PHONE, USER_ADDRESS,
+        USER_ROAD_ADDRESS, USER_DETAIL_ADDRESS, USER_PIC, EDUCATION_LEVEL,
+        ACADEMIC_NAME, MAJOR, DEGREE, STATUS, ENTER_DATE, GRADUATION_DATE,
+        LOCATION, EXAM_PASSED, SKILL, ACTICITY_TYPE, ORGANIZATION_NAME,
+        START_DATE_ACT, END_DATE_ACT, DESCRIPTION, CATEGORY, NAME, ISSUED_BY,
+        PROFICIENCY_LEVEL, KIND_OF_LANGUAGE, PASSING_CATEGORY, AWARD_NAME,
+        ORGANIZER, AWARD_DATE, ISSUE_DATE, VETERAN_REASON, SERVICE_STATE,
+        UNFULFILLED_REASON, EXEMPTED_REASON, ENLISTMENT_DATE, DISCHARGE_DATE,
+        MILITARY_SELECTION, CLASS_SELECTION, DISCHARGE_REASON, WORK, DEPARTMENT,
+        COMPANY_TITLE, START_DATE_WORK, END_DATE_WORK, STATUS_WORK, JOB_CONTENT,
+        POSITION
+    )
+    VALUES (
+        RESUME_SEQ.NEXTVAL, #{personNo}, #{resumeTitle}, SYSDATE, SYSDATE, 'N',
+        #{userName}, #{userGender}, #{userBirth,jdbcType=DATE}, #{userEmail}, #{userPhone}, #{userAddress},
+        #{userRoadAddress}, #{userDetailAddress}, #{userPic}, #{educationLevel},
+        #{academicName}, #{majorName}, #{degree}, #{graduationStatus}, #{enterDate},
+        #{graduationDate}, #{location}, #{examPassed}, #{skillName},
+        #{activityType}, #{organizationName}, #{startDateAct}, #{endDateAct},
+        #{description}, #{category}, #{name}, #{issuingAgency},
+        #{proficiencyLevel}, #{languageType}, #{passStatus}, #{awardName},
+        #{organizer}, #{awardDate}, #{issueDate}, #{veteranReason}, #{serviceStatus},
+        #{unfinishedReason}, #{exemptionReason}, #{enlistmentDate}, #{dischargeDate},
+        #{militaryBranch}, #{rank}, #{dischargeReason}, #{work}, #{department},
+        #{companyTitle}, #{startDateWork}, #{endDateWork}, #{careerStatus}, #{jobContent},
+        #{position}
+    )
+</insert>
 
-    <!-- 기본 정보 삽입 -->
-    <insert id="insertBasicInfo" parameterType="com.cs.workdream.resume.model.vo.BasicInfo" useGeneratedKeys="true" keyProperty="basicNo">
-        INSERT INTO basic_info (resume_no, person_no, user_name, user_gender, user_birth, user_email, user_phone, user_address, userroadaddress, user_detailaddress, user_pic)
-        VALUES (#{resumeNo}, #{personNo}, #{user_name}, #{user_gender}, #{user_birth}, #{user_email}, #{user_phone}, #{user_address}, #{userroadaddress}, #{user_detailaddress}, #{user_pic})
-    </insert>
 
-    <!-- 학력 정보 삽입 -->
-    <insert id="insertAcademicAbility" parameterType="com.cs.workdream.resume.model.vo.AcademicAbility" useGeneratedKeys="true" keyProperty="academicNo">
-        INSERT INTO academic_ability (resume_no, person_no, selectedu, academic_name, major_name, degree, graduation_status, enter_date, end_date, select_lo, exam_passed)
-        VALUES (#{resumeNo}, #{personNo}, #{selectedu}, #{academic_name}, #{major_name}, #{degree}, #{graduation_status}, #{enter_date}, #{end_date}, #{select_lo}, #{exam_passed})
-    </insert>
 
-    <!-- 자격증/어학/수상 정보 삽입 -->
-    <insert id="insertQualification" parameterType="com.cs.workdream.resume.model.vo.Qualification" useGeneratedKeys="true" keyProperty="qualificationNo">
-        INSERT INTO qualification (resume_no, person_no, category, name, issuing_agency, proficiency_level, language_type, passStatus, award_name, organizer, arwrd_date, issueDate)
-        VALUES (#{resumeNo}, #{personNo}, #{category}, #{name}, #{issuingAgency}, #{proficiencyLevel}, #{languageType}, #{passStatus}, #{award_name}, #{organizer}, #{arwrd_date}, #{issueDate})
-    </insert>
 
-    <!-- 경험 정보 삽입 -->
-    <insert id="insertExperience" parameterType="com.cs.workdream.resume.model.vo.Experience" useGeneratedKeys="true" keyProperty="experienceNo">
-        INSERT INTO experience (resume_no, person_no, activity_type, organization_name, start_date, end_date, description)
-        VALUES (#{resumeNo}, #{personNo}, #{activity_type}, #{organization_name}, #{start_date}, #{end_date}, #{description})
-    </insert>
-
-    <!-- 취업우대사항 삽입 -->
-    <insert id="insertEmploymentPreferences" parameterType="com.cs.workdream.resume.model.vo.EmploymentPreferences" useGeneratedKeys="true" keyProperty="employmentPreferencesNo">
-        INSERT INTO employment_preferences (resume_no, person_no, marriage_reason, service_status, enlistment_date, discharge_date, military_branch, rank, discharge_reason, exemption_reason, unfinished_reason)
-        VALUES (#{resumeNo}, #{personNo}, #{marriageReason}, #{serviceStatus}, #{enlistmentDate}, #{dischargeDate}, #{militaryBranch}, #{rank}, #{dischargeReason}, #{exemptionReason}, #{unfinishedReason})
-    </insert>
-
-    <!-- 스킬 정보 삽입 -->
-    <insert id="insertSkill" parameterType="com.cs.workdream.resume.model.vo.Skill" useGeneratedKeys="true" keyProperty="skillNo">
-        INSERT INTO skill (resume_no, person_no, skill_name)
-        VALUES (#{resumeNo}, #{personNo}, #{skill_name})
-    </insert>
-
-    <!-- 경력 정보 삽입 -->
-    <insert id="insertCareer" parameterType="com.cs.workdream.resume.model.vo.Career" useGeneratedKeys="true" keyProperty="careerNo">
-        INSERT INTO career (resume_no, person_no, company_title, work, department, start_date, end_date, career_status, job_content, position)
-        VALUES (#{resumeNo}, #{personNo}, #{company_title}, #{work}, #{department}, #{start_date}, #{end_date}, #{career_status}, #{job_content}, #{position})
-    </insert>
+    <!-- 기타 삽입 쿼리 (필요 시 추가) -->
 
 </mapper>
