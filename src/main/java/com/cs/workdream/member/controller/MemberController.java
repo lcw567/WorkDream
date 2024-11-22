@@ -1,7 +1,6 @@
 package com.cs.workdream.member.controller;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -65,6 +64,7 @@ public class MemberController {
 	        }
 	        response.addCookie(ck);
 	        session.setAttribute("loginUser", loginMember);
+	        mv.setViewName("redirect:/");
 	    }
 	    
 	    return mv;
