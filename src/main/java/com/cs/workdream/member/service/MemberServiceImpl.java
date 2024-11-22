@@ -44,4 +44,16 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.insertMember(sqlSession, m);
 	}
 
+	// 회원 아이디 조회
+	@Override
+	public Member findMemberId(Member m, String method) {
+		return memberDao.findMemberId(sqlSession, m, method);
+	}
+
+	// 회원 비밀번호 조회
+	@Override
+	public Member findMemberPwd(Member m, String method) {
+		return memberDao.findMemberPwd(sqlSession, m, method);
+	}
+
 }

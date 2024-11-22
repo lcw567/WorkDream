@@ -77,16 +77,6 @@ public class BusinessController {
     }
     
     
-    @GetMapping("/businessProfilePost")
-    public String businessProfilePost() {
-        return "business/businessProfilePost";
-    }
-    
-    @GetMapping("/businessProfileView")
-    public String businessProfileView() {
-        return "business/businessProfileView";
-    }
-    
     // 페이지 매핑
     @GetMapping("/announcementInformation1")
     public String jobRegistration() {

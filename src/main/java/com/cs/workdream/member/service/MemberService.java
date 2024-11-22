@@ -13,4 +13,10 @@ public interface MemberService {
 	// 신규 회원 등록
 	int insertMember(Member m);
 
+	// 회원 아이디 조회
+	Member findMemberId(Member m, String method);
+
+	// 회원 비밀번호 조회
+	Member findMemberPwd(Member m, String method);
+
 }

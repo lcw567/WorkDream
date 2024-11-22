@@ -35,7 +35,7 @@
 		
 			<!-- 이메일 주소로 찾기 -->
 			<article id="findMember-article-email">
-				<form id="findMember-form" action="" method="POST">
+				<form id="findMember-form" action="${pageContext.request.contextPath}/findId.me?fm=email" method="POST">
 					<input type="hidden" name="userType" value="B">
 					
 					<table>
@@ -66,7 +66,7 @@
 			
 			<!-- 휴대폰 번호로 찾기 -->
 			<article id="findMember-article-phone">
-				<form id="findMember-form" action="" method="POST">
+				<form id="findMember-form" action="${pageContext.request.contextPath}/findId.me?fm=phone" method="POST">
 					<input type="hidden" name="userType" value="B">
 					
 					<table>
@@ -96,7 +96,7 @@
 			
 			<!-- 사업자등록번호로 찾기 -->
 			<article id="findMember-article-number">
-				<form id="findMember-form" action="" method="POST">
+				<form id="findMember-form" action="${pageContext.request.contextPath}/findId.me?fm=number" method="POST">
 					<input type="hidden" name="userType" value="B">
 					
 					<table>
@@ -148,7 +148,7 @@
 			
 			<!-- 이메일 주소로 찾기 -->
 			<article id="findMember-article-email">
-				<form id="findMember-form" action="" method="POST">
+				<form id="findMember-form" action="${pageContext.request.contextPath}/findPwd.me?fm=email" method="POST">
 					<input type="hidden" name="userType" value="B">
 					
 					<table>
@@ -182,7 +182,7 @@
 			
 			<!-- 휴대폰 번호로 찾기 -->
 			<article id="findMember-article-phone">
-				<form id="findMember-form" action="" method="POST">
+				<form id="findMember-form" action="${pageContext.request.contextPath}/findPwd.me?fm=phone" method="POST">
 					<input type="hidden" name="userType" value="B">
 					
 					<table>
@@ -216,7 +216,7 @@
 			
 			<!-- 사업자등록번호로 찾기 -->
 			<article id="findMember-article-number">
-				<form id="findMember-form" action="" method="POST">
+				<form id="findMember-form" action="${pageContext.request.contextPath}/findPwd.me?fm=number" method="POST">
 					<input type="hidden" name="userType" value="B">
 					
 					<table>
