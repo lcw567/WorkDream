@@ -210,7 +210,7 @@ input[type="text"], input[type="time"] {
 /* 내부 input과 p 태그의 간격 및 정렬 */
 .unstyled-label input[type="checkbox"] {
     margin-right: 5px; /* 체크박스와 텍스트 간격 */
-}
+}ssssss
 .unstyled-label p {
     margin: 0; /* 텍스트의 기본 간격 제거 */
 }
