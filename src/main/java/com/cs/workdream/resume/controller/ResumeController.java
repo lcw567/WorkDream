@@ -1,7 +1,9 @@
 package com.cs.workdream.resume.controller;
 
+import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.resume.model.vo.Resume;
 import com.cs.workdream.resume.service.ResumeService;
+import com.cs.workdream.utils.DateUtils;
 
 import javax.servlet.http.HttpSession;
 
@@ -39,12 +41,33 @@ public class ResumeController {
         model.addAttribute("resume", resume);
         return "resume/enrollresume"; // JSP 경로
     }
+    
+    @GetMapping("/resumeDashboard")
+    public String showResumeDashboard(Model model, HttpSession session) {
+        Resume resume = new Resume();
+        model.addAttribute("resume", resume);
+        return "resume/resumeDashboard"; // JSP 경로
+    }
 
     @PostMapping("/insert.re")
     public String insertResume(@ModelAttribute Resume resume,
                                @RequestParam("userPicFile") MultipartFile userPicFile,
+                               HttpSession session,
                                RedirectAttributes redirectAttributes) {
-        logger.info("이력서 등록 시도: {}", resume);
+        // 세션에서 personNo 가져오기
+    	  Member loginUser = (Member) session.getAttribute("loginUser");
+	        if (loginUser == null) {
+	            return "redirect:/login?error=sessionExpired";
+	        } 
+
+        // personNo 설정
+        resume.setPersonNo(loginUser.getPersonNo());
+
+        if (resume.getUserBirth() != null) {
+            // java.util.Date -> java.sql.Date 변환
+            resume.setUserBirth(DateUtils.convertToSqlDate(resume.getUserBirth()));
+        }
+
         boolean isSaved = resumeService.saveResume(resume, userPicFile);
         if (isSaved) {
             redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 등록되었습니다.");
@@ -54,6 +77,8 @@ public class ResumeController {
             return "redirect:/resume/enrollresume";
         }
     }
+
+
 
     /**
      * @InitBinder를 사용하여 LocalDate 형식의 필드를 올바르게 변환하도록 설정

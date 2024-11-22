@@ -23,7 +23,7 @@
     )
     VALUES (
         RESUME_SEQ.NEXTVAL, #{personNo}, #{resumeTitle}, SYSDATE, SYSDATE, 'N',
-        #{userName}, #{userGender}, #{userBirth}, #{userEmail}, #{userPhone}, #{userAddress},
+        #{userName}, #{userGender}, #{userBirth,jdbcType=DATE}, #{userEmail}, #{userPhone}, #{userAddress},
         #{userRoadAddress}, #{userDetailAddress}, #{userPic}, #{educationLevel},
         #{academicName}, #{majorName}, #{degree}, #{graduationStatus}, #{enterDate},
         #{graduationDate}, #{location}, #{examPassed}, #{skillName},
@@ -37,6 +37,8 @@
         #{position}
     )
 </insert>
+
+
 
 
     <!-- 기타 삽입 쿼리 (필요 시 추가) -->

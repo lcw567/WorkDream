@@ -1,8 +1,9 @@
 package com.cs.workdream.resume.model.vo;
 
-import java.sql.Date;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,7 +13,7 @@ import lombok.Data;
 public class Resume {
     // 이력서 기본 정보
     private Integer resumeNo;
-    private Integer personNo;
+    private int personNo;
     private String resumeTitle;
     private LocalDate createDate;
     private LocalDate modifiedDate;
