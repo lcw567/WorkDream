@@ -20,6 +20,16 @@ public class MyPageController {
     @Autowired
     private UserTagsService userTagsService;
     
+    @GetMapping("business/businessProfilePost")
+    public String businessProfilePost() {
+        return "business/businessProfilePost";
+    }
+    
+    @GetMapping("business/businessProfileView")
+    public String businessProfileView() {
+        return "business/businessProfileView";
+    }
+    
     @GetMapping("business/businessMypage")
     public String businessMypage() {
         return "business/businessMypage";
