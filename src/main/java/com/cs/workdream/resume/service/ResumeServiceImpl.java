@@ -41,93 +41,17 @@ public class ResumeServiceImpl implements ResumeService {
         this.resumeDao = resumeDao;
     }
 
-    /**
-     * 이력서를 저장하는 메서드
-     * 
-     * @param resume   저장할 이력서 객체
-     * @param userPic  프로필 이미지 파일
-     * @return         저장 성공 여부
-     */
-    @Override
-    @Transactional
+	@Override
 	public boolean saveResume(Resume resume) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public boolean saveResume(Resume resume, MultipartFile userPic) {
-=======
-            // 이력서 기본 정보 저장
-            resumeDao.insertResume(resume);
-            
-            Integer resumeId = resume.getResumeNo(); // MyBatis가 자동 생성한 ID를 설정해야 함
-            logger.info("Resume saved with ID: {}", resumeId);
-
-            // 학력 정보 저장
-            if (resume.getEducations() != null) {
-                for (AcademicAbility edu : resume.getEducations()) {
-                    edu.setResumeNo(resumeId);
-                    resumeDao.insertEducation(edu);
-                }
-            }
-
-            // 경력 정보 저장
-            if (resume.getCareers() != null) {
-                for (Career career : resume.getCareers()) {
-                    career.setResumeNo(resumeId);
-                    resumeDao.insertCareer(career);
-                }
-            }
-
-            // 스킬 저장
-            if (resume.getSkills() != null) {
-                for (Skill skill : resume.getSkills()) {
-                    skill.setResumeNo(resumeId);
-                    resumeDao.insertSkill(skill);
-                }
-            }
-
-            // 자격증 저장
-            if (resume.getQualifications() != null) {
-                for (Qualification qual : resume.getQualifications()) {
-                    qual.setResumeNo(resumeId);
-                    resumeDao.insertQualification(qual);
-                }
-            }
-
-            // 수상내역 저장
-            if (resume.getAwards() != null) {
-                for (Award award : resume.getAwards()) {
-                    award.setResumeId(resumeId);
-                    resumeDao.insertAward(award);
-                }
-            }
-
-            // 취업 우대 사항 저장
-            EmploymentPreferences preferences = resume.getEmploymentPreferences();
-            if (preferences != null) {
-                preferences.setResumeNo(resumeId);
-                resumeDao.insertEmploymentPreferences(preferences);
-            }
-
-            return true;
-        } catch (IOException e) {
-            logger.error("파일 업로드 중 오류 발생: ", e);
-            // 트랜잭션 롤백
-            throw new RuntimeException("파일 업로드 실패", e);
-        } catch (Exception e) {
-            logger.error("이력서 저장 중 오류 발생: ", e);
-            // 트랜잭션 롤백
-            throw new RuntimeException("이력서 저장 실패", e);
-        }
-    }
-
-	@Override
-	public boolean saveResume(Resume resume) {
->>>>>>> 7ce410625e63372fdc70d77958732625e70742b3
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 }
