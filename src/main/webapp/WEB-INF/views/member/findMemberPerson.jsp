@@ -12,8 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member.css">
 	<script>
 		let ut = '<c:out value="${ut}" />' || "P";
-	    let fd = '<c:out value="${fd}" />';
-	    let fm = '<c:out value="${fm}" />';
+		let fd = '<c:out value="${fd}" />' || "id";
+	    let fm = '<c:out value="${fm}" />' || "email";
 	</script>
 	<script src="${pageContext.request.contextPath}/js/member.js" defer></script>
 </head>

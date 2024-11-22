@@ -34,8 +34,13 @@ public class MemberController {
 	
 	// 로그인 페이지로 이동
 	@RequestMapping("/login")
-    public String login(@RequestParam("ut") String userType, HttpSession session) {
-		session.setAttribute("ut", userType);
+    public String login(@RequestParam(value = "ut", required = false) String userType, Model model) {
+		if(userType == null) {
+			userType = "P";
+		} else {
+			model.addAttribute("ut", userType);
+		}
+		
         return "member/login";
     }
 	
@@ -77,8 +82,7 @@ public class MemberController {
 	
 	// 회원가입 페이지로 이동
 	@RequestMapping("/registration")
-    public String handleRequest(HttpServletRequest request, Model model) {
-    	String userType = request.getParameter("ut");
+    public String registration(@RequestParam("ut") String userType, Model model) {
         model.addAttribute("ut", userType);
         
         // 파라미터값에 따라 개인 회원 or 기업 회원 페이지로 이동
@@ -125,26 +129,21 @@ public class MemberController {
 		}
 		else {
 			// 등록 실패
-			session.setAttribute("errorMsg", "회원가입에 실패했습니다. 다시 시도해주세요.");
-			session.setAttribute("returnPage", "/registration?ut=" + m.getUserType());
+			model.addAttribute("errorMsg", "회원가입에 실패했습니다. 다시 시도해주세요.");
+			model.addAttribute("returnPage", "/registration?ut=" + m.getUserType());
 			return "common/errorPage";
 		}
 	}
 	
 	
-	/* 회원 정보 조회 */
+	/* 아이디, 비밀번호 찾기 관련 */
 	
 	// 아이디, 비밀번호 조회 페이지로 이동
 	@RequestMapping("/findUser")
-	public String handleRequest1(HttpServletRequest request, Model model) {
-		// 개인회원, 기업회원 확인용
-		String userType = request.getParameter("ut");
-		model.addAttribute("ut", userType);
-		
+	public String findMember(@RequestParam("ut") String userType, @RequestParam("fd") String findData, @RequestParam("fm") String findMethod, Model model) {
 		// findMember에서 사용할 변수값 set
-		String findData = request.getParameter("fd");
+		model.addAttribute("ut", userType);
 		model.addAttribute("fd", findData);
-		String findMethod = request.getParameter("fm");
 		model.addAttribute("fm", findMethod);
 		
 		// 파라미터값에 따라 개인회원 or 기업회원 전용 페이지로 이동
@@ -160,9 +159,7 @@ public class MemberController {
 	
 	// 아이디 조회
 	@RequestMapping("/findId.me")
-	public ModelAndView findMemberId(Member m, HttpServletRequest request, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
-		String method = request.getParameter("fm");
-		
+	public ModelAndView findMemberId(Member m, @RequestParam("fm") String method, ModelAndView mv) {
 		Member findMember = memberService.findMemberId(m, method);
 	    System.out.println(m.toString());
 	    
@@ -184,9 +181,7 @@ public class MemberController {
 	
 	// 비밀번호 조회
 	@RequestMapping("/findPwd.me")
-	public ModelAndView findMemberPwd(Member m, HttpServletRequest request, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
-		String method = request.getParameter("fm");
-		
+	public ModelAndView findMemberPwd(Member m, @RequestParam("fm") String method, ModelAndView mv) {
 		Member findMember = memberService.findMemberPwd(m, method);
 	    System.out.println(m.toString());
 	    
