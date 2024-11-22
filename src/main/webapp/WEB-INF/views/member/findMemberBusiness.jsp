@@ -126,7 +126,7 @@
 			
 			<aside id="findMember-aside">
 				<span>
-					<a href="${pageContext.request.contextPath}/login">로그인</a>
+					<a href="${pageContext.request.contextPath}/login?ut=B">로그인</a>
 					<b>&nbsp;|&nbsp;</b>
 					<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=pwd&fm=email">비밀번호 찾기</a>
 				</span>
@@ -250,7 +250,7 @@
 			
 			<aside id="findMember-aside">
 				<span>
-					<a href="${pageContext.request.contextPath}/login">로그인</a> |&nbsp;
+					<a href="${pageContext.request.contextPath}/login?ut=B">로그인</a> |&nbsp;
 					<a href="${pageContext.request.contextPath}/findUser?ut=B&fd=id&fm=email">아이디 찾기</a>
 				</span>
 			

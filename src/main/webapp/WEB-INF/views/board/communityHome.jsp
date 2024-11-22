@@ -54,10 +54,6 @@
             		<h2 id="postCount">실시간 전체글 0 개</h2> <!-- 초기값 수정 -->
             	</div>
                 
-                <div class="search-bar">
-                    <input type="text" placeholder="검색어를 입력하세요">
-                    <button><img src="${pageContext.request.contextPath}/img/btn_search.png" alt="검색" class="search-icon"></button>
-                </div>
             </div>
 
             <!-- 오늘의 인기글 -->

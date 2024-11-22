@@ -643,5 +643,25 @@ public class BoardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    /**
+     * 제목으로 게시글 검색 (REST API)
+     * GET /board/api/searchPosts?title=검색어&offset=0&limit=10
+     */
+    @GetMapping("/api/searchPosts")
+    @ResponseBody
+    public Map<String, Object> searchPosts(
+            @RequestParam("title") String title,
+            @RequestParam(value = "offset", defaultValue = "0") int offset,
+            @RequestParam(value = "limit", defaultValue = "10") int limit) {
+
+        List<Board> posts = boardService.searchPostsByTitle(title, offset, limit);
+        int totalCount = boardService.countSearchPostsByTitle(title);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("posts", posts);
+        response.put("totalCount", totalCount);
+        return response;
+    }
 
 }
