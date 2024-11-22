@@ -104,12 +104,12 @@
                             <div class="form-group1">
                                 <fieldset class="input-group">
                                     <legend>학교명 *</legend>
-                                    <input type="text" name="academicName" class="element_name" >
+                                    <input type="text" name="academicName_el" class="element_name" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduationStatus" class="status" >
+                                    <select name="graduationStatus_el" class="status" >
                                         <option value="graduate">졸업</option>
                                         <option value="withdraw">중퇴</option>
                                     </select>
@@ -117,7 +117,7 @@
                                 <div class="exam">
                                     <label>중입 검정고시(초졸)</label>
                                     <label for="middle_exam">
-                                        <input type="checkbox" id="middle_exam" name="examPassed" value="Y"/>
+                                        <input type="checkbox" id="middle_exam" name="examPassed_el" value="Y"/>
                                         <span></span>&nbsp;
                                     </label>
                                 </div>
@@ -135,7 +135,7 @@
         
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
-                                    <select name="location" class="select_lo" >
+                                    <select name="location_el" class="select_lo" >
                                         <option value="seoul">서울</option>
                                         <option value="busan">부산</option>
                                         <option value="daegu">대구</option>
@@ -164,12 +164,12 @@
                             <div class="form-group1">
                                 <fieldset class="input-group">
                                     <legend>학교명 *</legend>
-                                    <input type="text" name="academicName" class="middle_name" >
+                                    <input type="text" name="academicName_mi" class="middle_name" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduationStatus" class="status" >
+                                    <select name="graduationStatus_mi" class="status" >
                                         <option value="graduate">졸업</option>
                                         <option value="withdraw">중퇴</option>
                                     </select>
@@ -177,7 +177,7 @@
                                 <div class="exam">
                                     <label>고입 검정고시(중졸)</label>
                                     <label for="high_exam">
-                                        <input type="checkbox" id="high_exam" name="examPassed" value="Y"/>
+                                        <input type="checkbox" id="high_exam" name="examPassed_mi" value="Y"/>
                                         <span></span>&nbsp;
                                     </label>
                                 </div>
@@ -195,7 +195,7 @@
         
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
-                                    <select name="location" class="select_lo" >
+                                    <select name="location_mi" class="select_lo" >
                                         <option value="seoul">서울</option>
                                         <option value="busan">부산</option>
                                         <option value="daegu">대구</option>
@@ -224,11 +224,11 @@
                             <div class="form-group1">
                                 <fieldset class="input-group">
                                     <legend>학교명 *</legend>
-                                    <input type="text" name="academicName" class="high_name" >
+                                    <input type="text" name="academicName_hi" class="high_name" >
                                 </fieldset>
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduationStatus" class="status" >
+                                    <select name="graduationStatus_hi" class="status" >
                                         <option value="graduate">졸업</option>
                                         <option value="attending">재학중</option>
                                         <option value="withdraw">중퇴</option>
@@ -238,7 +238,7 @@
                                 <div class="exam">
                                     <label>대입 검정고시</label>
                                     <label for="college_exam">
-                                        <input type="checkbox" id="college_exam" name="examPassed" value="Y"/>
+                                        <input type="checkbox" id="college_exam" name="examPassed_hi" value="Y"/>
                                         <span></span>&nbsp;
                                     </label>
                                 </div>
@@ -256,7 +256,7 @@
         
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
-                                    <select name="location" class="select_lo" >
+                                    <select name="location_hi" class="select_lo" >
                                         <option value="seoul">서울</option>
                                         <option value="busan">부산</option>
                                         <option value="daegu">대구</option>
