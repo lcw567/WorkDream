@@ -414,14 +414,25 @@ CREATE TABLE RESUME(
     USER_DETAIL_ADDRESS VARCHAR2(255),                           -- 상세 주소
     USER_PIC VARCHAR2(500),                                      -- 사용자 사진
     EDUCATION_LEVEL VARCHAR2(10) NOT NULL,                       -- 학력 수준 (educationLevel)
-    ACADEMIC_NAME VARCHAR2(30) NOT NULL,                         -- 학력 이름 (academicName)
+    ACADEMIC_NAME_EL VARCHAR2(30) NULL,
+    ACADEMIC_NAME_MI VARCHAR2(30) NULL,
+    ACADEMIC_NAME_HI VARCHAR2(30) NULL,
+    ACADEMIC_NAME VARCHAR2(30) NULL,                         -- 학력 이름 (academicName)
     MAJOR VARCHAR2(100) NOT NULL,                                 -- 전공 (majorName)
     DEGREE VARCHAR2(10),                                          -- 학위 (degree)
-    STATUS VARCHAR2(20) NOT NULL,                                 -- 상태 (graduationStatus)
+    STATUS VARCHAR2(20) NULL,
+    STATUS_EL VARCHAR2(20) NULL,
+    STATUS_MI VARCHAR2(20) NULL,
+    STATUS_HI VARCHAR2(20) NULL,                                 -- 상태 (graduationStatus)
     ENTER_DATE DATE,                                              -- 입학 날짜 (enterDate)
     GRADUATION_DATE DATE,                                         -- 졸업 날짜 (graduationDate)
-    LOCATION VARCHAR2(10) NOT NULL,                               -- 위치 (location)
-    EXAM_PASSED CHAR(1),                                          -- 시험 합격 여부 (examPassed)
+    LOCATION_EL VARCHAR2(10) NULL, 
+    LOCATION_MI VARCHAR2(10) NULL, 
+    LOCATION_HI VARCHAR2(10) NULL, 
+    LOCATION VARCHAR2(10) NULL,                               -- 위치 (location)
+    EXAM_PASSED_EL CHAR(1),
+    EXAM_PASSED_MI CHAR(1),
+    EXAM_PASSED_HI CHAR(1),                                          -- 시험 합격 여부 (examPassed)
     SKILL VARCHAR2(1000),                                         -- 스킬 (skillName)
     ACTICITY_TYPE VARCHAR2(50),                                   -- 활동 유형 (activityType)
     ORGANIZATION_NAME VARCHAR2(100),                              -- 기관 이름 (organizationName)

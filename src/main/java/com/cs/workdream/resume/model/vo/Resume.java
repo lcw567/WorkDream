@@ -33,14 +33,25 @@ public class Resume {
 
     // 최종 학력
     private String educationLevel;
+    private String academicName_el;
+    private String academicName_mi;
+    private String academicName_hi;
     private String academicName;
     private String majorName;
     private String degree;
+    private String graduationStatus_el;
+    private String graduationStatus_mi;
+    private String graduationStatus_hi;
     private String graduationStatus;
     private YearMonth enterDate;
     private YearMonth graduationDate;
+    private String location_el;
+    private String location_mi;
+    private String location_hi;
     private String location;
-    private Character examPassed;
+    private Character examPassed_el;
+    private Character examPassed_mi;
+    private Character examPassed_hi;
 
     // 경력
     private String companyTitle;
