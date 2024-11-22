@@ -82,8 +82,12 @@ public class MemberController {
 	
 	// 회원가입 페이지로 이동
 	@RequestMapping("/registration")
-    public String registration(@RequestParam("ut") String userType, Model model) {
-        model.addAttribute("ut", userType);
+    public String registration(@RequestParam(value = "ut", required = false) String userType, Model model) {
+		if(userType == null) {
+			userType = "P";
+		} else {
+			model.addAttribute("ut", userType);
+		}
         
         // 파라미터값에 따라 개인 회원 or 기업 회원 페이지로 이동
         if("P".equals(userType)) {
