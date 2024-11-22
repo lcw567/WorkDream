@@ -736,7 +736,7 @@ try {
                     } else {
                         // 사업자등록번호로 찾기
                         try {
-                            isCheckValid = (numberInputs[index].value == 10);
+                            isCheckValid = (checkInputs[index].value == 10);
                         } catch(error) {
                             console.log("sendCofirmNumber: ", error);
                         }
@@ -767,7 +767,7 @@ try {
 
         if(nameInput.value != "" &&  inputs[index].value != "" && checkInput.value != "") {
             if(checkInput.value === confirmNumber) {
-                findForms[index].sumit();
+                findForms[index].submit();
             } else {
                 alert("인증번호가 틀립니다. 다시 시도해주세요.");
                 checkInput.value = "";
@@ -816,4 +816,80 @@ try {
     })
 } catch(error) {
     console.log("find-Person: ", error);
+}
+
+/* findMemberResult.jsp 전용 */
+try {
+     // 초기값 설정
+     function settingFindSection() {
+        const idArticle = document.getElementById("findResult-article-id");
+        const pwdArticle = document.getElementById("findResult-article-pwd");
+        let tabItems;
+
+        if(ut === "P") {
+            // 섹션 변경 (개인)
+            if(fd === "id") {
+                idArticle.classList.add("On");
+                pwdArticle.classList.remove("On");
+                tabItems = idArticle.querySelectorAll("#findResult-article-tab li");
+            }
+            else {
+                idArticle.classList.remove("On");
+                pwdArticle.classList.add("On");
+                tabItems = pwdArticle.querySelectorAll("#findResult-article-tab li");
+            }
+
+            // 아티클 변경 (개인)
+            if(fm === "email") {
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[0].classList.add("On");
+            } else {
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[1].classList.add("On");
+            }
+        } else {
+            // 섹션 변경 (기업)
+            if(fd === "id") {
+                idArticle.classList.add("On");
+                pwdArticle.classList.remove("On");
+                tabItems = idArticle.querySelectorAll("#findResult-article-tab li");
+            }
+            else {
+                idArticle.classList.remove("On");
+                pwdArticle.classList.add("On");
+                tabItems = pwdArticle.querySelectorAll("#findResult-article-tab li");
+            }
+
+            // 아티클 변경 (기업)
+            if(fm === "email") {
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[0].classList.add("On");
+            } else if(fm === "phone") {
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[1].classList.add("On");
+            } else {
+                tabItems.forEach(item => item.classList.remove("On"));
+                tabItems[2].classList.add("On");
+            }
+        }
+
+        // input 크기 조절
+        const inputs = document.querySelectorAll("#findResult-main input");
+        inputs.forEach(input => {
+            input.addEventListener("DOMContentLoaded", function() {
+                const length = input.value.length;
+                input.style.width = (length + 1) + 'ch';
+            })
+        })
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        try{
+            settingFindSection();
+        } catch(error) {
+            console.log("settingFindSection: ", error);
+        }
+    });
+} catch(error) {
+    console.log("find-Result: ", error);
 }

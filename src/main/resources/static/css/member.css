@@ -778,3 +778,137 @@ header.mini > nav > ul {
 #findMember-aside > p > a:hover {
 	text-decoration: 1.2px underline #000;
 }
+
+
+/* findMemberResult.jsp */
+#findResult-main {
+	width: 100%;
+	min-height: 70vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 3% 5%;
+}
+
+#findResult-main > section {
+	width: 80%;
+	max-width: 1000px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#findResult-main > section > article {
+	width: 100%;
+	height: 100%;
+	display: none;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#findResult-main > section > article.On {
+	display: flex;
+}
+
+#findResult-main > section> article > * {
+	width: 100%;
+}
+
+#findResult-main > section > article > h1 {
+	margin: 2% 0 3% 0;
+	text-align: left;
+	font-size: 1.3rem;
+}
+
+#findResult-article-tab {
+	height: 4rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#findResult-article-tab > li {
+	width: 100%;
+	height: 100%;
+	background-color: #E1DEF1;
+	border: 1px solid #E1DEF1;
+	border-bottom: 1px solid #000;
+	cursor: pointer;
+	line-height: 4;
+	text-align: center;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1rem;
+}
+
+#findResult-article-tab > li.On {
+	background-color: #FFFFFF;
+	border: 1px solid #4E21A8;;
+	border-bottom: 0;
+}
+
+#findResult-article-tab > li:first-child {
+	border-radius: 10px 0 0 0;
+}
+
+#findMember-article-tab > li:last-child {
+	border-radius: 0 10px 0 0;
+}
+
+#findResult-article-div {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 3% 5%;
+	border: 1px solid #4E21A8;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+#findResult-article-div input {
+	margin: 2% 0;
+	border: 0;
+	text-align: center;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1.3rem;
+}
+
+#findResult-article-div > span {
+	font-size: 1rem;
+}
+
+#findResult-aside {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #4E21A8;;
+	border-top: 0;
+	border-radius: 0 0 10px 10px;
+}
+
+#findResult-aside * {
+	text-align: center;
+	font-size: 0.8rem;
+}
+
+#findResult-aside > span {
+	margin: 3% 0 1% 0;
+}
+
+#findResult-aside > p {
+	margin: 1% 0 3% 0;
+}
+
+#findResult-aside > p > a {
+	font-family: 'MonoplexKR-SemiBold';
+	font-style: italic;
+}
+
+#findResult-aside > p > a:hover {
+	text-decoration: 1.2px underline #000;
+}

@@ -17,6 +17,7 @@
 		<result column="PERSON_NO" property="personNo" />
 		<result column="REGISTRATION_NUMBER" property="registrationNumber"/>
 		<result column="NAME" property="userName" />
+		<result column="OWNER_NAME" property="userName" />
 	</resultMap>
 	
 	<!-- 로그인 -->
@@ -97,10 +98,11 @@
 	
 	<!-- 회원 아이디 조회 (기업) -->
 	<select id="findMemberIdBusiness" parameterType="map" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID
+		SELECT	USER_NO, USER_TYPE, USER_ID, OWNER_NAME
 		  FROM	MEMBER M
 		  JOIN	BUSINESS B ON (M.BUSINESS_NO = B.BUSINESS_NO)
 		 WHERE	USER_TYPE = 'B'
+		   AND	OWNER_NAME = #{m.userName}
 		 <choose>
 		 	<when test="method == 'email'">
 		 		AND	EMAIL = #{m.email}
@@ -116,10 +118,11 @@
 	
 	<!-- 회원 아이디 조회 (개인) -->
 	<select id="findMemberIdPerson" parameterType="map" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID
+		SELECT	USER_NO, USER_TYPE, USER_ID, NAME
 		  FROM	MEMBER M
 		  JOIN	PERSON P ON (M.BUSINESS_NO = P.PERSON_NO)
 		 WHERE	USER_TYPE = 'P'
+		   AND	NAME = #{m.userName}
 		 <choose>
 		 	<when test="method == 'email'">
 		 		AND	EMAIL = #{m.email}
@@ -132,11 +135,12 @@
 	
 	<!-- 회원 비밀번호 조회 (기업) -->
 	<select id="findMemberPwdBusiness" parameterType="map" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD
+		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD, OWNER_NAME
 		  FROM	MEMBER M
 		  JOIN	BUSINESS B ON (M.BUSINESS_NO = B.BUSINESS_NO)
 		 WHERE	USER_TYPE = 'B'
 		   AND	USER_ID = ${m.userId}
+		   AND	OWNER_NAME = #{m.userName}
 		 <choose>
 		 	<when test="method == 'email'">
 		 		AND	EMAIL = #{m.email}
@@ -152,11 +156,12 @@
 	
 	<!-- 회원 비밀번호 조회 (개인) -->
 	<select id="findMemberPwdPerson" parameterType="map" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD
+		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD, NAME
 		  FROM	MEMBER M
 		  JOIN	PERSON P ON (M.BUSINESS_NO = P.PERSON_NO)
 		 WHERE	USER_TYPE = 'P'
 		   AND	USER_ID = #{m.userId}
+		   AND	NAME = ${m.userName}
 		 <choose>
 		 	<when test="method == 'email'">
 		 		AND	EMAIL = #{m.email}
