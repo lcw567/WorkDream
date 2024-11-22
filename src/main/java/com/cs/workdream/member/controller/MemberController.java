@@ -169,7 +169,7 @@ public class MemberController {
 	    
 	    if(findMember == null) {
 	    	// 조회 실패
-	    	String returnUrl = "/findUser?ut=" + m.getUserType() + "&fd=id" + "&fm=" + method;
+	    	String returnUrl = "/findUser?ut=" + m.getUserType() + "&fd=id&fm=" + method;
 	    	
 	        mv.addObject("errorMsg", "일치하는 회원 정보가 없습니다.");
 	        mv.addObject("returnPage", returnUrl);
@@ -177,6 +177,8 @@ public class MemberController {
 	    } else {
 	    	// 조회 성공
 	    	mv.addObject("findUser", findMember);
+	    	mv.addObject("fd", "id");
+	    	mv.addObject("fm", method);
 	    	mv.setViewName("member/findMemberResult");
 	    }
 	    
@@ -191,7 +193,7 @@ public class MemberController {
 	    
 	    if(findMember == null) {
 	    	// 조회 실패
-	    	String returnUrl = "/findUser?ut=" + m.getUserType() + "&fd=pwd" + "&fm=" + method;
+	    	String returnUrl = "/findUser?ut=" + m.getUserType() + "&fd=pwd&fm=" + method;
 	    	
 	        mv.addObject("errorMsg", "일치하는 회원 정보가 없습니다.");
 	        mv.addObject("returnPage", returnUrl);
@@ -199,6 +201,8 @@ public class MemberController {
 	    } else {
 	    	// 조회 성공
 	    	mv.addObject("findUser", findMember);
+	    	mv.addObject("fd", "pwd");
+	    	mv.addObject("fm", method);
 	    	mv.setViewName("member/findMemberResult");
 	    }
 	    
