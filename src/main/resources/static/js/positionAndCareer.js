@@ -169,49 +169,34 @@ skillSearchInput.addEventListener('keypress', function (event) {
     }
 });
 
-document.getElementById('Confirm').addEventListener('click', async () => {
-    // 1. 데이터를 수집
-    const employmentType = document.querySelector('input[name="Employment_Type"]:checked')?.value || '정규직';
-    const careerType = document.querySelector('input[name="Career_Type"]:checked')?.value || '신입';
-    const careerMin = document.querySelector('.Career_Year_Min')?.value || '0';
-    const careerMax = document.querySelector('.Career_Year_Max')?.value || '0';
-    const education = document.querySelector('input[name="Academic"]:checked')?.value || '학력무관';
-    const workDays = document.querySelector('input[name="Warking"]:checked')?.value || '근무요일';
-    const salaryMin = document.querySelector('.Expected_Salary_Min')?.value || '0';
-    const salaryMax = document.querySelector('.Expected_Salary_Max')?.value || '0';
-
-    // 2. 데이터 포맷팅
+document.getElementById('Confirm').addEventListener('click', () => {
+    // 데이터를 수집
     const jobData = {
-        employmentType,
-        careerType,
-        careerMin,
-        careerMax,
-        education,
-        workDays,
-        salaryMin,
-        salaryMax
+        rank: document.getElementById('Rank')?.value || '',
+        position: document.getElementById('Position')?.value || '',
+        employmentType: document.querySelector('input[name="Employment_Type"]:checked')?.value || '정규직',
+        careerType: document.querySelector('input[name="Career_Type"]:checked')?.value || '신입',
+        careerMin: document.querySelector('.Career_Year_Min')?.value || '0',
+        careerMax: document.querySelector('.Career_Year_Max')?.value || '0',
+        education: document.querySelector('input[name="Academic"]:checked')?.value || '학력무관',
+        workDays: document.querySelector('input[name="Work_Days"]:checked')?.value || '근무요일',
+        workTimeMin: document.querySelector('.Wark_Time_Min')?.value || '',
+        workTimeMax: document.querySelector('.Wark_Time_Min')?.value || '',
+        salaryMin: document.querySelector('.Expected_Salary_Min')?.value || '0',
+        salaryMax: document.querySelector('.Expected_Salary_Max')?.value || '0',
+        workLocation: Array.from(document.querySelectorAll('#location-container .Work_Location'))
+            .map(location => location.textContent.trim()) || [],
+        industry: Array.from(document.querySelectorAll('#industry-container .Industry_Type'))
+            .map(ind => ind.textContent.trim()) || [],
+        companyType: document.querySelector('input[name="Company_Type"]:checked')?.value || '',
+        employmentStatus: document.querySelector('input[name="Employment_Status"]:checked')?.value || '재직무관'
     };
 
-    // 3. 서버로 데이터 전송 (POST 요청)
-    try {
-        const response = await fetch('http://localhost:3333/WorkDream/business/announcementInformation2', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jobData)
-        });
+    // 로컬 스토리지에 데이터 저장
+    localStorage.setItem('jobData', JSON.stringify(jobData));
 
-        if (response.ok) {
-            console.log('데이터 전송 성공!');
-            // 서버에서 응답받은 데이터를 로컬 스토리지에 저장
-            const responseData = await response.json();
-            localStorage.setItem('jobData', JSON.stringify(responseData));
-            window.location.href = 'http://localhost:3333/WorkDream/business/announcementInformation2';
-        } else {
-            console.error('데이터 전송 실패:', response.statusText);
-        }
-    } catch (error) {
-        console.error('오류 발생:', error);
-    }
+    // 이전 페이지로 이동
+    window.location.href = 'http://localhost:3333/WorkDream/business/announcementInformation2';
 });
+
+

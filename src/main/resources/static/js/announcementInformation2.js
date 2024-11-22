@@ -62,45 +62,109 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-//직무추가 버튼을 눌렀을때 직무 div가 생성되되 최대 5개로 제한
 document.addEventListener("DOMContentLoaded", function () {
-    // 최대 직무의 개수가 5개로 제한
-    const maxDuties = 5;
-
-    // Add Duty button element
+    const maxDuties = 5; // 최대 직무 개수
     const addDutyButton = document.getElementById("addDutyButton");
+    const jobDutiesContainer = addDutyButton.parentElement;
 
-    // Function to add a new job duty
-    function addJobDuty() {
-        const jobDutiesContainer = addDutyButton.parentElement;
+    // 로컬 스토리지에서 기존 데이터를 로드
+    const storedDuties = JSON.parse(localStorage.getItem("jobDuties")) || [];
+
+    // 초기 데이터 로드
+    storedDuties.forEach((duty) => {
+        addDutyElement(duty);
+    });
+
+    // 직무 추가 버튼 클릭 이벤트
+    addDutyButton.addEventListener("click", function () {
         const currentDuties = jobDutiesContainer.querySelectorAll(".Job_duty");
 
-        // Check if the maximum number of duties is reached
+        // 최대 개수 확인
         if (currentDuties.length >= maxDuties) {
             alert("직무는 최대 5개까지만 추가할 수 있습니다.");
             return;
         }
 
-        // Create a new job duty div
+        // URL 이동 (직무 입력 페이지로 이동)
+        window.location.href = "http://localhost:3333/WorkDream/business/positionAndCareer";
+    });
+
+    // 직무를 추가하는 함수
+    function addDutyElement(dutyText) {
+        const currentDuties = jobDutiesContainer.querySelectorAll(".Job_duty");
+
+        // 최대 개수 확인
+        if (currentDuties.length >= maxDuties) {
+            alert("직무는 최대 5개까지만 추가할 수 있습니다.");
+            return;
+        }
+
+        // 새로운 직무 요소 생성
         const newDuty = document.createElement("div");
         newDuty.classList.add("Job_duty");
         newDuty.innerHTML = `
-            <p>사원 / 경력 O년~ O년 / 학력 - 4년제 대학 졸업 / 채용시 협의</p>
-            <button><img src="../사진/letter-x_9215129.png" style="width: 25px; height: 25px;"></button>
+            <p>${dutyText}</p>
+            <button>
+                <img src="../사진/letter-x_9215129.png" style="width: 25px; height: 25px;">
+            </button>
         `;
 
-        // Add delete functionality to the new button
+        // 삭제 버튼 동작 추가
         newDuty.querySelector("button").addEventListener("click", function () {
             newDuty.remove();
+            saveDutiesToLocalStorage(); // 삭제 후 로컬 스토리지 업데이트
         });
 
-        // Append the new duty div before the Add Duty button
+        // 직무 요소를 버튼 앞에 추가
         jobDutiesContainer.insertBefore(newDuty, addDutyButton);
+        saveDutiesToLocalStorage(); // 추가 후 로컬 스토리지 업데이트
     }
 
-    // Add event listener to the Add Duty button
-    addDutyButton.addEventListener("click", addJobDuty);
+    // URL로부터 데이터 로드 및 직무 추가
+    function loadDutyFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const duty = params.get("duty"); // URL에서 'duty' 파라미터 가져오기
+        if (duty) {
+            addDutyElement(duty);
+            saveDutiesToLocalStorage(); // 추가 후 로컬 스토리지 업데이트
+        }
+    }
+
+    // 로컬 스토리지에서 데이터를 저장하는 함수
+    function saveDutiesToLocalStorage() {
+        const duties = Array.from(jobDutiesContainer.querySelectorAll(".Job_duty p"))
+            .map((duty) => duty.textContent.trim());
+        localStorage.setItem("jobDuties", JSON.stringify(duties));
+    }
+
+    // 페이지 로드 시 URL에서 데이터 로드
+    loadDutyFromURL();
 });
+
+// 데이터 한 줄씩 추가로 표시
+document.addEventListener("DOMContentLoaded", () => {
+    const jobDataDisplayContainer = document.getElementById("jobDataDisplay");
+
+    // 로컬 스토리지에서 데이터를 가져옴
+    const jobData = JSON.parse(localStorage.getItem("jobDuties")) || [];
+
+    // 데이터를 표시할 HTML 요소 초기화
+    if (jobData.length === 0) {
+        jobDataDisplayContainer.innerText = "직무 데이터가 없습니다.";
+    } else {
+        // 데이터가 있을 경우 각 데이터마다 `<p>` 생성
+        jobData.forEach((data) => {
+            const paragraph = document.createElement("p");
+            paragraph.textContent = data;
+            jobDataDisplayContainer.appendChild(paragraph);
+        });
+    }
+
+    // 로컬 스토리지에서 데이터 삭제 (선택적)
+    localStorage.removeItem("jobDuties");
+});
+
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -138,20 +202,37 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-            // 1. 로컬 스토리지에서 데이터 가져오기
-            const jobData = JSON.parse(localStorage.getItem('jobData'));
+    // 1. 로컬 스토리지에서 데이터 가져오기
+    const jobData = JSON.parse(localStorage.getItem('jobData'));
 
-            // 2. 데이터를 표시할 HTML 요소 가져오기
-            const displayElement = document.getElementById('jobDataDisplay');
+    // 2. 데이터를 표시할 HTML 요소 가져오기
+    const displayElement = document.getElementById('jobDataDisplay');
 
-            // 3. 데이터가 있을 경우 화면에 표시
-            if (jobData) {
-                const formattedData = `${jobData.employmentType} / ${jobData.careerType} / 경력 ${jobData.careerMin}년 ~ ${jobData.careerMax}년 / 학력 - ${jobData.education} / ${jobData.workDays} / 예상연봉 ${jobData.salaryMin} ~ ${jobData.salaryMax}만원`;
-                displayElement.innerText = formattedData;
-            } else {
-                displayElement.innerText = '직무 데이터가 없습니다.';
-            }
+    // 3. 데이터가 있을 경우 화면에 표시
+    if (jobData) {
+        const workLocation = jobData.workLocation.length > 0 
+            ? `근무지 - ${jobData.workLocation.join(', ')}`
+            : '근무지 - 없음';
 
-            // 4. 로컬 스토리지에서 데이터 삭제 (선택적)
-            localStorage.removeItem('jobData');
-        });
+        const industry = jobData.industry.length > 0 
+            ? `업종 - ${jobData.industry.join(', ')}`
+            : '업종 - 없음';
+
+        const formattedData = `
+            ${jobData.rank} / ${jobData.position} / ${jobData.employmentType} / 
+            경력 ${jobData.careerMin}년 ~ ${jobData.careerMax}년 / 학력 - ${jobData.education} / 
+            근무요일 - ${jobData.workDays} / 근무시간 - ${jobData.workTimeMin} ~ ${jobData.workTimeMax} / 
+            예상연봉 - ${jobData.salaryMin} ~ ${jobData.salaryMax}만원 / 
+            ${workLocation} / ${industry} / 기업 유형 - ${jobData.companyType} / 
+            재직 여부 - ${jobData.employmentStatus}
+        `.trim();
+
+        // 데이터를 한 줄로 표시
+        displayElement.innerText = formattedData.replace(/\s+/g, ' ');
+    } else {
+        displayElement.innerText = '직무 데이터가 없습니다.';
+    }
+
+    // 4. 로컬 스토리지에서 데이터 삭제 (선택적)
+    localStorage.removeItem('jobData');
+});

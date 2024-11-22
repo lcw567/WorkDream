@@ -316,7 +316,7 @@
 				<h2>특정기업</h2>
 			</div>
 			<p style="color: #656565; margin-top: 5px; margin-bottom: 20px;">특정
-				기업의 과거•현재 재직자에게 우선적으로 노출하고 싶다면 입력해주세요</p>
+				기업의 과거•현재 재직자에게 우선적으로 노출ㅇ하고 싶다면 입력해주세요</p>
 
 			<div style="display: flex;">
 				<button class="add-company-btn">
