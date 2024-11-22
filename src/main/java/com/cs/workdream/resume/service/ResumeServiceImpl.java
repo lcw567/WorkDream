@@ -15,7 +15,6 @@ import com.cs.workdream.resume.model.vo.Resume;
 import com.cs.workdream.resume.model.vo.BasicInfo;
 import com.cs.workdream.resume.model.vo.Skill;
 import com.cs.workdream.resume.model.vo.Career;
-import com.cs.workdream.resume.model.vo.Award;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,27 +50,15 @@ public class ResumeServiceImpl implements ResumeService {
      */
     @Override
     @Transactional
-    public boolean saveResume(Resume resume, MultipartFile userPic) {
-        try {
-            // 프로필 이미지 처리
-            if (userPic != null && !userPic.isEmpty()) {
-                // 원본 파일 이름
-                String originalFilename = userPic.getOriginalFilename();
-                // 고유한 파일 이름 생성
-                String uniqueFilename = UUID.randomUUID().toString() + "_" + originalFilename;
-                // 파일을 저장할 경로
-                String filePath = uploadDir + File.separator + uniqueFilename;
-                File dest = new File(filePath);
-                // 디렉토리가 존재하지 않으면 생성
-                if (!dest.getParentFile().exists()) {
-                    dest.getParentFile().mkdirs();
-                }
-                // 파일 저장
-                userPic.transferTo(dest);
-                // Resume 객체에 파일 이름 설정
-                resume.setUserPic(uniqueFilename);
-            }
+	public boolean saveResume(Resume resume) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
+<<<<<<< HEAD
+	@Override
+	public boolean saveResume(Resume resume, MultipartFile userPic) {
+=======
             // 이력서 기본 정보 저장
             resumeDao.insertResume(resume);
             
@@ -139,6 +126,7 @@ public class ResumeServiceImpl implements ResumeService {
 
 	@Override
 	public boolean saveResume(Resume resume) {
+>>>>>>> 7ce410625e63372fdc70d77958732625e70742b3
 		// TODO Auto-generated method stub
 		return false;
 	}
