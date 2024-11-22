@@ -86,12 +86,12 @@
         </section>
 
         <div class="header-search-bar">
-            <h2>게시글 목록</h2>
-            <div class="search-bar">
-                <input type="text" placeholder="검색어를 입력하세요">
-                <button><img src="${pageContext.request.contextPath}/img/btn_search.png" alt="검색" class="search-icon">  </button>
-            </div>
-        </div>
+		    <h2>게시글 목록</h2>
+		    <div class="search-bar">
+		        <input type="text" id="searchInput" placeholder="검색할 게시글의 제목을  입력하세요">
+		        <button id="searchButton"><img src="${pageContext.request.contextPath}/img/btn_search.png" alt="검색" class="search-icon">  </button>
+		    </div>
+		</div>
         <div class="post-create-button-container">
 	        <button onclick="location.href='${pageContext.request.contextPath}/board/communityPost'">
 	            게시글 등록

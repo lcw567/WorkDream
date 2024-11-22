@@ -196,4 +196,24 @@ public class BoardDao {
     public int decreaseReplyLikeCount(SqlSessionTemplate sqlSession, int replyNo) {
         return sqlSession.update("boardMapper.decreaseReplyLikeCount", replyNo);
     }
+    
+    /**
+     * 제목으로 게시글 검색
+     */
+    public List<Board> searchPostsByTitle(SqlSessionTemplate sqlSession, String title, int offset, int limit) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("title", "%" + title + "%"); // SQL의 LIKE 절을 위한 패턴 추가
+        params.put("offset", offset);
+        params.put("endRow", offset + limit); // endRow 계산 및 추가
+        return sqlSession.selectList("boardMapper.searchPostsByTitle", params);
+    }
+
+
+    /**
+     * 제목으로 검색된 게시글 수 조회
+     */
+    public int countSearchPostsByTitle(SqlSessionTemplate sqlSession, String title) {
+        String searchTitle = "%" + title + "%";
+        return sqlSession.selectOne("boardMapper.countSearchPostsByTitle", searchTitle);
+    }
 }
