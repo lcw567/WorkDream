@@ -1,27 +1,26 @@
-// businessProfileView.js
-
-// Toggle "전체보기" 기능
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.toggle-btn').forEach(button => {
-        button.addEventListener('click', () => {
-            const targetId = button.getAttribute('data-target');
-            const target = document.getElementById(targetId);
-            if (target.classList.contains('expanded')) {
-                target.classList.remove('expanded');
-                button.textContent = '전체보기';
+document.addEventListener("DOMContentLoaded", function() {
+    // Toggle buttons for full view
+    const toggleButtons = document.querySelectorAll(".toggle-btn");
+    toggleButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const targetId = button.getAttribute("data-target");
+            const targetElement = document.getElementById(targetId);
+            if(targetElement.classList.contains("limited-text")) {
+                targetElement.classList.remove("limited-text");
+                button.textContent = "간략히 보기";
             } else {
-                target.classList.add('expanded');
-                button.textContent = '간략히';
+                targetElement.classList.add("limited-text");
+                button.textContent = "전체보기";
             }
         });
     });
 
-    // 사내 근무 환경 갤러리 네비게이션
-    const leftBtn = document.querySelector('.left-btn');
-    const rightBtn = document.querySelector('.right-btn');
-    const gallery = document.getElementById('work-environment-gallery');
+    // Gallery navigation
+    const leftBtn = document.querySelector(".left-btn");
+    const rightBtn = document.querySelector(".right-btn");
+    const gallery = document.getElementById("work-environment-gallery");
 
-    leftBtn.addEventListener('click', () => {
+    leftBtn.addEventListener("click", () => {
         gallery.scrollBy({
             top: 0,
             left: -300,
@@ -29,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    rightBtn.addEventListener('click', () => {
+    rightBtn.addEventListener("click", () => {
         gallery.scrollBy({
             top: 0,
             left: 300,

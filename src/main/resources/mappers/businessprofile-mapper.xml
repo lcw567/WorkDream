@@ -1,7 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="BusinessProfileMapper">
+<mapper namespace="com.cs.workdream.business.model.dao.BusinessProfileDao">
 
-	
+    <!-- 비즈니스 업데이트 -->
+    <update id="updateBusiness" parameterType="com.cs.workdream.business.model.vo.Business">
+        UPDATE BUSINESS SET
+            OWNER_NAME = #{ownerName},
+            COMPANY_NAME = #{companyName},
+            COMPANY_CODE = #{companyCode},
+            COMPANY_TEL = #{companyTel},
+            COMPANY_ADDR = #{companyAddr},
+            COMPANY_FAX = #{companyFax},
+            COMPANY_SITE = #{companySite},
+            LOGO = #{logo},
+            SHORT_INTRODUCTION = #{shortIntroduction},
+            INTRODUCTION = #{introduction},
+            VISION = #{vision},
+            COMPANY_TYPE = #{companyType},
+            EMPLOYEE_COUNT = #{employeeCount},
+            INDUSTRY = #{industry},
+            BRAND_NAME = #{brandName}
+        WHERE BUSINESS_NO = #{businessNo}
+    </update>
+
+    <!-- 기존 복리후생 삭제 -->
+    <delete id="deleteBusinessBenefits" parameterType="int">
+        DELETE FROM BUSINESS_BENEFIT WHERE BUSINESS_NO = #{businessNo}
+    </delete>
+
+    <!-- 기존 근무 환경 이미지 삭제 -->
+    <delete id="deleteWorkEnvironmentImages" parameterType="int">
+        DELETE FROM WORK_ENVIRONMENT_IMAGE WHERE BUSINESS_NO = #{businessNo}
+    </delete>
+
+    <!-- 비즈니스 복리후생 등록 -->
+    <insert id="insertBusinessBenefit" parameterType="com.cs.workdream.business.model.vo.BusinessBenefit">
+        INSERT INTO BUSINESS_BENEFIT (BUSINESS_NO, BENEFIT)
+        VALUES (#{businessNo}, #{benefit})
+    </insert>
+
+    <!-- 근무 환경 이미지 등록 -->
+    <insert id="insertWorkEnvironmentImage" parameterType="com.cs.workdream.business.model.vo.WorkEnvironmentImage">
+        INSERT INTO WORK_ENVIRONMENT_IMAGE (
+            WORK_ENVIRONMENT_IMAGE_NO,
+            BUSINESS_NO,
+            IMAGE_URL,
+            TITLE
+        ) VALUES (
+            WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+            #{businessNo},
+            #{imageUrl},
+            #{title}
+        )
+    </insert>
+
+    <!-- 비즈니스 번호로 비즈니스 조회 -->
+    <select id="selectBusinessByNo" parameterType="int" resultType="com.cs.workdream.business.model.vo.Business">
+        SELECT * FROM BUSINESS WHERE BUSINESS_NO = #{businessNo}
+    </select>
+
+    <!-- 비즈니스 번호로 복리후생 목록 조회 -->
+    <select id="selectBenefitsByBusinessNo" parameterType="int" resultType="com.cs.workdream.business.model.vo.BusinessBenefit">
+        SELECT * FROM BUSINESS_BENEFIT WHERE BUSINESS_NO = #{businessNo}
+    </select>
+
+    <!-- 비즈니스 번호로 근무 환경 이미지 목록 조회 -->
+    <select id="selectWorkEnvironmentImagesByBusinessNo" parameterType="int" resultType="com.cs.workdream.business.model.vo.WorkEnvironmentImage">
+        SELECT * FROM WORK_ENVIRONMENT_IMAGE WHERE BUSINESS_NO = #{businessNo}
+    </select>
+
 </mapper>

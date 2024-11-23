@@ -71,8 +71,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 reader.readAsDataURL(file);
             } else {
-                img.src = 'img/add-image.png'; // 기본 이미지로 복귀
+                img.src = `${window.contextPath}/img/add-image.png`; // 기본 이미지로 복귀
             }
+        });
+    });
+
+    // 등록 버튼 클릭 핸들러
+    const registerButton = document.querySelector('.register-btn');
+    registerButton.addEventListener('click', () => {
+        const form = document.getElementById('business-form');
+        const formData = new FormData(form);
+
+        // 복리후생 목록 수집
+        const benefits = [];
+        const benefitItems = benefitsList.querySelectorAll('.benefit-item');
+        benefitItems.forEach(item => {
+            const benefitText = item.textContent.replace('×', '').trim();
+            if (benefitText !== '') { // 빈 문자열 필터링
+                benefits.push(benefitText);
+            }
+        });
+        formData.append('benefits', JSON.stringify(benefits));
+
+        // 근무 환경 이미지 제목 수집
+        const workEnvImageTitles = [];
+        const photoTitles = document.querySelectorAll('.photo-title');
+        photoTitles.forEach(titleInput => {
+            const title = titleInput.value.trim();
+            if (title !== '') { // 빈 문자열 필터링
+                workEnvImageTitles.push(title);
+            }
+        });
+        formData.append('workEnvImageTitles', JSON.stringify(workEnvImageTitles));
+
+        // 디버깅을 위한 로그 출력
+        console.log("Context Path:", window.contextPath);
+        const url = `${window.contextPath}/business/register`;
+        console.log("AJAX URL:", url);
+
+        // AJAX 요청 전송
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if(response.ok) {
+                return response.text();
+            }
+            throw new Error('네트워크 응답이 정상적이지 않습니다.');
+        })
+        .then(data => {
+            // 보기 페이지로 리다이렉트
+            window.location.href = data;
+        })
+        .catch(error => {
+            console.error('오류:', error);
+            alert('기업 정보 등록 중 오류가 발생했습니다.');
         });
     });
 });
