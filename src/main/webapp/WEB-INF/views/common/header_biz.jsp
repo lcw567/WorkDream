@@ -35,7 +35,7 @@
     			<li>
     				<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logo_icon.png" /></a>
     			</li>
-    			<li class="On"><a href="">기업 홈</a></li>
+    			<li class="On"><a href="${pageContext.request.contextPath}/business/businessMypage">기업 홈</a></li>
     			<li><a href="${pageContext.request.contextPath}/business/recruitmentStatus">채용공고관리</a></li>
     			<li><a href="${pageContext.request.contextPath}/business/applicantsStatus">지원자 현황</a></li>
     			<li><a href="#">인재풀 검색</a></li>

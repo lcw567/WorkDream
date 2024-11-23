@@ -63,7 +63,7 @@
     				<div class="login-menu">
 		    			<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
 		    			<b>|</b>
-		    			<a href="#">기업 홈</a>
+		    			<a href="${pageContext.request.contextPath}/business/businessMypage">기업 홈</a>
 		    		</div>
     			</c:when>
     			
