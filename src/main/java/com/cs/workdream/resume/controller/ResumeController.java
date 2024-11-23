@@ -55,18 +55,22 @@ public class ResumeController {
                                HttpSession session,
                                RedirectAttributes redirectAttributes) {
         // 세션에서 personNo 가져오기
-    	  Member loginUser = (Member) session.getAttribute("loginUser");
-	        if (loginUser == null) {
-	            return "redirect:/login?error=sessionExpired";
-	        } 
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            return "redirect:/login?error=sessionExpired";
+        } 
 
         // personNo 설정
         resume.setPersonNo(loginUser.getPersonNo());
+        logger.info("설정된 personNo: {}", resume.getPersonNo());
 
+        // userBirth가 LocalDate로 변경되었으므로 변환 제거
+        /*
         if (resume.getUserBirth() != null) {
             // java.util.Date -> java.sql.Date 변환
             resume.setUserBirth(DateUtils.convertToSqlDate(resume.getUserBirth()));
         }
+        */
 
         boolean isSaved = resumeService.saveResume(resume, userPicFile);
         if (isSaved) {
@@ -77,8 +81,6 @@ public class ResumeController {
             return "redirect:/resume/enrollresume";
         }
     }
-
-
 
     /**
      * @InitBinder를 사용하여 LocalDate 형식의 필드를 올바르게 변환하도록 설정
@@ -107,5 +109,8 @@ public class ResumeController {
                 return (value != null) ? value.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : "";
             }
         });
+
+        // YearMonth 변환기 등록 (필요 시 추가)
+        // 예를 들어, enterDate, graduationDate 등
     }
 }
