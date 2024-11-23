@@ -23,7 +23,7 @@ public class Resume {
     private String userName;
     private String userGender;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date userBirth;
+    private LocalDate userBirth;
     private String userEmail;
     private String userPhone;
     private String userAddress;
@@ -43,7 +43,9 @@ public class Resume {
     private String graduationStatus_mi;
     private String graduationStatus_hi;
     private String graduationStatus;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private YearMonth enterDate;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private YearMonth graduationDate;
     private String location_el;
     private String location_mi;
@@ -57,7 +59,9 @@ public class Resume {
     private String companyTitle;
     private String work;
     private String department;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private YearMonth startDateWork;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private YearMonth endDateWork;
     private String careerStatus;
     private String jobContent;
@@ -69,7 +73,9 @@ public class Resume {
     // 경험/활동/교육
     private String activityType;
     private String organizationName;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private YearMonth startDateAct;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private YearMonth endDateAct;
     private String description;
 
@@ -82,7 +88,9 @@ public class Resume {
     private String passStatus;
     private String awardName;
     private String organizer;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private LocalDate awardDate;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private YearMonth issueDate;
 
     // 취업우대사항
@@ -90,7 +98,9 @@ public class Resume {
     private String serviceStatus;
     private String unfinishedReason;
     private String exemptionReason;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private YearMonth enlistmentDate;
+    @DateTimeFormat(pattern = "yyyy-MM")
     private YearMonth dischargeDate;
     private String militaryBranch;
     private String rank;
