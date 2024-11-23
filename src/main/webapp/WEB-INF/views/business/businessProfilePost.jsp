@@ -45,18 +45,18 @@
                     <tr>
                         <th>기업 홈페이지</th>
                         <td>
-                            <input type="url" class="input-text" name="companySite" maxlength="100" placeholder="기업홈페이지 주소를 입력하세요">
+                        	<input type="url" class="input-text" name="companySite" maxlength="100" placeholder="기업홈페이지 주소를 입력하세요">
                         </td>
                     </tr>
                     <tr>
                         <th>기업 형태</th>
                         <td>
                             <div class="radio-group">
-                                <label><input type="radio" name="companyType" class="input-radio" value="대기업"> 대기업</label>
-                                <label><input type="radio" name="companyType" class="input-radio" value="중견기업"> 중견기업</label>
-                                <label><input type="radio" name="companyType" class="input-radio" value="중소기업"> 중소기업</label>
-                                <label><input type="radio" name="companyType" class="input-radio" value="기타"> 기타</label>
-                            </div>
+					            <label><input type="radio" name="companyType" class="input-radio" value="대기업"> 대기업</label>
+					            <label><input type="radio" name="companyType" class="input-radio" value="중견기업"> 중견기업</label>
+					            <label><input type="radio" name="companyType" class="input-radio" value="중소기업"> 중소기업</label>
+					            <label><input type="radio" name="companyType" class="input-radio" value="기타"> 기타</label>
+					        </div>
                         </td>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                     <tr>
                         <th>대표자명</th>
                         <td>
-                            <input type="text" class="input-text" name="ownerName" maxlength="100" placeholder="대표자명을 입력하세요">
+                        	<input type="text" class="input-text" name="ownerName" maxlength="100" placeholder="대표자명을 입력하세요">
                         </td>
                     </tr>
                     <tr>
@@ -80,7 +80,7 @@
                     <tr>
                         <th>브랜드명</th>
                         <td>
-                            <input type="text" class="input-text" name="brandName" maxlength="100" placeholder="브랜드명을 입력하세요">
+                        	<input type="text" class="input-text" name="brandName" maxlength="100" placeholder="브랜드명을 입력하세요">
                         </td>
                     </tr>
                     <tr>

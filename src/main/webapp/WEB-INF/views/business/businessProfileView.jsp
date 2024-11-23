@@ -8,6 +8,10 @@
     <title>WorkDream - 기업 프로필 보기</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/businessProfileView.css">
+    <!-- window.contextPath 설정 -->
+    <script type="text/javascript">
+        window.contextPath = "${pageContext.request.contextPath}";
+    </script>
     <script src="${pageContext.request.contextPath}/js/businessProfileView.js" defer></script>
 </head>
 <body>
@@ -32,10 +36,6 @@
                     <div class="basic-info-item">
                         <span class="label">기업로고:</span>
                         <img id="company-logo-view" src="${business.logo}" alt="기업 로고" class="company-logo">
-                    </div>
-                    <div class="basic-info-item">
-                        <span class="label">사업자등록번호:</span>
-                        <span class="value">${business.registrationNumber}</span>
                     </div>
                     <div class="basic-info-item">
                         <span class="label">기업명:</span>

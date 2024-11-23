@@ -95,10 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 근무 환경 이미지 제목 수집
         const workEnvImageTitles = [];
-        const photoTitles = document.querySelectorAll('.photo-title');
-        photoTitles.forEach(titleInput => {
-            const title = titleInput.value.trim();
-            if (title !== '') { // 빈 문자열 필터링
+        const imageItems = document.querySelectorAll('.image-item');
+        imageItems.forEach(item => {
+            const titleInput = item.querySelector('.photo-title');
+            const fileInput = item.querySelector('.hidden-file-input');
+            if (fileInput.files.length > 0) {
+                const title = titleInput.value.trim();
                 workEnvImageTitles.push(title);
             }
         });
@@ -115,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             body: formData
         })
         .then(response => {
-            if(response.ok) {
+            if (response.ok) {
                 return response.text();
             }
             throw new Error('네트워크 응답이 정상적이지 않습니다.');
