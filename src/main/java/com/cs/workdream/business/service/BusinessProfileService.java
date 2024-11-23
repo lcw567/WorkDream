@@ -1,5 +1,8 @@
 package com.cs.workdream.business.service;
 
-public class BusinessProfileService {
+import com.cs.workdream.business.model.vo.Business;
 
+public interface BusinessProfileService {
+    int registerBusinessProfile(Business business) throws Exception;
+    Business viewBusinessProfile(int businessNo) throws Exception;
 }

@@ -24,7 +24,7 @@
                     <span>서울특별시 000로00길</span>
                 </div>
                 <div class="button-group">
-                    <button class="btn btn-company-info" onclick="location.href='${pageContext.request.contextPath}/business/businessProfileView'">기업 정보</button>
+                    <button class="btn btn-company-info" onclick="location.href='${pageContext.request.contextPath}/business/businessProfilePost'">기업 정보</button>
                     <button class="btn btn-messenger">메신저</button>
                 </div>
             </article>
