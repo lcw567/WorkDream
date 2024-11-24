@@ -33,13 +33,14 @@
                             <input type="file" id="company-logo" name="companyLogo" class="input-text" accept="image/*">
                             <div id="logo-preview-container">
                                 <c:choose>
-                                    <c:when test="${not empty business.logo}">
-                                        <img id="logo-preview" src="${business.logo}" alt="로고 미리보기" style="display: block; max-width: 200px; margin-top: 10px;">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img id="logo-preview" src="#" alt="로고 미리보기" style="display: none; max-width: 200px; margin-top: 10px;">
-                                    </c:otherwise>
-                                </c:choose>
+								    <c:when test="${not empty business.logo}">
+								        <img id="logo-preview" src="${pageContext.request.contextPath}${business.logo}" alt="로고 미리보기" style="display: block; max-width: 200px; margin-top: 10px;">
+								    </c:when>
+								    <c:otherwise>
+								        <img id="logo-preview" src="#" alt="로고 미리보기" style="display: none; max-width: 200px; margin-top: 10px;">
+								    </c:otherwise>
+								</c:choose>
+
                             </div>
                         </td>
                     </tr>

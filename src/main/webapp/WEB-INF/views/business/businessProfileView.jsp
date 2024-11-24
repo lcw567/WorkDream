@@ -106,21 +106,23 @@
             </div>
 
             <!-- 사내 근무 환경 이미지 갤러리 -->
-            <div class="profile-work-environment border-box">
-                <h3>사내 근무 환경</h3>
-                <div class="gallery-container">
-                    <button class="nav-btn left-btn" aria-label="왼쪽으로 스크롤">&#9664;</button>
-                    <div id="work-environment-gallery" class="image-gallery">
-                        <c:forEach var="image" items="${business.workEnvironmentImages}">
-                            <div class="gallery-item">
-                                <img src="${image.imageUrl}" alt="${image.title}">
-                                <p>${image.title}</p>
-                            </div>
-                        </c:forEach>
-                    </div>
-                    <button class="nav-btn right-btn" aria-label="오른쪽으로 스크롤">&#9654;</button>
-                </div>
-            </div>
+			<div class="profile-work-environment border-box">
+			    <h3>사내 근무 환경</h3>
+			    <div class="gallery-container">
+			        <button class="nav-btn left-btn" aria-label="왼쪽으로 스크롤">&#9664;</button>
+			        <div id="work-environment-gallery" class="image-gallery">
+			            <c:forEach var="image" items="${business.workEnvironmentImages}">
+						    <div class="gallery-item">
+						  	    <img src="${pageContext.request.contextPath}${image.imageUrl}" alt="${image.title}">
+						        <p>${image.title}</p>
+						    </div>
+						</c:forEach>
+						
+			        </div>
+			        <button class="nav-btn right-btn" aria-label="오른쪽으로 스크롤">&#9654;</button>
+			    </div>
+			</div>
+
         </div>
     </main>
 </body>
