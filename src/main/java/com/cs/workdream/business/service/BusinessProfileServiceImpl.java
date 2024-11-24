@@ -26,7 +26,7 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
 
         int businessNo = business.getBusinessNo();
 
-        // 기존 복리후생 삭제 (근무 환경 이미지는 삭제하지 않음)
+        // 기존 복리후생 및 근무 환경 이미지 삭제
         businessProfileDao.deleteBusinessBenefits(businessNo);
 
         // BUSINESS_BENEFIT 테이블에 등록
@@ -41,9 +41,6 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
         // WORK_ENVIRONMENT_IMAGE 테이블에 등록
         List<WorkEnvironmentImage> images = business.getWorkEnvironmentImages();
         if(images != null && !images.isEmpty()) {
-            // 기존 이미지 삭제
-            businessProfileDao.deleteWorkEnvironmentImages(businessNo);
-
             for(WorkEnvironmentImage image : images) {
                 image.setBusinessNo(businessNo);
                 businessProfileDao.insertWorkEnvironmentImage(image);
