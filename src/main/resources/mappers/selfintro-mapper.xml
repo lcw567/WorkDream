@@ -18,29 +18,31 @@
     
     <!-- Insert 매핑 -->
     <insert id="insertSelfIntro" parameterType="com.cs.workdream.selfintro.model.vo.SelfIntro">
-        <selectKey keyProperty="selfintroNo" resultType="int" order="BEFORE">
-            SELECT SELF_INTRO_SEQ.NEXTVAL FROM DUAL
-        </selectKey>
-        INSERT INTO SELF_INTRODUCTION (
-            SELF_INTRODUCTION_NO,
-            RESUME_NO,
-            USER_ID,
-            TITLE,
-            CONTENT,
-            CREATED_DATE,
-            MODIFIED_DATE,
-            DELETED
-        ) VALUES (
-            #{selfintroNo},    -- SELF_INTRODUCTION_NO
-            1,                 -- RESUME_NO
-            #{userId},         -- USER_ID
-            #{introTitle},     -- TITLE
-            #{introContent},   -- CONTENT
-            SYSDATE,           -- CREATED_DATE
-            NULL,              -- MODIFIED_DATE
-            'N'                -- DELETED
-        )
-    </insert>
+    <selectKey keyProperty="selfintroNo" resultType="int" order="BEFORE">
+        SELECT SELF_INTRO_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO SELF_INTRODUCTION (
+        SELF_INTRODUCTION_NO,
+        RESUME_NO,
+        USER_ID,
+        TITLE,
+        CONTENT,
+        CREATED_DATE,
+        MODIFIED_DATE,
+        DELETED,
+        PERSON_NO
+    ) VALUES (
+        #{selfintroNo},    
+        #{resumeNo},       
+        #{userId},        
+        #{introTitle},    
+        #{introContent},  
+        SYSDATE,          
+        NULL,             
+        #{deleted},       
+        #{personNo}       
+    )
+</insert>
 
     <!-- Select 리스트 매핑 -->
    <select id="selectSelfIntroList" parameterType="String" resultType="com.cs.workdream.selfintro.model.vo.SelfIntro">

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +23,8 @@ import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.resume.controller.ResumeController;
 import com.cs.workdream.selfintro.model.vo.SelfIntro;
 import com.cs.workdream.selfintro.service.SelfIntroService;
-
+@Controller
+@RequestMapping("/resume")
 public class SelfIntroController {
 
 		private static final Logger logger = LoggerFactory.getLogger(ResumeController.class);
@@ -36,6 +38,7 @@ public class SelfIntroController {
 	        return "resume/selfIntro";
 	    }
 	    
+	    
 	    @GetMapping("/editIntro")
 	    public String showEditSelfIntro(@RequestParam("id") Integer selfintroNo, Model model) {
 	        SelfIntro selfIntro = selfIntroService.getSelfIntroById(selfintroNo);
@@ -48,11 +51,16 @@ public class SelfIntroController {
 	    public String insertSelfIntro(@RequestParam("intro_name") String introTitle,
 	                                  @RequestParam("intro_content") String introContent,
 	                                  HttpSession session) {
-
 	        Member loginUser = (Member) session.getAttribute("loginUser");
 	        if (loginUser == null) {
 	            return "redirect:/login?error=sessionExpired";
-	        } 
+	        }
+
+	        Integer personNo = loginUser.getPersonNo();
+	        if (personNo == null) {
+	            logger.error("PersonNo is null for userId: {}", loginUser.getUserId());
+	            return "redirect:/errorPage?error=noPersonNo"; 
+	        }
 
 	        SelfIntro selfIntro = new SelfIntro();
 	        selfIntro.setUserId(loginUser.getUserId());
@@ -60,6 +68,7 @@ public class SelfIntroController {
 	        selfIntro.setIntroTitle(introTitle);
 	        selfIntro.setIntroContent(introContent);
 	        selfIntro.setDeleted("N");
+	        selfIntro.setPersonNo(personNo); 
 
 	        try {
 	            int result = selfIntroService.insertSelfIntro(selfIntro);
@@ -69,7 +78,7 @@ public class SelfIntroController {
 	                return "redirect:/errorPage";
 	            }
 	        } catch (Exception e) {
-	            e.printStackTrace();
+	            logger.error("Error inserting SelfIntro: ", e);
 	            return "redirect:/errorPage";
 	        }
 	    }

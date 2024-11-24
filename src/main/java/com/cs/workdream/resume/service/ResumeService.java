@@ -1,7 +1,10 @@
 package com.cs.workdream.resume.service;
 
-import com.cs.workdream.resume.model.vo.Resume;
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
+
+import com.cs.workdream.resume.model.vo.Resume;
 
 public interface ResumeService {
     /**
@@ -11,4 +14,6 @@ public interface ResumeService {
      * @return 저장 성공 여부
      */
     boolean saveResume(Resume resume, MultipartFile userPicFile);
+    
+    List<Resume> getResumesByPersonNo(int personNo);
 }

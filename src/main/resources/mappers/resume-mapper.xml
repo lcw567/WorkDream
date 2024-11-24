@@ -5,6 +5,104 @@
 
 <mapper namespace="ResumeMapper">
 
+ <resultMap id="ResumeResultMap" type="com.cs.workdream.resume.model.vo.Resume">
+        <!-- 이력서 기본 정보 -->
+        <id property="resumeNo" column="RESUME_NO"/>
+        <result property="personNo" column="PERSON_NO"/>
+        <result property="resumeTitle" column="RESUME_TITLE"/>
+        <result property="createDate" column="CREATE_DATE"/>
+        <result property="modifiedDate" column="MODIFIED_DATE"/>
+        <result property="deleted" column="DELETED"/>
+        
+        <!-- 기본 정보 -->
+        <result property="userName" column="USER_NAME"/>
+        <result property="userGender" column="USER_GENDER"/>
+        <result property="userBirth" column="USER_BIRTH"/>
+        <result property="userEmail" column="USER_EMAIL"/>
+        <result property="userPhone" column="USER_PHONE"/>
+        <result property="userAddress" column="USER_ADDRESS"/>
+        <result property="userRoadAddress" column="USER_ROAD_ADDRESS"/>
+        <result property="userDetailAddress" column="USER_DETAIL_ADDRESS"/>
+        <result property="userPic" column="USER_PIC"/>
+        
+        <!-- 최종 학력 -->
+        <result property="educationLevel" column="EDUCATION_LEVEL"/>
+        <result property="academicName_el" column="ACADEMIC_NAME_EL"/>
+        <result property="academicName_mi" column="ACADEMIC_NAME_MI"/>
+        <result property="academicName_hi" column="ACADEMIC_NAME_HI"/>
+        <result property="academicName_col" column="ACADEMIC_NAME"/>
+        <result property="majorName_col" column="MAJOR"/>
+        <result property="degree_col" column="DEGREE"/>
+        <result property="graduationStatus_col" column="STATUS"/>
+        <result property="graduationStatus_el" column="STATUS_EL"/>
+        <result property="graduationStatus_mi" column="STATUS_MI"/>
+        <result property="graduationStatus_hi" column="STATUS_HI"/>
+        
+        <!-- 입학 및 졸업 날짜 -->
+        <result property="enterDate_el" column="ENTER_DATE_EL"/>
+        <result property="graduationDate_el" column="GRADUATION_DATE_EL"/>
+        <result property="enterDate_mi" column="ENTER_DATE_MI"/>
+        <result property="graduationDate_mi" column="GRADUATION_DATE_MI"/>
+        <result property="enterDate_hi" column="ENTER_DATE_HI"/>
+        <result property="graduationDate_hi" column="GRADUATION_DATE_HI"/>
+        <result property="enterDate_col" column="ENTER_DATE_COL"/>
+        <result property="graduationDate_col" column="GRADUATION_DATE_COL"/>
+        
+        <!-- 위치 정보 -->
+        <result property="location_el" column="LOCATION_EL"/>
+        <result property="location_mi" column="LOCATION_MI"/>
+        <result property="location_hi" column="LOCATION_HI"/>
+        <result property="location_col" column="LOCATION"/>
+        
+        <!-- 시험 합격 여부 -->
+        <result property="examPassed_el" column="EXAM_PASSED_EL"/>
+        <result property="examPassed_mi" column="EXAM_PASSED_MI"/>
+        <result property="examPassed_hi" column="EXAM_PASSED_HI"/>
+        
+        <!-- 스킬 -->
+        <result property="skillName" column="SKILL"/>
+        
+        <!-- 경험/활동/교육 -->
+        <result property="activityType" column="ACTICITY_TYPE"/>
+        <result property="organizationName" column="ORGANIZATION_NAME"/>
+        <result property="startDateAct" column="START_DATE_ACT"/>
+        <result property="endDateAct" column="END_DATE_ACT"/>
+        <result property="description" column="DESCRIPTION"/>
+        
+        <!-- 자격/어학/수상 -->
+        <result property="category" column="CATEGORY"/>
+        <result property="name" column="NAME"/>
+        <result property="issuingAgency" column="ISSUED_BY"/>
+        <result property="proficiencyLevel" column="PROFICIENCY_LEVEL"/>
+        <result property="languageType" column="KIND_OF_LANGUAGE"/>
+        <result property="passStatus" column="PASSING_CATEGORY"/>
+        <result property="awardName" column="AWARD_NAME"/>
+        <result property="organizer" column="ORGANIZER"/>
+        <result property="awardDate" column="AWARD_DATE"/>
+        <result property="issueDate" column="ISSUE_DATE"/>
+        
+        <!-- 취업우대사항 -->
+        <result property="veteranReason" column="VETERAN_REASON"/>
+        <result property="serviceStatus" column="SERVICE_STATE"/>
+        <result property="unfinishedReason" column="UNFULFILLED_REASON"/>
+        <result property="exemptionReason" column="EXEMPTED_REASON"/>
+        <result property="enlistmentDate" column="ENLISTMENT_DATE"/>
+        <result property="dischargeDate" column="DISCHARGE_DATE"/>
+        <result property="militaryBranch" column="MILITARY_SELECTION"/>
+        <result property="rank" column="CLASS_SELECTION"/>
+        <result property="dischargeReason" column="DISCHARGE_REASON"/>
+        
+        <!-- 경력 -->
+        <result property="companyTitle" column="COMPANY_TITLE"/>
+        <result property="work" column="WORK"/>
+        <result property="department" column="DEPARTMENT"/>
+        <result property="startDateWork" column="START_DATE_WORK"/>
+        <result property="endDateWork" column="END_DATE_WORK"/>
+        <result property="careerStatus" column="STATUS_WORK"/>
+        <result property="jobContent" column="JOB_CONTENT"/>
+        <result property="position" column="POSITION"/>
+    </resultMap>
+
     <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume" useGeneratedKeys="true" keyProperty="resumeNo">
     
         <selectKey keyProperty="resumeNo" resultType="int" order="BEFORE">
@@ -50,6 +148,27 @@
         )
     </insert>
 
-    <!-- 기타 삽입 쿼리 (필요 시 추가) -->
+    <select id="selectResumesByPersonNo" parameterType="int" resultMap="ResumeResultMap">
+        SELECT 
+            RESUME_NO, PERSON_NO, RESUME_TITLE, CREATE_DATE, MODIFIED_DATE, DELETED,
+            USER_NAME, USER_GENDER, USER_BIRTH, USER_EMAIL, USER_PHONE, USER_ADDRESS,
+            USER_ROAD_ADDRESS, USER_DETAIL_ADDRESS, USER_PIC, EDUCATION_LEVEL, ACADEMIC_NAME_EL,
+            ACADEMIC_NAME_MI, ACADEMIC_NAME_HI, ACADEMIC_NAME, MAJOR, DEGREE, 
+            STATUS, STATUS_EL, STATUS_MI, STATUS_HI,
+            ENTER_DATE_EL, GRADUATION_DATE_EL, ENTER_DATE_MI, GRADUATION_DATE_MI, ENTER_DATE_HI, GRADUATION_DATE_HI, ENTER_DATE_COL, GRADUATION_DATE_COL, 
+            LOCATION_EL, LOCATION_MI, LOCATION_HI, LOCATION,
+            EXAM_PASSED_EL, EXAM_PASSED_MI, EXAM_PASSED_HI, SKILL,
+            ACTICITY_TYPE, ORGANIZATION_NAME, START_DATE_ACT, END_DATE_ACT,
+            DESCRIPTION, CATEGORY, NAME, ISSUED_BY, PROFICIENCY_LEVEL,
+            KIND_OF_LANGUAGE, PASSING_CATEGORY, AWARD_NAME, ORGANIZER,
+            AWARD_DATE, ISSUE_DATE, VETERAN_REASON, SERVICE_STATE,
+            UNFULFILLED_REASON, EXEMPTED_REASON, ENLISTMENT_DATE, DISCHARGE_DATE,
+            MILITARY_SELECTION, CLASS_SELECTION, DISCHARGE_REASON,
+            WORK, DEPARTMENT, COMPANY_TITLE, START_DATE_WORK,
+            END_DATE_WORK, STATUS_WORK, JOB_CONTENT, POSITION
+        FROM RESUME
+        WHERE PERSON_NO = #{personNo} AND DELETED = 'N'
+        ORDER BY CREATE_DATE DESC
+    </select>
 
 </mapper>

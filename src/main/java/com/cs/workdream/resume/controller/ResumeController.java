@@ -6,6 +6,7 @@ import com.cs.workdream.member.model.vo.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.sql.Date;
 
 import org.slf4j.Logger;
@@ -103,8 +105,28 @@ public class ResumeController {
     }
     
     @GetMapping("/resumeDashboard")
-    public String resumeDashboard() {
-        return "resume/resumeDashboard"; // 해당 JSP 파일의 경로
+    public String resumeDashboard(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 로그인 사용자 정보 가져오기
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            redirectAttributes.addFlashAttribute("message", "로그인이 필요합니다.");
+            return "redirect:/login?error=sessionExpired";
+        }
+
+        int personNo = loginUser.getPersonNo();
+        logger.info("현재 사용자 personNo: {}", personNo);
+
+        // 이력서 목록 조회
+        List<Resume> resumeList = resumeService.getResumesByPersonNo(personNo);
+        model.addAttribute("resumeList", resumeList);
+        logger.info("조회된 이력서 개수: {}", resumeList.size());
+        for (Resume resume : resumeList) {
+            logger.info("Resume Title: {}", resume.getResumeTitle());
+            logger.info("Create Date: {}", resume.getCreateDate());
+            logger.info("Modified Date: {}", resume.getModifiedDate());
+        }
+
+        return "resume/resumeDashboard"; // JSP 파일의 경로
     }
     
     /**
