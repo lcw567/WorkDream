@@ -73,11 +73,11 @@ function validateId(id) {
             const idCheck = document.getElementById("id-check");
             idCheck.className = "NotChecked";
             idCheck.innerHTML = "";
-    
+
             const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
             const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
             const regex = /^[a-z][a-z0-9_]{3,19}$/;
-    
+
             if(id == "") {
                 // 아이디 미입력
                 idCheck.innerHTML = errorImg + "필수입력항목입니다.";
@@ -254,10 +254,10 @@ function validateNumber(registNumber) {
             const numberCheck = document.getElementById("number-check");
             numberCheck.className = "NotChecked";
             numberCheck.innerHTML = "";
-    
+
             const checkImg = "<img src='" + contextPath + "/img/icon_check.png'>";
             const errorImg = "<img src='" + contextPath + "/img/icon_error.png'>";
-    
+
             if(registNumber == "") {
                 // 사업자등록번호 미입력
                 numberCheck.innerHTML = errorImg + "필수입력항목입니다.";
@@ -596,7 +596,7 @@ try {
             if(fd === "id") {
                 idSection.classList.add("On");
                 pwdSection.classList.remove("On");
-    
+
                 tabItems = idSection.querySelectorAll("#findMember-article-tab li");
                 emailArticle = idSection.querySelector("#findMember-article-email");
                 phoneArticle = idSection.querySelector("#findMember-article-phone");
@@ -604,7 +604,7 @@ try {
             else {
                 idSection.classList.remove("On");
                 pwdSection.classList.add("On");
-    
+
                 tabItems = pwdSection.querySelectorAll("#findMember-article-tab li");
                 emailArticle = pwdSection.querySelector("#findMember-article-email");
                 phoneArticle = pwdSection.querySelector("#findMember-article-phone");
@@ -620,7 +620,7 @@ try {
             } else {
                 emailArticle.classList.remove("On");
                 phoneArticle.classList.add("On");
-    
+
                 tabItems.forEach(item => item.classList.remove("On"));
                 tabItems[1].classList.add("On");
             }
@@ -629,7 +629,7 @@ try {
             if(fd === "id") {
                 idSection.classList.add("On");
                 pwdSection.classList.remove("On");
-    
+
                 tabItems = idSection.querySelectorAll("#findMember-article-tab li");
                 emailArticle = idSection.querySelector("#findMember-article-email");
                 phoneArticle = idSection.querySelector("#findMember-article-phone");
@@ -638,7 +638,7 @@ try {
             else {
                 idSection.classList.remove("On");
                 pwdSection.classList.add("On");
-    
+
                 tabItems = pwdSection.querySelectorAll("#findMember-article-tab li");
                 emailArticle = pwdSection.querySelector("#findMember-article-email");
                 phoneArticle = pwdSection.querySelector("#findMember-article-phone");
@@ -650,21 +650,21 @@ try {
                 emailArticle.classList.add("On");
                 phoneArticle.classList.remove("On");
                 numberArtice.classList.remove("On");
-    
+
                 tabItems.forEach(item => item.classList.remove("On"));
                 tabItems[0].classList.add("On");
             } else if(fm === "phone") {
                 emailArticle.classList.remove("On");
                 phoneArticle.classList.add("On");
                 numberArtice.classList.remove("On");
-    
+
                 tabItems.forEach(item => item.classList.remove("On"));
                 tabItems[1].classList.add("On");
             } else {
                 emailArticle.classList.remove("On");
                 phoneArticle.classList.remove("On");
                 numberArtice.classList.add("On");
-    
+
                 tabItems.forEach(item => item.classList.remove("On"));
                 tabItems[2].classList.add("On");
             }
@@ -723,7 +723,7 @@ try {
                             break;
                         }
                     } catch(error) {
-                        console.log("sendCofirmNumber: ", error); 
+                        console.log("sendCofirmNumber: ", error);
                     }
                 default:
                     if(fm === "email") {
@@ -746,7 +746,7 @@ try {
         }
 
         if(checkName.value != "" && isCheckValid) {
-            alert("인증번호가 전송되었습니다.\n인증번호 : " + confirmNumber);
+            prompt("인증번호가 전송되었습니다. 인증번호 :", confirmNumber);
             event.target.innerText = "재전송";
             confirmInputs[index].removeAttribute("disabled");
             confirmInputs[index].focus();
@@ -787,7 +787,7 @@ try {
         input.addEventListener("input", (event) => {
             replaceInputEmail(event);
         });
-    });    
+    });
     phoneInputs.forEach(input => {
         input.addEventListener("input", (event) => {
             replaceInputNumber(event);
@@ -821,7 +821,7 @@ try {
 /* findMemberResult.jsp 전용 */
 try {
      // 초기값 설정
-     function settingFindSection() {
+    function settingFindSection() {
         const idArticle = document.getElementById("findResult-article-id");
         const pwdArticle = document.getElementById("findResult-article-pwd");
         let tabItems;
@@ -876,11 +876,9 @@ try {
         // input 크기 조절
         const inputs = document.querySelectorAll("#findResult-main input");
         inputs.forEach(input => {
-            input.addEventListener("DOMContentLoaded", function() {
-                const length = input.value.length;
-                input.style.width = (length + 1) + 'ch';
-            })
-        })
+            const length = input.value.length;
+            input.style.width = (length + 1) + 'rem';
+        });
     }
 
     document.addEventListener("DOMContentLoaded", function() {

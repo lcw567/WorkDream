@@ -98,7 +98,10 @@
 	
 	<!-- 회원 아이디 조회 (기업) -->
 	<select id="findMemberIdBusiness" parameterType="map" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID, OWNER_NAME
+		SELECT	USER_NO,
+				USER_TYPE,
+				SUBSTR(USER_ID, 1, 2) || RPAD('*', LENGTH(USER_ID) - 2, '*') AS USER_ID,
+				OWNER_NAME
 		  FROM	MEMBER M
 		  JOIN	BUSINESS B ON (M.BUSINESS_NO = B.BUSINESS_NO)
 		 WHERE	USER_TYPE = 'B'
@@ -118,9 +121,12 @@
 	
 	<!-- 회원 아이디 조회 (개인) -->
 	<select id="findMemberIdPerson" parameterType="map" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID, NAME
+		SELECT	USER_NO,
+				USER_TYPE,
+				SUBSTR(USER_ID, 1, 2) || RPAD('*', LENGTH(USER_ID) - 2, '*') AS USER_ID,
+				NAME
 		  FROM	MEMBER M
-		  JOIN	PERSON P ON (M.BUSINESS_NO = P.PERSON_NO)
+		  JOIN	PERSON P ON (M.PERSON_NO = P.PERSON_NO)
 		 WHERE	USER_TYPE = 'P'
 		   AND	NAME = #{m.userName}
 		 <choose>
@@ -135,7 +141,11 @@
 	
 	<!-- 회원 비밀번호 조회 (기업) -->
 	<select id="findMemberPwdBusiness" parameterType="map" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD, OWNER_NAME
+		SELECT	USER_NO,
+				USER_TYPE,
+				SUBSTR(USER_ID, 1, 2) || RPAD('*', LENGTH(USER_ID) - 2, '*') AS USER_ID,
+				USER_PWD,
+				OWNER_NAME
 		  FROM	MEMBER M
 		  JOIN	BUSINESS B ON (M.BUSINESS_NO = B.BUSINESS_NO)
 		 WHERE	USER_TYPE = 'B'
@@ -156,12 +166,16 @@
 	
 	<!-- 회원 비밀번호 조회 (개인) -->
 	<select id="findMemberPwdPerson" parameterType="map" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD, NAME
+		SELECT	USER_NO,
+				USER_TYPE,
+				SUBSTR(USER_ID, 1, 2) || RPAD('*', LENGTH(USER_ID) - 2, '*') AS USER_ID,
+				USER_PWD,
+				NAME
 		  FROM	MEMBER M
-		  JOIN	PERSON P ON (M.BUSINESS_NO = P.PERSON_NO)
+		  JOIN	PERSON P ON (M.PERSON_NO = P.PERSON_NO)
 		 WHERE	USER_TYPE = 'P'
 		   AND	USER_ID = #{m.userId}
-		   AND	NAME = ${m.userName}
+		   AND	NAME = #{m.userName}
 		 <choose>
 		 	<when test="method == 'email'">
 		 		AND	EMAIL = #{m.email}
@@ -171,4 +185,11 @@
 		 	</when>
 		 </choose>
 	</select>
+	
+	<!-- 임시 비밀번호 설정 -->
+	<update id="settingTempPwd" parameterType="map">
+		UPDATE	MEMBER
+		   SET	USER_PWD = #{tempPwd}
+		 WHERE	USER_NO = #{m.userNo}
+	</update>
 </mapper>

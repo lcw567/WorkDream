@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>워크드림 | 지원자 현황</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
 	
 	<!-- 외부 css / js 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicants.css">

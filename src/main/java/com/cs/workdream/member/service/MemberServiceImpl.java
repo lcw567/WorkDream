@@ -1,7 +1,10 @@
 package com.cs.workdream.member.service;
 
+import java.security.SecureRandom;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cs.workdream.business.controller.BusinessController;
@@ -13,6 +16,7 @@ import com.cs.workdream.person.controller.PersonController;
 public class MemberServiceImpl implements MemberService {
 	private final BusinessController bController;
 	private final PersonController pController;
+	private final BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -21,9 +25,10 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao memberDao;
 	
 	@Autowired
-	public MemberServiceImpl(BusinessController bController, PersonController pController) {
+	public MemberServiceImpl(BusinessController bController, PersonController pController, BCryptPasswordEncoder bcryptPasswordEncoder) {
 		this.bController = bController;
 		this.pController = pController;
+		this.bcryptPasswordEncoder = bcryptPasswordEncoder;
 	}
 
 	// 로그인 판별
@@ -53,7 +58,32 @@ public class MemberServiceImpl implements MemberService {
 	// 회원 비밀번호 조회
 	@Override
 	public Member findMemberPwd(Member m, String method) {
-		return memberDao.findMemberPwd(sqlSession, m, method);
+		m = memberDao.findMemberPwd(sqlSession, m, method);
+		String tempPwd = generateTempPwd();
+		int result = memberDao.settingTempPwd(sqlSession, m, bcryptPasswordEncoder.encode(tempPwd));
+		
+		if(result > 0) {
+			// 임시 비밀번호 생성 성공 -> 바뀐 값으로 새로 저장
+			m.setUserPwd(tempPwd);
+		}
+		
+		return m;
+	}
+	
+	// 임시 비밀번호 생성
+	public String generateTempPwd() {
+		final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";
+	    final SecureRandom random = new SecureRandom();
+	    
+	    int length = 8 + random.nextInt(9);  // 8에서 16 사이의 숫자
+        StringBuilder stringBuilder = new StringBuilder(length);
+        
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(CHARACTERS.length());
+            stringBuilder.append(CHARACTERS.charAt(index));
+        }
+        
+        return stringBuilder.toString();
 	}
 
 }
