@@ -17,7 +17,7 @@
         
             <article class="login-box logged-in" aria-hidden="false">
                 <h2 class="company-name">${business.companyName}</h2>
-                <p class="company-description">${business.introduction}</p>
+                <p class="company-description">${business.shortIntroduction}</p>
                 <div class="contact-info">
                     <span>${business.industry}</span> |
                     <span>${business.companySite}</span> |

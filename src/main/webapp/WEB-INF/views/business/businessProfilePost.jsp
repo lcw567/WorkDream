@@ -32,67 +32,74 @@
                         <td>
                             <input type="file" id="company-logo" name="companyLogo" class="input-text" accept="image/*">
                             <div id="logo-preview-container">
-                                <img id="logo-preview" src="#" alt="로고 미리보기" style="display: none; max-width: 200px; margin-top: 10px;">
+                                <c:choose>
+                                    <c:when test="${not empty business.logo}">
+                                        <img id="logo-preview" src="${business.logo}" alt="로고 미리보기" style="display: block; max-width: 200px; margin-top: 10px;">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img id="logo-preview" src="#" alt="로고 미리보기" style="display: none; max-width: 200px; margin-top: 10px;">
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </td>
                     </tr>
                     <tr>
 					    <th>기업명</th>
 					    <td>
-					        <input type="text" class="input-text" name="companyName" maxlength="100" placeholder="기업명을 입력하세요">
+					        <input type="text" class="input-text" name="companyName" maxlength="100" placeholder="기업명을 입력하세요" value="${business.companyName}">
 					    </td>
 					</tr>
                     <tr>
                         <th>기업 한줄 소개</th>
                         <td>
-                            <input type="text" class="input-text" name="shortIntroduction" maxlength="100" placeholder="기업 한줄소개를 입력하세요">
+                            <input type="text" class="input-text" name="shortIntroduction" maxlength="100" placeholder="기업 한줄소개를 입력하세요" value="${business.shortIntroduction}">
                         </td>
                     </tr>
                     <tr>
                         <th>기업 홈페이지</th>
                         <td>
-                        	<input type="url" class="input-text" name="companySite" maxlength="100" placeholder="기업홈페이지 주소를 입력하세요">
+                        	<input type="url" class="input-text" name="companySite" maxlength="100" placeholder="기업홈페이지 주소를 입력하세요" value="${business.companySite}">
                         </td>
                     </tr>
                     <tr>
                         <th>기업 형태</th>
                         <td>
                             <div class="radio-group">
-					            <label><input type="radio" name="companyType" class="input-radio" value="대기업"> 대기업</label>
-					            <label><input type="radio" name="companyType" class="input-radio" value="중견기업"> 중견기업</label>
-					            <label><input type="radio" name="companyType" class="input-radio" value="중소기업"> 중소기업</label>
-					            <label><input type="radio" name="companyType" class="input-radio" value="기타"> 기타</label>
+					            <label><input type="radio" name="companyType" class="input-radio" value="대기업" <c:if test="${business.companyType == '대기업'}">checked</c:if>> 대기업</label>
+					            <label><input type="radio" name="companyType" class="input-radio" value="중견기업" <c:if test="${business.companyType == '중견기업'}">checked</c:if>> 중견기업</label>
+					            <label><input type="radio" name="companyType" class="input-radio" value="중소기업" <c:if test="${business.companyType == '중소기업'}">checked</c:if>> 중소기업</label>
+					            <label><input type="radio" name="companyType" class="input-radio" value="기타" <c:if test="${business.companyType == '기타'}">checked</c:if>> 기타</label>
 					        </div>
                         </td>
                     </tr>
                     <tr>
                         <th>기업 직원수</th>
                         <td>
-                            <input type="number" class="input-text" name="employeeCount" min="0" placeholder="기업 직원수를 입력하세요">
+                            <input type="number" class="input-text" name="employeeCount" min="0" placeholder="기업 직원수를 입력하세요" value="${business.employeeCount}">
                         </td>
                     </tr>
                     <tr>
                         <th>대표자명</th>
                         <td>
-                        	<input type="text" class="input-text" name="ownerName" maxlength="100" placeholder="대표자명을 입력하세요">
+                        	<input type="text" class="input-text" name="ownerName" maxlength="100" placeholder="대표자명을 입력하세요" value="${business.ownerName}">
                         </td>
                     </tr>
                     <tr>
                         <th>업종</th>
                         <td>
-                            <input type="text" class="input-text" name="industry" maxlength="100" placeholder="업종을 입력하세요">
+                            <input type="text" class="input-text" name="industry" maxlength="100" placeholder="업종을 입력하세요" value="${business.industry}">
                         </td>
                     </tr>
                     <tr>
                         <th>브랜드명</th>
                         <td>
-                        	<input type="text" class="input-text" name="brandName" maxlength="100" placeholder="브랜드명을 입력하세요">
+                        	<input type="text" class="input-text" name="brandName" maxlength="100" placeholder="브랜드명을 입력하세요" value="${business.brandName}">
                         </td>
                     </tr>
                     <tr>
                         <th>주소</th>
                         <td>
-                            <input type="text" class="input-text" name="companyAddr" maxlength="100" placeholder="주소를 입력하세요">
+                            <input type="text" class="input-text" name="companyAddr" maxlength="100" placeholder="주소를 입력하세요" value="${business.companyAddr}">
                         </td>
                     </tr>
                 </table>
@@ -104,7 +111,7 @@
                     <tr>
                         <th>기업소개</th>
                         <td>
-                            <textarea class="long-text" name="introduction" maxlength="1000" placeholder="기업소개를 입력하세요"></textarea>
+                            <textarea class="long-text" name="introduction" maxlength="1000" placeholder="기업소개를 입력하세요">${business.introduction}</textarea>
                         </td>
                     </tr>
                 </table>
@@ -116,7 +123,7 @@
                     <tr>
                         <th>기업비전</th>
                         <td>
-                            <textarea class="long-text" name="vision" maxlength="1000" placeholder="기업비전을 입력하세요"></textarea>
+                            <textarea class="long-text" name="vision" maxlength="1000" placeholder="기업비전을 입력하세요">${business.vision}</textarea>
                         </td>
                     </tr>
                 </table>
@@ -134,6 +141,14 @@
                     <tr>
                         <td colspan="2" id="benefits-list">
                             <!-- 복리후생 항목이 추가될 곳 -->
+                            <c:if test="${not empty business.benefits}">
+                                <c:forEach var="benefit" items="${business.benefits}">
+                                    <span class="benefit-item">
+                                        ${benefit.benefit}
+                                        <button class="remove-benefit">×</button>
+                                    </span>
+                                </c:forEach>
+                            </c:if>
                         </td>
                     </tr>
                 </table>
@@ -146,18 +161,21 @@
                         <th>사내 근무 환경</th>
                         <td>
                             <div class="image-grid">
-                                <div class="image-item">
-                                    <img src="${pageContext.request.contextPath}/img/add-image.png" class="add-icon" alt="이미지 추가 아이콘">
-                                    <input type="file" name="workEnvironmentImages" accept="image/*" class="hidden-file-input">
-                                    <input type="text" class="photo-title" placeholder="사진 제목을 입력해주세요">
-                                </div>
-                                <!-- 추가적인 image-item divs을 필요에 따라 반복하거나 동적으로 생성 -->
-                                <!-- 예시로 7개를 고정적으로 추가 -->
-                                <c:forEach var="i" begin="1" end="7">
+                                <!-- 최대 8개의 이미지 -->
+                                <c:forEach var="i" begin="0" end="7">
                                     <div class="image-item">
-                                        <img src="${pageContext.request.contextPath}/img/add-image.png" class="add-icon" alt="이미지 추가 아이콘">
-                                        <input type="file" name="workEnvironmentImages" accept="image/*" class="hidden-file-input">
-                                        <input type="text" class="photo-title" placeholder="사진 제목을 입력해주세요">
+                                        <c:choose>
+                                            <c:when test="${business.workEnvironmentImages != null && business.workEnvironmentImages.size() > i}">
+                                                <img src="${business.workEnvironmentImages[i].imageUrl}" class="add-icon" alt="이미지">
+                                                <input type="file" name="workEnvironmentImages" accept="image/*" class="hidden-file-input">
+                                                <input type="text" class="photo-title" placeholder="사진 제목을 입력해주세요" value="${business.workEnvironmentImages[i].title}">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${pageContext.request.contextPath}/img/add-image.png" class="add-icon" alt="이미지 추가 아이콘">
+                                                <input type="file" name="workEnvironmentImages" accept="image/*" class="hidden-file-input">
+                                                <input type="text" class="photo-title" placeholder="사진 제목을 입력해주세요">
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </c:forEach>
                             </div>

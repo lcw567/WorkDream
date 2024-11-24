@@ -46,7 +46,22 @@ public class BusinessProfileController {
     }
 
     @GetMapping("/businessProfilePost")
-    public String businessProfilePost() {
+    public String businessProfilePost(@RequestParam(value = "businessNo", required = false) Integer businessNo, Model model) {
+        if (businessNo != null) {
+            try {
+                Business business = businessProfileService.viewBusinessProfile(businessNo);
+                if (business != null) {
+                    model.addAttribute("business", business);
+                } else {
+                    model.addAttribute("errorMessage", "기업 정보를 찾을 수 없습니다.");
+                    return "errorPage";
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                model.addAttribute("errorMessage", "기업 정보를 불러오는 중 오류가 발생했습니다.");
+                return "errorPage";
+            }
+        }
         return "business/businessProfilePost";
     }
 
@@ -66,6 +81,12 @@ public class BusinessProfileController {
             } else {
                 return new ResponseEntity<>("로그인이 필요합니다.", HttpStatus.UNAUTHORIZED);
             }
+            
+            // 기존 비즈니스 정보 가져오기
+            Business existingBusiness = businessProfileService.viewBusinessProfile(business.getBusinessNo());
+            if (existingBusiness == null) {
+                return new ResponseEntity<>("기업 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
+            }
 
             // 디버깅용 로그 추가
             System.out.println("Received Business Object: " + business);
@@ -74,8 +95,11 @@ public class BusinessProfileController {
             if (companyLogo != null && !companyLogo.isEmpty()) {
                 String logoUrl = saveFile(companyLogo, "logos");
                 business.setLogo(logoUrl);
+            } else {
+                // 기존 로고 유지
+                business.setLogo(existingBusiness.getLogo());
             }
-
+            
             // 근무 환경 이미지 업로드 처리
             List<WorkEnvironmentImage> imageList = new ArrayList<>();
             if (workEnvironmentImages != null && !workEnvironmentImages.isEmpty()) {
