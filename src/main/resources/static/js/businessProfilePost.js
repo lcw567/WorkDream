@@ -4,19 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoPreview = document.getElementById('logo-preview');
 
     companyLogoInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                logoPreview.src = e.target.result;
-                logoPreview.style.display = 'block';
-            }
-            reader.readAsDataURL(file);
-        } else {
-            logoPreview.src = '#';
-            logoPreview.style.display = 'none';
-        }
-    });
+	    const file = event.target.files[0];
+	    if (file && file.type.startsWith('image/')) {
+	        const reader = new FileReader();
+	        reader.onload = function(e) {
+	            logoPreview.src = e.target.result;
+	            logoPreview.style.display = 'block';
+	        }
+	        reader.readAsDataURL(file);
+	    } else {
+	        logoPreview.src = '#';
+	        logoPreview.style.display = 'none';
+	    }
+	});
 
     const benefitsInput = document.getElementById('benefits-input');
     const benefitsList = document.getElementById('benefits-list');

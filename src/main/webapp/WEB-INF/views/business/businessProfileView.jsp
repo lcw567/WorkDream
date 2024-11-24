@@ -35,7 +35,7 @@
                 <div class="basic-info">
                     <div class="basic-info-item">
                         <span class="label">기업로고:</span>
-                        <img id="company-logo-view" src="${business.logo}" alt="기업 로고" class="company-logo">
+                        <img id="company-logo-view" src="${pageContext.request.contextPath}${business.logo}" alt="기업 로고" class="company-logo">
                     </div>
                     <div class="basic-info-item">
                         <span class="label">기업명:</span>

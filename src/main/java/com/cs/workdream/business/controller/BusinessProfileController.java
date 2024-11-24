@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.business.model.vo.Business;
@@ -75,13 +76,14 @@ public class BusinessProfileController {
             @RequestParam("benefits") String benefitsJson,
             HttpSession session) {
         try {
+            // 세션에서 로그인한 사용자 정보 가져오기
             Member member = (Member) session.getAttribute("loginUser");
             if (member != null) {
                 business.setBusinessNo(member.getBusinessNo());
             } else {
                 return new ResponseEntity<>("로그인이 필요합니다.", HttpStatus.UNAUTHORIZED);
             }
-            
+
             // 기존 비즈니스 정보 가져오기
             Business existingBusiness = businessProfileService.viewBusinessProfile(business.getBusinessNo());
             if (existingBusiness == null) {
@@ -90,6 +92,11 @@ public class BusinessProfileController {
 
             // 디버깅용 로그 추가
             System.out.println("Received Business Object: " + business);
+            if (companyLogo != null) {
+                System.out.println("companyLogo: " + companyLogo.getOriginalFilename() + ", size: " + companyLogo.getSize());
+            } else {
+                System.out.println("companyLogo is null");
+            }
 
             // 회사 로고 업로드 처리
             if (companyLogo != null && !companyLogo.isEmpty()) {
@@ -99,7 +106,7 @@ public class BusinessProfileController {
                 // 기존 로고 유지
                 business.setLogo(existingBusiness.getLogo());
             }
-            
+
             // 근무 환경 이미지 업로드 처리
             List<WorkEnvironmentImage> imageList = new ArrayList<>();
             if (workEnvironmentImages != null && !workEnvironmentImages.isEmpty()) {
@@ -158,21 +165,35 @@ public class BusinessProfileController {
     }
 
     private String saveFile(MultipartFile file, String folderName) throws IOException {
-        String uploadDir = "/uploads/" + folderName + "/";
-        String realPath = servletContext.getRealPath(uploadDir);
-        File dir = new File(realPath);
+        // 업로드 디렉토리의 경로 설정
+        String uploadDir = servletContext.getRealPath("/resources/uploads/" + folderName + "/");
+        File dir = new File(uploadDir);
         if (!dir.exists()) {
-            dir.mkdirs();
+            boolean created = dir.mkdirs();
+            System.out.println("디렉토리 생성 여부: " + created);
+            System.out.println("생성된 디렉토리 경로: " + dir.getAbsolutePath());
+        } else {
+            System.out.println("디렉토리가 이미 존재합니다: " + dir.getAbsolutePath());
         }
 
         String originalFilename = file.getOriginalFilename();
         String fileName = System.currentTimeMillis() + "_" + originalFilename;
-        String filePath = realPath + fileName;
+        String filePath = uploadDir + File.separator + fileName;
 
-        file.transferTo(new File(filePath));
+        System.out.println("파일 저장 경로: " + filePath);
 
-        return servletContext.getContextPath() + uploadDir + fileName;
+        try {
+            file.transferTo(new File(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new IOException("파일 저장 중 오류 발생");
+        }
+
+        // 반환되는 URL 설정
+        return "/resources/uploads/" + folderName + "/" + fileName;
     }
+
+
 
     private List<String> parseJsonArray(String jsonArrayStr) {
         try {
