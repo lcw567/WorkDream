@@ -836,7 +836,6 @@ header.mini > nav > ul {
 	background-color: #E1DEF1;
 	border: 1px solid #E1DEF1;
 	border-bottom: 1px solid #000;
-	cursor: pointer;
 	line-height: 4;
 	text-align: center;
 	font-family: 'MonoplexKR-SemiBold';
@@ -859,6 +858,7 @@ header.mini > nav > ul {
 
 #findResult-article-div {
 	height: 100%;
+	min-height: 30vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -879,6 +879,11 @@ header.mini > nav > ul {
 
 #findResult-article-div > span {
 	font-size: 1rem;
+}
+
+#findResult-article-div > p {
+	margin-top: 5%;
+	font-size: 0.8rem;
 }
 
 #findResult-aside {
@@ -911,4 +916,24 @@ header.mini > nav > ul {
 
 #findResult-aside > p > a:hover {
 	text-decoration: 1.2px underline #000;
+}
+
+#findResult-error {
+	width: 100%;
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#findResult-error > h3 {
+	font-size: 1.3rem;
+}
+
+#findResult-error > a {
+	margin-top: 3%;
+	text-decoration: 1.2px underline #000;
+	font-style: italic;
+	font-size: 1rem;
 }

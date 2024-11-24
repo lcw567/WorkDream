@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.member.service.MemberService;
@@ -163,7 +164,7 @@ public class MemberController {
 	
 	// 아이디 조회
 	@RequestMapping("/findId.me")
-	public ModelAndView findMemberId(Member m, @RequestParam("fm") String method, ModelAndView mv) {
+	public String findMemberId(Member m, @RequestParam("fm") String method, HttpSession session) {
 		Member findMember = memberService.findMemberId(m, method);
 	    System.out.println(m.toString());
 	    
@@ -171,23 +172,23 @@ public class MemberController {
 	    	// 조회 실패
 	    	String returnUrl = "/findUser?ut=" + m.getUserType() + "&fd=id&fm=" + method;
 	    	
-	        mv.addObject("errorMsg", "일치하는 회원 정보가 없습니다.");
-	        mv.addObject("returnPage", returnUrl);
-	        mv.setViewName("common/errorPage");
+	    	session.setAttribute("errorMsg", "일치하는 회원 정보가 없습니다.");
+	    	session.setAttribute("returnPage", returnUrl);
+	    	
+	    	return "common/errorPage";
 	    } else {
 	    	// 조회 성공
-	    	mv.addObject("findUser", findMember);
-	    	mv.addObject("fd", "id");
-	    	mv.addObject("fm", method);
-	    	mv.setViewName("member/findMemberResult");
+	    	session.setAttribute("findUser", findMember);
+	    	session.setAttribute("fd", "pwd");
+	    	session.setAttribute("fm", method);
+	    	
+	    	return "redirect:/findUserResult";
 	    }
-	    
-	    return mv;
 	}
 	
 	// 비밀번호 조회
 	@RequestMapping("/findPwd.me")
-	public ModelAndView findMemberPwd(Member m, @RequestParam("fm") String method, ModelAndView mv) {
+	public String findMemberPwd(Member m, @RequestParam("fm") String method, HttpSession session) {
 		Member findMember = memberService.findMemberPwd(m, method);
 	    System.out.println(m.toString());
 	    
@@ -195,17 +196,34 @@ public class MemberController {
 	    	// 조회 실패
 	    	String returnUrl = "/findUser?ut=" + m.getUserType() + "&fd=pwd&fm=" + method;
 	    	
-	        mv.addObject("errorMsg", "일치하는 회원 정보가 없습니다.");
-	        mv.addObject("returnPage", returnUrl);
-	        mv.setViewName("common/errorPage");
+	    	session.setAttribute("errorMsg", "일치하는 회원 정보가 없습니다.");
+	    	session.setAttribute("returnPage", returnUrl);
+	    	
+	    	return "common/errorPage";
 	    } else {
 	    	// 조회 성공
-	    	mv.addObject("findUser", findMember);
-	    	mv.addObject("fd", "pwd");
-	    	mv.addObject("fm", method);
-	    	mv.setViewName("member/findMemberResult");
+	    	session.setAttribute("findUser", findMember);
+	    	session.setAttribute("fd", "pwd");
+	    	session.setAttribute("fm", method);
+	    	
+	    	return "redirect:/findUserResult";
 	    }
-	    
-	    return mv;
 	}
+	
+	// 조회 결과 페이지로 이동
+	@RequestMapping("/findUserResult")
+	public String findUserResult(HttpSession session, Model model) {
+		// Session을 통해 전달받은 데이터를 Model에 저장
+		Member findMember = (Member) session.getAttribute("findUser");
+	    String fd = (String) session.getAttribute("fd");
+	    String fm = (String) session.getAttribute("fm");
+	    
+	    model.addAttribute("findUser", findMember);
+        model.addAttribute("fd", fd);
+        model.addAttribute("fm", fm);
+		
+	    return "member/findMemberResult";
+	}
+	
+	// 막줄 세이버
 }

@@ -74,5 +74,13 @@ public class MemberDao {
 			return sqlSession.selectOne("memberMapper.findMemberPwdPerson", findMap);
 		}
 	}
-	
+
+	// 임시 비밀번호 설정
+	public int settingTempPwd(SqlSessionTemplate sqlSession, Member m, String tempPwd) {
+		Map<String, Object> setTempPwd = new HashMap<>();
+		setTempPwd.put("m", m);
+		setTempPwd.put("tempPwd", tempPwd);
+		return sqlSession.update("memberMapper.settingTempPwd", setTempPwd);
+	}
+
 }
