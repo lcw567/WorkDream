@@ -4,19 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoPreview = document.getElementById('logo-preview');
 
     companyLogoInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                logoPreview.src = e.target.result;
-                logoPreview.style.display = 'block';
-            }
-            reader.readAsDataURL(file);
-        } else {
-            logoPreview.src = '#';
-            logoPreview.style.display = 'none';
-        }
-    });
+	    const file = event.target.files[0];
+	    if (file && file.type.startsWith('image/')) {
+	        const reader = new FileReader();
+	        reader.onload = function(e) {
+	            logoPreview.src = e.target.result;
+	            logoPreview.style.display = 'block';
+	        }
+	        reader.readAsDataURL(file);
+	    } else {
+	        logoPreview.src = '#';
+	        logoPreview.style.display = 'none';
+	    }
+	});
 
     const benefitsInput = document.getElementById('benefits-input');
     const benefitsList = document.getElementById('benefits-list');
@@ -48,6 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+    });
+
+    // 기존 복리후생 항목에 삭제 버튼 이벤트 추가
+    const existingBenefitItems = benefitsList.querySelectorAll('.benefit-item');
+    existingBenefitItems.forEach(item => {
+        const removeBtn = item.querySelector('.remove-benefit');
+        removeBtn.addEventListener('click', () => {
+            benefitsList.removeChild(item);
+        });
     });
 
     // 사내 근무 환경 이미지 첨부 및 변경
@@ -99,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         imageItems.forEach(item => {
             const titleInput = item.querySelector('.photo-title');
             const fileInput = item.querySelector('.hidden-file-input');
-            if (fileInput.files.length > 0) {
+            if (fileInput.files.length > 0 || item.querySelector('.add-icon').src !== `${window.contextPath}/img/add-image.png`) {
                 const title = titleInput.value.trim();
                 workEnvImageTitles.push(title);
             }
