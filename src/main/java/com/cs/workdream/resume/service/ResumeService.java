@@ -16,4 +16,7 @@ public interface ResumeService {
     boolean saveResume(Resume resume, MultipartFile userPicFile);
     
     List<Resume> getResumesByPersonNo(int personNo);
+    Resume getResumeById(int resumeNo);
+    int updateResume(Resume resume);
+    int deleteResumeById(int resumeNo);
 }

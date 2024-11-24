@@ -92,4 +92,28 @@ public class ResumeServiceImpl implements ResumeService {
     public List<Resume> getResumesByPersonNo(int personNo) {
         return resumeDao.selectResumesByPersonNo(personNo);
     }
+    
+    @Override
+    public Resume getResumeById(int resumeNo) {
+        return resumeDao.selectResumeById(resumeNo);
+    }
+
+    @Override
+    public int updateResume(Resume resume) {
+        return resumeDao.updateResume(resume);
+    }
+    
+    @Transactional
+    @Override
+    public int deleteResumeById(int resumeNo) {
+        try {
+            logger.info("ResumeServiceImpl - 삭제 요청된 이력서 번호: {}", resumeNo);
+            int result = resumeDao.deleteResumeById(resumeNo);
+            logger.info("ResumeServiceImpl - DAO 결과: {}", result > 0 ? "성공" : "실패");
+            return result;
+        } catch (Exception e) {
+            logger.error("ResumeServiceImpl - 이력서 삭제 중 오류 발생: {}", e.getMessage(), e);
+            throw new RuntimeException("이력서 삭제 중 문제가 발생했습니다.", e);
+        }
+    }
 }

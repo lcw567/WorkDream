@@ -74,8 +74,8 @@
                                 <!-- 삭제 폼 -->
                                 <form action="${pageContext.request.contextPath}/resume/deleteResume" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
                                     <input type="hidden" name="id" value="${resume.resumeNo}">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> <!-- CSRF 토큰 추가 -->
-                                    <button type="submit" class="delete-button">삭제</button>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <button type="button" class="delete-button" onclick="deleteResume(${resume.resumeNo})">삭제</button>
                                 </form>
                             </div>
                         </div>

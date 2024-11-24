@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="ResumeMapper">
+<mapper namespace="com.cs.workdream.resume.mapper.ResumeMapper">
 
  <resultMap id="ResumeResultMap" type="com.cs.workdream.resume.model.vo.Resume">
         <!-- 이력서 기본 정보 -->
@@ -170,5 +170,25 @@
         WHERE PERSON_NO = #{personNo} AND DELETED = 'N'
         ORDER BY CREATE_DATE DESC
     </select>
+    
+    <select id="selectResumeById" parameterType="int" resultType="com.cs.workdream.resume.model.vo.Resume">
+        SELECT * FROM RESUME WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
+    </select>
+
+    <!-- 이력서 수정 -->
+    <update id="updateResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
+        UPDATE RESUME
+        SET
+            RESUME_TITLE = #{resumeTitle},
+            RESUME_CONTENT = #{resumeContent},
+            MODIFIED_DATE = SYSDATE
+        WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
+    </update>
+    
+    <update id="deleteResume" parameterType="int">
+	   UPDATE RESUME
+		SET DELETED = 'Y', MODIFIED_DATE = SYSDATE
+		WHERE RESUME_NO = #{resumeNo}
+	</update>
 
 </mapper>

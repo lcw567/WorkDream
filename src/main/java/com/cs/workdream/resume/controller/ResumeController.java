@@ -279,6 +279,45 @@ public class ResumeController {
         resume.setLocation_col(null);
     }
 
+    @GetMapping("/editResume")
+    public String editResume(@RequestParam("id") int resumeNo, Model model) {
+        // 이력서 정보 조회
+        Resume resume = resumeService.getResumeById(resumeNo);
+        if (resume == null) {
+            return "redirect:/resumeDashboard?error=notFound";
+        }
+        model.addAttribute("resume", resume);
+        return "resume/editResume"; // 수정 페이지로 이동
+    }
+    
+    @PostMapping("/updateResume")
+    public String updateResume(@ModelAttribute Resume resume) {
+        // 이력서 수정 서비스 호출
+        int result = resumeService.updateResume(resume);
+        if (result > 0) {
+            return "redirect:/resumeDashboard?success=update";
+        } else {
+            return "redirect:/resumeDashboard?error=updateFailed";
+        }
+    }
+    
+    @PostMapping("/deleteResume")
+    public String deleteResume(@RequestParam("id") int resumeNo, RedirectAttributes redirectAttributes) {
+        try {
+            logger.info("ResumeController - 삭제하려는 resumeNo: {}", resumeNo);
+            int result = resumeService.deleteResumeById(resumeNo);
 
-    // 기타 메서드 생략 (이전과 동일)
+            if (result > 0) {
+                redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 삭제되었습니다.");
+            } else {
+                redirectAttributes.addFlashAttribute("error", "이력서 삭제에 실패했습니다.");
+            }
+            return "redirect:/resume/resumeDashboard";
+        } catch (Exception e) {
+            logger.error("ResumeController - 이력서 삭제 중 오류: ", e);
+            redirectAttributes.addFlashAttribute("error", "이력서 삭제 중 오류가 발생했습니다.");
+            return "redirect:/resume/resumeDashboard";
+        }
+    }
+
 }
