@@ -37,6 +37,12 @@
                         </td>
                     </tr>
                     <tr>
+					    <th>기업명</th>
+					    <td>
+					        <input type="text" class="input-text" name="companyName" maxlength="100" placeholder="기업명을 입력하세요">
+					    </td>
+					</tr>
+                    <tr>
                         <th>기업 한줄 소개</th>
                         <td>
                             <input type="text" class="input-text" name="shortIntroduction" maxlength="100" placeholder="기업 한줄소개를 입력하세요">
