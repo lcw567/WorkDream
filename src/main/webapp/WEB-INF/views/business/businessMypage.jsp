@@ -16,15 +16,15 @@
 
         
             <article class="login-box logged-in" aria-hidden="false">
-                <h2 class="company-name">기업명</h2>
-                <p class="company-description">포털 및 기타 인터넷 정보매개 서비스업</p>
+                <h2 class="company-name">${business.companyName}</h2>
+                <p class="company-description">${business.introduction}</p>
                 <div class="contact-info">
-                    <span>010-0000-0000</span> |
-                    <span>www.aaaaaaa.com</span> |
-                    <span>서울특별시 000로00길</span>
+                    <span>${business.industry}</span> |
+                    <span>${business.companySite}</span> |
+                    <span>${business.companyAddr}</span>
                 </div>
                 <div class="button-group">
-                    <button class="btn btn-company-info" onclick="location.href='${pageContext.request.contextPath}/business/businessProfilePost'">기업 정보</button>
+                    <button class="btn btn-company-info" onclick="location.href='${pageContext.request.contextPath}/business/businessProfileView?businessNo=${business.businessNo}'">기업 정보</button>
                     <button class="btn btn-messenger">메신저</button>
                 </div>
             </article>
