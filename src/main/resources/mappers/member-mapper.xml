@@ -22,7 +22,7 @@
 	
 	<!-- 로그인 -->
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD, BUSINESS_NO
+		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD, BUSINESS_NO, PERSON_NO
 		  FROM	MEMBER
 		 WHERE	USER_ID = #{userId}
 		   AND	USER_TYPE = #{userType, jdbcType=CHAR}

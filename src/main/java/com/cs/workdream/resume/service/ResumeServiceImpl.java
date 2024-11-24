@@ -1,5 +1,16 @@
 package com.cs.workdream.resume.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.UUID;
+
+import javax.annotation.PostConstruct;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -8,17 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.resume.model.dao.ResumeDao;
 import com.cs.workdream.resume.model.vo.Resume;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.Files;
-import java.util.UUID;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.annotation.PostConstruct;
 
 @Service
 public class ResumeServiceImpl implements ResumeService {
@@ -86,5 +86,10 @@ public class ResumeServiceImpl implements ResumeService {
             logger.error("이력서 저장 중 오류 발생", e);
             return false;
         }
+    }
+    
+    @Override
+    public List<Resume> getResumesByPersonNo(int personNo) {
+        return resumeDao.selectResumesByPersonNo(personNo);
     }
 }

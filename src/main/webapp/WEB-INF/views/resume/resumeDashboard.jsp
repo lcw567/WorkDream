@@ -1,20 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- 날짜 형식 지정용 태그 라이브러리 추가 -->
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>이력서 관리</title>
-<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/resumeDashboard.css">
-<script src="${pageContext.request.contextPath}/js/resumeDashboard.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이력서 관리</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/resumeDashboard.css">
+    <script src="${pageContext.request.contextPath}/js/resumeDashboard.js" defer></script>
+    <!-- CSRF 토큰 메타 태그 추가 -->
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
+
     <div class="resumedashboard-container">
-        <div class="Header">
+        <div class="header">
             <div class="resumedashboard-header">
-                <div class = "page-name">
+                <div class="page-name">
                     <h1>이력서 관리</h1>
                 </div>
                 <div class="search-bar_back">
@@ -24,59 +30,57 @@
                         이력서를 선택하고 내 커리어에 맞는 제안을 받아 보세요!
                     </div>
                     <div class="search-bar">
-                        <input type="text" placeholder="검색어를 입력하세요">
-                        <button><img src="${pageContext.request.contextPath}/img/btn_search.png" alt="검색"></button>
+                        <input type="text" placeholder="검색어를 입력하세요" name="searchKeyword" id="searchKeyword">
+                        <button type="button" onclick="searchResumes()">
+                            <img src="${pageContext.request.contextPath}/img/btn_search.png" alt="검색">
+                        </button>
                     </div>
                 </div> 
             </div>
-            <form action="${pageContext.request.contextPath}/resume/enrollresume">
+            <form action="${pageContext.request.contextPath}/resume/enrollresume" method="get">
                 <div class="button-container">
                     <button type="submit" class="toenroll_page">이력서 등록하기</button>
                 </div>
             </form>
         </div>
         <main>
-            <div class="total-count">총 3건</div>
+            <!-- 총 이력서 개수 동적 표시 -->
+            <div class="total-count">총 ${resumeList.size()}건</div>
             <div class="intro-list">
-                <div class="intro-item" data-id="intro1">
-                    <div class="intro-info">
-                        <div class="intro-name">${resume.resumeTitle}</div>
-                        <div class="intro-date">${resume.modifiedDate} 수정</div>
-                    </div>
-                    <div class="more-options">
-                        <button class="more-button" aria-label="더보기">⋮</button>
-                        <div class="dropdown-menu">
-                            <button class="edit-button">수정</button>
-                            <button class="delete-button">삭제</button>
+                <!-- 이력서 목록을 동적으로 반복 -->
+                <c:forEach var="resume" items="${resumeList}">
+                    <div class="intro-item" data-id="${resume.resumeNo}">
+                        <div class="intro-info">
+                            <div class="intro-name">${resume.resumeTitle}</div>
+                            <div class="intro-date">
+                                <c:choose>
+                                    <c:when test="${not empty resume.modifiedDate}">
+                                        <fmt:formatDate value="${resume.modifiedDate}" pattern="yyyy-MM-dd"/> 수정
+                                    </c:when>
+                                    <c:otherwise>
+                                        <fmt:formatDate value="${resume.createDate}" pattern="yyyy-MM-dd"/> 등록
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </div>
+                        <div class="more-options">
+                            <button class="more-button" aria-label="더보기">⋮</button>
+                            <div class="dropdown-menu">
+                                <!-- 수정 폼 -->
+                                <form action="${pageContext.request.contextPath}/resume/editResume" method="get">
+                                    <input type="hidden" name="id" value="${resume.resumeNo}">
+                                    <button type="submit" class="edit-button">수정</button>
+                                </form>                                             
+                                <!-- 삭제 폼 -->
+                                <form action="${pageContext.request.contextPath}/resume/deleteResume" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                                    <input type="hidden" name="id" value="${resume.resumeNo}">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> <!-- CSRF 토큰 추가 -->
+                                    <button type="submit" class="delete-button">삭제</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="intro-item" data-id="intro2">
-                    <div class="intro-info">
-                        <div class="intro-name">작성한 이력서 이름 2</div>
-                        <div class="intro-date">2024.10.22 14:38:11 수정</div>
-                    </div>
-                    <div class="more-options">
-                        <button class="more-button" aria-label="더보기">⋮</button>
-                        <div class="dropdown-menu">
-                            <button class="edit-button">수정</button>
-                            <button class="delete-button">삭제</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="intro-item" data-id="intro3">
-                    <div class="intro-info">
-                        <div class="intro-name">작성한 이력서 이름 3</div>
-                        <div class="intro-date">2024.10.22 14:38:11 수정</div>
-                    </div>
-                    <div class="more-options">
-                        <button class="more-button" aria-label="더보기">⋮</button>
-                        <div class="dropdown-menu">
-                            <button class="edit-button">수정</button>
-                            <button class="delete-button">삭제</button>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </main>
         <div class="notice-container">
@@ -90,8 +94,8 @@
                 </ul>
             </div>
         </div>
-        </div>
     </div>
+
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

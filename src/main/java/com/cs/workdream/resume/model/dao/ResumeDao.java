@@ -1,5 +1,7 @@
 package com.cs.workdream.resume.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,9 @@ public class ResumeDao {
         return result > 0;
     }
 
-    // 기타 정보 삽입 메서드 (필요 시 추가)
-    // 예: 기본 정보, 학력, 경력 등
+    public List<Resume> selectResumesByPersonNo(int personNo) {
+        List<Resume> result = sqlSession.selectList("ResumeMapper.selectResumesByPersonNo", personNo);
+        
+        return result;
+    }
 }
