@@ -28,7 +28,6 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
 
         // 기존 복리후생 및 근무 환경 이미지 삭제
         businessProfileDao.deleteBusinessBenefits(businessNo);
-        businessProfileDao.deleteWorkEnvironmentImages(businessNo);
 
         // BUSINESS_BENEFIT 테이블에 등록
         List<BusinessBenefit> benefits = business.getBenefits();

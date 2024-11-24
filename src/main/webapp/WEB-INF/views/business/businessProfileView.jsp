@@ -43,7 +43,7 @@
                     </div>
                     <div class="basic-info-item">
                         <span class="label">기업 한줄 소개:</span>
-                        <span class="value">${business.introduction}</span>
+                        <span class="value">${business.shortIntroduction}</span>
                     </div>
                     <div class="basic-info-item">
                         <span class="label">기업 홈페이지:</span>
