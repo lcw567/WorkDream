@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cs.workdream.resume.model.dao.ResumeDao;
 import com.cs.workdream.resume.model.vo.Resume;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;

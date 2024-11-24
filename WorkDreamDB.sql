@@ -418,14 +418,20 @@ CREATE TABLE RESUME(
     ACADEMIC_NAME_MI VARCHAR2(30) NULL,
     ACADEMIC_NAME_HI VARCHAR2(30) NULL,
     ACADEMIC_NAME VARCHAR2(30) NULL,                         -- 학력 이름 (academicName)
-    MAJOR VARCHAR2(100) NOT NULL,                                 -- 전공 (majorName)
+    MAJOR VARCHAR2(100) NULL,                                 -- 전공 (majorName)
     DEGREE VARCHAR2(10),                                          -- 학위 (degree)
     STATUS VARCHAR2(20) NULL,
     STATUS_EL VARCHAR2(20) NULL,
     STATUS_MI VARCHAR2(20) NULL,
     STATUS_HI VARCHAR2(20) NULL,                                 -- 상태 (graduationStatus)
-    ENTER_DATE DATE,                                              -- 입학 날짜 (enterDate)
-    GRADUATION_DATE DATE,                                         -- 졸업 날짜 (graduationDate)
+    ENTER_DATE_EL DATE,                                              -- 입학 날짜 (enterDate)
+    GRADUATION_DATE_EL DATE,
+    ENTER_DATE_MI DATE,                                              -- 입학 날짜 (enterDate)
+    GRADUATION_DATE_MI DATE,
+    ENTER_DATE_HI DATE,                                              -- 입학 날짜 (enterDate)
+    GRADUATION_DATE_HI DATE,
+    ENTER_DATE_COL DATE,                                              -- 입학 날짜 (enterDate)
+    GRADUATION_DATE_COL DATE,                                         -- 졸업 날짜 (graduationDate)
     LOCATION_EL VARCHAR2(10) NULL, 
     LOCATION_MI VARCHAR2(10) NULL, 
     LOCATION_HI VARCHAR2(10) NULL, 
@@ -443,7 +449,7 @@ CREATE TABLE RESUME(
     NAME VARCHAR2(30),                                            -- 이름 (name)
     ISSUED_BY VARCHAR2(30),                                       -- 발행 기관 (issuingAgency)
     PROFICIENCY_LEVEL VARCHAR2(30),                               -- 숙련도 수준 (proficiencyLevel)
-    KIND_OF_LANGUAGE VARCHAR2(10) NOT NULL,                       -- 언어 종류 (languageType)
+    KIND_OF_LANGUAGE VARCHAR2(10) NULL,                       -- 언어 종류 (languageType)
     PASSING_CATEGORY VARCHAR2(30),                                -- 합격 카테고리 (passStatus)
     AWARD_NAME VARCHAR2(50),                                      -- 수상 이름 (awardName)
     ORGANIZER VARCHAR2(50),                                       -- 주최 기관 (organizer)

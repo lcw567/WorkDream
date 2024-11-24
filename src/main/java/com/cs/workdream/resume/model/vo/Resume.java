@@ -1,12 +1,6 @@
 package com.cs.workdream.resume.model.vo;
 
-
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
+import java.sql.Date;
 import lombok.Data;
 
 @Data
@@ -15,42 +9,48 @@ public class Resume {
     private Integer resumeNo;
     private int personNo;
     private String resumeTitle;
-    private LocalDate createDate;
-    private LocalDate modifiedDate;
+    private Date createDate;
+    private Date modifiedDate;
     private Character deleted;
 
     // 기본 정보
     private String userName;
     private String userGender;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate userBirth;
+    private Date userBirth;
     private String userEmail;
     private String userPhone;
     private String userAddress;
     private String userRoadAddress;
     private String userDetailAddress;
-    private String userPic; // 파일명 저장
+    private String userPic;
 
     // 최종 학력
     private String educationLevel;
     private String academicName_el;
     private String academicName_mi;
     private String academicName_hi;
-    private String academicName;
-    private String majorName;
-    private String degree;
+    private String academicName_col;
+    private String majorName_col;
+    private String degree_col;
     private String graduationStatus_el;
     private String graduationStatus_mi;
     private String graduationStatus_hi;
-    private String graduationStatus;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private YearMonth enterDate;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private YearMonth graduationDate;
+    private String graduationStatus_col;
+
+    private Date enterDate_el;
+    private Date graduationDate_el;
+    private Date enterDate_mi;
+    private Date graduationDate_mi;
+    private Date enterDate_hi;
+    private Date graduationDate_hi;
+    private Date enterDate_col;
+    private Date graduationDate_col;
+
     private String location_el;
     private String location_mi;
     private String location_hi;
-    private String location;
+    private String location_col;
+
     private Character examPassed_el;
     private Character examPassed_mi;
     private Character examPassed_hi;
@@ -59,10 +59,8 @@ public class Resume {
     private String companyTitle;
     private String work;
     private String department;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private YearMonth startDateWork;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private YearMonth endDateWork;
+    private Date startDateWork;
+    private Date endDateWork;
     private String careerStatus;
     private String jobContent;
     private String position;
@@ -73,10 +71,8 @@ public class Resume {
     // 경험/활동/교육
     private String activityType;
     private String organizationName;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private YearMonth startDateAct;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private YearMonth endDateAct;
+    private Date startDateAct;
+    private Date endDateAct;
     private String description;
 
     // 자격/어학/수상
@@ -88,20 +84,16 @@ public class Resume {
     private String passStatus;
     private String awardName;
     private String organizer;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private LocalDate awardDate;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private YearMonth issueDate;
+    private Date awardDate;
+    private Date issueDate;
 
     // 취업우대사항
     private String veteranReason;
     private String serviceStatus;
     private String unfinishedReason;
     private String exemptionReason;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private YearMonth enlistmentDate;
-    @DateTimeFormat(pattern = "yyyy-MM")
-    private YearMonth dischargeDate;
+    private Date enlistmentDate;
+    private Date dischargeDate;
     private String militaryBranch;
     private String rank;
     private String dischargeReason;
