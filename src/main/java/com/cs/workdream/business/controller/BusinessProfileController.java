@@ -116,9 +116,17 @@ public class BusinessProfileController {
                         image.setImageUrl(imageUrl);
                         image.setTitle(title);
                         imageList.add(image);
+                    } else {
+                        // 파일이 비어있을 경우 기존 이미지 유지
+                        if (existingBusiness.getWorkEnvironmentImages() != null && existingBusiness.getWorkEnvironmentImages().size() > i) {
+                            imageList.add(existingBusiness.getWorkEnvironmentImages().get(i));
+                        }
                     }
                 }
                 business.setWorkEnvironmentImages(imageList);
+            } else {
+                // 새로운 이미지가 없을 경우 기존 이미지 유지
+                business.setWorkEnvironmentImages(existingBusiness.getWorkEnvironmentImages());
             }
 
             // 복리후생 처리
