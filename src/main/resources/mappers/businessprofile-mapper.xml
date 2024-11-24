@@ -88,7 +88,13 @@
 
     <!-- 비즈니스 번호로 근무 환경 이미지 목록 조회 -->
     <select id="selectWorkEnvironmentImagesByBusinessNo" parameterType="int" resultType="com.cs.workdream.business.model.vo.WorkEnvironmentImage">
-        SELECT * FROM WORK_ENVIRONMENT_IMAGE WHERE BUSINESS_NO = #{businessNo}
-    </select>
+	    SELECT
+	        WORK_ENVIRONMENT_IMAGE_NO AS workEnvironmentImageNo,
+	        BUSINESS_NO AS businessNo,
+	        IMAGE_URL AS imageUrl,
+	        TITLE AS title
+	    FROM WORK_ENVIRONMENT_IMAGE
+	    WHERE BUSINESS_NO = #{businessNo}
+	</select>
 
 </mapper>

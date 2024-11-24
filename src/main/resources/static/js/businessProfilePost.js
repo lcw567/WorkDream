@@ -84,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    
+    
 
     // 등록 버튼 클릭 핸들러
     const registerButton = document.querySelector('.register-btn');
