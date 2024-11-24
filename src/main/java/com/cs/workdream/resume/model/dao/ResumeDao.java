@@ -21,7 +21,7 @@ public class ResumeDao {
 
     // 이력서 기본 정보 삽입
     public boolean insertResume(Resume resume) {
-        int result = sqlSession.insert("ResumeMapper.insertResume", resume);
+        int result = sqlSession.insert(NAMESPACE + ".insertResume", resume);
         return result > 0;
     }
 
