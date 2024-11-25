@@ -82,7 +82,7 @@
                 <p id="company-introduction-view" class="limited-text">
                     ${business.introduction}
                 </p>
-                <button class="btn toggle-btn" data-target="company-introduction-view">전체보기</button>
+                <button class="btn toggle-btn" data-target="company-introduction-view" aria-expanded="false">전체보기</button>
             </div>
 
             <!-- 기업비전 -->
@@ -91,7 +91,7 @@
                 <p id="company-vision-view" class="limited-text">
                     ${business.vision}
                 </p>
-                <button class="btn toggle-btn" data-target="company-vision-view">전체보기</button>
+                <button class="btn toggle-btn" data-target="company-vision-view" aria-expanded="false">전체보기</button>
             </div>
 
             <!-- 복리후생 -->
@@ -102,29 +102,28 @@
                         <li>${benefit.benefit}</li>
                     </c:forEach>
                 </ul>
-                <button class="btn toggle-btn" data-target="benefits-list-view">전체보기</button>
+                <button class="btn toggle-btn" data-target="benefits-list-view" aria-expanded="false">전체보기</button>
             </div>
 
             <!-- 사내 근무 환경 이미지 갤러리 -->
-			<div class="profile-work-environment border-box">
-			    <h3>사내 근무 환경</h3>
-			    <div class="gallery-container">
-			        <button class="nav-btn left-btn" aria-label="왼쪽으로 스크롤">&#9664;</button>
-			        <div id="work-environment-gallery" class="image-gallery">
-			            <c:forEach var="image" items="${business.workEnvironmentImages}">
-						    <div class="gallery-item">
-						  	    <img src="${pageContext.request.contextPath}${image.imageUrl}" alt="${image.title}">
-						        <p>${image.title}</p>
-						    </div>
-						</c:forEach>
-						
-			        </div>
-			        <button class="nav-btn right-btn" aria-label="오른쪽으로 스크롤">&#9654;</button>
-			    </div>
-			</div>
+            <div class="profile-work-environment border-box">
+                <h3>사내 근무 환경</h3>
+                <div class="gallery-container">
+                    <button class="nav-btn left-btn" aria-label="왼쪽으로 스크롤">&#9664;</button>
+                    <div id="work-environment-gallery" class="image-gallery">
+                        <c:forEach var="image" items="${business.workEnvironmentImages}">
+                            <div class="gallery-item">
+                                <img src="${pageContext.request.contextPath}${image.imageUrl}" alt="${image.title}">
+                                <p>${image.title}</p>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    <button class="nav-btn right-btn" aria-label="오른쪽으로 스크롤">&#9654;</button>
+                </div>
+            </div>
 
         </div>
     </main>
 </body>
 <c:import url="/WEB-INF/views/common/footer.jsp" />
-</html>  
+</html>
