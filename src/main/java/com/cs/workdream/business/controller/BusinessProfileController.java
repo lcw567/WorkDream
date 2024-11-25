@@ -71,8 +71,14 @@ public class BusinessProfileController {
     public ResponseEntity<String> registerBusinessProfile(
             @ModelAttribute Business business,
             @RequestParam(value = "companyLogo", required = false) MultipartFile companyLogo,
+<<<<<<< HEAD
+            @RequestParam(value = "workEnvironmentFiles", required = false) List<MultipartFile> workEnvironmentFiles, // 기존 이미지 업데이트 파일
+            @RequestParam(value = "newWorkEnvironmentFiles", required = false) List<MultipartFile> newWorkEnvironmentFiles, // 새로운 이미지 추가 파일
+=======
             @RequestParam(value = "workEnvironmentFiles", required = false) List<MultipartFile> workEnvironmentFiles, // 이름 변경
+>>>>>>> a16c46b58c1d529b32764ba77cca33c34a52aa44
             @RequestParam(value = "workEnvImageTitles", required = false) String workEnvImageTitlesJson,
+            @RequestParam(value = "existingImageIds", required = false) List<Integer> existingImageIds, // 기존 이미지 ID
             @RequestParam("benefits") String benefitsJson,
             HttpSession session) {
         try {
@@ -90,14 +96,6 @@ public class BusinessProfileController {
                 return new ResponseEntity<>("기업 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
             }
 
-            // 디버깅용 로그 추가
-            System.out.println("Received Business Object: " + business);
-            if (companyLogo != null) {
-                System.out.println("companyLogo: " + companyLogo.getOriginalFilename() + ", size: " + companyLogo.getSize());
-            } else {
-                System.out.println("companyLogo is null");
-            }
-
             // 회사 로고 업로드 처리
             if (companyLogo != null && !companyLogo.isEmpty()) {
                 String logoUrl = saveFile(companyLogo, "logos");
@@ -107,6 +105,8 @@ public class BusinessProfileController {
                 business.setLogo(existingBusiness.getLogo());
             }
 
+<<<<<<< HEAD
+=======
             // 근무 환경 이미지 업로드 처리
             List<WorkEnvironmentImage> imageList = new ArrayList<>();
             if (workEnvironmentFiles != null && !workEnvironmentFiles.isEmpty()) { // 이름 변경
@@ -128,6 +128,7 @@ public class BusinessProfileController {
                 business.setWorkEnvironmentImages(imageList);
             }
 
+>>>>>>> a16c46b58c1d529b32764ba77cca33c34a52aa44
             // 복리후생 처리
             List<String> benefits = parseJsonArray(benefitsJson);
             List<BusinessBenefit> benefitList = new ArrayList<>();
@@ -139,10 +140,10 @@ public class BusinessProfileController {
             business.setBenefits(benefitList);
 
             // 비즈니스 프로필 등록 (업데이트)
-            int businessNo = businessProfileService.registerBusinessProfile(business);
+            businessProfileService.registerBusinessProfile(business, workEnvironmentFiles, newWorkEnvironmentFiles, existingImageIds, workEnvImageTitlesJson);
 
             // 리다이렉트 URL 생성
-            String redirectUrl = servletContext.getContextPath() + "/business/businessProfileView?businessNo=" + businessNo;
+            String redirectUrl = servletContext.getContextPath() + "/business/businessProfileView?businessNo=" + business.getBusinessNo();
             return new ResponseEntity<>(redirectUrl, HttpStatus.OK);
 
         } catch (Exception e) {
