@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.business.model.vo.Business;
@@ -41,6 +40,7 @@ public class BusinessProfileController {
     @Autowired
     private ServletContext servletContext;
 
+    // 'workEnvironmentImages' 필드를 데이터 바인딩에서 제외
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setDisallowedFields("benefits", "workEnvironmentImages");
@@ -71,7 +71,7 @@ public class BusinessProfileController {
     public ResponseEntity<String> registerBusinessProfile(
             @ModelAttribute Business business,
             @RequestParam(value = "companyLogo", required = false) MultipartFile companyLogo,
-            @RequestParam(value = "workEnvironmentImages", required = false) List<MultipartFile> workEnvironmentImages,
+            @RequestParam(value = "workEnvironmentFiles", required = false) List<MultipartFile> workEnvironmentFiles, // 이름 변경
             @RequestParam(value = "workEnvImageTitles", required = false) String workEnvImageTitlesJson,
             @RequestParam("benefits") String benefitsJson,
             HttpSession session) {
@@ -109,10 +109,10 @@ public class BusinessProfileController {
 
             // 근무 환경 이미지 업로드 처리
             List<WorkEnvironmentImage> imageList = new ArrayList<>();
-            if (workEnvironmentImages != null && !workEnvironmentImages.isEmpty()) {
+            if (workEnvironmentFiles != null && !workEnvironmentFiles.isEmpty()) { // 이름 변경
                 List<String> workEnvImageTitles = parseJsonArray(workEnvImageTitlesJson);
-                for (int i = 0; i < workEnvironmentImages.size(); i++) {
-                    MultipartFile file = workEnvironmentImages.get(i);
+                for (int i = 0; i < workEnvironmentFiles.size(); i++) {
+                    MultipartFile file = workEnvironmentFiles.get(i); // 이름 변경
                     String title = "";
                     if (i < workEnvImageTitles.size()) {
                         title = workEnvImageTitles.get(i);
@@ -192,8 +192,6 @@ public class BusinessProfileController {
         // 반환되는 URL 설정
         return "/resources/uploads/" + folderName + "/" + fileName;
     }
-
-
 
     private List<String> parseJsonArray(String jsonArrayStr) {
         try {
