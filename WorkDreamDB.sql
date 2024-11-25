@@ -437,7 +437,7 @@ CREATE TABLE RESUME(
     USER_ROAD_ADDRESS VARCHAR2(255),                             -- 도로명 주소
     USER_DETAIL_ADDRESS VARCHAR2(255),                           -- 상세 주소
     USER_PIC VARCHAR2(500),                                      -- 사용자 사진
-    EDUCATION_LEVEL VARCHAR2(10) NOT NULL,                       -- 학력 수준 (educationLevel)
+    EDUCATION_LEVEL VARCHAR2(10) NULL,                       -- 학력 수준 (educationLevel)
     ACADEMIC_NAME_EL VARCHAR2(30) NULL,
     ACADEMIC_NAME_MI VARCHAR2(30) NULL,
     ACADEMIC_NAME_HI VARCHAR2(30) NULL,
@@ -480,7 +480,7 @@ CREATE TABLE RESUME(
     AWARD_DATE DATE,                                              -- 수상 날짜 (awardDate)
     ISSUE_DATE DATE,                                              -- 발급 날짜 (issueDate)
     VETERAN_REASON VARCHAR2(100),                                 -- 보훈 사유 (veteranReason)
-    SERVICE_STATE VARCHAR2(20) NOT NULL,                          -- 병역 상태 (serviceStatus)
+    SERVICE_STATE VARCHAR2(20) NULL,                          -- 병역 상태 (serviceStatus)
     UNFULFILLED_REASON VARCHAR2(50),                              -- 미필 사유 (unfinishedReason)
     EXEMPTED_REASON VARCHAR2(50),                                 -- 면제 사유 (exemptionReason)
     ENLISTMENT_DATE DATE,                                         -- 입대일 (enlistmentDate)
@@ -488,14 +488,14 @@ CREATE TABLE RESUME(
     MILITARY_SELECTION VARCHAR2(10),                              -- 군별 선택 (militaryBranch)
     CLASS_SELECTION VARCHAR2(10),                                 -- 계급 선택 (rank)
     DISCHARGE_REASON VARCHAR2(50),                                -- 전역 사유 (dischargeReason)
-    WORK VARCHAR2(20) NOT NULL,                                   -- 직무 (work)
-    DEPARTMENT VARCHAR2(20) NOT NULL,                            -- 부서 (department)
-    COMPANY_TITLE VARCHAR2(50) NOT NULL,                          -- 회사명 (companyTitle)
-    START_DATE_WORK DATE NOT NULL,                                -- 업무 시작 날짜 (startDateWork)
+    WORK VARCHAR2(20) NULL,                                   -- 직무 (work)
+    DEPARTMENT VARCHAR2(20) NULL,                            -- 부서 (department)
+    COMPANY_TITLE VARCHAR2(50) NULL,                          -- 회사명 (companyTitle)
+    START_DATE_WORK DATE NULL,                                -- 업무 시작 날짜 (startDateWork)
     END_DATE_WORK DATE,                                           -- 업무 종료 날짜 (endDateWork)
     STATUS_WORK CHAR(1) NOT NULL CHECK (STATUS_WORK IN ('Y', 'N', 'P')), -- 업무 상태 (careerStatus)
-    JOB_CONTENT VARCHAR2(100) NOT NULL,                           -- 업무 내용 (jobContent)
-    POSITION VARCHAR2(20) NOT NULL                                 -- 직급/직책 (position)
+    JOB_CONTENT VARCHAR2(100) NULL,                           -- 업무 내용 (jobContent)
+    POSITION VARCHAR2(20) NULL                                 -- 직급/직책 (position)
 );
 
 /* SELF_INTRODUCTION 테이블 생성 */

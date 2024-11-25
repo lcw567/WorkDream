@@ -62,40 +62,75 @@ document.addEventListener("DOMContentLoaded", function() {
     // 학력 선택 시 displayEducationFields 함수 호출
     document.getElementById('selectedu').addEventListener('change', displayEducationFields);
 
-    // 스킬 추가 버튼
-    document.querySelector('#sk_title1 button').addEventListener('click', function() {
-        const input = document.querySelector('.skill_title input');
-        const skillValue = input.value.trim();
+   // 스킬 배열을 선언
+let skills = [];
 
-        if (skillValue) {
-            // "나의 스킬" 문구와 영역을 보이게 설정
-            document.getElementById('sk_title2').style.display = 'block';
+document.querySelector('#sk_title1 button').addEventListener('click', function() {
+    const input = document.querySelector('.skill_title input');
+    const skillValue = input.value.trim();
 
-            // 스킬 요소 생성
-            const newSkill = document.createElement('div');
-            newSkill.className = 'myskill1';
-            newSkill.innerHTML = `#${skillValue} <span class="delete-icon">❌</span>`;
+    if (skillValue) {
+        // "나의 스킬" 문구와 영역을 보이게 설정
+        document.getElementById('sk_title2').style.display = 'block';
 
-            // 삭제 기능 추가
-            newSkill.querySelector('.delete-icon').addEventListener('click', function() {
-                newSkill.remove();
-                // 스킬이 모두 삭제되면 "나의 스킬" 문구와 높이를 초기화
-                if (!document.querySelector('#MYsk .myskill1')) {
-                    document.querySelector('.skill').style.height = '175px';
-                    document.getElementById('sk_title2').style.display = 'none'; // "나의 스킬" 숨김
-                }
-            });
+        // 스킬 요소 생성
+        const newSkill = document.createElement('div');
+        newSkill.className = 'myskill1';
+        newSkill.innerHTML = `#${skillValue} <span class="delete-icon">❌</span>`;
 
-            // 나의 스킬 영역에 추가
-            document.querySelector('#MYsk').appendChild(newSkill);
+        // 삭제 기능 추가
+        newSkill.querySelector('.delete-icon').addEventListener('click', function() {
+            // 스킬 삭제 시 배열에서도 제거
+            skills = skills.filter(skill => skill !== skillValue);
+            newSkill.remove();
 
-            // 높이를 230px로 변경
-            document.querySelector('.skill').style.height = '230px';
+            // 스킬이 모두 삭제되면 "나의 스킬" 문구와 높이를 초기화
+            if (!document.querySelector('#MYsk .myskill1')) {
+                document.querySelector('.skill').style.height = '175px';
+                document.getElementById('sk_title2').style.display = 'none'; // "나의 스킬" 숨김
+            }
+        });
 
-            // 입력창 초기화
-            input.value = '';
+        // 나의 스킬 영역에 추가
+        document.querySelector('#MYsk').appendChild(newSkill);
+
+        // 높이를 230px로 변경
+        document.querySelector('.skill').style.height = '230px';
+
+        // 입력창 초기화
+        input.value = '';
+
+        // 스킬을 배열에 저장
+        skills.push(skillValue);
+    }
+});
+
+// 폼 제출 시 모든 스킬을 하나의 문자열로 합쳐서 hidden input에 저장
+document.querySelector('form').addEventListener('submit', function(event) {
+    // 스킬 배열을 쉼표로 구분된 문자열로 합침
+    const skillNameInput = document.querySelector('input[name="skillName"]');
+    skillNameInput.value = skills.join(', ');
+
+    // AJAX 요청으로 서버에 스킬 저장하기
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `${contextPath}/resume/addSkill`, true);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log('Skills added successfully');
+        } else if (xhr.readyState === 4) {
+            console.error('Failed to add skills');
         }
-    });
+    };
+
+    // 서버에 보낼 데이터 생성
+    const skillData = {
+        skillName: skills.join(', ')
+    };
+    // JSON 형식으로 데이터 전송
+    xhr.send(JSON.stringify(skillData));
+});
+
 
     document.addEventListener("DOMContentLoaded", function () {
         // 학력 필드 표시 및 비활성화
@@ -310,174 +345,183 @@ categorySelect.addEventListener("change", function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-// 자격증/면허증 추가하기 버튼에 대한 이벤트 리스너
-document.querySelector('.addQualificationButton').addEventListener('click', function(event) {
-    event.preventDefault();
+    // 자격증/면허증 추가하기 버튼에 대한 이벤트 리스너
+    document.querySelector('.addQualificationButton').addEventListener('click', function(event) {
+        event.preventDefault();
 
-    const certificateTitle = document.querySelector('input[name="qualificationName"]').value.trim();
-    const institutionTitle = document.querySelector('input[name="issuingAgency"]').value.trim();
-    const passStatusSelect = document.querySelector('select[name="passStatus"]');
-    const passStatus = passStatusSelect.options[passStatusSelect.selectedIndex].textContent;
-    const passDate = document.querySelector('input[name="issueDate"]').value;
+        const certificateFields = document.getElementById('certificateFields');
+        const certificateTitle = certificateFields.querySelector('input[name="qualificationName"]').value.trim();
+        const institutionTitle = certificateFields.querySelector('input[name="issuingAgency"]').value.trim();
+        const passStatusSelect = certificateFields.querySelector('select[name="passStatus"]');
+        const passStatus = passStatusSelect.options[passStatusSelect.selectedIndex].textContent;
+        const passDate = document.getElementById('certificateDate').querySelector('input[name="issueDate"]').value;
 
-    // 빈 입력 방지
-    if (!certificateTitle || !institutionTitle || !passStatusSelect.value || !passDate) {
-        alert("모든 필드를 입력해주세요.");
-        return;
-    }
+        // 빈 입력 방지
+        if (!certificateTitle || !institutionTitle || !passStatusSelect.value || !passDate) {
+            alert("모든 필드를 입력해주세요.");
+            return;
+        }
 
-    const listItem = document.createElement('div');
-    listItem.className = 'list-item';
+        // 리스트 아이템 생성
+        const listItem = document.createElement('div');
+        listItem.className = 'list-item';
 
-    const itemContent = document.createElement('div');
-    itemContent.className = 'item-content';
+        const itemContent = document.createElement('div');
+        itemContent.className = 'item-content';
 
-    const titleDiv = document.createElement('div');
-    titleDiv.innerHTML = `<strong>${certificateTitle}</strong> (${passStatus}) | ${passDate.replace(/-/g, ".")}`;
+        const titleDiv = document.createElement('div');
+        titleDiv.innerHTML = `<strong>${certificateTitle}</strong> (${passStatus}) | ${passDate.replace(/-/g, ".")}`;
 
-    const institutionDiv = document.createElement('div');
-    institutionDiv.className = 'institution';
-    institutionDiv.textContent = institutionTitle;
+        const institutionDiv = document.createElement('div');
+        institutionDiv.className = 'institution';
+        institutionDiv.textContent = institutionTitle;
 
-    itemContent.appendChild(titleDiv);
-    itemContent.appendChild(institutionDiv);
+        itemContent.appendChild(titleDiv);
+        itemContent.appendChild(institutionDiv);
 
-    const actionsDiv = document.createElement('div');
-    actionsDiv.className = 'actions';
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'actions';
 
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'delete';
-    deleteButton.title = '삭제';
-    deleteButton.textContent = '✖️';
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete';
+        deleteButton.title = '삭제';
+        deleteButton.textContent = '✖️';
 
-    // 삭제 기능 추가
-    deleteButton.addEventListener('click', function() {
-        listItem.remove();
+        // 삭제 기능 추가
+        deleteButton.addEventListener('click', function() {
+            listItem.remove();
+        });
+
+        actionsDiv.appendChild(deleteButton);
+
+        listItem.appendChild(itemContent);
+        listItem.appendChild(actionsDiv);
+
+        // 자격증 결과 리스트에 추가
+        document.querySelector('.result-list-certificate').appendChild(listItem);
+
+        // 입력 필드 초기화
+        certificateFields.querySelector('input[name="qualificationName"]').value = '';
+        certificateFields.querySelector('input[name="issuingAgency"]').value = '';
+        passStatusSelect.value = '';
+        document.getElementById('certificateDate').querySelector('input[name="issueDate"]').value = '';
     });
 
-    actionsDiv.appendChild(deleteButton);
+    // 어학시험 추가하기 버튼에 대한 이벤트 리스너
+    document.querySelector('.addLanguageButton').addEventListener('click', function(event) {
+        event.preventDefault();
 
-    listItem.appendChild(itemContent);
-    listItem.appendChild(actionsDiv);
+        const languageFields = document.getElementById('languageFields');
+        const languageTitle = languageFields.querySelector('input[name="languageName"]').value.trim();
+        const languageLevelSelect = languageFields.querySelector('select[name="proficiencyLevel"]');
+        const languageLevel = languageLevelSelect.options[languageLevelSelect.selectedIndex].textContent;
+        const languageCategorySelect = languageFields.querySelector('select[name="languageType"]');
+        const languageCategory = languageCategorySelect.options[languageCategorySelect.selectedIndex].textContent;
+        const getDate = languageFields.querySelector('input[name="issueDate"]').value;
 
-    document.querySelector('.result-list').appendChild(listItem);
+        // 빈 입력 방지
+        if (!languageTitle || !languageLevelSelect.value || !languageCategorySelect.value || !getDate) {
+            alert("모든 필드를 정확히 입력해주세요.");
+            return;
+        }
 
-    // 입력 필드 초기화
-    document.querySelector('input[name="qualificationName"]').value = '';
-    document.querySelector('input[name="issuingAgency"]').value = '';
-    document.querySelector('select[name="passStatus"]').value = '';
-    document.querySelector('input[name="issueDate"]').value = '';
-});
+        // 리스트 아이템 생성
+        const listItem = document.createElement('div');
+        listItem.className = 'list-item';
 
-// 어학시험 추가하기 버튼에 대한 이벤트 리스너
-document.querySelector('.addLanguageButton').addEventListener('click', function(event) {
-    event.preventDefault();
+        const itemContent = document.createElement('div');
+        itemContent.className = 'item-content';
 
-    const languageTitle = document.querySelector('input[name="languageName"]').value.trim();
-    const languageLevelSelect = document.querySelector('select[name="proficiencyLevel"]');
-    const languageLevel = languageLevelSelect.options[languageLevelSelect.selectedIndex].textContent;
-    const languageCategorySelect = document.querySelector('select[name="languageType"]');
-    const languageCategory = languageCategorySelect.options[languageCategorySelect.selectedIndex].textContent;
-    const getDate = document.querySelector('input[name="issueDate"]').value;
+        const titleDiv = document.createElement('div');
+        titleDiv.innerHTML = `<strong>${languageTitle}</strong> (${languageCategory}, ${languageLevel}급) | ${getDate.replace(/-/g, ".")}`;
 
-    // 빈 입력 방지
-    if (!languageTitle || !languageLevelSelect.value || !languageCategorySelect.value || !getDate) {
-        alert("모든 필드를 입력해주세요.");
-        return;
-    }
+        itemContent.appendChild(titleDiv);
 
-    const listItem = document.createElement('div');
-    listItem.className = 'list-item';
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'actions';
 
-    const itemContent = document.createElement('div');
-    itemContent.className = 'item-content';
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete';
+        deleteButton.title = '삭제';
+        deleteButton.textContent = '✖️';
 
-    const titleDiv = document.createElement('div');
-    titleDiv.innerHTML = `<strong>${languageTitle}</strong> (${languageCategory}, ${languageLevel}급) | ${getDate.replace(/-/g, ".")}`;
+        // 삭제 기능 추가
+        deleteButton.addEventListener('click', function() {
+            listItem.remove();
+        });
 
-    itemContent.appendChild(titleDiv);
+        actionsDiv.appendChild(deleteButton);
 
-    const actionsDiv = document.createElement('div');
-    actionsDiv.className = 'actions';
+        listItem.appendChild(itemContent);
+        listItem.appendChild(actionsDiv);
 
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'delete';
-    deleteButton.title = '삭제';
-    deleteButton.textContent = '✖️';
+        // 어학시험 결과 리스트에 추가
+        document.querySelector('.result-list-language').appendChild(listItem);
 
-    // 삭제 기능 추가
-    deleteButton.addEventListener('click', function() {
-        listItem.remove();
+        // 입력 필드 초기화
+        languageFields.querySelector('input[name="languageName"]').value = '';
+        languageLevelSelect.value = '';
+        languageCategorySelect.value = '';
+        languageFields.querySelector('input[name="issueDate"]').value = '';
     });
 
-    actionsDiv.appendChild(deleteButton);
+    // 수상내역/공모전 추가하기 버튼에 대한 이벤트 리스너
+    document.querySelector('.addAwardButton').addEventListener('click', function(event) {
+        event.preventDefault();
 
-    listItem.appendChild(itemContent);
-    listItem.appendChild(actionsDiv);
+        const awardFields = document.getElementById('awardDetailsFields');
+        const contestTitle = awardFields.querySelector('input[name="awardName"]').value.trim();
+        const contestPlace = awardFields.querySelector('input[name="organizer"]').value.trim();
+        const acquireDate = awardFields.querySelector('input[name="awardDate"]').value;
 
-    document.querySelector('.result-list').appendChild(listItem);
+        // 빈 입력 방지
+        if (!contestTitle || !contestPlace || !acquireDate) {
+            alert("모든 필드를 입력해주세요.");
+            return;
+        }
 
-    // 입력 필드 초기화
-    document.querySelector('input[name="languageName"]').value = '';
-    document.querySelector('select[name="proficiencyLevel"]').value = '';
-    document.querySelector('select[name="languageType"]').value = '';
-    document.querySelector('input[name="issueDate"]').value = '';
-});
+        // 리스트 아이템 생성
+        const listItem = document.createElement('div');
+        listItem.className = 'list-item';
 
-// 수상내역/공모전 추가하기 버튼에 대한 이벤트 리스너
-document.querySelector('.addAwardButton').addEventListener('click', function(event) {
-    event.preventDefault();
+        const itemContent = document.createElement('div');
+        itemContent.className = 'item-content';
 
-    const contestTitle = document.querySelector('input[name="awardName"]').value.trim();
-    const contestPlace = document.querySelector('input[name="organizer"]').value.trim();
-    const acquireDate = document.querySelector('input[name="awardDate"]').value;
+        const titleDiv = document.createElement('div');
+        titleDiv.innerHTML = `<strong>${contestTitle}</strong> | ${acquireDate.replace(/-/g, ".")}`;
 
-    // 빈 입력 방지
-    if (!contestTitle || !contestPlace || !acquireDate) {
-        alert("모든 필드를 입력해주세요.");
-        return;
-    }
+        const placeDiv = document.createElement('div');
+        placeDiv.className = 'institution';
+        placeDiv.textContent = contestPlace;
 
-    const listItem = document.createElement('div');
-    listItem.className = 'list-item';
+        itemContent.appendChild(titleDiv);
+        itemContent.appendChild(placeDiv);
 
-    const itemContent = document.createElement('div');
-    itemContent.className = 'item-content';
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'actions';
 
-    const titleDiv = document.createElement('div');
-    titleDiv.innerHTML = `<strong>${contestTitle}</strong> | ${acquireDate.replace(/-/g, ".")}`;
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete';
+        deleteButton.title = '삭제';
+        deleteButton.textContent = '✖️';
 
-    const placeDiv = document.createElement('div');
-    placeDiv.className = 'institution';
-    placeDiv.textContent = contestPlace;
+        // 삭제 기능 추가
+        deleteButton.addEventListener('click', function() {
+            listItem.remove();
+        });
 
-    itemContent.appendChild(titleDiv);
-    itemContent.appendChild(placeDiv);
+        actionsDiv.appendChild(deleteButton);
 
-    const actionsDiv = document.createElement('div');
-    actionsDiv.className = 'actions';
+        listItem.appendChild(itemContent);
+        listItem.appendChild(actionsDiv);
 
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'delete';
-    deleteButton.title = '삭제';
-    deleteButton.textContent = '✖️';
+        // 수상내역 결과 리스트에 추가
+        document.querySelector('.result-list-awards').appendChild(listItem);
 
-    // 삭제 기능 추가
-    deleteButton.addEventListener('click', function() {
-        listItem.remove();
+        // 입력 필드 초기화
+        awardFields.querySelector('input[name="awardName"]').value = '';
+        awardFields.querySelector('input[name="organizer"]').value = '';
+        awardFields.querySelector('input[name="awardDate"]').value = '';
     });
-
-    actionsDiv.appendChild(deleteButton);
-
-    listItem.appendChild(itemContent);
-    listItem.appendChild(actionsDiv);
-
-    document.querySelector('.result-list').appendChild(listItem);
-
-    // 입력 필드 초기화
-    document.querySelector('input[name="awardName"]').value = '';
-    document.querySelector('input[name="organizer"]').value = '';
-    document.querySelector('input[name="awardDate"]').value = '';
-});
 });
 

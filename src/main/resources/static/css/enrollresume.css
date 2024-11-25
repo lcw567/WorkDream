@@ -1346,6 +1346,7 @@ input:focus{
     justify-content: space-between;
     align-items: center;
     padding: 15px;
+    margin-top: 60px;
     border-bottom: 1px solid #ddd;
     width: 100%;
     border: 1px solid #ccc;

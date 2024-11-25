@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- 날짜 형식 지정용 태그 라이브러리 추가 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +82,7 @@
                             </fieldset>
                         </div>
                         <div id="basic5">
-                            <img src="${resume.userPic != null ? resume.userPic : pageContext.request.contextPath + '/img/file.png'}" class="profile_img" alt="프로필 이미지">
+                            <img src="${resume.userPic != null ? resume.userPic : pageContext.request.contextPath}/img/file.png" class="profile_img" alt="프로필 이미지">
                             <input type="file" class="profile_upload" accept="image/*" name="userPicFile">
                         </div>
                     </div>
@@ -186,7 +187,7 @@
                                 <div class="exam">
                                     <label>고입 검정고시(중졸)</label>
                                     <label for="high_exam">
-                                        <input type="checkbox" id="high_exam" name="examPassed_mi" value="Y" <c:if test="${resume.examPassed_mi == 'Y'}">checked</c:if>/>
+                                        <input type="checkbox" id="high_exam" name="examPassed_mi" value="Y" <c:if test="${resume.examPassed_mi eq 'Y'}">checked</c:if>/>
                                         <span></span>&nbsp;
                                     </label>
                                 </div>
@@ -427,9 +428,20 @@
                     <legend class="skill_name">스킬</legend>
                     <div id="sk_title1">
                         <fieldset class="skill_title">
-                            <input type="text" name="skillName" value="${resume.skillName}">
+                            <input type="text" name="skillName" placeholder="툴/직무역량/소프트스킬을 입력해주세요.">
                         </fieldset>
+                        <button type="button" class="addSkillButton">추가하기</button>
                     </div>
+                    <div id="sk_title2" style="display: ${empty resume.skillName ? 'none' : 'block'}; height: ${empty resume.skillName ? '175px' : '225px'};">
+                        <div id="MYsk">
+                            <h1>나의 스킬</h1>
+                            <div id="skillList">
+                                <c:forEach var="skill" items="${fn:split(resume.skillName, ',')}">
+                                    <div class="myskill1">#${skill} <span class="delete-icon" onclick="removeSkill(this)">❌</span></div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>                    
                 </fieldset>
             </div>
 

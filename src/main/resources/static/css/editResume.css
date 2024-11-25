@@ -349,6 +349,16 @@ input:focus{
     margin-right: 7px;
 }
 
+.graduation_date, .enter_date{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 300px;
+    margin-right: 7px;
+}
+
 .exam{
     display: flex;
     align-items: center;
