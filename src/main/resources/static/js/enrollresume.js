@@ -304,7 +304,7 @@ categorySelect.addEventListener("change", function () {
     // 선택된 카테고리의 섹션 보이기
     const selectedFields = categoryFields[this.value];
     if (selectedFields) {
-        selectedFields.forEach(field => field.style.display = "flex"); // Flexbox로 표시
+        selectedFields.forEach(field => field.style.display = ""); // Flexbox로 표시
     }
 });
 

@@ -262,7 +262,7 @@
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location_hi" class="select_lo" >
-                                        <option value=""></option>
+                                        <option value="">지역선택</option>
                                         <option value="seoul">서울</option>
                                         <option value="busan">부산</option>
                                         <option value="daegu">대구</option>
