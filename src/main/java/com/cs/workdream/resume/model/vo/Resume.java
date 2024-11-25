@@ -51,9 +51,9 @@ public class Resume {
     private String location_hi;
     private String location_col;
 
-    private Character examPassed_el;
-    private Character examPassed_mi;
-    private Character examPassed_hi;
+    private String examPassed_el;
+    private String examPassed_mi;
+    private String examPassed_hi;
 
     // 경력
     private String companyTitle;
