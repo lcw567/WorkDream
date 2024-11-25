@@ -178,3 +178,33 @@ document.querySelectorAll('label.unstyled-label').forEach((label) => {
     label.style.setProperty('--pseudo-before', 'none'); // --pseudo-before를 설정
     label.classList.add('unstyled-label'); // 필요한 경우 클래스 추가
 });
+
+document.getElementById('Confirm').addEventListener('click', () => {
+    // 데이터를 수집
+    const jobData = {
+        rank: document.getElementById('Rank')?.value || '',
+        position: document.getElementById('Position')?.value || '',
+        employmentType: document.querySelector('input[name="Employment_Type"]:checked')?.value || '정규직',
+        careerType: document.querySelector('input[name="Career_Type"]:checked')?.value || '신입',
+        careerMin: document.querySelector('.Career_Year_Min')?.value || '0',
+        careerMax: document.querySelector('.Career_Year_Max')?.value || '0',
+        education: document.querySelector('input[name="Academic"]:checked')?.value || '학력무관',
+        workDays: document.querySelector('input[name="Work_Days"]:checked')?.value || '근무요일',
+        workTimeMin: document.querySelector('.Wark_Time_Min')?.value || '',
+        workTimeMax: document.querySelector('.Wark_Time_Min')?.value || '',
+        salaryMin: document.querySelector('.Expected_Salary_Min')?.value || '0',
+        salaryMax: document.querySelector('.Expected_Salary_Max')?.value || '0',
+        workLocation: Array.from(document.querySelectorAll('#location-container .Work_Location'))
+            .map(location => location.textContent.trim()) || [],
+        industry: Array.from(document.querySelectorAll('#industry-container .Industry_Type'))
+            .map(ind => ind.textContent.trim()) || [],
+        companyType: document.querySelector('input[name="Company_Type"]:checked')?.value || '',
+        employmentStatus: document.querySelector('input[name="Employment_Status"]:checked')?.value || '재직무관'
+    };
+
+    // 로컬 스토리지에 데이터 저장
+    localStorage.setItem('jobData', JSON.stringify(jobData));
+
+    // 이전 페이지로 이동
+    window.location.href = 'http://localhost:3333/WorkDream/business/announcementInformation2';
+});

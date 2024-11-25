@@ -65,18 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     const maxDuties = 5; // 최대 직무 개수
     const addDutyButton = document.getElementById("addDutyButton");
-    const jobDutiesContainer = addDutyButton.parentElement;
-
-    // 로컬 스토리지에서 기존 데이터를 로드
-    const storedDuties = JSON.parse(localStorage.getItem("jobDuties")) || [];
-
-    // 초기 데이터 로드
-    storedDuties.forEach((duty) => {
-        addDutyElement(duty);
-    });
+    const jobDutiesContainer = document.getElementById("jobDutiesContainer");
 
     // 직무 추가 버튼 클릭 이벤트
-    addDutyButton.addEventListener("click", function () {
+    addDutyButton.addEventListener("click", async function () {
         const currentDuties = jobDutiesContainer.querySelectorAll(".Job_duty");
 
         // 최대 개수 확인
@@ -85,85 +77,40 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // URL 이동 (직무 입력 페이지로 이동)
-        window.location.href = "http://localhost:3333/WorkDream/business/positionAndCareer";
+        // URL에서 데이터를 가져오는 코드 (예: AJAX 요청)
+        try {
+            const response = await fetch("http://localhost:3333/WorkDream/business/positionAndCareer");
+            if (!response.ok) throw new Error("데이터를 가져오지 못했습니다.");
+            const newDutyData = await response.text(); // 응답 데이터 (예: 문자열)
+
+            // 새로운 직무 요소 생성
+            addDutyElement(newDutyData);
+        } catch (error) {
+            console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
+        }
     });
 
     // 직무를 추가하는 함수
     function addDutyElement(dutyText) {
-        const currentDuties = jobDutiesContainer.querySelectorAll(".Job_duty");
-
-        // 최대 개수 확인
-        if (currentDuties.length >= maxDuties) {
-            alert("직무는 최대 5개까지만 추가할 수 있습니다.");
-            return;
-        }
-
         // 새로운 직무 요소 생성
         const newDuty = document.createElement("div");
         newDuty.classList.add("Job_duty");
         newDuty.innerHTML = `
             <p>${dutyText}</p>
             <button>
-                <img src="../사진/letter-x_9215129.png" style="width: 25px; height: 25px;">
+                <img src="${contextPath}/img/letter-x_9215129.png" style="width: 25px; height: 25px;">
             </button>
         `;
 
         // 삭제 버튼 동작 추가
         newDuty.querySelector("button").addEventListener("click", function () {
             newDuty.remove();
-            saveDutiesToLocalStorage(); // 삭제 후 로컬 스토리지 업데이트
         });
 
-        // 직무 요소를 버튼 앞에 추가
-        jobDutiesContainer.insertBefore(newDuty, addDutyButton);
-        saveDutiesToLocalStorage(); // 추가 후 로컬 스토리지 업데이트
+        // 새로운 직무 요소를 컨테이너에 추가
+        jobDutiesContainer.appendChild(newDuty);
     }
-
-    // URL로부터 데이터 로드 및 직무 추가
-    function loadDutyFromURL() {
-        const params = new URLSearchParams(window.location.search);
-        const duty = params.get("duty"); // URL에서 'duty' 파라미터 가져오기
-        if (duty) {
-            addDutyElement(duty);
-            saveDutiesToLocalStorage(); // 추가 후 로컬 스토리지 업데이트
-        }
-    }
-
-    // 로컬 스토리지에서 데이터를 저장하는 함수
-    function saveDutiesToLocalStorage() {
-        const duties = Array.from(jobDutiesContainer.querySelectorAll(".Job_duty p"))
-            .map((duty) => duty.textContent.trim());
-        localStorage.setItem("jobDuties", JSON.stringify(duties));
-    }
-
-    // 페이지 로드 시 URL에서 데이터 로드
-    loadDutyFromURL();
 });
-
-// 데이터 한 줄씩 추가로 표시
-document.addEventListener("DOMContentLoaded", () => {
-    const jobDataDisplayContainer = document.getElementById("jobDataDisplay");
-
-    // 로컬 스토리지에서 데이터를 가져옴
-    const jobData = JSON.parse(localStorage.getItem("jobDuties")) || [];
-
-    // 데이터를 표시할 HTML 요소 초기화
-    if (jobData.length === 0) {
-        jobDataDisplayContainer.innerText = "직무 데이터가 없습니다.";
-    } else {
-        // 데이터가 있을 경우 각 데이터마다 `<p>` 생성
-        jobData.forEach((data) => {
-            const paragraph = document.createElement("p");
-            paragraph.textContent = data;
-            jobDataDisplayContainer.appendChild(paragraph);
-        });
-    }
-
-    // 로컬 스토리지에서 데이터 삭제 (선택적)
-    localStorage.removeItem("jobDuties");
-});
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const fileInput = document.getElementById("Announcement-file");
@@ -228,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // 데이터를 한 줄로 표시
         displayElement.innerText = formattedData.replace(/\s+/g, ' ');
     } else {
-        displayElement.innerText = '직무 데이터가 없습니다.';
     }
 
     // 4. 로컬 스토리지에서 데이터 삭제 (선택적)

@@ -94,7 +94,7 @@
 				5개까지 추가 가능합니다.</p>
 
 			<div>
-				<div class="Job_duty">
+				<div class="Job_duty" id="jobDutiesContainer">
 					<p id="jobDataDisplay"></p>
 					<button>
 						<img
@@ -103,11 +103,17 @@
 					</button>
 				</div>
 
-				<button class="Add_Duty" id="addDutyButton">
-					<img
-						src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png">
-					<p>직무 추가</p>
-				</button>
+				<div>
+					<div id="jobDutiesContainer">
+						<!-- 새로운 직무가 여기에 추가됩니다 -->
+					</div>
+
+					<button class="Add_Duty" id="addDutyButton">
+						<img
+							src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png">
+						<p>직무 추가</p>
+					</button>
+				</div>
 			</div>
 
 			<div class="Contact_Announcement_Information_Title">
