@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
 import com.cs.workdream.business.model.vo.JobPosting1;
+import com.cs.workdream.business.model.vo.Position;
 import com.cs.workdream.business.service.BusinessService;
 
 @Controller
@@ -47,9 +48,10 @@ public class BusinessController {
 	}
 	
 	// 지원자 현황 조회
-	public Model inquiryAppStatus(int recruitmentNo, Model model, ApplicantsStatus appsStatus) {
+	public Model inquiryAppStatus(int recruitmentNo, Model model) {
 		// 전달받은 공고 고유키로 지원자 현황 조회
-		appsStatus = businessService.inquireAppsStatus(recruitmentNo);
+		ApplicantsStatus appsStatus = businessService.inquireAppsStatus(recruitmentNo);
+		List<Position> positionList = businessService.inquirePositionList(recruitmentNo);
 		
 		if(appsStatus == null) {
 			// 조회 실패
@@ -60,6 +62,7 @@ public class BusinessController {
 			// 조회 성공 -> 현황 페이지로 이동
 			model.addAttribute("result", 1);
 			model.addAttribute("appsStatus", appsStatus);
+			model.addAttribute("positionList", positionList);
 		}
 		
 		return model;

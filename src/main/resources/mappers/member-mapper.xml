@@ -10,8 +10,8 @@
 		<result column="USER_PWD" property="userPwd" />
 		<result column="EMAIL" property="email" />
 		<result column="PHONE" property="phone"/>
-		<result column="ENROLL_DATE" property="enrollDate" jdbcType="DATE"/>
-    	<result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+    	<result column="MODIFY_DATE" property="modifyDate"/>
 		<result column="STATUS" property="status" />
 		<result column="BUSINESS_NO" property="businessNo" />
 		<result column="PERSON_NO" property="personNo" />

@@ -35,6 +35,17 @@
 		<result column="PASS_TOTAL" property="passTotal" />
 	</resultMap>
 	
+	<!-- Position -->
+	<resultMap type="Position" id="positionResultSet">
+		<result column="POSITION_NO" property="positionNo" />
+		<result column="RECRUITMENT_NO" property="recuritmentNo" />
+		<result column="POSITION_NAME" property="positionName" />
+		<result column="POSITION_RANK" property="positionRank" />
+		<result column="EMPLOYMENT_FORM" property="employmentForm" />
+		<result column="RECRUITED_PEOPLE" property="recuitedPeople" />
+		<result column="PASS_PEOPLE" property="passPeople" />
+	</resultMap>
+	
 	
 	<!-- 지원자 현황 조회 -->
 	<select id="inquireAppsStatus" parameterType="int" resultMap="applicantsStatusResultSet">
@@ -45,6 +56,18 @@
 			    COUNT(CASE WHEN PASS_STATUS = 'P' THEN 1 END) AS PASS_TOTAL
 		  FROM	APPLICANTS
 		 WHERE	RECRUITMENT_NO = #{recruitmentNo}
+	</select>
+	
+	<!-- 포지션 목록 조회 -->
+	<select id="inquirePositionList" parameterType="int" resultMap="positionResultSet">
+		SELECT POSITION_NO,
+				RECRUITMENT_NO,
+				POSITION_NAME,
+				POSITION_RANK,
+				RECRUITED_PEOPLE,
+				PASS_PEOPLE
+		  FROM POSITION
+		 WHERE RECRUITMENT_NO = #{recruitmentNo}
 	</select>
 	
 
