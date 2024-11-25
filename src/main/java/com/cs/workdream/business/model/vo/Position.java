@@ -25,7 +25,9 @@ public class Position {
 	private String employmentForm;	// 고용 형태 (정규직: R / 계약직: C)
 	private int recuitedPeople;		// 채용 인원
 	
-	private int passPeple;			// 합격자 수
+	private int viewPeople;			// 열람완료 수
+	private int evaluationPeople;	// 평가완료 수
+	private int passPeople;			// 합격자 수
 	
 	/* JOB_STAGY 관련 */
 	private List<Stagy> stagys;		// 전형 단계 리스트
