@@ -1,7 +1,10 @@
+/* businessProfileView.css */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 1.1rem; 
 }
 
 body {
@@ -41,6 +44,7 @@ body {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
 .action-buttons .btn-edit:hover {
@@ -126,6 +130,7 @@ body {
     font-size: 1.2rem;
 }
 
+/* 기업소개 및 기업비전 섹션의 제한된 텍스트 스타일 */
 .limited-text {
     overflow: hidden;
     display: -webkit-box;
@@ -139,14 +144,20 @@ body {
     -webkit-line-clamp: unset;
 }
 
+/* 복리후생 목록 스타일 */
 .profile-benefits ul.benefits-list {
     list-style: none;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    max-height: 240px; /* 4개 행의 높이로 조정 */
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: max-height 0.3s ease;
+}
+
+.profile-benefits ul.benefits-list.expanded {
+    max-height: none;
 }
 
 .profile-benefits ul.benefits-list li {
@@ -161,7 +172,7 @@ body {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-
+/* 복리후생 목록에서 5번째 항목 이후 숨김 */
 .profile-benefits ul.benefits-list:not(.expanded) li:nth-child(n+5) {
     display: none;
 }
@@ -186,6 +197,7 @@ body {
     background-color: #6D47B7;
 }
 
+/* 사내 근무 환경 이미지 갤러리 스타일 */
 .profile-work-environment .gallery-container {
     position: relative;
     display: flex;
@@ -210,28 +222,35 @@ body {
 }
 
 .gallery-item {
-    min-width: 200px;
-    background-color: #f4f4f4;
+    flex: 0 0 auto; /* 고정된 크기를 유지하기 위해 flex-grow와 flex-shrink를 0으로 설정 */
+    border: 1px solid #ddd;
     border-radius: 10px;
-    overflow: hidden;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
+    text-align: center;
+    position: relative;
+    width: 300px; /* 이미지 컨테이너의 고정 너비 */
+    height: 300px; /* 이미지 컨테이너의 고정 높이 */
+    background-color: #f4f4f4;
     transition: transform 0.3s ease;
 }
 
 .gallery-item img {
-    width: 100%;
-    height: auto;
+    width: 250px; /* 이미지의 고정 너비 */
+    height: 250px; /* 이미지의 고정 높이 */
+    object-fit: cover;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .gallery-item p {
-    margin-top: 10px;
     font-size: 0.9rem;
-    color: #555555;
+    color: #333;
+    word-wrap: break-word;
 }
-
-
 
 .nav-btn {
     background-color: #4E21A8;
@@ -268,61 +287,4 @@ body {
 
 .right-btn {
     right: -20px;
-}
-
-.action-buttons .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-left: 10px;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-}
-
-.action-buttons .btn-edit {
-    background-color: #4E21A8;
-}
-
-.action-buttons .btn-edit:hover {
-    background-color: #6D47B7;
-}
-
-/* 이미지 그리드 스타일 */
-.image-gallery {
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 20px;
-}
-
-.gallery-item {
-    flex: 0 0 auto; /* 고정된 크기를 유지하기 위해 flex-grow와 flex-shrink를 0으로 설정 */
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    text-align: center;
-    position: relative;
-    width: 300px; /* 이미지 컨테이너의 고정 너비 */
-    height: 300px; /* 이미지 컨테이너의 고정 높이 */
-}
-
-.gallery-item img {
-    width: 250px; /* 이미지의 고정 너비 */
-    height: 250px; /* 이미지의 고정 높이 */
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.gallery-item p {
-    font-size: 0.9rem;
-    color: #333;
-    word-wrap: break-word;
 }
