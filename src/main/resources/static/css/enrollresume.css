@@ -820,8 +820,10 @@ input:focus{
     display: none;
 }
 
-.awards2{
+.awards3{
     display: flex;
+    gap: 10px; /* 필드 간 간격 */
+    margin-top: 10px;
 }
 
 .certi_title{
@@ -920,7 +922,7 @@ input:focus{
 
 .awards3 button{
     height: 50px;
-    margin-left: 840px;
+    margin-left: 831px;
     position: relative;
     top: 25px;
     border: none;
@@ -1042,7 +1044,7 @@ input:focus{
 
 .language2 button{
     height: 50px;
-    margin-left: 1128px;
+    margin-left: 842px;
     position: relative;
     top: 25px;
     border: none;

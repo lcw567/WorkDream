@@ -12,10 +12,10 @@
     <script type="text/javascript">
         var contextPath = '${pageContext.request.contextPath}';
     </script>
-    <script src="${pageContext.request.contextPath}/js/enrollresume.js" defer></script>
     <script src="${pageContext.request.contextPath}/js/dynamicFields.js" defer></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
+<script src="${pageContext.request.contextPath}/js/enrollresume.js" defer></script>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div id="inner">
@@ -94,7 +94,7 @@
                                     <option value="element">초등학교</option>
                                     <option value="middle">중학교</option>
                                     <option value="high">고등학교</option>
-                                    <option value="college">대학/대학원 이상 졸업</option>
+                                    <option value="college">대학교/대학원 이상 졸업</option>
                                 </select>
                             </fieldset>
                         </div>
@@ -576,7 +576,7 @@
                                     </select>
                                 </fieldset>
                             </div>
-                            <div class="language2" id="languageDate1" style="display: block;">
+                            <div class="language2" id="languageDate1">
                                 <fieldset class="get_date">
                                     <legend>취득일</legend>
                                     <input type="date" class="get" name="issueDate">
