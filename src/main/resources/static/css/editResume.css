@@ -1,0 +1,1421 @@
+.resume_title{
+    margin-top: 50px;
+    margin-bottom: 35px;
+    margin-right: 520px;
+}
+
+.resume_title h1{
+	font-size: 1.5rem;
+	display: inline-block;
+    padding-right: 30px;
+}
+
+.resume_title input{
+    box-sizing: border-box;
+    border: 2px solid #4e21a8;
+    width: 562px;
+    height: 50px;
+    border-radius: 30px;
+    border-color: #4E21A8;
+    padding-left: 20px;
+    position: relative;
+    bottom: 2px;
+    font-size: 1rem;
+}
+
+input:focus{
+    outline: none;
+}
+
+#basic1{
+    display: flex;
+}
+.basic_info{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 375px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.edu_Lv, .b_Info{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.name{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
+}
+
+.name input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 280px;
+}
+
+input:focus{
+    outline: none;
+}
+
+.username, .userbirth, .useremail, .userphone, .useraddress, .roadAddress, .detailAddress{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.dtaddress1{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.dtaddress2{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+#roadAddress{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 4px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 330px;
+    margin: 0;
+}
+
+#detailAddress{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 4px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 290px;
+    margin: 0;
+}
+
+.gender, .final_edu{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 31px;
+    height: 44px;
+    display: flex;
+}
+
+.usergender, .useredu{
+    position: relative;
+    height: 42px;
+    top: 33px;
+    width: 120px;
+    margin-left: 34px;
+}
+
+#selectgender{
+	border: none;
+    width: 154px;
+    font-size: 0.9rem;
+    padding-left: 10px;
+    width: 280px;
+}
+
+#selectedu{
+    border: none;
+    width: 240px;
+    font-size: 0.9rem;
+    padding-left: 10px;
+}
+
+.birthday{
+	border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.birthday input{
+	border: none;
+    margin-top: 5px;
+    width: 280px;
+    padding-left: 15px;
+    padding-right: 14px;
+    font-size: 0.9rem;
+}
+
+#basic2{
+    display: flex;
+}
+.email{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
+}
+
+.email input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 290px;
+}
+
+.email_check{
+    height: 44px;
+    width: 85px;
+    margin-top: 32px;
+    margin-left: 50px;
+    border: none;
+    color: white;
+    background-color: #5E35B0;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+#basic3{
+    display: flex;
+}
+.phone{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
+}
+
+.phone input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 290px;
+}
+
+.phone_check{
+    height: 44px;
+    width: 85px;
+    margin-top: 32px;
+    margin-left: 50px;
+    border: none;
+    color: white;
+    background-color: #5E35B0;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+#basic4{
+    display: flex;
+}
+
+.address{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
+}
+
+.address input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 130px;
+}
+
+.addressNum{
+    width: 110px;
+    margin-right: 7px;
+    padding: 0px;
+    position: relative;
+    bottom: -7px;
+    color: white;
+    border-radius: 4px;
+    background-color: #5e35b0;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 44px;
+    border: none;
+    font-size: 0.8rem;
+}
+
+.dtaddress{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px
+}
+
+#basic5 {
+    display: flex;
+    position: relative;
+    float: right;
+    bottom: 270px;
+    right: 70px;
+    border: 2px solid #cdcdcd;
+}
+
+.profile_img {
+    width: 103px;
+    height: 119px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.profile_upload {
+    display: none;
+}
+
+
+.dtaddress input{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 7px;
+    padding-left: 15px;
+    font-size: 0.8rem;
+    width: 330px;
+}
+
+.education_Lv{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 290px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    transition: height 0.3s;
+}
+
+/* 공통 스타일 */
+.education-fieldset {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.education-fieldset legend {
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0 5px;
+}
+
+.form-group1, .form-group2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.input-group{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.input-group legend,
+.checkbox-group legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.element_name, .status, .enterDate_col,.enterDate_el,.enterDate_mi,.enterDate_hi, .end_date, .graduationDate_col,.graduationDate_el,.graduationDate_hi,.graduationDate_mi {
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 300px;
+    margin-right: 7px;
+}
+
+.exam{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 14px;
+    margin-left: 50px;
+}
+
+.exam label{
+    font-size: 0.8rem;
+}
+
+.exam_status{
+    margin-left: 10px;
+}
+
+.checkbox-field {
+    transform: scale(1.2);
+    margin-top: 5px;
+}
+
+.select_lo{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 4px;
+    padding-left: 12px;
+    width: 151px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+/* 포커스 시 스타일 */
+.input-field:focus {
+    outline: none;
+}
+
+.career{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 520px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    transition: height 0.3s;
+}
+
+.career_Lv{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.college_name{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
+}
+
+.degree{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 5px;
+    margin-right: 7px;
+    font-size: 1rem;
+}
+
+.major_name{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
+}
+
+.high_name, .middle_name{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: 1rem;
+    width: 300px;
+    margin-right: 7px;
+}
+
+.career1{
+    display: flex;
+    gap: 40px;
+}
+
+.career2{
+    display: flex;
+    gap: 61px;
+}
+
+.career1 fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 31px;
+    height: 50px;
+}
+
+.career2 fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.career3 fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: fit-content;
+}
+
+.com_title{
+    box-sizing: border-box;
+    border: none;
+    padding-top: 7px;
+    padding-left: 15px;
+    font-size: 0.8rem;
+    width: 310px;
+}
+
+.career1 legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.career2 legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.career3 legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.enter_com input, .retire_com input{
+    border: none;
+    margin-top: 5px;
+    width: 190px;
+    padding-left: 15px;
+    padding-right: 14px;
+    font-size: 0.9rem;
+}
+
+.career_status{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 4px;
+    padding-left: 12px;
+    width: 151px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.careerYorN{
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.career2 input{
+    border: none;
+    margin-top: 5px;
+    width: 300px;
+    padding-left: 15px;
+    padding-right: 14px;
+    font-size: 0.9rem;
+}
+
+#j_content{
+    padding: 20px;
+    resize: none;
+    border: none;
+    width: 1130px;
+    height: 250px;
+    font-size: 0.8rem;
+}
+
+#j_content:focus{
+    outline: none;
+}
+
+.skill{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 175px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    transition: height 0.3s;
+}
+
+.skill_name{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.skill_title input{
+    border: none;
+    margin-top: 15px;
+    width: 390px;
+    padding-left: 15px;
+    padding-right: 14px;
+    font-size: 0.9rem;
+}
+
+#sk_title1{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#sk_title1 fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 20px;
+    margin-top: 25px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+#sk_title1 button{
+    height: 50px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+#sk_title1 button:focus{
+    outline: none;
+}
+
+#sk_title2 h1 {
+    font-size: 1rem;
+    margin: 0; /* h1 태그의 기본 여백 제거 */
+    line-height: normal; /* h1의 높이 조정 */
+}
+
+#MYsk {
+    margin-top: 30px;
+    margin-left: 45px;
+    display: flex;
+    align-items: center; /* h1과 myskill1 높이를 맞춤 */
+}
+
+.myskill1 {
+    margin-left: 30px;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #2C2C2C;
+    background-color: #E1DEF1;
+    border: 1px solid #E1DEF1;
+    border-radius: 15px;
+    font-family: Arial, sans-serif;
+    gap: 8px;
+}
+
+.delete-icon {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    color: #D9534F;
+}
+
+.experience{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 450px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.exp{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.exp1{
+    display: flex;
+    gap: 12px;
+}
+
+.activity{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.activity legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.select_activity{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.place{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.place legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.place input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.start_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 30px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.finish_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 30px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+
+.start_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.start_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.finish_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.finish_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.exp2 fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 25px;
+    height: fit-content;
+}
+
+.exp2 legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+#e_content{
+    padding: 20px;
+    resize: none;
+    border: none;
+    width: 1130px;
+    height: 250px;
+    font-size: 0.8rem;
+}
+
+#e_content:focus{
+    outline: none;
+}
+
+.awa{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.select_awards{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    min-height: 170px;
+    height: auto;  /* 높이를 자동으로 조정 */
+    overflow: visible;
+    border-top: 5px solid #4e21a8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    transition: height 0.3s;
+}
+
+.select_inner{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.select_inner select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.select_inner legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.awards2,
+.awards3 {
+    display: none;
+}
+
+.awards2{
+    display: flex;
+    margin-top: 10px;
+}
+
+.awards3{
+    display: flex;
+    gap: 10px; /* 필드 간 간격 */
+    margin-top: 10px;
+}
+
+.certi_title{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+.certi_title input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.certi_title legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.institution{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+.institution input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.institution legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.pass_status{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.pass_status select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.pass_status legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.awards3{
+    display: flex;
+}
+
+.pass_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.pass_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.pass_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.awards3 button{
+    height: 50px;
+    margin-left: 832px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+.language1{
+    display: flex;
+}
+
+.lang_title{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.lang_title input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.lang_title legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.level{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.level select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.level legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.lang_category{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.lang_category select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.lang_category legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.awards3 button{
+    height: 50px;
+    margin-left: 840px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+.get_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.get_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.get_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.language2 button{
+    height: 50px;
+    margin-left: 842px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+.language2{
+    display: flex;
+}
+
+.contest1{
+    display: flex;
+}
+
+.contest_title{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.contest_title legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.contest_title input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.contest_place{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.contest_place legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.contest_place input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 330px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.acquire_date{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.acquire_date legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.acquire_date input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 295px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.contest2{
+    display: flex;
+}
+
+.contest2 button{
+    height: 50px;
+    margin-left: 1077px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+.preferential{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    border-top: 5px solid #4e21a8;
+    height: 225px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.pre_content{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.pre_content legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.pre_content input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 1125px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.mil_sub{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.mil_sub legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.mil_sub select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 200px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.exempted{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.exempted legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.exempted input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 855px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.pre_title{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.pre2{
+    display: flex;
+}
+
+.fulfilled{
+    display: flex;
+}
+
+.fulfilled fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.fulfilled legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.fulfilled input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 112px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.fulfilled select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 118px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.serving{
+    display: flex;
+}
+
+.serving fieldset{
+    border: 1px solid #c5c5c5;
+    width: fit-content;
+    margin-left: 60px;
+    margin-top: 25px;
+    height: 50px;
+}
+
+.serving legend{
+    font-size: 0.8rem;
+    margin-left: 15px;
+}
+
+.serving input{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 161px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.serving select{
+    box-sizing: border-box;
+    border: none;
+    margin-top: 5px;
+    padding-left: 12px;
+    width: 161px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+.final_save{
+    height: 50px;
+    position: relative;
+    top: 17px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+    margin-bottom: 90px;
+}
+
+.final_save button:focus{
+    outline: none;
+}
+
+.result-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.list-item:hover {
+    background-color: #f0f0f0;
+}
+
+.item-content div {
+    font-size: 1rem;
+    margin-left: 60px;
+    border: none;
+}
+
+.result-list strong {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.institution {
+    color: #777;
+    font-size: 0.9rem;
+    margin-left: 60px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+button.edit,
+button.delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #555;
+    transition: color 0.2s;
+}
+
+button.edit:hover,
+button.delete:hover {
+    color: #000;
+}
+
+button.edit:focus,
+button.delete:focus {
+    outline: none;
+}
+
+.btn_select{
+    display: flex;
+    float: right;
+}
+
+.preview{
+    height: 50px;
+    position: relative;
+    top: 17px;
+    border: 1px solid #4e21a8;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: #4e21a8;
+    background-color: #ffffff;
+    margin-bottom: 90px;
+    margin-right: 40px;
+}
+
+
