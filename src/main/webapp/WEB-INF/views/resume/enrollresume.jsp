@@ -656,20 +656,22 @@
                             <fieldset>
                                 <legend>군별선택</legend>
                                 <select name="militaryBranch">
-                                    <option value="1">육군</option>
-                                    <option value="2">해군</option>
-                                    <option value="3">공군</option>
-                                    <option value="4">해병</option>
-                                    <option value="5">의경</option>
-                                    <option value="6">전경</option>
-                                    <option value="7">기타</option>
-                                    <option value="8">사회복무요원</option>
-                                    <option value="9">의무소방</option>
+                                    <option value="">군별선택</option>
+                                    <option value="army">육군</option>
+                                    <option value="navy">해군</option>
+                                    <option value="airforce">공군</option>
+                                    <option value="Marine">해병</option>
+                                    <option value="policeman">의경</option>
+                                    <option value="combatpolice">전경</option>
+                                    <option value="etc">기타</option>
+                                    <option value="socialserviceworker">사회복무요원</option>
+                                    <option value="firefighting">의무소방</option>
                                 </select>
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
                                 <select name="rank">
+                                    <option value="">계급선택</option>
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>
                                     <option value="3">상병</option>
@@ -718,20 +720,22 @@
                             <fieldset>
                                 <legend>군별선택</legend>
                                 <select name="militaryBranch">
-                                    <option value="1">육군</option>
-                                    <option value="2">해군</option>
-                                    <option value="3">공군</option>
-                                    <option value="4">해병</option>
-                                    <option value="5">의경</option>
-                                    <option value="6">전경</option>
-                                    <option value="7">기타</option>
-                                    <option value="8">사회복무요원</option>
-                                    <option value="9">의무소방</option>
+                                    <option value="">군별선택</option>
+                                    <option value="army">육군</option>
+                                    <option value="navy">해군</option>
+                                    <option value="airforce">공군</option>
+                                    <option value="Marine">해병</option>
+                                    <option value="policeman">의경</option>
+                                    <option value="combatpolice">전경</option>
+                                    <option value="etc">기타</option>
+                                    <option value="socialserviceworker">사회복무요원</option>
+                                    <option value="firefighting">의무소방</option>
                                 </select>
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
                                 <select name="rank">
+                                    <option value="">계급선택</option>
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>
                                     <option value="3">상병</option>
