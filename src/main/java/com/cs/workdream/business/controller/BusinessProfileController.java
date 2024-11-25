@@ -75,6 +75,7 @@ public class BusinessProfileController {
             @RequestParam(value = "newWorkEnvironmentFiles", required = false) List<MultipartFile> newWorkEnvironmentFiles, // 새로운 이미지 추가 파일
             @RequestParam(value = "workEnvImageTitles", required = false) String workEnvImageTitlesJson,
             @RequestParam(value = "existingImageIds", required = false) List<Integer> existingImageIds, // 기존 이미지 ID
+            @RequestParam(value = "deleteImageIds", required = false) List<Integer> deleteImageIds, // 삭제할 이미지 ID
             @RequestParam("benefits") String benefitsJson,
             HttpSession session) {
         try {
@@ -112,7 +113,7 @@ public class BusinessProfileController {
             business.setBenefits(benefitList);
 
             // 비즈니스 프로필 등록 (업데이트)
-            businessProfileService.registerBusinessProfile(business, workEnvironmentFiles, newWorkEnvironmentFiles, existingImageIds, workEnvImageTitlesJson);
+            businessProfileService.registerBusinessProfile(business, workEnvironmentFiles, newWorkEnvironmentFiles, existingImageIds, workEnvImageTitlesJson, deleteImageIds);
 
             // 리다이렉트 URL 생성
             String redirectUrl = servletContext.getContextPath() + "/business/businessProfileView?businessNo=" + business.getBusinessNo();

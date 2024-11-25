@@ -125,6 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('existingImageIds', input.value);
         });
 
+        // 삭제할 이미지 IDs 수집 및 개별 파라미터로 추가
+        const deleteImageIdInputs = document.querySelectorAll('input[name="deleteImageIds"]:checked');
+        deleteImageIdInputs.forEach(input => {
+            formData.append('deleteImageIds', input.value);
+        });
+
         // 디버깅을 위한 로그 출력
         console.log("Context Path:", window.contextPath);
         const url = `${window.contextPath}/business/register`;
