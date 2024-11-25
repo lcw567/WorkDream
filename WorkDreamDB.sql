@@ -437,7 +437,7 @@ CREATE TABLE RESUME(
     USER_ROAD_ADDRESS VARCHAR2(255),                             -- 도로명 주소
     USER_DETAIL_ADDRESS VARCHAR2(255),                           -- 상세 주소
     USER_PIC VARCHAR2(500),                                      -- 사용자 사진
-    EDUCATION_LEVEL VARCHAR2(10) NULL,                       -- 학력 수준 (educationLevel)
+    EDUCATION_LEVEL VARCHAR2(50) DEFAULT '기본값' NULL,                       -- 학력 수준 (educationLevel)
     ACADEMIC_NAME_EL VARCHAR2(30) NULL,
     ACADEMIC_NAME_MI VARCHAR2(30) NULL,
     ACADEMIC_NAME_HI VARCHAR2(30) NULL,
