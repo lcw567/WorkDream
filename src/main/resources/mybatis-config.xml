@@ -25,6 +25,7 @@
         <typeAlias alias="WorkEnvironmentImage" type="com.cs.workdream.business.model.vo.WorkEnvironmentImage"/>
         <typeAlias alias="Applicants" type="com.cs.workdream.business.model.vo.Applicants" />
  		<typeAlias alias="ApplicantsStatus" type="com.cs.workdream.business.model.vo.ApplicantsStatus" />
+ 		<typeAlias alias="Position" type="com.cs.workdream.business.model.vo.Position" />
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->
