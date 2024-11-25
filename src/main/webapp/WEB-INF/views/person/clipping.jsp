@@ -16,8 +16,12 @@
     <div class="main-container">
         <div class="select">
             <div class="tabs">
-                <a href="javascript:void(0);" class="btntype1 active" onclick="handleClick(this)">스크랩<span class="badge1">12</span></a>
-                <a href="javascript:void(0);" class="btntype2" onclick="handleClick(this)">관심기업<span class="badge2">14</span></a>
+                <form action="clipping">
+                   <button class="btntype1 active">스크랩<span class="badge1">12</span></button>
+                </form>
+                <form action="clippingcompany">
+                    <button class="btntype2">관심기업<span class="badge2">14</span></button>
+                </form>
             </div>
             <div class="option">
                 <label for="selectAll">
