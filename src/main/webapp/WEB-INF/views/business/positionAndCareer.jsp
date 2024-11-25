@@ -176,13 +176,15 @@
 				<p style="font-size: 0.9rem; font-weight: 700;">까지</p>
 			</div>
 
-			<div style="display: flex; margin-bottom: 10px">
-				<label class="unstyled-label"
-					style="display: flex; align-items: center; gap: 5px; width: 100%;">
-					<input type="checkbox" style="font-weight: 900; font-size: 15px;">
-					<p style="font-size: 12px; font-weight: 600;">협의,스케쥴 근무</p>
+			<div style="display: flex; margin-bottom: 10px; margin-top: 5px;">
+				<!-- 협의, 스케쥴 근무 -->
+				<label class="unstyled-label"> <input type="checkbox"
+					style="font-weight: 900; font-size: 15px;">
+					<p style="font-size: 12px; font-weight: 600; margin: 0;">협의,
+						스케쥴 근무</p>
 				</label>
 			</div>
+
 			<div class="Position_And_Career_Title">
 				<h2>예상연봉</h2>
 				<b>
@@ -200,13 +202,13 @@
 			</div>
 
 			<div style="display: flex; margin-bottom: 10px; margin-top: 5px;">
-				<label class="unstyled-label"
-					style="display: flex; align-items: center; gap: 5px; width: 100%;">
-					<input type="checkbox" style="font-weight: 900; font-size: 15px;">
+				<!-- 채용시 협의 -->
+				<label class="unstyled-label"> <input type="checkbox"
+					style="font-weight: 900; font-size: 15px;">
 					<p style="font-size: 12px; font-weight: 600; margin: 0;">채용시 협의</p>
 				</label>
 			</div>
-			
+
 			<div class="Position_And_Career_Title">
 				<h2>근무지 주소</h2>
 				<b>

@@ -95,7 +95,7 @@ public class BusinessController {
 	// 맵핑
 	@GetMapping("/recruitmentStatus")
     public String reStatus() {
-        return "/recruitmentStatus";
+        return "business/recruitmentStatus";
     }
 	
 	@GetMapping("/announcementInformation2")
@@ -139,28 +139,4 @@ public class BusinessController {
     public String jobRegistration() {
         return "business/announcementInformation1";
     }
-
-//    // 담당자 정보 저장
-//    @PostMapping("/api/representative")
-//    @ResponseBody
-//    public String saveRepresentativeInfo(@RequestBody JobPosting1 jobPosting) {
-//        businessService.insertRepresentativeInfo(jobPosting);
-//        return "Representative information saved successfully.";
-//    }
-//
-//    // 홈페이지 주소 저장
-//    @PostMapping("/api/{recruitmentNo}/website")
-//    @ResponseBody
-//    public String saveWebsite(@PathVariable int recruitmentNo, @RequestParam String website) {
-//        businessService.saveWebsite(recruitmentNo, website);
-//        return "Website saved successfully.";
-//    }
-//
-//    // 로고 경로 저장
-//    @PostMapping("/api/{recruitmentNo}/logo")
-//    @ResponseBody
-//    public String saveLogoPath(@PathVariable int recruitmentNo, @RequestParam String logoPath) {
-//        businessService.saveLogoPath(recruitmentNo, logoPath);
-//        return "Logo path saved successfully.";
-//    }
 }

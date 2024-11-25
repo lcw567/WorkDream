@@ -161,6 +161,7 @@
                         <th>사내 근무 환경</th>
                         <td>
                             <div class="image-grid">
+<<<<<<< HEAD
                                 <!-- 최대 8개의 이미지 -->
                                 <c:forEach var="i" begin="0" end="7">
                                     <div class="image-item">
@@ -180,6 +181,26 @@
                                     </div>
                                 </c:forEach>
                             </div>
+=======
+						    <!-- 최대 8개의 이미지 -->
+						    <c:forEach var="i" begin="0" end="7">
+						        <div class="image-item">
+						            <c:choose>
+						                <c:when test="${business.workEnvironmentImages != null && business.workEnvironmentImages.size() > i}">
+						                    <img src="${pageContext.request.contextPath}${business.workEnvironmentImages[i].imageUrl}" class="add-icon" alt="이미지">
+						                    <input type="file" name="workEnvironmentFiles" accept="image/*" class="hidden-file-input"> <!-- 이름 변경 -->
+						                    <input type="text" class="photo-title" placeholder="사진 제목을 입력해주세요" value="${business.workEnvironmentImages[i].title}">
+						                </c:when>
+						                <c:otherwise>
+						                    <img src="${pageContext.request.contextPath}/img/add-image.png" class="add-icon" alt="이미지 추가 아이콘">
+						                    <input type="file" name="workEnvironmentFiles" accept="image/*" class="hidden-file-input"> <!-- 이름 변경 -->
+						                    <input type="text" class="photo-title" placeholder="사진 제목을 입력해주세요">
+						                </c:otherwise>
+						            </c:choose>
+						        </div>
+						    </c:forEach>
+						</div>
+>>>>>>> a16c46b58c1d529b32764ba77cca33c34a52aa44
                         </td>
                     </tr>
                 </table>

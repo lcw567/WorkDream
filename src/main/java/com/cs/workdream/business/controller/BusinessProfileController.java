@@ -71,8 +71,12 @@ public class BusinessProfileController {
     public ResponseEntity<String> registerBusinessProfile(
             @ModelAttribute Business business,
             @RequestParam(value = "companyLogo", required = false) MultipartFile companyLogo,
+<<<<<<< HEAD
             @RequestParam(value = "workEnvironmentFiles", required = false) List<MultipartFile> workEnvironmentFiles, // 기존 이미지 업데이트 파일
             @RequestParam(value = "newWorkEnvironmentFiles", required = false) List<MultipartFile> newWorkEnvironmentFiles, // 새로운 이미지 추가 파일
+=======
+            @RequestParam(value = "workEnvironmentFiles", required = false) List<MultipartFile> workEnvironmentFiles, // 이름 변경
+>>>>>>> a16c46b58c1d529b32764ba77cca33c34a52aa44
             @RequestParam(value = "workEnvImageTitles", required = false) String workEnvImageTitlesJson,
             @RequestParam(value = "existingImageIds", required = false) List<Integer> existingImageIds, // 기존 이미지 ID
             @RequestParam("benefits") String benefitsJson,
@@ -101,6 +105,30 @@ public class BusinessProfileController {
                 business.setLogo(existingBusiness.getLogo());
             }
 
+<<<<<<< HEAD
+=======
+            // 근무 환경 이미지 업로드 처리
+            List<WorkEnvironmentImage> imageList = new ArrayList<>();
+            if (workEnvironmentFiles != null && !workEnvironmentFiles.isEmpty()) { // 이름 변경
+                List<String> workEnvImageTitles = parseJsonArray(workEnvImageTitlesJson);
+                for (int i = 0; i < workEnvironmentFiles.size(); i++) {
+                    MultipartFile file = workEnvironmentFiles.get(i); // 이름 변경
+                    String title = "";
+                    if (i < workEnvImageTitles.size()) {
+                        title = workEnvImageTitles.get(i);
+                    }
+                    if (!file.isEmpty()) {
+                        String imageUrl = saveFile(file, "work_env_images");
+                        WorkEnvironmentImage image = new WorkEnvironmentImage();
+                        image.setImageUrl(imageUrl);
+                        image.setTitle(title);
+                        imageList.add(image);
+                    }
+                }
+                business.setWorkEnvironmentImages(imageList);
+            }
+
+>>>>>>> a16c46b58c1d529b32764ba77cca33c34a52aa44
             // 복리후생 처리
             List<String> benefits = parseJsonArray(benefitsJson);
             List<BusinessBenefit> benefitList = new ArrayList<>();

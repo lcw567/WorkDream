@@ -12,10 +12,10 @@
     <script type="text/javascript">
         var contextPath = '${pageContext.request.contextPath}';
     </script>
-    <script src="${pageContext.request.contextPath}/js/enrollresume.js" defer></script>
     <script src="${pageContext.request.contextPath}/js/dynamicFields.js" defer></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
+<script src="${pageContext.request.contextPath}/js/enrollresume.js" defer></script>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div id="inner">
@@ -94,7 +94,7 @@
                                     <option value="element">초등학교</option>
                                     <option value="middle">중학교</option>
                                     <option value="high">고등학교</option>
-                                    <option value="college">대학/대학원 이상 졸업</option>
+                                    <option value="college">대학교/대학원 이상 졸업</option>
                                 </select>
                             </fieldset>
                         </div>
@@ -262,7 +262,7 @@
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location_hi" class="select_lo" >
-                                        <option value=""></option>
+                                        <option value="">지역선택</option>
                                         <option value="seoul">서울</option>
                                         <option value="busan">부산</option>
                                         <option value="daegu">대구</option>
@@ -576,7 +576,7 @@
                                     </select>
                                 </fieldset>
                             </div>
-                            <div class="language2" id="languageDate1" style="display: block;">
+                            <div class="language2" id="languageDate1">
                                 <fieldset class="get_date">
                                     <legend>취득일</legend>
                                     <input type="date" class="get" name="issueDate">
@@ -656,20 +656,22 @@
                             <fieldset>
                                 <legend>군별선택</legend>
                                 <select name="militaryBranch">
-                                    <option value="1">육군</option>
-                                    <option value="2">해군</option>
-                                    <option value="3">공군</option>
-                                    <option value="4">해병</option>
-                                    <option value="5">의경</option>
-                                    <option value="6">전경</option>
-                                    <option value="7">기타</option>
-                                    <option value="8">사회복무요원</option>
-                                    <option value="9">의무소방</option>
+                                    <option value="">군별선택</option>
+                                    <option value="army">육군</option>
+                                    <option value="navy">해군</option>
+                                    <option value="airforce">공군</option>
+                                    <option value="Marine">해병</option>
+                                    <option value="policeman">의경</option>
+                                    <option value="combatpolice">전경</option>
+                                    <option value="etc">기타</option>
+                                    <option value="socialserviceworker">사회복무요원</option>
+                                    <option value="firefighting">의무소방</option>
                                 </select>
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
                                 <select name="rank">
+                                    <option value="">계급선택</option>
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>
                                     <option value="3">상병</option>
@@ -718,20 +720,22 @@
                             <fieldset>
                                 <legend>군별선택</legend>
                                 <select name="militaryBranch">
-                                    <option value="1">육군</option>
-                                    <option value="2">해군</option>
-                                    <option value="3">공군</option>
-                                    <option value="4">해병</option>
-                                    <option value="5">의경</option>
-                                    <option value="6">전경</option>
-                                    <option value="7">기타</option>
-                                    <option value="8">사회복무요원</option>
-                                    <option value="9">의무소방</option>
+                                    <option value="">군별선택</option>
+                                    <option value="army">육군</option>
+                                    <option value="navy">해군</option>
+                                    <option value="airforce">공군</option>
+                                    <option value="Marine">해병</option>
+                                    <option value="policeman">의경</option>
+                                    <option value="combatpolice">전경</option>
+                                    <option value="etc">기타</option>
+                                    <option value="socialserviceworker">사회복무요원</option>
+                                    <option value="firefighting">의무소방</option>
                                 </select>
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
                                 <select name="rank">
+                                    <option value="">계급선택</option>
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>
                                     <option value="3">상병</option>
