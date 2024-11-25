@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <!-- 날짜 형식 지정용 태그 라이브러리 추가 -->
 <!DOCTYPE html>
@@ -7,13 +7,13 @@
     <meta charset="UTF-8">
     <title>워크드림 - 이력서 수정</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/enrollresume.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/editResume.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     <!-- contextPath를 JavaScript 변수로 정의 -->
     <script type="text/javascript">
         var contextPath = '${pageContext.request.contextPath}';
     </script>
-    <script src="${pageContext.request.contextPath}/js/enrollresume.js" defer></script>
+    <script src="${pageContext.request.contextPath}/js/editResume.js" defer></script>
     <script src="${pageContext.request.contextPath}/js/dynamicFields.js" defer></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
@@ -100,7 +100,7 @@
                                     <option value="element" <c:if test="${resume.educationLevel == 'element'}">selected</c:if>>초등학교</option>
                                     <option value="middle" <c:if test="${resume.educationLevel == 'middle'}">selected</c:if>>중학교</option>
                                     <option value="high" <c:if test="${resume.educationLevel == 'high'}">selected</c:if>>고등학교</option>
-                                    <option value="college" <c:if test="${resume.educationLevel == 'college'}">selected</c:if>>대학/대학원 이상 졸업</option>
+                                    <option value="college" <c:if test="${resume.educationLevel == 'college'}">selected</c:if>>대학교/대학원 이상 졸업</option>
                                 </select>
                             </fieldset>
                         </div>
@@ -115,7 +115,7 @@
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduationStatus_el" class="status" required>
+                                    <select name="graduationStatus_el" class="status">
                                         <option value="">졸업 여부</option>
                                         <option value="graduate" <c:if test="${resume.graduationStatus_el == 'graduate'}">selected</c:if>>졸업</option>
                                         <option value="withdraw" <c:if test="${resume.graduationStatus_el == 'withdraw'}">selected</c:if>>중퇴</option>
@@ -132,21 +132,36 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="date" name="enterDate" class="enter_date" value="<fmt:formatDate value='${resume.enterDate}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="enterDate_el" class="enter_date" value="<fmt:formatDate value='${resume.enterDate_el}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="date" name="graduationDate" class="graduation_date" value="<fmt:formatDate value='${resume.graduationDate}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="graduationDate_el" class="graduation_date" value="<fmt:formatDate value='${resume.graduationDate_el}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
-        
+
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location_el" class="select_lo">
                                         <option value="">지역선택</option>
-                                        <c:forEach var="region" items="${regions}">
-                                            <option value="${region.code}" <c:if test="${resume.location_el == region.code}">selected</c:if>>${region.name}</option>
-                                        </c:forEach>
+                                        <option value="seoul" <c:if test="${resume.location_el == 'seoul'}">selected</c:if>>서울</option>
+                                        <option value="busan" <c:if test="${resume.location_el == 'busan'}">selected</c:if>>부산</option>
+                                        <option value="daegu" <c:if test="${resume.location_el == 'daegu'}">selected</c:if>>대구</option>
+                                        <option value="incheon" <c:if test="${resume.location_el == 'incheon'}">selected</c:if>>인천</option>
+                                        <option value="gwangju" <c:if test="${resume.location_el == 'gwangju'}">selected</c:if>>광주</option>
+                                        <option value="daejeon" <c:if test="${resume.location_el == 'daejeon'}">selected</c:if>>대전</option>
+                                        <option value="ulsan" <c:if test="${resume.location_el == 'ulsan'}">selected</c:if>>울산</option>
+                                        <option value="sejong" <c:if test="${resume.location_el == 'sejong'}">selected</c:if>>세종</option>
+                                        <option value="jeju" <c:if test="${resume.location_el == 'jeju'}">selected</c:if>>제주</option>
+                                        <option value="gangwon" <c:if test="${resume.location_el == 'gangwon'}">selected</c:if>>강원</option>
+                                        <option value="gyeonggi" <c:if test="${resume.location_el == 'gyeonggi'}">selected</c:if>>경기</option>
+                                        <option value="chungbuk" <c:if test="${resume.location_el == 'chungbuk'}">selected</c:if>>충북</option>
+                                        <option value="chungnam" <c:if test="${resume.location_el == 'chungnam'}">selected</c:if>>충남</option>
+                                        <option value="jeonbuk" <c:if test="${resume.location_el == 'jeonbuk'}">selected</c:if>>전북</option>
+                                        <option value="jeonnam" <c:if test="${resume.location_el == 'jeonnam'}">selected</c:if>>전남</option>
+                                        <option value="gyeongbuk" <c:if test="${resume.location_el == 'gyeongbuk'}">selected</c:if>>경북</option>
+                                        <option value="gyeongnam" <c:if test="${resume.location_el == 'gyeongnam'}">selected</c:if>>경남</option>
+                                        <option value="overseas" <c:if test="${resume.location_el == 'overseas'}">selected</c:if>>해외</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -162,7 +177,7 @@
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduationStatus_mi" class="status" required>
+                                    <select name="graduationStatus_mi" class="status">
                                         <option value="">졸업 여부</option>
                                         <option value="graduate" <c:if test="${resume.graduationStatus_mi == 'graduate'}">selected</c:if>>졸업</option>
                                         <option value="withdraw" <c:if test="${resume.graduationStatus_mi == 'withdraw'}">selected</c:if>>중퇴</option>
@@ -179,21 +194,36 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="date" name="enterDate" class="enter_date" value="<fmt:formatDate value='${resume.enterDate}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="enterDate_mi" class="enter_date" value="<fmt:formatDate value='${resume.enterDate_mi}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="date" name="graduationDate" class="graduation_date" value="<fmt:formatDate value='${resume.graduationDate}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="graduationDate_mi" class="graduation_date" value="<fmt:formatDate value='${resume.graduationDate_mi}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
-        
+
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location_mi" class="select_lo">
-                                        <option value="">지역선택</option>
-                                        <c:forEach var="region" items="${regions}">
-                                            <option value="${region.code}" <c:if test="${resume.location_mi == region.code}">selected</c:if>>${region.name}</option>
-                                        </c:forEach>
+                                        <option value="" <c:if test="${resume.location_mi == ''}">selected</c:if>>지역선택</option>
+                                        <option value="seoul" <c:if test="${resume.location_mi == 'seoul'}">selected</c:if>>서울</option>
+                                        <option value="busan" <c:if test="${resume.location_mi == 'busan'}">selected</c:if>>부산</option>
+                                        <option value="daegu" <c:if test="${resume.location_mi == 'daegu'}">selected</c:if>>대구</option>
+                                        <option value="incheon" <c:if test="${resume.location_mi == 'incheon'}">selected</c:if>>인천</option>
+                                        <option value="gwangju" <c:if test="${resume.location_mi == 'gwangju'}">selected</c:if>>광주</option>
+                                        <option value="daejeon" <c:if test="${resume.location_mi == 'daejeon'}">selected</c:if>>대전</option>
+                                        <option value="ulsan" <c:if test="${resume.location_mi == 'ulsan'}">selected</c:if>>울산</option>
+                                        <option value="sejong" <c:if test="${resume.location_mi == 'sejong'}">selected</c:if>>세종</option>
+                                        <option value="jeju" <c:if test="${resume.location_mi == 'jeju'}">selected</c:if>>제주</option>
+                                        <option value="gangwon" <c:if test="${resume.location_mi == 'gangwon'}">selected</c:if>>강원</option>
+                                        <option value="gyeonggi" <c:if test="${resume.location_mi == 'gyeonggi'}">selected</c:if>>경기</option>
+                                        <option value="chungbuk" <c:if test="${resume.location_mi == 'chungbuk'}">selected</c:if>>충북</option>
+                                        <option value="chungnam" <c:if test="${resume.location_mi == 'chungnam'}">selected</c:if>>충남</option>
+                                        <option value="jeonbuk" <c:if test="${resume.location_mi == 'jeonbuk'}">selected</c:if>>전북</option>
+                                        <option value="jeonnam" <c:if test="${resume.location_mi == 'jeonnam'}">selected</c:if>>전남</option>
+                                        <option value="gyeongbuk" <c:if test="${resume.location_mi == 'gyeongbuk'}">selected</c:if>>경북</option>
+                                        <option value="gyeongnam" <c:if test="${resume.location_mi == 'gyeongnam'}">selected</c:if>>경남</option>
+                                        <option value="overseas" <c:if test="${resume.location_mi == 'overseas'}">selected</c:if>>해외</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -208,7 +238,7 @@
                                 </fieldset>
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduationStatus_hi" class="status" required>
+                                    <select name="graduationStatus_hi" class="status">
                                         <option value="">졸업 여부</option>
                                         <option value="graduate" <c:if test="${resume.graduationStatus_hi == 'graduate'}">selected</c:if>>졸업</option>
                                         <option value="attending" <c:if test="${resume.graduationStatus_hi == 'attending'}">selected</c:if>>재학중</option>
@@ -227,21 +257,36 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="date" name="enterDate" class="enter_date" value="<fmt:formatDate value='${resume.enterDate}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="enterDate_hi" class="enter_date" value="<fmt:formatDate value='${resume.enterDate_hi}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="date" name="graduationDate" class="graduation_date" value="<fmt:formatDate value='${resume.graduationDate}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="graduationDate_hi" class="graduation_date" value="<fmt:formatDate value='${resume.graduationDate_hi}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
-        
+
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location_hi" class="select_lo">
-                                        <option value="">지역 선택</option>
-                                        <c:forEach var="region" items="${regions}">
-                                            <option value="${region.code}" <c:if test="${resume.location_hi == region.code}">selected</c:if>>${region.name}</option>
-                                        </c:forEach>
+                                        <option value="" <c:if test="${resume.location_hi == ''}">selected</c:if>>지역선택</option>
+                                        <option value="seoul" <c:if test="${resume.location_hi == 'seoul'}">selected</c:if>>서울</option>
+                                        <option value="busan" <c:if test="${resume.location_hi == 'busan'}">selected</c:if>>부산</option>
+                                        <option value="daegu" <c:if test="${resume.location_hi == 'daegu'}">selected</c:if>>대구</option>
+                                        <option value="incheon" <c:if test="${resume.location_hi == 'incheon'}">selected</c:if>>인천</option>
+                                        <option value="gwangju" <c:if test="${resume.location_hi == 'gwangju'}">selected</c:if>>광주</option>
+                                        <option value="daejeon" <c:if test="${resume.location_hi == 'daejeon'}">selected</c:if>>대전</option>
+                                        <option value="ulsan" <c:if test="${resume.location_hi == 'ulsan'}">selected</c:if>>울산</option>
+                                        <option value="sejong" <c:if test="${resume.location_hi == 'sejong'}">selected</c:if>>세종</option>
+                                        <option value="jeju" <c:if test="${resume.location_hi == 'jeju'}">selected</c:if>>제주</option>
+                                        <option value="gangwon" <c:if test="${resume.location_hi == 'gangwon'}">selected</c:if>>강원</option>
+                                        <option value="gyeonggi" <c:if test="${resume.location_hi == 'gyeonggi'}">selected</c:if>>경기</option>
+                                        <option value="chungbuk" <c:if test="${resume.location_hi == 'chungbuk'}">selected</c:if>>충북</option>
+                                        <option value="chungnam" <c:if test="${resume.location_hi == 'chungnam'}">selected</c:if>>충남</option>
+                                        <option value="jeonbuk" <c:if test="${resume.location_hi == 'jeonbuk'}">selected</c:if>>전북</option>
+                                        <option value="jeonnam" <c:if test="${resume.location_hi == 'jeonnam'}">selected</c:if>>전남</option>
+                                        <option value="gyeongbuk" <c:if test="${resume.location_hi == 'gyeongbuk'}">selected</c:if>>경북</option>
+                                        <option value="gyeongnam" <c:if test="${resume.location_hi == 'gyeongnam'}">selected</c:if>>경남</option>
+                                        <option value="overseas" <c:if test="${resume.location_hi == 'overseas'}">selected</c:if>>해외</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -262,7 +307,7 @@
                                     
                                 <fieldset class="input-group">
                                     <legend>학제 *</legend>
-                                    <select name="degree_col" class="degree" required>
+                                    <select name="degree_col" class="degree">
                                         <option value="">학제</option>
                                         <option value="2year" <c:if test="${resume.degree_col == '2year'}">selected</c:if>>2년제</option>
                                         <option value="3year" <c:if test="${resume.degree_col == '3year'}">selected</c:if>>3년제</option>
@@ -274,7 +319,7 @@
                 
                                 <fieldset class="input-group">
                                     <legend>졸업 여부 *</legend>
-                                    <select name="graduationStatus_col" class="status" required>
+                                    <select name="graduationStatus_col" class="status">
                                         <option value="">졸업 여부</option>
                                         <option value="graduate" <c:if test="${resume.graduationStatus_col == 'graduate'}">selected</c:if>>졸업</option>
                                         <option value="attending" <c:if test="${resume.graduationStatus_col == 'attending'}">selected</c:if>>재학중</option>
@@ -288,21 +333,36 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="date" name="enterDate_col" class="enter_date" value="<fmt:formatDate value='${resume.enterDate_col}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="enterDate" class="enterDate_col" value="<fmt:formatDate value='${resume.enterDate_col}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="date" name="graduationDate_col" class="graduation_date" value="<fmt:formatDate value='${resume.graduationDate_col}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="graduationDate" class="graduationDate_col" value="<fmt:formatDate value='${resume.graduationDate_col}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
-        
+
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location_col" class="select_lo">
-                                        <option value="">지역 선택</option>
-                                        <c:forEach var="region" items="${regions}">
-                                            <option value="${region.code}" <c:if test="${resume.location_col == region.code}">selected</c:if>>${region.name}</option>
-                                        </c:forEach>
+                                        <option value="" <c:if test="${resume.location_col == ''}">selected</c:if>>지역선택</option>
+                                        <option value="seoul" <c:if test="${resume.location_col == 'seoul'}">selected</c:if>>서울</option>
+                                        <option value="busan" <c:if test="${resume.location_col == 'busan'}">selected</c:if>>부산</option>
+                                        <option value="daegu" <c:if test="${resume.location_col == 'daegu'}">selected</c:if>>대구</option>
+                                        <option value="incheon" <c:if test="${resume.location_col == 'incheon'}">selected</c:if>>인천</option>
+                                        <option value="gwangju" <c:if test="${resume.location_col == 'gwangju'}">selected</c:if>>광주</option>
+                                        <option value="daejeon" <c:if test="${resume.location_col == 'daejeon'}">selected</c:if>>대전</option>
+                                        <option value="ulsan" <c:if test="${resume.location_col == 'ulsan'}">selected</c:if>>울산</option>
+                                        <option value="sejong" <c:if test="${resume.location_col == 'sejong'}">selected</c:if>>세종</option>
+                                        <option value="jeju" <c:if test="${resume.location_col == 'jeju'}">selected</c:if>>제주</option>
+                                        <option value="gangwon" <c:if test="${resume.location_col == 'gangwon'}">selected</c:if>>강원</option>
+                                        <option value="gyeonggi" <c:if test="${resume.location_col == 'gyeonggi'}">selected</c:if>>경기</option>
+                                        <option value="chungbuk" <c:if test="${resume.location_col == 'chungbuk'}">selected</c:if>>충북</option>
+                                        <option value="chungnam" <c:if test="${resume.location_col == 'chungnam'}">selected</c:if>>충남</option>
+                                        <option value="jeonbuk" <c:if test="${resume.location_col == 'jeonbuk'}">selected</c:if>>전북</option>
+                                        <option value="jeonnam" <c:if test="${resume.location_col == 'jeonnam'}">selected</c:if>>전남</option>
+                                        <option value="gyeongbuk" <c:if test="${resume.location_col == 'gyeongbuk'}">selected</c:if>>경북</option>
+                                        <option value="gyeongnam" <c:if test="${resume.location_col == 'gyeongnam'}">selected</c:if>>경남</option>
+                                        <option value="overseas" <c:if test="${resume.location_col == 'overseas'}">selected</c:if>>해외</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -315,11 +375,6 @@
             <div class="Career">
                 <fieldset class="career">
                     <legend class="career_Lv">경력</legend>
-                    <label class="careerYorN">경력이 있을 경우 선택해주세요.</label>
-                    <label for="CareerY">
-                        <input type="checkbox" id="CareerY" name="career_present" <c:if test="${not empty resume.companyTitle}">checked</c:if>/>
-                        <span></span>&nbsp;
-                    </label>
                     <div class="career1" <c:if test="${empty resume.companyTitle}">style="display: none;"</c:if>>
                         <fieldset class="company_title">
                             <legend>회사명</legend>
@@ -335,7 +390,7 @@
                         </fieldset>
                         <fieldset class="input-group">
                             <legend>근무현황</legend>
-                            <select name="careerStatus" class="career_status" required>
+                            <select name="careerStatus" class="career_status">
                                 <option value="">근무현황</option>
                                 <option value="Y" <c:if test="${resume.careerStatus == 'Y'}">selected</c:if>>재직중</option>
                                 <option value="N" <c:if test="${resume.careerStatus == 'N'}">selected</c:if>>퇴사</option>
@@ -360,13 +415,7 @@
                     <div class="career3" <c:if test="${empty resume.jobContent}">style="display: none;"</c:if>>
                         <fieldset class="job_content">
                             <legend>담당업무</legend>
-                            <textarea name="jobContent" id="j_content" placeholder="담당업무를 입력해주세요.
-                
-- 진행한 업무를 다 적기보다는 경력사항 별로 중요합니다!
-                
-- 담당한 업무 내용을 요약해서 작성해보세요!
-                
-- 경력별 프로젝트 내용을 적을 경우, 역할/팀구성/기여도/성과를 기준으로 요약해서 작성해보세요!" >${resume.jobContent}</textarea>
+                            <textarea name="jobContent" id="j_content">${resume.jobContent}</textarea>
                         </fieldset>
                     </div>
                 </fieldset>
@@ -378,20 +427,8 @@
                     <legend class="skill_name">스킬</legend>
                     <div id="sk_title1">
                         <fieldset class="skill_title">
-                            <input type="text" name="skillName" value="${resume.skillName}" placeholder="툴/직무역량/소프트스킬을 입력해주세요.">
+                            <input type="text" name="skillName" value="${resume.skillName}">
                         </fieldset>
-                        <button type="button" class="addSkillButton">추가하기</button>
-                    </div>
-                    <div id="sk_title2" style="display: ${not empty resume.skillName ? 'block' : 'none'};">
-                        <div id="MYsk">
-                            <h1>나의 스킬</h1>
-                            <c:forEach var="skill" items="${resume.skills}">
-                                <div class="skill-item">
-                                    <input type="text" name="skills" value="${skill.name}" placeholder="추가 스킬 입력">
-                                    <button type="button" class="removeSkillButton">삭제</button>
-                                </div>
-                            </c:forEach>
-                        </div>
                     </div>
                 </fieldset>
             </div>
@@ -403,7 +440,7 @@
                     <div class="exp1">
                         <fieldset class="activity">
                             <legend>활동구분선택</legend>
-                            <select name="activityType" class="select_activity" required>
+                            <select name="activityType" class="select_activity">
                                 <option value="">없음</option>
                                 <option value="working" <c:if test="${resume.activityType == 'working'}">selected</c:if>>교내활동</option>
                                 <option value="intern" <c:if test="${resume.activityType == 'intern'}">selected</c:if>>인턴</option>
@@ -418,21 +455,21 @@
                         </fieldset>
                         <fieldset class="place">
                             <legend class="place_name">기관/장소</legend>
-                            <input type="text" name="organizationName" value="${resume.organizationName}" >
+                            <input type="text" name="organizationName" value="${resume.organizationName}">
                         </fieldset>
                         <fieldset class="start_date">
                             <legend>시작년월</legend>
-                            <input type="date" name="startDateAct" value="<fmt:formatDate value='${resume.startDateAct}' pattern='yyyy-MM-dd'/>" >
+                            <input type="date" name="startDateAct" value="<fmt:formatDate value='${resume.startDateAct}' pattern='yyyy-MM-dd'/>">
                         </fieldset>
                         <fieldset class="finish_date">
                             <legend>종료년월</legend>
-                            <input type="date" name="endDateAct" value="<fmt:formatDate value='${resume.endDateAct}' pattern='yyyy-MM-dd'/>" >
+                            <input type="date" name="endDateAct" value="<fmt:formatDate value='${resume.endDateAct}' pattern='yyyy-MM-dd'/>">
                         </fieldset>
                     </div>
                     <div class="exp2" <c:if test="${empty resume.description}">style="display: none;"</c:if>>
                         <fieldset class="exp_content">
                             <legend>활동설명</legend>
-                            <textarea name="description" id="e_content" placeholder="경험/활동 상세내용 입력" >${resume.description}</textarea>
+                            <textarea name="description" id="e_content" placeholder="경험/활동 상세내용 입력">${resume.description}</textarea>
                         </fieldset>
                     </div>
                 </fieldset>
@@ -445,7 +482,7 @@
                     <div class="AWARDS">
                         <fieldset class="select_inner">
                             <legend>구분</legend>
-                            <select name="category" id="sortation" required>
+                            <select name="category" id="sortation">
                                 <option value="">구분*</option>
                                 <option value="certificate" <c:if test="${resume.category == 'certificate'}">selected</c:if>>자격증/면허증</option>
                                 <option value="language" <c:if test="${resume.category == 'language'}">selected</c:if>>어학시험</option>
@@ -454,18 +491,18 @@
                         </fieldset>
                     </div>
                     <!-- 자격증/면허증 정보 -->
-                    <div class="awards2" id="certificateFields" style="display: ${resume.category == 'certificate' ? 'block' : 'none'};">
+                    <div class="awards2" id="certificateFields" style="display: ${resume.category == 'certificate' ? 'flex' : 'none'};">
                         <fieldset class="certi_title">
                             <legend>자격증명</legend>
-                            <input type="text" name="qualificationName" value="${resume.qualificationName}" required>
+                            <input type="text" name="name" value="${resume.name}">
                         </fieldset>
                         <fieldset class="institution">
                             <legend>발행처/기관</legend>
-                            <input type="text" name="issuingAgency" value="${resume.issuingAgency}" required>
+                            <input type="text" name="issuingAgency" value="${resume.issuingAgency}">
                         </fieldset>
                         <fieldset class="pass_status">
                             <legend>합격구분</legend>
-                            <select name="passStatus" id="pass_menu" required>
+                            <select name="passStatus" id="pass_menu">
                                 <option value="">합격구분*</option>
                                 <option value="1pass" <c:if test="${resume.passStatus == '1pass'}">selected</c:if>>1차합격</option>
                                 <option value="2pass" <c:if test="${resume.passStatus == '2pass'}">selected</c:if>>2차합격</option>
@@ -475,24 +512,24 @@
                             </select>
                         </fieldset>
                     </div>
-                    <div class="awards3" id="certificateDate" style="display: ${resume.category == 'certificate' ? 'block' : 'none'};">
+                    <div class="awards3" id="certificateDate" style="display: ${resume.category == 'certificate' ? 'flex' : 'none'};">
                         <fieldset class="pass_date">
                             <legend>발급일자</legend>
-                            <input type="date" class="pass" name="issueDate" value="<fmt:formatDate value='${resume.issueDate}' pattern='yyyy-MM-dd'/>" required>
+                            <input type="date" class="pass" name="issueDate" value="<fmt:formatDate value='${resume.issueDate}' pattern='yyyy-MM-dd'/>">
                         </fieldset>
                         <button type="button" class="addQualificationButton">추가하기</button>
                     </div>
                     <!-- 어학시험 정보 -->
-                    <div class="Language" id="languageFields" style="display: ${resume.category == 'language' ? 'block' : 'none'};">
+                    <div class="Language" id="languageFields" style="display: ${resume.category == 'language' ? 'flex' : 'none'};">
                         <div class="Lang">
                             <div class="language1">
                                 <fieldset class="lang_title">
                                     <legend>어학시험명</legend>
-                                    <input type="text" name="languageName" value="${resume.languageName}" required>
+                                    <input type="text" name="name" value="${resume.name}">
                                 </fieldset>
                                 <fieldset class="level">
                                     <legend>급수</legend>
-                                    <select name="proficiencyLevel" id="certi_level" required>
+                                    <select name="proficiencyLevel" id="certi_level">
                                         <option value="">급수</option>
                                         <c:forEach var="level" begin="1" end="15">
                                             <option value="${level}" <c:if test="${resume.proficiencyLevel == level}">selected</c:if>>${level}</option>
@@ -501,7 +538,7 @@
                                 </fieldset>
                                 <fieldset class="lang_category">
                                     <legend>언어</legend>
-                                    <select name="languageType" id="lang_cate" required>
+                                    <select name="languageType" id="lang_cate">
                                         <option value="">언어</option>
                                         <option value="english" <c:if test="${resume.languageType == 'english'}">selected</c:if>>영어</option>
                                         <option value="japan" <c:if test="${resume.languageType == 'japan'}">selected</c:if>>일본어</option>
@@ -519,7 +556,7 @@
                             <div class="language2" id="languageDate1" style="display: block;">
                                 <fieldset class="get_date">
                                     <legend>취득일</legend>
-                                    <input type="date" class="get" name="issueDate" value="<fmt:formatDate value='${resume.issueDate}' pattern='yyyy-MM-dd'/>" required>
+                                    <input type="date" class="get" name="issueDate" value="<fmt:formatDate value='${resume.issueDate}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
                                 <button type="button" class="addLanguageButton">추가하기</button>
                             </div>
@@ -530,29 +567,23 @@
                         <div class="contest1">
                             <fieldset class="contest_title">
                                 <legend>수상/공모전명</legend>
-                                <input type="text" name="awardName" value="${resume.awardName}" required>
+                                <input type="text" name="awardName" value="${resume.awardName}">
                             </fieldset>
                             <fieldset class="contest_place">
                                 <legend>주최기관</legend>
-                                <input type="text" name="organizer" value="${resume.organizer}" required>
+                                <input type="text" name="organizer" value="${resume.organizer}">
                             </fieldset>
                             <fieldset class="acquire_date">
                                 <legend>취득일</legend>
-                                <input type="date" class="acquire" name="awardDate" value="<fmt:formatDate value='${resume.awardDate}' pattern='yyyy-MM-dd'/>" required>
+                                <input type="date" class="acquire" name="awardDate" value="<fmt:formatDate value='${resume.awardDate}' pattern='yyyy-MM-dd'/>">
                             </fieldset>
                         </div>
-                        <div class="contest2" style="display: none;">
+                        <div class="contest2">
                             <button type="button" class="addAwardButton">추가하기</button>
                         </div>
                     </div>
                     <div class="result-list">
                         <!-- 동적으로 추가된 리스트 아이템들이 여기에 추가됩니다. -->
-                        <!-- 예: <c:forEach var="award" items="${resume.awards}">
-                            <div class="award-item">
-                                <input type="text" name="awards" value="${award.name}" placeholder="추가 수상/공모전명">
-                                <button type="button" class="removeAwardButton">삭제</button>
-                            </div>
-                        </c:forEach> -->
                     </div>
                 </fieldset>
             </div>
@@ -579,21 +610,21 @@
                             </select>
                         </fieldset>
                         <!-- 미필 사유 -->
-                        <div class="unfulfilled" id="unfulfilledFields" style="display: ${resume.serviceStatus == 'unfulfilled' ? 'block' : 'none'};">
+                        <div class="unfulfilled" id="unfulfilledFields" style="display: ${resume.serviceStatus == 'unfulfilled' ? 'flex' : 'none'};">
                             <fieldset class="exempted">
                                 <legend>사유 입력</legend>
                                 <input type="text" name="unfinishedReason" value="${resume.unfinishedReason}" placeholder="사유 입력">
                             </fieldset>
                         </div>
                         <!-- 면제 사유 -->
-                        <div class="EXEMPTED" id="exemptedFields" style="display: ${resume.serviceStatus == 'exempted' ? 'block' : 'none'};">
+                        <div class="EXEMPTED" id="exemptedFields" style="display: ${resume.serviceStatus == 'exempted' ? 'flex' : 'none'};">
                             <fieldset class="exempted">
                                 <legend>사유 입력</legend>
                                 <input type="text" name="exemptionReason" value="${resume.exemptionReason}" placeholder="사유 입력">
                             </fieldset>
                         </div>
                         <!-- 군필 상세 -->
-                        <div class="fulfilled" id="fulfilledFields" style="display: ${resume.serviceStatus == 'fulfilled' ? 'block' : 'none'};">
+                        <div class="fulfilled" id="fulfilledFields" style="display: ${resume.serviceStatus == 'fulfilled' ? 'flex' : 'none'};">
                             <fieldset>
                                 <legend>입대일</legend>
                                 <input type="date" name="enlistmentDate" value="<fmt:formatDate value='${resume.enlistmentDate}' pattern='yyyy-MM-dd'/>">
@@ -605,20 +636,22 @@
                             <fieldset>
                                 <legend>군별선택</legend>
                                 <select name="militaryBranch">
-                                    <option value="1" <c:if test="${resume.militaryBranch == '1'}">selected</c:if>>육군</option>
-                                    <option value="2" <c:if test="${resume.militaryBranch == '2'}">selected</c:if>>해군</option>
-                                    <option value="3" <c:if test="${resume.militaryBranch == '3'}">selected</c:if>>공군</option>
-                                    <option value="4" <c:if test="${resume.militaryBranch == '4'}">selected</c:if>>해병</option>
-                                    <option value="5" <c:if test="${resume.militaryBranch == '5'}">selected</c:if>>의경</option>
-                                    <option value="6" <c:if test="${resume.militaryBranch == '6'}">selected</c:if>>전경</option>
-                                    <option value="7" <c:if test="${resume.militaryBranch == '7'}">selected</c:if>>기타</option>
-                                    <option value="8" <c:if test="${resume.militaryBranch == '8'}">selected</c:if>>사회복무요원</option>
-                                    <option value="9" <c:if test="${resume.militaryBranch == '9'}">selected</c:if>>의무소방</option>
+                                    <option value=""<c:if test="${resume.militaryBranch == ''}">selected</c:if>>군별선택</option>
+                                    <option value="1" <c:if test="${resume.militaryBranch == 'army'}">selected</c:if>>육군</option>
+                                    <option value="2" <c:if test="${resume.militaryBranch == 'navy'}">selected</c:if>>해군</option>
+                                    <option value="3" <c:if test="${resume.militaryBranch == 'airforce'}">selected</c:if>>공군</option>
+                                    <option value="4" <c:if test="${resume.militaryBranch == 'Marine'}">selected</c:if>>해병</option>
+                                    <option value="5" <c:if test="${resume.militaryBranch == 'policeman'}">selected</c:if>>의경</option>
+                                    <option value="6" <c:if test="${resume.militaryBranch == 'combatpolice'}">selected</c:if>>전경</option>
+                                    <option value="7" <c:if test="${resume.militaryBranch == 'etc'}">selected</c:if>>기타</option>
+                                    <option value="8" <c:if test="${resume.militaryBranch == 'socialserviceworker'}">selected</c:if>>사회복무요원</option>
+                                    <option value="9" <c:if test="${resume.militaryBranch == 'firefighting'}">selected</c:if>>의무소방</option>
                                 </select>
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
                                 <select name="rank">
+                                    <option value="" <c:if test="${resume.rank == ''}">selected</c:if>>군별선택</option>
                                     <option value="1" <c:if test="${resume.rank == '1'}">selected</c:if>>이병</option>
                                     <option value="2" <c:if test="${resume.rank == '2'}">selected</c:if>>일병</option>
                                     <option value="3" <c:if test="${resume.rank == '3'}">selected</c:if>>상병</option>
@@ -643,7 +676,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>전역사유 선택</legend>
-                                <select name="dischargeReason" id="discharge_reason" required>
+                                <select name="dischargeReason" id="discharge_reason">
                                     <option value="">전역사유</option>
                                     <option value="1" <c:if test="${resume.dischargeReason == '1'}">selected</c:if>>만기전역</option>
                                     <option value="2" <c:if test="${resume.dischargeReason == '2'}">selected</c:if>>의가사전역</option>
@@ -668,20 +701,22 @@
                             <fieldset>
                                 <legend>군별선택</legend>
                                 <select name="militaryBranch">
-                                    <option value="1" <c:if test="${resume.militaryBranch == '1'}">selected</c:if>>육군</option>
-                                    <option value="2" <c:if test="${resume.militaryBranch == '2'}">selected</c:if>>해군</option>
-                                    <option value="3" <c:if test="${resume.militaryBranch == '3'}">selected</c:if>>공군</option>
-                                    <option value="4" <c:if test="${resume.militaryBranch == '4'}">selected</c:if>>해병</option>
-                                    <option value="5" <c:if test="${resume.militaryBranch == '5'}">selected</c:if>>의경</option>
-                                    <option value="6" <c:if test="${resume.militaryBranch == '6'}">selected</c:if>>전경</option>
-                                    <option value="7" <c:if test="${resume.militaryBranch == '7'}">selected</c:if>>기타</option>
-                                    <option value="8" <c:if test="${resume.militaryBranch == '8'}">selected</c:if>>사회복무요원</option>
-                                    <option value="9" <c:if test="${resume.militaryBranch == '9'}">selected</c:if>>의무소방</option>
+                                    <option value=""<c:if test="${resume.militaryBranch == ''}">selected</c:if>>군별선택</option>
+                                    <option value="1" <c:if test="${resume.militaryBranch == 'army'}">selected</c:if>>육군</option>
+                                    <option value="2" <c:if test="${resume.militaryBranch == 'navy'}">selected</c:if>>해군</option>
+                                    <option value="3" <c:if test="${resume.militaryBranch == 'airforce'}">selected</c:if>>공군</option>
+                                    <option value="4" <c:if test="${resume.militaryBranch == 'Marine'}">selected</c:if>>해병</option>
+                                    <option value="5" <c:if test="${resume.militaryBranch == 'policeman'}">selected</c:if>>의경</option>
+                                    <option value="6" <c:if test="${resume.militaryBranch == 'combatpolice'}">selected</c:if>>전경</option>
+                                    <option value="7" <c:if test="${resume.militaryBranch == 'etc'}">selected</c:if>>기타</option>
+                                    <option value="8" <c:if test="${resume.militaryBranch == 'socialserviceworker'}">selected</c:if>>사회복무요원</option>
+                                    <option value="9" <c:if test="${resume.militaryBranch == 'firefighting'}">selected</c:if>>의무소방</option>
                                 </select>
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
                                 <select name="rank">
+                                    <option value="" <c:if test="${resume.rank == ''}">selected</c:if>>군별선택</option>
                                     <option value="1" <c:if test="${resume.rank == '1'}">selected</c:if>>이병</option>
                                     <option value="2" <c:if test="${resume.rank == '2'}">selected</c:if>>일병</option>
                                     <option value="3" <c:if test="${resume.rank == '3'}">selected</c:if>>상병</option>
@@ -706,71 +741,8 @@
                             </fieldset>
                             <fieldset>
                                 <legend>전역사유 선택</legend>
-                                <select name="dischargeReason" id="discharge_reason" required>
-                                    <option value="">전역사유</option>
-                                    <option value="1" <c:if test="${resume.dischargeReason == '1'}">selected</c:if>>만기전역</option>
-                                    <option value="2" <c:if test="${resume.dischargeReason == '2'}">selected</c:if>>의가사전역</option>
-                                    <option value="3" <c:if test="${resume.dischargeReason == '3'}">selected</c:if>>의병전역</option>
-                                    <option value="4" <c:if test="${resume.dischargeReason == '4'}">selected</c:if>>소집해제</option>
-                                    <option value="5" <c:if test="${resume.dischargeReason == '5'}">selected</c:if>>불명예전역</option>
-                                    <option value="6" <c:if test="${resume.dischargeReason == '6'}">selected</c:if>>상이전역</option>
-                                    <option value="7" <c:if test="${resume.dischargeReason == '7'}">selected</c:if>>기타</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                        <!-- 복무중 상세 -->
-                        <div class="serving" id="servingFields" style="display: ${resume.serviceStatus == 'serving' ? 'block' : 'none'};">
-                            <fieldset>
-                                <legend>입대일</legend>
-                                <input type="date" name="enlistmentDate" value="<fmt:formatDate value='${resume.enlistmentDate}' pattern='yyyy-MM-dd'/>">
-                            </fieldset>
-                            <fieldset>
-                                <legend>전역일</legend>
-                                <input type="date" name="dischargeDate" value="<fmt:formatDate value='${resume.dischargeDate}' pattern='yyyy-MM-dd'/>" readonly>
-                            </fieldset>
-                            <fieldset>
-                                <legend>군별선택</legend>
-                                <select name="militaryBranch">
-                                    <option value="1" <c:if test="${resume.militaryBranch == '1'}">selected</c:if>>육군</option>
-                                    <option value="2" <c:if test="${resume.militaryBranch == '2'}">selected</c:if>>해군</option>
-                                    <option value="3" <c:if test="${resume.militaryBranch == '3'}">selected</c:if>>공군</option>
-                                    <option value="4" <c:if test="${resume.militaryBranch == '4'}">selected</c:if>>해병</option>
-                                    <option value="5" <c:if test="${resume.militaryBranch == '5'}">selected</c:if>>의경</option>
-                                    <option value="6" <c:if test="${resume.militaryBranch == '6'}">selected</c:if>>전경</option>
-                                    <option value="7" <c:if test="${resume.militaryBranch == '7'}">selected</c:if>>기타</option>
-                                    <option value="8" <c:if test="${resume.militaryBranch == '8'}">selected</c:if>>사회복무요원</option>
-                                    <option value="9" <c:if test="${resume.militaryBranch == '9'}">selected</c:if>>의무소방</option>
-                                </select>
-                            </fieldset>
-                            <fieldset>
-                                <legend>계급선택</legend>
-                                <select name="rank">
-                                    <option value="1" <c:if test="${resume.rank == '1'}">selected</c:if>>이병</option>
-                                    <option value="2" <c:if test="${resume.rank == '2'}">selected</c:if>>일병</option>
-                                    <option value="3" <c:if test="${resume.rank == '3'}">selected</c:if>>상병</option>
-                                    <option value="4" <c:if test="${resume.rank == '4'}">selected</c:if>>병장</option>
-                                    <option value="5" <c:if test="${resume.rank == '5'}">selected</c:if>>하사</option>
-                                    <option value="6" <c:if test="${resume.rank == '6'}">selected</c:if>>중사</option>
-                                    <option value="7" <c:if test="${resume.rank == '7'}">selected</c:if>>상사</option>
-                                    <option value="8" <c:if test="${resume.rank == '8'}">selected</c:if>>원사</option>
-                                    <option value="9" <c:if test="${resume.rank == '9'}">selected</c:if>>준위</option>
-                                    <option value="10" <c:if test="${resume.rank == '10'}">selected</c:if>>소위</option>
-                                    <option value="11" <c:if test="${resume.rank == '11'}">selected</c:if>>중위</option>
-                                    <option value="12" <c:if test="${resume.rank == '12'}">selected</c:if>>대위</option>
-                                    <option value="13" <c:if test="${resume.rank == '13'}">selected</c:if>>소령</option>
-                                    <option value="14" <c:if test="${resume.rank == '14'}">selected</c:if>>중령</option>
-                                    <option value="15" <c:if test="${resume.rank == '15'}">selected</c:if>>대령</option>
-                                    <option value="16" <c:if test="${resume.rank == '16'}">selected</c:if>>준장</option>
-                                    <option value="17" <c:if test="${resume.rank == '17'}">selected</c:if>>소장</option>
-                                    <option value="18" <c:if test="${resume.rank == '18'}">selected</c:if>>중장</option>
-                                    <option value="19" <c:if test="${resume.rank == '19'}">selected</c:if>>대장</option>
-                                    <option value="20" <c:if test="${resume.rank == '20'}">selected</c:if>>기타</option>
-                                </select>
-                            </fieldset>
-                            <fieldset>
-                                <legend>전역사유 선택</legend>
-                                <select name="dischargeReason" id="discharge_reason" required>
-                                    <option value="">전역사유</option>
+                                <select name="dischargeReason" id="discharge_reason">
+                                    <option value="" <c:if test="${resume.dischargeReason == ''}">selected</c:if>>전역사유</option>
                                     <option value="1" <c:if test="${resume.dischargeReason == '1'}">selected</c:if>>만기전역</option>
                                     <option value="2" <c:if test="${resume.dischargeReason == '2'}">selected</c:if>>의가사전역</option>
                                     <option value="3" <c:if test="${resume.dischargeReason == '3'}">selected</c:if>>의병전역</option>

@@ -171,9 +171,9 @@
         ORDER BY CREATE_DATE DESC
     </select>
     
-    <select id="selectResumeById" parameterType="int" resultType="com.cs.workdream.resume.model.vo.Resume">
-        SELECT * FROM RESUME WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
-    </select>
+   <select id="selectResumeById" parameterType="int" resultMap="ResumeResultMap">
+	    SELECT * FROM RESUME WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
+	</select>
 
     <!-- 이력서 수정 -->
     <update id="updateResume" parameterType="com.cs.workdream.resume.model.vo.Resume">

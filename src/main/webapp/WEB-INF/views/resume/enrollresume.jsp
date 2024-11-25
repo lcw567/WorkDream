@@ -126,12 +126,12 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="date" name="enterDate" class="enter_date" >
+                                    <input type="date" name="enterDate_el" class="enter_date" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="date" name="graduationDate" class="graduation_date" >
+                                    <input type="date" name="graduationDate_el" class="graduation_date" >
                                 </fieldset>
         
                                 <fieldset class="input-group">
@@ -188,12 +188,12 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="date" name="enterDate" class="enter_date" >
+                                    <input type="date" name="enterDate_mi" class="enter_date" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="date" name="graduationDate" class="graduation_date" >
+                                    <input type="date" name="graduationDate_mi" class="graduation_date" >
                                 </fieldset>
         
                                 <fieldset class="input-group">
@@ -251,12 +251,12 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="date" name="enterDate" class="enter_date" >
+                                    <input type="date" name="enterDate_hi" class="enter_date" >
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="date" name="graduationDate" class="graduation_date" >
+                                    <input type="date" name="graduationDate_hi" class="graduation_date" >
                                 </fieldset>
         
                                 <fieldset class="input-group">
