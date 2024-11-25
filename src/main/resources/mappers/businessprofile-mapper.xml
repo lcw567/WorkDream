@@ -116,5 +116,10 @@
             TITLE = #{title}
         WHERE WORK_ENVIRONMENT_IMAGE_NO = #{workEnvironmentImageNo}
     </update>
+    
+    <!-- WorkEnvironmentImage 삭제 -->
+    <delete id="deleteWorkEnvironmentImageById" parameterType="int">
+        DELETE FROM WORK_ENVIRONMENT_IMAGE WHERE WORK_ENVIRONMENT_IMAGE_NO = #{workEnvironmentImageNo}
+    </delete>
 
 </mapper>

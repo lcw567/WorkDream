@@ -29,7 +29,7 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
 
     @Override
     @Transactional
-    public void registerBusinessProfile(Business business, List<MultipartFile> workEnvironmentFiles, List<MultipartFile> newWorkEnvironmentFiles, List<Integer> existingImageIds, String workEnvImageTitlesJson) throws Exception {
+    public void registerBusinessProfile(Business business, List<MultipartFile> workEnvironmentFiles, List<MultipartFile> newWorkEnvironmentFiles, List<Integer> existingImageIds, String workEnvImageTitlesJson, List<Integer> deleteImageIds) throws Exception {
         // BUSINESS 테이블에 업데이트
         int result = businessProfileDao.updateBusiness(business);
         if(result <= 0) throw new Exception("Business update failed");
@@ -46,8 +46,34 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
             }
         }
 
-        // 근무 환경 이미지 업데이트 처리
-        // 1. 기존 이미지 업데이트
+        // 1. 삭제할 이미지 처리
+        if(deleteImageIds != null && !deleteImageIds.isEmpty()) {
+            for(Integer imageId : deleteImageIds) {
+                WorkEnvironmentImage image = businessProfileDao.selectWorkEnvironmentImageById(imageId);
+                if(image != null) {
+                    // 파일 삭제
+                    String imagePath = servletContext.getRealPath(image.getImageUrl());
+                    File imageFile = new File(imagePath);
+                    if(imageFile.exists()) {
+                        boolean deleted = imageFile.delete();
+                        if(deleted) {
+                            System.out.println("Deleted image file: " + imagePath);
+                        } else {
+                            System.out.println("Failed to delete image file: " + imagePath);
+                            // Optionally, throw an exception to rollback the transaction
+                            throw new Exception("Failed to delete image file: " + imagePath);
+                        }
+                    }
+                    // DB 삭제
+                    int deleteResult = businessProfileDao.deleteWorkEnvironmentImageById(imageId);
+                    if(deleteResult <= 0) {
+                        throw new Exception("Failed to delete WorkEnvironmentImage from DB for ID: " + imageId);
+                    }
+                }
+            }
+        }
+
+        // 2. 기존 이미지 업데이트
         if(workEnvironmentFiles != null && !workEnvironmentFiles.isEmpty() && existingImageIds != null) {
             List<String> workEnvImageTitles = parseJsonArray(workEnvImageTitlesJson);
             for(int i = 0; i < workEnvironmentFiles.size(); i++) {
@@ -66,19 +92,23 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
                                 System.out.println("Deleted image file: " + imagePath);
                             } else {
                                 System.out.println("Failed to delete image file: " + imagePath);
+                                throw new Exception("Failed to delete image file: " + imagePath);
                             }
                         }
                         // 파일 업로드
                         String imageUrl = saveFile(file, "work_env_images");
                         existingImage.setImageUrl(imageUrl);
                         existingImage.setTitle(title);
-                        businessProfileDao.updateWorkEnvironmentImage(existingImage);
+                        int updateResult = businessProfileDao.updateWorkEnvironmentImage(existingImage);
+                        if(updateResult <= 0) {
+                            throw new Exception("Failed to update WorkEnvironmentImage for ID: " + imageId);
+                        }
                     }
                 }
             }
         }
 
-        // 2. 새로운 이미지 추가
+        // 3. 새로운 이미지 추가
         if(newWorkEnvironmentFiles != null && !newWorkEnvironmentFiles.isEmpty()) {
             List<String> workEnvImageTitles = parseJsonArray(workEnvImageTitlesJson);
             for(int i = 0; i < newWorkEnvironmentFiles.size(); i++) {
@@ -90,7 +120,10 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
                     newImage.setBusinessNo(businessNo);
                     newImage.setImageUrl(imageUrl);
                     newImage.setTitle(title);
-                    businessProfileDao.insertWorkEnvironmentImage(newImage);
+                    int insertResult = businessProfileDao.insertWorkEnvironmentImage(newImage);
+                    if(insertResult <= 0) {
+                        throw new Exception("Failed to insert new WorkEnvironmentImage");
+                    }
                 }
             }
         }

@@ -154,7 +154,7 @@
                 </table>
             </div>
 
-            <!-- 사내 근무 환경 테이블 -->
+             <!-- 사내 근무 환경 테이블 -->
             <div class="table-wrapper">
                 <table class="main-profile">
                     <tr>
@@ -170,6 +170,12 @@
                                                 <input type="hidden" name="existingImageIds" value="${business.workEnvironmentImages[i].workEnvironmentImageNo}"/> <!-- 기존 이미지 ID 추가 -->
                                                 <input type="file" name="workEnvironmentFiles" accept="image/*" class="hidden-file-input"> <!-- 기존 이미지 업데이트 파일 -->
                                                 <input type="text" class="photo-title" placeholder="사진 제목을 입력해주세요" value="${business.workEnvironmentImages[i].title}">
+                                                
+                                                <!-- 삭제 체크박스 추가 -->
+                                                <div class="delete-checkbox">
+                                                    <input type="checkbox" name="deleteImageIds" value="${business.workEnvironmentImages[i].workEnvironmentImageNo}">
+                                                    <label>삭제</label>
+                                                </div>
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="${pageContext.request.contextPath}/img/add-image.png" class="add-icon" alt="이미지 추가 아이콘">

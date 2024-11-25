@@ -65,4 +65,9 @@ public class BusinessProfileDao {
     public int updateWorkEnvironmentImage(WorkEnvironmentImage image) {
         return sqlSession.update("com.cs.workdream.business.model.dao.BusinessProfileDao.updateWorkEnvironmentImage", image);
     }
+
+    // WorkEnvironmentImage 삭제
+    public int deleteWorkEnvironmentImageById(int workEnvironmentImageNo) {
+        return sqlSession.delete("com.cs.workdream.business.model.dao.BusinessProfileDao.deleteWorkEnvironmentImageById", workEnvironmentImageNo);
+    }
 }
