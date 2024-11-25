@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.business.model.vo.Business;
@@ -41,6 +40,7 @@ public class BusinessProfileController {
     @Autowired
     private ServletContext servletContext;
 
+    // 'workEnvironmentImages' 필드를 데이터 바인딩에서 제외
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setDisallowedFields("benefits", "workEnvironmentImages");
@@ -71,8 +71,11 @@ public class BusinessProfileController {
     public ResponseEntity<String> registerBusinessProfile(
             @ModelAttribute Business business,
             @RequestParam(value = "companyLogo", required = false) MultipartFile companyLogo,
-            @RequestParam(value = "workEnvironmentImages", required = false) List<MultipartFile> workEnvironmentImages,
+            @RequestParam(value = "workEnvironmentFiles", required = false) List<MultipartFile> workEnvironmentFiles, // 기존 이미지 업데이트 파일
+            @RequestParam(value = "newWorkEnvironmentFiles", required = false) List<MultipartFile> newWorkEnvironmentFiles, // 새로운 이미지 추가 파일
             @RequestParam(value = "workEnvImageTitles", required = false) String workEnvImageTitlesJson,
+            @RequestParam(value = "existingImageIds", required = false) List<Integer> existingImageIds, // 기존 이미지 ID
+            @RequestParam(value = "deleteImageIds", required = false) List<Integer> deleteImageIds, // 삭제할 이미지 ID
             @RequestParam("benefits") String benefitsJson,
             HttpSession session) {
         try {
@@ -90,14 +93,6 @@ public class BusinessProfileController {
                 return new ResponseEntity<>("기업 정보를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
             }
 
-            // 디버깅용 로그 추가
-            System.out.println("Received Business Object: " + business);
-            if (companyLogo != null) {
-                System.out.println("companyLogo: " + companyLogo.getOriginalFilename() + ", size: " + companyLogo.getSize());
-            } else {
-                System.out.println("companyLogo is null");
-            }
-
             // 회사 로고 업로드 처리
             if (companyLogo != null && !companyLogo.isEmpty()) {
                 String logoUrl = saveFile(companyLogo, "logos");
@@ -105,27 +100,6 @@ public class BusinessProfileController {
             } else {
                 // 기존 로고 유지
                 business.setLogo(existingBusiness.getLogo());
-            }
-
-            // 근무 환경 이미지 업로드 처리
-            List<WorkEnvironmentImage> imageList = new ArrayList<>();
-            if (workEnvironmentImages != null && !workEnvironmentImages.isEmpty()) {
-                List<String> workEnvImageTitles = parseJsonArray(workEnvImageTitlesJson);
-                for (int i = 0; i < workEnvironmentImages.size(); i++) {
-                    MultipartFile file = workEnvironmentImages.get(i);
-                    String title = "";
-                    if (i < workEnvImageTitles.size()) {
-                        title = workEnvImageTitles.get(i);
-                    }
-                    if (!file.isEmpty()) {
-                        String imageUrl = saveFile(file, "work_env_images");
-                        WorkEnvironmentImage image = new WorkEnvironmentImage();
-                        image.setImageUrl(imageUrl);
-                        image.setTitle(title);
-                        imageList.add(image);
-                    }
-                }
-                business.setWorkEnvironmentImages(imageList);
             }
 
             // 복리후생 처리
@@ -139,10 +113,10 @@ public class BusinessProfileController {
             business.setBenefits(benefitList);
 
             // 비즈니스 프로필 등록 (업데이트)
-            int businessNo = businessProfileService.registerBusinessProfile(business);
+            businessProfileService.registerBusinessProfile(business, workEnvironmentFiles, newWorkEnvironmentFiles, existingImageIds, workEnvImageTitlesJson, deleteImageIds);
 
             // 리다이렉트 URL 생성
-            String redirectUrl = servletContext.getContextPath() + "/business/businessProfileView?businessNo=" + businessNo;
+            String redirectUrl = servletContext.getContextPath() + "/business/businessProfileView?businessNo=" + business.getBusinessNo();
             return new ResponseEntity<>(redirectUrl, HttpStatus.OK);
 
         } catch (Exception e) {
@@ -192,8 +166,6 @@ public class BusinessProfileController {
         // 반환되는 URL 설정
         return "/resources/uploads/" + folderName + "/" + fileName;
     }
-
-
 
     private List<String> parseJsonArray(String jsonArrayStr) {
         try {

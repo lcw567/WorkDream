@@ -4,19 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoPreview = document.getElementById('logo-preview');
 
     companyLogoInput.addEventListener('change', function(event) {
-	    const file = event.target.files[0];
-	    if (file && file.type.startsWith('image/')) {
-	        const reader = new FileReader();
-	        reader.onload = function(e) {
-	            logoPreview.src = e.target.result;
-	            logoPreview.style.display = 'block';
-	        }
-	        reader.readAsDataURL(file);
-	    } else {
-	        logoPreview.src = '#';
-	        logoPreview.style.display = 'none';
-	    }
-	});
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                logoPreview.src = e.target.result;
+                logoPreview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            logoPreview.src = '#';
+            logoPreview.style.display = 'none';
+        }
+    });
 
     const benefitsInput = document.getElementById('benefits-input');
     const benefitsList = document.getElementById('benefits-list');
@@ -84,8 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    
-    
 
     // 등록 버튼 클릭 핸들러
     const registerButton = document.querySelector('.register-btn');
@@ -110,17 +108,37 @@ document.addEventListener('DOMContentLoaded', () => {
         imageItems.forEach(item => {
             const titleInput = item.querySelector('.photo-title');
             const fileInput = item.querySelector('.hidden-file-input');
-            if (fileInput.files.length > 0 || item.querySelector('.add-icon').src !== `${window.contextPath}/img/add-image.png`) {
+            const img = item.querySelector('.add-icon');
+            const isExistingImage = item.querySelector('input[name="existingImageIds"]') !== null;
+
+            // 기존 이미지 또는 새로운 이미지 여부 확인
+            if (fileInput.files.length > 0 || (!fileInput.files.length && isExistingImage && img.src !== `${window.contextPath}/img/add-image.png`)) {
                 const title = titleInput.value.trim();
                 workEnvImageTitles.push(title);
             }
         });
         formData.append('workEnvImageTitles', JSON.stringify(workEnvImageTitles));
 
+        // 기존 이미지 IDs 수집 및 개별 파라미터로 추가
+        const existingImageIdInputs = document.querySelectorAll('input[name="existingImageIds"]');
+        existingImageIdInputs.forEach(input => {
+            formData.append('existingImageIds', input.value);
+        });
+
+        // 삭제할 이미지 IDs 수집 및 개별 파라미터로 추가
+        const deleteImageIdInputs = document.querySelectorAll('input[name="deleteImageIds"]:checked');
+        deleteImageIdInputs.forEach(input => {
+            formData.append('deleteImageIds', input.value);
+        });
+
         // 디버깅을 위한 로그 출력
         console.log("Context Path:", window.contextPath);
         const url = `${window.contextPath}/business/register`;
         console.log("AJAX URL:", url);
+        console.log("Form Data Entries:");
+        for (let pair of formData.entries()) {
+            console.log(`${pair[0]}: ${pair[1]}`);
+        }
 
         // AJAX 요청 전송
         fetch(url, {

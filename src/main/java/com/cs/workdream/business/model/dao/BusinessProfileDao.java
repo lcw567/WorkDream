@@ -16,43 +16,58 @@ public class BusinessProfileDao {
     @Autowired
     private SqlSession sqlSession;
 
-    // Update Business
+    // 비즈니스 업데이트
     public int updateBusiness(Business business) {
         return sqlSession.update("com.cs.workdream.business.model.dao.BusinessProfileDao.updateBusiness", business);
     }
 
-    // Delete existing Business Benefits
+    // 기존 복리후생 삭제
     public int deleteBusinessBenefits(int businessNo) {
         return sqlSession.delete("com.cs.workdream.business.model.dao.BusinessProfileDao.deleteBusinessBenefits", businessNo);
     }
 
-    // Delete existing Work Environment Images
+    // 기존 근무 환경 이미지 삭제 (필요시 사용)
     public int deleteWorkEnvironmentImages(int businessNo) {
         return sqlSession.delete("com.cs.workdream.business.model.dao.BusinessProfileDao.deleteWorkEnvironmentImages", businessNo);
     }
 
-    // Insert Business Benefit
+    // 비즈니스 복리후생 등록
     public int insertBusinessBenefit(BusinessBenefit benefit) {
         return sqlSession.insert("com.cs.workdream.business.model.dao.BusinessProfileDao.insertBusinessBenefit", benefit);
     }
 
-    // Insert Work Environment Image
+    // 근무 환경 이미지 등록
     public int insertWorkEnvironmentImage(WorkEnvironmentImage image) {
         return sqlSession.insert("com.cs.workdream.business.model.dao.BusinessProfileDao.insertWorkEnvironmentImage", image);
     }
 
-    // Select Business by BusinessNo
+    // 비즈니스 번호로 비즈니스 조회
     public Business selectBusinessByNo(int businessNo) {
         return sqlSession.selectOne("com.cs.workdream.business.model.dao.BusinessProfileDao.selectBusinessByNo", businessNo);
     }
 
-    // Select Benefits by BusinessNo
+    // 비즈니스 번호로 복리후생 목록 조회
     public List<BusinessBenefit> selectBenefitsByBusinessNo(int businessNo) {
         return sqlSession.selectList("com.cs.workdream.business.model.dao.BusinessProfileDao.selectBenefitsByBusinessNo", businessNo);
     }
 
-    // Select Work Environment Images by BusinessNo
+    // 비즈니스 번호로 근무 환경 이미지 목록 조회
     public List<WorkEnvironmentImage> selectWorkEnvironmentImagesByBusinessNo(int businessNo) {
         return sqlSession.selectList("com.cs.workdream.business.model.dao.BusinessProfileDao.selectWorkEnvironmentImagesByBusinessNo", businessNo);
+    }
+
+    // 특정 WorkEnvironmentImage 조회
+    public WorkEnvironmentImage selectWorkEnvironmentImageById(int workEnvironmentImageNo) {
+        return sqlSession.selectOne("com.cs.workdream.business.model.dao.BusinessProfileDao.selectWorkEnvironmentImageById", workEnvironmentImageNo);
+    }
+
+    // WorkEnvironmentImage 업데이트
+    public int updateWorkEnvironmentImage(WorkEnvironmentImage image) {
+        return sqlSession.update("com.cs.workdream.business.model.dao.BusinessProfileDao.updateWorkEnvironmentImage", image);
+    }
+
+    // WorkEnvironmentImage 삭제
+    public int deleteWorkEnvironmentImageById(int workEnvironmentImageNo) {
+        return sqlSession.delete("com.cs.workdream.business.model.dao.BusinessProfileDao.deleteWorkEnvironmentImageById", workEnvironmentImageNo);
     }
 }
