@@ -23,7 +23,8 @@
  		<typeAlias alias="Business" type="com.cs.workdream.business.model.vo.Business"/>
         <typeAlias alias="BusinessBenefit" type="com.cs.workdream.business.model.vo.BusinessBenefit"/>
         <typeAlias alias="WorkEnvironmentImage" type="com.cs.workdream.business.model.vo.WorkEnvironmentImage"/>
- 		
+        <typeAlias alias="Applicants" type="com.cs.workdream.business.model.vo.Applicants" />
+ 		<typeAlias alias="ApplicantsStatus" type="com.cs.workdream.business.model.vo.ApplicantsStatus" />
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->
@@ -33,8 +34,8 @@
 		<mapper resource="mappers/resume-mapper.xml"/>
 		<mapper resource="mappers/selfintro-mapper.xml"/>
 		<mapper resource="mappers/business-mapper.xml"/>
-		<mapper resource="mappers/usertags-mapper.xml"/>
 		<mapper resource="mappers/businessprofile-mapper.xml"/>
+		<mapper resource="mappers/usertags-mapper.xml"/>
 	</mappers>
  	
 </configuration>

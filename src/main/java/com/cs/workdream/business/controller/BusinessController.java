@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.workdream.business.model.vo.Applicants;
+import com.cs.workdream.business.model.vo.ApplicantsStatus;
 import com.cs.workdream.business.model.vo.JobPosting1;
 import com.cs.workdream.business.service.BusinessService;
 
@@ -38,28 +39,30 @@ public class BusinessController {
 	
 	// 지원자 현황 페이지로 이동
 	@GetMapping("/applicantsStatus")
-    public String applicantsStatus(Model m) {
+	public String applicantsStatus() {
+		// model값을 리턴 받아서 -> 결과에 따라 페이지 이동
+		// model = inquiryAppStatus(1, model, apps);
+		
 		return "business/applicantsStatus";
-    }
+	}
 	
 	// 지원자 현황 조회
-	@RequestMapping("/inquiryAppStatus")
-	public ModelAndView inquiryAppStatus(@RequestParam("no") int recruitmentNo, ModelAndView mv, Applicants apps) {
+	public Model inquiryAppStatus(int recruitmentNo, Model model, ApplicantsStatus appsStatus) {
 		// 전달받은 공고 고유키로 지원자 현황 조회
-		apps = businessService.inquireAppStatus(recruitmentNo);
+		appsStatus = businessService.inquireAppsStatus(recruitmentNo);
 		
-		if(apps == null) {
+		if(appsStatus == null) {
 			// 조회 실패
-			mv.addObject("errorMsg", "오류가 발생했습니다. 다시 시도해주세요.");
-	        mv.addObject("returnPage", "redirect:/");
-	        mv.setViewName("common/errorPage");
+			model.addAttribute("result", 0);
+			model.addAttribute("errorMsg", "오류가 발생했습니다. 다시 시도해주세요.");
+			model.addAttribute("returnPage", "redirect:/");
 		} else {
-			// 조회 성공
-			mv.addObject("appStatus", apps);
-			mv.setViewName("redirect:/applicantsStatus");
+			// 조회 성공 -> 현황 페이지로 이동
+			model.addAttribute("result", 1);
+			model.addAttribute("appsStatus", appsStatus);
 		}
 		
-		return mv;
+		return model;
 	}
 	
 	// 지원자 목록 페이지로 이동

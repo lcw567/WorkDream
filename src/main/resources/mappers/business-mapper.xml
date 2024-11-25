@@ -3,6 +3,51 @@
 
 <mapper namespace="businessMapper">
 
+	<!-- Applicants -->
+	<resultMap type="Applicants" id="applicantsResultSet">
+		<result column="APPLICANTS_NO" property="applicantsNo" />
+		<result column="RECRUITMENT_NO" property="recuritmentNo" />
+		<result column="POSITION_NO" property="positionNo" />
+		<result column="STAGY_NO" property="stagyNo" />
+		<result column="RESUME_NO" property="resumeNo" />
+		<result column="USER_NAME" property="applicantName" />
+		<result column="age" property="age" />
+		<result column="USER_GENDER" property="gender" />
+		<result column="USER_PIC" property="picture" />
+		<result column="career" property="career" />
+		<result column="academic_ability" property="academicAbility" />
+		<result column="salary" property="salary" />
+		<result column="STAGY_NAME" property="stagy" />
+		<result column="APPLICANTS_DATE" property="applicantsDate" />
+		<result column="RESUME_STATUS" property="resumeStatus" />
+		<result column="SCORE" property="score" />
+		<result column="MEMO" property="memo" />
+		<result column="PASS_STATUS" property="passStatus" />
+		<result column="BOOKMARK_STATUS" property="bookmarkStatus" />
+	</resultMap>
+	
+	<!-- ApplicantsStatus -->
+	<resultMap type="ApplicantsStatus" id="applicantsStatusResultSet">
+		<result column="TOTAL" property="total" />
+		<result column="VIEW_COMPLETE" property="viewComplete" />
+		<result column="VIEW_NOT_FINISHED" property="viewNotFinished" />
+		<result column="EVALUATION_COMPLETE" property="evaluationComplete" />
+		<result column="PASS_TOTAL" property="passTotal" />
+	</resultMap>
+	
+	
+	<!-- 지원자 현황 조회 -->
+	<select id="inquireAppsStatus" parameterType="int" resultMap="applicantsStatusResultSet">
+		SELECT	COUNT(*) AS TOTAL,
+				COUNT(CASE WHEN RESUME_STATUS = 'Y' THEN 1 END) AS VIEW_COMPLETE,
+			    COUNT(CASE WHEN RESUME_STATUS = 'N' THEN 1 END) AS VIEW_NOT_FINISHED,
+			    COUNT(CASE WHEN SCORE IS NULL THEN 1 END) AS EVALUATION_COMPLETE,
+			    COUNT(CASE WHEN PASS_STATUS = 'P' THEN 1 END) AS PASS_TOTAL
+		  FROM	APPLICANTS
+		 WHERE	RECRUITMENT_NO = #{recruitmentNo}
+	</select>
+	
+
     <!-- 담당자 정보 저장 -->
     <insert id="insertRepresentativeInfo">
         INSERT INTO JOB_POSTING (RECRUITMENT_NO, REPRESENTATIVE_NAME, REPRESENTATIVE_DEPT, REPRESENTATIVE_EMAIL)

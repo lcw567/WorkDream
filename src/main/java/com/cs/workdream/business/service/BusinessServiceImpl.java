@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cs.workdream.business.model.dao.BusinessDao;
 import com.cs.workdream.business.model.vo.Applicants;
+import com.cs.workdream.business.model.vo.ApplicantsStatus;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -20,9 +21,9 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	// 지원자 현황 조회
 	@Override
-	public Applicants inquireAppStatus(int applicantsNo) {
+	public ApplicantsStatus inquireAppsStatus(int applicantsNo) {
 		// 전달받은 no를 통해 조회
-		return businessDao.inquireAppStatus(sqlSession, applicantsNo);
+		return businessDao.inquireAppsStatus(sqlSession, applicantsNo);
 	}
 
 	// 지원자 목록 조회
