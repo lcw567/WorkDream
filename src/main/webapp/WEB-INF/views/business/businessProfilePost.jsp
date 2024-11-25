@@ -33,23 +33,22 @@
                             <input type="file" id="company-logo" name="companyLogo" class="input-text" accept="image/*">
                             <div id="logo-preview-container">
                                 <c:choose>
-								    <c:when test="${not empty business.logo}">
-								        <img id="logo-preview" src="${pageContext.request.contextPath}${business.logo}" alt="로고 미리보기" style="display: block; max-width: 200px; margin-top: 10px;">
-								    </c:when>
-								    <c:otherwise>
-								        <img id="logo-preview" src="#" alt="로고 미리보기" style="display: none; max-width: 200px; margin-top: 10px;">
-								    </c:otherwise>
-								</c:choose>
-
+                                    <c:when test="${not empty business.logo}">
+                                        <img id="logo-preview" src="${pageContext.request.contextPath}${business.logo}" alt="로고 미리보기" style="display: block; max-width: 200px; margin-top: 10px;">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img id="logo-preview" src="#" alt="로고 미리보기" style="display: none; max-width: 200px; margin-top: 10px;">
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </td>
                     </tr>
                     <tr>
-					    <th>기업명</th>
-					    <td>
-					        <input type="text" class="input-text" name="companyName" maxlength="100" placeholder="기업명을 입력하세요" value="${business.companyName}">
-					    </td>
-					</tr>
+                        <th>기업명</th>
+                        <td>
+                            <input type="text" class="input-text" name="companyName" maxlength="100" placeholder="기업명을 입력하세요" value="${business.companyName}">
+                        </td>
+                    </tr>
                     <tr>
                         <th>기업 한줄 소개</th>
                         <td>
@@ -59,18 +58,18 @@
                     <tr>
                         <th>기업 홈페이지</th>
                         <td>
-                        	<input type="url" class="input-text" name="companySite" maxlength="100" placeholder="기업홈페이지 주소를 입력하세요" value="${business.companySite}">
+                            <input type="url" class="input-text" name="companySite" maxlength="100" placeholder="기업홈페이지 주소를 입력하세요" value="${business.companySite}">
                         </td>
                     </tr>
                     <tr>
                         <th>기업 형태</th>
                         <td>
                             <div class="radio-group">
-					            <label><input type="radio" name="companyType" class="input-radio" value="대기업" <c:if test="${business.companyType == '대기업'}">checked</c:if>> 대기업</label>
-					            <label><input type="radio" name="companyType" class="input-radio" value="중견기업" <c:if test="${business.companyType == '중견기업'}">checked</c:if>> 중견기업</label>
-					            <label><input type="radio" name="companyType" class="input-radio" value="중소기업" <c:if test="${business.companyType == '중소기업'}">checked</c:if>> 중소기업</label>
-					            <label><input type="radio" name="companyType" class="input-radio" value="기타" <c:if test="${business.companyType == '기타'}">checked</c:if>> 기타</label>
-					        </div>
+                                <label><input type="radio" name="companyType" class="input-radio" value="대기업" <c:if test="${business.companyType == '대기업'}">checked</c:if>> 대기업</label>
+                                <label><input type="radio" name="companyType" class="input-radio" value="중견기업" <c:if test="${business.companyType == '중견기업'}">checked</c:if>> 중견기업</label>
+                                <label><input type="radio" name="companyType" class="input-radio" value="중소기업" <c:if test="${business.companyType == '중소기업'}">checked</c:if>> 중소기업</label>
+                                <label><input type="radio" name="companyType" class="input-radio" value="기타" <c:if test="${business.companyType == '기타'}">checked</c:if>> 기타</label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -82,7 +81,7 @@
                     <tr>
                         <th>대표자명</th>
                         <td>
-                        	<input type="text" class="input-text" name="ownerName" maxlength="100" placeholder="대표자명을 입력하세요" value="${business.ownerName}">
+                            <input type="text" class="input-text" name="ownerName" maxlength="100" placeholder="대표자명을 입력하세요" value="${business.ownerName}">
                         </td>
                     </tr>
                     <tr>
@@ -94,7 +93,7 @@
                     <tr>
                         <th>브랜드명</th>
                         <td>
-                        	<input type="text" class="input-text" name="brandName" maxlength="100" placeholder="브랜드명을 입력하세요" value="${business.brandName}">
+                            <input type="text" class="input-text" name="brandName" maxlength="100" placeholder="브랜드명을 입력하세요" value="${business.brandName}">
                         </td>
                     </tr>
                     <tr>
@@ -167,13 +166,14 @@
                                     <div class="image-item">
                                         <c:choose>
                                             <c:when test="${business.workEnvironmentImages != null && business.workEnvironmentImages.size() > i}">
-                                                <img src="${business.workEnvironmentImages[i].imageUrl}" class="add-icon" alt="이미지">
-                                                <input type="file" name="workEnvironmentImages" accept="image/*" class="hidden-file-input">
+                                                <img src="${pageContext.request.contextPath}${business.workEnvironmentImages[i].imageUrl}" class="add-icon" alt="이미지">
+                                                <input type="hidden" name="existingImageIds" value="${business.workEnvironmentImages[i].workEnvironmentImageNo}"/> <!-- 기존 이미지 ID 추가 -->
+                                                <input type="file" name="workEnvironmentFiles" accept="image/*" class="hidden-file-input"> <!-- 기존 이미지 업데이트 파일 -->
                                                 <input type="text" class="photo-title" placeholder="사진 제목을 입력해주세요" value="${business.workEnvironmentImages[i].title}">
                                             </c:when>
                                             <c:otherwise>
                                                 <img src="${pageContext.request.contextPath}/img/add-image.png" class="add-icon" alt="이미지 추가 아이콘">
-                                                <input type="file" name="workEnvironmentImages" accept="image/*" class="hidden-file-input">
+                                                <input type="file" name="newWorkEnvironmentFiles" accept="image/*" class="hidden-file-input"> <!-- 새로운 이미지 추가 파일 -->
                                                 <input type="text" class="photo-title" placeholder="사진 제목을 입력해주세요">
                                             </c:otherwise>
                                         </c:choose>
