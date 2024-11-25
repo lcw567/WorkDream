@@ -5,13 +5,18 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener("click", function() {
             const targetId = button.getAttribute("data-target");
             const targetElement = document.getElementById(targetId);
-            if(targetElement.classList.contains("limited-text")) {
-                targetElement.classList.remove("limited-text");
-                button.textContent = "간략히 보기";
-            } else {
-                targetElement.classList.add("limited-text");
-                button.textContent = "전체보기";
-            }
+
+            // Toggle 'expanded' class
+            const isExpanded = targetElement.classList.toggle("expanded");
+
+            // Update button text based on state
+            button.textContent = isExpanded ? "간략히 보기" : "전체보기";
+
+            // Update aria-expanded attribute for accessibility
+            button.setAttribute("aria-expanded", isExpanded);
+
+            // Optional: Scroll to the target element smoothly
+            targetElement.scrollIntoView({ behavior: 'smooth' });
         });
     });
 
