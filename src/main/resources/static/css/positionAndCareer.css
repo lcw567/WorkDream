@@ -72,6 +72,18 @@ button {
     margin-bottom: 30px;
 }
 
+.Career_Year_Min::placeholder {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #A09F9F;
+}
+
+.Career_Year_Max::placeholder {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #A09F9F;
+}
+
 #Rank_And_Position {
     display: flex;
     margin-bottom: 30px;
@@ -156,6 +168,11 @@ label::before {
     transition: all 0.3s ease-in-out;
 }
 
+/* 특정 클래스의 label에서 ::before 제거 */
+label.unstyled-label::before {
+    content: none; /* ::before 제거 */
+}
+
 /* 선택된 상태의 스타일 */
 input[type="radio"]:checked + label::before {
     background: white;
@@ -210,7 +227,8 @@ input[type="text"], input[type="time"] {
 /* 내부 input과 p 태그의 간격 및 정렬 */
 .unstyled-label input[type="checkbox"] {
     margin-right: 5px; /* 체크박스와 텍스트 간격 */
-}ssssss
+}
+
 .unstyled-label p {
     margin: 0; /* 텍스트의 기본 간격 제거 */
 }

@@ -165,8 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const fileInput = document.getElementById("Announcement-file");
     const fileNameInput = document.getElementById("Announcement_Introduction_fileName");
