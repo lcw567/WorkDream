@@ -41,7 +41,7 @@
         </div>
         <div class="list_main">
             <div class="list_title">
-                <h1>게시글 목록</h1>
+                <h1>지원 목록</h1>
             </div>
             <div class="list">
                 <div class="list_header">
