@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
+import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
 
 @Repository
@@ -23,9 +24,14 @@ public class BusinessDao {
 	}
 	
 	// 지원자 목록 조회
-	public List loadAppList(SqlSessionTemplate sqlSession, int recruitmentNo, int positionNo) {
+	public List<Applicants> loadAppList(SqlSessionTemplate sqlSession, int recruitmentNo, int positionNo) {
 		// list<Applicants>로 저장
 		return null;
+	}
+
+	// 즐겨찾기 목록 조회
+	public List<BusinessBookmark> loadBookmarkList(SqlSessionTemplate sqlSession, int businessNo) {
+		return sqlSession.selectList("businessMapper.loadBookmarkList", businessNo);
 	}
 
 }
