@@ -34,4 +34,8 @@ public class BusinessDao {
 		return sqlSession.selectList("businessMapper.loadBookmarkList", businessNo);
 	}
 
+	public int deleteBookmarkList(SqlSessionTemplate sqlSession, int resumeNo) {
+		return 0;
+	}
+
 }
