@@ -33,6 +33,7 @@ public class BusinessController {
 		this.businessService = businessService;
 	}
 	
+	
 	/*=====================================================================================================*/
 	
 	
@@ -53,16 +54,16 @@ public class BusinessController {
 		ApplicantsStatus appsStatus = businessService.inquireAppsStatus(recruitmentNo);
 		List<Position> positionList = businessService.inquirePositionList(recruitmentNo);
 		
-		if(appsStatus == null) {
+		if(appsStatus.getTotal() >= 0) {
+			// 조회 성공 -> Model값 전달
+			model.addAttribute("result", 1);
+			model.addAttribute("appsStatus", appsStatus);
+			model.addAttribute("positionList", positionList);
+		} else {
 			// 조회 실패
 			model.addAttribute("result", 0);
 			model.addAttribute("errorMsg", "오류가 발생했습니다. 다시 시도해주세요.");
 			model.addAttribute("returnPage", "redirect:/");
-		} else {
-			// 조회 성공 -> 현황 페이지로 이동
-			model.addAttribute("result", 1);
-			model.addAttribute("appsStatus", appsStatus);
-			model.addAttribute("positionList", positionList);
 		}
 		
 		return model;

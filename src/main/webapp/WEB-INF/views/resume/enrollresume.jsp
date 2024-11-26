@@ -605,8 +605,14 @@
                             <button type="button" class="addAwardButton">추가하기</button>
                         </div>
                     </div>
-                    <div class="result-list">
-                        <!-- 동적으로 추가된 리스트 아이템들이 여기에 추가됩니다. -->
+                    <div class="result-list-certificate">
+                        <!-- 자격증 리스트 아이템들이 추가됩니다. -->
+                    </div>
+                    <div class="result-list-language">
+                        <!-- 어학시험 리스트 아이템들이 추가됩니다. -->
+                    </div>
+                    <div class="result-list-awards">
+                        <!-- 수상내역 리스트 아이템들이 추가됩니다. -->
                     </div>
                 </fieldset>
             </div>

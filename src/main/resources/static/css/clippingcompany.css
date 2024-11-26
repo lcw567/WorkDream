@@ -24,11 +24,14 @@ body {
     color: #4e21a8;
     text-decoration: none;
     padding-bottom: 5px;
+    background-color: transparent;
+    border: none;
 }
 
 .btntype1.active, .btntype2.active {
     font-weight: bold;
-    border-bottom: 2px solid #4e21a8;
+    border: none;
+    background: transparent;
 }
 
 .badge1, .badge2 {

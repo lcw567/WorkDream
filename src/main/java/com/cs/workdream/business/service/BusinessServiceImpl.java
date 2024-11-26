@@ -23,7 +23,6 @@ public class BusinessServiceImpl implements BusinessService {
 	// 지원자 현황 조회
 	@Override
 	public ApplicantsStatus inquireAppsStatus(int applicantsNo) {
-		// 전달받은 no를 통해 조회
 		return businessDao.inquireAppsStatus(sqlSession, applicantsNo);
 	}
 	
