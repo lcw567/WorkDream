@@ -19,6 +19,9 @@ DROP TABLE BUSINESS_BOOKMARK CASCADE CONSTRAINTS;
 DROP TABLE PERSON_BOOKMARK CASCADE CONSTRAINTS;
 DROP TABLE PERSON CASCADE CONSTRAINTS;
 DROP TABLE RESUME CASCADE CONSTRAINTS;
+DROP TABLE certificates CASCADE CONSTRAINTS;
+DROP TABLE language_tests CASCADE CONSTRAINTS;
+DROP TABLE awards CASCADE CONSTRAINTS;
 DROP TABLE SELF_INTRODUCTION CASCADE CONSTRAINTS;
 DROP TABLE PORTFOLIO CASCADE CONSTRAINTS;
 DROP TABLE POST_LIKE CASCADE CONSTRAINTS;
@@ -32,6 +35,9 @@ DROP SEQUENCE SEQ_BNO;
 DROP SEQUENCE SEQ_JOB;
 DROP SEQUENCE SEQ_JOB_P;
 DROP SEQUENCE RESUME_SEQ;
+DROP SEQUENCE certificates_seq;
+DROP SEQUENCE language_tests_seq;
+DROP SEQUENCE awards_seq;
 DROP SEQUENCE POSTING_SEQ;
 DROP SEQUENCE REPLY_SEQ;
 DROP SEQUENCE SELF_INTRO_SEQ;
@@ -480,16 +486,7 @@ CREATE TABLE RESUME(
     START_DATE_ACT DATE,                                          -- 활동 시작 날짜 (startDateAct)
     END_DATE_ACT DATE,                                            -- 활동 종료 날짜 (endDateAct)
     DESCRIPTION VARCHAR2(300),                                    -- 설명 (description)
-    CATEGORY VARCHAR2(30),                                        -- 카테고리 (category)
-    NAME VARCHAR2(30),                                            -- 이름 (name)
-    ISSUED_BY VARCHAR2(30),                                       -- 발행 기관 (issuingAgency)
-    PROFICIENCY_LEVEL VARCHAR2(30),                               -- 숙련도 수준 (proficiencyLevel)
-    KIND_OF_LANGUAGE VARCHAR2(10) NULL,                       -- 언어 종류 (languageType)
-    PASSING_CATEGORY VARCHAR2(30),                                -- 합격 카테고리 (passStatus)
-    AWARD_NAME VARCHAR2(50),                                      -- 수상 이름 (awardName)
-    ORGANIZER VARCHAR2(50),                                       -- 주최 기관 (organizer)
-    AWARD_DATE DATE,                                              -- 수상 날짜 (awardDate)
-    ISSUE_DATE DATE,                                              -- 발급 날짜 (issueDate)
+    CATEGORY VARCHAR2(50), NULL
     VETERAN_REASON VARCHAR2(100),                                 -- 보훈 사유 (veteranReason)
     SERVICE_STATE VARCHAR2(20) NULL,                          -- 병역 상태 (serviceStatus)
     UNFULFILLED_REASON VARCHAR2(50),                              -- 미필 사유 (unfinishedReason)
@@ -507,6 +504,35 @@ CREATE TABLE RESUME(
     STATUS_WORK CHAR(1) NOT NULL CHECK (STATUS_WORK IN ('Y', 'N', 'P')), -- 업무 상태 (careerStatus)
     JOB_CONTENT VARCHAR2(100) NULL,                           -- 업무 내용 (jobContent)
     POSITION VARCHAR2(20) NULL                                 -- 직급/직책 (position)
+);
+
+CREATE TABLE certificates (
+    certificate_id NUMBER PRIMARY KEY,
+    resume_no NUMBER,
+    qualification_name VARCHAR2(255),
+    issuing_agency VARCHAR2(255),
+    pass_status VARCHAR2(50),
+    issue_date DATE,
+    FOREIGN KEY (resume_no) REFERENCES resume(resume_no)
+);
+
+CREATE TABLE language_tests (
+    language_test_id NUMBER PRIMARY KEY,
+    resume_no NUMBER,
+    language_name VARCHAR2(255),
+    proficiency_level VARCHAR2(50),
+    language_type VARCHAR2(50),
+    issue_date DATE,
+    FOREIGN KEY (resume_no) REFERENCES resume(resume_no)
+);
+
+CREATE TABLE awards (
+    award_id NUMBER PRIMARY KEY,
+    resume_no NUMBER,
+    award_name VARCHAR2(255),
+    organizer VARCHAR2(255),
+    award_date DATE,
+    FOREIGN KEY (resume_no) REFERENCES resume(resume_no)
 );
 
 /* SELF_INTRODUCTION 테이블 생성 */
@@ -585,6 +611,9 @@ CREATE SEQUENCE REPLY_SEQ START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE SELF_INTRO_SEQ START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE BUSINESS_SEQ START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE WORK_ENVIRONMENT_IMAGE_SEQ START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE certificates_seq START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE language_tests_seq START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE awards_seq START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 
 
 commit;

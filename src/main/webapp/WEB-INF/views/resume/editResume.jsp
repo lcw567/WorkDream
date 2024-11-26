@@ -21,7 +21,7 @@
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div id="inner">
-        <form action="${pageContext.request.contextPath}/resume/updateResume" method="post" enctype="multipart/form-data">
+        <form id="resumeForm" action="update.re" method="post" enctype="multipart/form-data">
             <!-- CSRF 토큰 메타 태그 추가 -->
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <!-- 이력서 번호 -->
@@ -96,7 +96,7 @@
                     <div id="edu1">
                         <div class="edu_inner1">
                             <fieldset class="final_edu">
-                                <select name="educationLevel" id="selectedu" onchange="displayEducationFields()" required>
+                                <select name="educationLevel" id="selectedu" onchange="displayEducationFields()" >
                                     <option value="">학력 구분 선택*</option>
                                     <option value="element" <c:if test="${resume.educationLevel == 'element'}">selected</c:if>>초등학교</option>
                                     <option value="middle" <c:if test="${resume.educationLevel == 'middle'}">selected</c:if>>중학교</option>
@@ -487,7 +487,7 @@
                 </fieldset>
             </div>
 
-            <!-- 자격/어학/수상 -->
+            <!-- 자격/어학/수상 섹션 -->
             <div class="awards">
                 <fieldset class="select_awards">
                     <legend class="awa">자격/어학/수상</legend>
@@ -502,102 +502,175 @@
                             </select>
                         </fieldset>
                     </div>
-                    <!-- 자격증/면허증 정보 -->
-                    <div class="awards2" id="certificateFields" style="display: ${resume.category == 'certificate' ? 'flex' : 'none'};">
+                    
+                     <!-- 자격증/면허증 정보 -->
+                     <div class="awards2" id="certificateFields" style="display: none;">
                         <fieldset class="certi_title">
                             <legend>자격증명</legend>
-                            <input type="text" name="name" value="${resume.name}">
+                            <input type="text" name="qualificationName[]">
                         </fieldset>
                         <fieldset class="institution">
                             <legend>발행처/기관</legend>
-                            <input type="text" name="issuingAgency" value="${resume.issuingAgency}">
+                            <input type="text" name="issuingAgency[]">
                         </fieldset>
                         <fieldset class="pass_status">
                             <legend>합격구분</legend>
-                            <select name="passStatus" id="pass_menu">
+                            <select name="passStatus[]" class="pass_menu">
                                 <option value="">합격구분*</option>
-                                <option value="1pass" <c:if test="${resume.passStatus == '1pass'}">selected</c:if>>1차합격</option>
-                                <option value="2pass" <c:if test="${resume.passStatus == '2pass'}">selected</c:if>>2차합격</option>
-                                <option value="writtenpass" <c:if test="${resume.passStatus == 'writtenpass'}">selected</c:if>>필기합격</option>
-                                <option value="practicepass" <c:if test="${resume.passStatus == 'practicepass'}">selected</c:if>>실기합격</option>
-                                <option value="finalpass" <c:if test="${resume.passStatus == 'finalpass'}">selected</c:if>>최종합격</option>
+                                <option value="1pass">1차합격</option>
+                                <option value="2pass">2차합격</option>
+                                <option value="writtenpass">필기합격</option>
+                                <option value="practicepass">실기합격</option>
+                                <option value="finalpass">최종합격</option>
                             </select>
                         </fieldset>
                     </div>
-                    <div class="awards3" id="certificateDate" style="display: ${resume.category == 'certificate' ? 'flex' : 'none'};">
+                    <div class="awards3" id="certificateDate" style="display: none;">
                         <fieldset class="pass_date">
-                            <legend>발급일자</legend>
-                            <input type="date" class="pass" name="issueDate" value="<fmt:formatDate value='${resume.issueDate}' pattern='yyyy-MM-dd'/>">
+                            <legend>시험일자</legend>
+                            <input type="date" class="pass" name="testDate_cer[]">
                         </fieldset>
                         <button type="button" class="addQualificationButton">추가하기</button>
                     </div>
                     <!-- 어학시험 정보 -->
-                    <div class="Language" id="languageFields" style="display: ${resume.category == 'language' ? 'flex' : 'none'};">
+                    <div class="Language" id="languageFields" style="display: none;">
                         <div class="Lang">
                             <div class="language1">
                                 <fieldset class="lang_title">
                                     <legend>어학시험명</legend>
-                                    <input type="text" name="name" value="${resume.name}">
+                                    <input type="text" name="languageName[]">
                                 </fieldset>
                                 <fieldset class="level">
                                     <legend>급수</legend>
-                                    <select name="proficiencyLevel" id="certi_level">
-                                        <option value="">급수</option>
-                                        <c:forEach var="level" begin="1" end="15">
-                                            <option value="${level}" <c:if test="${resume.proficiencyLevel == level}">selected</c:if>>${level}</option>
-                                        </c:forEach>
+                                    <select name="proficiencyLevel[]" class="certi_level">
+                                        <option value="">급수 선택</option>
+                                        <option value="1">1급</option>
+                                        <option value="2">2급</option>
+                                        <option value="3">3급</option>
+                                        <option value="4">4급</option>
+                                        <option value="5">5급</option>
+                                        <option value="6">6급</option>
+                                        <option value="7">7급</option>
+                                        <option value="8">8급</option>
+                                        <option value="9">9급</option>
+                                        <option value="10">10급</option>
+                                        <option value="11">11급</option>
+                                        <option value="12">12급</option>
+                                        <option value="13">13급</option>
+                                        <option value="14">14급</option>
+                                        <option value="15">15급</option>
                                     </select>
                                 </fieldset>
                                 <fieldset class="lang_category">
                                     <legend>언어</legend>
-                                    <select name="languageType" id="lang_cate">
-                                        <option value="">언어</option>
-                                        <option value="english" <c:if test="${resume.languageType == 'english'}">selected</c:if>>영어</option>
-                                        <option value="japan" <c:if test="${resume.languageType == 'japan'}">selected</c:if>>일본어</option>
-                                        <option value="china" <c:if test="${resume.languageType == 'china'}">selected</c:if>>중국어</option>
-                                        <option value="german" <c:if test="${resume.languageType == 'german'}">selected</c:if>>독일어</option>
-                                        <option value="french" <c:if test="${resume.languageType == 'french'}">selected</c:if>>불어</option>
-                                        <option value="spanish" <c:if test="${resume.languageType == 'spanish'}">selected</c:if>>스페인어</option>
-                                        <option value="russian" <c:if test="${resume.languageType == 'russian'}">selected</c:if>>러시아어</option>
-                                        <option value="italy" <c:if test="${resume.languageType == 'italy'}">selected</c:if>>이탈리아어</option>
-                                        <option value="korean" <c:if test="${resume.languageType == 'korean'}">selected</c:if>>한국어</option>
-                                        <option value="etc" <c:if test="${resume.languageType == 'etc'}">selected</c:if>>기타</option>
+                                    <select name="languageType[]" class="lang_cate">
+                                        <option value="">언어 선택</option>
+                                        <option value="english">영어</option>
+                                        <option value="japan">일본어</option>
+                                        <option value="china">중국어</option>
+                                        <option value="german">독일어</option>
+                                        <option value="french">불어</option>
+                                        <option value="spanish">스페인어</option>
+                                        <option value="russian">러시아어</option>
+                                        <option value="italy">이탈리아어</option>
+                                        <option value="korean">한국어</option>
+                                        <option value="etc">기타</option>
                                     </select>
                                 </fieldset>
                             </div>
-                            <div class="language2" id="languageDate1" style="display: block;">
+                            <div class="language2" id="languageDate1">
                                 <fieldset class="get_date">
                                     <legend>취득일</legend>
-                                    <input type="date" class="get" name="issueDate" value="<fmt:formatDate value='${resume.issueDate}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" class="get" name="issueDate[]">
                                 </fieldset>
                                 <button type="button" class="addLanguageButton">추가하기</button>
                             </div>
                         </div>
                     </div>
                     <!-- 수상/공모전 정보 -->
-                    <div class="Contest" id="awardDetailsFields" style="display: ${resume.category == 'award_details' ? 'block' : 'none'};">
+                    <div class="Contest" id="awardDetailsFields">
                         <div class="contest1">
                             <fieldset class="contest_title">
                                 <legend>수상/공모전명</legend>
-                                <input type="text" name="awardName" value="${resume.awardName}">
+                                <input type="text" name="awardName[]">
                             </fieldset>
                             <fieldset class="contest_place">
                                 <legend>주최기관</legend>
-                                <input type="text" name="organizer" value="${resume.organizer}">
+                                <input type="text" name="organizer[]">
                             </fieldset>
                             <fieldset class="acquire_date">
                                 <legend>취득일</legend>
-                                <input type="date" class="acquire" name="awardDate" value="<fmt:formatDate value='${resume.awardDate}' pattern='yyyy-MM-dd'/>">
+                                <input type="date" class="acquire" name="awardDate[]">
                             </fieldset>
                         </div>
                         <div class="contest2">
                             <button type="button" class="addAwardButton">추가하기</button>
                         </div>
                     </div>
-                    <div class="result-list">
-                        <!-- 동적으로 추가된 리스트 아이템들이 여기에 추가됩니다. -->
-                    </div>
-                </fieldset>
+                    
+                    <!-- 자격증 리스트 -->
+<div class="result-list-certificate">
+    <!-- 자격증 리스트 아이템들이 여기에 추가됩니다. -->
+    <c:forEach var="certificate" items="${resume.certificates}">
+        <div class="list-item" data-id="${certificate.certificateId}">
+            <div class="item-content">
+                <strong>${certificate.qualificationName}</strong> | ${certificate.passStatus} | 
+                <fmt:formatDate value="${certificate.testDate_cer}" pattern="yyyy.MM.dd"/>
+                <div class="institution">발행처: ${certificate.issuingAgency}</div>
+            </div>
+            <div class="actions">
+                <button type="button" class="delete" onclick="removeCertificate(${certificate.certificateId})">삭제</button>
+            </div>
+            <!-- Hidden Inputs -->
+            <input type="hidden" name="qualificationName[]" value="${certificate.qualificationName}">
+            <input type="hidden" name="issuingAgency[]" value="${certificate.issuingAgency}">
+            <input type="hidden" name="passStatus[]" value="${certificate.passStatus}">
+            <input type="hidden" name="testDate_cer[]" value="${certificate.testDate_cer}">
+        </div>
+    </c:forEach>
+</div>
+
+<!-- 어학시험 리스트 -->
+<div class="result-list-language">
+    <!-- 어학시험 리스트 아이템들이 여기에 추가됩니다. -->
+    <c:forEach var="languageTest" items="${resume.languageTests}">
+        <div class="list-item" data-id="${languageTest.languageTestId}">
+            <div class="item-content">
+                <strong>${languageTest.languageName}</strong> | ${languageTest.proficiencyLevel}급 | ${languageTest.languageType} |
+                <fmt:formatDate value="${languageTest.issueDate}" pattern="yyyy.MM.dd"/>
+            </div>
+            <div class="actions">
+                <button type="button" class="delete" onclick="removeLanguageTest(${languageTest.languageTestId})">삭제</button>
+            </div>
+            <!-- Hidden Inputs -->
+            <input type="hidden" name="languageName[]" value="${languageTest.languageName}">
+            <input type="hidden" name="proficiencyLevel[]" value="${languageTest.proficiencyLevel}">
+            <input type="hidden" name="languageType[]" value="${languageTest.languageType}">
+            <input type="hidden" name="issueDate_language[]" value="${languageTest.issueDate}">
+        </div>
+    </c:forEach>
+</div>
+
+<!-- 수상내역 리스트 -->
+<div class="result-list-awards">
+    <!-- 수상내역 리스트 아이템들이 여기에 추가됩니다. -->
+    <c:forEach var="award" items="${resume.awards}">
+        <div class="list-item" data-id="${award.awardId}">
+            <div class="item-content">
+                <strong>${award.awardName}</strong> | 
+                <fmt:formatDate value="${award.awardDate}" pattern="yyyy.MM.dd"/> | 주최기관: ${award.organizer}
+            </div>
+            <div class="actions">
+                <button type="button" class="delete" onclick="removeAward(${award.awardId})">삭제</button>
+            </div>
+            <!-- Hidden Inputs -->
+            <input type="hidden" name="awardName[]" value="${award.awardName}">
+            <input type="hidden" name="organizer[]" value="${award.organizer}">
+            <input type="hidden" name="awardDate[]" value="${award.awardDate}">
+        </div>
+    </c:forEach>
+</div>
+
             </div>
 
             <!-- 취업우대사항 -->
