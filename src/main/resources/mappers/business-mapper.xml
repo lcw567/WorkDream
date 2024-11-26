@@ -48,6 +48,21 @@
 		<result column="PASS_PEOPLE" property="passPeople" />
 	</resultMap>
 	
+	<!-- BusinessBookmark -->
+	<resultMap type="BusinessBookmark" id="businessBookmarkResultSet">
+		<result column="BUSINESS_NO" property="businessNo" />
+		<result column="RESUME_NO" property="resumeNo" />
+		<result column="APPLICANTS_NAME" property="applicantName" />
+		<result column="APPLICANTS_PICTURE" property="picture" />
+		<result column="APPLICANTS_PHONE" property="phone" />
+		<result column="APPLICANTS_EMAIL" property="email" />
+		<result column="RESUME_STATUS" property="resumeStatus" />
+		<result column="FOLDER_NAME" property="folder" />
+		<result column="APPLICANTS_STATUS" property="applicantStatus" />
+		<result column="APPLICANTS_DATE" property="applicantDate" />
+		<result column="ADD_DATE" property="addDate" />
+	</resultMap>
+	
 	
 	<!-- 지원자 현황 조회 -->
 	<select id="inquireAppsStatus" parameterType="int" resultMap="applicantsStatusResultSet">
@@ -75,6 +90,15 @@
 		 WHERE A.RECRUITMENT_NO = #{recruitmentNo}
 	</select>
 	
+	<!-- 북마크 목록 조회 -->
+	<select id="loadBookmarkList" parameterType="int" resultMap="businessBookmarkResultSet">
+		SELECT	BUSINESS_NO,
+				RESUME_NO,
+				FOLDER_NAME,
+				ADD_DATE
+		  FROM	BUSINESS_BOOKMARK
+		 WHERE	BUSINESS_NO = #{businessNo}
+	</select>
 
     <!-- 담당자 정보 저장 -->
     <insert id="insertRepresentativeInfo">

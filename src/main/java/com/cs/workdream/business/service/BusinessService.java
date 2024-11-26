@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
+import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
 
 public interface BusinessService {
@@ -16,5 +17,8 @@ public interface BusinessService {
 	
 	// 지원자 목록 조회
 	List<Applicants> loadAppList(int recruitmentNo, int positionNo);
+
+	// 즐겨찾기 목록 조회
+	List<BusinessBookmark> loadBookmarkList(int businessNo);
 	
 }
