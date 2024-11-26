@@ -44,4 +44,10 @@ public class BusinessServiceImpl implements BusinessService {
 	public List<BusinessBookmark> loadBookmarkList(int businessNo) {
 		return businessDao.loadBookmarkList(sqlSession, businessNo);
 	}
+
+	// 즐겨찾기 목록에서 삭제
+	@Override
+	public int deleteBookmarkList(int resumeNo) {
+		return businessDao.deleteBookmarkList(sqlSession, resumeNo);
+	}
 }
