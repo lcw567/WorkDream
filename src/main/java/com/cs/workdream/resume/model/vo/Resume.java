@@ -1,6 +1,8 @@
 package com.cs.workdream.resume.model.vo;
 
 import java.sql.Date;
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -77,15 +79,9 @@ public class Resume {
 
     // 자격/어학/수상
     private String category;
-    private String name;
-    private String issuingAgency;
-    private String proficiencyLevel;
-    private String languageType;
-    private String passStatus;
-    private String awardName;
-    private String organizer;
-    private Date awardDate;
-    private Date issueDate;
+    private List<Certificate> certificates;
+    private List<LanguageTest> languageTests;
+    private List<Award> awards;
 
     // 취업우대사항
     private String veteranReason;

@@ -1357,6 +1357,7 @@ input:focus{
     align-items: center;
     padding: 15px;
     border-bottom: 1px solid #ddd;
+    margin-top: 60px;
     width: 100%;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -1427,5 +1428,20 @@ button.delete:focus {
     margin-bottom: 90px;
     margin-right: 40px;
 }
+
+.addQualificationButton, .addLanguageButton, .addAwardButton{
+    height: 50px;
+    margin-left: 840px;
+    position: relative;
+    top: 25px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+}
+
+
 
 

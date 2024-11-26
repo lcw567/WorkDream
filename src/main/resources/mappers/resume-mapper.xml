@@ -69,18 +69,9 @@
         <result property="endDateAct" column="END_DATE_ACT"/>
         <result property="description" column="DESCRIPTION"/>
         
-        <!-- 자격/어학/수상 -->
+        <!-- 자격증 -->
         <result property="category" column="CATEGORY"/>
-        <result property="name" column="NAME"/>
-        <result property="issuingAgency" column="ISSUED_BY"/>
-        <result property="proficiencyLevel" column="PROFICIENCY_LEVEL"/>
-        <result property="languageType" column="KIND_OF_LANGUAGE"/>
-        <result property="passStatus" column="PASSING_CATEGORY"/>
-        <result property="awardName" column="AWARD_NAME"/>
-        <result property="organizer" column="ORGANIZER"/>
-        <result property="awardDate" column="AWARD_DATE"/>
-        <result property="issueDate" column="ISSUE_DATE"/>
-        
+
         <!-- 취업우대사항 -->
         <result property="veteranReason" column="VETERAN_REASON"/>
         <result property="serviceStatus" column="SERVICE_STATE"/>
@@ -101,14 +92,42 @@
         <result property="careerStatus" column="STATUS_WORK"/>
         <result property="jobContent" column="JOB_CONTENT"/>
         <result property="position" column="POSITION"/>
+        
+        <collection property="certificates" ofType="com.cs.workdream.resume.model.vo.Certificate" select="selectCertificatesByResumeNo" column="RESUME_NO"/>
+        <collection property="languageTests" ofType="com.cs.workdream.resume.model.vo.LanguageTest" select="selectLanguageTestsByResumeNo" column="RESUME_NO"/>
+        <collection property="awards" ofType="com.cs.workdream.resume.model.vo.Award" select="selectAwardsByResumeNo" column="RESUME_NO"/>
     </resultMap>
-
-    <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume" useGeneratedKeys="true" keyProperty="resumeNo">
     
+    <resultMap id="certificateResultMap" type="com.cs.workdream.resume.model.vo.Certificate">
+	    <id property="certificateId" column="certificate_id"/>
+	    <result property="resumeNo" column="resume_no"/>
+	    <result property="qualificationName" column="qualification_name"/>
+	    <result property="issuingAgency" column="issuing_agency"/>
+	    <result property="passStatus" column="pass_status"/>
+	    <result property="testDate_cer" column="test_date_cer"/>
+	</resultMap>
+	
+	<resultMap id="languageTestResultMap" type="com.cs.workdream.resume.model.vo.LanguageTest">
+	    <id property="languageTestId" column="LANGUAGE_TEST_ID"/>
+	    <result property="resumeNo" column="resume_no"/>
+	    <result property="languageName" column="LANGUAGE_NAME"/>
+	    <result property="proficiencyLevel" column="PROFICIENCY_LEVEL"/>
+	    <result property="languageType" column="LANGUAGE_TYPE"/>
+	    <result property="issueDate" column="ISSUE_DATE"/>
+	</resultMap>
+	
+	<resultMap id="AwardResultMap" type="com.cs.workdream.resume.model.vo.Award">
+	    <id property="awardId" column="AWARD_ID"/>
+	    <result property="resumeNo" column="RESUME_NO"/>
+	    <result property="awardName" column="AWARD_NAME"/>
+	    <result property="organizer" column="ORGANIZER"/>
+	    <result property="awardDate" column="AWARD_DATE"/>
+	</resultMap>
+
+    <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
         <selectKey keyProperty="resumeNo" resultType="int" order="BEFORE">
             SELECT RESUME_SEQ.NEXTVAL FROM dual
         </selectKey>
-    
         INSERT INTO RESUME (
             RESUME_NO, PERSON_NO, RESUME_TITLE, CREATE_DATE, MODIFIED_DATE, DELETED,
             USER_NAME, USER_GENDER, USER_BIRTH, USER_EMAIL, USER_PHONE, USER_ADDRESS,
@@ -119,16 +138,14 @@
             LOCATION_EL, LOCATION_MI, LOCATION_HI, LOCATION,
             EXAM_PASSED_EL, EXAM_PASSED_MI, EXAM_PASSED_HI, SKILL,
             ACTICITY_TYPE, ORGANIZATION_NAME, START_DATE_ACT, END_DATE_ACT,
-            DESCRIPTION, CATEGORY, NAME, ISSUED_BY, PROFICIENCY_LEVEL,
-            KIND_OF_LANGUAGE, PASSING_CATEGORY, AWARD_NAME, ORGANIZER,
-            AWARD_DATE, ISSUE_DATE, VETERAN_REASON, SERVICE_STATE,
+            DESCRIPTION, CATEGORY, VETERAN_REASON, SERVICE_STATE,
             UNFULFILLED_REASON, EXEMPTED_REASON, ENLISTMENT_DATE, DISCHARGE_DATE,
             MILITARY_SELECTION, CLASS_SELECTION, DISCHARGE_REASON,
             WORK, DEPARTMENT, COMPANY_TITLE, START_DATE_WORK,
             END_DATE_WORK, STATUS_WORK, JOB_CONTENT, POSITION
         )
         VALUES (
-            RESUME_SEQ.NEXTVAL, #{personNo}, #{resumeTitle}, SYSDATE, SYSDATE, 'N',
+            #{resumeNo}, #{personNo}, #{resumeTitle}, SYSDATE, SYSDATE, 'N',
             #{userName}, #{userGender}, #{userBirth}, #{userEmail}, #{userPhone}, #{userAddress},
             #{userRoadAddress}, #{userDetailAddress}, #{userPic}, #{educationLevel},
             #{academicName_el}, #{academicName_mi}, #{academicName_hi}, #{academicName_col},
@@ -138,15 +155,53 @@
             #{location_el}, #{location_mi}, #{location_hi}, #{location_col},
             #{examPassed_el}, #{examPassed_mi}, #{examPassed_hi}, #{skillName},
             #{activityType}, #{organizationName}, #{startDateAct}, #{endDateAct},
-            #{description}, #{category}, #{name}, #{issuingAgency}, #{proficiencyLevel},
-            #{languageType}, #{passStatus}, #{awardName}, #{organizer},
-            #{awardDate}, #{issueDate}, #{veteranReason}, #{serviceStatus},
+            #{description},#{category}, #{veteranReason}, #{serviceStatus},
             #{unfinishedReason}, #{exemptionReason}, #{enlistmentDate}, #{dischargeDate},
             #{militaryBranch}, #{rank}, #{dischargeReason},
             #{work}, #{department}, #{companyTitle}, #{startDateWork},
             #{endDateWork}, #{careerStatus}, #{jobContent}, #{position}
         )
     </insert>
+    
+    <!-- 자격증 삽입 -->
+    <insert id="insertCertificate" parameterType="com.cs.workdream.resume.model.vo.Certificate">
+        <selectKey keyProperty="certificateId" resultType="int" order="BEFORE">
+            SELECT CERTIFICATES_SEQ.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO CERTIFICATES (
+            CERTIFICATE_ID, RESUME_NO, QUALIFICATION_NAME, ISSUING_AGENCY, PASS_STATUS, ISSUE_DATE
+        )
+        VALUES (
+            #{certificateId}, #{resumeNo}, #{qualificationName}, #{issuingAgency}, #{passStatus}, #{testDate_cer}
+        )
+    </insert>
+    
+    <!-- 어학시험 삽입 -->
+    <insert id="insertLanguageTest" parameterType="com.cs.workdream.resume.model.vo.LanguageTest">
+        <selectKey keyProperty="languageTestId" resultType="int" order="BEFORE">
+            SELECT LANGUAGE_TESTS_SEQ.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO LANGUAGE_TESTS (
+            LANGUAGE_TEST_ID, RESUME_NO, LANGUAGE_NAME, PROFICIENCY_LEVEL, LANGUAGE_TYPE, ISSUE_DATE
+        )
+        VALUES (
+            #{languageTestId}, #{resumeNo}, #{languageName}, #{proficiencyLevel}, #{languageType}, #{issueDate}
+        )
+    </insert>
+    
+    <!-- 수상내역 삽입 -->
+    <insert id="insertAward" parameterType="com.cs.workdream.resume.model.vo.Award">
+        <selectKey keyProperty="awardId" resultType="int" order="BEFORE">
+            SELECT AWARDS_SEQ.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO AWARDS (
+            AWARD_ID, RESUME_NO, AWARD_NAME, ORGANIZER, AWARD_DATE
+        )
+        VALUES (
+            #{awardId}, #{resumeNo}, #{awardName}, #{organizer}, #{awardDate}
+        )
+    </insert>
+
 
     <select id="selectResumesByPersonNo" parameterType="int" resultMap="ResumeResultMap">
         SELECT 
@@ -159,9 +214,7 @@
             LOCATION_EL, LOCATION_MI, LOCATION_HI, LOCATION,
             EXAM_PASSED_EL, EXAM_PASSED_MI, EXAM_PASSED_HI, SKILL,
             ACTICITY_TYPE, ORGANIZATION_NAME, START_DATE_ACT, END_DATE_ACT,
-            DESCRIPTION, CATEGORY, NAME, ISSUED_BY, PROFICIENCY_LEVEL,
-            KIND_OF_LANGUAGE, PASSING_CATEGORY, AWARD_NAME, ORGANIZER,
-            AWARD_DATE, ISSUE_DATE, VETERAN_REASON, SERVICE_STATE,
+            DESCRIPTION, CATEGORY, VETERAN_REASON, SERVICE_STATE,
             UNFULFILLED_REASON, EXEMPTED_REASON, ENLISTMENT_DATE, DISCHARGE_DATE,
             MILITARY_SELECTION, CLASS_SELECTION, DISCHARGE_REASON,
             WORK, DEPARTMENT, COMPANY_TITLE, START_DATE_WORK,
@@ -174,6 +227,26 @@
    <select id="selectResumeById" parameterType="int" resultMap="ResumeResultMap">
 	    SELECT * FROM RESUME WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
 	</select>
+	
+	 <select id="selectCertificatesByResumeNo" parameterType="int" resultMap="certificateResultMap">
+	    SELECT CERTIFICATE_ID, RESUME_NO, QUALIFICATION_NAME, ISSUING_AGENCY, PASS_STATUS, ISSUE_DATE
+	    FROM CERTIFICATES
+	    WHERE RESUME_NO = #{resumeNo}
+	</select>
+
+    <!-- 어학시험 목록 조회 -->
+    <select id="selectLanguageTestsByResumeNo" parameterType="int" resultMap="languagetestResultMap">
+        SELECT LANGUAGE_TEST_ID, RESUME_NO, LANGUAGE_NAME, PROFICIENCY_LEVEL, LANGUAGE_TYPE, ISSUE_DATE
+	    FROM LANGUAGE_TESTS
+	    WHERE RESUME_NO = #{resumeNo}
+    </select>
+
+    <!-- 수상내역 목록 조회 -->
+    <select id="selectAwardsByResumeNo" parameterType="int" resultMap="AwardResultMap">
+        SELECT AWARD_ID, RESUME_NO, AWARD_NAME, ORGANIZER, AWARD_DATE
+	    FROM AWARDS
+	    WHERE RESUME_NO = #{resumeNo}
+    </select>
 
     <!-- 이력서 수정 -->
     <update id="updateResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
@@ -186,9 +259,9 @@
     </update>
     
     <update id="deleteResume" parameterType="int">
-	   UPDATE RESUME
-		SET DELETED = 'Y', MODIFIED_DATE = SYSDATE
-		WHERE RESUME_NO = #{resumeNo}
-	</update>
+       UPDATE RESUME
+        SET DELETED = 'Y', MODIFIED_DATE = SYSDATE
+        WHERE RESUME_NO = #{resumeNo}
+    </update>
 
 </mapper>
