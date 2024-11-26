@@ -1,9 +1,16 @@
 package com.cs.workdream.resume.controller;
 
-import com.cs.workdream.resume.model.vo.Resume;
-import com.cs.workdream.resume.service.ResumeService;
-import com.cs.workdream.member.model.vo.Member;
+import java.beans.PropertyEditorSupport;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,20 +21,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
-
-import java.beans.PropertyEditorSupport;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.sql.Date;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.web.multipart.MultipartFile;
+import com.cs.workdream.member.model.vo.Member;
+import com.cs.workdream.resume.model.vo.Award;
+import com.cs.workdream.resume.model.vo.Certificate;
+import com.cs.workdream.resume.model.vo.LanguageTest;
+import com.cs.workdream.resume.model.vo.Resume;
+import com.cs.workdream.resume.service.ResumeService;
 
 @Controller
 @RequestMapping("/resume")
@@ -69,19 +71,94 @@ public class ResumeController {
     @PostMapping("/insert.re")
     public String insertResume(@ModelAttribute Resume resume,
                                @RequestParam("userPicFile") MultipartFile userPicFile,
+                               @RequestParam(value = "qualificationName[]", required = false) String[] qualificationNames,
+                               @RequestParam(value = "issuingAgency[]", required = false) String[] issuingAgencies,
+                               @RequestParam(value = "passStatus[]", required = false) String[] passStatuses,
+                               @RequestParam(value = "testDate_cer[]", required = false) String[] testDates,
+                               @RequestParam(value = "languageName[]", required = false) String[] languageNames,
+                               @RequestParam(value = "proficiencyLevel[]", required = false) String[] proficiencyLevels,
+                               @RequestParam(value = "languageType[]", required = false) String[] languageTypes,
+                               @RequestParam(value = "issueDate_language[]", required = false) String[] issueDatesLang,
+                               @RequestParam(value = "awardName[]", required = false) String[] awardNames,
+                               @RequestParam(value = "organizer[]", required = false) String[] organizers,
+                               @RequestParam(value = "awardDate[]", required = false) String[] awardDates,
                                HttpSession session,
                                RedirectAttributes redirectAttributes) {
-
         // 세션에서 personNo 가져오기
         Member loginUser = (Member) session.getAttribute("loginUser");
         if (loginUser == null) {
             redirectAttributes.addFlashAttribute("message", "로그인이 필요합니다.");
             return "redirect:/login?error=sessionExpired";
         }
-
-        // personNo 설정
         resume.setPersonNo(loginUser.getPersonNo());
-        logger.info("설정된 personNo: {}", resume.getPersonNo());
+
+        // 자격증 리스트 생성
+        List<Certificate> certificates = new ArrayList<>();
+        if (qualificationNames != null && issuingAgencies != null && passStatuses != null && testDates != null) {
+            for (int i = 0; i < qualificationNames.length; i++) {
+                if (qualificationNames[i] != null && !qualificationNames[i].isEmpty()) {
+                    Certificate cert = new Certificate();
+                    cert.setQualificationName(qualificationNames[i]);
+                    cert.setIssuingAgency(issuingAgencies[i]);
+                    cert.setPassStatus(passStatuses[i]);
+                    try {
+                        if (testDates[i] != null && !testDates[i].isEmpty()) {
+                            cert.setTestDate_cer(Date.valueOf(testDates[i]));
+                        }
+                    } catch (IllegalArgumentException e) {
+                        logger.error("Invalid date format for testDate_cer: {}", testDates[i]);
+                        cert.setTestDate_cer(null);
+                    }
+                    certificates.add(cert);
+                }
+            }
+        }
+        resume.setCertificates(certificates);
+
+        // 어학시험 리스트 생성
+        List<LanguageTest> languageTests = new ArrayList<>();
+        if (languageNames != null && proficiencyLevels != null && languageTypes != null && issueDatesLang != null) {
+            for (int i = 0; i < languageNames.length; i++) {
+                if (languageNames[i] != null && !languageNames[i].isEmpty()) {
+                    LanguageTest langTest = new LanguageTest();
+                    langTest.setLanguageName(languageNames[i]);
+                    langTest.setProficiencyLevel(proficiencyLevels[i]);
+                    langTest.setLanguageType(languageTypes[i]);
+                    try {
+                        if (issueDatesLang[i] != null && !issueDatesLang[i].isEmpty()) {
+                            langTest.setIssueDate(Date.valueOf(issueDatesLang[i]));
+                        }
+                    } catch (IllegalArgumentException e) {
+                        logger.error("Invalid date format for issueDate_language: {}", issueDatesLang[i]);
+                        langTest.setIssueDate(null);
+                    }
+                    languageTests.add(langTest);
+                }
+            }
+        }
+        resume.setLanguageTests(languageTests);
+
+        // 수상내역 리스트 생성
+        List<Award> awards = new ArrayList<>();
+        if (awardNames != null && organizers != null && awardDates != null) {
+            for (int i = 0; i < awardNames.length; i++) {
+                if (awardNames[i] != null && !awardNames[i].isEmpty()) {
+                    Award award = new Award();
+                    award.setAwardName(awardNames[i]);
+                    award.setOrganizer(organizers[i]);
+                    try {
+                        if (awardDates[i] != null && !awardDates[i].isEmpty()) {
+                            award.setAwardDate(Date.valueOf(awardDates[i]));
+                        }
+                    } catch (IllegalArgumentException e) {
+                        logger.error("Invalid date format for awardDate: {}", awardDates[i]);
+                        award.setAwardDate(null);
+                    }
+                    awards.add(award);
+                }
+            }
+        }
+        resume.setAwards(awards);
 
         // 이력서 저장
         boolean isSaved = resumeService.saveResume(resume, userPicFile);
@@ -93,17 +170,18 @@ public class ResumeController {
             return "redirect:/resume/enrollresume";
         }
     }
-    
+
+
     @GetMapping("/enrollresume")
     public String enrollResume() {
         return "resume/enrollresume"; // 해당 JSP 파일의 경로
     }
-    
+
     @GetMapping("/previewresume")
     public String previewResume() {
         return "resume/previewresume"; // 해당 JSP 파일의 경로
     }
-    
+
     @GetMapping("/resumeDashboard")
     public String resumeDashboard(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
         // 세션에서 로그인 사용자 정보 가져오기
@@ -128,7 +206,7 @@ public class ResumeController {
 
         return "resume/resumeDashboard"; // JSP 파일의 경로
     }
-    
+
     /**
      * 학력 수준에 따라 관련 없는 필드들을 null로 설정하는 메서드
      * @param resume 이력서 객체
@@ -280,17 +358,39 @@ public class ResumeController {
     }
 
     @GetMapping("/editResume")
-    public String editResume(@RequestParam("id") int resumeNo, Model model) {
+    public String editResume(@RequestParam("id") int resumeNo, Model model, RedirectAttributes redirectAttributes) {
         // 이력서 정보 조회
         Resume resume = resumeService.getResumeById(resumeNo);
         if (resume == null) {
-            return "redirect:/resumeDashboard?error=notFound";
+            redirectAttributes.addFlashAttribute("error", "이력서를 찾을 수 없습니다.");
+            return "redirect:/resume/resumeDashboard";
         }
+
+        // 자격증 관련 로그 추가 (NullPointerException 발생 가능성 확인)
+        List<Certificate> validCertificates = new ArrayList<>();
+        if (resume.getCertificates() != null) {
+            logger.info("자격증 개수: {}", resume.getCertificates().size());
+            for (Certificate cert : resume.getCertificates()) {
+                if (cert != null) {
+                    logger.info("자격증 이름: {}", cert.getQualificationName());
+                    validCertificates.add(cert);
+                } else {
+                    logger.warn("자격증 항목이 null입니다.");
+                }
+            }
+        } else {
+            logger.warn("자격증 목록이 null입니다.");
+        }
+
+        // 필터링된 자격증 리스트로 설정
+        resume.setCertificates(validCertificates);
+
         model.addAttribute("resume", resume);
         return "resume/editResume"; // 수정 페이지로 이동
     }
-    
-    @PostMapping("/updateResume")
+
+
+    @PostMapping("/update.re")
     public String updateResume(@ModelAttribute Resume resume) {
         // 이력서 수정 서비스 호출
         int result = resumeService.updateResume(resume);
@@ -300,7 +400,7 @@ public class ResumeController {
             return "redirect:/resumeDashboard?error=updateFailed";
         }
     }
-    
+
     @PostMapping("/deleteResume")
     public String deleteResume(@RequestParam("id") int resumeNo, RedirectAttributes redirectAttributes) {
         try {

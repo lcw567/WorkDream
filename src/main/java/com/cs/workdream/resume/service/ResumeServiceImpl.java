@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -18,6 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cs.workdream.resume.model.dao.ResumeDao;
+import com.cs.workdream.resume.model.vo.Award;
+import com.cs.workdream.resume.model.vo.Certificate;
+import com.cs.workdream.resume.model.vo.LanguageTest;
 import com.cs.workdream.resume.model.vo.Resume;
 
 @Service
@@ -76,35 +82,88 @@ public class ResumeServiceImpl implements ResumeService {
                 return false;
             }
 
-            // 추가적인 정보 저장이 필요하다면 여기에 구현
+            // 생성된 RESUME_NO 가져오기
+            int resumeNo = resume.getResumeNo();
+            logger.info("생성된 resumeNo: {}", resumeNo);
+
+            // 자격증 정보 저장
+            List<Certificate> certificates = resume.getCertificates();
+            if (certificates != null) {
+                for (Certificate cert : certificates) {
+                    cert.setResumeNo(resumeNo);
+                    boolean isCertInserted = resumeDao.insertCertificate(cert);
+                    if (!isCertInserted) {
+                        logger.error("자격증 정보 저장 실패: {}", cert.getQualificationName());
+                        throw new RuntimeException("자격증 정보 저장 실패");
+                    }
+                }
+            }
+
+            // 어학시험 정보 저장
+            List<LanguageTest> languageTests = resume.getLanguageTests();
+            if (languageTests != null) {
+                for (LanguageTest langTest : languageTests) {
+                    langTest.setResumeNo(resumeNo);
+                    boolean isLangInserted = resumeDao.insertLanguageTest(langTest);
+                    if (!isLangInserted) {
+                        logger.error("어학시험 정보 저장 실패: {}", langTest.getLanguageName());
+                        throw new RuntimeException("어학시험 정보 저장 실패");
+                    }
+                }
+            }
+
+            // 수상내역 정보 저장
+            List<Award> awards = resume.getAwards();
+            if (awards != null) {
+                for (Award award : awards) {
+                    award.setResumeNo(resumeNo);
+                    boolean isAwardInserted = resumeDao.insertAward(award);
+                    if (!isAwardInserted) {
+                        logger.error("수상내역 정보 저장 실패: {}", award.getAwardName());
+                        throw new RuntimeException("수상내역 정보 저장 실패");
+                    }
+                }
+            }
 
             return true;
         } catch (IOException e) {
             logger.error("파일 업로드 중 오류 발생", e);
-            return false;
+            throw new RuntimeException("파일 업로드 중 오류 발생", e);
         } catch (Exception e) {
             logger.error("이력서 저장 중 오류 발생", e);
-            return false;
+            throw new RuntimeException("이력서 저장 중 오류 발생", e);
         }
     }
-    
+
     @Override
     public List<Resume> getResumesByPersonNo(int personNo) {
         return resumeDao.selectResumesByPersonNo(personNo);
     }
-    
+
     @Override
     public Resume getResumeById(int resumeNo) {
-        return resumeDao.selectResumeById(resumeNo);
+        Resume resume = resumeDao.selectResumeById(resumeNo);
+        if (resume != null) {
+            // 자격증, 어학시험, 수상내역 정보 가져와서 설정
+            List<Certificate> certificates = resumeDao.selectCertificatesByResumeNo(resumeNo);
+            List<LanguageTest> languageTests = resumeDao.selectLanguageTestsByResumeNo(resumeNo);
+            List<Award> awards = resumeDao.selectAwardsByResumeNo(resumeNo);
+
+            resume.setCertificates(certificates != null ? certificates : new ArrayList<>());
+            resume.setLanguageTests(languageTests != null ? languageTests : new ArrayList<>());
+            resume.setAwards(awards != null ? awards : new ArrayList<>());
+        }
+        return resume;
     }
+
 
     @Override
     public int updateResume(Resume resume) {
         return resumeDao.updateResume(resume);
     }
     
-    @Transactional
     @Override
+    @Transactional
     public int deleteResumeById(int resumeNo) {
         try {
             logger.info("ResumeServiceImpl - 삭제 요청된 이력서 번호: {}", resumeNo);
