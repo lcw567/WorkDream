@@ -126,6 +126,13 @@ public class BusinessController {
     	return model;
     }
 	
+    // 즐겨찾기에서 삭제
+    @RequestMapping("/deleteBookmark.bu")
+    public int deleteBookmarkList(@RequestParam("no") int resumeNo) {
+    	int result = businessService.deleteBookmarkList(resumeNo);
+    	
+    	return result;
+    }
 	
 	/*=====================================================================================================*/
 	
