@@ -93,13 +93,27 @@
 	<!-- 북마크 목록 조회 -->
 	<select id="loadBookmarkList" parameterType="int" resultMap="businessBookmarkResultSet">
 		SELECT	BUSINESS_NO,
-				RESUME_NO,
+				B.RESUME_NO,
+				USER_NAME AS APPLICANTS_NAME,
+				USER_PIC AS APPLICANTS_PICTURE,
+				USER_PHONE AS APPLICANTS_PHONE,
+				USER_EMAIL AS APPLICANTS_EMAIL,
 				FOLDER_NAME,
+				R.STATUS AS RESUME_STATUS,
 				ADD_DATE
-		  FROM	BUSINESS_BOOKMARK
-		  JOIN	
+		  FROM	BUSINESS_BOOKMARK B
+		  JOIN	RESUME R ON (B.RESUME_NO = R.RESUME_NO)
 		 WHERE	BUSINESS_NO = #{businessNo}
 	</select>
+	
+	<!-- 북마크 폴더 이동 -->
+	
+	<!-- 북마크 목록에서 삭제 -->
+	<delete id="deleteBookmarkList" parameterType="map">
+		DELETE	FROM BUSINESS_BOOKMARK
+		 WHERE	BUSINESS_NO = #{businessNo}
+		   AND	RESUME_NO = #{resumeNo}
+	</delete>
 
     <!-- 담당자 정보 저장 -->
     <insert id="insertRepresentativeInfo">
