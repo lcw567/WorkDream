@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cs.workdream.business.model.dao.BusinessDao;
 import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
+import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
 
 @Service
@@ -36,5 +37,23 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public List<Applicants> loadAppList(int recruitmentNo, int positionNo) {
 		return businessDao.loadAppList(sqlSession, recruitmentNo, positionNo);
+	}
+
+	// 즐겨찾기 목록 조회
+	@Override
+	public List<BusinessBookmark> loadBookmarkList(int businessNo) {
+		return businessDao.loadBookmarkList(sqlSession, businessNo);
+	}
+
+	// 즐겨찾기 목록에서 삭제
+	@Override
+	public int deleteBookmarkList(int businessNo, int resumeNo) {
+		return businessDao.deleteBookmarkList(sqlSession, businessNo, resumeNo);
+	}
+
+	// 즐겨찾기 그룹 분류 수정
+	@Override
+	public int updateBookmarkFolder(BusinessBookmark bookmark, String type, String folder) {
+		return businessDao.updateBookmarkFolder(sqlSession, bookmark, type, folder);
 	}
 }

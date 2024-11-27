@@ -88,7 +88,7 @@
 
         <section class="banner">
             <div class="plannerBanner">
-                <img src="${pageContext.request.contextPath}/img/plannerBanner.PNG" onclick="location.href='#'" />
+                <img src="${pageContext.request.contextPath}/img/plannerBanner.PNG" onclick="location.href='${pageContext.request.contextPath}/planner/planner'" />
             </div>
             <div class="mainBanner">
                 <img src="${pageContext.request.contextPath}/img/banner.PNG" />

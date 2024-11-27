@@ -19,7 +19,7 @@
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div id="inner">
-        <form action="insert.re" method="post" enctype="multipart/form-data">
+        <form id="resumeForm" action="insert.re" method="post" enctype="multipart/form-data">
             <div class="resume_title">
                 <h1>이력서 제목</h1> 
                 <input type="text" name="resumeTitle" placeholder="이력서의 제목을 입력해주세요." required>
@@ -486,7 +486,6 @@
                 </fieldset>
             </div>
         
-            <!-- 자격/어학/수상 -->
             <div class="awards">
                 <fieldset class="select_awards">
                     <legend class="awa">자격/어학/수상</legend>
@@ -505,15 +504,15 @@
                     <div class="awards2" id="certificateFields" style="display: none;">
                         <fieldset class="certi_title">
                             <legend>자격증명</legend>
-                            <input type="text" name="qualificationName">
+                            <input type="text" name="qualificationName[]">
                         </fieldset>
                         <fieldset class="institution">
                             <legend>발행처/기관</legend>
-                            <input type="text" name="issuingAgency">
+                            <input type="text" name="issuingAgency[]">
                         </fieldset>
                         <fieldset class="pass_status">
                             <legend>합격구분</legend>
-                            <select name="passStatus" id="pass_menu">
+                            <select name="passStatus[]" class="pass_menu">
                                 <option value="">합격구분*</option>
                                 <option value="1pass">1차합격</option>
                                 <option value="2pass">2차합격</option>
@@ -525,8 +524,8 @@
                     </div>
                     <div class="awards3" id="certificateDate" style="display: none;">
                         <fieldset class="pass_date">
-                            <legend>발급일자</legend>
-                            <input type="date" class="pass" name="issueDate">
+                            <legend>시험일자</legend>
+                            <input type="date" class="pass" name="testDate_cer[]">
                         </fieldset>
                         <button type="button" class="addQualificationButton">추가하기</button>
                     </div>
@@ -536,33 +535,33 @@
                             <div class="language1">
                                 <fieldset class="lang_title">
                                     <legend>어학시험명</legend>
-                                    <input type="text" name="languageName">
+                                    <input type="text" name="languageName[]">
                                 </fieldset>
                                 <fieldset class="level">
                                     <legend>급수</legend>
-                                    <select name="proficiencyLevel" id="certi_level">
-                                        <option value="">급수</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
+                                    <select name="proficiencyLevel[]" class="certi_level">
+                                        <option value="">급수 선택</option>
+                                        <option value="1">1급</option>
+                                        <option value="2">2급</option>
+                                        <option value="3">3급</option>
+                                        <option value="4">4급</option>
+                                        <option value="5">5급</option>
+                                        <option value="6">6급</option>
+                                        <option value="7">7급</option>
+                                        <option value="8">8급</option>
+                                        <option value="9">9급</option>
+                                        <option value="10">10급</option>
+                                        <option value="11">11급</option>
+                                        <option value="12">12급</option>
+                                        <option value="13">13급</option>
+                                        <option value="14">14급</option>
+                                        <option value="15">15급</option>
                                     </select>
                                 </fieldset>
                                 <fieldset class="lang_category">
                                     <legend>언어</legend>
-                                    <select name="languageType" id="lang_cate">
-                                        <option value="">언어</option>
+                                    <select name="languageType[]" class="lang_cate">
+                                        <option value="">언어 선택</option>
                                         <option value="english">영어</option>
                                         <option value="japan">일본어</option>
                                         <option value="china">중국어</option>
@@ -579,26 +578,26 @@
                             <div class="language2" id="languageDate1">
                                 <fieldset class="get_date">
                                     <legend>취득일</legend>
-                                    <input type="date" class="get" name="issueDate">
+                                    <input type="date" class="get" name="issueDate[]">
                                 </fieldset>
                                 <button type="button" class="addLanguageButton">추가하기</button>
                             </div>
                         </div>
                     </div>
                     <!-- 수상/공모전 정보 -->
-                    <div class="Contest" id="awardDetailsFields" style="display: none;">
+                    <div class="Contest" id="awardDetailsFields">
                         <div class="contest1">
                             <fieldset class="contest_title">
                                 <legend>수상/공모전명</legend>
-                                <input type="text" name="awardName">
+                                <input type="text" name="awardName[]">
                             </fieldset>
                             <fieldset class="contest_place">
                                 <legend>주최기관</legend>
-                                <input type="text" name="organizer">
+                                <input type="text" name="organizer[]">
                             </fieldset>
                             <fieldset class="acquire_date">
                                 <legend>취득일</legend>
-                                <input type="date" class="acquire" name="awardDate">
+                                <input type="date" class="acquire" name="awardDate[]">
                             </fieldset>
                         </div>
                         <div class="contest2">

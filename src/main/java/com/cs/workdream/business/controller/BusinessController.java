@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
+import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.JobPosting1;
 import com.cs.workdream.business.model.vo.Position;
 import com.cs.workdream.business.service.BusinessService;
+import com.cs.workdream.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/business")
@@ -42,8 +46,20 @@ public class BusinessController {
 	// 지원자 현황 페이지로 이동
 	@GetMapping("/applicantsStatus")
 	public String applicantsStatus() {
-		// model값을 리턴 받아서 -> 결과에 따라 페이지 이동
-		// model = inquiryAppStatus(1, model, apps);
+		// @RequestParam("recruitmentNo") int recruitmentNo,
+		// 지원자 현황 조회 결과를 Model에 저장
+	    // model = inquiryAppStatus(recruitmentNo, model);
+		
+		// 조회 결과에 따라 페이지 이동
+//	    int result = (int) model.getAttribute("result");
+//	    if (result == 1) {
+//	        // 조회 성공 시 business/applicantsStatus 페이지로 이동
+//	        return "business/applicantsStatus";
+//	    } else {
+//	        // 조회 실패 시 common/errorPage로 이동
+//	        return "common/errorPage";
+//	    }
+		
 		
 		return "business/applicantsStatus";
 	}
@@ -71,30 +87,78 @@ public class BusinessController {
 	
 	// 지원자 목록 페이지로 이동
     @GetMapping("/applicantsList")
-    public String applicantsList() {
+    public String applicantsList(Model model) {
+    	// @RequestParam("no") int recruitmentNo, @RequestParam("position")
+    	// model = loadAppList();
         return "business/applicantsList";
     }
     
     // 지원자 목록 조회
-    @RequestMapping("/loadAppList")
-    public ModelAndView loadAppList(@RequestParam("no") int recruitmentNo, @RequestParam("position") int positionNo, ModelAndView mv) {
+    public Model loadAppList(int recruitmentNo, int positionNo, Model model) {
     	// 포지션 고유키로 지원자 목록 및 상태 조회
     	List<Applicants> appList = businessService.loadAppList(recruitmentNo, positionNo);
     	
     	if(appList == null) {
     		// 목록 조회 실패
-    		mv.addObject("errorMsg", "오류가 발생했습니다. 다시 시도해주세요.");
-	        mv.addObject("returnPage", "/inquiryAppStatus?no=" + recruitmentNo);
-	        mv.setViewName("common/errorPage");
+    		model.addAttribute("errorMsg", "오류가 발생했습니다. 다시 시도해주세요.");
+    		model.addAttribute("returnPage", "/inquiryAppStatus?no=" + recruitmentNo);
     	} else {
     		// 조회 성공
-    		mv.addObject("appList", appList);
-    		mv.setViewName("/business/applicantsList");
+    		model.addAttribute("appList", appList);
+    		model.addAttribute("/business/applicantsList");
     	}
     	
-    	return mv;
+    	return model;
+    }
+    
+    
+    /* 구직자 즐겨찾기 관련 */
+    
+    // 구직자 즐겨찾기 페이지로 이동
+    @GetMapping("/bookmark")
+    public String bookmarkList() {
+        return "business/bookmarkList";
+    }
+    
+    // 즐겨찾기 목록 조회
+    public Model loadBookmarkList(HttpSession session, Model model) {
+    	Member loginMember = (Member) session.getAttribute("loginUser");
+    	int businessNo = loginMember.getBusinessNo();
+    	
+    	List<BusinessBookmark> bookmarkList = businessService.loadBookmarkList(businessNo);
+    	model.addAttribute("bookmarkList", bookmarkList);
+    	
+    	return model;
     }
 	
+    // 즐겨찾기에서 삭제
+    @RequestMapping("/deleteBookmark.biz")
+    @ResponseBody
+    public int deleteBookmarkList(@RequestParam("no") int resumeNo, HttpSession session) {
+    	Member loginMember = (Member) session.getAttribute("loginUser");
+    	int businessNo = loginMember.getBusinessNo();
+    	
+    	return businessService.deleteBookmarkList(businessNo, resumeNo);
+    }
+    
+    // 즐겨찾기 그룹 분류 수정
+    @RequestMapping("/updateBookmark.biz")
+    @ResponseBody
+    public int updateBookmarkFolder(@RequestBody BusinessBookmark bookmark, @RequestParam("type") String type, @RequestParam(value = "folder", required = false) String folder) {
+    	return businessService.updateBookmarkFolder(bookmark, type, folder);
+    }
+    
+    // 즐겨찾기 그룹 추가
+    @RequestMapping("/updateFolder.biz")
+    public int updateFolder(@RequestParam("folderName") String folder) {
+    	return 0;
+    }
+    
+    // 즐겨찾기 그룹 삭제
+    @RequestMapping("/deleteFolder.biz")
+    public int deleteFolder() {
+    	return 0;
+    }
 	
 	/*=====================================================================================================*/
 	
@@ -110,7 +174,7 @@ public class BusinessController {
         return "business/announcementInformation2";
     }
 	
-	@PostMapping("/business/announcementInformation2")
+	@PostMapping("/announcementInformation2")
 	@ResponseBody
 	public Map<String, String> handleJobData(@RequestBody Map<String, String> jobData) {
 	    // 데이터 처리 로직 (DB 저장, 검증 등)
@@ -133,11 +197,6 @@ public class BusinessController {
 	@GetMapping("/positionAndCareer")
     public String positionCareer() {
         return "business/positionAndCareer";
-    }
-    
-    @GetMapping("/bookmark")
-    public String bookmarkList() {
-        return "business/bookmark";
     }
     
     
