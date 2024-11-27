@@ -42,7 +42,7 @@ public class BusinessController {
 	
 	// 지원자 현황 페이지로 이동
 	@GetMapping("/applicantsStatus")
-	public String applicantsStatus(Model model) {
+	public String applicantsStatus() {
 		// @RequestParam("recruitmentNo") int recruitmentNo,
 		// 지원자 현황 조회 결과를 Model에 저장
 	    // model = inquiryAppStatus(recruitmentNo, model);
@@ -148,7 +148,7 @@ public class BusinessController {
         return "business/announcementInformation2";
     }
 	
-	@PostMapping("/business/announcementInformation2")
+	@PostMapping("/announcementInformation2")
 	@ResponseBody
 	public Map<String, String> handleJobData(@RequestBody Map<String, String> jobData) {
 	    // 데이터 처리 로직 (DB 저장, 검증 등)
