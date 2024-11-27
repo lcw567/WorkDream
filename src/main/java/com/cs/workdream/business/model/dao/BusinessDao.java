@@ -1,6 +1,8 @@
 package com.cs.workdream.business.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -35,8 +37,12 @@ public class BusinessDao {
 	}
 
 	// 즐겨찾기 목록에서 삭제
-	public int deleteBookmarkList(SqlSessionTemplate sqlSession, int resumeNo) {
-		return 0;
+	public int deleteBookmarkList(SqlSessionTemplate sqlSession, int businessNo, int resumeNo) {
+		Map<String, Integer> numbers = new HashMap<>();
+		numbers.put("businessNo", businessNo);
+		numbers.put("resumeNo", resumeNo);
+		
+		return sqlSession.delete("businessMapper.deleteBookmarkList", numbers);
 	}
 
 }
