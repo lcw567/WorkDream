@@ -1,182 +1,242 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // 제목 입력 필드를 가져옵니다
-    const announcementTitle = document.getElementById("Announcement_Title");
+const data = {
+    dutyList: [],
+    tmpDyty: {
+        rank: "",
+        position: "",
+        employment_type: "정규직",
+        career_type: "신입",
+        education: "학력무관",
+        work_days: "주 5일",
+        salary_min: "",
+        salary_max: "",
+        company_type: "대기업",
+        employment_status: "재직무관",
+    },
+}
 
-    // 글자 수 제한을 설정합니다
-    const maxLength = 25;
+document.addEventListener('DOMContentLoaded', function () {
 
-    // 제목 입력 시 글자 수를 체크하는 이벤트 리스너를 추가합니다
-    announcementTitle.addEventListener("input", function () {
-        // 입력된 글자 수를 계산합니다
-        const currentLength = announcementTitle.value.length;
+    // 공통 함수: 입력 필드 생성 및 처리
+    function createInputHandler(container, placeholderText, wrapperClass) {
+        return function () {
+            const wrapper = document.createElement('div');
+            wrapper.classList.add(wrapperClass);
 
-        // 25자 이상일 경우 글자를 자르거나 경고 메시지를 표시합니다
-        if (currentLength > maxLength) {
-            announcementTitle.value = announcementTitle.value.substring(0, maxLength);  // 초과한 글자를 잘라냄
-            alert("제목은 25자 이내로 입력해주세요.");  // 경고 메시지
-        }
+            const inputField = document.createElement('input');
+            inputField.setAttribute('placeholder', placeholderText);
+            inputField.style.border = 'none';
+            inputField.style.backgroundColor = 'transparent';
+            inputField.style.color = 'white';
+            inputField.style.fontSize = '14px';
 
-        // 입력된 글자 수를 화면에 표시할 수도 있습니다 (옵션)
-        // 예: "현재 글자 수: X/25"
-        const charCountElement = document.getElementById("charCount");
-        if (!charCountElement) {
-            const charCountDiv = document.createElement("div");
-            charCountDiv.id = "charCount";
-            charCountDiv.innerHTML = `현재 글자 수: ${currentLength}/${maxLength}`;
-            document.getElementById("Announcement_Title").insertAdjacentElement('afterend', charCountDiv);
-        } else {
-            charCountElement.innerHTML = `현재 글자 수: ${currentLength}/${maxLength}`;
-        }
-    });
-});
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'x';
+            deleteButton.classList.add('delete-btn');
 
+            deleteButton.addEventListener('click', () => {
+                if (wrapper.parentNode) {
+                    wrapper.parentNode.removeChild(wrapper);
+                }
+            });
 
-document.addEventListener("DOMContentLoaded", function () {
-    // 직무 추가 버튼을 가져옵니다
-    const addDutyButton = document.getElementById("addDutyButton");
+            const confirmInput = () => {
+                const enteredText = inputField.value.trim();
+                if (!enteredText) {
+                    alert(`${placeholderText}를 입력해주세요.`);
+                    inputField.focus();
+                    return;
+                }
 
-    // 버튼 클릭 시 페이지 이동 이벤트 추가
-    addDutyButton.addEventListener("click", function () {
-        // 이동할 페이지 URL을 지정합니다.
-        window.location.href = contextPath + "/business/positionAndCareer";  // 원하는 URL로 변경
-    });
-});
+                const isDuplicate = Array.from(container.querySelectorAll(`.${wrapperClass} p`)).some(
+                    (p) => p.textContent.trim() === enteredText
+                );
 
+                if (isDuplicate) {
+                    alert(`${enteredText}는 이미 추가된 ${placeholderText}입니다. 다른 값을 입력해주세요.`);
+                    inputField.focus();
+                    return;
+                }
 
-//직무의 X버튼을 눌렀을때 div가 삭제
-document.addEventListener("DOMContentLoaded", function () {
-    // 모든 삭제 버튼을 가져옵니다
-    const deleteButtons = document.querySelectorAll(".Job_duty button");
+                wrapper.innerHTML = '';
+                const textContent = document.createElement('p');
+                textContent.textContent = enteredText;
 
-    // 각 버튼에 클릭 이벤트를 추가합니다
-    deleteButtons.forEach(function (button) {
-        button.addEventListener("click", function (event) {
-            // 버튼의 부모 요소인 .Job_duty div를 가져옵니다
-            const jobDutyDiv = event.target.closest(".Job_duty");
+                wrapper.appendChild(textContent);
+                wrapper.appendChild(deleteButton);
+            };
 
-            // 해당 .Job_duty div를 삭제합니다
-            if (jobDutyDiv) {
-                jobDutyDiv.remove();
-            }
-        });
-    });
-});
+            inputField.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    confirmInput();
+                }
+            });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const maxDuties = 5; // 최대 직무 개수
-    const addDutyButton = document.getElementById("addDutyButton");
-    const jobDutiesContainer = document.getElementById("jobDutiesContainer");
+            wrapper.appendChild(inputField);
+            wrapper.appendChild(deleteButton);
+            container.appendChild(wrapper);
 
-    // 직무 추가 버튼 클릭 이벤트
-    addDutyButton.addEventListener("click", async function () {
-        const currentDuties = jobDutiesContainer.querySelectorAll(".Job_duty");
-
-        // 최대 개수 확인
-        if (currentDuties.length >= maxDuties) {
-            alert("직무는 최대 5개까지만 추가할 수 있습니다.");
-            return;
-        }
-
-        // URL에서 데이터를 가져오는 코드 (예: AJAX 요청)
-        try {
-            const response = await fetch("http://localhost:3333/WorkDream/business/positionAndCareer");
-            if (!response.ok) throw new Error("데이터를 가져오지 못했습니다.");
-            const newDutyData = await response.text(); // 응답 데이터 (예: 문자열)
-
-            // 새로운 직무 요소 생성
-            addDutyElement(newDutyData);
-        } catch (error) {
-            console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
-        }
-    });
-
-    // 직무를 추가하는 함수
-    function addDutyElement(dutyText) {
-        // 새로운 직무 요소 생성
-        const newDuty = document.createElement("div");
-        newDuty.classList.add("Job_duty");
-        newDuty.innerHTML = `
-            <p>${dutyText}</p>
-            <button>
-                <img src="${contextPath}/img/letter-x_9215129.png" style="width: 25px; height: 25px;">
-            </button>
-        `;
-
-        // 삭제 버튼 동작 추가
-        newDuty.querySelector("button").addEventListener("click", function () {
-            newDuty.remove();
-        });
-
-        // 새로운 직무 요소를 컨테이너에 추가
-        jobDutiesContainer.appendChild(newDuty);
+            inputField.focus();
+        };
     }
+
+    const workLocationAddressButton = document.querySelector('.Work_Location_Address');
+    const locationContainer = document.getElementById('location-container');
+    workLocationAddressButton.addEventListener(
+        'click',
+        createInputHandler(locationContainer, '지역', 'Work_Location')
+    );
+
+    const industryCategoryButton = document.querySelector('.Industry_Category');
+    const industryContainer = document.getElementById('industry-container');
+    industryCategoryButton.addEventListener(
+        'click',
+        createInputHandler(industryContainer, '업종', 'Industry_Type')
+    );
+
+    const addCompanyButton = document.querySelector('.add-company-btn');
+    const companyContainer = document.getElementById('company-container');
+    addCompanyButton.addEventListener(
+        'click',
+        createInputHandler(companyContainer, '기업명', 'Company_Type')
+    );
+
+    const skillSearchInput = document.getElementById('Skill_Search_Keyward');
+    const skillContainer = document.getElementById('skill-container');
+
+    skillSearchInput.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const keyword = skillSearchInput.value.trim();
+
+            if (keyword !== '') {
+                const isDuplicate = Array.from(skillContainer.querySelectorAll('h2')).some(
+                    (element) => element.textContent.trim() === keyword
+                );
+
+                if (isDuplicate) {
+                    alert('중복된 키워드입니다.');
+                    skillSearchInput.value = '';
+                    return;
+                }
+
+                const skillSearchContent = document.createElement('div');
+                skillSearchContent.classList.add('Skill_Search_Contant');
+
+                const icon = document.createElement('img');
+                icon.src = contextPath + '/img/icons8-done-24.png';
+
+                const h2 = document.createElement('h2');
+                h2.textContent = keyword;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '×';
+                deleteButton.addEventListener('click', function () {
+                    skillContainer.removeChild(skillSearchContent);
+                });
+
+                skillSearchContent.appendChild(icon);
+                skillSearchContent.appendChild(h2);
+                skillSearchContent.appendChild(deleteButton);
+
+                skillContainer.appendChild(skillSearchContent);
+
+                skillSearchInput.value = '';
+            }
+        }
+    });
+
+// 모든 input[type=radio]를 선택
+    const radioList = document.querySelectorAll("#Job_Position_content input[type=radio]");
+// 각 라디오 버튼에 onchange 이벤트 등록
+    for(let r of radioList) {
+        r.onchange = function(ev){
+            const radioButton = ev.target;
+
+            // 라디오 버튼의 name 속성을 기반으로 tmpDyty의 key에 값 업데이트
+            data.tmpDyty[radioButton.name] = radioButton.value;
+            console.log(data)
+        }
+    }
+
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const fileInput = document.getElementById("Announcement-file");
+// 파일 첨부 처리
+function changeFile(fileInput) {
     const fileNameInput = document.getElementById("Announcement_Introduction_fileName");
     const imagePreviewDiv = document.getElementById("Announcement_Introduction_img");
-    const defaultImage = imagePreviewDiv.querySelector("img"); // 기존 이미지를 참조
+    const defaultImage = imagePreviewDiv.querySelector("img");
 
-    fileInput.addEventListener("change", () => {
-        const file = fileInput.files[0];
-        
-        if (file) {
-            // 파일 이름을 input에 표시
-            fileNameInput.value = file.name;
+    const file = fileInput.files[0];
+    if (file) {
+        fileNameInput.value = file.name;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            defaultImage.classList.add("hidden");
 
-            // 이미지 미리보기 생성
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                // 기존 기본 이미지를 숨기거나 제거
-                defaultImage.classList.add("hidden");
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            img.classList.add("uploaded-image");
+            img.alt = "미리보기 이미지";
 
-                // 새 이미지 요소 생성 및 추가
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.classList.add("uploaded-image");
-                img.alt = "미리보기 이미지";
+            imagePreviewDiv.innerHTML = "";
+            imagePreviewDiv.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
+}
 
-                // 기존 이미지 제거 후 새 이미지 추가
-                imagePreviewDiv.innerHTML = ""; // 기존 내용을 비우기
-                imagePreviewDiv.appendChild(img);
-            };
-            reader.readAsDataURL(file); // 파일을 읽어 데이터 URL로 변환
-        }
+// 제목 글자수 제한
+function checkTextLength(ev) {
+    const announcementTitle = ev.target;
+    const maxLength = 25;
+    const currentLength = announcementTitle.value.length;
+
+    if (currentLength > maxLength) {
+        announcementTitle.value = announcementTitle.value.substring(0, maxLength);
+        alert("제목은 25자 이내로 입력해주세요.");
+    }
+
+    const charCountElement = document.getElementById("charCount");
+    charCountElement.innerHTML = `현재 글자 수: ${currentLength}/${maxLength}`;
+}
+
+// 모든 라디오 버튼의 변경 이벤트 처리
+document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+    radio.addEventListener('change', (event) => {
+        console.log(`선택된 값: ${event.target.value}`);
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. 로컬 스토리지에서 데이터 가져오기
-    const jobData = JSON.parse(localStorage.getItem('jobData'));
-
-    // 2. 데이터를 표시할 HTML 요소 가져오기
-    const displayElement = document.getElementById('jobDataDisplay');
-
-    // 3. 데이터가 있을 경우 화면에 표시
-    if (jobData) {
-        const workLocation = jobData.workLocation.length > 0 
-            ? `근무지 - ${jobData.workLocation.join(', ')}`
-            : '근무지 - 없음';
-
-        const industry = jobData.industry.length > 0 
-            ? `업종 - ${jobData.industry.join(', ')}`
-            : '업종 - 없음';
-
-        const formattedData = `
-            ${jobData.rank} / ${jobData.position} / ${jobData.employmentType} / 
-            경력 ${jobData.careerMin}년 ~ ${jobData.careerMax}년 / 학력 - ${jobData.education} / 
-            근무요일 - ${jobData.workDays} / 근무시간 - ${jobData.workTimeMin} ~ ${jobData.workTimeMax} / 
-            예상연봉 - ${jobData.salaryMin} ~ ${jobData.salaryMax}만원 / 
-            ${workLocation} / ${industry} / 기업 유형 - ${jobData.companyType} / 
-            재직 여부 - ${jobData.employmentStatus}
-        `.trim();
-
-        // 데이터를 한 줄로 표시
-        displayElement.innerText = formattedData.replace(/\s+/g, ' ');
-    } else {
-    }
-
-    // 4. 로컬 스토리지에서 데이터 삭제 (선택적)
-    localStorage.removeItem('jobData');
+document.querySelectorAll('input[name="Career_Type"]').forEach((radio) => {
+    radio.addEventListener('change', (event) => {
+        console.log(`선택된 경력: ${event.target.value}`);
+    });
 });
+
+document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+    radio.addEventListener('change', (event) => {
+        const groupName = event.target.name;
+        const selectedValue = event.target.value;
+        console.log(`그룹 "${groupName}"에서 선택된 값: ${selectedValue}`);
+    });
+});
+
+
+function openModal(){
+    const modal = document.querySelector('.modal');
+    modal.style.display = 'block';
+}
+
+function closeModal(){
+    const modal = document.querySelector('.modal');
+    modal.style.display = 'none';
+
+    //값을 가져와서 그려주기 data.dutyList에 추가
+
+}
+
+function changeValue(key, value){
+    console.log(data.tmpDyty)
+    data.tmpDyty[key] = value;
+}
