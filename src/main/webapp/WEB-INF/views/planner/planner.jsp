@@ -48,7 +48,7 @@
     
     <!-- 캘린더 사용설명 칸 -->
     <div id="calendar-description">
-        <h2>캘린더 사용 방법</h2>
+        <h2>플래너 사용 방법</h2>
         <ul>
             <li>
                 <i class="bi bi-calendar-plus"></i>
