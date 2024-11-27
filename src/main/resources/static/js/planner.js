@@ -8,6 +8,17 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    // 날짜 및 시간 형식을 로컬 형식으로 변환하는 함수
+    function formatLocalDateTime(date) {
+        const pad = (n) => n < 10 ? '0' + n : n;
+        return date.getFullYear() + '-' +
+            pad(date.getMonth() + 1) + '-' +
+            pad(date.getDate()) + 'T' +
+            pad(date.getHours()) + ':' +
+            pad(date.getMinutes()) + ':' +
+            pad(date.getSeconds());
+    }
+
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -17,41 +28,29 @@ document.addEventListener('DOMContentLoaded', function () {
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: 'timeGridWeek,timeGridDay' // 1. 월 버튼 제거
         },
         height: 'auto',
         contentHeight: 900,
         expandRows: true,
         editable: true,
         droppable: true,
-        events: function(fetchInfo, successCallback, failureCallback) {
-            fetch(`${WORKDREAM.contextPath}/planner/api/events?userNo=${WORKDREAM.currentUserNo}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    successCallback(data.map(event => ({
-                        id: event.eventId,
-                        title: event.title,
-                        start: event.startDate,
-                        end: event.endDate,
-                        description: event.description,
-                        allDay: true
-                    })));
-                })
-                .catch(error => {
-                    console.error('Error fetching events:', error);
-                    failureCallback(error);
-                });
+        selectable: true, // 날짜 선택 가능하게 설정
+        selectMirror: true,
+        dayMaxEvents: true, // 3. 한 날짜에 이벤트가 2개 이상일 때 표시 제한
+        views: {
+            dayGridMonth: {
+                dayMaxEvents: 3 // 하루에 최대 3개 이벤트 표시, 초과 시 "+N more" 링크 표시
+            }
         },
-
-        // 날짜 클릭 시 이벤트 추가
-        dateClick: function (info) {
+        // 이벤트 추가 시 선택
+        select: function(info) {
+            // 날짜 선택 시 이벤트 추가 모달 표시
             document.getElementById('eventTitle').value = '';
             document.getElementById('eventDescription').value = '';
+            document.getElementById('eventStartDate').value = info.startStr + 'T00:00'; // 기본 시작 시간 설정
+            document.getElementById('eventEndDate').value = info.endStr + 'T23:59'; // 기본 종료 시간 설정
+
             const saveButton = document.getElementById('saveEventButton');
 
             // 모달 표시
@@ -66,6 +65,8 @@ document.addEventListener('DOMContentLoaded', function () {
             newSaveButton.onclick = function () {
                 const title = document.getElementById('eventTitle').value.trim();
                 const description = document.getElementById('eventDescription').value.trim();
+                const startDate = document.getElementById('eventStartDate').value;
+                const endDate = document.getElementById('eventEndDate').value;
 
                 if (title === '') {
                     alert('이벤트 제목을 입력해주세요.');
@@ -76,7 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     userNo: WORKDREAM.currentUserNo,
                     title: title,
                     description: description,
-                    startDate: info.dateStr,
+                    startDate: startDate, // 'YYYY-MM-DDTHH:MM:SS' 형식
+                    endDate: endDate,
                     status: 'Y'
                 };
 
@@ -100,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         start: data.startDate,
                         end: data.endDate,
                         description: data.description,
-                        allDay: true
+                        allDay: false // 2. 시간 정보 포함을 위해 allDay를 false로 설정
                     });
                     modal.hide(); // 모달 닫기
                     alert('새로운 이벤트가 추가되었습니다!');
@@ -110,13 +112,39 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('이벤트 추가에 실패했습니다.');
                 });
             };
+
+            // 선택 상태 해제
+            calendar.unselect();
+        },
+        events: function(fetchInfo, successCallback, failureCallback) {
+            fetch(`${WORKDREAM.contextPath}/planner/api/events?userNo=${WORKDREAM.currentUserNo}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    successCallback(data.map(event => ({
+                        id: event.eventId,
+                        title: event.title,
+                        start: event.startDate,
+                        end: event.endDate,
+                        description: event.description,
+                        allDay: false // 시간 정보 포함을 위해 allDay를 false로 설정
+                    })));
+                })
+                .catch(error => {
+                    console.error('Error fetching events:', error);
+                    failureCallback(error);
+                });
         },
 
         // 이벤트 클릭 시 상세보기 및 삭제 모달 표시
         eventClick: function (info) {
             const eventDetails = `제목: ${info.event.title}\n내용: ${
                 info.event.extendedProps.description || '내용 없음'
-            }`;
+            }\n시작: ${info.event.start.toLocaleString()}\n종료: ${info.event.end ? info.event.end.toLocaleString() : '없음'}`;
             document.getElementById('deleteEventDetails').textContent = eventDetails;
 
             // 삭제 확인 모달 표시
@@ -157,8 +185,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const updatedEvent = {
                 title: event.title,
                 description: event.extendedProps.description,
-                startDate: event.start.toISOString().split('T')[0], // 날짜만 추출
-                endDate: event.end ? event.end.toISOString().split('T')[0] : null,
+                startDate: formatLocalDateTime(event.start), // 2. 날짜 및 시간 올바르게 전송
+                endDate: event.end ? formatLocalDateTime(event.end) : null,
                 status: 'Y'
             };
 
@@ -171,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => {
                 if (response.ok) {
-                    alert(`이벤트가 이동되었습니다:\n${event.title}\n새 날짜: ${event.start.toISOString().split('T')[0]}`);
+                    alert(`이벤트가 이동되었습니다:\n${event.title}\n새 날짜: ${updatedEvent.startDate}`);
                 } else {
                     throw new Error('이벤트 이동 실패');
                 }
@@ -189,8 +217,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const updatedEvent = {
                 title: event.title,
                 description: event.extendedProps.description,
-                startDate: event.start.toISOString().split('T')[0], // 날짜만 추출
-                endDate: event.end ? event.end.toISOString().split('T')[0] : null,
+                startDate: formatLocalDateTime(event.start), // 2. 날짜 및 시간 올바르게 전송
+                endDate: event.end ? formatLocalDateTime(event.end) : null,
                 status: 'Y'
             };
 
@@ -203,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => {
                 if (response.ok) {
-                    alert(`이벤트가 수정되었습니다:\n${event.title}\n새 기간: ${event.start.toISOString().split('T')[0]} ~ ${event.end ? event.end.toISOString().split('T')[0] : '없음'}`);
+                    alert(`이벤트가 수정되었습니다:\n${event.title}\n새 기간: ${updatedEvent.startDate} ~ ${updatedEvent.endDate || '없음'}`);
                 } else {
                     throw new Error('이벤트 수정 실패');
                 }

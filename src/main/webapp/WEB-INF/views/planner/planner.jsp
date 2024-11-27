@@ -78,40 +78,44 @@
                 <i class="bi bi-arrows-angle-expand"></i>
                 <span><strong>기간 조정:</strong> 이벤트 기간을 늘리거나 줄일 수 있습니다.</span>
             </li>
-            <li>
-                <i class="bi bi-eye"></i>
-                <span><strong>뷰 전환:</strong> 월별, 주별, 일별 보기로 전환 가능합니다.</span>
-            </li>
         </ul>
     </div>
     
     <!-- Modal: 이벤트 추가 -->
-    <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addEventModalLabel">새로운 이벤트 추가</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="eventForm">
-                        <div class="mb-3">
-                            <label for="eventTitle" class="form-label">이벤트 제목</label>
-                            <input type="text" class="form-control" id="eventTitle" placeholder="제목을 입력하세요" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="eventDescription" class="form-label">이벤트 내용</label>
-                            <textarea class="form-control" id="eventDescription" rows="3" placeholder="내용을 입력하세요"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary" id="saveEventButton">저장</button>
-                </div>
+<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEventModalLabel">새로운 이벤트 추가</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm">
+                    <div class="mb-3">
+                        <label for="eventTitle" class="form-label">이벤트 제목</label>
+                        <input type="text" class="form-control" id="eventTitle" placeholder="제목을 입력하세요" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDescription" class="form-label">이벤트 내용</label>
+                        <textarea class="form-control" id="eventDescription" rows="3" placeholder="내용을 입력하세요"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventStartDate" class="form-label">시작 날짜 및 시간</label>
+                        <input type="datetime-local" class="form-control" id="eventStartDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventEndDate" class="form-label">종료 날짜 및 시간</label>
+                        <input type="datetime-local" class="form-control" id="eventEndDate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" id="saveEventButton">저장</button>
             </div>
         </div>
     </div>
+</div>
     
     <!-- Modal: 이벤트 삭제 확인 -->
     <div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
