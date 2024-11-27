@@ -52,13 +52,13 @@
 	<resultMap type="BusinessBookmark" id="businessBookmarkResultSet">
 		<result column="BUSINESS_NO" property="businessNo" />
 		<result column="RESUME_NO" property="resumeNo" />
-		<result column="APPLICANTS_NAME" property="applicantName" />
+		<result column="APPLICANTS_NAME" property="name" />
 		<result column="APPLICANTS_PICTURE" property="picture" />
 		<result column="APPLICANTS_PHONE" property="phone" />
 		<result column="APPLICANTS_EMAIL" property="email" />
 		<result column="RESUME_STATUS" property="resumeStatus" />
 		<result column="FOLDER_NAME" property="folder" />
-		<result column="APPLICANTS_STATUS" property="applicantStatus" />
+		<result column="APPLICANTS_HISTORY" property="applicantHistory" />
 		<result column="APPLICANTS_DATE" property="applicantDate" />
 		<result column="ADD_DATE" property="addDate" />
 	</resultMap>
@@ -97,6 +97,7 @@
 				FOLDER_NAME,
 				ADD_DATE
 		  FROM	BUSINESS_BOOKMARK
+		  JOIN	
 		 WHERE	BUSINESS_NO = #{businessNo}
 	</select>
 

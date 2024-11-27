@@ -34,6 +34,7 @@ public class BusinessDao {
 		return sqlSession.selectList("businessMapper.loadBookmarkList", businessNo);
 	}
 
+	// 즐겨찾기 목록에서 삭제
 	public int deleteBookmarkList(SqlSessionTemplate sqlSession, int resumeNo) {
 		return 0;
 	}
