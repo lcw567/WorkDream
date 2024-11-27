@@ -235,7 +235,7 @@
 	</select>
 
     <!-- 어학시험 목록 조회 -->
-    <select id="selectLanguageTestsByResumeNo" parameterType="int" resultMap="languagetestResultMap">
+    <select id="selectLanguageTestsByResumeNo" parameterType="int" resultMap="languageTestResultMap">
         SELECT LANGUAGE_TEST_ID, RESUME_NO, LANGUAGE_NAME, PROFICIENCY_LEVEL, LANGUAGE_TYPE, ISSUE_DATE
 	    FROM LANGUAGE_TESTS
 	    WHERE RESUME_NO = #{resumeNo}
