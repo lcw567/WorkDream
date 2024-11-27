@@ -22,6 +22,6 @@ public interface BusinessService {
 	List<BusinessBookmark> loadBookmarkList(int businessNo);
 
 	// 즐겨찾기 목록에서 삭제
-	int deleteBookmarkList(int resumeNo);
+	int deleteBookmarkList(int businessNo, int resumeNo);
 	
 }

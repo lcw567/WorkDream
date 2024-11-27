@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.JobPosting1;
 import com.cs.workdream.business.model.vo.Position;
 import com.cs.workdream.business.service.BusinessService;
+import com.cs.workdream.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/business")
@@ -118,20 +121,34 @@ public class BusinessController {
     }
     
     // 즐겨찾기 목록 조회
-    public Model loadBookmarkList(int businessNo, Model model) {
-    	List<BusinessBookmark> bookmarkList = businessService.loadBookmarkList(businessNo);
+    public Model loadBookmarkList(HttpSession session, Model model) {
+    	Member loginMember = (Member) session.getAttribute("loginUser");
+    	int businessNo = loginMember.getBusinessNo();
     	
+    	List<BusinessBookmark> bookmarkList = businessService.loadBookmarkList(businessNo);
     	model.addAttribute("bookmarkList", bookmarkList);
     	
     	return model;
     }
 	
     // 즐겨찾기에서 삭제
-    @RequestMapping("/deleteBookmark.bu")
-    public int deleteBookmarkList(@RequestParam("no") int resumeNo) {
-    	int result = businessService.deleteBookmarkList(resumeNo);
+    @RequestMapping("/deleteBookmark.biz")
+    @ResponseBody
+    public int deleteBookmarkList(@RequestParam("no") int resumeNo, HttpSession session) {
+    	Member loginMember = (Member) session.getAttribute("loginUser");
+    	int businessNo = loginMember.getBusinessNo();
     	
-    	return result;
+    	return businessService.deleteBookmarkList(businessNo, resumeNo);
+    }
+    
+    // 즐겨찾기 그룹 분류 수정
+    @RequestMapping("/updateBookmark.biz")
+    @ResponseBody
+    public int updateBookmarkFolder(@RequestParam("folder") String folder, @RequestParam("type") String type, HttpSession session) {
+    	Member loginMember = (Member) session.getAttribute("loginUser");
+    	int businessNo = loginMember.getBusinessNo();
+    	
+    	return 0;
     }
 	
 	/*=====================================================================================================*/
