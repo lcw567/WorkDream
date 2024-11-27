@@ -144,10 +144,19 @@ public class BusinessController {
     // 즐겨찾기 그룹 분류 수정
     @RequestMapping("/updateBookmark.biz")
     @ResponseBody
-    public int updateBookmarkFolder(@RequestParam("folder") String folder, @RequestParam("type") String type, HttpSession session) {
-    	Member loginMember = (Member) session.getAttribute("loginUser");
-    	int businessNo = loginMember.getBusinessNo();
-    	
+    public int updateBookmarkFolder(@RequestBody BusinessBookmark bookmark, @RequestParam("type") String type, @RequestParam(value = "folder", required = false) String folder) {
+    	return businessService.updateBookmarkFolder(bookmark, type, folder);
+    }
+    
+    // 즐겨찾기 그룹 추가
+    @RequestMapping("/updateFolder.biz")
+    public int updateFolder(@RequestParam("folderName") String folder) {
+    	return 0;
+    }
+    
+    // 즐겨찾기 그룹 삭제
+    @RequestMapping("/deleteFolder.biz")
+    public int deleteFolder() {
     	return 0;
     }
 	
