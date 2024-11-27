@@ -72,6 +72,55 @@
             </li>
         </ul>
     </div>
+    
+    <!-- Modal: 이벤트 추가 -->
+	<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="addEventModalLabel">새로운 이벤트 추가</h5>
+	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <form id="eventForm">
+	                    <div class="mb-3">
+	                        <label for="eventTitle" class="form-label">이벤트 제목</label>
+	                        <input type="text" class="form-control" id="eventTitle" placeholder="제목을 입력하세요" required>
+	                    </div>
+	                    <div class="mb-3">
+	                        <label for="eventDescription" class="form-label">이벤트 내용</label>
+	                        <textarea class="form-control" id="eventDescription" rows="3" placeholder="내용을 입력하세요"></textarea>
+	                    </div>
+	                </form>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	                <button type="button" class="btn btn-primary" id="saveEventButton">저장</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	<!-- Modal: 이벤트 삭제 확인 -->
+	<div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="deleteEventModalLabel">이벤트 삭제</h5>
+	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <p id="deleteEventDetails"></p>
+	                <p>이 이벤트를 삭제하시겠습니까?</p>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	                <button type="button" class="btn btn-danger" id="confirmDeleteButton">삭제</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	    
 
     <!-- 공통 푸터 -->
     <c:import url="/WEB-INF/views/common/footer.jsp" />
