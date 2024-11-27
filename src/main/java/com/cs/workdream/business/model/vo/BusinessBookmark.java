@@ -20,8 +20,8 @@ public class BusinessBookmark {
 	private String picture;				// 지원자 이력서 사진
 	private String phone;				// 지원자 연락처(휴대번호)
 	private String email;				// 지원자 이메일
-	private String resumeStatus;		// 이력서 열람 가능 여부 (열람 가능: Y / 열람 불가능: N)
 	private String folder;				// 분류 폴더명
+	private String resumeStatus;		// 이력서 열람 가능 여부 (열람 가능: Y / 열람 불가능: N)
 	private String applicantHistory;		// 회사 지원 이력 여부 (이력있음: Y / 이력없음: N)
 	private String applicantDate;		// ↑ 있다면 지원일자
 	private String addDate;				// 즐겨찾기에 추가한 날짜

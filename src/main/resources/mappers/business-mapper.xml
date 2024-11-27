@@ -56,8 +56,8 @@
 		<result column="APPLICANTS_PICTURE" property="picture" />
 		<result column="APPLICANTS_PHONE" property="phone" />
 		<result column="APPLICANTS_EMAIL" property="email" />
-		<result column="RESUME_STATUS" property="resumeStatus" />
 		<result column="FOLDER_NAME" property="folder" />
+		<result column="RESUME_STATUS" property="resumeStatus" />
 		<result column="APPLICANTS_HISTORY" property="applicantHistory" />
 		<result column="APPLICANTS_DATE" property="applicantDate" />
 		<result column="ADD_DATE" property="addDate" />
@@ -90,30 +90,52 @@
 		 WHERE A.RECRUITMENT_NO = #{recruitmentNo}
 	</select>
 	
-	<!-- 북마크 목록 조회 -->
+	<!-- 즐겨찾기 목록 조회 -->
 	<select id="loadBookmarkList" parameterType="int" resultMap="businessBookmarkResultSet">
-		SELECT	BUSINESS_NO,
+		SELECT	B.BUSINESS_NO,
 				B.RESUME_NO,
 				USER_NAME AS APPLICANTS_NAME,
 				USER_PIC AS APPLICANTS_PICTURE,
 				USER_PHONE AS APPLICANTS_PHONE,
 				USER_EMAIL AS APPLICANTS_EMAIL,
-				FOLDER_NAME,
-				R.STATUS AS RESUME_STATUS,
+				NVL(FOLDER_NAME, '미분류') AS FOLDER_NAME,
+				A.RESUME_STATUS,
+				CASE
+		            WHEN A.RESUME_NO IS NOT NULL THEN 'Y'
+		            ELSE 'N'
+		        END AS APPLICANTS_HISTORY,
+		        CASE
+		            WHEN A.RESUME_NO IS NOT NULL THEN TO_CHAR(A.APPLICANTS_DATE, 'YYYY.MM.DD')
+		            ELSE NULL
+		        END AS APPLICANTS_DATE,
 				ADD_DATE
 		  FROM	BUSINESS_BOOKMARK B
 		  JOIN	RESUME R ON (B.RESUME_NO = R.RESUME_NO)
-		 WHERE	BUSINESS_NO = #{businessNo}
+	 LEFT JOIN	APPLICANTS A ON (R.RESUME_NO = A.RESUME_NO) AND (B.BUSINESS_NO = A.BUSINESS_NO)
+		 WHERE	B.BUSINESS_NO = #{businessNo}
 	</select>
 	
-	<!-- 북마크 폴더 이동 -->
-	
-	<!-- 북마크 목록에서 삭제 -->
+	<!-- 즐겨찾기 목록에서 삭제 -->
 	<delete id="deleteBookmarkList" parameterType="map">
 		DELETE	FROM BUSINESS_BOOKMARK
 		 WHERE	BUSINESS_NO = #{businessNo}
 		   AND	RESUME_NO = #{resumeNo}
 	</delete>
+	
+	<!-- 즐겨찾기 그룹 분류 수정 -->
+	<update id="updateBookmarkFolder" parameterType="map">
+		UPDATE	BUSINESS_BOOKMARK
+		   SET	FOLDER_NAME = 
+		   <choose>
+		   		<when test="type.equals('add')">
+		   			#{folder}
+		   		</when>
+		   		<when test="type.equals('sub')">
+		   			NULL
+		   		</when>
+		   </choose>
+		 WHERE	BUSINESS_NO = #{bookmark.businessNo}
+	</update>
 
     <!-- 담당자 정보 저장 -->
     <insert id="insertRepresentativeInfo">

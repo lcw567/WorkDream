@@ -43,6 +43,10 @@ body, body * {
 	color: #000000;
 }
 
+main {
+	min-height: 80vh;
+}
+
 ul, ol, a {
 	list-style: none;
 	text-decoration: none;

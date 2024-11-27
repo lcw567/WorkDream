@@ -30,6 +30,10 @@ public class MemberController {
 		this.bcryptPasswordEncoder = bcryptPasswordEncoder;
 	}
 	
+	
+	/*=====================================================================================================*/
+	
+	
 	/* 로그인 관련 */
 	
 	// 로그인 페이지로 이동
@@ -85,7 +89,7 @@ public class MemberController {
 	@RequestMapping("/registration")
     public String registration(@RequestParam(value = "ut", required = false) String userType, Model model) {
 		if(userType == null) {
-			userType = "P";
+			return "member/registration";
 		} else {
 			model.addAttribute("ut", userType);
 		}

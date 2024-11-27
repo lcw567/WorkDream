@@ -50,4 +50,10 @@ public class BusinessServiceImpl implements BusinessService {
 	public int deleteBookmarkList(int businessNo, int resumeNo) {
 		return businessDao.deleteBookmarkList(sqlSession, businessNo, resumeNo);
 	}
+
+	// 즐겨찾기 그룹 분류 수정
+	@Override
+	public int updateBookmarkFolder(BusinessBookmark bookmark, String type, String folder) {
+		return businessDao.updateBookmarkFolder(sqlSession, bookmark, type, folder);
+	}
 }

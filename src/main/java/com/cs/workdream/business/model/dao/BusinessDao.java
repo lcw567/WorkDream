@@ -45,4 +45,14 @@ public class BusinessDao {
 		return sqlSession.delete("businessMapper.deleteBookmarkList", numbers);
 	}
 
+	// 즐겨찾기 그룹 분류 수정
+	public int updateBookmarkFolder(SqlSessionTemplate sqlSession, BusinessBookmark bookmark, String type, String folder) {
+		Map<String, Object> data = new HashMap<>();
+		data.put("bookmark", bookmark);
+		data.put("type", type);
+		data.put("folder", folder);
+		
+		return sqlSession.update("businessMapper.updateBookmarkFolder", data);
+	}
+
 }

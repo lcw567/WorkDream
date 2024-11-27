@@ -23,5 +23,8 @@ public interface BusinessService {
 
 	// 즐겨찾기 목록에서 삭제
 	int deleteBookmarkList(int businessNo, int resumeNo);
+
+	// 즐겨찾기 그룹 분류 수정
+	int updateBookmarkFolder(BusinessBookmark bookmark, String type, String folder);
 	
 }
