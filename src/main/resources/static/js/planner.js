@@ -13,30 +13,57 @@ document.addEventListener('DOMContentLoaded', function () {
         height: 'auto',
         contentHeight: 900,
         expandRows: true,
-        editable: true, // 드래그 앤 드롭 활성화
-        droppable: true, // 외부에서 드래그 가능한 요소 활성화 (옵션)
-        events: [], // 예제 이벤트 제거 (빈 배열)
+        editable: true,
+        droppable: true,
+        events: [],
 
         // 날짜 클릭 시 이벤트 추가
         dateClick: function (info) {
-            var title = prompt('새로운 이벤트 제목을 입력하세요:');
-            if (title) {
-                calendar.addEvent({
-                    title: title,
-                    start: info.dateStr,
-                    allDay: true
-                });
-                alert('새로운 이벤트가 추가되었습니다!');
-            }
+            document.getElementById('eventTitle').value = '';
+            document.getElementById('eventDescription').value = '';
+            const saveButton = document.getElementById('saveEventButton');
+
+            // 모달 표시
+            var modal = new bootstrap.Modal(document.getElementById('addEventModal'));
+            modal.show();
+
+            // 이벤트 저장 버튼 클릭 시
+            saveButton.onclick = function () {
+                const title = document.getElementById('eventTitle').value;
+                const description = document.getElementById('eventDescription').value;
+
+                if (title) {
+                    calendar.addEvent({
+                        title: title,
+                        start: info.dateStr,
+                        description: description,
+                        allDay: true
+                    });
+                    modal.hide(); // 모달 닫기
+                    alert('새로운 이벤트가 추가되었습니다!');
+                } else {
+                    alert('이벤트 제목을 입력해주세요.');
+                }
+            };
         },
 
-        // 이벤트 클릭 시 삭제
+        // 이벤트 클릭 시 상세보기 및 삭제 모달 표시
         eventClick: function (info) {
-            var action = confirm('이 이벤트를 삭제하시겠습니까?');
-            if (action) {
+            const eventDetails = `제목: ${info.event.title}\n내용: ${
+                info.event.extendedProps.description || '내용 없음'
+            }`;
+            document.getElementById('deleteEventDetails').textContent = eventDetails;
+
+            // 삭제 확인 모달 표시
+            var deleteModal = new bootstrap.Modal(document.getElementById('deleteEventModal'));
+            deleteModal.show();
+
+            // 삭제 확인 버튼 클릭 시 이벤트 삭제
+            document.getElementById('confirmDeleteButton').onclick = function () {
                 info.event.remove();
-                alert('이벤트가 삭제되었습니다!');
-            }
+                deleteModal.hide();
+                alert('이벤트가 삭제되었습니다.');
+            };
         },
 
         // 이벤트 드래그 앤 드롭 처리
