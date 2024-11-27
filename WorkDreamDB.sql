@@ -447,16 +447,13 @@ CREATE TABLE RESUME(
     ACADEMIC_NAME_EL VARCHAR2(30) NULL,
     ACADEMIC_NAME_MI VARCHAR2(30) NULL,
     ACADEMIC_NAME_HI VARCHAR2(30) NULL,
-<<<<<<< HEAD
     ACADEMIC_NAME VARCHAR2(30) NULL,                         -- 학력 이름 (academicName)
     MAJOR VARCHAR2(100) NULL,                                 -- 전공 (majorName)
     DEGREE VARCHAR2(10),                                          -- 학위 (degree)
-=======
     ACADEMIC_NAME VARCHAR2(30) NULL,
     MAJOR VARCHAR2(100) NULL,
     DEGREE VARCHAR2(10),
     ACADEMIC_STATUS VARCHAR2(20) NULL,
->>>>>>> 811f8c9d2e2843bdf172e7ee956094d98f312478
     STATUS VARCHAR2(20) NULL,
     STATUS_EL VARCHAR2(20) NULL,
     STATUS_MI VARCHAR2(20) NULL,
@@ -499,26 +496,20 @@ CREATE TABLE RESUME(
     END_DATE_WORK DATE,                                           -- 업무 종료 날짜 (endDateWork)
     STATUS_WORK CHAR(1) NOT NULL CHECK (STATUS_WORK IN ('Y', 'N', 'P')), -- 업무 상태 (careerStatus)
     JOB_CONTENT VARCHAR2(100) NULL,                           -- 업무 내용 (jobContent)
-<<<<<<< HEAD
     POSITION VARCHAR2(20) NULL                                 -- 직급/직책 (position)
-=======
     POSITION VARCHAR2(20) NULL,                                 -- 직급/직책 (position)
     CREATE_DATE DATE DEFAULT SYSDATE,
     MODIFIED_DATE DATE DEFAULT SYSDATE,
     RESUME_STATUS CHAR(1) DEFAULT 'Y',
     DELETED CHAR(1) DEFAULT 'N'
->>>>>>> 811f8c9d2e2843bdf172e7ee956094d98f312478
 );
 
 COMMENT ON COLUMN RESUME.RESUME_NO IS '이력서 고유키';
 COMMENT ON COLUMN RESUME.PERSON_NO IS '개인 고유키';
 COMMENT ON COLUMN RESUME.RESUME_TITLE IS '이력서 제목';
-<<<<<<< HEAD
 COMMENT ON COLUMN RESUME.CREATE_DATE IS '생성일자';
 COMMENT ON COLUMN RESUME.MODIFIED_DATE IS '수정일자';
 COMMENT ON COLUMN RESUME.DELETED IS '삭제 여부';
-=======
->>>>>>> 811f8c9d2e2843bdf172e7ee956094d98f312478
 COMMENT ON COLUMN RESUME.USER_NAME IS '사용자 이름';
 COMMENT ON COLUMN RESUME.USER_GENDER IS '사용자 성별 (M: 남성, F: 여성)';
 COMMENT ON COLUMN RESUME.USER_BIRTH IS '사용자 생년월일';
