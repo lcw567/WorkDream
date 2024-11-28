@@ -463,7 +463,6 @@ CREATE TABLE RESUME(
     ACADEMIC_NAME VARCHAR2(30),
     MAJOR VARCHAR2(100),                                          -- 전공 (majorName)
     DEGREE VARCHAR2(10),                                          -- 학위 (degree)
-    ACADEMIC_STATUS VARCHAR2(20),                                 -- 상태 (graduationStatus)
     STATUS VARCHAR2(20) NULL,
     STATUS_EL VARCHAR2(20),                                       -- 상태 (graduationStatus)
     STATUS_MI VARCHAR2(20),                                       -- 상태 (graduationStatus)

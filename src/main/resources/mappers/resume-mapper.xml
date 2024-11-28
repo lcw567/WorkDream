@@ -256,14 +256,109 @@
 	    WHERE RESUME_NO = #{resumeNo}
     </select>
 
-    <!-- 이력서 수정 -->
+   <!-- 이력서 업데이트 -->
     <update id="updateResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
         UPDATE RESUME
-        SET
-            RESUME_TITLE = #{resumeTitle},
-            RESUME_CONTENT = #{resumeContent},
-            MODIFIED_DATE = SYSDATE
+        SET 
+			RESUME_TITLE = #{resumeTitle},
+			USER_NAME = #{userName},
+			USER_GENDER = #{userGender},
+			USER_BIRTH = #{userBirth},
+			USER_EMAIL = #{userEmail},
+			USER_PHONE = #{userPhone},
+			USER_ADDRESS = #{userAddress},
+			USER_ROAD_ADDRESS = #{userRoadAddress},
+			USER_DETAIL_ADDRESS = #{userDetailAddress},
+			USER_PIC = #{userPic},
+			EDUCATION_LEVEL = #{educationLevel},
+			ACADEMIC_NAME_EL = #{academicName_el},
+			ACADEMIC_NAME_MI = #{academicName_mi},
+			ACADEMIC_NAME_HI = #{academicName_hi},
+			ACADEMIC_NAME = #{academicName_col},
+			MAJOR = #{majorName_col},
+			DEGREE = #{degree_col},
+			STATUS = #{graduationStatus_col},
+			STATUS_EL = #{graduationStatus_el},
+			STATUS_MI = #{graduationStatus_mi},
+			STATUS_HI = #{graduationStatus_hi},
+			ENTER_DATE_EL = #{enterDate_el},
+			GRADUATION_DATE_EL = #{graduationDate_el},
+			ENTER_DATE_MI = #{enterDate_mi},
+			GRADUATION_DATE_MI = #{graduationDate_mi},
+			ENTER_DATE_HI = #{enterDate_hi},
+			GRADUATION_DATE_HI = #{graduationDate_hi},
+			ENTER_DATE_COL = #{enterDate_col},
+			GRADUATION_DATE_COL = #{graduationDate_col},
+			LOCATION_EL = #{location_el},
+			LOCATION_MI = #{location_mi},
+			LOCATION_HI = #{location_hi},
+			LOCATION = #{location_col},
+			EXAM_PASSED_EL = #{examPassed_el},
+			EXAM_PASSED_MI = #{examPassed_mi},
+			EXAM_PASSED_HI = #{examPassed_hi},
+			SKILL = #{skillName},
+			ACTIVITY_TYPE = #{activityType},
+			ORGANIZATION_NAME = #{organizationName},
+			START_DATE_ACT = #{startDateAct},
+			END_DATE_ACT = #{endDateAct},
+			DESCRIPTION = #{description},
+			CATEGORY = #{category},
+			VETERAN_REASON = #{veteranReason},
+			SERVICE_STATE = #{serviceStatus},
+			UNFULFILLED_REASON = #{unfulfilledReason},
+			EXEMPTED_REASON = #{exemptionReason},
+			ENLISTMENT_DATE_FUL = #{enlistmentDate_ful},
+			ENLISTMENT_DATE_SER = #{enlistmentDate_ser},
+			DISCHARGE_DATE_FUL = #{dischargeDate_ful},
+			DISCHARGE_DATE_SER = #{dischargeDate_ser},
+			MILITARY_SELECTION_FUL = #{militaryBranch_ful},
+			MILITARY_SELECTION_SER = #{militaryBranch_ser},
+			CLASS_SELECTION_FUL = #{rank_ful},
+			CLASS_SELECTION_SER = #{rank_ser},
+			DISCHARGE_REASON_FUL = #{dischargeReason_ful},
+			WORK = #{work},
+			DEPARTMENT = #{department},
+			COMPANY_TITLE = #{companyTitle},
+			START_DATE_WORK = #{startDateWork},
+			END_DATE_WORK = #{endDateWork},
+			STATUS_WORK = #{careerStatus},
+			JOB_CONTENT = #{jobContent},
+			POSITION = #{position},
+			CREATE_DATE = #{createDate},
+			MODIFIED_DATE = SYSDATE
         WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
+    </update>
+
+    <!-- 자격증 업데이트 -->
+    <update id="updateCertificate" parameterType="com.cs.workdream.resume.model.vo.Certificate">
+        UPDATE CERTIFICATES
+        SET 
+            QUALIFICATION_NAME = #{qualificationName},
+            ISSUING_AGENCY = #{issuingAgency},
+            PASS_STATUS = #{passStatus},
+            ISSUE_DATE = #{testDate_cer}
+        WHERE CERTIFICATE_ID = #{certificateId}
+    </update>
+
+    <!-- 어학시험 업데이트 -->
+    <update id="updateLanguageTest" parameterType="com.cs.workdream.resume.model.vo.LanguageTest">
+        UPDATE LANGUAGE_TESTS
+        SET 
+            LANGUAGE_NAME = #{languageName},
+            PROFICIENCY_LEVEL = #{proficiencyLevel},
+            LANGUAGE_TYPE = #{languageType},
+            ISSUE_DATE = #{issueDate}
+        WHERE LANGUAGE_TEST_ID = #{languageTestId}
+    </update>
+
+    <!-- 수상내역 업데이트 -->
+    <update id="updateAward" parameterType="com.cs.workdream.resume.model.vo.Award">
+        UPDATE AWARDS
+        SET 
+            AWARD_NAME = #{awardName},
+            ORGANIZER = #{organizer},
+            AWARD_DATE = #{awardDate}
+        WHERE AWARD_ID = #{awardId}
     </update>
     
     <update id="deleteResume" parameterType="int">

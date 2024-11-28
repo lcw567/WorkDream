@@ -67,7 +67,7 @@ public class ResumeDao {
         return sqlSession.selectList(NAMESPACE + ".selectAwardsByResumeNo", resumeNo);
     }
 
-    // 이력서 수정
+
     public int updateResume(Resume resume) {
         return sqlSession.update(NAMESPACE + ".updateResume", resume);
     }

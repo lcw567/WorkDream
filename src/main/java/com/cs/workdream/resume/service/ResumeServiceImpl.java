@@ -156,8 +156,21 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public int updateResume(Resume resume) {
-        return resumeDao.updateResume(resume);
+    @Transactional
+    public boolean updateResume(Resume resume) {
+        try {
+            int rowsAffected = resumeDao.updateResume(resume);
+            if (rowsAffected > 0) {
+                logger.info("Resume updated successfully: {}", resume.getResumeNo());
+                return true;
+            } else {
+                logger.warn("Failed to update resume: {}", resume.getResumeNo());
+                return false;
+            }
+        } catch (Exception e) {
+            logger.error("Error updating resume", e);
+            throw new RuntimeException("Error updating resume", e);
+        }
     }
 
     @Override

@@ -395,45 +395,35 @@ public class ResumeController {
     }
 
     @GetMapping("/editResume")
-    public String editResume(@RequestParam("id") int resumeNo, Model model, RedirectAttributes redirectAttributes) {
-        // 이력서 정보 조회
+    public String editResume(@RequestParam(value = "id", required = false, defaultValue = "0") int resumeNo, Model model, RedirectAttributes redirectAttributes) {
+        if (resumeNo == 0) {
+            redirectAttributes.addFlashAttribute("error", "유효하지 않은 이력서 ID입니다.");
+            return "redirect:/resume/resumeDashboard";
+        }
         Resume resume = resumeService.getResumeById(resumeNo);
         if (resume == null) {
             redirectAttributes.addFlashAttribute("error", "이력서를 찾을 수 없습니다.");
             return "redirect:/resume/resumeDashboard";
         }
-
-        // 자격증 관련 로그 추가 (NullPointerException 발생 가능성 확인)
-        List<Certificate> validCertificates = new ArrayList<>();
-        if (resume.getCertificates() != null) {
-            logger.info("자격증 개수: {}", resume.getCertificates().size());
-            for (Certificate cert : resume.getCertificates()) {
-                if (cert != null) {
-                    logger.info("자격증 이름: {}", cert.getQualificationName());
-                    validCertificates.add(cert);
-                } else {
-                    logger.warn("자격증 항목이 null입니다.");
-                }
-            }
-        } else {
-            logger.warn("자격증 목록이 null입니다.");
-        }
-
-        // 필터링된 자격증 리스트로 설정
-        resume.setCertificates(validCertificates);
-
         model.addAttribute("resume", resume);
-        return "resume/editResume"; // 수정 페이지로 이동
+        return "resume/editResume";
     }
 
+
     @PostMapping("/update.re")
-    public String updateResume(@ModelAttribute Resume resume) {
-        // 이력서 수정 서비스 호출
-        int result = resumeService.updateResume(resume);
-        if (result > 0) {
-            return "redirect:/resumeDashboard?success=update";
-        } else {
-            return "redirect:/resumeDashboard?error=updateFailed";
+    public String updateResume(@ModelAttribute Resume resume, RedirectAttributes redirectAttributes) {
+        try {
+            boolean isUpdated = resumeService.updateResume(resume);
+            if (isUpdated) {
+                redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 업데이트되었습니다.");
+                return "redirect:/resume/resumeDashboard";
+            } else {
+                redirectAttributes.addFlashAttribute("error", "이력서 업데이트에 실패했습니다.");
+                return "redirect:/resume/editResume";
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "이력서 업데이트 중 오류가 발생했습니다.");
+            return "redirect:/resume/editResume";
         }
     }
 
