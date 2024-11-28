@@ -12,6 +12,12 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+// 추가된 import
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -71,17 +77,17 @@ public class ResumeController {
     @PostMapping("/insert.re")
     public String insertResume(@ModelAttribute Resume resume,
                                @RequestParam("userPicFile") MultipartFile userPicFile,
-                               @RequestParam(value = "qualificationName[]", required = false) String[] qualificationNames,
-                               @RequestParam(value = "issuingAgency[]", required = false) String[] issuingAgencies,
-                               @RequestParam(value = "passStatus[]", required = false) String[] passStatuses,
-                               @RequestParam(value = "testDate_cer[]", required = false) String[] testDates,
-                               @RequestParam(value = "languageName[]", required = false) String[] languageNames,
-                               @RequestParam(value = "proficiencyLevel[]", required = false) String[] proficiencyLevels,
-                               @RequestParam(value = "languageType[]", required = false) String[] languageTypes,
-                               @RequestParam(value = "issueDate_language[]", required = false) String[] issueDatesLang,
-                               @RequestParam(value = "awardName[]", required = false) String[] awardNames,
-                               @RequestParam(value = "organizer[]", required = false) String[] organizers,
-                               @RequestParam(value = "awardDate[]", required = false) String[] awardDates,
+                               @RequestParam("qualificationName[]") String[] qualificationNames,
+                               @RequestParam("issuingAgency[]") String[] issuingAgencies,
+                               @RequestParam("passStatus[]") String[] passStatuses,
+                               @RequestParam("testDate_cer[]") String[] testDates,
+                               @RequestParam("languageName[]") String[] languageNames,
+                               @RequestParam("proficiencyLevel[]") String[] proficiencyLevels,
+                               @RequestParam("languageType[]") String[] languageTypes,
+                               @RequestParam("issueDate[]") String[] issueDates,
+                               @RequestParam("awardName[]") String[] awardNames,
+                               @RequestParam("organizer[]") String[] organizers,
+                               @RequestParam("awardDate[]") String[] awardDates,
                                HttpSession session,
                                RedirectAttributes redirectAttributes) {
         // 세션에서 personNo 가져오기
@@ -92,10 +98,29 @@ public class ResumeController {
         }
         resume.setPersonNo(loginUser.getPersonNo());
 
+        // 자격증 배열 로그 출력
+        logger.debug("qualificationNames.length: {}", (qualificationNames != null ? qualificationNames.length : "null"));
+        logger.debug("issuingAgencies.length: {}", (issuingAgencies != null ? issuingAgencies.length : "null"));
+        logger.debug("passStatuses.length: {}", (passStatuses != null ? passStatuses.length : "null"));
+        logger.debug("testDates.length: {}", (testDates != null ? testDates.length : "null"));
+
+        // 어학시험 배열 로그 출력
+        logger.debug("languageNames.length: {}", (languageNames != null ? languageNames.length : "null"));
+        logger.debug("proficiencyLevels.length: {}", (proficiencyLevels != null ? proficiencyLevels.length : "null"));
+        logger.debug("languageTypes.length: {}", (languageTypes != null ? languageTypes.length : "null"));
+        logger.debug("issueDatesLang.length: {}", (issueDates != null ? issueDates.length : "null"));
+
+        // 수상내역 배열 로그 출력
+        logger.debug("awardNames.length: {}", (awardNames != null ? awardNames.length : "null"));
+        logger.debug("organizers.length: {}", (organizers != null ? organizers.length : "null"));
+        logger.debug("awardDates.length: {}", (awardDates != null ? awardDates.length : "null"));
+
         // 자격증 리스트 생성
         List<Certificate> certificates = new ArrayList<>();
         if (qualificationNames != null && issuingAgencies != null && passStatuses != null && testDates != null) {
-            for (int i = 0; i < qualificationNames.length; i++) {
+            int minLength = Math.min(Math.min(qualificationNames.length, issuingAgencies.length),
+                                     Math.min(passStatuses.length, testDates.length));
+            for (int i = 0; i < minLength; i++) {
                 if (qualificationNames[i] != null && !qualificationNames[i].isEmpty()) {
                     Certificate cert = new Certificate();
                     cert.setQualificationName(qualificationNames[i]);
@@ -112,36 +137,43 @@ public class ResumeController {
                     certificates.add(cert);
                 }
             }
+        } else {
+            logger.warn("자격증 관련 배열들 중 하나 이상이 null입니다.");
         }
         resume.setCertificates(certificates);
 
         // 어학시험 리스트 생성
         List<LanguageTest> languageTests = new ArrayList<>();
-        if (languageNames != null && proficiencyLevels != null && languageTypes != null && issueDatesLang != null) {
-            for (int i = 0; i < languageNames.length; i++) {
+        if (languageNames != null && proficiencyLevels != null && languageTypes != null && issueDates != null) {
+            int minLength = Math.min(Math.min(languageNames.length, proficiencyLevels.length),
+                                     Math.min(languageTypes.length, issueDates.length));
+            for (int i = 0; i < minLength; i++) {
                 if (languageNames[i] != null && !languageNames[i].isEmpty()) {
                     LanguageTest langTest = new LanguageTest();
                     langTest.setLanguageName(languageNames[i]);
                     langTest.setProficiencyLevel(proficiencyLevels[i]);
                     langTest.setLanguageType(languageTypes[i]);
                     try {
-                        if (issueDatesLang[i] != null && !issueDatesLang[i].isEmpty()) {
-                            langTest.setIssueDate(Date.valueOf(issueDatesLang[i]));
+                        if (issueDates[i] != null && !issueDates[i].isEmpty()) {
+                            langTest.setIssueDate(Date.valueOf(issueDates[i]));
                         }
                     } catch (IllegalArgumentException e) {
-                        logger.error("Invalid date format for issueDate_language: {}", issueDatesLang[i]);
+                        logger.error("Invalid date format for issueDate_language: {}", issueDates[i]);
                         langTest.setIssueDate(null);
                     }
                     languageTests.add(langTest);
                 }
             }
+        } else {
+            logger.warn("어학시험 관련 배열들 중 하나 이상이 null입니다.");
         }
         resume.setLanguageTests(languageTests);
 
         // 수상내역 리스트 생성
         List<Award> awards = new ArrayList<>();
         if (awardNames != null && organizers != null && awardDates != null) {
-            for (int i = 0; i < awardNames.length; i++) {
+            int minLength = Math.min(Math.min(awardNames.length, organizers.length), awardDates.length);
+            for (int i = 0; i < minLength; i++) {
                 if (awardNames[i] != null && !awardNames[i].isEmpty()) {
                     Award award = new Award();
                     award.setAwardName(awardNames[i]);
@@ -157,8 +189,13 @@ public class ResumeController {
                     awards.add(award);
                 }
             }
+        } else {
+            logger.warn("수상내역 관련 배열들 중 하나 이상이 null입니다.");
         }
         resume.setAwards(awards);
+
+        // 추가된 로깅: LanguageTest 리스트 확인
+        logger.debug("LanguageTests to be saved: {}", languageTests);
 
         // 이력서 저장
         boolean isSaved = resumeService.saveResume(resume, userPicFile);
@@ -389,7 +426,6 @@ public class ResumeController {
         return "resume/editResume"; // 수정 페이지로 이동
     }
 
-
     @PostMapping("/update.re")
     public String updateResume(@ModelAttribute Resume resume) {
         // 이력서 수정 서비스 호출
@@ -420,4 +456,12 @@ public class ResumeController {
         }
     }
 
+    // 예외 처리 핸들러 추가 (선택 사항)
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String handleAllExceptions(Exception ex, RedirectAttributes redirectAttributes) {
+        logger.error("Unhandled exception occurred: ", ex);
+        redirectAttributes.addFlashAttribute("error", "예기치 않은 오류가 발생했습니다.");
+        return "redirect:/resume/resumeDashboard";
+    }
 }
