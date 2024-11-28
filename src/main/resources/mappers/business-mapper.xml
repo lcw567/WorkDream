@@ -52,6 +52,7 @@
 	<resultMap type="BusinessBookmark" id="businessBookmarkResultSet">
 		<result column="BUSINESS_NO" property="businessNo" />
 		<result column="RESUME_NO" property="resumeNo" />
+		<result column="FOLDER_NO" property="folderNo" />
 		<result column="APPLICANTS_NAME" property="name" />
 		<result column="APPLICANTS_PICTURE" property="picture" />
 		<result column="APPLICANTS_PHONE" property="phone" />
@@ -62,6 +63,9 @@
 		<result column="APPLICANTS_DATE" property="applicantDate" />
 		<result column="ADD_DATE" property="addDate" />
 	</resultMap>
+	
+	
+	<!-- [지원자 현황&목록] ================================================================================================== -->
 	
 	
 	<!-- 지원자 현황 조회 -->
@@ -75,7 +79,7 @@
 		 WHERE	RECRUITMENT_NO = #{recruitmentNo}
 	</select>
 	
-	<!-- 포지션 목록 조회 -->
+	<!-- 포지션 목록 조회(현황 페이지용) -->
 	<select id="inquirePositionList" parameterType="int" resultMap="positionResultSet">
 		SELECT	P.POSITION_NO AS POSITION_NO,
 				P.RECRUITMENT_NO AS RECRUITMENT_NO,
@@ -90,10 +94,15 @@
 		 WHERE A.RECRUITMENT_NO = #{recruitmentNo}
 	</select>
 	
+	
+	<!-- [구직자 즐겨찾기] ================================================================================================== -->
+	
+	
 	<!-- 즐겨찾기 목록 조회 -->
 	<select id="loadBookmarkList" parameterType="int" resultMap="businessBookmarkResultSet">
-		SELECT	B.BUSINESS_NO,
-				B.RESUME_NO,
+		SELECT	B.BUSINESS_NO AS BUSINESS_NO,
+				B.RESUME_NO AS RESUME_NO,
+				B.FOLDER_NO AS FOLDER_NO,
 				USER_NAME AS APPLICANTS_NAME,
 				USER_PIC AS APPLICANTS_PICTURE,
 				USER_PHONE AS APPLICANTS_PHONE,
@@ -112,6 +121,7 @@
 		  FROM	BUSINESS_BOOKMARK B
 		  JOIN	RESUME R ON (B.RESUME_NO = R.RESUME_NO)
 	 LEFT JOIN	APPLICANTS A ON (R.RESUME_NO = A.RESUME_NO) AND (B.BUSINESS_NO = A.BUSINESS_NO)
+	 LEFT JOIN	BUSINESS_FOLDER F ON (B.FOLDER_NO = F.FOLDER_NO)
 		 WHERE	B.BUSINESS_NO = #{businessNo}
 	</select>
 	
@@ -125,7 +135,7 @@
 	<!-- 즐겨찾기 그룹 분류 수정 -->
 	<update id="updateBookmarkFolder" parameterType="map">
 		UPDATE	BUSINESS_BOOKMARK
-		   SET	FOLDER_NAME = 
+		   SET	FOLDER_NO = 
 		   <choose>
 		   		<when test="type.equals('add')">
 		   			#{folder}
@@ -136,6 +146,32 @@
 		   </choose>
 		 WHERE	BUSINESS_NO = #{bookmark.businessNo}
 	</update>
+	
+	<!-- 즐겨찾기 그룹 추가 -->
+	<insert id="insertFolder" parameterType="map">
+		INSERT	INTO BUSINESS_FOLDER (FOLDER_NO, BUSINESS_NO, FOLDER_NAME, FOLDER_ORDER)
+				VALUES (NULL, #{businessNo}, #{folderName}, NULL)
+	</insert>
+	
+	<!-- 즐겨찾기 그룹 편집 -->
+	<update id="updateFolder" parameterType="map">
+		UPDATE	BUSINESS_FOLDER
+		   SET	FOLDER_NO = #{folder},
+		  		FORDER_NAME = #{folderName},
+		  		FORDER_ORDER = #{order}
+		 WHERE	BUSINESS_NO = #{businessNo}
+	</update>
+	
+	<!-- 즐겨찾기 그룹 삭제 -->
+	<delete id="deleteFolder" parameterType="map">
+		DELETE	FROM BUSINESS_FOLDER
+		 WHERE	BUSINESS_NO = #{businessNo}
+		   AND	FOLDER_NO = #{folder}
+	</delete>
+	
+	
+	<!-- ================================================================================================== -->
+	
 
     <!-- 담당자 정보 저장 -->
     <insert id="insertRepresentativeInfo">
