@@ -17,6 +17,6 @@ public interface ResumeService {
     
     List<Resume> getResumesByPersonNo(int personNo);
     Resume getResumeById(int resumeNo);
-    int updateResume(Resume resume);
+    boolean updateResume(Resume resume);
     int deleteResumeById(int resumeNo);
 }
