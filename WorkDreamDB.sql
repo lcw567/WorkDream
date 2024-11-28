@@ -552,7 +552,6 @@ CREATE TABLE RESUME(
     ACADEMIC_NAME VARCHAR2(30),
     MAJOR VARCHAR2(100),                                          -- 전공 (majorName)
     DEGREE VARCHAR2(10),                                          -- 학위 (degree)
-    ACADEMIC_STATUS VARCHAR2(20),                                 -- 상태 (graduationStatus)
     STATUS VARCHAR2(20) NULL,
     STATUS_EL VARCHAR2(20),                                       -- 상태 (graduationStatus)
     STATUS_MI VARCHAR2(20),                                       -- 상태 (graduationStatus)
@@ -581,13 +580,17 @@ CREATE TABLE RESUME(
     CATEGORY VARCHAR2(50) NULL,                                    -- 카테고리 (category)
     VETERAN_REASON VARCHAR2(100),                                  -- 보훈 사유 (veteranReason)
     SERVICE_STATE VARCHAR2(20) NULL,                               -- 병역 상태 (serviceStatus)
-    UNFULFILLED_REASON VARCHAR2(50),                               -- 미필 사유 (unfinishedReason)
+    UNFULFILLED_REASON VARCHAR2(50),                               -- 미필 사유 (unfulfilledReason)
     EXEMPTED_REASON VARCHAR2(50),                                 -- 면제 사유 (exemptionReason)
-    ENLISTMENT_DATE DATE,                                          -- 입대일 (enlistmentDate)
-    DISCHARGE_DATE DATE,                                           -- 전역일 (dischargeDate)
-    MILITARY_SELECTION VARCHAR2(10),                               -- 군별 선택 (militaryBranch)
-    CLASS_SELECTION VARCHAR2(10),                                  -- 계급 선택 (rank)
-    DISCHARGE_REASON VARCHAR2(50),                                 -- 전역 사유 (dischargeReason)
+    ENLISTMENT_DATE_FUL DATE,                                          -- 입대일(군필) (enlistmentDate)
+    ENLISTMENT_DATE_SER DATE,                                          -- 입대일(복무중) (enlistmentDate)
+    DISCHARGE_DATE_FUL DATE,                                           -- 전역일(군필) (dischargeDate)
+    DISCHARGE_DATE_SER DATE,                                           -- 전역일(복무중) (dischargeDate)
+    MILITARY_SELECTION_FUL VARCHAR2(10),                               -- 군별 선택(군필) (militaryBranch)
+    MILITARY_SELECTION_SER VARCHAR2(10),                               -- 군별 선택(복무중) (militaryBranch)
+    CLASS_SELECTION_FUL VARCHAR2(10),                                  -- 계급 선택(군필) (rank)
+    CLASS_SELECTION_SER VARCHAR2(10),                                  -- 계급 선택(복무중) (rank)
+    DISCHARGE_REASON_FUL VARCHAR2(50),                                 -- 전역 사유(군필) (dischargeReason)
     WORK VARCHAR2(20) NULL,                                        -- 직무 (work)
     DEPARTMENT VARCHAR2(20) NULL,                                  -- 부서 (department)
     COMPANY_TITLE VARCHAR2(50) NULL,                               -- 회사명 (companyTitle)
@@ -622,7 +625,8 @@ COMMENT ON COLUMN RESUME.ACADEMIC_NAME_HI IS '고등학교 이름';
 COMMENT ON COLUMN RESUME.ACADEMIC_NAME IS '대학교 이름';
 COMMENT ON COLUMN RESUME.MAJOR IS '전공명';
 COMMENT ON COLUMN RESUME.DEGREE IS '학위';
-COMMENT ON COLUMN RESUME.STATUS IS '졸업 상태';
+COMMENT ON COLUMN RESUME.ACADEMIC_STATUS IS '학력 졸업 상태';
+COMMENT ON COLUMN RESUME.STATUS IS '전체 졸업 상태';
 COMMENT ON COLUMN RESUME.STATUS_EL IS '초등학교 졸업 상태';
 COMMENT ON COLUMN RESUME.STATUS_MI IS '중학교 졸업 상태';
 COMMENT ON COLUMN RESUME.STATUS_HI IS '고등학교 졸업 상태';
@@ -652,11 +656,15 @@ COMMENT ON COLUMN RESUME.VETERAN_REASON IS '보훈 사유';
 COMMENT ON COLUMN RESUME.SERVICE_STATE IS '병역 상태';
 COMMENT ON COLUMN RESUME.UNFULFILLED_REASON IS '미필 사유';
 COMMENT ON COLUMN RESUME.EXEMPTED_REASON IS '면제 사유';
-COMMENT ON COLUMN RESUME.ENLISTMENT_DATE IS '입대 날짜';
-COMMENT ON COLUMN RESUME.DISCHARGE_DATE IS '전역 날짜';
-COMMENT ON COLUMN RESUME.MILITARY_SELECTION IS '군별 선택';
-COMMENT ON COLUMN RESUME.CLASS_SELECTION IS '계급 선택';
-COMMENT ON COLUMN RESUME.DISCHARGE_REASON IS '전역 사유';
+COMMENT ON COLUMN RESUME.ENLISTMENT_DATE_FUL IS '입대일(군필)';
+COMMENT ON COLUMN RESUME.ENLISTMENT_DATE_SER IS '입대일(복무중)';
+COMMENT ON COLUMN RESUME.DISCHARGE_DATE_FUL IS '전역일(군필)';
+COMMENT ON COLUMN RESUME.DISCHARGE_DATE_SER IS '전역일(복무중)';
+COMMENT ON COLUMN RESUME.MILITARY_SELECTION_FUL IS '군별 선택(군필)';
+COMMENT ON COLUMN RESUME.MILITARY_SELECTION_SER IS '군별 선택(복무중)';
+COMMENT ON COLUMN RESUME.CLASS_SELECTION_FUL IS '계급 선택(군필)';
+COMMENT ON COLUMN RESUME.CLASS_SELECTION_SER IS '계급 선택(복무중)';
+COMMENT ON COLUMN RESUME.DISCHARGE_REASON_FUL IS '전역 사유(군필)';
 COMMENT ON COLUMN RESUME.WORK IS '직무';
 COMMENT ON COLUMN RESUME.DEPARTMENT IS '부서';
 COMMENT ON COLUMN RESUME.COMPANY_TITLE IS '회사명';
@@ -671,10 +679,11 @@ COMMENT ON COLUMN RESUME.RESUME_STATUS IS '공개 여부(공개: Y / 미공개: 
 COMMENT ON COLUMN RESUME.DELETED IS '삭제 여부';
 
 
+
 -- CERTIFICATES (자격증)
 CREATE TABLE CERTIFICATES (
     certificate_id NUMBER PRIMARY KEY,
-    resume_no NUMBER,
+    resume_no NUMBER NOT NULL,
     qualification_name VARCHAR2(255),
     issuing_agency VARCHAR2(255),
     pass_status VARCHAR2(50),
@@ -692,7 +701,7 @@ COMMENT ON COLUMN CERTIFICATES.issue_date IS '자격증 발급 날짜';
 -- language_tests (어학시험)
 CREATE TABLE language_tests (
     language_test_id NUMBER PRIMARY KEY,
-    resume_no NUMBER,
+    resume_no NUMBER NOT NULL,
     language_name VARCHAR2(255),
     proficiency_level VARCHAR2(50),
     language_type VARCHAR2(50),
@@ -710,7 +719,7 @@ COMMENT ON COLUMN language_tests.issue_date IS '어학 시험 발급 날짜';
 -- awards (수상내역)
 CREATE TABLE awards (
     award_id NUMBER PRIMARY KEY,
-    resume_no NUMBER,
+    resume_no NUMBER NOT NULL,
     award_name VARCHAR2(255),
     organizer VARCHAR2(255),
     award_date DATE,

@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function () {
             `${languageTypeText}, ${languageLevelText} | ${issueDate.replace(/-/g, ".")}`, 
             '', 
             '.result-list-language',
-            ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate_language[]']
+            ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate[]']
         );
         console.log("어학시험 추가 완료!");
 
@@ -502,7 +502,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     valueToRemove = institution;
                 } else if (name === 'passStatus[]') {
                     valueToRemove = details.split('|')[0].trim();
-                } else if (name === 'testDate_cer[]' || name === 'issueDate_language[]' || name === 'awardDate[]') {
+                } else if (name === 'testDate_cer[]' || name === 'issueDate[]' || name === 'awardDate[]') {
                     valueToRemove = details.split('|')[1] ? details.split('|')[1].trim().replace(/\./g, '-') : details.trim().replace(/\./g, '-');
                 }
                 const inputs = document.querySelectorAll(`input[name="${name}"]`);
@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 hiddenInput.value = details.split(',')[1].trim().split('|')[0].trim();
             } else if (name === 'languageType[]') {
                 hiddenInput.value = details.split(',')[0].trim();
-            } else if (name === 'issueDate_language[]') { // 수정된 부분
+            } else if (name === 'issueDate[]') { // 수정된 부분
                 hiddenInput.value = details.split('|')[1].trim().replace(/\./g, '-');
             } else if (name === 'awardDate[]') {
                 hiddenInput.value = details.trim().replace(/\./g, '-');

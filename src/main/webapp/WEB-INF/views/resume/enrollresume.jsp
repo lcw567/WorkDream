@@ -541,21 +541,21 @@
                                     <legend>급수</legend>
                                     <select name="proficiencyLevel[]" class="certi_level">
                                         <option value="">급수 선택</option>
-                                        <option value="1">1급</option>
-                                        <option value="2">2급</option>
-                                        <option value="3">3급</option>
-                                        <option value="4">4급</option>
-                                        <option value="5">5급</option>
-                                        <option value="6">6급</option>
-                                        <option value="7">7급</option>
-                                        <option value="8">8급</option>
-                                        <option value="9">9급</option>
-                                        <option value="10">10급</option>
-                                        <option value="11">11급</option>
-                                        <option value="12">12급</option>
-                                        <option value="13">13급</option>
-                                        <option value="14">14급</option>
-                                        <option value="15">15급</option>
+                                        <option value="1급">1급</option>
+                                        <option value="2급">2급</option>
+                                        <option value="3급">3급</option>
+                                        <option value="4급">4급</option>
+                                        <option value="5급">5급</option>
+                                        <option value="6급">6급</option>
+                                        <option value="7급">7급</option>
+                                        <option value="8급">8급</option>
+                                        <option value="9급">9급</option>
+                                        <option value="10급">10급</option>
+                                        <option value="11급">11급</option>
+                                        <option value="12급">12급</option>
+                                        <option value="13급">13급</option>
+                                        <option value="14급">14급</option>
+                                        <option value="15급">15급</option>
                                     </select>
                                 </fieldset>
                                 <fieldset class="lang_category">
@@ -640,7 +640,7 @@
                         <div class="unfulfilled" id="unfulfilledFields" style="display: none;">
                             <fieldset class="exempted">
                                 <legend>사유 입력</legend>
-                                <input type="text" name="unfinishedReason" placeholder="사유 입력">
+                                <input type="text" name="unfulfilledReason" placeholder="사유 입력">
                             </fieldset>
                         </div>
                         <div class="EXEMPTED" id="exemptedFields" style="display: none;">
@@ -652,15 +652,15 @@
                         <div class="fulfilled" id="fulfilledFields" style="display: none;">
                             <fieldset>
                                 <legend>입대일</legend>
-                                <input type="date" name="enlistmentDate">
+                                <input type="date" name="enlistmentDate_ful">
                             </fieldset>
                             <fieldset>
                                 <legend>전역일</legend>
-                                <input type="date" name="dischargeDate">
+                                <input type="date" name="dischargeDate_ful">
                             </fieldset>
                             <fieldset>
                                 <legend>군별선택</legend>
-                                <select name="militaryBranch">
+                                <select name="militaryBranch_ful">
                                     <option value="">군별선택</option>
                                     <option value="army">육군</option>
                                     <option value="navy">해군</option>
@@ -675,7 +675,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
-                                <select name="rank">
+                                <select name="rank_ful">
                                     <option value="">계급선택</option>
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>
@@ -701,7 +701,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>전역사유 선택</legend>
-                                <select name="dischargeReason" id="discharge_reason">
+                                <select name="dischargeReason_ful" id="discharge_reason">
                                     <option value="">전역사유</option>
                                     <option value="1">만기전역</option>
                                     <option value="2">의가사전역</option>
@@ -716,15 +716,15 @@
                         <div class="serving" id="servingFields" style="display: none;">
                             <fieldset>
                                 <legend>입대일</legend>
-                                <input type="date" name="enlistmentDate">
+                                <input type="date" name="enlistmentDate_ser">
                             </fieldset>
                             <fieldset>
                                 <legend>전역일</legend>
-                                <input type="date" name="dischargeDate" readonly>
+                                <input type="date" name="dischargeDate_ser" readonly>
                             </fieldset>
                             <fieldset>
                                 <legend>군별선택</legend>
-                                <select name="militaryBranch">
+                                <select name="militaryBranch_ser">
                                     <option value="">군별선택</option>
                                     <option value="army">육군</option>
                                     <option value="navy">해군</option>
@@ -739,7 +739,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
-                                <select name="rank">
+                                <select name="rank_ser">
                                     <option value="">계급선택</option>
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>

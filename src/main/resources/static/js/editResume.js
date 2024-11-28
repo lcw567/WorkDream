@@ -324,4 +324,68 @@ document.addEventListener('DOMContentLoaded', function () {
     populateExistingData();
 });
 
+// 학력 필드 표시 및 비활성화/활성화 함수 통합
+function displayEducationFields() {
+    const selectedEdu = document.getElementById("selectedu").value;
+    const educationLvElement = document.querySelector('.education_Lv'); // .education_Lv 요소
 
+    // 초기 높이 설정
+    educationLvElement.style.height = '150px';
+
+    // 모든 학력 필드 섹션을 숨기고 비활성화
+    const educationFields = ["elementaryFields", "middleSchoolFields", "highSchoolFields", "collegeFields"];
+    educationFields.forEach(function(id) {
+        const section = document.getElementById(id);
+        if (section) {
+            section.style.display = "none";
+            // 해당 섹션의 모든 입력 필드를 비활성화
+            const inputs = section.querySelectorAll("input, select");
+            inputs.forEach(function(input) {
+                input.disabled = true;
+            });
+        }
+    });
+
+    // 선택된 학력에 해당하는 필드 섹션만 표시하고 활성화
+    let activeSectionId = "";
+    switch(selectedEdu) {
+        case "element":
+            activeSectionId = "elementaryFields";
+            break;
+        case "middle":
+            activeSectionId = "middleSchoolFields";
+            break;
+        case "high":
+            activeSectionId = "highSchoolFields";
+            break;
+        case "college":
+            activeSectionId = "collegeFields";
+            break;
+        default:
+            // 선택되지 않았거나 다른 값일 경우 기본 높이 유지
+            break;
+    }
+
+    if (activeSectionId) {
+        const activeSection = document.getElementById(activeSectionId);
+        if (activeSection) {
+            activeSection.style.display = "block";
+            const activeInputs = activeSection.querySelectorAll("input, select");
+            activeInputs.forEach(function(input) {
+                input.disabled = false;
+            });
+            // 높이 조절
+            educationLvElement.style.height = '300px';
+        }
+    }
+}
+
+// 페이지 로드 시 초기 상태 설정 및 이벤트 리스너 등록
+document.addEventListener("DOMContentLoaded", function() {
+    // 학력 필드 초기 상태 설정
+    displayEducationFields();
+
+    // 학력 선택 시 displayEducationFields 함수 호출
+    document.getElementById('selectedu').addEventListener('change', displayEducationFields);
+
+});
