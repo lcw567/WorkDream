@@ -25,6 +25,12 @@
     <script src="${pageContext.request.contextPath}/lib/fullcalendar-5.11.5/main.min.js"></script>
     <script src="${pageContext.request.contextPath}/lib/fullcalendar-5.11.5/locales-all.min.js"></script>
 
+    <!-- FullCalendar Plugins -->
+    <script src="${pageContext.request.contextPath}/lib/fullcalendar-5.11.5/interaction.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/fullcalendar-5.11.5/daygrid.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/fullcalendar-5.11.5/timegrid.min.js"></script>
+    <script src="${pageContext.request.contextPath}/lib/fullcalendar-5.11.5/bootstrap.min.js"></script>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" defer></script>
 
@@ -76,46 +82,48 @@
             </li>
             <li>
                 <i class="bi bi-arrows-angle-expand"></i>
-                <span><strong>기간 조정:</strong> 이벤트 기간을 늘리거나 줄일 수 있습니다.</span>
+                <span><strong>기간 조정:</strong> 이벤트 기간을 조절할 수 있습니다.</span>
             </li>
         </ul>
     </div>
     
     <!-- Modal: 이벤트 추가 -->
-<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addEventModalLabel">새로운 이벤트 추가</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="eventForm">
-                    <div class="mb-3">
-                        <label for="eventTitle" class="form-label">이벤트 제목</label>
-                        <input type="text" class="form-control" id="eventTitle" placeholder="제목을 입력하세요" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="eventDescription" class="form-label">이벤트 내용</label>
-                        <textarea class="form-control" id="eventDescription" rows="3" placeholder="내용을 입력하세요"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="eventStartDate" class="form-label">시작 날짜 및 시간</label>
-                        <input type="datetime-local" class="form-control" id="eventStartDate" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="eventEndDate" class="form-label">종료 날짜 및 시간</label>
-                        <input type="datetime-local" class="form-control" id="eventEndDate">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-primary" id="saveEventButton">저장</button>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="addEventModalLabel">새로운 이벤트 추가</h5>
+	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <form id="eventForm">
+	                    <div class="mb-3">
+	                        <label for="eventTitle" class="form-label">이벤트 제목</label>
+	                        <input type="text" class="form-control" id="eventTitle" placeholder="제목을 입력하세요" required>
+	                    </div>
+	                    <div class="mb-3">
+	                        <label for="eventDescription" class="form-label">이벤트 내용</label>
+	                        <textarea class="form-control" id="eventDescription" rows="3" placeholder="내용을 입력하세요"></textarea>
+	                    </div>
+	                    <div class="mb-3">
+	                        <label for="eventStartDate" class="form-label">시작 날짜</label>
+	                        <input type="date" class="form-control" id="eventStartDate" required>
+	                    </div>
+	                    <div class="mb-3">
+	                        <label for="eventEndDate" class="form-label">종료 날짜</label>
+	                        <input type="date" class="form-control" id="eventEndDate">
+	                    </div>
+	                </form>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	                <button type="button" class="btn btn-primary" id="saveEventButton">저장</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+
     
     <!-- Modal: 이벤트 삭제 확인 -->
     <div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
@@ -137,7 +145,6 @@
         </div>
     </div>
     
-
     <!-- 공통 푸터 -->
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
