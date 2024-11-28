@@ -14,6 +14,7 @@ DROP TABLE JOB_RECRUITMENT CASCADE CONSTRAINTS;
 DROP TABLE JOB_POSITION CASCADE CONSTRAINTS;
 DROP TABLE JOB_STAGY CASCADE CONSTRAINTS;
 DROP TABLE APPLICANTS CASCADE CONSTRAINTS;
+DROP TABLE BUSINESS_FOLDER CASCADE CONSTRAINTS;
 DROP TABLE BUSINESS_BOOKMARK CASCADE CONSTRAINTS;
 DROP TABLE PERSON_BOOKMARK CASCADE CONSTRAINTS;
 DROP TABLE PERSON CASCADE CONSTRAINTS;
@@ -381,14 +382,16 @@ COMMENT ON COLUMN APPLICANTS.MEMO IS '평가 관련 메모';
 COMMENT ON COLUMN APPLICANTS.PASS_STATUS IS '합격 상태(미분류: N / 합격: P / 불합격: F)';
 
 
--- BUSINESS_FOLDER (기업용_분류 폴더 목록)
+-- BUSINESS_FOLDER (기업용_즐겨찾기 분류 폴더 목록)
 CREATE TABLE BUSINESS_FOLDER (
-    FOLDER_NAME VARCHAR(15),
-    FOLDER_TYPE CHAR(1)
+    BUSINESS_NO NUMBER NOT NULL,
+    FOLDER_NAME VARCHAR(15) NOT NULL,
+    FOLDER_ORDER NUMBER NOT NULL
 );
 
+COMMENT ON COLUMN BUSINESS_FOLDER.BUSINESS_NO IS '기업 고유키';
 COMMENT ON COLUMN BUSINESS_FOLDER.FOLDER_NAME IS '분류 폴더명';
-COMMENT ON COLUMN BUSINESS_FOLDER.FOLDER_TYPE IS '분류 폴더 타입(즐겨찾기: B)';
+COMMENT ON COLUMN BUSINESS_FOLDER.FOLDER_ORDER IS '분류 폴더 타입(즐겨찾기: B)';
 
 
 -- BUSINESS_BOOKMARK (기업용_구직자 즐겨찾기 목록)
@@ -443,85 +446,77 @@ COMMENT ON COLUMN PERSON_BOOKMARK.ADD_DATE IS '스크랩 추가 날짜';
 CREATE TABLE RESUME(        
     RESUME_NO NUMBER NOT NULL PRIMARY KEY,                       -- 이력서 번호
     PERSON_NO NUMBER NOT NULL,                                   -- 사람 번호
-    RESUME_TITLE VARCHAR2(100) NOT NULL,                        -- 이력서 제목
-    CREATE_DATE DATE DEFAULT SYSDATE,                           -- 생성일자
-    MODIFIED_DATE DATE DEFAULT SYSDATE,                         -- 수정일자
-    DELETED CHAR(1) DEFAULT 'N',                                 -- 삭제 여부
-    USER_NAME VARCHAR2(50) NOT NULL,                             -- 사용자 이름
+    RESUME_TITLE VARCHAR2(100) NOT NULL,                          -- 이력서 제목
+    USER_NAME VARCHAR2(50) NOT NULL,                              -- 사용자 이름
     USER_GENDER CHAR(1) NOT NULL CHECK (USER_GENDER IN ('M', 'F')), -- 성별
-    USER_BIRTH DATE NOT NULL,                                    -- 생년월일
-    USER_EMAIL VARCHAR2(100) NOT NULL,                           -- 이메일
-    USER_PHONE VARCHAR2(20) NOT NULL,                            -- 전화번호
-    USER_ADDRESS VARCHAR2(255) NOT NULL,                         -- 주소
-    USER_ROAD_ADDRESS VARCHAR2(255),                             -- 도로명 주소
-    USER_DETAIL_ADDRESS VARCHAR2(255),                           -- 상세 주소
-    USER_PIC VARCHAR2(500),                                      -- 사용자 사진
-    EDUCATION_LEVEL VARCHAR2(50) DEFAULT '기본값' NULL,                       -- 학력 수준 (educationLevel)
-    ACADEMIC_NAME_EL VARCHAR2(30) NULL,
-    ACADEMIC_NAME_MI VARCHAR2(30) NULL,
-    ACADEMIC_NAME_HI VARCHAR2(30) NULL,
-    ACADEMIC_NAME VARCHAR2(30) NULL,                         -- 학력 이름 (academicName)
-    MAJOR VARCHAR2(100) NULL,                                 -- 전공 (majorName)
+    USER_BIRTH DATE NOT NULL,                                     -- 생년월일
+    USER_EMAIL VARCHAR2(100) NOT NULL,                            -- 이메일
+    USER_PHONE VARCHAR2(20) NOT NULL,                             -- 전화번호
+    USER_ADDRESS VARCHAR2(255) NOT NULL,                          -- 주소
+    USER_ROAD_ADDRESS VARCHAR2(255),                              -- 도로명 주소
+    USER_DETAIL_ADDRESS VARCHAR2(255),                            -- 상세 주소
+    USER_PIC VARCHAR2(500),                                       -- 사용자 사진
+    EDUCATION_LEVEL VARCHAR2(50) DEFAULT '기본값',                -- 학력 수준 (educationLevel)
+    ACADEMIC_NAME_EL VARCHAR2(30),                                -- 학력 이름 (academicName)
+    ACADEMIC_NAME_MI VARCHAR2(30),                                -- 학력 이름 (academicName)
+    ACADEMIC_NAME_HI VARCHAR2(30),                                -- 학력 이름 (academicName)
+    ACADEMIC_NAME VARCHAR2(30),
+    MAJOR VARCHAR2(100),                                          -- 전공 (majorName)
     DEGREE VARCHAR2(10),                                          -- 학위 (degree)
-    ACADEMIC_NAME VARCHAR2(30) NULL,
-    MAJOR VARCHAR2(100) NULL,
-    DEGREE VARCHAR2(10),
-    ACADEMIC_STATUS VARCHAR2(20) NULL,
+    ACADEMIC_STATUS VARCHAR2(20),                                 -- 상태 (graduationStatus)
     STATUS VARCHAR2(20) NULL,
-    STATUS_EL VARCHAR2(20) NULL,
-    STATUS_MI VARCHAR2(20) NULL,
-    STATUS_HI VARCHAR2(20) NULL,                                 -- 상태 (graduationStatus)
-    ENTER_DATE_EL DATE,                                              -- 입학 날짜 (enterDate)
-    GRADUATION_DATE_EL DATE,
-    ENTER_DATE_MI DATE,                                              -- 입학 날짜 (enterDate)
-    GRADUATION_DATE_MI DATE,
-    ENTER_DATE_HI DATE,                                              -- 입학 날짜 (enterDate)
-    GRADUATION_DATE_HI DATE,
-    ENTER_DATE_COL DATE,                                              -- 입학 날짜 (enterDate)
-    GRADUATION_DATE_COL DATE,                                         -- 졸업 날짜 (graduationDate)
-    LOCATION_EL VARCHAR2(10) NULL, 
-    LOCATION_MI VARCHAR2(10) NULL, 
-    LOCATION_HI VARCHAR2(10) NULL, 
-    LOCATION VARCHAR2(10) NULL,                               -- 위치 (location)
-    EXAM_PASSED_EL CHAR(1),
-    EXAM_PASSED_MI CHAR(1),
-    EXAM_PASSED_HI CHAR(1),                                          -- 시험 합격 여부 (examPassed)
+    STATUS_EL VARCHAR2(20),                                       -- 상태 (graduationStatus)
+    STATUS_MI VARCHAR2(20),                                       -- 상태 (graduationStatus)
+    STATUS_HI VARCHAR2(20),                                       -- 상태 (graduationStatus)
+    ENTER_DATE_EL DATE,                                           -- 입학 날짜 (enterDate)
+    GRADUATION_DATE_EL DATE,                                      -- 졸업 날짜 (graduationDate)
+    ENTER_DATE_MI DATE,                                           -- 입학 날짜 (enterDate)
+    GRADUATION_DATE_MI DATE,                                      -- 졸업 날짜 (graduationDate)
+    ENTER_DATE_HI DATE,                                           -- 입학 날짜 (enterDate)
+    GRADUATION_DATE_HI DATE,                                      -- 졸업 날짜 (graduationDate)
+    ENTER_DATE_COL DATE,                                          -- 입학 날짜 (enterDate)
+    GRADUATION_DATE_COL DATE,                                     -- 졸업 날짜 (graduationDate)
+    LOCATION_EL VARCHAR2(10),                                     -- 위치 (location)
+    LOCATION_MI VARCHAR2(10),                                     -- 위치 (location)
+    LOCATION_HI VARCHAR2(10),                                     -- 위치 (location)
+    LOCATION VARCHAR2(10),                                        -- 위치 (location)
+    EXAM_PASSED_EL CHAR(1),                                       -- 시험 합격 여부 (examPassed)
+    EXAM_PASSED_MI CHAR(1),                                       -- 시험 합격 여부 (examPassed)
+    EXAM_PASSED_HI CHAR(1),                                       -- 시험 합격 여부 (examPassed)
     SKILL VARCHAR2(1000),                                         -- 스킬 (skillName)
-    ACTICITY_TYPE VARCHAR2(50),                                   -- 활동 유형 (activityType)
+    ACTIVITY_TYPE VARCHAR2(50),                                   -- 활동 유형 (activityType)
     ORGANIZATION_NAME VARCHAR2(100),                              -- 기관 이름 (organizationName)
     START_DATE_ACT DATE,                                          -- 활동 시작 날짜 (startDateAct)
     END_DATE_ACT DATE,                                            -- 활동 종료 날짜 (endDateAct)
     DESCRIPTION VARCHAR2(300),                                    -- 설명 (description)
-    CATEGORY VARCHAR2(50) NULL,
-    VETERAN_REASON VARCHAR2(100),                                 -- 보훈 사유 (veteranReason)
-    SERVICE_STATE VARCHAR2(20) NULL,                          -- 병역 상태 (serviceStatus)
-    UNFULFILLED_REASON VARCHAR2(50),                              -- 미필 사유 (unfinishedReason)
+    CATEGORY VARCHAR2(50) NULL,                                    -- 카테고리 (category)
+    VETERAN_REASON VARCHAR2(100),                                  -- 보훈 사유 (veteranReason)
+    SERVICE_STATE VARCHAR2(20) NULL,                               -- 병역 상태 (serviceStatus)
+    UNFULFILLED_REASON VARCHAR2(50),                               -- 미필 사유 (unfinishedReason)
     EXEMPTED_REASON VARCHAR2(50),                                 -- 면제 사유 (exemptionReason)
-    ENLISTMENT_DATE DATE,                                         -- 입대일 (enlistmentDate)
-    DISCHARGE_DATE DATE,                                          -- 전역일 (dischargeDate)
-    MILITARY_SELECTION VARCHAR2(10),                              -- 군별 선택 (militaryBranch)
-    CLASS_SELECTION VARCHAR2(10),                                 -- 계급 선택 (rank)
-    DISCHARGE_REASON VARCHAR2(50),                                -- 전역 사유 (dischargeReason)
-    WORK VARCHAR2(20) NULL,                                   -- 직무 (work)
-    DEPARTMENT VARCHAR2(20) NULL,                            -- 부서 (department)
-    COMPANY_TITLE VARCHAR2(50) NULL,                          -- 회사명 (companyTitle)
-    START_DATE_WORK DATE NULL,                                -- 업무 시작 날짜 (startDateWork)
-    END_DATE_WORK DATE,                                           -- 업무 종료 날짜 (endDateWork)
+    ENLISTMENT_DATE DATE,                                          -- 입대일 (enlistmentDate)
+    DISCHARGE_DATE DATE,                                           -- 전역일 (dischargeDate)
+    MILITARY_SELECTION VARCHAR2(10),                               -- 군별 선택 (militaryBranch)
+    CLASS_SELECTION VARCHAR2(10),                                  -- 계급 선택 (rank)
+    DISCHARGE_REASON VARCHAR2(50),                                 -- 전역 사유 (dischargeReason)
+    WORK VARCHAR2(20) NULL,                                        -- 직무 (work)
+    DEPARTMENT VARCHAR2(20) NULL,                                  -- 부서 (department)
+    COMPANY_TITLE VARCHAR2(50) NULL,                               -- 회사명 (companyTitle)
+    START_DATE_WORK DATE NULL,                                     -- 업무 시작 날짜 (startDateWork)
+    END_DATE_WORK DATE,                                            -- 업무 종료 날짜 (endDateWork)
     STATUS_WORK CHAR(1) NOT NULL CHECK (STATUS_WORK IN ('Y', 'N', 'P')), -- 업무 상태 (careerStatus)
-    JOB_CONTENT VARCHAR2(100) NULL,                           -- 업무 내용 (jobContent)
-    POSITION VARCHAR2(20) NULL,                                 -- 직급/직책 (position)
-    CREATE_DATE DATE DEFAULT SYSDATE,
-    MODIFIED_DATE DATE DEFAULT SYSDATE,
-    RESUME_STATUS CHAR(1) DEFAULT 'Y',
-    DELETED CHAR(1) DEFAULT 'N'
+    JOB_CONTENT VARCHAR2(100) NULL,                                -- 업무 내용 (jobContent)
+    POSITION VARCHAR2(20) NULL,                                    -- 직급/직책 (position)
+    CREATE_DATE DATE DEFAULT SYSDATE,                              -- 생성일자
+    MODIFIED_DATE DATE DEFAULT SYSDATE,                            -- 수정일자
+    RESUME_STATUS CHAR(1) DEFAULT 'Y',                             -- 이력서 상태
+    DELETED CHAR(1) DEFAULT 'N'                                     -- 삭제 여부
 );
+
 
 COMMENT ON COLUMN RESUME.RESUME_NO IS '이력서 고유키';
 COMMENT ON COLUMN RESUME.PERSON_NO IS '개인 고유키';
 COMMENT ON COLUMN RESUME.RESUME_TITLE IS '이력서 제목';
-COMMENT ON COLUMN RESUME.CREATE_DATE IS '생성일자';
-COMMENT ON COLUMN RESUME.MODIFIED_DATE IS '수정일자';
-COMMENT ON COLUMN RESUME.DELETED IS '삭제 여부';
 COMMENT ON COLUMN RESUME.USER_NAME IS '사용자 이름';
 COMMENT ON COLUMN RESUME.USER_GENDER IS '사용자 성별 (M: 남성, F: 여성)';
 COMMENT ON COLUMN RESUME.USER_BIRTH IS '사용자 생년월일';
@@ -558,7 +553,7 @@ COMMENT ON COLUMN RESUME.EXAM_PASSED_EL IS '초등학교 시험 합격 여부';
 COMMENT ON COLUMN RESUME.EXAM_PASSED_MI IS '중학교 시험 합격 여부';
 COMMENT ON COLUMN RESUME.EXAM_PASSED_HI IS '고등학교 시험 합격 여부';
 COMMENT ON COLUMN RESUME.SKILL IS '사용자 보유 기술';
-COMMENT ON COLUMN RESUME.ACTICITY_TYPE IS '활동 유형';
+COMMENT ON COLUMN RESUME.ACTIVITY_TYPE IS '활동 유형';
 COMMENT ON COLUMN RESUME.ORGANIZATION_NAME IS '활동 기관명';
 COMMENT ON COLUMN RESUME.START_DATE_ACT IS '활동 시작 날짜';
 COMMENT ON COLUMN RESUME.END_DATE_ACT IS '활동 종료 날짜';
