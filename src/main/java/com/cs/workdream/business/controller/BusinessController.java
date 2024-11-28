@@ -42,7 +42,6 @@ public class BusinessController {
 	
 	
 	/* 지원자 현황&목록 관련 */
-	
 	// 지원자 현황 페이지로 이동
 	@GetMapping("/applicantsStatus")
 	public String applicantsStatus() {
@@ -93,7 +92,7 @@ public class BusinessController {
         return "business/applicantsList";
     }
     
-    // 지원자 목록 조회
+    // 지원자 목록 조회(현황 페이지용)
     public Model loadAppList(int recruitmentNo, int positionNo, Model model) {
     	// 포지션 고유키로 지원자 목록 및 상태 조회
     	List<Applicants> appList = businessService.loadAppList(recruitmentNo, positionNo);
@@ -112,11 +111,14 @@ public class BusinessController {
     }
     
     
-    /* 구직자 즐겨찾기 관련 */
+    /*=====================================================================================================*/
     
+    
+    /* 구직자 즐겨찾기 관련 */
     // 구직자 즐겨찾기 페이지로 이동
     @GetMapping("/bookmark")
     public String bookmarkList() {
+    	// loadBookmarkList 값을 받아서 사용
         return "business/bookmarkList";
     }
     
@@ -144,22 +146,41 @@ public class BusinessController {
     // 즐겨찾기 그룹 분류 수정
     @RequestMapping("/updateBookmark.biz")
     @ResponseBody
-    public int updateBookmarkFolder(@RequestBody BusinessBookmark bookmark, @RequestParam("type") String type, @RequestParam(value = "folder", required = false) String folder) {
+    public int updateBookmarkFolder(@RequestBody BusinessBookmark bookmark, @RequestParam("type") String type, @RequestParam(value = "folder", required = false) int folder) {
     	return businessService.updateBookmarkFolder(bookmark, type, folder);
     }
     
     // 즐겨찾기 그룹 추가
+    @RequestMapping("/insertFolder.biz")
+    @ResponseBody
+    public int insertFolder(@RequestParam("folderName") String folderName, HttpSession session) {
+    	Member loginMember = (Member) session.getAttribute("loginUser");
+    	int businessNo = loginMember.getBusinessNo();
+    	
+    	return businessService.insertFolder(businessNo, folderName);
+    }
+    
+    // 즐겨찾기 그룹 편집
     @RequestMapping("/updateFolder.biz")
-    public int updateFolder(@RequestParam("folderName") String folder) {
-    	return 0;
+    @ResponseBody
+    public int updateFolder(@RequestParam("folder") int folder, @RequestParam(value = "order") int order, @RequestParam(value = "folderName") String folderName, HttpSession session) {
+    	Member loginMember = (Member) session.getAttribute("loginUser");
+    	int businessNo = loginMember.getBusinessNo();
+    	
+    	return businessService.updateFolder(businessNo, folder, order, folderName);
     }
     
     // 즐겨찾기 그룹 삭제
     @RequestMapping("/deleteFolder.biz")
-    public int deleteFolder() {
-    	return 0;
+    @ResponseBody
+    public int deleteFolder(@RequestParam("folder") int folder, HttpSession session) {
+    	Member loginMember = (Member) session.getAttribute("loginUser");
+    	int businessNo = loginMember.getBusinessNo();
+    	
+    	return businessService.deleteFolder(businessNo, folder);
     }
 	
+    
 	/*=====================================================================================================*/
 	
     
