@@ -182,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 // 어학시험 추가하기 버튼 이벤트 처리
-const addLanguageButton = document.querySelector('.addLanguageButton');
 addLanguageButton.addEventListener('click', function (event) {
     event.preventDefault();
 
@@ -190,34 +189,32 @@ addLanguageButton.addEventListener('click', function (event) {
 
     const languageTitle = languageFields.querySelector('input[name="languageName[]"]').value.trim();
     const languageLevelSelect = languageFields.querySelector('select[name="proficiencyLevel[]"]');
-    const languageLevelText = languageLevelSelect.options[languageLevelSelect.selectedIndex].text.trim();
+    const languageLevelText = languageLevelSelect.options[languageLevelSelect.selectedIndex].value.trim();
     const languageTypeSelect = languageFields.querySelector('select[name="languageType[]"]');
-    const languageTypeText = languageTypeSelect.options[languageTypeSelect.selectedIndex].text.trim();
-    const issueDate = languageFields.querySelector('input[name="issueDate[]"]').value.trim();
+    const languageTypeText = languageTypeSelect.options[languageTypeSelect.selectedIndex].value.trim();
+    const issueDate = languageFields.querySelector('input[name="issueDate[]"]').value;
 
     // 빈 값 체크
-    if (!languageTitle || !languageLevelText || languageLevelSelect.selectedIndex === 0 || !languageTypeText || languageTypeSelect.selectedIndex === 0 || !issueDate) {
-        alert("모든 필드를 올바르게 입력해주세요.");
+    if (!languageTitle || !languageLevelText || !languageTypeText || !issueDate) {
+        alert("모든 필드를 입력해주세요.");
         return;
     }
 
     // 리스트에 추가
     createListItem(
-        languageTitle, 
-        `${languageTypeText}, ${languageLevelText} | ${issueDate.replace(/-/g, ".")}`, 
-        '', 
+        languageTitle,
+        `${languageTypeText}, ${languageLevelText} | ${issueDate.replace(/-/g, ".")}`,
+        '',
         '.result-list-language',
         ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate[]']
     );
 
     // 입력 필드 초기화
     languageFields.querySelector('input[name="languageName[]"]').value = '';
-    languageLevelSelect.value = '';
-    languageTypeSelect.value = '';
+    languageLevelSelect.selectedIndex = 0; // 선택을 초기화합니다.
+    languageTypeSelect.selectedIndex = 0; // 선택을 초기화합니다.
     languageFields.querySelector('input[name="issueDate[]"]').value = '';
 });
-
-
 
     // 수상내역 추가하기
     const addAwardButton = document.querySelector('.addAwardButton');
