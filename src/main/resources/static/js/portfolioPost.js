@@ -3,8 +3,8 @@ $(document).ready(function() {
     console.log("portfolioPost.js 로드됨"); // 디버깅용 로그
     $('#summernote').summernote({
         placeholder: '포트폴리오 내용을 입력하세요...',
-        tabsize: 2,
-        height: 300,
+        tabsize: 4,
+        height: 500,
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
