@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -478,7 +479,7 @@ public class ResumeController {
                                @RequestParam(value = "languageName[]", required = false) String[] languageNames,
                                @RequestParam(value = "proficiencyLevel[]", required = false) String[] proficiencyLevels,
                                @RequestParam(value = "languageType[]", required = false) String[] languageTypes,
-                               @RequestParam(value = "issueDate[]", required = false) String[] issueDates,
+                               @RequestParam(value = "issueDate[]", required = false) String[] issueDate,
                                @RequestParam(value = "awardName[]", required = false) String[] awardNames,
                                @RequestParam(value = "organizer[]", required = false) String[] organizers,
                                @RequestParam(value = "awardDate[]", required = false) String[] awardDates,
@@ -519,27 +520,37 @@ public class ResumeController {
             // 기존 어학시험 삭제
             resumeService.deleteLanguageTestsByResumeNo(resume.getResumeNo());
 
-            // 새로운 어학시험 추가
+         // 새로운 어학시험 추가
             if (languageNames != null) {
                 for (int i = 0; i < languageNames.length; i++) {
-                    if (languageNames[i] != null && !languageNames[i].isEmpty()) {
+                    // 유효성 검증: 빈 값이 있는 경우 건너뜀
+                    if (languageNames[i] != null && !languageNames[i].isEmpty() &&
+                        proficiencyLevels[i] != null && !proficiencyLevels[i].isEmpty() &&
+                        languageTypes[i] != null && !languageTypes[i].isEmpty() &&
+                        issueDate.length > i && issueDate[i] != null && !issueDate[i].isEmpty()) {
+                        
                         LanguageTest langTest = new LanguageTest();
                         langTest.setResumeNo(resume.getResumeNo());
                         langTest.setLanguageName(languageNames[i]);
                         langTest.setProficiencyLevel(proficiencyLevels[i]);
                         langTest.setLanguageType(languageTypes[i]);
                         try {
-                            if (issueDates[i] != null && !issueDates[i].isEmpty()) {
-                                langTest.setIssueDate(Date.valueOf(issueDates[i]));
-                            }
+                            langTest.setIssueDate(Date.valueOf(issueDate[i]));
                         } catch (IllegalArgumentException e) {
-                            logger.error("Invalid date format for issueDate: {}", issueDates[i]);
+                            logger.error("Invalid date format for issueDate: {}", issueDate[i]);
                             langTest.setIssueDate(null);
                         }
                         resumeService.insertLanguageTest(langTest);
                     }
                 }
+
+                logger.info("Received languageNames: {}", Arrays.toString(languageNames));
+                logger.info("Received proficiencyLevels: {}", Arrays.toString(proficiencyLevels));
+                logger.info("Received languageTypes: {}", Arrays.toString(languageTypes));
+                logger.info("Received issueDate: {}", Arrays.toString(issueDate));
+
             }
+
 
             // 기존 수상내역 삭제
             resumeService.deleteAwardsByResumeNo(resume.getResumeNo());
