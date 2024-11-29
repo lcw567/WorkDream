@@ -1,17 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!-- WEB-INF/views/portfolio/portfolioPost.jsp -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>포트폴리오작성</title>
-<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/portfolioPost.css">
-<script src="${pageContext.request.contextPath}/js/portfolioPost.js" defer></script>
+    <meta charset="UTF-8">
+    <title>포트폴리오 작성</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Summernote CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/portfolioPost.css">
 </head>
-<body>
-<c:import url="/WEB-INF/views/common/header.jsp" />
-<h1>포트폴리오작성</h1>
-<c:import url="/WEB-INF/views/common/footer.jsp" />
+<body data-page="create">
+    <!-- 헤더 포함 -->
+    <c:import url="/WEB-INF/views/common/header.jsp" />
+
+    <div class="container mt-5">
+        <h1 class="text-center tekhelet styled-title">포트폴리오 작성</h1>
+        <form action="${pageContext.request.contextPath}/portfolio/save" method="post">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control tekhelet-border" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="summernote">내용</label>
+                <textarea id="summernote" name="content"></textarea>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary royal-purple">저장</button>
+            </div>
+        </form>
+        <div class="text-center mt-3">
+            <a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard" class="btn btn-secondary grape">관리 페이지로 돌아가기</a>
+        </div>
+    </div>
+
+    <!-- 푸터 포함 -->
+    <c:import url="/WEB-INF/views/common/footer.jsp" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+    <!-- Custom JS -->
+    <script src="${pageContext.request.contextPath}/js/portfolioPost.js"></script>
 </body>
 </html>
