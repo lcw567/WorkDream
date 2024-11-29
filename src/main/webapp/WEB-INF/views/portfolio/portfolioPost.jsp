@@ -23,23 +23,41 @@
 
     <div class="container mt-5">
         <h1 class="text-center tekhelet styled-title">포트폴리오 작성</h1>
+      
         <form action="${pageContext.request.contextPath}/portfolio/save" method="post">
+        	<!-- 버튼 -->
+		    <div class="d-flex justify-content-end mb-3">
+		        <button type="submit" class="btn btn-purple mr-2">저장</button>
+		        <a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard" class="btn btn-purple">관리 페이지로 돌아가기</a>
+		    </div>
+            
             <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" class="form-control tekhelet-border" id="title" name="title" required>
+                <input type="text" class="form-control tekhelet-border" id="title" name="title" placeholder="제목을 입력하시오" required>
             </div>
             <div class="form-group">
-                <label for="summernote">내용</label>
+                
                 <textarea id="summernote" name="content"></textarea>
             </div>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary royal-purple">저장</button>
-            </div>
-        </form>
-        <div class="text-center mt-3">
-            <a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard" class="btn btn-secondary grape">관리 페이지로 돌아가기</a>
+            <!-- 사용설명 추가 -->
+        <div class="alert alert-info custom-alert" role="alert">
+			📝 포트폴리오 작성 팁<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;완벽한 포트폴리오를 만들기 위한 몇 가지 유용한 팁을 소개할게요!<br><br>
+			🎨 디자인 일관성 유지하기<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;색상, 폰트, 레이아웃 등 디자인 요소를 일관성 있게 사용하여 전문적인 이미지를 전달하세요.<br><br>
+			📂 프로젝트 선택하기<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;가장 잘 보여줄 수 있는 프로젝트를 선택하고, 각 프로젝트에 대한 상세한 설명과 역할을 명확히 기술하세요.<br><br>
+			📈  성과 강조하기 <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;프로젝트를 통해 달성한 성과나 배운 점을 구체적으로 적어 자신을 어필하세요. <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;수치나 구체적인 예시를 포함하면 더욱 효과적이에요.<br><br>
+			🔗 관련 링크 포함하기<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;GitHub, 블로그, LinkedIn 등 관련된 외부 링크를 포함시켜 자신의 활동을 더 잘 보여주세요.<br><br>
+			🖼️ 시각적 요소 활용하기<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;이미지, 동영상, 인포그래픽 등을 활용하여 포트폴리오를 시각적으로 풍부하게 만들어보세요.<br><br>
         </div>
+                    
+        </form>
     </div>
+   		 
 
     <!-- 푸터 포함 -->
     <c:import url="/WEB-INF/views/common/footer.jsp" />

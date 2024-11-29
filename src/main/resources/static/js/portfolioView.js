@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#summernote').summernote({
         placeholder: '포트폴리오 내용을 확인하세요...',
         tabsize: 2,
-        height: 300,
+        height: 500,
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline']],
