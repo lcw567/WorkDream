@@ -1,14 +1,32 @@
+/* portfolioPost.css */
 @charset "UTF-8";
 
-/* portfolioPost.css */
+/* 색상 변수 정의 */
+:root {
+    --tekhelet: #4E21A8;      /* 메인 컬러 */
+    --grape: #5E35B0;         /* 버튼 호버 등 변화 색상 */
+    --royal-purple: #6D47B7;  /* 버튼 호버 등 변화 색상 */
+}
+
+/* 공통 스타일 */
 body {
     padding: 20px;
     background-color: #f8f9fa;
 }
 
+.styled-title {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    border-bottom: 2px solid var(--tekhelet);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
 h1 {
     margin-bottom: 20px;
-    color: #343a40;
+    color: var(--tekhelet);
+    text-align: center;
 }
 
 .form-group {
@@ -17,4 +35,22 @@ h1 {
 
 .btn-primary {
     margin-top: 10px;
+    background-color: var(--tekhelet);
+    border-color: var(--tekhelet);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--royal-purple);
+    border-color: var(--royal-purple);
+}
+
+/* 입력 필드 테두리 */
+.tekehelet-border {
+    border-color: var(--tekhelet) !important;
+}
+
+/* 텍스트 색상 */
+.tekhelet {
+    color: var(--tekhelet);
 }

@@ -22,21 +22,26 @@
     <c:import url="/WEB-INF/views/common/header.jsp" />
 
     <div class="container mt-5">
-        <h1>포트폴리오 수정</h1>
+        <h1 class="text-center tekhelet styled-title">포트폴리오 수정</h1>
         <form action="${pageContext.request.contextPath}/portfolio/update" method="post">
             <!-- Portfolio ID (숨김 필드) -->
             <input type="hidden" name="id" value="${portfolio.id}"/>
 
             <div class="form-group">
                 <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" name="title" value="${portfolio.title}" required>
+                <input type="text" class="form-control tekhelet-border" id="title" name="title" value="${portfolio.title}" required>
             </div>
             <div class="form-group">
                 <label for="summernote">내용</label>
                 <textarea id="summernote" name="content">${portfolio.content}</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">수정</button>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary royal-purple">수정</button>
+            </div>
         </form>
+        <div class="text-center mt-3">
+            <a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard" class="btn btn-secondary grape">관리 페이지로 돌아가기</a>
+        </div>
     </div>
 
     <!-- 푸터 포함 -->

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!-- WEB-INF/views/portfolio/portfolioPost.jsp -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
@@ -16,23 +17,28 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/portfolioPost.css">
 </head>
-<body>
+<body data-page="create">
     <!-- 헤더 포함 -->
     <c:import url="/WEB-INF/views/common/header.jsp" />
 
     <div class="container mt-5">
-        <h1>포트폴리오 작성</h1>
+        <h1 class="text-center tekhelet styled-title">포트폴리오 작성</h1>
         <form action="${pageContext.request.contextPath}/portfolio/save" method="post">
             <div class="form-group">
                 <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" name="title" required>
+                <input type="text" class="form-control tekhelet-border" id="title" name="title" required>
             </div>
             <div class="form-group">
                 <label for="summernote">내용</label>
                 <textarea id="summernote" name="content"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">저장</button>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary royal-purple">저장</button>
+            </div>
         </form>
+        <div class="text-center mt-3">
+            <a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard" class="btn btn-secondary grape">관리 페이지로 돌아가기</a>
+        </div>
     </div>
 
     <!-- 푸터 포함 -->
