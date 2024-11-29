@@ -11,7 +11,6 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.beans.factory.annotation.Value; // 확인 필요
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -159,17 +158,49 @@ public class ResumeServiceImpl implements ResumeService {
     @Transactional
     public boolean updateResume(Resume resume) {
         try {
-            int rowsAffected = resumeDao.updateResume(resume);
-            if (rowsAffected > 0) {
-                logger.info("Resume updated successfully: {}", resume.getResumeNo());
-                return true;
-            } else {
-                logger.warn("Failed to update resume: {}", resume.getResumeNo());
-                return false;
+            // 기본 이력서 정보 업데이트
+            int resumeUpdateResult = resumeDao.updateResume(resume);
+            if (resumeUpdateResult <= 0) {
+                throw new RuntimeException("이력서 기본 정보 업데이트 실패");
             }
+
+            // 자격증 업데이트: 기존 데이터 유지, 새 데이터 추가
+            List<Certificate> certificates = resume.getCertificates();
+            if (certificates != null) {
+                for (Certificate cert : certificates) {
+                    if (cert.getCertificateId() == 0) {  // 기존 데이터가 아니라면 새로 추가
+                        cert.setResumeNo(resume.getResumeNo());
+                        resumeDao.insertCertificate(cert);
+                    }
+                }
+            }
+
+            // 어학시험 업데이트: 기존 데이터 유지, 새 데이터 추가
+            List<LanguageTest> languageTests = resume.getLanguageTests();
+            if (languageTests != null) {
+                for (LanguageTest langTest : languageTests) {
+                    if (langTest.getLanguageTestId() == 0) {  // 기존 데이터가 아니라면 새로 추가
+                        langTest.setResumeNo(resume.getResumeNo());
+                        resumeDao.insertLanguageTest(langTest);
+                    }
+                }
+            }
+
+            // 수상내역 업데이트: 기존 데이터 유지, 새 데이터 추가
+            List<Award> awards = resume.getAwards();
+            if (awards != null) {
+                for (Award award : awards) {
+                    if (award.getAwardId() == 0) {  // 기존 데이터가 아니라면 새로 추가
+                        award.setResumeNo(resume.getResumeNo());
+                        resumeDao.insertAward(award);
+                    }
+                }
+            }
+
+            return true;
         } catch (Exception e) {
-            logger.error("Error updating resume", e);
-            throw new RuntimeException("Error updating resume", e);
+            logger.error("이력서 업데이트 중 오류 발생: ", e);
+            throw new RuntimeException("이력서 업데이트 중 오류 발생", e);
         }
     }
 
@@ -185,5 +216,41 @@ public class ResumeServiceImpl implements ResumeService {
             logger.error("ResumeServiceImpl - 이력서 삭제 중 오류 발생: {}", e.getMessage(), e);
             throw new RuntimeException("이력서 삭제 중 문제가 발생했습니다.", e);
         }
+    }
+
+    @Override
+    @Transactional
+    public void deleteCertificatesByResumeNo(int resumeNo) {
+        resumeDao.deleteCertificatesByResumeNo(resumeNo);
+    }
+
+    @Override
+    @Transactional
+    public void insertCertificate(Certificate certificate) {
+        resumeDao.insertCertificate(certificate);
+    }
+
+    @Override
+    @Transactional
+    public void deleteLanguageTestsByResumeNo(int resumeNo) {
+        resumeDao.deleteLanguageTestsByResumeNo(resumeNo);
+    }
+
+    @Override
+    @Transactional
+    public void insertLanguageTest(LanguageTest languageTest) {
+        resumeDao.insertLanguageTest(languageTest);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAwardsByResumeNo(int resumeNo) {
+        resumeDao.deleteAwardsByResumeNo(resumeNo);
+    }
+
+    @Override
+    @Transactional
+    public void insertAward(Award award) {
+        resumeDao.insertAward(award);
     }
 }

@@ -596,7 +596,7 @@ CREATE TABLE RESUME(
     COMPANY_TITLE VARCHAR2(50) NULL,                               -- 회사명 (companyTitle)
     START_DATE_WORK DATE NULL,                                     -- 업무 시작 날짜 (startDateWork)
     END_DATE_WORK DATE,                                            -- 업무 종료 날짜 (endDateWork)
-    STATUS_WORK CHAR(1) NOT NULL CHECK (STATUS_WORK IN ('Y', 'N', 'P')), -- 업무 상태 (careerStatus)
+    STATUS_WORK CHAR(1) NULL CHECK (STATUS_WORK IN ('Y', 'N', 'P')), -- 업무 상태 (careerStatus)
     JOB_CONTENT VARCHAR2(100) NULL,                                -- 업무 내용 (jobContent)
     POSITION VARCHAR2(20) NULL,                                    -- 직급/직책 (position)
     CREATE_DATE DATE DEFAULT SYSDATE,                              -- 생성일자

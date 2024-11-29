@@ -203,11 +203,13 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
     // 군 복무 상태 변경 시 섹션 표시/숨김
     var militarySelect = document.getElementById('military_status');
+    var unfulfilledDiv = document.querySelector('.unfulfilled');
     var exemptedDiv = document.querySelector('.EXEMPTED');
     var fulfilledDiv = document.querySelector('.fulfilled');
     var servingDiv = document.querySelector('.serving');
     
     // 페이지 로드 시 모든 섹션 숨기기
+    unfulfilledDiv.style.display = 'none';
     exemptedDiv.style.display = 'none';
     fulfilledDiv.style.display = 'none';
     servingDiv.style.display = 'none';
@@ -215,14 +217,18 @@ document.querySelector('form').addEventListener('submit', function(event) {
     // 선택 박스의 변경을 감지하는 이벤트 리스너 추가
     militarySelect.addEventListener('change', function() {
         // 모든 섹션을 우선 숨김
+        unfulfilledDiv.style.display = 'none';
         exemptedDiv.style.display = 'none';
         fulfilledDiv.style.display = 'none';
         servingDiv.style.display = 'none';
     
         var selectedValue = this.value;
     
-        if (selectedValue === 'unfulfilled' || selectedValue === 'exempted') {
-            // 미필 또는 면제 선택 시 EXEMPTED 섹션 표시
+        if (selectedValue === 'unfulfilled') {
+            // 미필 선택 시 unfulfilled 섹션 표시
+            unfulfilledDiv.style.display = 'flex';
+        } else if (selectedValue === 'exempted') {
+            // 면제 선택 시 exempted 섹션 표시
             exemptedDiv.style.display = 'flex';
         } else if (selectedValue === 'fulfilled') {
             // 군필 선택 시 fulfilled 섹션 표시
@@ -550,3 +556,4 @@ document.addEventListener('DOMContentLoaded', function () {
         return listItem;
     }
 });
+

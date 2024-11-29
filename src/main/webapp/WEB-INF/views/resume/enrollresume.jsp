@@ -541,21 +541,21 @@
                                     <legend>급수</legend>
                                     <select name="proficiencyLevel[]" class="certi_level">
                                         <option value="">급수 선택</option>
-                                        <option value="1급">1급</option>
-                                        <option value="2급">2급</option>
-                                        <option value="3급">3급</option>
-                                        <option value="4급">4급</option>
-                                        <option value="5급">5급</option>
-                                        <option value="6급">6급</option>
-                                        <option value="7급">7급</option>
-                                        <option value="8급">8급</option>
-                                        <option value="9급">9급</option>
-                                        <option value="10급">10급</option>
-                                        <option value="11급">11급</option>
-                                        <option value="12급">12급</option>
-                                        <option value="13급">13급</option>
-                                        <option value="14급">14급</option>
-                                        <option value="15급">15급</option>
+                                        <option value="1">1급</option>
+                                        <option value="2">2급</option>
+                                        <option value="3">3급</option>
+                                        <option value="4">4급</option>
+                                        <option value="5">5급</option>
+                                        <option value="6">6급</option>
+                                        <option value="7">7급</option>
+                                        <option value="8">8급</option>
+                                        <option value="9">9급</option>
+                                        <option value="10">10급</option>
+                                        <option value="11">11급</option>
+                                        <option value="12">12급</option>
+                                        <option value="13">13급</option>
+                                        <option value="14">14급</option>
+                                        <option value="15">15급</option>
                                     </select>
                                 </fieldset>
                                 <fieldset class="lang_category">
