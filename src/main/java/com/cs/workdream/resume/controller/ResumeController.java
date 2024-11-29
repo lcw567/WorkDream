@@ -97,6 +97,59 @@ public class ResumeController {
             return "redirect:/login?error=sessionExpired";
         }
         resume.setPersonNo(loginUser.getPersonNo());
+        
+        switch (resume.getServiceStatus()) {
+        case "unfulfilled":
+            resume.setExemptionReason(null); // 미필일 경우 면제 사유는 null
+            resume.setEnlistmentDate_ful(null);
+            resume.setDischargeDate_ful(null);
+            resume.setMilitaryBranch_ful(null);
+            resume.setRank_ful(null);
+            resume.setDischargeReason_ful(null);
+            break;
+
+        case "exempted":
+            resume.setUnfulfilledReason(null); // 면제일 경우 미필 사유는 null
+            resume.setEnlistmentDate_ful(null);
+            resume.setDischargeDate_ful(null);
+            resume.setMilitaryBranch_ful(null);
+            resume.setRank_ful(null);
+            resume.setDischargeReason_ful(null);
+            break;
+
+        case "fulfilled":
+            resume.setUnfulfilledReason(null);
+            resume.setExemptionReason(null);
+            resume.setEnlistmentDate_ser(null);
+            resume.setDischargeDate_ser(null);
+            resume.setMilitaryBranch_ser(null);
+            resume.setRank_ser(null);
+            break;
+
+        case "serving":
+            resume.setUnfulfilledReason(null);
+            resume.setExemptionReason(null);
+            resume.setDischargeDate_ful(null);
+            resume.setMilitaryBranch_ful(null);
+            resume.setRank_ful(null);
+            resume.setDischargeReason_ful(null);
+            break;
+
+        default:
+            // 기타 군복무 대상 아님 등 상황에 맞춰 모든 군복무 관련 필드를 null로 처리
+            resume.setUnfulfilledReason(null);
+            resume.setExemptionReason(null);
+            resume.setEnlistmentDate_ful(null);
+            resume.setDischargeDate_ful(null);
+            resume.setMilitaryBranch_ful(null);
+            resume.setRank_ful(null);
+            resume.setEnlistmentDate_ser(null);
+            resume.setDischargeDate_ser(null);
+            resume.setMilitaryBranch_ser(null);
+            resume.setRank_ser(null);
+            resume.setDischargeReason_ful(null);
+            break;
+    }
 
         // 자격증 배열 로그 출력
         logger.debug("qualificationNames.length: {}", (qualificationNames != null ? qualificationNames.length : "null"));
@@ -196,6 +249,12 @@ public class ResumeController {
 
         // 추가된 로깅: LanguageTest 리스트 확인
         logger.debug("LanguageTests to be saved: {}", languageTests);
+        
+        if (resume.getUnfulfilledReason() != null && !resume.getUnfulfilledReason().isEmpty()) {
+            resume.setExemptionReason(null);
+        } else if (resume.getExemptionReason() != null && !resume.getExemptionReason().isEmpty()) {
+            resume.setUnfulfilledReason(null);
+        }
 
         // 이력서 저장
         boolean isSaved = resumeService.saveResume(resume, userPicFile);
@@ -411,21 +470,111 @@ public class ResumeController {
 
 
     @PostMapping("/update.re")
-    public String updateResume(@ModelAttribute Resume resume, RedirectAttributes redirectAttributes) {
+    public String updateResume(@ModelAttribute Resume resume,
+                               @RequestParam(value = "qualificationName[]", required = false) String[] qualificationNames,
+                               @RequestParam(value = "issuingAgency[]", required = false) String[] issuingAgencies,
+                               @RequestParam(value = "passStatus[]", required = false) String[] passStatuses,
+                               @RequestParam(value = "testDate_cer[]", required = false) String[] testDates,
+                               @RequestParam(value = "languageName[]", required = false) String[] languageNames,
+                               @RequestParam(value = "proficiencyLevel[]", required = false) String[] proficiencyLevels,
+                               @RequestParam(value = "languageType[]", required = false) String[] languageTypes,
+                               @RequestParam(value = "issueDate[]", required = false) String[] issueDates,
+                               @RequestParam(value = "awardName[]", required = false) String[] awardNames,
+                               @RequestParam(value = "organizer[]", required = false) String[] organizers,
+                               @RequestParam(value = "awardDate[]", required = false) String[] awardDates,
+                               RedirectAttributes redirectAttributes) {
         try {
+            // 이력서 업데이트
             boolean isUpdated = resumeService.updateResume(resume);
-            if (isUpdated) {
-                redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 업데이트되었습니다.");
-                return "redirect:/resume/resumeDashboard";
-            } else {
+            if (!isUpdated) {
                 redirectAttributes.addFlashAttribute("error", "이력서 업데이트에 실패했습니다.");
-                return "redirect:/resume/editResume";
+                return "redirect:/resume/editResume?id=" + resume.getResumeNo();
             }
+
+            // 기존 자격증 삭제
+            resumeService.deleteCertificatesByResumeNo(resume.getResumeNo());
+
+            // 새로운 자격증 추가
+            if (qualificationNames != null) {
+                for (int i = 0; i < qualificationNames.length; i++) {
+                    if (qualificationNames[i] != null && !qualificationNames[i].isEmpty()) {
+                        Certificate cert = new Certificate();
+                        cert.setResumeNo(resume.getResumeNo());
+                        cert.setQualificationName(qualificationNames[i]);
+                        cert.setIssuingAgency(issuingAgencies[i]);
+                        cert.setPassStatus(passStatuses[i]);
+                        try {
+                            if (testDates[i] != null && !testDates[i].isEmpty()) {
+                                cert.setTestDate_cer(Date.valueOf(testDates[i]));
+                            }
+                        } catch (IllegalArgumentException e) {
+                            logger.error("Invalid date format for testDate_cer: {}", testDates[i]);
+                            cert.setTestDate_cer(null);
+                        }
+                        resumeService.insertCertificate(cert);
+                    }
+                }
+            }
+
+            // 기존 어학시험 삭제
+            resumeService.deleteLanguageTestsByResumeNo(resume.getResumeNo());
+
+            // 새로운 어학시험 추가
+            if (languageNames != null) {
+                for (int i = 0; i < languageNames.length; i++) {
+                    if (languageNames[i] != null && !languageNames[i].isEmpty()) {
+                        LanguageTest langTest = new LanguageTest();
+                        langTest.setResumeNo(resume.getResumeNo());
+                        langTest.setLanguageName(languageNames[i]);
+                        langTest.setProficiencyLevel(proficiencyLevels[i]);
+                        langTest.setLanguageType(languageTypes[i]);
+                        try {
+                            if (issueDates[i] != null && !issueDates[i].isEmpty()) {
+                                langTest.setIssueDate(Date.valueOf(issueDates[i]));
+                            }
+                        } catch (IllegalArgumentException e) {
+                            logger.error("Invalid date format for issueDate: {}", issueDates[i]);
+                            langTest.setIssueDate(null);
+                        }
+                        resumeService.insertLanguageTest(langTest);
+                    }
+                }
+            }
+
+            // 기존 수상내역 삭제
+            resumeService.deleteAwardsByResumeNo(resume.getResumeNo());
+
+            // 새로운 수상내역 추가
+            if (awardNames != null) {
+                for (int i = 0; i < awardNames.length; i++) {
+                    if (awardNames[i] != null && !awardNames[i].isEmpty()) {
+                        Award award = new Award();
+                        award.setResumeNo(resume.getResumeNo());
+                        award.setAwardName(awardNames[i]);
+                        award.setOrganizer(organizers[i]);
+                        try {
+                            if (awardDates[i] != null && !awardDates[i].isEmpty()) {
+                                award.setAwardDate(Date.valueOf(awardDates[i]));
+                            }
+                        } catch (IllegalArgumentException e) {
+                            logger.error("Invalid date format for awardDate: {}", awardDates[i]);
+                            award.setAwardDate(null);
+                        }
+                        resumeService.insertAward(award);
+                    }
+                }
+            }
+
+            redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 업데이트되었습니다.");
+            return "redirect:/resume/resumeDashboard";
+
         } catch (Exception e) {
+            logger.error("Error while updating resume: ", e);
             redirectAttributes.addFlashAttribute("error", "이력서 업데이트 중 오류가 발생했습니다.");
-            return "redirect:/resume/editResume";
+            return "redirect:/resume/editResume?id=" + resume.getResumeNo();
         }
     }
+
 
     @PostMapping("/deleteResume")
     public String deleteResume(@RequestParam("id") int resumeNo, RedirectAttributes redirectAttributes) {

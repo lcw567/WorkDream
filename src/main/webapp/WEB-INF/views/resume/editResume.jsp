@@ -334,12 +334,12 @@
                             <div class="form-group2">
                                 <fieldset class="input-group">
                                     <legend>입학 년월</legend>
-                                    <input type="date" name="enterDate" class="enterDate_col" value="<fmt:formatDate value='${resume.enterDate_col}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="enterDate_col" class="enterDate_col" value="<fmt:formatDate value='${resume.enterDate_col}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
                                 
                                 <fieldset class="input-group">
                                     <legend>졸업 년월</legend>
-                                    <input type="date" name="graduationDate" class="graduationDate_col" value="<fmt:formatDate value='${resume.graduationDate_col}' pattern='yyyy-MM-dd'/>">
+                                    <input type="date" name="graduationDate_col" class="graduationDate_col" value="<fmt:formatDate value='${resume.graduationDate_col}' pattern='yyyy-MM-dd'/>">
                                 </fieldset>
 
                                 <fieldset class="input-group">
@@ -371,12 +371,17 @@
                     </div>
                 </fieldset>
             </div>
-
-            <!-- 경력 -->
             <div class="Career">
-                <fieldset class="career">
+                <fieldset class="career <c:if test='${not empty resume.companyTitle}'>career-full</c:if>">
                     <legend class="career_Lv">경력</legend>
-                    <div class="career1" <c:if test="${empty resume.companyTitle}">style="display: none;"</c:if>>
+                    <c:if test="${empty resume.companyTitle}">
+                        <label class="careerYorN">경력이 있을 경우 선택해주세요.</label>
+                        <label for="CareerY">
+                            <input type="checkbox" id="CareerY" name="career_present" />
+                            <span></span>&nbsp;
+                        </label>
+                    </c:if>
+                    <div class="career1" style="display: <c:if test='${empty resume.companyTitle}'>none</c:if>;">
                         <fieldset class="company_title">
                             <legend>회사명</legend>
                             <input type="text" class="com_title" name="companyTitle" value="${resume.companyTitle}">
@@ -399,7 +404,7 @@
                             </select>
                         </fieldset>
                     </div>
-                    <div class="career2" <c:if test="${empty resume.companyTitle}">style="display: none;"</c:if>>
+                    <div class="career2" style="display: <c:if test='${empty resume.companyTitle}'>none</c:if>;">
                         <fieldset class="job">
                             <legend>직무</legend>
                             <input type="text" class="job_name" name="work" value="${resume.work}">
@@ -413,7 +418,7 @@
                             <input type="text" class="position_name" name="position" value="${resume.position}">
                         </fieldset>
                     </div>
-                    <div class="career3" <c:if test="${empty resume.jobContent}">style="display: none;"</c:if>>
+                    <div class="career3" style="display: <c:if test='${empty resume.companyTitle}'>none</c:if>;">
                         <fieldset class="job_content">
                             <legend>담당업무</legend>
                             <textarea name="jobContent" id="j_content">${resume.jobContent}</textarea>
@@ -421,7 +426,8 @@
                     </div>
                 </fieldset>
             </div>
-
+            
+            
             <!-- 스킬 -->
             <div id="Skill">
                 <fieldset class="skill">
@@ -478,12 +484,12 @@
                             <input type="date" name="endDateAct" value="<fmt:formatDate value='${resume.endDateAct}' pattern='yyyy-MM-dd'/>">
                         </fieldset>
                     </div>
-                    <div class="exp2" <c:if test="${empty resume.description}">style="display: none;"</c:if>>
+                    <div class="exp2">
                         <fieldset class="exp_content">
                             <legend>활동설명</legend>
-                            <textarea name="description" id="e_content" placeholder="경험/활동 상세내용 입력">${resume.description}</textarea>
+                            <textarea name="description" id="e_content" placeholder="경험/활동 상세내용 입력">${empty resume.description ? '' : resume.description}</textarea>
                         </fieldset>
-                    </div>
+                    </div>                    
                 </fieldset>
             </div>
 
