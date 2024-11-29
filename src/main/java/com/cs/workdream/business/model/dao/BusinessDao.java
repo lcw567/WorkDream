@@ -20,7 +20,7 @@ public class BusinessDao {
 		return sqlSession.selectOne("businessMapper.inquireAppsStatus", recruitmentNo);
 	};
 	
-	// 포지션 목록 조회
+	// 포지션 목록 조회(현황 페이지용)
 	public List<Position> inquirePositionList(SqlSessionTemplate sqlSession, int recruitmentNo) {
 		return sqlSession.selectList("businessMapper.inquirePositionList", recruitmentNo);
 	}
@@ -46,13 +46,42 @@ public class BusinessDao {
 	}
 
 	// 즐겨찾기 그룹 분류 수정
-	public int updateBookmarkFolder(SqlSessionTemplate sqlSession, BusinessBookmark bookmark, String type, String folder) {
+	public int updateBookmarkFolder(SqlSessionTemplate sqlSession, BusinessBookmark bookmark, String type, int folder) {
 		Map<String, Object> data = new HashMap<>();
 		data.put("bookmark", bookmark);
 		data.put("type", type);
 		data.put("folder", folder);
 		
 		return sqlSession.update("businessMapper.updateBookmarkFolder", data);
+	}
+
+	// 즐겨찾기 그룹 추가
+	public int insertFolder(SqlSessionTemplate sqlSession, int businessNo, String folderName) {
+		Map<String, Object> data = new HashMap<>();
+		data.put("businessNo", businessNo);
+		data.put("folderName", folderName);
+		
+		return sqlSession.insert("businessMapper.insertFolder", data);
+	}
+
+	// 즐겨찾기 그룹 편집
+	public int updateFolder(SqlSessionTemplate sqlSession, int businessNo, int folder, int order, String folderName) {
+		Map<String, Object> data = new HashMap<>();
+		data.put("businessNo", businessNo);
+		data.put("folder", folder);
+		data.put("order", order);
+		data.put("folderName", folderName);
+		
+		return sqlSession.update("businessMapper.updateFolder", data);
+	}
+
+	// 즐겨찾기 그룹 삭제
+	public int deleteFolder(SqlSessionTemplate sqlSession, int businessNo, int folder) {
+		Map<String, Integer> numbers = new HashMap<>();
+		numbers.put("businessNo", businessNo);
+		numbers.put("resumeNo", folder);
+		
+		return sqlSession.delete("businessMapper.deleteFolder", numbers);
 	}
 
 }

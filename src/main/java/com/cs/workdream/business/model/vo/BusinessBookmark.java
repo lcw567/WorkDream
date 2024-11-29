@@ -16,6 +16,7 @@ import lombok.ToString;
 public class BusinessBookmark {
 	private int businessNo;				// 기업 고유키
 	private int resumeNo;				// 이력서 고유키
+	private int folderNo;				// 분류 폴더 고유키
 	private String name;				// 지원자 이름
 	private String picture;				// 지원자 이력서 사진
 	private String phone;				// 지원자 연락처(휴대번호)

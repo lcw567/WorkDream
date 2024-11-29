@@ -4,12 +4,20 @@ const data = {
         rank: "",
         position: "",
         employment_type: "정규직",
-        career_type: "신입",
-        education: "학력무관",
+        career_type: "경력 무관",
+        career_year_min: "",
+        career_year_max: "",
+        academic: "학력무관",
         work_days: "주 5일",
-        salary_min: "",
-        salary_max: "",
+        work_time_min: "",
+        work_time_max: "",
+        expected_salary_min: "",
+        expected_salary_max: "",
+        locationList: [],
+        industryList: [],
+        skillList: [],
         company_type: "대기업",
+        companyList: [],
         employment_status: "재직무관",
     },
 }
@@ -17,7 +25,7 @@ const data = {
 document.addEventListener('DOMContentLoaded', function () {
 
     // 공통 함수: 입력 필드 생성 및 처리
-    function createInputHandler(container, placeholderText, wrapperClass) {
+    function createInputHandler(container, placeholderText, wrapperClass, key) {
         return function () {
             const wrapper = document.createElement('div');
             wrapper.classList.add(wrapperClass);
@@ -35,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             deleteButton.addEventListener('click', () => {
                 if (wrapper.parentNode) {
+                    removeListValue(key, wrapper.childNodes[0].innerText);
                     wrapper.parentNode.removeChild(wrapper);
                 }
             });
@@ -63,11 +72,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 wrapper.appendChild(textContent);
                 wrapper.appendChild(deleteButton);
+
+                addListValue(key, enteredText);
             };
 
             inputField.addEventListener('keypress', (event) => {
                 if (event.key === 'Enter') {
                     event.preventDefault();
+                    console.log(event.target)
                     confirmInput();
                 }
             });
@@ -84,21 +96,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const locationContainer = document.getElementById('location-container');
     workLocationAddressButton.addEventListener(
         'click',
-        createInputHandler(locationContainer, '지역', 'Work_Location')
+        createInputHandler(locationContainer, '지역', 'Work_Location', "locationList")
     );
 
     const industryCategoryButton = document.querySelector('.Industry_Category');
     const industryContainer = document.getElementById('industry-container');
     industryCategoryButton.addEventListener(
         'click',
-        createInputHandler(industryContainer, '업종', 'Industry_Type')
+        createInputHandler(industryContainer, '업종', 'Industry_Type', "industryList")
     );
 
     const addCompanyButton = document.querySelector('.add-company-btn');
     const companyContainer = document.getElementById('company-container');
     addCompanyButton.addEventListener(
         'click',
-        createInputHandler(companyContainer, '기업명', 'Company_Type')
+        createInputHandler(companyContainer, '기업명', 'Company_Type', "companyList")
     );
 
     const skillSearchInput = document.getElementById('Skill_Search_Keyward');
@@ -132,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = '×';
                 deleteButton.addEventListener('click', function () {
+                    removeListValue("skillList", keyword);
                     skillContainer.removeChild(skillSearchContent);
                 });
 
@@ -142,6 +155,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 skillContainer.appendChild(skillSearchContent);
 
                 skillSearchInput.value = '';
+
+                addListValue("skillList", keyword);
             }
         }
     });
@@ -214,6 +229,12 @@ document.querySelectorAll('input[name="Career_Type"]').forEach((radio) => {
     });
 });
 
+document.querySelectorAll('input[name="workdream"]').forEach((radio) => {
+    radio.addEventListener('change', (event) => {
+        console.log(`선택된 경력: ${event.target.value}`);
+    });
+});
+
 document.querySelectorAll('input[type="radio"]').forEach((radio) => {
     radio.addEventListener('change', (event) => {
         const groupName = event.target.name;
@@ -233,7 +254,100 @@ function closeModal(){
     modal.style.display = 'none';
 
     //값을 가져와서 그려주기 data.dutyList에 추가
+    data.dutyList.push(data.tmpDyty)
+    data.tmpDyty = {
+        rank: "",
+        position: "",
+        employment_type: "정규직",
+        career_type: "경력 무관",
+        career_year_min: "",
+        career_year_max: "",
+        academic: "학력무관",
+        work_days: "주 5일",
+        work_time_min: "",
+        work_time_max: "",
+        expected_salary_min: "",
+        expected_salary_max: "",
+        locationList: [],
+        industryList: [],
+        skillList: [],
+        company_type: "대기업",
+        companyList: [],
+        employment_status: "재직무관",
+    },
 
+    drawDutyList();
+}
+
+function drawDutyList(){
+    //data .dutyList를 이용해서 화면에 그려주기
+    console.log( data.dutyList)
+function drawDutyList() {
+    const additionDuty = document.querySelector('.Job_duty_p');
+    additionDuty.innerHTML = ''; // 기존 내용을 초기화
+
+    const maxDutyCount = 5; // 최대 직무 개수 제한
+
+    data.dutyList.slice(0, maxDutyCount).forEach((duty, index) => {
+        // Duty 내용을 포맷팅
+        const formattedText = [
+            `직급: ${duty.rank || "사원"}`,
+            `직책: ${duty.position || "N/A"}`,
+            `고용 형태: ${duty.employment_type || "정규직"}`,
+            `경력: ${duty.career_type || "경력 무관"} (${duty.career_year_min || "0"}년~${duty.career_year_max || "0"}년)`,
+            `학력: ${duty.academic || "학력무관"}`,
+            `근무일: ${duty.work_days || "N/A"}`,
+            `근무 시간: ${duty.work_time_min || "N/A"}~${duty.work_time_max || "N/A"}`,
+            `급여: ${duty.expected_salary_min || "N/A"}~${duty.expected_salary_max || "N/A"}`,
+            `근무 지역: ${duty.locationList.join(', ') || "N/A"}`,
+            `업종: ${duty.industryList.join(', ') || "N/A"}`,
+            `기술: ${duty.skillList.join(', ') || "N/A"}`,
+            `회사 형태: ${duty.company_type || "대기업"}`,
+            `회사명: ${duty.companyList.join(', ') || "N/A"}`,
+            `재직 상태: ${duty.employment_status || "재직무관"}`,
+        ].join(' / ');
+
+        const dutyItem = document.createElement('p');
+        dutyItem.classList.add('duty-item');
+        dutyItem.textContent = formattedText;
+
+        // x 버튼 추가
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'x';
+        deleteButton.classList.add('delete-btn');
+
+        // 삭제 기능
+        deleteButton.addEventListener('click', () => {
+            data.dutyList.splice(index, 1); // 데이터 삭제
+            drawDutyList(); // 화면 갱신
+        });
+
+        // 내용이 길 경우 생략 처리
+        if (formattedText.length > 100) {
+            dutyItem.textContent = `${formattedText.substring(0, 100)}...`;
+        }
+
+        dutyItem.appendChild(deleteButton);
+        additionDuty.appendChild(dutyItem);
+    });
+
+    // 직무 개수 초과 시 경고 메시지 표시
+    if (data.dutyList.length > maxDutyCount) {
+        const warning = document.createElement('p');
+        warning.textContent = "최대 5개의 직무만 추가할 수 있습니다.";
+        warning.style.color = "red";
+        additionDuty.appendChild(warning);
+    }
+}
+    
+}
+
+function addListValue(key,value){
+    data.tmpDyty[key].push(value);
+}
+
+function removeListValue(key, value){
+    data.tmpDyty[key] = data.tmpDyty[key].filter(v => v !== value);
 }
 
 function changeValue(key, value){

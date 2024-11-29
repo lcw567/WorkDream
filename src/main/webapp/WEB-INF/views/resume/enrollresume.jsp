@@ -640,7 +640,7 @@
                         <div class="unfulfilled" id="unfulfilledFields" style="display: none;">
                             <fieldset class="exempted">
                                 <legend>사유 입력</legend>
-                                <input type="text" name="unfinishedReason" placeholder="사유 입력">
+                                <input type="text" name="unfulfilledReason" placeholder="사유 입력">
                             </fieldset>
                         </div>
                         <div class="EXEMPTED" id="exemptedFields" style="display: none;">
@@ -652,15 +652,15 @@
                         <div class="fulfilled" id="fulfilledFields" style="display: none;">
                             <fieldset>
                                 <legend>입대일</legend>
-                                <input type="date" name="enlistmentDate">
+                                <input type="date" name="enlistmentDate_ful">
                             </fieldset>
                             <fieldset>
                                 <legend>전역일</legend>
-                                <input type="date" name="dischargeDate">
+                                <input type="date" name="dischargeDate_ful">
                             </fieldset>
                             <fieldset>
                                 <legend>군별선택</legend>
-                                <select name="militaryBranch">
+                                <select name="militaryBranch_ful">
                                     <option value="">군별선택</option>
                                     <option value="army">육군</option>
                                     <option value="navy">해군</option>
@@ -675,7 +675,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
-                                <select name="rank">
+                                <select name="rank_ful">
                                     <option value="">계급선택</option>
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>
@@ -701,7 +701,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>전역사유 선택</legend>
-                                <select name="dischargeReason" id="discharge_reason">
+                                <select name="dischargeReason_ful" id="discharge_reason">
                                     <option value="">전역사유</option>
                                     <option value="1">만기전역</option>
                                     <option value="2">의가사전역</option>
@@ -716,15 +716,15 @@
                         <div class="serving" id="servingFields" style="display: none;">
                             <fieldset>
                                 <legend>입대일</legend>
-                                <input type="date" name="enlistmentDate">
+                                <input type="date" name="enlistmentDate_ser">
                             </fieldset>
                             <fieldset>
                                 <legend>전역일</legend>
-                                <input type="date" name="dischargeDate" readonly>
+                                <input type="date" name="dischargeDate_ser" readonly>
                             </fieldset>
                             <fieldset>
                                 <legend>군별선택</legend>
-                                <select name="militaryBranch">
+                                <select name="militaryBranch_ser">
                                     <option value="">군별선택</option>
                                     <option value="army">육군</option>
                                     <option value="navy">해군</option>
@@ -739,7 +739,7 @@
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
-                                <select name="rank">
+                                <select name="rank_ser">
                                     <option value="">계급선택</option>
                                     <option value="1">이병</option>
                                     <option value="2">일병</option>

@@ -53,14 +53,14 @@
 
 			<div class="radio_label">
 				<div id="WorkDream_Applied">
-					<label style="display: flex;"> <input type="radio"
-						name="workdream" checked>
+					<label for="WorkDream_Applied_input"> 
+						<input type="radio" name="workdream" id="WorkDream_Applied_input" value="WorkDream_Applied_input" checked>
 						<h2>워크드림 프로필로 간편 지원</h2>
 					</label>
 				</div>
 				<div id="Homepage_Applied">
-					<label style="display: flex;"> <input type="radio"
-						name="workdream">
+					<label for="Homepage_Applied_input"> 
+						<input type="radio" name="workdream" id="Homepage_Applied_input" value="Homepage_Applied_input">
 						<h2>자사 홈페이지에서 지원</h2>
 					</label>
 				</div>
@@ -96,9 +96,11 @@
 			<main>
 				<section>
 
-					<div id="mainJobContainer">
-						<!-- 직무 데이터가 여기에 추가됩니다 -->
-					</div>
+					<div>
+						<div class="Job_duty">
+							<p style="color: white; font-size: 12px; font-weight: 600;" class="Job_duty_p">직무를 추가해 주세요.</p>
+							<button style="background: #4E21A8; border: none"><img src="${pageContext.request.contextPath}/img/letter-x_9215129.png" style="width: 25px; height: 26px; margin-top: 2px;"></button>
+						</div>
 
 					<button class="Add_Duty" id="addDutyButton" style="backgroundcolor: none;" onclick="openModal()">
 						<img
@@ -184,10 +186,10 @@
 				style="padding: 35px 0;">
 				<h2 style="padding: 0 20px; width: 150px;">자격요건</h2>
 				<div class="Need_Input_Infomation">
-					<label class="Check_And_Text" style="width: 90px;"><input
+					<label class="Check_And_Text" style="width: 90px; padding-left:0px;"><input
 						type="checkbox">외국어 능력</label> <label class="Check_And_Text"
-						style="width: 60px;"><input type="checkbox">자격증</label> <label
-						class="Check_And_Text" style="width: 85px;"><input
+						style="width: 60px; padding-left:0px;"><input type="checkbox">자격증</label> <label
+						class="Check_And_Text" style="width: 85px; padding-left:0px;"><input
 						type="checkbox">포트폴리오</label>
 				</div>
 			</div>
@@ -200,9 +202,9 @@
 				style="padding: 35px 0;">
 				<h2 style="padding: 0 20px; width: 150px;">우대사항</h2>
 				<div class="Need_Input_Infomation">
-					<label class="Check_And_Text"><input type="checkbox">보훈
-						여부</label> <label class="Check_And_Text"><input type="checkbox">장애
-						여부</label> <label class="Check_And_Text"><input type="checkbox">병역
+					<label class="Check_And_Text" style="padding-left:0px;"><input type="checkbox">보훈
+						여부</label> <label class="Check_And_Text" style="padding-left:0px;"><input type="checkbox">장애
+						여부</label> <label class="Check_And_Text" style="padding-left:0px;"><input type="checkbox">병역
 						정보</label>
 				</div>
 
@@ -214,9 +216,9 @@
 				style="padding: 35px 0;">
 				<h2 style="padding: 0 20px; width: 150px;">개인정보</h2>
 				<div class="Need_Input_Infomation">
-					<label class="Check_And_Text"><input type="checkbox">출생연도</label>
-					<label class="Check_And_Text" style="width: 50px;"><input
-						type="checkbox">성별</label> <label class="Check_And_Text"><input
+					<label class="Check_And_Text" style="padding-left:0px;"><input type="checkbox">출생연도</label>
+					<label class="Check_And_Text" style="width: 50px; padding-left:0px;"><input
+						type="checkbox">성별</label> <label class="Check_And_Text" style="padding-left:0px;"><input
 						type="checkbox">현재연봉</label>
 				</div>
 
@@ -280,26 +282,24 @@
 	
 						<div id="Career">
 							<div>
-								<input type="radio" id="Newcomer" name="Career_Type" value="신입" checked>
+								<input type="radio" id="Newcomer" name="career_type" value="신입">
 								<label for="Newcomer">신입</label>
 							</div>
 							<div>
-								<input type="radio" id="Work_History" name="Career_Type"
+								<input type="radio" id="Work_History" name="career_type"
 									value="경력"> <label for="Work_History">경력</label>
 							</div>
 							<div>
 								<input type="radio" id="Regardless_Of_Experience"
-									name="Career_Type" value="경력 무관"> <label
-									for="Regardless_Of_Experience">경력 무관</label>
+									name="career_type" value="경력 무관" checked> 
+									<label for="Regardless_Of_Experience">경력 무관</label>
 							</div>
 						</div>
 	
 						<div id="Career_Year">
-							<input type="text" class="Career_Year_Min" name="Career_Year_Min"
-								placeholder="최소">
+							<input type="text" class="Career_Year_Min" name="career_year_min" placeholder="최소" onkeyup="changeValue('career_year_min', this.value)">
 							<p style="font-size: 0.9rem; font-weight: 700;">~</p>
-							<input type="text" class="Career_Year_Max" name="Career_Year_Max"
-								placeholder="최대">
+							<input type="text" class="Career_Year_Max" name="career_year_max" placeholder="최대" onkeyup="changeValue('career_year_max', this.value)">
 							<p style="font-size: 0.9rem; font-weight: 700;">년차</p>
 						</div>
 	
@@ -312,29 +312,29 @@
 	
 						<div id="Education">
 							<div>
-								<input type="radio" id="Academic" name="Academic" value="학력무관">
+								<input type="radio" id="Academic" name="academic" value="학력무관" checked>
 								<label for="Academic">학력무관</label>
 							</div>
 							<div>
-								<input type="radio" id="High_School_Graduate" name="Academic"
+								<input type="radio" id="High_School_Graduate" name="academic"
 									value="고등학교 졸업"> <label for="High_School_Graduate">고등학교
 									졸업</label>
 							</div>
 							<div>
-								<input type="radio" id="College_Graduate2" name="Academic"
+								<input type="radio" id="College_Graduate2" name="academic"
 									value="대학졸업(2,3년)"> <label for="College_Graduate2">대학졸업(2,3년)</label>
 							</div>
 							<div>
-								<input type="radio" id="College_Graduate4" name="Academic"
+								<input type="radio" id="College_Graduate4" name="academic"
 									value="대학졸업(4년)"> <label for="College_Graduate4">대학졸업(4년)</label>
 							</div>
 							<div>
 								<input type="radio" id="University_Master_Graduate"
-									name="Academic" value="대학원 석사졸업"> <label
+									name="academic" value="대학원 석사졸업"> <label
 									for="University_Master_Graduate">대학원 석사졸업</label>
 							</div>
 							<div>
-								<input type="radio" id="PhD_Graduate" name="Academic"
+								<input type="radio" id="PhD_Graduate" name="academic"
 									value="대학원 박사졸업"> <label for="PhD_Graduate">대학원
 									박사졸업</label>
 							</div>
@@ -349,33 +349,32 @@
 	
 						<div id="Work_Days">
 							<div>
-								<input type="radio" id="6-Day_Work_Week" name="Work_Days"
-									value="주 6일"> <label for="6-Day_Work_Week">주 6일</label>
+								<input type="radio" id="6-Day_Work_Week" name="work_days" value="주 6일"> 
+								<label for="6-Day_Work_Week">주 6일</label>
 							</div>
 							<div>
-								<input type="radio" id="5-Day_Work_Week" name="Work_Days"
-									value="주 5일"> <label for="5-Day_Work_Week">주 5일</label>
+								<input type="radio" id="5-Day_Work_Week" name="work_days" value="주 5일" checked> 
+								<label for="5-Day_Work_Week">주 5일</label>
 							</div>
 							<div>
-								<input type="radio" id="4-Day_Work_Week" name="Work_Days"
-									value="주 4일"> <label for="4-Day_Work_Week">주 4일</label>
+								<input type="radio" id="4-Day_Work_Week" name="work_days" value="주 4일">
+								<label for="4-Day_Work_Week">주 4일</label>
 							</div>
 							<div>
-								<input type="radio" id="3-Day_Work_Week" name="Work_Days"
-									value="주 3일"> <label for="3-Day_Work_Week">주 3일</label>
+								<input type="radio" id="3-Day_Work_Week" name="work_days" value="주 3일"> 
+								<label for="3-Day_Work_Week">주 3일</label>
 							</div>
 							<div>
-								<input type="radio" id="2-Day_Work_Week" name="Work_Days"
-									value="주 2일"> <label for="2-Day_Work_Week">주 2일</label>
+								<input type="radio" id="2-Day_Work_Week" name="work_days" value="주 2일"> 
+								<label for="2-Day_Work_Week">주 2일</label>
 							</div>
 							<div>
-								<input type="radio" id="1-Day_Work_Week" name="Work_Days"
-									value="주 1일"> <label for="1-Day_Work_Week">주 1일</label>
+								<input type="radio" id="1-Day_Work_Week" name="work_days" value="주 1일"> 
+								<label for="1-Day_Work_Week">주 1일</label>
 							</div>
 							<div>
-								<input type="radio" id="Negotiable_Work" name="Work_Days"
-									value="협의,스케줄 근무"> <label for="Negotiable_Work">협의,스케줄
-									근무</label>
+								<input type="radio" id="Negotiable_Work" name="work_days" value="협의,스케줄 근무">
+								<label for="Negotiable_Work">협의,스케줄 근무</label>
 							</div>
 						</div>
 	
@@ -387,9 +386,9 @@
 						</div>
 	
 						<div id="Wark_Time" style="margin-bottom: 5px;">
-							<input type="time" class="Wark_Time_Min">
+							<input type="time" class="Wark_Time_Min" onchange="changeValue('work_time_min', this.value)">
 							<p style="font-size: 0.9rem; font-weight: 900;">~</p>
-							<input type="time" class="Wark_Time_Min">
+							<input type="time" class="Wark_Time_Min" onchange="changeValue('work_time_max', this.value)">
 							<p style="font-size: 0.9rem; font-weight: 700;">까지</p>
 						</div>
 	
@@ -397,8 +396,7 @@
 							<!-- 협의, 스케쥴 근무 -->
 							<label class="unstyled-label"> <input type="checkbox"
 								style="font-weight: 900; font-size: 15px;">
-								<p style="font-size: 12px; font-weight: 600; margin: 0;">협의,
-									스케쥴 근무</p>
+								<p style="font-size: 12px; font-weight: 600; margin: 0;">협의, 스케쥴 근무</p>
 							</label>
 						</div>
 	
@@ -410,20 +408,17 @@
 						</div>
 	
 						<div id="Expected_Salary" style="margin-bottom: 0px;">
-							<input type="text" class="Expected_Salary_Min"
-								name="Expected_Salary_Min" placeholder="최소">
+							<input type="text" class="Expected_Salary_Min" name="expected_salary_min" placeholder="최소" onkeyup="changeValue('expected_salary_min', this.value)">
 							<p style="font-size: 0.9rem; font-weight: 900;">~</p>
-							<input type="text" class="Expected_Salary_Max"
-								name="Expected_Salary_Max" placeholder="최대">
+							<input type="text" class="Expected_Salary_Max" name="expected_salary_max" placeholder="최대" onkeyup="changeValue('expected_salary_max', this.value)">
 							<p style="font-size: 0.9rem; font-weight: 900;">만원</p>
 						</div>
 	
 						<div style="display: flex; margin-bottom: 10px; margin-top: 5px;">
 							<!-- 채용시 협의 -->
-							<label class="unstyled-label"> <input type="checkbox"
-								style="font-weight: 900; font-size: 15px;">
-								<p style="font-size: 12px; font-weight: 600; margin: 0;">채용시
-									협의</p>
+							<label class="unstyled-label"> 
+								<input type="checkbox" name="" style="font-weight: 900; font-size: 15px;">
+								<p style="font-size: 12px; font-weight: 600; margin: 0;">채용시 협의</p>
 							</label>
 						</div>
 	
@@ -509,25 +504,23 @@
 	
 						<div id="Business_Type">
 							<div>
-								<input type="radio" id="Enterprise" name="Company_Type"
-									value="대기업"> <label for="Enterprise">대기업</label>
+								<input type="radio" id="Enterprise" name="company_type" value="대기업" checked> 
+								<label for="Enterprise">대기업</label>
 							</div>
 							<div>
-								<input type="radio" id="Medium-sized_Enterprise"
-									name="Company_Type" value="중견기업"> <label
-									for="Medium-sized_Enterprise">중견기업</label>
+								<input type="radio" id="Medium-sized_Enterprise" name="company_type" value="중견기업"> 
+								<label for="Medium-sized_Enterprise">중견기업</label>
 							</div>
 							<div>
-								<input type="radio" id="Small_and_Medium_Enterprise"
-									name="Company_Type" value="중소기업"> <label
-									for="Small_and_Medium_Enterprise">중소기업</label>
+								<input type="radio" id="Small_and_Medium_Enterprise" name="company_type" value="중소기업"> 
+								<label for="Small_and_Medium_Enterprise">중소기업</label>
 							</div>
 							<div>
-								<input type="radio" id="Startup" name="Company_Type" value="스타트업">
+								<input type="radio" id="Startup" name="company_type" value="스타트업">
 								<label for="Startup">스타트업</label>
 							</div>
 							<div>
-								<input type="radio" id="Foreign_Company" name="Company_Type"
+								<input type="radio" id="Foreign_Company" name="company_type"
 									value="외국계기업"> <label for="Foreign_Company">외국계기업</label>
 							</div>
 						</div>
@@ -563,7 +556,7 @@
 									<div class="Employment_Status">
 										<div>
 											<input type="radio" id="Currently_Employed"
-												name="Employment_Status" value="재직중"> <label
+												name="employment_status" value="재직중"> <label
 												for="Currently_Employed">재직중</label>
 										</div>
 									</div>
@@ -574,9 +567,8 @@
 								<div class="Currently_Employed">
 									<div class="Employment_Status">
 										<div>
-											<input type="radio" id="Regardless_Of_Employment"
-												name="Employment_Status" value="재직무관"> <label
-												for="Regardless_Of_Employment">재직무관</label>
+											<input type="radio" id="Regardless_Of_Employment" name="employment_status" value="재직무관" checked> 
+											<label for="Regardless_Of_Employment">재직무관</label>
 										</div>
 									</div>
 	

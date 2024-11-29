@@ -5,7 +5,7 @@
 
 <mapper namespace="com.cs.workdream.resume.mapper.ResumeMapper">
 
- <resultMap id="ResumeResultMap" type="com.cs.workdream.resume.model.vo.Resume">
+    <resultMap id="ResumeResultMap" type="com.cs.workdream.resume.model.vo.Resume">
         <!-- 이력서 기본 정보 -->
         <id property="resumeNo" column="RESUME_NO"/>
         <result property="personNo" column="PERSON_NO"/>
@@ -63,7 +63,7 @@
         <result property="skillName" column="SKILL"/>
         
         <!-- 경험/활동/교육 -->
-        <result property="activityType" column="ACTICITY_TYPE"/>
+        <result property="activityType" column="ACTIVITY_TYPE"/>
         <result property="organizationName" column="ORGANIZATION_NAME"/>
         <result property="startDateAct" column="START_DATE_ACT"/>
         <result property="endDateAct" column="END_DATE_ACT"/>
@@ -75,13 +75,17 @@
         <!-- 취업우대사항 -->
         <result property="veteranReason" column="VETERAN_REASON"/>
         <result property="serviceStatus" column="SERVICE_STATE"/>
-        <result property="unfinishedReason" column="UNFULFILLED_REASON"/>
+        <result property="unfulfilledReason" column="UNFULFILLED_REASON"/>
         <result property="exemptionReason" column="EXEMPTED_REASON"/>
-        <result property="enlistmentDate" column="ENLISTMENT_DATE"/>
-        <result property="dischargeDate" column="DISCHARGE_DATE"/>
-        <result property="militaryBranch" column="MILITARY_SELECTION"/>
-        <result property="rank" column="CLASS_SELECTION"/>
-        <result property="dischargeReason" column="DISCHARGE_REASON"/>
+        <result property="enlistmentDate_ful" column="ENLISTMENT_DATE_FUL"/>
+        <result property="dischargeDate_ful" column="DISCHARGE_DATE_FUL"/>
+        <result property="enlistmentDate_ser" column="ENLISTMENT_DATE_SER"/>
+        <result property="dischargeDate_ser" column="DISCHARGE_DATE_SER"/>
+        <result property="militaryBranch_ful" column="MILITARY_SELECTION_FUL"/>
+        <result property="militaryBranch_ser" column="MILITARY_SELECTION_SER"/>
+        <result property="rank_ful" column="CLASS_SELECTION_FUL"/>
+        <result property="rank_ser" column="CLASS_SELECTION_SER"/>
+        <result property="dischargeReason_ful" column="DISCHARGE_REASON_FUL"/>
         
         <!-- 경력 -->
         <result property="companyTitle" column="COMPANY_TITLE"/>
@@ -99,31 +103,32 @@
     </resultMap>
     
     <resultMap id="certificateResultMap" type="com.cs.workdream.resume.model.vo.Certificate">
-	    <id property="certificateId" column="certificate_id"/>
-	    <result property="resumeNo" column="resume_no"/>
-	    <result property="qualificationName" column="qualification_name"/>
-	    <result property="issuingAgency" column="issuing_agency"/>
-	    <result property="passStatus" column="pass_status"/>
-	    <result property="testDate_cer" column="test_date_cer"/>
-	</resultMap>
-	
-	<resultMap id="languageTestResultMap" type="com.cs.workdream.resume.model.vo.LanguageTest">
-	    <id property="languageTestId" column="LANGUAGE_TEST_ID"/>
-	    <result property="resumeNo" column="resume_no"/>
-	    <result property="languageName" column="LANGUAGE_NAME"/>
-	    <result property="proficiencyLevel" column="PROFICIENCY_LEVEL"/>
-	    <result property="languageType" column="LANGUAGE_TYPE"/>
-	    <result property="issueDate" column="ISSUE_DATE"/>
-	</resultMap>
-	
-	<resultMap id="AwardResultMap" type="com.cs.workdream.resume.model.vo.Award">
-	    <id property="awardId" column="AWARD_ID"/>
-	    <result property="resumeNo" column="RESUME_NO"/>
-	    <result property="awardName" column="AWARD_NAME"/>
-	    <result property="organizer" column="ORGANIZER"/>
-	    <result property="awardDate" column="AWARD_DATE"/>
-	</resultMap>
+        <id property="certificateId" column="CERTIFICATE_ID"/>
+        <result property="resumeNo" column="RESUME_NO"/>
+        <result property="qualificationName" column="QUALIFICATION_NAME"/>
+        <result property="issuingAgency" column="ISSUING_AGENCY"/>
+        <result property="passStatus" column="PASS_STATUS"/>
+        <result property="testDate_cer" column="ISSUE_DATE"/>
+    </resultMap>
+    
+    <resultMap id="languageTestResultMap" type="com.cs.workdream.resume.model.vo.LanguageTest">
+        <id property="languageTestId" column="LANGUAGE_TEST_ID"/>
+        <result property="resumeNo" column="RESUME_NO"/>
+        <result property="languageName" column="LANGUAGE_NAME"/>
+        <result property="proficiencyLevel" column="PROFICIENCY_LEVEL"/>
+        <result property="languageType" column="LANGUAGE_TYPE"/>
+        <result property="issueDate" column="ISSUE_DATE"/>
+    </resultMap>
 
+    <resultMap id="AwardResultMap" type="com.cs.workdream.resume.model.vo.Award">
+        <id property="awardId" column="AWARD_ID"/>
+        <result property="resumeNo" column="RESUME_NO"/>
+        <result property="awardName" column="AWARD_NAME"/>
+        <result property="organizer" column="ORGANIZER"/>
+        <result property="awardDate" column="AWARD_DATE"/>
+    </resultMap>
+
+    <!-- 이력서 삽입 -->
     <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
         <selectKey keyProperty="resumeNo" resultType="int" order="BEFORE">
             SELECT RESUME_SEQ.NEXTVAL FROM dual
@@ -137,10 +142,11 @@
             ENTER_DATE_EL, GRADUATION_DATE_EL, ENTER_DATE_MI, GRADUATION_DATE_MI, ENTER_DATE_HI, GRADUATION_DATE_HI, ENTER_DATE_COL, GRADUATION_DATE_COL, 
             LOCATION_EL, LOCATION_MI, LOCATION_HI, LOCATION,
             EXAM_PASSED_EL, EXAM_PASSED_MI, EXAM_PASSED_HI, SKILL,
-            ACTICITY_TYPE, ORGANIZATION_NAME, START_DATE_ACT, END_DATE_ACT,
+            ACTIVITY_TYPE, ORGANIZATION_NAME, START_DATE_ACT, END_DATE_ACT,
             DESCRIPTION, CATEGORY, VETERAN_REASON, SERVICE_STATE,
-            UNFULFILLED_REASON, EXEMPTED_REASON, ENLISTMENT_DATE, DISCHARGE_DATE,
-            MILITARY_SELECTION, CLASS_SELECTION, DISCHARGE_REASON,
+            UNFULFILLED_REASON, EXEMPTED_REASON, ENLISTMENT_DATE_FUL, DISCHARGE_DATE_FUL,
+            ENLISTMENT_DATE_SER, DISCHARGE_DATE_SER, MILITARY_SELECTION_FUL, MILITARY_SELECTION_SER,
+            CLASS_SELECTION_FUL, CLASS_SELECTION_SER, DISCHARGE_REASON_FUL, 
             WORK, DEPARTMENT, COMPANY_TITLE, START_DATE_WORK,
             END_DATE_WORK, STATUS_WORK, JOB_CONTENT, POSITION
         )
@@ -156,8 +162,8 @@
             #{examPassed_el}, #{examPassed_mi}, #{examPassed_hi}, #{skillName},
             #{activityType}, #{organizationName}, #{startDateAct}, #{endDateAct},
             #{description},#{category}, #{veteranReason}, #{serviceStatus},
-            #{unfinishedReason}, #{exemptionReason}, #{enlistmentDate}, #{dischargeDate},
-            #{militaryBranch}, #{rank}, #{dischargeReason},
+            #{unfulfilledReason}, #{exemptionReason}, #{enlistmentDate_ful}, #{dischargeDate_ful}, #{enlistmentDate_ser}, #{dischargeDate_ser},
+            #{militaryBranch_ful}, #{militaryBranch_ser}, #{rank_ful}, #{rank_ser}, #{dischargeReason_ful},
             #{work}, #{department}, #{companyTitle}, #{startDateWork},
             #{endDateWork}, #{careerStatus}, #{jobContent}, #{position}
         )
@@ -202,7 +208,98 @@
         )
     </insert>
 
+    <!-- 이력서 상세 조회 -->
+    <select id="selectResumeById" parameterType="int" resultMap="ResumeResultMap">
+        SELECT * FROM RESUME WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
+    </select>
 
+    <!-- 자격증 삭제 -->
+    <delete id="deleteCertificatesByResumeNo" parameterType="int">
+        DELETE FROM CERTIFICATES WHERE RESUME_NO = #{resumeNo}
+    </delete>
+
+    <!-- 어학시험 삭제 -->
+    <delete id="deleteLanguageTestsByResumeNo" parameterType="int">
+        DELETE FROM LANGUAGE_TESTS WHERE RESUME_NO = #{resumeNo}
+    </delete>
+
+    <!-- 수상내역 삭제 -->
+    <delete id="deleteAwardsByResumeNo" parameterType="int">
+        DELETE FROM AWARDS WHERE RESUME_NO = #{resumeNo}
+    </delete>
+
+    <!-- 이력서 업데이트 -->
+    <update id="updateResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
+        UPDATE RESUME
+        SET 
+            RESUME_TITLE = #{resumeTitle},
+            USER_NAME = #{userName},
+            USER_GENDER = #{userGender},
+            USER_BIRTH = #{userBirth},
+            USER_EMAIL = #{userEmail},
+            USER_PHONE = #{userPhone},
+            USER_ADDRESS = #{userAddress},
+            USER_ROAD_ADDRESS = #{userRoadAddress},
+            USER_DETAIL_ADDRESS = #{userDetailAddress},
+            USER_PIC = #{userPic},
+            EDUCATION_LEVEL = #{educationLevel},
+            ACADEMIC_NAME_EL = #{academicName_el},
+            ACADEMIC_NAME_MI = #{academicName_mi},
+            ACADEMIC_NAME_HI = #{academicName_hi},
+            ACADEMIC_NAME = #{academicName_col},
+            MAJOR = #{majorName_col},
+            DEGREE = #{degree_col},
+            STATUS = #{graduationStatus_col},
+            STATUS_EL = #{graduationStatus_el},
+            STATUS_MI = #{graduationStatus_mi},
+            STATUS_HI = #{graduationStatus_hi},
+            ENTER_DATE_EL = #{enterDate_el},
+            GRADUATION_DATE_EL = #{graduationDate_el},
+            ENTER_DATE_MI = #{enterDate_mi},
+            GRADUATION_DATE_MI = #{graduationDate_mi},
+            ENTER_DATE_HI = #{enterDate_hi},
+            GRADUATION_DATE_HI = #{graduationDate_hi},
+            ENTER_DATE_COL = #{enterDate_col},
+            GRADUATION_DATE_COL = #{graduationDate_col},
+            LOCATION_EL = #{location_el},
+            LOCATION_MI = #{location_mi},
+            LOCATION_HI = #{location_hi},
+            LOCATION = #{location_col},
+            EXAM_PASSED_EL = #{examPassed_el},
+            EXAM_PASSED_MI = #{examPassed_mi},
+            EXAM_PASSED_HI = #{examPassed_hi},
+            SKILL = #{skillName},
+            ACTIVITY_TYPE = #{activityType},
+            ORGANIZATION_NAME = #{organizationName},
+            START_DATE_ACT = #{startDateAct},
+            END_DATE_ACT = #{endDateAct},
+            DESCRIPTION = #{description},
+            CATEGORY = #{category},
+            VETERAN_REASON = #{veteranReason},
+            SERVICE_STATE = #{serviceStatus},
+            UNFULFILLED_REASON = #{unfulfilledReason},
+            EXEMPTED_REASON = #{exemptionReason},
+            ENLISTMENT_DATE_FUL = #{enlistmentDate_ful},
+            ENLISTMENT_DATE_SER = #{enlistmentDate_ser},
+            DISCHARGE_DATE_FUL = #{dischargeDate_ful},
+            DISCHARGE_DATE_SER = #{dischargeDate_ser},
+            MILITARY_SELECTION_FUL = #{militaryBranch_ful},
+            MILITARY_SELECTION_SER = #{militaryBranch_ser},
+            CLASS_SELECTION_FUL = #{rank_ful},
+            CLASS_SELECTION_SER = #{rank_ser},
+            DISCHARGE_REASON_FUL = #{dischargeReason_ful},
+            WORK = #{work},
+            DEPARTMENT = #{department},
+            COMPANY_TITLE = #{companyTitle},
+            START_DATE_WORK = #{startDateWork},
+            END_DATE_WORK = #{endDateWork},
+            STATUS_WORK = #{careerStatus},
+            JOB_CONTENT = #{jobContent},
+            POSITION = #{position},
+            MODIFIED_DATE = SYSDATE
+        WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
+    </update>
+    
     <select id="selectResumesByPersonNo" parameterType="int" resultMap="ResumeResultMap">
         SELECT 
             RESUME_NO, PERSON_NO, RESUME_TITLE, CREATE_DATE, MODIFIED_DATE, DELETED,
@@ -213,10 +310,11 @@
             ENTER_DATE_EL, GRADUATION_DATE_EL, ENTER_DATE_MI, GRADUATION_DATE_MI, ENTER_DATE_HI, GRADUATION_DATE_HI, ENTER_DATE_COL, GRADUATION_DATE_COL, 
             LOCATION_EL, LOCATION_MI, LOCATION_HI, LOCATION,
             EXAM_PASSED_EL, EXAM_PASSED_MI, EXAM_PASSED_HI, SKILL,
-            ACTICITY_TYPE, ORGANIZATION_NAME, START_DATE_ACT, END_DATE_ACT,
+            ACTIVITY_TYPE, ORGANIZATION_NAME, START_DATE_ACT, END_DATE_ACT,
             DESCRIPTION, CATEGORY, VETERAN_REASON, SERVICE_STATE,
-            UNFULFILLED_REASON, EXEMPTED_REASON, ENLISTMENT_DATE, DISCHARGE_DATE,
-            MILITARY_SELECTION, CLASS_SELECTION, DISCHARGE_REASON,
+            UNFULFILLED_REASON, EXEMPTED_REASON, ENLISTMENT_DATE_SER, DISCHARGE_DATE_SER,
+            ENLISTMENT_DATE_FUL, DISCHARGE_DATE_FUL,
+            MILITARY_SELECTION_FUL, CLASS_SELECTION_FUL, DISCHARGE_REASON_FUL, MILITARY_SELECTION_SER, CLASS_SELECTION_SER,
             WORK, DEPARTMENT, COMPANY_TITLE, START_DATE_WORK,
             END_DATE_WORK, STATUS_WORK, JOB_CONTENT, POSITION
         FROM RESUME
@@ -224,44 +322,25 @@
         ORDER BY CREATE_DATE DESC
     </select>
     
-   <select id="selectResumeById" parameterType="int" resultMap="ResumeResultMap">
-	    SELECT * FROM RESUME WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
-	</select>
-	
-	 <select id="selectCertificatesByResumeNo" parameterType="int" resultMap="certificateResultMap">
-	    SELECT CERTIFICATE_ID, RESUME_NO, QUALIFICATION_NAME, ISSUING_AGENCY, PASS_STATUS, ISSUE_DATE
-	    FROM CERTIFICATES
-	    WHERE RESUME_NO = #{resumeNo}
-	</select>
+    <!-- 자격증 목록 조회 쿼리 추가 -->
+    <select id="selectCertificatesByResumeNo" parameterType="int" resultMap="certificateResultMap">
+        SELECT CERTIFICATE_ID, RESUME_NO, QUALIFICATION_NAME, ISSUING_AGENCY, PASS_STATUS, ISSUE_DATE
+        FROM CERTIFICATES
+        WHERE RESUME_NO = #{resumeNo}
+    </select>
 
     <!-- 어학시험 목록 조회 -->
     <select id="selectLanguageTestsByResumeNo" parameterType="int" resultMap="languageTestResultMap">
         SELECT LANGUAGE_TEST_ID, RESUME_NO, LANGUAGE_NAME, PROFICIENCY_LEVEL, LANGUAGE_TYPE, ISSUE_DATE
-	    FROM LANGUAGE_TESTS
-	    WHERE RESUME_NO = #{resumeNo}
+        FROM LANGUAGE_TESTS
+        WHERE RESUME_NO = #{resumeNo}
     </select>
 
     <!-- 수상내역 목록 조회 -->
     <select id="selectAwardsByResumeNo" parameterType="int" resultMap="AwardResultMap">
         SELECT AWARD_ID, RESUME_NO, AWARD_NAME, ORGANIZER, AWARD_DATE
-	    FROM AWARDS
-	    WHERE RESUME_NO = #{resumeNo}
-    </select>
-
-    <!-- 이력서 수정 -->
-    <update id="updateResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
-        UPDATE RESUME
-        SET
-            RESUME_TITLE = #{resumeTitle},
-            RESUME_CONTENT = #{resumeContent},
-            MODIFIED_DATE = SYSDATE
-        WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
-    </update>
-    
-    <update id="deleteResume" parameterType="int">
-       UPDATE RESUME
-        SET DELETED = 'Y', MODIFIED_DATE = SYSDATE
+        FROM AWARDS
         WHERE RESUME_NO = #{resumeNo}
-    </update>
+    </select>
 
 </mapper>

@@ -203,11 +203,13 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
     // 군 복무 상태 변경 시 섹션 표시/숨김
     var militarySelect = document.getElementById('military_status');
+    var unfulfilledDiv = document.querySelector('.unfulfilled');
     var exemptedDiv = document.querySelector('.EXEMPTED');
     var fulfilledDiv = document.querySelector('.fulfilled');
     var servingDiv = document.querySelector('.serving');
     
     // 페이지 로드 시 모든 섹션 숨기기
+    unfulfilledDiv.style.display = 'none';
     exemptedDiv.style.display = 'none';
     fulfilledDiv.style.display = 'none';
     servingDiv.style.display = 'none';
@@ -215,14 +217,18 @@ document.querySelector('form').addEventListener('submit', function(event) {
     // 선택 박스의 변경을 감지하는 이벤트 리스너 추가
     militarySelect.addEventListener('change', function() {
         // 모든 섹션을 우선 숨김
+        unfulfilledDiv.style.display = 'none';
         exemptedDiv.style.display = 'none';
         fulfilledDiv.style.display = 'none';
         servingDiv.style.display = 'none';
     
         var selectedValue = this.value;
     
-        if (selectedValue === 'unfulfilled' || selectedValue === 'exempted') {
-            // 미필 또는 면제 선택 시 EXEMPTED 섹션 표시
+        if (selectedValue === 'unfulfilled') {
+            // 미필 선택 시 unfulfilled 섹션 표시
+            unfulfilledDiv.style.display = 'flex';
+        } else if (selectedValue === 'exempted') {
+            // 면제 선택 시 exempted 섹션 표시
             exemptedDiv.style.display = 'flex';
         } else if (selectedValue === 'fulfilled') {
             // 군필 선택 시 fulfilled 섹션 표시
@@ -414,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
             `${languageTypeText}, ${languageLevelText} | ${issueDate.replace(/-/g, ".")}`, 
             '', 
             '.result-list-language',
-            ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate_language[]']
+            ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate[]']
         );
         console.log("어학시험 추가 완료!");
 
@@ -502,7 +508,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     valueToRemove = institution;
                 } else if (name === 'passStatus[]') {
                     valueToRemove = details.split('|')[0].trim();
-                } else if (name === 'testDate_cer[]' || name === 'issueDate_language[]' || name === 'awardDate[]') {
+                } else if (name === 'testDate_cer[]' || name === 'issueDate[]' || name === 'awardDate[]') {
                     valueToRemove = details.split('|')[1] ? details.split('|')[1].trim().replace(/\./g, '-') : details.trim().replace(/\./g, '-');
                 }
                 const inputs = document.querySelectorAll(`input[name="${name}"]`);
@@ -539,7 +545,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 hiddenInput.value = details.split(',')[1].trim().split('|')[0].trim();
             } else if (name === 'languageType[]') {
                 hiddenInput.value = details.split(',')[0].trim();
-            } else if (name === 'issueDate_language[]') { // 수정된 부분
+            } else if (name === 'issueDate[]') { // 수정된 부분
                 hiddenInput.value = details.split('|')[1].trim().replace(/\./g, '-');
             } else if (name === 'awardDate[]') {
                 hiddenInput.value = details.trim().replace(/\./g, '-');
@@ -550,3 +556,4 @@ document.addEventListener('DOMContentLoaded', function () {
         return listItem;
     }
 });
+
