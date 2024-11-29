@@ -181,42 +181,43 @@ document.addEventListener('DOMContentLoaded', function () {
         certificateDateFields.querySelector('input[name="testDate_cer[]"]').value = '';
     });
 
-    // 어학시험 추가하기
-    const addLanguageButton = document.querySelector('.addLanguageButton');
-    addLanguageButton.addEventListener('click', function (event) {
-        event.preventDefault();
+// 어학시험 추가하기 버튼 이벤트 처리
+const addLanguageButton = document.querySelector('.addLanguageButton');
+addLanguageButton.addEventListener('click', function (event) {
+    event.preventDefault();
 
-        const languageFields = document.getElementById('languageFields');
+    const languageFields = document.getElementById('languageFields');
 
-        const languageTitle = languageFields.querySelector('input[name="languageName[]"]').value.trim();
-        const languageLevelSelect = languageFields.querySelector('select[name="proficiencyLevel[]"]');
-        const languageLevelText = languageLevelSelect.options[languageLevelSelect.selectedIndex].textContent.trim(); // 옵션의 텍스트
-        const languageTypeSelect = languageFields.querySelector('select[name="languageType[]"]');
-        const languageTypeText = languageTypeSelect.options[languageTypeSelect.selectedIndex].textContent.trim(); // 옵션의 텍스트
-        const issueDate = languageFields.querySelector('input[name="issueDate[]"]').value;
+    const languageTitle = languageFields.querySelector('input[name="languageName[]"]').value.trim();
+    const languageLevelSelect = languageFields.querySelector('select[name="proficiencyLevel[]"]');
+    const languageLevelText = languageLevelSelect.options[languageLevelSelect.selectedIndex].text.trim();
+    const languageTypeSelect = languageFields.querySelector('select[name="languageType[]"]');
+    const languageTypeText = languageTypeSelect.options[languageTypeSelect.selectedIndex].text.trim();
+    const issueDate = languageFields.querySelector('input[name="issueDate[]"]').value.trim();
 
-        // 빈 값 체크
-        if (!languageTitle || !languageLevelText || !languageTypeText || !issueDate) {
-            alert("모든 필드를 입력해주세요.");
-            return;
-        }
+    // 빈 값 체크
+    if (!languageTitle || !languageLevelText || languageLevelSelect.selectedIndex === 0 || !languageTypeText || languageTypeSelect.selectedIndex === 0 || !issueDate) {
+        alert("모든 필드를 올바르게 입력해주세요.");
+        return;
+    }
 
-        // 리스트에 추가
-        createListItem(
-            languageTitle, 
-            `${languageTypeText}, ${languageLevelText} | ${issueDate.replace(/-/g, ".")}`, 
-            '', 
-            '.result-list-language',
-            ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate_language[]']
-        );
-        console.log("어학시험 추가 완료!");
+    // 리스트에 추가
+    createListItem(
+        languageTitle, 
+        `${languageTypeText}, ${languageLevelText} | ${issueDate.replace(/-/g, ".")}`, 
+        '', 
+        '.result-list-language',
+        ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate[]']
+    );
 
-        // 입력 필드 초기화
-        languageFields.querySelector('input[name="languageName[]"]').value = '';
-        languageLevelSelect.value = '';
-        languageTypeSelect.value = '';
-        languageFields.querySelector('input[name="issueDate[]"]').value = '';
-    });
+    // 입력 필드 초기화
+    languageFields.querySelector('input[name="languageName[]"]').value = '';
+    languageLevelSelect.value = '';
+    languageTypeSelect.value = '';
+    languageFields.querySelector('input[name="issueDate[]"]').value = '';
+});
+
+
 
     // 수상내역 추가하기
     const addAwardButton = document.querySelector('.addAwardButton');
@@ -295,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     valueToRemove = institution;
                 } else if (name === 'passStatus[]') {
                     valueToRemove = details.split('|')[0].trim();
-                } else if (name === 'testDate_cer[]' || name === 'issueDate_language[]' || name === 'awardDate[]') {
+                } else if (name === 'testDate_cer[]' || name === 'issueDate[]' || name === 'awardDate[]') {
                     valueToRemove = details.split('|')[1] ? details.split('|')[1].trim().replace(/\./g, '-') : details.trim().replace(/\./g, '-');
                 }
                 const inputs = document.querySelectorAll(`input[name="${name}"]`);
@@ -332,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 hiddenInput.value = details.split(',')[1].trim().split('|')[0].trim();
             } else if (name === 'languageType[]') {
                 hiddenInput.value = details.split(',')[0].trim();
-            } else if (name === 'issueDate_language[]') { // 수정된 부분
+            } else if (name === 'issueDate[]') { // 수정된 부분
                 hiddenInput.value = details.split('|')[1].trim().replace(/\./g, '-');
             } else if (name === 'awardDate[]') {
                 hiddenInput.value = details.trim().replace(/\./g, '-');
@@ -363,7 +364,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 `${language.languageType}, ${language.proficiencyLevel} | ${language.issueDate.replace(/-/g, ".")}`, 
                 '', 
                 '.result-list-language',
-                ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate_language[]']
+                ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate[]']
             );
         });
 
