@@ -1,1 +1,53 @@
+/* portfolioDashboard.css */
 @charset "UTF-8";
+
+/* 색상 변수 정의 */
+:root {
+    --tekhelet: #4E21A8;      /* 메인 컬러 */
+    --grape: #5E35B0;         /* 버튼 호버 등 변화 색상 */
+    --royal-purple: #6D47B7;  /* 버튼 호버 등 변화 색상 */
+}
+
+/* 테이블 헤더 스타일 */
+.tekhelet-bg {
+    background-color: var(--tekhelet);
+}
+
+.tekhelet-bg th {
+    color: #fff;
+}
+
+/* 버튼 스타일 */
+.btn-primary {
+    background-color: var(--tekhelet);
+    border-color: var(--tekhelet);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--royal-purple);
+    border-color: var(--royal-purple);
+}
+
+.btn-secondary {
+    background-color: var(--grape);
+    border-color: var(--grape);
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: var(--royal-purple);
+    border-color: var(--royal-purple);
+}
+
+/* 수정 버튼 스타일 */
+.btn.grape {
+    background-color: var(--grape);
+    border-color: var(--grape);
+    color: #fff;
+}
+
+.btn.grape:hover {
+    background-color: var(--royal-purple);
+    border-color: var(--royal-purple);
+}
