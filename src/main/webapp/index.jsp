@@ -53,7 +53,11 @@
 		
 		<!-- 추천 공고 목록 -->
 		<section id="index-section-list">
-		
+			<table>
+				<tr>
+					<td>데이터 들어올곳</td>
+				</tr>
+			</table>
 		</section>
 		
 		<!-- 광고 -->
