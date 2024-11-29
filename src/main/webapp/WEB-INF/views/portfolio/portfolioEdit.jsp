@@ -60,6 +60,7 @@
     <!-- 푸터 포함 -->
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap JS -->

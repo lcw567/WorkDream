@@ -1,20 +1,23 @@
-// portfolioPost.js
 $(document).ready(function() {
-    console.log("portfolioPost.js 로드됨"); // 디버깅용 로그
     $('#summernote').summernote({
-        placeholder: '포트폴리오 내용을 입력하세요...',
-        tabsize: 4,
-        height: 500,
+        tabsize: 2,
+        height: 500, // 에디터 높이 조정
         toolbar: [
             ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']], // 폰트 크기 옵션 추가
             ['fontname', ['fontname']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
+            ['color', ['color']], // 텍스트 색상 변경
+            ['para', ['ul', 'ol', 'paragraph']], // 순서 없는 목록, 순서 있는 목록
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']]
-        ]
+        ],
+        callbacks: {
+            onChange: function(contents) {
+                // <font> 태그를 <span>으로 변환할 필요가 없으므로, 기존 내용 유지
+                console.log("내용 변경됨 (수정 후):", contents);
+            }
+        }
     });
-    console.log("Summernote 초기화 완료"); // 디버깅용 로그
 });
