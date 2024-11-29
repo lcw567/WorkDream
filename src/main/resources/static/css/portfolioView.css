@@ -9,23 +9,38 @@
 }
 
 /* 포트폴리오 제목 스타일 */
-h1.tekhelet {
-    color: var(--tekhelet);
+.styled-title {
+    font-size: 2.5rem; /* 제목 폰트 크기 확대 */
+    font-weight: bold;
+    border-bottom: 3px solid var(--tekhelet);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
 }
 
-/* 내용 영역 스타일 */
-.content {
-    margin-top: 20px;
+/* 카드 스타일 */
+.card {
+    border: 1px solid var(--grape);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* 버튼 스타일 */
-.btn-secondary {
-    background-color: var(--grape);
-    border-color: var(--grape);
+/* 카드 헤더 스타일 */
+.card-header {
+    background-color: var(--tekhelet);
+}
+
+.card-header h2 {
     color: #fff;
 }
 
-.btn-secondary:hover {
+/* 버튼 스타일 */
+.btn-purple {
+    background-color: var(--grape);
+    border-color: var(--grape);
+    color: #fff;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-purple:hover {
     background-color: var(--royal-purple);
     border-color: var(--royal-purple);
 }

@@ -14,9 +14,19 @@ body {
     background-color: #f8f9fa;
 }
 
+.styled-title {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    border-bottom: 2px solid var(--tekhelet);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
 h1 {
     margin-bottom: 20px;
     color: var(--tekhelet);
+    text-align: center;
 }
 
 .form-group {
