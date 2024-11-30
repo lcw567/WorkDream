@@ -773,11 +773,6 @@
                 <button type="submit" class="final_save">작성 완료</button>
             </div>
         </form>
-        <form action="previewresume" method="get">
-            <div class="">
-                <button type="submit" class="preview">미리 보기</button>
-            </div>
-        </form>
     </div>
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>

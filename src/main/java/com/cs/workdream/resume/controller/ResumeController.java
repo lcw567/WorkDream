@@ -274,8 +274,8 @@ public class ResumeController {
         return "resume/enrollresume"; // 해당 JSP 파일의 경로
     }
 
-    @GetMapping("/previewresume")
-    public String viewResume(@RequestParam("resumeNo") int resumeNo, Model model) {
+    @GetMapping("/view.re")
+    public String viewResume(@RequestParam("id") int resumeNo, Model model) {
         Resume resume = resumeService.getResumeByNo(resumeNo);
         model.addAttribute("resume", resume);
         return "resume/previewresume"; // JSP 파일의 경로

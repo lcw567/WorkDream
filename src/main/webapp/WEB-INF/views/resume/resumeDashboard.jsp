@@ -77,6 +77,11 @@
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <button type="button" class="delete-button" onclick="deleteResume(${resume.resumeNo})">삭제</button>
                                 </form>
+                                <!-- 이력서확인 폼 -->
+                                <form action="view.re" method="get">
+                                    <input type="hidden" name="id" value="${resume.resumeNo}">
+                                    <button type="submit" class="view-button">보기</button>
+                                </form>
                             </div>
                         </div>
                     </div>

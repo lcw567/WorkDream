@@ -342,5 +342,11 @@
         FROM AWARDS
         WHERE RESUME_NO = #{resumeNo}
     </select>
+    
+    <!-- 이력서 확인 조회 -->
+    <select id="selectResumeByNo" parameterType="int" resultMap="ResumeResultMap">
+	    SELECT * FROM RESUME WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
+	</select>
+    
 
 </mapper>
