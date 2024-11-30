@@ -275,8 +275,10 @@ public class ResumeController {
     }
 
     @GetMapping("/previewresume")
-    public String previewResume() {
-        return "resume/previewresume"; // 해당 JSP 파일의 경로
+    public String viewResume(@RequestParam("resumeNo") int resumeNo, Model model) {
+        Resume resume = resumeService.getResumeByNo(resumeNo);
+        model.addAttribute("resume", resume);
+        return "resume/previewresume"; // JSP 파일의 경로
     }
 
     @GetMapping("/resumeDashboard")
@@ -483,7 +485,11 @@ public class ResumeController {
                                @RequestParam(value = "awardName[]", required = false) String[] awardNames,
                                @RequestParam(value = "organizer[]", required = false) String[] organizers,
                                @RequestParam(value = "awardDate[]", required = false) String[] awardDates,
+                               @RequestParam(value = "deletedQualifications", required = false) String deletedQualifications, // 삭제된 자격증 ID
                                RedirectAttributes redirectAttributes) {
+    	
+    	logger.info("Received militaryStatus: " + resume.getServiceStatus());
+    	logger.info("Received militaryBranchFul: " + resume.getMilitaryBranch_ful());
         try {
             // 이력서 업데이트
             boolean isUpdated = resumeService.updateResume(resume);

@@ -23,4 +23,5 @@ public interface ResumeService {
     void insertLanguageTest(LanguageTest languageTest);
     void deleteAwardsByResumeNo(int resumeNo);
     void insertAward(Award award);
+    Resume getResumeByNo(int resumeNo);
 }

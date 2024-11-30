@@ -240,15 +240,6 @@ document.querySelector('form').addEventListener('submit', function(event) {
         // '대상아님' 또는 다른 선택 시 모든 섹션 숨김
     });
 
-    // 미리 보기 버튼 클릭 시 동작
-    const registerButton = document.querySelector('.preview');
-
-    if (registerButton) {
-        registerButton.addEventListener('click', function () {
-            window.location.href = `${contextPath}/resume/previewresume`;
-        });
-    }
-
     // 프로필 이미지 업로드 기능
     const imageContainer = document.querySelector('#basic5');
 
