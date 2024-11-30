@@ -571,16 +571,16 @@
                                     <legend>언어</legend>
                                     <select name="languageType[]" class="lang_cate">
                                         <option value="">언어 선택</option>
-                                        <option value="english">영어</option>
-                                        <option value="japan">일본어</option>
-                                        <option value="china">중국어</option>
-                                        <option value="german">독일어</option>
-                                        <option value="french">불어</option>
-                                        <option value="spanish">스페인어</option>
-                                        <option value="russian">러시아어</option>
-                                        <option value="italy">이탈리아어</option>
-                                        <option value="korean">한국어</option>
-                                        <option value="etc">기타</option>
+                                        <option value="영어">영어</option>
+                                        <option value="일본어">일본어</option>
+                                        <option value="중국어">중국어</option>
+                                        <option value="독일어">독일어</option>
+                                        <option value="불어">불어</option>
+                                        <option value="스페인어">스페인어</option>
+                                        <option value="러시아어">러시아어</option>
+                                        <option value="이탈리아어">이탈리아어</option>
+                                        <option value="한국어">한국어</option>
+                                        <option value="기타">기타</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -652,7 +652,7 @@
             <input type="hidden" name="languageName[]" value="${languageTest.languageName}">
             <input type="hidden" name="proficiencyLevel[]" value="${languageTest.proficiencyLevel}">
             <input type="hidden" name="languageType[]" value="${languageTest.languageType}">
-            <input type="hidden" name="issueDate_language[]" value="${languageTest.issueDate}">
+            <input type="hidden" name="issueDate[]" value="${languageTest.issueDate}">
         </div>
     </c:forEach>
 </div>
