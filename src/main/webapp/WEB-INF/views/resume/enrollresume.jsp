@@ -36,8 +36,8 @@
                             </fieldset>
                             <fieldset class="gender">
                                 <select name="userGender" id="selectgender" required>
-                                    <option value="M">남</option>
-                                    <option value="F">여</option>
+                                    <option value="남자">남</option>
+                                    <option value="여자">여</option>
                                 </select>
                             </fieldset>
                             <fieldset class="birthday">
@@ -91,10 +91,10 @@
                             <fieldset class="final_edu">
                                 <select name="educationLevel" id="selectedu" onchange="displayEducationFields()">
                                     <option value="">학력 구분 선택*</option>
-                                    <option value="element">초등학교</option>
-                                    <option value="middle">중학교</option>
-                                    <option value="high">고등학교</option>
-                                    <option value="college">대학교/대학원 이상 졸업</option>
+                                    <option value="초등학교">초등학교</option>
+                                    <option value="중학교">중학교</option>
+                                    <option value="고등학교">고등학교</option>
+                                    <option value="대학교/대학원 이상 졸업">대학교/대학원 이상 졸업</option>
                                 </select>
                             </fieldset>
                         </div>
@@ -111,8 +111,8 @@
                                     <legend>졸업 여부 *</legend>
                                     <select name="graduationStatus_el" class="status" >
                                         <option value="">졸업 여부</option>
-                                        <option value="graduate">졸업</option>
-                                        <option value="withdraw">중퇴</option>
+                                        <option value="졸업">졸업</option>
+                                        <option value="중퇴">중퇴</option>
                                     </select>
                                 </fieldset>
                                 <div class="exam">
@@ -137,25 +137,25 @@
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location_el" class="select_lo" >
-                                        <option value="">지역선택</option>
-                                        <option value="seoul">서울</option>
-                                        <option value="busan">부산</option>
-                                        <option value="daegu">대구</option>
-                                        <option value="incheon">인천</option>
-                                        <option value="gwangju">광주</option>
-                                        <option value="daejeon">대전</option>
-                                        <option value="ulsan">울산</option>
-                                        <option value="sejong">세종</option>
-                                        <option value="jeju">제주</option>
-                                        <option value="gangwon">강원</option>
-                                        <option value="gyeonggi">경기</option>
-                                        <option value="chungbuk">충북</option>
-                                        <option value="chungnam">충남</option>
-                                        <option value="jeonbuk">전북</option>
-                                        <option value="jeonnam">전남</option>
-                                        <option value="gyeongbuk">경북</option>
-                                        <option value="gyeongnam">경남</option>
-                                        <option value="overseas">해외</option>
+                                        <option value="">지역 선택</option>
+                                        <option value="서울">서울</option>
+                                        <option value="부산">부산</option>
+                                        <option value="대구">대구</option>
+                                        <option value="인천">인천</option>
+                                        <option value="광주">광주</option>
+                                        <option value="대전">대전</option>
+                                        <option value="울산">울산</option>
+                                        <option value="세종">세종</option>
+                                        <option value="제주">제주</option>
+                                        <option value="강원">강원</option>
+                                        <option value="경기">경기</option>
+                                        <option value="충북">충북</option>
+                                        <option value="충남">충남</option>
+                                        <option value="전북">전북</option>
+                                        <option value="전남">전남</option>
+                                        <option value="경북">경북</option>
+                                        <option value="경남">경남</option>
+                                        <option value="해외">해외</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -173,8 +173,8 @@
                                     <legend>졸업 여부 *</legend>
                                     <select name="graduationStatus_mi" class="status" >
                                         <option value="">졸업 여부</option>
-                                        <option value="graduate">졸업</option>
-                                        <option value="withdraw">중퇴</option>
+                                        <option value="졸업">졸업</option>
+                                        <option value="중퇴">중퇴</option>
                                     </select>
                                 </fieldset>
                                 <div class="exam">
@@ -199,25 +199,25 @@
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location_mi" class="select_lo" >
-                                        <option value="">지역선택</option>
-                                        <option value="seoul">서울</option>
-                                        <option value="busan">부산</option>
-                                        <option value="daegu">대구</option>
-                                        <option value="incheon">인천</option>
-                                        <option value="gwangju">광주</option>
-                                        <option value="daejeon">대전</option>
-                                        <option value="ulsan">울산</option>
-                                        <option value="sejong">세종</option>
-                                        <option value="jeju">제주</option>
-                                        <option value="gangwon">강원</option>
-                                        <option value="gyeonggi">경기</option>
-                                        <option value="chungbuk">충북</option>
-                                        <option value="chungnam">충남</option>
-                                        <option value="jeonbuk">전북</option>
-                                        <option value="jeonnam">전남</option>
-                                        <option value="gyeongbuk">경북</option>
-                                        <option value="gyeongnam">경남</option>
-                                        <option value="overseas">해외</option>
+                                        <option value="">지역 선택</option>
+                                        <option value="서울">서울</option>
+                                        <option value="부산">부산</option>
+                                        <option value="대구">대구</option>
+                                        <option value="인천">인천</option>
+                                        <option value="광주">광주</option>
+                                        <option value="대전">대전</option>
+                                        <option value="울산">울산</option>
+                                        <option value="세종">세종</option>
+                                        <option value="제주">제주</option>
+                                        <option value="강원">강원</option>
+                                        <option value="경기">경기</option>
+                                        <option value="충북">충북</option>
+                                        <option value="충남">충남</option>
+                                        <option value="전북">전북</option>
+                                        <option value="전남">전남</option>
+                                        <option value="경북">경북</option>
+                                        <option value="경남">경남</option>
+                                        <option value="해외">해외</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -234,10 +234,10 @@
                                     <legend>졸업 여부 *</legend>
                                     <select name="graduationStatus_hi" class="status" >
                                         <option value="">졸업 여부</option>
-                                        <option value="graduate">졸업</option>
-                                        <option value="attending">재학중</option>
-                                        <option value="withdraw">중퇴</option>
-                                        <option value="graduating">졸업예정</option>
+                                        <option value="졸업">졸업</option>
+                                        <option value="재학중">재학중</option>
+                                        <option value="중퇴">중퇴</option>
+                                        <option value="졸업예정">졸업예정</option>
                                     </select>
                                 </fieldset>
                                 <div class="exam">
@@ -262,25 +262,25 @@
                                 <fieldset class="input-group">
                                     <legend>지역 선택</legend>
                                     <select name="location_hi" class="select_lo" >
-                                        <option value="">지역선택</option>
-                                        <option value="seoul">서울</option>
-                                        <option value="busan">부산</option>
-                                        <option value="daegu">대구</option>
-                                        <option value="incheon">인천</option>
-                                        <option value="gwangju">광주</option>
-                                        <option value="daejeon">대전</option>
-                                        <option value="ulsan">울산</option>
-                                        <option value="sejong">세종</option>
-                                        <option value="jeju">제주</option>
-                                        <option value="gangwon">강원</option>
-                                        <option value="gyeonggi">경기</option>
-                                        <option value="chungbuk">충북</option>
-                                        <option value="chungnam">충남</option>
-                                        <option value="jeonbuk">전북</option>
-                                        <option value="jeonnam">전남</option>
-                                        <option value="gyeongbuk">경북</option>
-                                        <option value="gyeongnam">경남</option>
-                                        <option value="overseas">해외</option>
+                                        <option value="">지역 선택</option>
+                                        <option value="서울">서울</option>
+                                        <option value="부산">부산</option>
+                                        <option value="대구">대구</option>
+                                        <option value="인천">인천</option>
+                                        <option value="광주">광주</option>
+                                        <option value="대전">대전</option>
+                                        <option value="울산">울산</option>
+                                        <option value="세종">세종</option>
+                                        <option value="제주">제주</option>
+                                        <option value="강원">강원</option>
+                                        <option value="경기">경기</option>
+                                        <option value="충북">충북</option>
+                                        <option value="충남">충남</option>
+                                        <option value="전북">전북</option>
+                                        <option value="전남">전남</option>
+                                        <option value="경북">경북</option>
+                                        <option value="경남">경남</option>
+                                        <option value="해외">해외</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -303,11 +303,11 @@
                                     <legend>학제 *</legend>
                                     <select name="degree_col" class="degree" >
                                         <option value="">학제</option>
-                                        <option value="2year">2년제</option>
-                                        <option value="3year">3년제</option>
-                                        <option value="4year">4년제</option>
-                                        <option value="master">대학원(석사)</option>
-                                        <option value="dr">대학원(박사)</option>
+                                        <option value="2년제">2년제</option>
+                                        <option value="3년제">3년제</option>
+                                        <option value="4년제">4년제</option>
+                                        <option value="대학원(석사)">대학원(석사)</option>
+                                        <option value="대학원(박사)">대학원(박사)</option>
                                     </select>
                                 </fieldset>
                 
@@ -315,12 +315,12 @@
                                     <legend>졸업 여부 *</legend>
                                     <select name="graduationStatus_col" class="status" >
                                         <option value="">졸업 여부</option>
-                                        <option value="graduate">졸업</option>
-                                        <option value="attending">재학중</option>
-                                        <option value="absence">휴학중</option>
-                                        <option value="withdraw">중퇴</option>
-                                        <option value="dropping">자퇴</option>
-                                        <option value="expected">졸업예정</option>
+                                        <option value="졸업">졸업</option>
+                                        <option value="재학중">재학중</option>
+                                        <option value="휴학중">휴학중</option>
+                                        <option value="중퇴">중퇴</option>
+                                        <option value="자퇴">자퇴</option>
+                                        <option value="졸업예정">졸업예정</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -339,24 +339,24 @@
                                     <legend>지역 선택</legend>
                                     <select name="location_col" class="select_lo" >
                                         <option value="">지역 선택</option>
-                                        <option value="seoul">서울</option>
-                                        <option value="busan">부산</option>
-                                        <option value="daegu">대구</option>
-                                        <option value="incheon">인천</option>
-                                        <option value="gwangju">광주</option>
-                                        <option value="daejeon">대전</option>
-                                        <option value="ulsan">울산</option>
-                                        <option value="sejong">세종</option>
-                                        <option value="jeju">제주</option>
-                                        <option value="gangwon">강원</option>
-                                        <option value="gyeonggi">경기</option>
-                                        <option value="chungbuk">충북</option>
-                                        <option value="chungnam">충남</option>
-                                        <option value="jeonbuk">전북</option>
-                                        <option value="jeonnam">전남</option>
-                                        <option value="gyeongbuk">경북</option>
-                                        <option value="gyeongnam">경남</option>
-                                        <option value="overseas">해외</option>
+                                        <option value="서울">서울</option>
+                                        <option value="부산">부산</option>
+                                        <option value="대구">대구</option>
+                                        <option value="인천">인천</option>
+                                        <option value="광주">광주</option>
+                                        <option value="대전">대전</option>
+                                        <option value="울산">울산</option>
+                                        <option value="세종">세종</option>
+                                        <option value="제주">제주</option>
+                                        <option value="강원">강원</option>
+                                        <option value="경기">경기</option>
+                                        <option value="충북">충북</option>
+                                        <option value="충남">충남</option>
+                                        <option value="전북">전북</option>
+                                        <option value="전남">전남</option>
+                                        <option value="경북">경북</option>
+                                        <option value="경남">경남</option>
+                                        <option value="해외">해외</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -391,9 +391,9 @@
                             <legend>근무현황</legend>
                             <select name="careerStatus" class="career_status" >
                                 <option value="">근무현황</option>
-                                <option value="Y">재직중</option>
-                                <option value="N">퇴사</option>
-                                <option value="P">퇴사예정</option>
+                                <option value="재직중">재직중</option>
+                                <option value="퇴사">퇴사</option>
+                                <option value="퇴사예정">퇴사예정</option>
                             </select>
                         </fieldset>
                     </div>
@@ -453,15 +453,15 @@
                             <legend>활동구분선택</legend>
                             <select name="activityType" class="select_activity">
                                 <option value="">없음</option>
-                                <option value="working">교내활동</option>
-                                <option value="intern">인턴</option>
-                                <option value="volunteer">자원봉사</option>
-                                <option value="club">동아리</option>
-                                <option value="parttime">아르바이트</option>
-                                <option value="social">사회활동</option>
-                                <option value="project">수행과제</option>
-                                <option value="overseas">해외연수</option>
-                                <option value="education">교육이수내역</option>
+                                <option value="교내활동">교내활동</option>
+                                <option value="인턴">인턴</option>
+                                <option value="자원봉사">자원봉사</option>
+                                <option value="동아리">동아리</option>
+                                <option value="아르바이트">아르바이트</option>
+                                <option value="사회활동">사회활동</option>
+                                <option value="수행과제">수행과제</option>
+                                <option value="해외연수">해외연수</option>
+                                <option value="교육이수내역">교육이수내역</option>
                             </select>
                         </fieldset>
                         <fieldset class="place">
@@ -494,9 +494,9 @@
                             <legend>구분</legend>
                             <select name="category" id="sortation">
                                 <option value="">구분*</option>
-                                <option value="certificate">자격증/면허증</option>
-                                <option value="language">어학시험</option>
-                                <option value="award_details">수상내역/공모전</option>
+                                <option value="자격증/면허증">자격증/면허증</option>
+                                <option value="어학시험">어학시험</option>
+                                <option value="수상내역/공모전">수상내역/공모전</option>
                             </select>
                         </fieldset>
                     </div>
@@ -514,11 +514,11 @@
                             <legend>합격구분</legend>
                             <select name="passStatus[]" class="pass_menu">
                                 <option value="">합격구분*</option>
-                                <option value="1pass">1차합격</option>
-                                <option value="2pass">2차합격</option>
-                                <option value="writtenpass">필기합격</option>
-                                <option value="practicepass">실기합격</option>
-                                <option value="finalpass">최종합격</option>
+                                <option value="1차합격">1차합격</option>
+                                <option value="2차합격">2차합격</option>
+                                <option value="필기합격">필기합격</option>
+                                <option value="실기합격">실기합격</option>
+                                <option value="최종합격">최종합격</option>
                             </select>
                         </fieldset>
                     </div>
@@ -541,37 +541,37 @@
                                     <legend>급수</legend>
                                     <select name="proficiencyLevel[]" class="certi_level">
                                         <option value="">급수 선택</option>
-                                        <option value="1">1급</option>
-                                        <option value="2">2급</option>
-                                        <option value="3">3급</option>
-                                        <option value="4">4급</option>
-                                        <option value="5">5급</option>
-                                        <option value="6">6급</option>
-                                        <option value="7">7급</option>
-                                        <option value="8">8급</option>
-                                        <option value="9">9급</option>
-                                        <option value="10">10급</option>
-                                        <option value="11">11급</option>
-                                        <option value="12">12급</option>
-                                        <option value="13">13급</option>
-                                        <option value="14">14급</option>
-                                        <option value="15">15급</option>
+                                        <option value="1급">1급</option>
+                                        <option value="2급">2급</option>
+                                        <option value="3급">3급</option>
+                                        <option value="4급">4급</option>
+                                        <option value="5급">5급</option>
+                                        <option value="6급">6급</option>
+                                        <option value="7급">7급</option>
+                                        <option value="8급">8급</option>
+                                        <option value="9급">9급</option>
+                                        <option value="10급">10급</option>
+                                        <option value="11급">11급</option>
+                                        <option value="12급">12급</option>
+                                        <option value="13급">13급</option>
+                                        <option value="14급">14급</option>
+                                        <option value="15급">15급</option>
                                     </select>
                                 </fieldset>
                                 <fieldset class="lang_category">
                                     <legend>언어</legend>
                                     <select name="languageType[]" class="lang_cate">
                                         <option value="">언어 선택</option>
-                                        <option value="english">영어</option>
-                                        <option value="japan">일본어</option>
-                                        <option value="china">중국어</option>
-                                        <option value="german">독일어</option>
-                                        <option value="french">불어</option>
-                                        <option value="spanish">스페인어</option>
-                                        <option value="russian">러시아어</option>
-                                        <option value="italy">이탈리아어</option>
-                                        <option value="korean">한국어</option>
-                                        <option value="etc">기타</option>
+                                        <option value="영어">영어</option>
+                                        <option value="일본어">일본어</option>
+                                        <option value="중국어">중국어</option>
+                                        <option value="독일어">독일어</option>
+                                        <option value="불어">불어</option>
+                                        <option value="스페인어">스페인어</option>
+                                        <option value="러시아어">러시아어</option>
+                                        <option value="이탈리아어">이탈리아어</option>
+                                        <option value="한국어">한국어</option>
+                                        <option value="기타">기타</option>
                                     </select>
                                 </fieldset>
                             </div>
@@ -630,11 +630,11 @@
                         <fieldset class="mil_sub">
                             <legend>병역대상</legend>
                             <select name="serviceStatus" id="military_status">
-                                <option value="not">대상아님</option>
-                                <option value="unfulfilled">미필</option>
-                                <option value="fulfilled">군필</option>
-                                <option value="exempted">면제</option>
-                                <option value="serving">복무중</option>
+                                <option value="대상아님">대상아님</option>
+                                <option value="미필">미필</option>
+                                <option value="군필">군필</option>
+                                <option value="면제">면제</option>
+                                <option value="복무중">복무중</option>
                             </select>
                         </fieldset>
                         <div class="unfulfilled" id="unfulfilledFields" style="display: none;">
@@ -662,54 +662,54 @@
                                 <legend>군별선택</legend>
                                 <select name="militaryBranch_ful">
                                     <option value="">군별선택</option>
-                                    <option value="army">육군</option>
-                                    <option value="navy">해군</option>
-                                    <option value="airforce">공군</option>
-                                    <option value="Marine">해병</option>
-                                    <option value="policeman">의경</option>
-                                    <option value="combatpolice">전경</option>
-                                    <option value="etc">기타</option>
-                                    <option value="socialserviceworker">사회복무요원</option>
-                                    <option value="firefighting">의무소방</option>
+                                    <option value="육군">육군</option>
+                                    <option value="해군">해군</option>
+                                    <option value="공군">공군</option>
+                                    <option value="해병">해병</option>
+                                    <option value="의경">의경</option>
+                                    <option value="전경">전경</option>
+                                    <option value="기타">기타</option>
+                                    <option value="사회복무요원">사회복무요원</option>
+                                    <option value="의무소방">의무소방</option>
                                 </select>
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
                                 <select name="rank_ful">
                                     <option value="">계급선택</option>
-                                    <option value="1">이병</option>
-                                    <option value="2">일병</option>
-                                    <option value="3">상병</option>
-                                    <option value="4">병장</option>
-                                    <option value="5">하사</option>
-                                    <option value="6">중사</option>
-                                    <option value="7">상사</option>
-                                    <option value="8">원사</option>
-                                    <option value="9">준위</option>
-                                    <option value="10">소위</option>
-                                    <option value="11">중위</option>
-                                    <option value="12">대위</option>
-                                    <option value="13">소령</option>
-                                    <option value="14">중령</option>
-                                    <option value="15">대령</option>
-                                    <option value="16">준장</option>
-                                    <option value="17">소장</option>
-                                    <option value="18">중장</option>
-                                    <option value="19">대장</option>
-                                    <option value="20">기타</option>
+                                    <option value="이병">이병</option>
+                                    <option value="일병">일병</option>
+                                    <option value="상병">상병</option>
+                                    <option value="병장">병장</option>
+                                    <option value="하사">하사</option>
+                                    <option value="중사">중사</option>
+                                    <option value="상사">상사</option>
+                                    <option value="원사">원사</option>
+                                    <option value="준위">준위</option>
+                                    <option value="소위">소위</option>
+                                    <option value="중위">중위</option>
+                                    <option value="대위">대위</option>
+                                    <option value="소령">소령</option>
+                                    <option value="중령">중령</option>
+                                    <option value="대령">대령</option>
+                                    <option value="준장">준장</option>
+                                    <option value="소장">소장</option>
+                                    <option value="중장">중장</option>
+                                    <option value="대장">대장</option>
+                                    <option value="기타">기타</option>
                                 </select>
                             </fieldset>
                             <fieldset>
                                 <legend>전역사유 선택</legend>
                                 <select name="dischargeReason_ful" id="discharge_reason">
                                     <option value="">전역사유</option>
-                                    <option value="1">만기전역</option>
-                                    <option value="2">의가사전역</option>
-                                    <option value="3">의병전역</option>
-                                    <option value="4">소집해제</option>
-                                    <option value="5">불명예전역</option>
-                                    <option value="6">상이전역</option>
-                                    <option value="7">기타</option>
+                                    <option value="만기전역">만기전역</option>
+                                    <option value="의가사전역">의가사전역</option>
+                                    <option value="의병전역">의병전역</option>
+                                    <option value="소집해제">소집해제</option>
+                                    <option value="불명예전역">불명예전역</option>
+                                    <option value="상이전역">상이전역</option>
+                                    <option value="기타">기타</option>
                                 </select>
                             </fieldset>
                         </div>
@@ -726,41 +726,41 @@
                                 <legend>군별선택</legend>
                                 <select name="militaryBranch_ser">
                                     <option value="">군별선택</option>
-                                    <option value="army">육군</option>
-                                    <option value="navy">해군</option>
-                                    <option value="airforce">공군</option>
-                                    <option value="Marine">해병</option>
-                                    <option value="policeman">의경</option>
-                                    <option value="combatpolice">전경</option>
-                                    <option value="etc">기타</option>
-                                    <option value="socialserviceworker">사회복무요원</option>
-                                    <option value="firefighting">의무소방</option>
+                                    <option value="육군">육군</option>
+                                    <option value="해군">해군</option>
+                                    <option value="공군">공군</option>
+                                    <option value="해병">해병</option>
+                                    <option value="의경">의경</option>
+                                    <option value="전경">전경</option>
+                                    <option value="기타">기타</option>
+                                    <option value="사회복무요원">사회복무요원</option>
+                                    <option value="의무소방">의무소방</option>
                                 </select>
                             </fieldset>
                             <fieldset>
                                 <legend>계급선택</legend>
                                 <select name="rank_ser">
                                     <option value="">계급선택</option>
-                                    <option value="1">이병</option>
-                                    <option value="2">일병</option>
-                                    <option value="3">상병</option>
-                                    <option value="4">병장</option>
-                                    <option value="5">하사</option>
-                                    <option value="6">중사</option>
-                                    <option value="7">상사</option>
-                                    <option value="8">원사</option>
-                                    <option value="9">준위</option>
-                                    <option value="10">소위</option>
-                                    <option value="11">중위</option>
-                                    <option value="12">대위</option>
-                                    <option value="13">소령</option>
-                                    <option value="14">중령</option>
-                                    <option value="15">대령</option>
-                                    <option value="16">준장</option>
-                                    <option value="17">소장</option>
-                                    <option value="18">중장</option>
-                                    <option value="19">대장</option>
-                                    <option value="20">기타</option>
+                                    <option value="이병">이병</option>
+                                    <option value="일병">일병</option>
+                                    <option value="상병">상병</option>
+                                    <option value="병장">병장</option>
+                                    <option value="하사">하사</option>
+                                    <option value="중사">중사</option>
+                                    <option value="상사">상사</option>
+                                    <option value="원사">원사</option>
+                                    <option value="준위">준위</option>
+                                    <option value="소위">소위</option>
+                                    <option value="중위">중위</option>
+                                    <option value="대위">대위</option>
+                                    <option value="소령">소령</option>
+                                    <option value="중령">중령</option>
+                                    <option value="대령">대령</option>
+                                    <option value="준장">준장</option>
+                                    <option value="소장">소장</option>
+                                    <option value="중장">중장</option>
+                                    <option value="대장">대장</option>
+                                    <option value="기타">기타</option>
                                 </select>
                             </fieldset>
                         </div>

@@ -23,16 +23,16 @@ function displayEducationFields() {
     // 선택된 학력에 해당하는 필드 섹션만 표시하고 활성화
     let activeSectionId = "";
     switch(selectedEdu) {
-        case "element":
+        case "초등학교":
             activeSectionId = "elementaryFields";
             break;
-        case "middle":
+        case "중학교":
             activeSectionId = "middleSchoolFields";
             break;
-        case "high":
+        case "고등학교":
             activeSectionId = "highSchoolFields";
             break;
-        case "college":
+        case "대학교/대학원 이상 졸업":
             activeSectionId = "collegeFields";
             break;
         default:
@@ -317,9 +317,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const categorySelect = document.getElementById('sortation');
     const categoryFields = {
-        certificate: [document.getElementById('certificateFields'), document.getElementById('certificateDate')],
-        language: [document.getElementById('languageFields')],
-        award_details: [document.getElementById('awardDetailsFields')],
+	        자격증/면허증: [document.getElementById('certificateFields'), document.getElementById('certificateDate')],
+	        어학시험: [document.getElementById('languageFields')],
+	        수상내역/공모전: [document.getElementById('awardDetailsFields')],
     };
 
     // 초기 상태: 모든 필드 숨김

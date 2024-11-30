@@ -12,18 +12,17 @@
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div class="pre_body">
         <div class="pre_header">
-            <h1>이력서 미리보기</h1>
         </div>
         <div class="pre_inner">
             <fieldset class="basic_title">
-                <legend>${resume.userName}님의 이력서</legend>
+                <legend>${resume.resumeTitle}</legend>
                 
                 <!-- 기본정보 -->
                 <p>기본정보</p>
                 <div class="pre_inner1">
                     <div class="pre_inner1-1">
-                        <h2>${resume.userName}</h2>
-                        <h2>${resume.userGender}, ${resume.userBirth}</h2>
+                        <h2>이름 : ${resume.userName}</h2>
+                        <h2>성별 : ${resume.userGender}, 생년월일 : ${resume.userBirth}</h2>
                     </div>
                     <h2>이메일 : ${resume.userEmail}</h2>
                     <h2>휴대폰 : ${resume.userPhone}</h2>
