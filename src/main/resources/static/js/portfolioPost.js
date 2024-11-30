@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('#summernote').summernote({
         tabsize: 2,
         height: 500,
@@ -13,11 +13,7 @@ $(document).ready(function() {
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']]
         ],
-        callbacks: {
-            onChange: function(contents) {
-                console.log("내용 변경됨 (수정 후):", contents);
-            }
-            // onInit 콜백 제거
-        }
+        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '굴림', '바탕', '돋움', '나눔고딕', 'Nanum Gothic'],
+        fontNamesIgnoreCheck: ['맑은 고딕', '굴림', '바탕', '돋움', '나눔고딕', 'Nanum Gothic'],
     });
 });
