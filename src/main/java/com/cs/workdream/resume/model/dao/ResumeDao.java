@@ -93,6 +93,6 @@ public class ResumeDao {
     }
     
     public Resume selectResumeByNo(int resumeNo) {
-        return sqlSession.selectOne(NAMESPACE + "selectResumeByNo", resumeNo);
+        return sqlSession.selectOne(NAMESPACE + ".selectResumeByNo", resumeNo);
     }
 }
