@@ -542,7 +542,7 @@ CREATE TABLE RESUME(
     PERSON_NO NUMBER NOT NULL,                                   -- 사람 번호
     RESUME_TITLE VARCHAR2(100) NOT NULL,                          -- 이력서 제목
     USER_NAME VARCHAR2(50) NOT NULL,                              -- 사용자 이름
-    USER_GENDER CHAR(1) NOT NULL CHECK (USER_GENDER IN ('M', 'F')), -- 성별
+    USER_GENDER VARCHAR2(20) NOT NULL ,			 -- 성별
     USER_BIRTH DATE NOT NULL,                                     -- 생년월일
     USER_EMAIL VARCHAR2(100) NOT NULL,                            -- 이메일
     USER_PHONE VARCHAR2(20) NOT NULL,                             -- 전화번호
