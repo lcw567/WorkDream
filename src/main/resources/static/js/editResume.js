@@ -182,72 +182,74 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 // 어학시험 추가하기 버튼 이벤트 처리
-addLanguageButton.addEventListener('click', function (event) {
-    event.preventDefault();
+const addLanguageButton = document.querySelector('.addLanguageButton');
+    if (addLanguageButton) {
+        addLanguageButton.addEventListener('click', function(event) {
+            event.preventDefault();
 
-    const languageFields = document.getElementById('languageFields');
+            const languageFields = document.getElementById('languageFields');
 
-    const languageTitle = languageFields.querySelector('input[name="languageName[]"]').value.trim();
-    const languageLevelSelect = languageFields.querySelector('select[name="proficiencyLevel[]"]');
-    const languageLevelText = languageLevelSelect.options[languageLevelSelect.selectedIndex].value.trim();
-    const languageTypeSelect = languageFields.querySelector('select[name="languageType[]"]');
-    const languageTypeText = languageTypeSelect.options[languageTypeSelect.selectedIndex].value.trim();
-    const issueDate = languageFields.querySelector('input[name="issueDate[]"]').value;
+            const languageName = languageFields.querySelector('input[name="languageName[]"]').value.trim();
+            const proficiencyLevel = languageFields.querySelector('select[name="proficiencyLevel[]"]').value.trim();
+            const languageType = languageFields.querySelector('select[name="languageType[]"]').value.trim();
+            const issueDate = languageFields.querySelector('input[name="issueDate[]"]').value;
 
-    // 빈 값 체크
-    if (!languageTitle || !languageLevelText || !languageTypeText || !issueDate) {
-        alert("모든 필드를 입력해주세요.");
-        return;
+            // 빈 값 체크
+            if (!languageName || !proficiencyLevel || !languageType || !issueDate) {
+                alert("모든 필드를 입력해주세요.");
+                return;
+            }
+
+            // 리스트에 추가
+            createListItem(
+                languageName,
+                `${languageType}, ${proficiencyLevel} | ${issueDate.replace(/-/g, ".")}`,
+                '',
+                '.result-list-language',
+                ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate[]']
+            );
+
+            // 입력 필드 초기화
+            languageFields.querySelector('input[name="languageName[]"]').value = '';
+            languageFields.querySelector('select[name="proficiencyLevel[]"]').selectedIndex = 0;
+            languageFields.querySelector('select[name="languageType[]"]').selectedIndex = 0;
+            languageFields.querySelector('input[name="issueDate[]"]').value = '';
+        });
     }
-
-    // 리스트에 추가
-    createListItem(
-        languageTitle,
-        `${languageTypeText}, ${languageLevelText} | ${issueDate.replace(/-/g, ".")}`,
-        '',
-        '.result-list-language',
-        ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate[]']
-    );
-
-    // 입력 필드 초기화
-    languageFields.querySelector('input[name="languageName[]"]').value = '';
-    languageLevelSelect.selectedIndex = 0; // 선택을 초기화합니다.
-    languageTypeSelect.selectedIndex = 0; // 선택을 초기화합니다.
-    languageFields.querySelector('input[name="issueDate[]"]').value = '';
-});
 
     // 수상내역 추가하기
     const addAwardButton = document.querySelector('.addAwardButton');
-    addAwardButton.addEventListener('click', function (event) {
-        event.preventDefault();
+    if (addAwardButton) {
+        addAwardButton.addEventListener('click', function(event) {
+            event.preventDefault();
 
-        const awardFields = document.getElementById('awardDetailsFields');
+            const awardFields = document.getElementById('awardDetailsFields');
 
-        const awardName = awardFields.querySelector('input[name="awardName[]"]').value.trim();
-        const organizer = awardFields.querySelector('input[name="organizer[]"]').value.trim();
-        const awardDate = awardFields.querySelector('input[name="awardDate[]"]').value;
+            const awardName = awardFields.querySelector('input[name="awardName[]"]').value.trim();
+            const organizer = awardFields.querySelector('input[name="organizer[]"]').value.trim();
+            const awardDate = awardFields.querySelector('input[name="awardDate[]"]').value;
 
-        // 빈 값 체크
-        if (!awardName || !organizer || !awardDate) {
-            alert("모든 필드를 입력해주세요.");
-            return;
-        }
+            // 빈 값 체크
+            if (!awardName || !organizer || !awardDate) {
+                alert("모든 필드를 입력해주세요.");
+                return;
+            }
 
-        // 리스트에 추가
-        createListItem(
-            awardName, 
-            `${awardDate.replace(/-/g, ".")}`, 
-            organizer, 
-            '.result-list-awards',
-            ['awardName[]', 'organizer[]', 'awardDate[]']
-        );
-        console.log("수상내역 추가 완료!");
+            // 리스트에 추가
+            createListItem(
+                awardName,
+                `${awardDate.replace(/-/g, ".")}`,
+                organizer,
+                '.result-list-awards',
+                ['awardName[]', 'organizer[]', 'awardDate[]']
+            );
 
-        // 입력 필드 초기화
-        awardFields.querySelector('input[name="awardName[]"]').value = '';
-        awardFields.querySelector('input[name="organizer[]"]').value = '';
-        awardFields.querySelector('input[name="awardDate[]"]').value = '';
-    });
+            // 입력 필드 초기화
+            awardFields.querySelector('input[name="awardName[]"]').value = '';
+            awardFields.querySelector('input[name="organizer[]"]').value = '';
+            awardFields.querySelector('input[name="awardDate[]"]').value = '';
+        });
+    }
 
     // 리스트 아이템 생성 및 폼에 hidden input 추가 함수
     function createListItem(title, details, institution, listSelector, inputNames) {
@@ -256,26 +258,28 @@ addLanguageButton.addEventListener('click', function (event) {
             console.error(`리스트 컨테이너 ${listSelector}를 찾을 수 없습니다.`);
             return;
         }
-
+    
         const listItem = document.createElement('div');
         listItem.className = 'list-item';
-
+    
         const itemContent = document.createElement('div');
         itemContent.className = 'item-content';
-
+    
         const titleDiv = document.createElement('div');
         titleDiv.innerHTML = `<strong>${title}</strong> ${details}`;
-
-        const institutionDiv = document.createElement('div');
-        institutionDiv.className = 'institution';
-        institutionDiv.textContent = institution ? `발행처: ${institution}` : '';
-
+    
+        if (institution) {
+            const institutionDiv = document.createElement('div');
+            institutionDiv.className = 'institution';
+            institutionDiv.textContent = `발행처: ${institution}`;
+            itemContent.appendChild(institutionDiv);
+        }
+    
         itemContent.appendChild(titleDiv);
-        if (institution) itemContent.appendChild(institutionDiv);
-
+    
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'actions';
-
+    
         const deleteButton = document.createElement('button');
         deleteButton.className = 'delete';
         deleteButton.textContent = '삭제';
@@ -283,7 +287,7 @@ addLanguageButton.addEventListener('click', function (event) {
             // 리스트에서 항목 삭제
             listItem.remove();
             console.log("아이템 삭제 완료!");
-
+    
             // 폼에서 해당 hidden input 삭제
             inputNames.forEach(name => {
                 let valueToRemove;
@@ -304,14 +308,14 @@ addLanguageButton.addEventListener('click', function (event) {
                 });
             });
         });
-
+    
         actionsDiv.appendChild(deleteButton);
-
+    
         listItem.appendChild(itemContent);
         listItem.appendChild(actionsDiv);
-
+    
         listContainer.appendChild(listItem);
-
+    
         // 폼에 hidden input 추가
         inputNames.forEach(name => {
             const hiddenInput = document.createElement('input');
@@ -337,9 +341,10 @@ addLanguageButton.addEventListener('click', function (event) {
             }
             document.getElementById('resumeForm').appendChild(hiddenInput);
         });
-
+    
         return listItem;
     }
+    
 
     // 데이터베이스에서 가져온 데이터가 있으면 추가해주는 로직
     function populateExistingData() {
