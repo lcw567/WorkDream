@@ -194,4 +194,34 @@ h1 {
     padding-left: 20px;
 }
 
+/* Summernote 에디터 내부 스타일 강제 초기화 */
+#summernote.note-editable {
+    color: inherit !important;
+    font-family: Arial, sans-serif !important; /* 폰트 상속 */
+    font-size: 1rem !important; /* 폰트 크기 */
+    line-height: 1.5 !important; /* 줄 간격 */
+}
+
+/* Summernote 내부 모든 태그 스타일 강제 초기화 */
+#summernote.note-editable * {
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+}
+
+/* Summernote 기본 스타일 복구 */
+#summernote.note-editable a {
+    color: #007bff !important;
+    text-decoration: underline !important;
+}
+
+#summernote.note-editable p {
+    margin: 0 !important;
+}
+
+/* 공통 스타일 제거 */
+body #summernote.note-editable {
+    all: unset !important; /* 기존 공통 스타일 무효화 */
+}
 
