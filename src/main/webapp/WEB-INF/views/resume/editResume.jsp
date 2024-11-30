@@ -615,9 +615,11 @@
                     </div>
                     
                     <!-- 자격증 리스트 -->
-<div class="result-list-certificate">
-    <!-- 자격증 리스트 아이템들이 여기에 추가됩니다. -->
-    <c:forEach var="certificate" items="${resume.certificates}">
+                      <!-- 삭제된 자격증 ID를 저장할 숨겨진 필드 -->
+    <input type="hidden" name="deletedQualifications" id="deletedQualifications" value="" />
+    <div class="result-list-certificate">
+        <!-- 자격증 리스트 아이템들이 여기에 추가됩니다. -->
+        <c:forEach var="certificate" items="${resume.certificates}">
         <div class="list-item" data-id="${certificate.certificateId}">
             <div class="item-content">
                 <strong>${certificate.qualificationName}</strong> | ${certificate.passStatus} | 
@@ -634,6 +636,7 @@
             <input type="hidden" name="testDate_cer[]" value="${certificate.testDate_cer}">
         </div>
     </c:forEach>
+
 </div>
 
 <!-- 어학시험 리스트 -->
@@ -742,7 +745,7 @@
                             <fieldset>
                                 <legend>계급선택</legend>
                                 <select name="rank_ful">
-                                    <option value="" <c:if test="${resume.rank_ful == ''}">selected</c:if>>군별선택</option>
+                                    <option value="" <c:if test="${resume.rank_ful == ''}">selected</c:if>>계급선택</option>
                                     <option value="1" <c:if test="${resume.rank_ful == '1'}">selected</c:if>>이병</option>
                                     <option value="2" <c:if test="${resume.rank_ful == '2'}">selected</c:if>>일병</option>
                                     <option value="3" <c:if test="${resume.rank_ful == '3'}">selected</c:if>>상병</option>
@@ -840,10 +843,11 @@
                 <button type="submit" class="final_save">수정 완료</button>
             </div>
         </form>
-        
-        <div class="">
-            <button type="button" class="preview">미리 보기</button>
-        </div>
+        <form action="previewresume" method="get">
+            <div class="">
+                <button type="submit" class="preview">미리 보기</button>
+            </div>
+        </form>
     </div>
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>

@@ -16,83 +16,146 @@
         </div>
         <div class="pre_inner">
             <fieldset class="basic_title">
-                <legend>OOO님의 이력서</legend>
+                <legend>${resume.userName}님의 이력서</legend>
+                
+                <!-- 기본정보 -->
                 <p>기본정보</p>
                 <div class="pre_inner1">
                     <div class="pre_inner1-1">
-                        <h2>홍길동</h2>
-                        <h2>남, 2000(24세)</h2>
+                        <h2>${resume.userName}</h2>
+                        <h2>${resume.userGender}, ${fn:substring(resume.userBirth.toString(), 0, 4)}(${calculateAge(resume.userBirth)})세</h2>
                     </div>
-                    <h2>이메일 : aaa@gmail.com</h2>
-                    <h2>휴대폰 : 010-0000-0000</h2>
-                    <h2>주소 : (00000)서울시 강남구 테헤란로</h2>
+                    <h2>이메일 : ${resume.userEmail}</h2>
+                    <h2>휴대폰 : ${resume.userPhone}</h2>
+                    <h2>주소 : (${resume.userAddress})${resume.userRoadAddress}</h2>
                 </div>
+                
+                <!-- 학력 -->
                 <p>학력</p>
                 <div class="pre_inner2">
-                    <div class="pre_inner2-1">
-                        <h2>2021.03~</h2>
-                        <h2>재학중</h2>
-                        <h2>OO대학교(4년제) OOOOO학과</h2>
-                    </div>
+                    <c:forEach var="education" items="${resume.educations}">
+                        <div class="pre_inner2-1">
+                            <h2>${education.enterDate} ~ 
+                                <c:choose>
+                                    <c:when test="${education.graduationStatus == '졸업'}">
+                                        ${education.graduationDate}
+                                    </c:when>
+                                    <c:otherwise>
+                                        재학중
+                                    </c:otherwise>
+                                </c:choose>
+                            </h2>
+                            <h2>${education.status}</h2>
+                            <h2>${education.academicName}(${education.degree}) ${education.major}</h2>
+                        </div>
+                    </c:forEach>
                 </div>
+                
+                <!-- 경력 -->
                 <p>경력</p>
                 <div class="pre_inner3">
-                    <div class="pre_inner3-1">
-                        <h2>20xx.xx~</h2>
-                        <h2>20xx.xx</h2>
-                        <h2>(주)회사이름</h2>
-                        <h2>담당업무</h2>
-                        <h2>00부서 인턴/수습 광고기획</h2>
-                    </div>
+                    <c:forEach var="career" items="${resume.careers}">
+                        <div class="pre_inner3-1">
+                            <h2>${career.startDate} ~ ${career.endDate}</h2>
+                            <h2>${career.companyName}</h2>
+                            <h2>${career.department}</h2>
+                            <h2>${career.position}</h2>
+                            <h2>${career.jobContent}</h2>
+                        </div>
+                    </c:forEach>
                 </div>
+                
+                <!-- 스킬 -->
                 <p>스킬</p>
                 <div class="pre_inner4">
                     <div class="pre_inner4-1">
-                        <h2>#java</h2>
+                        <c:forEach var="skill" items="${resume.skills}">
+                            <h2>#${skill.skillName}</h2>
+                        </c:forEach>
                     </div>
                 </div>
+                
+                <!-- 경험/활동/교육 -->
                 <p>경험/활동/교육</p>
                 <div class="pre_inner5">
-                    <div class="pre_inner5-1">
-                        <h2>20xx.xx~</h2>
-                        <h2>20xx.xx</h2>
-                        <h2>기관명</h2>
-                        <h2>상세입력내용</h2>
-                        <h2>(인턴)</h2>
-                    </div>
+                    <c:forEach var="activity" items="${resume.activities}">
+                        <div class="pre_inner5-1">
+                            <h2>${activity.startDate} ~ ${activity.endDate}</h2>
+                            <h2>${activity.organizationName}</h2>
+                            <h2>${activity.description}</h2>
+                            <h2>(${activity.role})</h2>
+                        </div>
+                    </c:forEach>
                 </div>
+                
+                <!-- 자격/어학/수상 -->
                 <p>자격/어학/수상</p>
                 <div class="pre_inner6">
-                    <div class="pre_inner6-1">
-                        <h2>자격증이름</h2>
-                        <h2>발행처</h2>
-                        <h2>합격구분</h2>
-                        <h2>획득년도</h2>
-                    </div>
+                    <c:forEach var="certificate" items="${resume.certificates}">
+                        <div class="pre_inner6-1">
+                            <h2>${certificate.qualificationName}</h2>
+                            <h2>${certificate.issuingAgency}</h2>
+                            <h2>${certificate.passStatus}</h2>
+                            <h2>${certificate.testDateCer}</h2>
+                        </div>
+                    </c:forEach>
+                    
+                    <c:forEach var="languageTest" items="${resume.languageTests}">
+                        <div class="pre_inner6-1">
+                            <h2>${languageTest.languageName}</h2>
+                            <h2>${languageTest.proficiencyLevel}</h2>
+                            <h2>${languageTest.languageType}</h2>
+                            <h2>${languageTest.issueDate}</h2>
+                        </div>
+                    </c:forEach>
+                    
+                    <c:forEach var="award" items="${resume.awards}">
+                        <div class="pre_inner6-1">
+                            <h2>${award.awardName}</h2>
+                            <h2>${award.organizer}</h2>
+                            <h2>${award.awardDate}</h2>
+                        </div>
+                    </c:forEach>
                 </div>
+                
+                <!-- 포트폴리오 -->
                 <p>포트폴리오</p>
                 <div class="pre_inner7">
                     <div class="pre_inner7-1">
-                        <h2>포트폴리오</h2>
-                        <h2>포트폴리오 링크</h2>
+                        <h2>${resume.portfolioName}</h2>
+                        <h2><a href="${resume.portfolioLink}" target="_blank">${resume.portfolioLink}</a></h2>
                     </div>
                 </div>
+                
+                <!-- 자기소개서 -->
                 <p>자기소개서</p>
                 <div class="pre_inner8">
                     <div class="pre_inner8-1">
-                        <h2>자기소개서</h2>
-                        <h2>자기소개서 내용</h2>
+                        <h2>${resume.selfIntroductionTitle}</h2>
+                        <h2>${resume.selfIntroductionContent}</h2>
                     </div>
                 </div>
+                
+                <!-- 취업우대사항 -->
                 <p>취업우대사항</p>
                 <div class="pre_inner9">
                     <div class="pre_inner9-1">
                         <h2>보훈대상</h2>
                         <h2>보훈 사유</h2>
                     </div>
-                    <div class="pre_inner9-2">
-                        <h2>병역: 군필</h2>
-                        <h2>육군/병장 | 만기전역 | 2024.02 ~ 2024.05</h2>
+                    <c:if test="${not empty resume.veteranReason}">
+                        <div class="pre_inner9-2">
+                            <h2>보훈 사유: ${resume.veteranReason}</h2>
+                        </div>
+                    </c:if>
+                    <div class="pre_inner9-1">
+                        <h2>병역: ${resume.serviceStatus}</h2>
+                        <c:if test="${resume.serviceStatus == '군필'}">
+                            <h2>${resume.militaryBranchFul} | ${resume.rankFul} | ${resume.dischargeDateFul}</h2>
+                        </c:if>
+                        <c:if test="${resume.serviceStatus == '미필'}">
+                            <h2>${resume.militaryBranchSer} | ${resume.rankSer} | ${resume.dischargeDateSer}</h2>
+                        </c:if>
                     </div>
                 </div>
             </fieldset>

@@ -91,4 +91,8 @@ public class ResumeDao {
     public int deleteAwardsByResumeNo(int resumeNo) {
         return sqlSession.delete(NAMESPACE + ".deleteAwardsByResumeNo", resumeNo);
     }
+    
+    public Resume selectResumeByNo(int resumeNo) {
+        return sqlSession.selectOne(NAMESPACE + "selectResumeByNo", resumeNo);
+    }
 }

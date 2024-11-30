@@ -253,4 +253,9 @@ public class ResumeServiceImpl implements ResumeService {
     public void insertAward(Award award) {
         resumeDao.insertAward(award);
     }
+    
+    @Override
+    public Resume getResumeByNo(int resumeNo) {
+        return resumeDao.selectResumeByNo(resumeNo);
+    }
 }
