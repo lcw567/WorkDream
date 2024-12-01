@@ -1,459 +1,447 @@
-// 학력 필드 표시 및 비활성화/활성화 함수 통합
-function displayEducationFields() {
-    const selectedEdu = document.getElementById("selectedu").value;
-    const educationLvElement = document.querySelector('.education_Lv'); // .education_Lv 요소
-
-    // 초기 높이 설정
-    educationLvElement.style.height = '150px';
-
-    // 모든 학력 필드 섹션을 숨기고 비활성화
-    const educationFields = ["elementaryFields", "middleSchoolFields", "highSchoolFields", "collegeFields"];
-    educationFields.forEach(function(id) {
-        const section = document.getElementById(id);
-        if (section) {
-            section.style.display = "none";
-            // 해당 섹션의 모든 입력 필드를 비활성화
-            const inputs = section.querySelectorAll("input, select");
-            inputs.forEach(function(input) {
-                input.disabled = true;
-            });
-        }
-    });
-
-    // 선택된 학력에 해당하는 필드 섹션만 표시하고 활성화
-    let activeSectionId = "";
-    switch(selectedEdu) {
-        case "초등학교":
-            activeSectionId = "elementaryFields";
-            break;
-        case "중학교":
-            activeSectionId = "middleSchoolFields";
-            break;
-        case "고등학교":
-            activeSectionId = "highSchoolFields";
-            break;
-        case "대학교/대학원 이상 졸업":
-            activeSectionId = "collegeFields";
-            break;
-        default:
-            // 선택되지 않았거나 다른 값일 경우 기본 높이 유지
-            break;
-    }
-
-    if (activeSectionId) {
-        const activeSection = document.getElementById(activeSectionId);
-        if (activeSection) {
-            activeSection.style.display = "block";
-            const activeInputs = activeSection.querySelectorAll("input, select");
-            activeInputs.forEach(function(input) {
-                input.disabled = false;
-            });
-            // 높이 조절
-            educationLvElement.style.height = '300px';
-        }
-    }
-}
-
-// 페이지 로드 시 초기 상태 설정 및 이벤트 리스너 등록
 document.addEventListener("DOMContentLoaded", function() {
-    // 학력 필드 초기 상태 설정
-    displayEducationFields();
 
-    // 학력 선택 시 displayEducationFields 함수 호출
-    document.getElementById('selectedu').addEventListener('change', displayEducationFields);
+    // 학력 필드 표시 및 비활성화/활성화 함수
+    function displayEducationFields() {
+        const selectedEdu = document.getElementById("selectedu").value;
+        const educationLvElement = document.querySelector('.education_Lv'); // .education_Lv 요소
 
-   // 스킬 배열을 선언
-let skills = [];
+        if (educationLvElement) {
+            // 초기 높이 설정
+            educationLvElement.style.height = '150px';
+        }
 
-document.querySelector('#sk_title1 button').addEventListener('click', function() {
-    const input = document.querySelector('.skill_title input');
-    const skillValue = input.value.trim();
-
-    if (skillValue) {
-        // "나의 스킬" 문구와 영역을 보이게 설정
-        document.getElementById('sk_title2').style.display = 'block';
-
-        // 스킬 요소 생성
-        const newSkill = document.createElement('div');
-        newSkill.className = 'myskill1';
-        newSkill.innerHTML = `#${skillValue} <span class="delete-icon">❌</span>`;
-
-        // 삭제 기능 추가
-        newSkill.querySelector('.delete-icon').addEventListener('click', function() {
-            // 스킬 삭제 시 배열에서도 제거
-            skills = skills.filter(skill => skill !== skillValue);
-            newSkill.remove();
-
-            // 스킬이 모두 삭제되면 "나의 스킬" 문구와 높이를 초기화
-            if (!document.querySelector('#MYsk .myskill1')) {
-                document.querySelector('.skill').style.height = '175px';
-                document.getElementById('sk_title2').style.display = 'none'; // "나의 스킬" 숨김
+        // 모든 학력 필드 섹션을 숨기고 비활성화
+        const educationFields = ["elementaryFields", "middleSchoolFields", "highSchoolFields", "collegeFields"];
+        educationFields.forEach(function(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.style.display = "none";
+                // 해당 섹션의 모든 입력 필드를 비활성화
+                const inputs = section.querySelectorAll("input, select");
+                inputs.forEach(function(input) {
+                    input.disabled = true;
+                });
             }
         });
 
-        // 나의 스킬 영역에 추가
-        document.querySelector('#MYsk').appendChild(newSkill);
+        // 선택된 학력에 해당하는 필드 섹션만 표시하고 활성화
+        let activeSectionId = "";
+        switch(selectedEdu) {
+            case "초등학교":
+                activeSectionId = "elementaryFields";
+                break;
+            case "중학교":
+                activeSectionId = "middleSchoolFields";
+                break;
+            case "고등학교":
+                activeSectionId = "highSchoolFields";
+                break;
+            case "대학교/대학원 이상 졸업":
+                activeSectionId = "collegeFields";
+                break;
+            default:
+                // 선택되지 않았거나 다른 값일 경우 기본 높이 유지
+                break;
+        }
 
-        // 높이를 230px로 변경
-        document.querySelector('.skill').style.height = '230px';
+        if (activeSectionId) {
+            const activeSection = document.getElementById(activeSectionId);
+            if (activeSection) {
+                activeSection.style.display = "block";
+                const activeInputs = activeSection.querySelectorAll("input, select");
+                activeInputs.forEach(function(input) {
+                    input.disabled = false;
+                });
+                // 높이 조절
+                if (educationLvElement) {
+                    educationLvElement.style.height = '300px';
+                }
+            }
+        }
+    }
 
-        // 입력창 초기화
-        input.value = '';
+    // 학력 필드 초기 상태 설정 및 이벤트 리스너 등록
+    const selecteduElement = document.getElementById('selectedu');
+    if (selecteduElement) {
+        selecteduElement.addEventListener('change', displayEducationFields);
+        // 초기 설정
+        displayEducationFields();
+    }
 
-        // 스킬을 배열에 저장
-        skills.push(skillValue);
+    // 스킬 배열을 선언
+    let skills = [];
+
+    // 스킬 추가 버튼 처리
+    const skTitle1Button = document.querySelector('#sk_title1 button');
+    if (skTitle1Button) {
+        skTitle1Button.addEventListener('click', function(event) {
+            event.preventDefault(); // 기본 동작 방지
+
+            const input = document.querySelector('.skill_title input');
+            if (!input) {
+                console.error("스킬 입력 필드를 찾을 수 없습니다.");
+                return;
+            }
+            const skillValue = input.value.trim();
+
+            if (skillValue) {
+                // "나의 스킬" 문구와 영역을 보이게 설정
+                const skTitle2 = document.getElementById('sk_title2');
+                if (skTitle2) {
+                    skTitle2.style.display = 'block';
+                }
+
+                // 스킬 요소 생성
+                const newSkill = document.createElement('div');
+                newSkill.className = 'myskill1';
+                newSkill.innerHTML = `#${skillValue} <span class="delete-icon">❌</span>`;
+
+                // 삭제 기능 추가
+                const deleteIcon = newSkill.querySelector('.delete-icon');
+                if (deleteIcon) {
+                    deleteIcon.addEventListener('click', function() {
+                        // 스킬 삭제 시 배열에서도 제거
+                        skills = skills.filter(skill => skill !== skillValue);
+                        newSkill.remove();
+
+                        // 스킬이 모두 삭제되면 "나의 스킬" 문구와 높이를 초기화
+                        const mySk = document.querySelector('#MYsk');
+                        if (mySk && !mySk.querySelector('.myskill1')) {
+                            const skillContainer = document.querySelector('.skill');
+                            if (skillContainer) {
+                                skillContainer.style.height = '175px';
+                            }
+                            if (skTitle2) {
+                                skTitle2.style.display = 'none'; // "나의 스킬" 숨김
+                            }
+                        }
+                    });
+                }
+
+                // 나의 스킬 영역에 추가
+                const mySk = document.querySelector('#MYsk');
+                if (mySk) {
+                    mySk.appendChild(newSkill);
+                } else {
+                    console.error("나의 스킬 영역 (#MYsk)을 찾을 수 없습니다.");
+                }
+
+                // 높이를 230px로 변경
+                const skillContainer = document.querySelector('.skill');
+                if (skillContainer) {
+                    skillContainer.style.height = '230px';
+                }
+
+                // 입력창 초기화
+                input.value = '';
+
+                // 스킬을 배열에 저장
+                skills.push(skillValue);
+            }
+        });
+    }
+
+    // 폼 제출 시 모든 스킬을 하나의 문자열로 합쳐서 hidden input에 저장
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            // 스킬 배열을 쉼표로 구분된 문자열로 합침
+            const skillNameInput = document.querySelector('input[name="skillName"]');
+            if (skillNameInput) {
+                skillNameInput.value = skills.join(', ');
+            } else {
+                console.error("skillName hidden input을 찾을 수 없습니다.");
+            }
+
+            // AJAX 요청으로 서버에 스킬 저장하기
+            const xhr = new XMLHttpRequest();
+            const contextPath = ''; // contextPath를 정의하거나, 서버에서 전달
+            xhr.open('POST', `${contextPath}/resume/addSkill`, true);
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log('Skills added successfully');
+                    } else {
+                        console.error('Failed to add skills');
+                    }
+                }
+            };
+
+            // 서버에 보낼 데이터 생성
+            const skillData = {
+                skillName: skills.join(', ')
+            };
+            // JSON 형식으로 데이터 전송
+            xhr.send(JSON.stringify(skillData));
+        });
+    }
+
+  // 경력 체크박스 처리
+  const careerCheckbox = document.getElementById("CareerY");
+  const careerDetails = document.querySelectorAll(".career1, .career2, .career3");
+  careerDetails.forEach(field => field.style.display = "none");
+
+  careerCheckbox.addEventListener("change", function () {
+      if (this.checked) {
+          careerDetails.forEach(field => field.style.display = "flex");
+      } else {
+          careerDetails.forEach(field => field.style.display = "none");
+      }
+  });
+});
+
+// 경력 체크박스 처리
+const careerCheckbox = document.getElementById("CareerY");
+const careerLabel = document.querySelector("label.careerYorN"); // "경력이 있을 경우 선택해주세요." 라벨
+const checkboxLabel = careerCheckbox.parentElement; // 체크박스를 감싸는 라벨
+const careerFieldset = document.querySelector("fieldset.career"); // 필드셋
+const careerDetails = document.querySelectorAll(".career1, .career2, .career3"); // 필드셋 내부의 세부 요소들
+
+// 처음에는 필드셋 내부의 세부 요소들을 숨깁니다.
+careerDetails.forEach(field => field.style.display = "none");
+careerFieldset.style.height = "155px"; // 초기 높이 설정
+
+// 체크박스 상태에 따라 요소들을 조정합니다.
+careerCheckbox.addEventListener("change", function() {
+    if (careerCheckbox.checked) {
+        // 체크박스와 라벨을 숨깁니다.
+        careerLabel.style.display = "none";
+        checkboxLabel.style.display = "none";
+
+        // 필드셋의 높이를 변경하고, 내부 세부 요소들을 표시합니다.
+        careerFieldset.style.height = "520px";
+        careerDetails.forEach(field => field.style.display = "flex");
     }
 });
-
-// 폼 제출 시 모든 스킬을 하나의 문자열로 합쳐서 hidden input에 저장
-document.querySelector('form').addEventListener('submit', function(event) {
-    // 스킬 배열을 쉼표로 구분된 문자열로 합침
-    const skillNameInput = document.querySelector('input[name="skillName"]');
-    skillNameInput.value = skills.join(', ');
-
-    // AJAX 요청으로 서버에 스킬 저장하기
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', `${contextPath}/resume/addSkill`, true);
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log('Skills added successfully');
-        } else if (xhr.readyState === 4) {
-            console.error('Failed to add skills');
-        }
-    };
-
-    // 서버에 보낼 데이터 생성
-    const skillData = {
-        skillName: skills.join(', ')
-    };
-    // JSON 형식으로 데이터 전송
-    xhr.send(JSON.stringify(skillData));
-});
-
-
-    document.addEventListener("DOMContentLoaded", function () {
-        // 학력 필드 표시 및 비활성화
-        function displayEducationFields() {
-            const selectedEdu = document.getElementById("selectedu").value;
-    
-            // 모든 학력 필드 숨기기
-            const educationFields = ["elementaryFields", "middleSchoolFields", "highSchoolFields", "collegeFields"];
-            educationFields.forEach(function (id) {
-                const section = document.getElementById(id);
-                if (section) {
-                    section.style.display = "none";
-                    // 비활성화
-                    const inputs = section.querySelectorAll("input, select");
-                    inputs.forEach(input => input.disabled = true);
-                }
-            });
-    
-            // 선택된 학력 필드 표시
-            if (selectedEdu) {
-                const activeSection = document.getElementById(selectedEdu + "Fields");
-                if (activeSection) {
-                    activeSection.style.display = "block";
-                    // 활성화
-                    const activeInputs = activeSection.querySelectorAll("input, select");
-                    activeInputs.forEach(input => input.disabled = false);
-                }
-            }
-        }
-    
-        // 학력 필드 초기화 및 변경 이벤트 리스너
-        document.getElementById("selectedu").addEventListener("change", displayEducationFields);
-        displayEducationFields();
-    
-        // 군 복무 상태 처리
-        const militarySelect = document.getElementById("military_status");
-        const fieldsMap = {
-            unfulfilled: document.getElementById("unfulfilledFields"),
-            exempted: document.getElementById("exemptedFields"),
-            fulfilled: document.getElementById("fulfilledFields"),
-            serving: document.getElementById("servingFields"),
-        };
-    
-        // 초기화
-        Object.values(fieldsMap).forEach(field => field.style.display = "none");
-    
-        // 군 복무 상태 변경 이벤트
-        militarySelect.addEventListener("change", function () {
-            Object.values(fieldsMap).forEach(field => field.style.display = "none");
-            const selectedField = fieldsMap[this.value];
-            if (selectedField) {
-                selectedField.style.display = "block";
-            }
-        });
-
-                // 경력 체크박스 처리
-                const careerCheckbox = document.getElementById("CareerY");
-                const careerDetails = document.querySelectorAll(".career1, .career2, .career3");
-                careerDetails.forEach(field => field.style.display = "none");
-            
-                careerCheckbox.addEventListener("change", function () {
-                    if (this.checked) {
-                        careerDetails.forEach(field => field.style.display = "flex");
-                    } else {
-                        careerDetails.forEach(field => field.style.display = "none");
-                    }
-                });
-            });
-    
-
-    // 군 복무 상태 변경 시 섹션 표시/숨김
-    var militarySelect = document.getElementById('military_status');
-    var unfulfilledDiv = document.querySelector('.unfulfilled');
-    var exemptedDiv = document.querySelector('.EXEMPTED');
-    var fulfilledDiv = document.querySelector('.fulfilled');
-    var servingDiv = document.querySelector('.serving');
-    
-    // 페이지 로드 시 모든 섹션 숨기기
-    unfulfilledDiv.style.display = 'none';
-    exemptedDiv.style.display = 'none';
-    fulfilledDiv.style.display = 'none';
-    servingDiv.style.display = 'none';
-    
-    // 선택 박스의 변경을 감지하는 이벤트 리스너 추가
-    militarySelect.addEventListener('change', function() {
-        // 모든 섹션을 우선 숨김
-        unfulfilledDiv.style.display = 'none';
-        exemptedDiv.style.display = 'none';
-        fulfilledDiv.style.display = 'none';
-        servingDiv.style.display = 'none';
-    
-        var selectedValue = this.value;
-    
-        if (selectedValue === 'unfulfilled') {
-            // 미필 선택 시 unfulfilled 섹션 표시
-            unfulfilledDiv.style.display = 'flex';
-        } else if (selectedValue === 'exempted') {
-            // 면제 선택 시 exempted 섹션 표시
-            exemptedDiv.style.display = 'flex';
-        } else if (selectedValue === 'fulfilled') {
-            // 군필 선택 시 fulfilled 섹션 표시
-            fulfilledDiv.style.display = 'flex';
-        } else if (selectedValue === 'serving') {
-            // 복무중 선택 시 serving 섹션 표시
-            servingDiv.style.display = 'flex';
-        }
-        // '대상아님' 또는 다른 선택 시 모든 섹션 숨김
-    });
 
     // 프로필 이미지 업로드 기능
     const imageContainer = document.querySelector('#basic5');
-
     if (imageContainer) {
         const img = imageContainer.querySelector('.profile_img');
         const fileInput = imageContainer.querySelector('.profile_upload');
 
-        img.addEventListener('click', () => {
-            fileInput.click();
-        });
+        if (img && fileInput) {
+            img.addEventListener('click', () => {
+                fileInput.click();
+            });
 
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                img.src = `${pageContext.request.contextPath}/img/file.png`; // 기본 이미지로 복귀
-            }
-        });
+            fileInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    const pageContext = {
+                        request: {
+                            contextPath: '' // contextPath를 정의하거나, 서버에서 전달
+                        }
+                    };
+                    img.src = `${pageContext.request.contextPath}/img/file.png`; // 기본 이미지로 복귀
+                }
+            });
+        }
     }
 
-    // 경력 체크박스 처리
-    const careerCheckbox = document.getElementById("CareerY");
-    const careerLabel = document.querySelector("label.careerYorN"); // "경력이 있을 경우 선택해주세요." 라벨
-    const checkboxLabel = careerCheckbox.parentElement; // 체크박스를 감싸는 라벨
-    const careerFieldset = document.querySelector("fieldset.career"); // 필드셋
-    const careerDetails = document.querySelectorAll(".career1, .career2, .career3"); // 필드셋 내부의 세부 요소들
-
-    // 처음에는 필드셋 내부의 세부 요소들을 숨깁니다.
-    careerDetails.forEach(field => field.style.display = "none");
-    careerFieldset.style.height = "155px"; // 초기 높이 설정
-
-    // 체크박스 상태에 따라 요소들을 조정합니다.
-    careerCheckbox.addEventListener("change", function() {
-        if (careerCheckbox.checked) {
-            // 체크박스와 라벨을 숨깁니다.
-            careerLabel.style.display = "none";
-            checkboxLabel.style.display = "none";
-
-            // 필드셋의 높이를 변경하고, 내부 세부 요소들을 표시합니다.
-            careerFieldset.style.height = "520px";
-            careerDetails.forEach(field => field.style.display = "flex");
+    // 다움 주소 검색
+    function sample4_execDaumPostcode() {
+        // Daum.Postcode 라이브러리가 로드되어 있는지 확인
+        if (typeof daum === 'undefined' || !daum.Postcode) {
+            console.error("Daum.Postcode 라이브러리가 로드되지 않았습니다.");
+            return;
         }
-    });
-});
 
-function sample4_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 선택한 주소 정보를 표시
-            document.getElementById("sample4_postcode").value = data.zonecode; // 우편번호
-            document.getElementById("roadAddress").value = data.roadAddress; // 도로명 주소
-            document.getElementById("detailAddress").focus(); // 상세주소로 포커스 이동
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 선택한 주소 정보를 표시
+                const postcode = document.getElementById("sample4_postcode");
+                const roadAddress = document.getElementById("roadAddress");
+                const detailAddress = document.getElementById("detailAddress");
+                const guideTextBox = document.getElementById("guide");
 
-            // 참고항목 정보 설정
-            var guideTextBox = document.getElementById("guide");
-            if (data.autoRoadAddress) {
-                var expRoadAddr = data.autoRoadAddress + extraAddr;
-                guideTextBox.innerHTML = "(예상 도로명 주소: " + expRoadAddr + ")";
-                guideTextBox.style.display = "block";
-            } else {
-                guideTextBox.innerHTML = "";
-                guideTextBox.style.display = "none";
+                if (postcode) postcode.value = data.zonecode; // 우편번호
+                if (roadAddress) roadAddress.value = data.roadAddress; // 도로명 주소
+                if (detailAddress) detailAddress.focus(); // 상세주소로 포커스 이동
+
+                // 참고항목 정보 설정
+                if (guideTextBox) {
+                    if (data.autoRoadAddress) {
+                        const extraAddr = data.autoRoadAddress ? data.autoRoadAddress : '';
+                        guideTextBox.innerHTML = "(예상 도로명 주소: " + extraAddr + ")";
+                        guideTextBox.style.display = "block";
+                    } else {
+                        guideTextBox.innerHTML = "";
+                        guideTextBox.style.display = "none";
+                    }
+                }
             }
-        }
-    }).open();
-}
+        }).open();
+    }
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log("DOM fully loaded and parsed.");
-
+    // 카테고리 선택 처리
     const categorySelect = document.getElementById('sortation');
     const categoryFields = {
-	        자격증/면허증: [document.getElementById('certificateFields'), document.getElementById('certificateDate')],
-	        어학시험: [document.getElementById('languageFields')],
-	        수상내역/공모전: [document.getElementById('awardDetailsFields')],
+        '자격증/면허증': [document.getElementById('certificateFields'), document.getElementById('certificateDate')],
+        '어학시험': [document.getElementById('languageFields')],
+        '수상내역/공모전': [document.getElementById('awardDetailsFields')],
     };
 
-    // 초기 상태: 모든 필드 숨김
-    Object.values(categoryFields).forEach(fields => {
-        fields.forEach(field => {
-            if (field) field.style.display = 'none';
-        });
-    });
-
-    // 카테고리 선택 시 필드 표시
-    categorySelect.addEventListener('change', function () {
-        const selectedCategory = this.value;
-
-        // 모든 필드 숨기기
+    if (categorySelect) {
+        // 초기 상태: 모든 필드 숨김
         Object.values(categoryFields).forEach(fields => {
             fields.forEach(field => {
                 if (field) field.style.display = 'none';
             });
         });
 
-        // 선택된 카테고리 필드만 표시
-        if (categoryFields[selectedCategory]) {
-            categoryFields[selectedCategory].forEach(field => {
-                if (field) field.style.display = '';
+        // 카테고리 선택 시 필드 표시
+        categorySelect.addEventListener('change', function () {
+            const selectedCategory = this.value;
+
+            // 모든 필드 숨기기
+            Object.values(categoryFields).forEach(fields => {
+                fields.forEach(field => {
+                    if (field) field.style.display = 'none';
+                });
             });
-        }
-    });
+
+            // 선택된 카테고리 필드만 표시
+            if (categoryFields[selectedCategory]) {
+                categoryFields[selectedCategory].forEach(field => {
+                    if (field) field.style.display = '';
+                });
+            }
+        });
+    }
 
     // 자격증 추가하기
     const addQualificationButton = document.querySelector('.addQualificationButton');
-    addQualificationButton.addEventListener('click', function (event) {
-        event.preventDefault();
+    if (addQualificationButton) {
+        addQualificationButton.addEventListener('click', function (event) {
+            event.preventDefault();
 
-        const certificateFields = document.getElementById('certificateFields');
-        const certificateDateFields = document.getElementById('certificateDate');
+            const certificateFields = document.getElementById('certificateFields');
+            const certificateDateFields = document.getElementById('certificateDate');
 
-        const certificateTitle = certificateFields.querySelector('input[name="qualificationName[]"]').value.trim();
-        const institutionTitle = certificateFields.querySelector('input[name="issuingAgency[]"]').value.trim();
-        const passStatusSelect = certificateFields.querySelector('select[name="passStatus[]"]');
-        const passStatusText = passStatusSelect.options[passStatusSelect.selectedIndex].textContent.trim(); // 옵션의 텍스트
-        const passDate = certificateDateFields.querySelector('input[name="testDate_cer[]"]').value;
+            if (!certificateFields || !certificateDateFields) {
+                console.error("certificateFields 또는 certificateDate 요소를 찾을 수 없습니다.");
+                return;
+            }
 
-        // 빈 값 체크
-        if (!certificateTitle || !institutionTitle || !passStatusText || !passDate) {
-            alert("모든 필드를 입력해주세요.");
-            return;
-        }
+            const qualificationName = certificateFields.querySelector('input[name="qualificationName[]"]').value.trim();
+            const issuingAgency = certificateFields.querySelector('input[name="issuingAgency[]"]').value.trim();
+            const passStatusSelect = certificateFields.querySelector('select[name="passStatus[]"]');
+            const passStatusText = passStatusSelect ? passStatusSelect.options[passStatusSelect.selectedIndex].textContent.trim() : '';
+            const testDate = certificateDateFields.querySelector('input[name="testDate_cer[]"]').value;
 
-        // 리스트에 추가
-        createListItem(
-            certificateTitle, 
-            `${passStatusText} | ${passDate.replace(/-/g, ".")}`, 
-            institutionTitle, 
-            '.result-list-certificate',
-            ['qualificationName[]', 'issuingAgency[]', 'passStatus[]', 'testDate_cer[]']
-        );
-        console.log("자격증 추가 완료!");
+            // 빈 값 체크
+            if (!qualificationName || !issuingAgency || !passStatusText || !testDate) {
+                alert("모든 필드를 입력해주세요.");
+                return;
+            }
 
-        // 입력 필드 초기화
-        certificateFields.querySelector('input[name="qualificationName[]"]').value = '';
-        certificateFields.querySelector('input[name="issuingAgency[]"]').value = '';
-        passStatusSelect.value = '';
-        certificateDateFields.querySelector('input[name="testDate_cer[]"]').value = '';
-    });
+            // 리스트에 추가
+            createListItem(
+                qualificationName,
+                `${passStatusText} | ${testDate.replace(/-/g, ".")}`,
+                issuingAgency,
+                '.result-list-certificate',
+                ['qualificationName[]', 'issuingAgency[]', 'passStatus[]', 'testDate_cer[]']
+            );
+            console.log("자격증 추가 완료!");
+
+            // 입력 필드 초기화
+            certificateFields.querySelector('input[name="qualificationName[]"]').value = '';
+            certificateFields.querySelector('input[name="issuingAgency[]"]').value = '';
+            if (passStatusSelect) passStatusSelect.value = '';
+            certificateDateFields.querySelector('input[name="testDate_cer[]"]').value = '';
+        });
+    }
 
     // 어학시험 추가하기
     const addLanguageButton = document.querySelector('.addLanguageButton');
-    addLanguageButton.addEventListener('click', function (event) {
-        event.preventDefault();
+    if (addLanguageButton) {
+        addLanguageButton.addEventListener('click', function (event) {
+            event.preventDefault();
 
-        const languageFields = document.getElementById('languageFields');
+            const languageFields = document.getElementById('languageFields');
+            if (!languageFields) {
+                console.error("languageFields 요소를 찾을 수 없습니다.");
+                return;
+            }
 
-        const languageTitle = languageFields.querySelector('input[name="languageName[]"]').value.trim();
-        const languageLevelSelect = languageFields.querySelector('select[name="proficiencyLevel[]"]');
-        const languageLevelText = languageLevelSelect.options[languageLevelSelect.selectedIndex].textContent.trim(); // 옵션의 텍스트
-        const languageTypeSelect = languageFields.querySelector('select[name="languageType[]"]');
-        const languageTypeText = languageTypeSelect.options[languageTypeSelect.selectedIndex].textContent.trim(); // 옵션의 텍스트
-        const issueDate = languageFields.querySelector('input[name="issueDate[]"]').value;
+            const languageName = languageFields.querySelector('input[name="languageName[]"]').value.trim();
+            const proficiencyLevelSelect = languageFields.querySelector('select[name="proficiencyLevel[]"]');
+            const proficiencyLevel = proficiencyLevelSelect ? proficiencyLevelSelect.options[proficiencyLevelSelect.selectedIndex].textContent.trim() : '';
+            const languageTypeSelect = languageFields.querySelector('select[name="languageType[]"]');
+            const languageType = languageTypeSelect ? languageTypeSelect.options[languageTypeSelect.selectedIndex].textContent.trim() : '';
+            const issueDate = languageFields.querySelector('input[name="issueDate[]"]').value;
 
-        // 빈 값 체크
-        if (!languageTitle || !languageLevelText || !languageTypeText || !issueDate) {
-            alert("모든 필드를 입력해주세요.");
-            return;
-        }
+            // 빈 값 체크
+            if (!languageName || !proficiencyLevel || !languageType || !issueDate) {
+                alert("모든 필드를 입력해주세요.");
+                return;
+            }
 
-        // 리스트에 추가
-        createListItem(
-            languageTitle, 
-            `${languageTypeText}, ${languageLevelText} | ${issueDate.replace(/-/g, ".")}`, 
-            '', 
-            '.result-list-language',
-            ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate[]']
-        );
-        console.log("어학시험 추가 완료!");
+            // 리스트에 추가
+            createListItem(
+                languageName,
+                `${languageType}, ${proficiencyLevel} | ${issueDate.replace(/-/g, ".")}`,
+                '',
+                '.result-list-language',
+                ['languageName[]', 'proficiencyLevel[]', 'languageType[]', 'issueDate[]']
+            );
+            console.log("어학시험 추가 완료!");
 
-        // 입력 필드 초기화
-        languageFields.querySelector('input[name="languageName[]"]').value = '';
-        languageLevelSelect.value = '';
-        languageTypeSelect.value = '';
-        languageFields.querySelector('input[name="issueDate[]"]').value = '';
-    });
+            // 입력 필드 초기화
+            languageFields.querySelector('input[name="languageName[]"]').value = '';
+            if (proficiencyLevelSelect) proficiencyLevelSelect.value = '';
+            if (languageTypeSelect) languageTypeSelect.value = '';
+            languageFields.querySelector('input[name="issueDate[]"]').value = '';
+        });
+    }
 
     // 수상내역 추가하기
     const addAwardButton = document.querySelector('.addAwardButton');
-    addAwardButton.addEventListener('click', function (event) {
-        event.preventDefault();
+    if (addAwardButton) {
+        addAwardButton.addEventListener('click', function (event) {
+            event.preventDefault();
 
-        const awardFields = document.getElementById('awardDetailsFields');
+            const awardFields = document.getElementById('awardDetailsFields');
+            if (!awardFields) {
+                console.error("awardDetailsFields 요소를 찾을 수 없습니다.");
+                return;
+            }
 
-        const awardName = awardFields.querySelector('input[name="awardName[]"]').value.trim();
-        const organizer = awardFields.querySelector('input[name="organizer[]"]').value.trim();
-        const awardDate = awardFields.querySelector('input[name="awardDate[]"]').value;
+            const awardName = awardFields.querySelector('input[name="awardName[]"]').value.trim();
+            const organizer = awardFields.querySelector('input[name="organizer[]"]').value.trim();
+            const awardDate = awardFields.querySelector('input[name="awardDate[]"]').value;
 
-        // 빈 값 체크
-        if (!awardName || !organizer || !awardDate) {
-            alert("모든 필드를 입력해주세요.");
-            return;
-        }
+            // 빈 값 체크
+            if (!awardName || !organizer || !awardDate) {
+                alert("모든 필드를 입력해주세요.");
+                return;
+            }
 
-        // 리스트에 추가
-        createListItem(
-            awardName, 
-            `${awardDate.replace(/-/g, ".")}`, 
-            organizer, 
-            '.result-list-awards',
-            ['awardName[]', 'organizer[]', 'awardDate[]']
-        );
-        console.log("수상내역 추가 완료!");
+            // 리스트에 추가
+            createListItem(
+                awardName,
+                `${awardDate.replace(/-/g, ".")}`,
+                organizer,
+                '.result-list-awards',
+                ['awardName[]', 'organizer[]', 'awardDate[]']
+            );
+            console.log("수상내역 추가 완료!");
 
-        // 입력 필드 초기화
-        awardFields.querySelector('input[name="awardName[]"]').value = '';
-        awardFields.querySelector('input[name="organizer[]"]').value = '';
-        awardFields.querySelector('input[name="awardDate[]"]').value = '';
-    });
+            // 입력 필드 초기화
+            awardFields.querySelector('input[name="awardName[]"]').value = '';
+            awardFields.querySelector('input[name="organizer[]"]').value = '';
+            awardFields.querySelector('input[name="awardDate[]"]').value = '';
+        });
+    }
 
     // 리스트 아이템 생성 및 폼에 hidden input 추가 함수
     function createListItem(title, details, institution, listSelector, inputNames) {
@@ -541,10 +529,55 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (name === 'awardDate[]') {
                 hiddenInput.value = details.trim().replace(/\./g, '-');
             }
-            document.getElementById('resumeForm').appendChild(hiddenInput);
+            const resumeForm = document.getElementById('resumeForm');
+            if (resumeForm) {
+                resumeForm.appendChild(hiddenInput);
+            } else {
+                console.error("resumeForm 요소를 찾을 수 없습니다.");
+            }
         });
 
         return listItem;
     }
-});
 
+    // 군사 상태 선택 처리
+    const militaryStatusSelect = document.getElementById('military_status');
+    if (militaryStatusSelect) {
+        militaryStatusSelect.addEventListener('change', function () {
+            const selectedValue = this.value;
+            const parentDiv = this.closest('.pre2'); // 해당 select의 상위 pre2 div 찾기
+
+            if (!parentDiv) return; // parentDiv가 없으면 종료
+
+            // 관련 필드 요소 선택 (id를 사용)
+            const unfulfilled = parentDiv.querySelector('#unfulfilledFields');
+            const exempted = parentDiv.querySelector('#exemptedFields');
+            const fulfilled = parentDiv.querySelector('#fulfilledFields');
+            const serving = parentDiv.querySelector('#servingFields');
+
+            // 모든 필드 숨기기
+            if (unfulfilled) unfulfilled.style.display = 'none';
+            if (exempted) exempted.style.display = 'none';
+            if (fulfilled) fulfilled.style.display = 'none';
+            if (serving) serving.style.display = 'none';
+
+            // 선택한 값에 따라 해당 필드 표시
+            switch(selectedValue) {
+                case '미필':
+                    if (unfulfilled) unfulfilled.style.display = 'flex';
+                    break;
+                case '면제':
+                    if (exempted) exempted.style.display = 'flex';
+                    break;
+                case '군필':
+                    if (fulfilled) fulfilled.style.display = 'flex';
+                    break;
+                case '복무중':
+                    if (serving) serving.style.display = 'flex';
+                    break;
+                default:
+                    // '대상아님' 또는 기타 선택 시 아무 것도 표시하지 않음
+                    break;
+            }
+        });
+    }
