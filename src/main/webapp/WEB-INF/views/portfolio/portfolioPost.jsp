@@ -17,7 +17,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/portfolioPost.css">
 </head>
-<body data-page="create">
+<body data-page="create" class="portfolio-post">
     <!-- 헤더 포함 -->
     <c:import url="/WEB-INF/views/common/header.jsp" />
 
@@ -76,7 +76,7 @@
          
     <!-- 푸터 포함 -->
     <c:import url="/WEB-INF/views/common/footer.jsp" />
-
+    
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap JS -->
@@ -85,5 +85,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
     <!-- Custom JS -->
     <script src="${pageContext.request.contextPath}/js/portfolioPost.js"></script>
+    
 </body>
 </html>

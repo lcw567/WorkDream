@@ -17,7 +17,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/portfolioPost.css">
 </head>
-<body data-page="edit">
+<body data-page="edit" class="portfolio-post">
     <!-- 헤더 포함 -->
     <c:import url="/WEB-INF/views/common/header.jsp" />
 

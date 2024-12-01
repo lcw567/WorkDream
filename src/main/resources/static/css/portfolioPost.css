@@ -1,4 +1,3 @@
-/* portfolioPost.css */
 @charset "UTF-8";
 
 /* 색상 변수 정의 */
@@ -10,78 +9,62 @@
     --alert-bg: #E1DEF1;     /* 설명칸 배경색 */
 }
 
-
-/* Summernote 에디터 내부의 폰트 색상 변경 허용 */
-.portfolio-post .note-editable {
-    color: #333333; /* 원하는 기본 텍스트 색상 */
+/* 기본 스타일 */
+body, body * {
+    padding: 0;
+    margin: 0;
+    font-family: 'MonoplexKR-Regular';
+    font-size: 0.688rem;
+    color: #000000;
 }
 
-.portfolio-post .note-editable p,
-.portfolio-post .note-editable li {
+/* Summernote 전용 스타일 */
+body.portfolio-post .note-editable {
+    font-family: inherit; /* 상속 */
+    font-size: inherit;
+    color: inherit !important; /* 폰트 색상 초기화 */
+}
+
+
+body.portfolio-post .note-editable p,
+body.portfolio-post .note-editable li {
     color: inherit;
 }
 
-/* 필요 시, 특정 태그들에 대한 추가 스타일 복구 */
-.portfolio-post .note-editable ol,
-.portfolio-post .note-editable ul {
+body.portfolio-post .note-editable ol,
+body.portfolio-post .note-editable ul {
     list-style-type: decimal !important; /* Summernote 기본 스타일 유지 */
     padding-left: 20px;
 }
 
-.portfolio-post .note-editable a {
-    /* 링크 스타일을 Summernote 기본 스타일로 유지 */
-    color: #007bff !important; /* Bootstrap의 기본 링크 색상 */
+body.portfolio-post .note-editable a {
+    color: #007bff !important; /* Bootstrap 기본 링크 색상 */
     text-decoration: underline;
 }
 
-/* 기타 포트폴리오 작성 페이지의 스타일 */
+/* Summernote 툴바 배경 */
+.note-editor .note-toolbar,
+.note-popover .popover-content {
+    background-color: #E1DEF1;
+}
+
+/* 텍스트 필드 스타일 */
+.tekhelet-border {
+    border-color: var(--tekhelet) !important;
+}
+
+/* 페이지 제목 스타일 */
 .styled-title {
     font-family: 'Arial', sans-serif;
     font-weight: bold;
     border-bottom: 3px solid var(--tekhelet);
     padding-bottom: 10px;
     margin-bottom: 30px;
-    font-size: 3rem; /* 제목 폰트 크기 확대 */
+    font-size: 3rem;
     text-align: center;
-}
-
-h1 {
-    margin-bottom: 20px;
-    color: var(--tekhelet);
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.tekhelet-border {
-    border-color: var(--tekhelet) !important;
-}
-
-/* 버튼 밑에 마진 추가 */
-.d-flex.justify-content-center.mt-3 {
-    margin-bottom: 30px;
-}
-
-.note-editor .note-toolbar,
-.note-popover .popover-content {
-    background-color: #E1DEF1;
-}
-
-/* 내용 텍스트 스타일 */
-.form-group label {
-    text-align: left;
-    display: block;
-    font-weight: 600; 
-    font-size: 1.1rem; 
-    color: #333;
-    margin-bottom: 10px;
 }
 
 /* 버튼 스타일 */
-
-/* 포트폴리오 작성 및 열람 버튼 (보라색 계열) */
 .btn-purple {
     background-color: var(--grape);
     border-color: var(--grape);
@@ -91,10 +74,9 @@ h1 {
 .btn-purple:hover {
     background-color: var(--royal-purple);
     border-color: var(--royal-purple);
-    color: #fff; /* 글자 색상 변경 방지 */
+    color: #fff;
 }
 
-/* 수정 버튼 (연보라색) */
 .btn-edit {
     background-color: #5E35B0;  
     border-color: #5E35B0;  
@@ -104,10 +86,9 @@ h1 {
 .btn-edit:hover {
     background-color: var(--royal-purple);
     border-color: var(--royal-purple);
-    color: #fff; /* 글자 색상 변경 방지 */
+    color: #fff;
 }
 
-/* 삭제 버튼 스타일 (Bootstrap의 btn-danger 사용) */
 .btn-danger {
     background-color: #dc3545;
     border-color: #dc3545;
@@ -117,11 +98,7 @@ h1 {
 .btn-danger:hover {
     background-color: #c82333;
     border-color: #bd2130;
-    color: #fff; /* 글자 색상 변경 방지 */
-}
-
-.d-flex.justify-content-start {
-    gap: 10px; /* 버튼 사이 간격 */
+    color: #fff;
 }
 
 /* 사용설명 스타일 */
@@ -157,7 +134,7 @@ h1 {
 
 .pagination button:hover {
     background-color: var(--royal-purple);
-    color: #fff; /* 글자 색상 변경 방지 */
+    color: #fff;
 }
 
 .pagination button:disabled {
@@ -170,18 +147,4 @@ h1 {
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--tekhelet);
-}
-
-/* 목록 스타일링 */
-
-/* 순서 있는 목록 */
-.note-editable ol {
-    list-style-type: decimal !important; /* 숫자 목록 */
-    padding-left: 20px;
-}
-
-/* 순서 없는 목록 */
-.note-editable ul {
-    list-style-type: disc !important; /* 원형 목록 */
-    padding-left: 20px;
 }
