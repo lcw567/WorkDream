@@ -1,11 +1,14 @@
 package com.cs.workdream.portfolio.model.dao;
 
+import com.cs.workdream.common.vo.PageInfo;
 import com.cs.workdream.portfolio.model.vo.Portfolio;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 포트폴리오 DAO 클래스
@@ -32,8 +35,12 @@ public class PortfolioDao {
      * @param userNo 사용자 번호
      * @return 포트폴리오 목록
      */
-    public List<Portfolio> selectPortfoliosByUserNo(int userNo) {
-        return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByUserNo", userNo);
+    public List<Portfolio> selectPortfoliosByUserNo(int userNo, PageInfo pageInfo) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("userNo", userNo);
+        params.put("offset", (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit());
+        params.put("limit", pageInfo.getBoardLimit());
+        return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByUserNo", params);
     }
 
     /**
@@ -59,5 +66,14 @@ public class PortfolioDao {
      */
     public void softDeletePortfolio(int portfolioId) {
         sqlSession.update(NAMESPACE + ".softDeletePortfolio", portfolioId);
+    }
+
+    /**
+     * 특정 사용자의 포트폴리오 총 개수를 조회합니다.
+     * @param userNo 사용자 번호
+     * @return 포트폴리오 개수
+     */
+    public int selectPortfolioCountByUserNo(int userNo) {
+        return sqlSession.selectOne(NAMESPACE + ".selectPortfolioCountByUserNo", userNo);
     }
 }
