@@ -24,12 +24,20 @@
         VALUES (#{portfolioId}, #{userNo}, #{title}, #{content}, SYSDATE, 'Y')
     </insert>
 
-    <!-- Select Portfolios by User -->
-    <select id="selectPortfoliosByUserNo" parameterType="int" resultMap="PortfolioResultMap">
+    <!-- Select Portfolios by User with Pagination -->
+    <select id="selectPortfoliosByUserNo" parameterType="map" resultMap="PortfolioResultMap">
         SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS
-        FROM PORTFOLIO
-        WHERE USER_NO = #{userNo} AND STATUS = 'Y'
-        ORDER BY CREATE_DATE DESC
+        FROM (
+            SELECT ROWNUM AS RN, A.*
+            FROM (
+                SELECT *
+                FROM PORTFOLIO
+                WHERE USER_NO = #{userNo} AND STATUS = 'Y'
+                ORDER BY CREATE_DATE DESC
+            ) A
+            WHERE ROWNUM &lt;= #{offset} + #{limit}
+        )
+        WHERE RN &gt; #{offset}
     </select>
 
     <!-- Select Portfolio by ID -->
@@ -54,5 +62,12 @@
         SET STATUS = 'N'
         WHERE PORTFOLIO_ID = #{portfolioId} AND STATUS = 'Y'
     </update>
+
+    <!-- Select Portfolio Count by User -->
+    <select id="selectPortfolioCountByUserNo" parameterType="int" resultType="int">
+        SELECT COUNT(*)
+        FROM PORTFOLIO
+        WHERE USER_NO = #{userNo} AND STATUS = 'Y'
+    </select>
 
 </mapper>

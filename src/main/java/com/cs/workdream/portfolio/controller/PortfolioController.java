@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import com.cs.workdream.common.vo.PageInfo;
 import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.portfolio.model.service.PortfolioService;
 import com.cs.workdream.portfolio.model.vo.Portfolio;
@@ -54,14 +54,32 @@ public class PortfolioController {
      * 포트폴리오 관리 대시보드 표시
      */
     @GetMapping("/portfolioDashboard")
-    public String showPortfolioDashboard(Model model, HttpSession session) {
+    public String showPortfolioDashboard(
+            @RequestParam(value = "page", defaultValue = "1") int currentPage,
+            Model model, HttpSession session) {
         Member loginUser = (Member) session.getAttribute("loginUser");
         if (loginUser == null) {
             return "redirect:/login";
         }
         int userNo = loginUser.getUserNo();
-        List<Portfolio> portfolios = portfolioService.getPortfoliosByUserNo(userNo);
+
+        // 페이지네이션 처리
+        int listCount = portfolioService.getPortfolioCountByUserNo(userNo);
+        int pageLimit = 5;    // 페이지 하단에 보여질 페이지 수
+        int boardLimit = 5;   // 한 페이지에 보여질 포트폴리오 수
+
+        int maxPage = (int) Math.ceil((double) listCount / boardLimit);
+        int startPage = ((currentPage - 1) / pageLimit) * pageLimit + 1;
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > maxPage) {
+            endPage = maxPage;
+        }
+
+        PageInfo pageInfo = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+
+        List<Portfolio> portfolios = portfolioService.getPortfoliosByUserNo(userNo, pageInfo);
         model.addAttribute("portfolios", portfolios);
+        model.addAttribute("pageInfo", pageInfo);
         return "portfolio/portfolioDashboard";
     }
 

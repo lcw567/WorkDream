@@ -1,3 +1,4 @@
+/* portfolioPost.css */
 @charset "UTF-8";
 
 /* 색상 변수 정의 */
@@ -11,22 +12,14 @@
 
 /* 기존 공통 스타일은 common.css에서 관리됨 */
 
-/* Summernote 에디터의 색상 규칙을 우선시하지 않도록 제거 */
-/* .portfolio-post .note-editable {
-    color: inherit !important; 
-}
-
-.portfolio-post .note-editable * {
-    color: inherit !important;
-} */
-
-/* 대신, Summernote 에디터 내부의 색상 변경을 허용하도록 설정 */
+/* Summernote 에디터 내부의 폰트 색상 변경 허용 */
 .portfolio-post .note-editable {
-    /* 기본 색상 설정을 하지 않음 */
+    color: #333333; /* 원하는 기본 텍스트 색상 */
 }
 
-.portfolio-post .note-editable * {
-    /* 기본 색상 설정을 하지 않음 */
+.portfolio-post .note-editable p,
+.portfolio-post .note-editable li {
+    color: inherit;
 }
 
 /* 필요 시, 특정 태그들에 대한 추가 스타일 복구 */
@@ -177,7 +170,7 @@ h1 {
 .pagination span {
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--tekhelet);ㄴ
+    color: var(--tekhelet);
 }
 
 /* 목록 스타일링 */
@@ -193,35 +186,3 @@ h1 {
     list-style-type: disc !important; /* 원형 목록 */
     padding-left: 20px;
 }
-
-/* Summernote 에디터 내부 스타일 강제 초기화 */
-#summernote.note-editable {
-    color: inherit !important;
-    font-family: Arial, sans-serif !important; /* 폰트 상속 */
-    font-size: 1rem !important; /* 폰트 크기 */
-    line-height: 1.5 !important; /* 줄 간격 */
-}
-
-/* Summernote 내부 모든 태그 스타일 강제 초기화 */
-#summernote.note-editable * {
-    color: inherit !important;
-    font-family: inherit !important;
-    font-size: inherit !important;
-    line-height: inherit !important;
-}
-
-/* Summernote 기본 스타일 복구 */
-#summernote.note-editable a {
-    color: #007bff !important;
-    text-decoration: underline !important;
-}
-
-#summernote.note-editable p {
-    margin: 0 !important;
-}
-
-/* 공통 스타일 제거 */
-body #summernote.note-editable {
-    all: unset !important; /* 기존 공통 스타일 무효화 */
-}
-

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cs.workdream.common.vo.PageInfo;
 import com.cs.workdream.portfolio.model.dao.PortfolioDao;
 import com.cs.workdream.portfolio.model.vo.Portfolio;
 
@@ -24,8 +25,8 @@ public class PortfolioServiceImpl implements PortfolioService {
     }
 
     @Override
-    public List<Portfolio> getPortfoliosByUserNo(int userNo) {
-        return portfolioDao.selectPortfoliosByUserNo(userNo);
+    public List<Portfolio> getPortfoliosByUserNo(int userNo, PageInfo pageInfo) {
+        return portfolioDao.selectPortfoliosByUserNo(userNo, pageInfo);
     }
 
     @Override
@@ -41,5 +42,10 @@ public class PortfolioServiceImpl implements PortfolioService {
     @Override
     public void deletePortfolio(int portfolioId) {
         portfolioDao.softDeletePortfolio(portfolioId);
+    }
+
+    @Override
+    public int getPortfolioCountByUserNo(int userNo) {
+        return portfolioDao.selectPortfolioCountByUserNo(userNo);
     }
 }

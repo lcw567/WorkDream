@@ -82,4 +82,30 @@
     border-color: #E1DEF1;
     margin-top: 30px;
 }
- 
+
+/* 페이지네이션 스타일 */
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    color: var(--royal-purple);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--royal-purple);
+    border-color: var(--royal-purple);
+    color: #fff;
+}
+
+.pagination .page-link:hover {
+    background-color: var(--light-purple);
+    color: var(--royal-purple);
+}
