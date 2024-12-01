@@ -31,8 +31,7 @@
                 <h2>${portfolio.title}</h2>
             </div>
             <div class="card-body">
-                <!-- Summernote 에디터 -->
-                <div id="summernote"><c:out value="${portfolio.content}" escapeXml="false"/></div>
+                <div id="portfolio-content"><c:out value="${portfolio.content}" escapeXml="false"/></div>
             </div>
             <div class="card-footer text-right">
                 <a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard" class="btn btn-purple">관리 페이지로 돌아가기</a>

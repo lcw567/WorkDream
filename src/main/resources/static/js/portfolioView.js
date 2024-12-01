@@ -1,4 +1,3 @@
-// portfolioView.js
 $(document).ready(function() {
     console.log("portfolioView.js 로드됨"); // 디버깅용 로그
 
@@ -6,10 +5,10 @@ $(document).ready(function() {
         tabsize: 2,
         height: 500,
         toolbar: false, // 툴바 비활성화
+        readOnly: true, // 읽기 전용 모드
         callbacks: {
             onInit: function() {
-                // Summernote를 읽기 전용으로 설정
-                $(this).summernote('disable');
+                // disable() 메서드 제거
             }
         }
     });

@@ -82,41 +82,4 @@
     border-color: #E1DEF1;
     margin-top: 30px;
 }
-
-/* 페이지네이션 스타일 */
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1rem;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.pagination button {
-    background-color: var(--tekhelet);
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.pagination button:hover {
-    background-color: var(--royal-purple);
-    color: #fff; /* 글자 색상 변경 방지 */
-}
-
-.pagination button:disabled {
-    background-color: #ddd;
-    color: #666;
-    cursor: not-allowed;
-}
-
-.pagination span {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--tekhelet);
-}
+ 
