@@ -53,11 +53,9 @@
 		
 		<!-- 추천 공고 목록 -->
 		<section id="index-section-list">
-			<table>
-				<tr>
-					<td>데이터 들어올곳</td>
-				</tr>
-			</table>
+			<%-- 
+				테스트 데이터 정비 후 js로 html 추가하는 식으로 편집 예정
+			 --%>
 		</section>
 		
 		<!-- 광고 -->

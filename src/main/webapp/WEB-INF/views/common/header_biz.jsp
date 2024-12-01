@@ -32,9 +32,7 @@
     	<nav>
     		<!-- 카테고리 -->
     		<ul id="biz-nav-left">
-    			<li>
-    				<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logo_icon.png" /></a>
-    			</li>
+    			<li><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logo_icon.png" /></a></li>
     			<li class="On"><a href="${pageContext.request.contextPath}/business/businessMypage">기업 홈</a></li>
     			<li><a href="${pageContext.request.contextPath}/business/recruitmentStatus">채용공고관리</a></li>
     			<li><a href="${pageContext.request.contextPath}/business/applicantsStatus">지원자 현황</a></li>
@@ -43,7 +41,7 @@
     			<li><a href="#">커뮤니티</a></li>
     		</ul>
     		
-    		<!-- 유저메뉴 -->
+    		<!-- 유저 메뉴 -->
     		<ul id="biz-nav-right">
     			<li>
     				<a href="#"><img src="${pageContext.request.contextPath}/img/btn_chat.png" /></a>
@@ -58,7 +56,7 @@
     				<a href="#">
     					<span></span>
     				</a>
-    				<a href="#">워크드림</a>
+    				<a href="#">${loginUser.companyName}</a>
     			</li>
     			<li class="logout"><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
     		</ul>
