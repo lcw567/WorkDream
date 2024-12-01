@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
+import com.cs.workdream.business.model.vo.Business;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
 
@@ -35,5 +36,5 @@ public interface BusinessService {
 
 	// 즐겨찾기 그룹 삭제
 	int deleteFolder(int businessNo, int folder);
-	
+
 }

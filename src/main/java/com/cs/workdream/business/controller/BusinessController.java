@@ -11,31 +11,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
+import com.cs.workdream.business.model.vo.Business;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
-import com.cs.workdream.business.model.vo.JobPosting1;
 import com.cs.workdream.business.model.vo.Position;
+import com.cs.workdream.business.service.BusinessProfileService;
 import com.cs.workdream.business.service.BusinessService;
 import com.cs.workdream.member.model.vo.Member;
 
 @Controller
 @RequestMapping("/business")
 public class BusinessController {
+	@Autowired
 	private BusinessService businessService;
+    private BusinessProfileService businessProfileService;
 	
 	@Autowired
-	public BusinessController(BusinessService businessService) {
+	public BusinessController(BusinessService businessService, BusinessProfileService businessProfileService) {
 		this.businessService = businessService;
+		this.businessProfileService = businessProfileService;
 	}
+	
+	
+	/*=====================================================================================================*/
+	
+	
+	/* 기업 마이페이지 (기업 홈) 관련 */
+	// 기업홈 페이지로 이동
+	@GetMapping("/businessMypage")
+    public String businessMypage(HttpSession session, Model model) throws Exception {
+        // 세션에서 로그인한 사용자 정보 가져오기
+        Member currentUser = (Member) session.getAttribute("loginUser");
+        
+        if (currentUser != null) {
+        	int businessNo = currentUser.getBusinessNo();
+        	
+        	// 기업 정보 가져오기
+            Business business = businessProfileService.viewBusinessProfile(businessNo);
+            model.addAttribute("business", business);
+        } else {
+            // 로그인하지 않은 경우 처리
+        	session.setAttribute("alertMsg", "회원가입이 완료되었습니다. 워크드림에 오신 걸 환영합니다!");
+            return "redirect:/login";
+        }
+        
+        return "business/businessMypage";
+    }
 	
 	
 	/*=====================================================================================================*/

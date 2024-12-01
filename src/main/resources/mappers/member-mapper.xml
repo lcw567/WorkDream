@@ -16,14 +16,28 @@
 		<result column="BUSINESS_NO" property="businessNo" />
 		<result column="PERSON_NO" property="personNo" />
 		<result column="REGISTRATION_NUMBER" property="registrationNumber"/>
+		<result column="OWNER_NAME" property="ownerName" />
+		<result column="COMPANY_NAME" property="companyName" />
+		<result column="LOGO" property="logoImg" />
 		<result column="NAME" property="userName" />
-		<result column="OWNER_NAME" property="userName" />
+		<result column="BIRTHDAY" property="birthday" />
+		<result column="GENDER" property="gender" />
 	</resultMap>
 	
 	<!-- 로그인 -->
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
-		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD, BUSINESS_NO, PERSON_NO
-		  FROM	MEMBER
+		SELECT	USER_NO, USER_TYPE, USER_ID, USER_PWD, M.BUSINESS_NO AS BUSINESS_NO, M.PERSON_NO AS PERSON_NO,
+				<choose>
+					<when test='userType != null and userType.trim() == "B"'>
+						REGISTRATION_NUMBER, OWNER_NAME, COMPANY_NAME, LOGO
+					</when>
+					<when test='userType != null and userType.trim() == "P"'>
+						NAME, TO_CHAR(BIRTHDAY, 'YYYY.MM.DD') AS BIRTHDAY, GENDER
+					</when>
+				</choose>
+		  FROM	MEMBER M
+	 LEFT JOIN	BUSINESS B ON (M.BUSINESS_NO = B.BUSINESS_NO)
+	 LEFT JOIN	PERSON P ON (M.PERSON_NO = P.PERSON_NO)
 		 WHERE	USER_ID = #{userId}
 		   AND	USER_TYPE = #{userType, jdbcType=CHAR}
 		   AND	STATUS = 'Y'
