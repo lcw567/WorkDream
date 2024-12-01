@@ -10,7 +10,6 @@
     --alert-bg: #E1DEF1;     /* 설명칸 배경색 */
 }
 
-/* 기존 공통 스타일은 common.css에서 관리됨 */
 
 /* Summernote 에디터 내부의 폰트 색상 변경 허용 */
 .portfolio-post .note-editable {

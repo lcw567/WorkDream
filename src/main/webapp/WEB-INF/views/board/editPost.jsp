@@ -65,10 +65,11 @@
             </div>
         
             <div class="image-preview" id="imagePreview">
-                <c:if test="${not empty post.imagePath}">
-                    <img src="${pageContext.request.contextPath}${post.imagePath}" alt="이미지 미리보기">
-                </c:if>
-            </div>
+			    <c:if test="${not empty post.imagePath}">
+			        <img id="existingImage" src="${pageContext.request.contextPath}/board/uploads/${post.imagePath}" alt="이미지 미리보기">
+			    </c:if>
+			</div>
+
         
             <!-- 해시태그 입력 -->
             <div class="hashtag-input">

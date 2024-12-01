@@ -92,7 +92,7 @@
                 <li><a href="${pageContext.request.contextPath}/board/communityHome">커뮤니티</a></li>
                 <%-- 포토폴리오 메뉴 (구직자 로그인 전용) --%>
                 <c:if test="${ !empty loginUser && loginUser.userType == 'P' }">
-                	<li><a href="#">포토폴리오</a></li>
+                	<li><a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard">포토폴리오</a></li>
                 </c:if>
             </ul>
         </nav>
