@@ -1,3 +1,4 @@
+// portfolioPost.js
 $(document).ready(function () {
     $('#summernote').summernote({
         tabsize: 2,

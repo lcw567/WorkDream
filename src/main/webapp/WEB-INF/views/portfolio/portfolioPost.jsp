@@ -25,21 +25,20 @@
         <h1 class="text-center tekhelet styled-title">포트폴리오 작성</h1>
       
         <form action="${pageContext.request.contextPath}/portfolio/save" method="post">
-        	<!-- 버튼 -->
-		    <div class="d-flex justify-content-end mb-3">
-		        <button type="submit" class="btn btn-purple mr-2">저장</button>
-		        <a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard" class="btn btn-purple">관리 페이지로 돌아가기</a>
-		    </div>
+            <!-- 버튼 -->
+            <div class="d-flex justify-content-end mb-3">
+                <button type="submit" class="btn btn-purple mr-2">저장</button>
+                <a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard" class="btn btn-purple">관리 페이지로 돌아가기</a>
+            </div>
             
             <div class="form-group">
                 <input type="text" class="form-control tekhelet-border" id="title" name="title" placeholder="제목을 입력하시오" required>
             </div>
             <div class="form-group">
-                
                 <textarea id="summernote" name="content"></textarea>
             </div>
             <!-- 사용설명 추가 -->
-        <div class="alert alert-info custom-alert" role="alert">
+            <div class="alert alert-info custom-alert" role="alert">
 			📝 포트폴리오 작성 팁<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;완벽한 포트폴리오를 만들기 위한 몇 가지 유용한 팁을 소개할게요!<br><br>
 			🎨 디자인 일관성 유지하기<br>
@@ -54,11 +53,9 @@
 			🖼️ 시각적 요소 활용하기<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;이미지, 동영상, 인포그래픽 등을 활용하여 포트폴리오를 시각적으로 풍부하게 만들어보세요.<br><br>
         </div>
-                    
         </form>
     </div>
-   		 
-
+         
     <!-- 푸터 포함 -->
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 
