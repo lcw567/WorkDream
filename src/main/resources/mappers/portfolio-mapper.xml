@@ -1,1 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cs.workdream.portfolio.model.dao.PortfolioDao">
+
+    <resultMap id="PortfolioResultMap" type="com.cs.workdream.portfolio.model.vo.Portfolio">
+        <id property="portfolioId" column="PORTFOLIO_ID" />
+        <result property="userNo" column="USER_NO" />
+        <result property="title" column="TITLE" />
+        <result property="content" column="CONTENT" />
+        <result property="createDate" column="CREATE_DATE" />
+        <result property="updateDate" column="UPDATE_DATE" />
+        <result property="status" column="STATUS" />
+    </resultMap>
+
+    <!-- Insert Portfolio -->
+    <insert id="insertPortfolio" parameterType="com.cs.workdream.portfolio.model.vo.Portfolio">
+        <selectKey keyProperty="portfolioId" resultType="int" order="BEFORE">
+            SELECT SEQ_PORTFOLIO_ID.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO PORTFOLIO (PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, STATUS)
+        VALUES (#{portfolioId}, #{userNo}, #{title}, #{content}, SYSDATE, 'Y')
+    </insert>
+
+    <!-- Select Portfolios by User -->
+    <select id="selectPortfoliosByUserNo" parameterType="int" resultMap="PortfolioResultMap">
+        SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS
+        FROM PORTFOLIO
+        WHERE USER_NO = #{userNo} AND STATUS = 'Y'
+        ORDER BY CREATE_DATE DESC
+    </select>
+
+    <!-- Select Portfolio by ID -->
+    <select id="selectPortfolioById" parameterType="int" resultMap="PortfolioResultMap">
+        SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS
+        FROM PORTFOLIO
+        WHERE PORTFOLIO_ID = #{portfolioId} AND STATUS = 'Y'
+    </select>
+
+    <!-- Update Portfolio -->
+    <update id="updatePortfolio" parameterType="com.cs.workdream.portfolio.model.vo.Portfolio">
+        UPDATE PORTFOLIO
+        SET TITLE = #{title},
+            CONTENT = #{content},
+            UPDATE_DATE = SYSDATE
+        WHERE PORTFOLIO_ID = #{portfolioId} AND STATUS = 'Y'
+    </update>
+
+    <!-- Soft Delete Portfolio -->
+    <update id="softDeletePortfolio" parameterType="int">
+        UPDATE PORTFOLIO
+        SET STATUS = 'N'
+        WHERE PORTFOLIO_ID = #{portfolioId} AND STATUS = 'Y'
+    </update>
+
+</mapper>

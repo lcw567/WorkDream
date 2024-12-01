@@ -1,5 +1,45 @@
 package com.cs.workdream.portfolio.model.service;
 
-public class PortfolioServiceImpl {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cs.workdream.portfolio.model.dao.PortfolioDao;
+import com.cs.workdream.portfolio.model.vo.Portfolio;
+
+@Service
+public class PortfolioServiceImpl implements PortfolioService {
+
+    private final PortfolioDao portfolioDao;
+
+    @Autowired
+    public PortfolioServiceImpl(PortfolioDao portfolioDao) {
+        this.portfolioDao = portfolioDao;
+    }
+
+    @Override
+    public void addPortfolio(Portfolio portfolio) {
+        portfolioDao.insertPortfolio(portfolio);
+    }
+
+    @Override
+    public List<Portfolio> getPortfoliosByUserNo(int userNo) {
+        return portfolioDao.selectPortfoliosByUserNo(userNo);
+    }
+
+    @Override
+    public Portfolio getPortfolioById(int portfolioId) {
+        return portfolioDao.selectPortfolioById(portfolioId);
+    }
+
+    @Override
+    public void updatePortfolio(Portfolio portfolio) {
+        portfolioDao.updatePortfolio(portfolio);
+    }
+
+    @Override
+    public void deletePortfolio(int portfolioId) {
+        portfolioDao.softDeletePortfolio(portfolioId);
+    }
 }

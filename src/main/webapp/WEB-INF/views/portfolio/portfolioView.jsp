@@ -28,10 +28,10 @@
         <!-- 포트폴리오 카드 -->
         <div class="card">
             <div class="card-header tekhelet-bg text-white">
-                <h2>포트폴리오 제목 예시</h2>
+                <h2>${portfolio.title}</h2>
             </div>
             <div class="card-body">
-                <div id="summernote" data-content="포트폴리오 내용 예시입니다. 이 영역에 포트폴리오의 상세 내용이 표시됩니다."></div>
+                <div id="summernote" data-content="${portfolio.content}"></div>
             </div>
             <div class="card-footer text-right">
                 <a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard" class="btn btn-purple">관리 페이지로 돌아가기</a>
