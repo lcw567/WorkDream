@@ -11,8 +11,6 @@
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
     <div class="pre_body">
-        <div class="pre_header">
-        </div>
         <div class="pre_inner">
             <fieldset class="basic_title">
                 <legend>${resume.resumeTitle}</legend>
@@ -21,8 +19,9 @@
                 <p>기본정보</p>
                 <div class="pre_inner1">
                     <div class="pre_inner1-1">
-                        <h2>이름 : ${resume.userName}</h2>
-                        <h2>성별 : ${resume.userGender}, 생년월일 : ${resume.userBirth}</h2>
+                        <h2>이름 : ${resume.userName}</h2><br>
+                        <h2>성별 : ${resume.userGender}</h2><br>
+                        <h2>생년월일 : ${resume.userBirth}</h2>
                     </div>
                     <h2>이메일 : ${resume.userEmail}</h2>
                     <h2>휴대폰 : ${resume.userPhone}</h2>
@@ -197,10 +196,10 @@
                     <!-- 자격증 -->
                     <c:forEach var="certificate" items="${resume.certificates}">
                         <div class="pre_inner6-1">
-                            <h2>자격증명: ${certificate.qualificationName}</h2>
-                            <h2>합격 구분: ${certificate.passStatus}</h2>
-                            <h2>발급 기관: ${certificate.issuingAgency}</h2>
-                            <h2>취득일: ${certificate.testDateCer}</h2>
+                            <h2>자격증명: ${Certificate.qualificationName}</h2>
+                            <h2>합격 구분: ${Certificate.passStatus}</h2>
+                            <h2>발급 기관: ${Certificate.issuingAgency}</h2>
+                            <h2>취득일: ${Certificate.testDate_cer}</h2>
                         </div>
                     </c:forEach>
                     
@@ -229,7 +228,6 @@
                 <div class="pre_inner9">
                     <!-- 보훈대상 -->
                     <div class="pre_inner9-1">
-                        <h2>보훈대상</h2>
                         <c:if test="${not empty resume.veteranReason}">
                             <h2>보훈 사유: ${resume.veteranReason}</h2>
                         </c:if>
@@ -259,6 +257,11 @@
                 </div>
             </fieldset>
         </div>
+        <form action="resumeDashboard" method="get">
+            <div class="btn_select">
+                <button type="submit" class="final_check">확인 완료</button>
+            </div>
+        </form>
     </div>
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>

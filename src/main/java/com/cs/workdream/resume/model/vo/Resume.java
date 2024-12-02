@@ -97,4 +97,7 @@ public class Resume {
     private String rank_ful;
     private String rank_ser;
     private String dischargeReason_ful;
+    
+    //공개여부
+    private String resumeStatus;
 }

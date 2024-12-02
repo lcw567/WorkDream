@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    // 기존의 모든 JavaScript 코드들을 여기 안으로 이동
+    // 예: displayEducationFields, 스킬 추가 기능, 자격증 추가 기능 등
+
     // 학력 필드 표시 및 비활성화/활성화 함수
     function displayEducationFields() {
         const selectedEdu = document.getElementById("selectedu").value;
@@ -47,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (activeSectionId) {
             const activeSection = document.getElementById(activeSectionId);
             if (activeSection) {
-                activeSection.style.display = "block";
+                activeSection.style.display = 'block';
                 const activeInputs = activeSection.querySelectorAll("input, select");
                 activeInputs.forEach(function(input) {
                     input.disabled = false;
@@ -177,43 +180,37 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-  // 경력 체크박스 처리
-  const careerCheckbox = document.getElementById("CareerY");
-  const careerDetails = document.querySelectorAll(".career1, .career2, .career3");
-  careerDetails.forEach(field => field.style.display = "none");
+    // 경력 체크박스 처리
+    const careerCheckbox = document.getElementById("CareerY");
+    if (careerCheckbox) {
+        const careerLabel = document.querySelector("label.careerYorN"); // "경력이 있을 경우 선택해주세요." 라벨
+        const checkboxLabel = careerCheckbox.parentElement; // 체크박스를 감싸는 라벨
+        const careerFieldset = document.querySelector("fieldset.career"); // 필드셋
+        const careerDetails = document.querySelectorAll(".career1, .career2, .career3"); // 필드셋 내부의 세부 요소들
 
-  careerCheckbox.addEventListener("change", function () {
-      if (this.checked) {
-          careerDetails.forEach(field => field.style.display = "flex");
-      } else {
-          careerDetails.forEach(field => field.style.display = "none");
-      }
-  });
-});
+        // 처음에는 필드셋 내부의 세부 요소들을 숨깁니다.
+        careerDetails.forEach(field => field.style.display = "none");
+        careerFieldset.style.height = "155px"; // 초기 높이 설정
 
-// 경력 체크박스 처리
-const careerCheckbox = document.getElementById("CareerY");
-const careerLabel = document.querySelector("label.careerYorN"); // "경력이 있을 경우 선택해주세요." 라벨
-const checkboxLabel = careerCheckbox.parentElement; // 체크박스를 감싸는 라벨
-const careerFieldset = document.querySelector("fieldset.career"); // 필드셋
-const careerDetails = document.querySelectorAll(".career1, .career2, .career3"); // 필드셋 내부의 세부 요소들
+        // 체크박스 상태에 따라 요소들을 조정합니다.
+        careerCheckbox.addEventListener("change", function() {
+            if (careerCheckbox.checked) {
+                // 체크박스와 라벨을 숨깁니다.
+                careerLabel.style.display = "none";
+                checkboxLabel.style.display = "none";
 
-// 처음에는 필드셋 내부의 세부 요소들을 숨깁니다.
-careerDetails.forEach(field => field.style.display = "none");
-careerFieldset.style.height = "155px"; // 초기 높이 설정
-
-// 체크박스 상태에 따라 요소들을 조정합니다.
-careerCheckbox.addEventListener("change", function() {
-    if (careerCheckbox.checked) {
-        // 체크박스와 라벨을 숨깁니다.
-        careerLabel.style.display = "none";
-        checkboxLabel.style.display = "none";
-
-        // 필드셋의 높이를 변경하고, 내부 세부 요소들을 표시합니다.
-        careerFieldset.style.height = "520px";
-        careerDetails.forEach(field => field.style.display = "flex");
+                // 필드셋의 높이를 변경하고, 내부 세부 요소들을 표시합니다.
+                careerFieldset.style.height = "520px";
+                careerDetails.forEach(field => field.style.display = "flex");
+            } else {
+                // 체크 해제 시 원래대로 복원
+                careerLabel.style.display = "block";
+                checkboxLabel.style.display = "block";
+                careerFieldset.style.height = "155px";
+                careerDetails.forEach(field => field.style.display = "none");
+            }
+        });
     }
-});
 
     // 프로필 이미지 업로드 기능
     const imageContainer = document.querySelector('#basic5');
@@ -244,41 +241,6 @@ careerCheckbox.addEventListener("change", function() {
                 }
             });
         }
-    }
-
-    // 다움 주소 검색
-    function sample4_execDaumPostcode() {
-        // Daum.Postcode 라이브러리가 로드되어 있는지 확인
-        if (typeof daum === 'undefined' || !daum.Postcode) {
-            console.error("Daum.Postcode 라이브러리가 로드되지 않았습니다.");
-            return;
-        }
-
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 선택한 주소 정보를 표시
-                const postcode = document.getElementById("sample4_postcode");
-                const roadAddress = document.getElementById("roadAddress");
-                const detailAddress = document.getElementById("detailAddress");
-                const guideTextBox = document.getElementById("guide");
-
-                if (postcode) postcode.value = data.zonecode; // 우편번호
-                if (roadAddress) roadAddress.value = data.roadAddress; // 도로명 주소
-                if (detailAddress) detailAddress.focus(); // 상세주소로 포커스 이동
-
-                // 참고항목 정보 설정
-                if (guideTextBox) {
-                    if (data.autoRoadAddress) {
-                        const extraAddr = data.autoRoadAddress ? data.autoRoadAddress : '';
-                        guideTextBox.innerHTML = "(예상 도로명 주소: " + extraAddr + ")";
-                        guideTextBox.style.display = "block";
-                    } else {
-                        guideTextBox.innerHTML = "";
-                        guideTextBox.style.display = "none";
-                    }
-                }
-            }
-        }).open();
     }
 
     // 카테고리 선택 처리
@@ -550,34 +512,79 @@ careerCheckbox.addEventListener("change", function() {
             if (!parentDiv) return; // parentDiv가 없으면 종료
 
             // 관련 필드 요소 선택 (id를 사용)
-            const unfulfilled = parentDiv.querySelector('#unfulfilledFields');
-            const exempted = parentDiv.querySelector('#exemptedFields');
-            const fulfilled = parentDiv.querySelector('#fulfilledFields');
-            const serving = parentDiv.querySelector('#servingFields');
+            const 미필 = parentDiv.querySelector('#unfulfilledFields');
+            const 면제 = parentDiv.querySelector('#exemptedFields');
+            const 군필 = parentDiv.querySelector('#fulfilledFields');
+            const 복무중 = parentDiv.querySelector('#servingFields');
 
             // 모든 필드 숨기기
-            if (unfulfilled) unfulfilled.style.display = 'none';
-            if (exempted) exempted.style.display = 'none';
-            if (fulfilled) fulfilled.style.display = 'none';
-            if (serving) serving.style.display = 'none';
+            if (미필) 미필.style.display = 'none';
+            if (면제) 면제.style.display = 'none';
+            if (군필) 군필.style.display = 'none';
+            if (복무중) 복무중.style.display = 'none';
 
             // 선택한 값에 따라 해당 필드 표시
             switch(selectedValue) {
                 case '미필':
-                    if (unfulfilled) unfulfilled.style.display = 'flex';
+                    if (미필) 미필.style.display = 'flex';
                     break;
                 case '면제':
-                    if (exempted) exempted.style.display = 'flex';
+                    if (면제) 면제.style.display = 'flex';
                     break;
                 case '군필':
-                    if (fulfilled) fulfilled.style.display = 'flex';
+                    if (군필) 군필.style.display = 'flex';
                     break;
                 case '복무중':
-                    if (serving) serving.style.display = 'flex';
+                    if (복무중) 복무중.style.display = 'flex';
                     break;
                 default:
                     // '대상아님' 또는 기타 선택 시 아무 것도 표시하지 않음
                     break;
             }
         });
+    }  
+
+}); // DOMContentLoaded 끝
+
+function sample4_execDaumPostcode() {
+    // Daum.Postcode 라이브러리가 로드되어 있는지 확인
+    if (typeof daum === 'undefined' || !daum.Postcode) {
+        console.error("Daum.Postcode 라이브러리가 로드되지 않았습니다.");
+        return;
     }
+
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 선택한 주소 정보를 표시
+            const postcode = document.getElementById("sample4_postcode");
+            const roadAddress = document.getElementById("roadAddress");
+            const detailAddress = document.getElementById("detailAddress");
+            const guideTextBox = document.getElementById("guide");
+
+            if (postcode) postcode.value = data.zonecode; // 우편번호
+            if (roadAddress) roadAddress.value = data.roadAddress; // 도로명 주소
+            if (detailAddress) detailAddress.focus(); // 상세주소로 포커스 이동
+
+            // 참고항목 정보 설정
+            if (guideTextBox) {
+                if (data.autoRoadAddress) {
+                    const extraAddr = data.autoRoadAddress ? data.autoRoadAddress : '';
+                    guideTextBox.innerHTML = "(예상 도로명 주소: " + extraAddr + ")";
+                    guideTextBox.style.display = "block";
+                } else {
+                    guideTextBox.innerHTML = "";
+                    guideTextBox.style.display = "none";
+                }
+            }
+        }
+    }).open();
+}
+
+document.getElementById('resumeY').addEventListener('change', function() {
+    var hiddenField = document.querySelector('input[name="resumeStatusHidden"]');
+    if (this.checked) {
+        hiddenField.value = 'Y';
+    } else {
+        hiddenField.value = 'N';
+    }
+});
