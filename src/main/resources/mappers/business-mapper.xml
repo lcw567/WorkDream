@@ -2,7 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="businessMapper">
-
+	<!-- Recuritment  -->
+	<resultMap type="Recuritment" id="recuritmentResultSet">
+		<result column="RECRUITMENT_NO" property="recuritmentNo" />
+		<result column="BUSINESS_NO" property="businessNo" />
+		<result column="TITLE" property="title" />
+		<result column="MANAGER_NAME" property="managerName" />
+		<result column="MANAGER_DEPT" property="managerDept" />
+		<result column="MANAGER_EMAIL" property="managerEmail" />
+		<result column="METHOD" property="method" />
+		<result column="START_DATE" property="startDate" />
+		<result column="DEADLINE" property="deadline" />
+		<result column="POSTING_DATE" property="postingDate" />
+		<result column="CONTENT_IMG" property="contentImg" />
+		<result column="CONTENT_TEXT" property="contextText" />
+		<result column="STATUS" property="status" />
+		<result column="TOTAL_COUNT" property="totalCount" />
+		<result column="TEMP_COUNT" property="tempCount" />
+		<result column="PROGRESS_COUNT" property="progressCount" />
+		<result column="END_COUNT" property="endCount" />
+	</resultMap>
+	
 	<!-- Applicants -->
 	<resultMap type="Applicants" id="applicantsResultSet">
 		<result column="APPLICANTS_NO" property="applicantsNo" />
@@ -65,6 +85,22 @@
 	</resultMap>
 	
 	
+	<!-- [공고 현황&목록] ================================================================================================== -->
+	
+	<!-- 전체 공고 목록 불러오기 -->
+	<select id="selectListRecuritment" parameterType="int" resultMap="recuritmentResultSet">
+		SELECT	RECRUITMENT_NO, BUSINESS_NO, TITLE, MANAGER_NAME, MANAGER_DEPT, METHOD,
+				TO_CHAR(START_DATE, 'YYYY.MM.DD') AS START_DATE, TO_CHAR(DEADLINE, 'YYYY.MM.DD') AS DEADLINE,
+				STATUS,
+				COUNT(*) AS TOTAL_COUNT,
+				COUNT(CASE WHEN STATUS = 'T' THEN 1 END) AS TEMP_COUNT,
+				COUNT(CASE WHEN STATUS = 'P' THEN 1 END) AS PROGRESS_COUNT,
+				COUNT(CASE WHEN STATUS = 'E' THEN 1 END) AS END_COUNT
+		  FROM	RECRUITMENT
+		 WHERE	BUSINESS_NO = #{businessNo}
+	</select>
+	
+	
 	<!-- [지원자 현황&목록] ================================================================================================== -->
 	
 	<!-- 지원자 현황 조회 -->
@@ -118,7 +154,7 @@
 				ADD_DATE
 		  FROM	BUSINESS_BOOKMARK B
 		  JOIN	RESUME R ON (B.RESUME_NO = R.RESUME_NO)
-	 LEFT JOIN	APPLICANTS A ON (R.RESUME_NO = A.RESUME_NO) AND (B.BUSINESS_NO = A.BUSINESS_NO)
+	 LEFT JOIN	APPLICANTS A ON (R.RESUME_NO = A.RESUME_NO)
 	 LEFT JOIN	BUSINESS_FOLDER F ON (B.FOLDER_NO = F.FOLDER_NO)
 		 WHERE	B.BUSINESS_NO = #{businessNo}
 	     ORDER	BY B.ADD_DATE DESC
