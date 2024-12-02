@@ -51,16 +51,16 @@
 				</div>
 			</div>
 
-			<div>
+			<div class="radio_label">
 				<div id="WorkDream_Applied">
-					<label style="display: flex;"> <input type="radio"
-						name="workdream" checked>
+					<label for="WorkDream_Applied_input"> 
+						<input type="radio" name="workdream" id="WorkDream_Applied_input" value="WorkDream_Applied_input" checked>
 						<h2>워크드림 프로필로 간편 지원</h2>
 					</label>
 				</div>
 				<div id="Homepage_Applied">
-					<label style="display: flex;"> <input type="radio"
-						name="workdream">
+					<label for="Homepage_Applied_input"> 
+						<input type="radio" name="workdream" id="Homepage_Applied_input" value="Homepage_Applied_input">
 						<h2>자사 홈페이지에서 지원</h2>
 					</label>
 				</div>
@@ -74,7 +74,7 @@
 			</div>
 
 			<input id="Announcement_Title" type="text"
-				placeholder="공고 제목을 입력해주세요.">
+				onkeyup="checkTextLength(event)" placeholder="공고 제목을 입력해주세요.">
 			<div style="display: flex;">
 				<p
 					style="color: #000000; font-weight: 900; margin-top: 3px; margin-bottom: 1px;">*
@@ -93,28 +93,24 @@
 			<p style="margin-top: 0px; color: #757575; font-weight: 200;">최대
 				5개까지 추가 가능합니다.</p>
 
-			<div>
-				<div class="Job_duty" id="jobDutiesContainer">
-					<p id="jobDataDisplay"></p>
-					<button>
-						<img
-							src="${pageContext.request.contextPath}/img/letter-x_9215129.png"
-							style="width: 25px; height: 25px;">
-					</button>
-				</div>
+			<main>
+				<section>
 
-				<div>
-					<div id="jobDutiesContainer">
-						<!-- 새로운 직무가 여기에 추가됩니다 -->
-					</div>
+					<div>
+						<div class="Job_duty">
+							<p style="color: white; font-size: 12px; font-weight: 600;" class="Job_duty_p">직무를 추가해 주세요.</p>
+							<button style="background: #4E21A8; border: none"><img src="${pageContext.request.contextPath}/img/letter-x_9215129.png" style="width: 25px; height: 26px; margin-top: 2px;"></button>
+						</div>
 
-					<button class="Add_Duty" id="addDutyButton">
+					<button class="Add_Duty" id="addDutyButton" style="backgroundcolor: none;" onclick="openModal()">
 						<img
-							src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png">
+							src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png"
+							alt="추가" />
 						<p>직무 추가</p>
 					</button>
-				</div>
-			</div>
+
+				</section>
+			</main>
 
 			<div class="Contact_Announcement_Information_Title">
 				<h2>공고 소개 이미지</h2>
@@ -125,8 +121,8 @@
 			<div id="Announcement_Introduction_file">
 				<input type="text" id="Announcement_Introduction_fileName"
 					placeholder=".png" disabled> <input type="file"
-					id="Announcement-file" hidden> <label
-					for="Announcement-file" id="Announcement_custom-file-upload">파일첨부</label>
+					id="Announcement-file" hidden onchange="changeFile(this)">
+				<label for="Announcement-file" id="Announcement_custom-file-upload">파일첨부</label>
 			</div>
 			<p style="color: #000000; font-weight: 900; margin-bottom: 2px;">*
 				공고와 관련된 이미지를 올려주세요. 소개문 이전에 노출됩니다. 공고와 관련없는 이미지는 제지를 받을 수 있습니다.</p>
@@ -190,10 +186,10 @@
 				style="padding: 35px 0;">
 				<h2 style="padding: 0 20px; width: 150px;">자격요건</h2>
 				<div class="Need_Input_Infomation">
-					<label class="Check_And_Text" style="width: 90px;"><input
+					<label class="Check_And_Text" style="width: 90px; padding-left:0px;"><input
 						type="checkbox">외국어 능력</label> <label class="Check_And_Text"
-						style="width: 60px;"><input type="checkbox">자격증</label> <label
-						class="Check_And_Text" style="width: 85px;"><input
+						style="width: 60px; padding-left:0px;"><input type="checkbox">자격증</label> <label
+						class="Check_And_Text" style="width: 85px; padding-left:0px;"><input
 						type="checkbox">포트폴리오</label>
 				</div>
 			</div>
@@ -206,9 +202,9 @@
 				style="padding: 35px 0;">
 				<h2 style="padding: 0 20px; width: 150px;">우대사항</h2>
 				<div class="Need_Input_Infomation">
-					<label class="Check_And_Text"><input type="checkbox">보훈
-						여부</label> <label class="Check_And_Text"><input type="checkbox">장애
-						여부</label> <label class="Check_And_Text"><input type="checkbox">병역
+					<label class="Check_And_Text" style="padding-left:0px;"><input type="checkbox">보훈
+						여부</label> <label class="Check_And_Text" style="padding-left:0px;"><input type="checkbox">장애
+						여부</label> <label class="Check_And_Text" style="padding-left:0px;"><input type="checkbox">병역
 						정보</label>
 				</div>
 
@@ -220,9 +216,9 @@
 				style="padding: 35px 0;">
 				<h2 style="padding: 0 20px; width: 150px;">개인정보</h2>
 				<div class="Need_Input_Infomation">
-					<label class="Check_And_Text"><input type="checkbox">출생연도</label>
-					<label class="Check_And_Text" style="width: 50px;"><input
-						type="checkbox">성별</label> <label class="Check_And_Text"><input
+					<label class="Check_And_Text" style="padding-left:0px;"><input type="checkbox">출생연도</label>
+					<label class="Check_And_Text" style="width: 50px; padding-left:0px;"><input
+						type="checkbox">성별</label> <label class="Check_And_Text" style="padding-left:0px;"><input
 						type="checkbox">현재연봉</label>
 				</div>
 
@@ -239,6 +235,360 @@
 			<button class="Cancel_Push">취소</button>
 			<button class="Next_Push">다음</button>
 		</div>
+
+
+		<!-- 모달 -->
+		<div class="modal">
+			<div class="modal_popup">
+				<div id="Job_Position_content" class="radio_label">
+					<div class="Position_And_Career">
+						<div class="Position_And_Career_Title">
+							<h2>직급 및 직책</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div id="Rank_And_Position">
+							<input type="text" id="Rank" name="Rank" placeholder="직급을 선택해 주세요." onkeyup="changeValue('rank', this.value)"> 
+							<input type="text" id="Position" name="Position" placeholder="직책을 선택해 주세요." onkeyup="changeValue('position', this.value)">
+						</div>
+	
+						<div class="Position_And_Career_Title">
+							<h2>고용 형태</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div id="Employment_Type">
+							<div>
+								<input type="radio" id="fullTime" name="employment_type"
+									value="정규직" checked/> <label for="fullTime">정규직</label>
+							</div>
+							<div>
+								<input type="radio" id="contract" name="employment_type"
+									value="계약직" /> <label for="contract">계약직</label>
+							</div>
+						</div>
+	
+	
+						<div class="Position_And_Career_Title">
+							<h2>경력</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div id="Career">
+							<div>
+								<input type="radio" id="Newcomer" name="career_type" value="신입">
+								<label for="Newcomer">신입</label>
+							</div>
+							<div>
+								<input type="radio" id="Work_History" name="career_type"
+									value="경력"> <label for="Work_History">경력</label>
+							</div>
+							<div>
+								<input type="radio" id="Regardless_Of_Experience"
+									name="career_type" value="경력 무관" checked> 
+									<label for="Regardless_Of_Experience">경력 무관</label>
+							</div>
+						</div>
+	
+						<div id="Career_Year">
+							<input type="text" class="Career_Year_Min" name="career_year_min" placeholder="최소" onkeyup="changeValue('career_year_min', this.value)">
+							<p style="font-size: 0.9rem; font-weight: 700;">~</p>
+							<input type="text" class="Career_Year_Max" name="career_year_max" placeholder="최대" onkeyup="changeValue('career_year_max', this.value)">
+							<p style="font-size: 0.9rem; font-weight: 700;">년차</p>
+						</div>
+	
+						<div class="Position_And_Career_Title">
+							<h2>학력</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div id="Education">
+							<div>
+								<input type="radio" id="Academic" name="academic" value="학력무관" checked>
+								<label for="Academic">학력무관</label>
+							</div>
+							<div>
+								<input type="radio" id="High_School_Graduate" name="academic"
+									value="고등학교 졸업"> <label for="High_School_Graduate">고등학교
+									졸업</label>
+							</div>
+							<div>
+								<input type="radio" id="College_Graduate2" name="academic"
+									value="대학졸업(2,3년)"> <label for="College_Graduate2">대학졸업(2,3년)</label>
+							</div>
+							<div>
+								<input type="radio" id="College_Graduate4" name="academic"
+									value="대학졸업(4년)"> <label for="College_Graduate4">대학졸업(4년)</label>
+							</div>
+							<div>
+								<input type="radio" id="University_Master_Graduate"
+									name="academic" value="대학원 석사졸업"> <label
+									for="University_Master_Graduate">대학원 석사졸업</label>
+							</div>
+							<div>
+								<input type="radio" id="PhD_Graduate" name="academic"
+									value="대학원 박사졸업"> <label for="PhD_Graduate">대학원
+									박사졸업</label>
+							</div>
+						</div>
+	
+						<div class="Position_And_Career_Title">
+							<h2>근무요일</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div id="Work_Days">
+							<div>
+								<input type="radio" id="6-Day_Work_Week" name="work_days" value="주 6일"> 
+								<label for="6-Day_Work_Week">주 6일</label>
+							</div>
+							<div>
+								<input type="radio" id="5-Day_Work_Week" name="work_days" value="주 5일" checked> 
+								<label for="5-Day_Work_Week">주 5일</label>
+							</div>
+							<div>
+								<input type="radio" id="4-Day_Work_Week" name="work_days" value="주 4일">
+								<label for="4-Day_Work_Week">주 4일</label>
+							</div>
+							<div>
+								<input type="radio" id="3-Day_Work_Week" name="work_days" value="주 3일"> 
+								<label for="3-Day_Work_Week">주 3일</label>
+							</div>
+							<div>
+								<input type="radio" id="2-Day_Work_Week" name="work_days" value="주 2일"> 
+								<label for="2-Day_Work_Week">주 2일</label>
+							</div>
+							<div>
+								<input type="radio" id="1-Day_Work_Week" name="work_days" value="주 1일"> 
+								<label for="1-Day_Work_Week">주 1일</label>
+							</div>
+							<div>
+								<input type="radio" id="Negotiable_Work" name="work_days" value="협의,스케줄 근무">
+								<label for="Negotiable_Work">협의,스케줄 근무</label>
+							</div>
+						</div>
+	
+						<div class="Position_And_Career_Title">
+							<h2>근무시간</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div id="Wark_Time" style="margin-bottom: 5px;">
+							<input type="time" class="Wark_Time_Min" onchange="changeValue('work_time_min', this.value)">
+							<p style="font-size: 0.9rem; font-weight: 900;">~</p>
+							<input type="time" class="Wark_Time_Min" onchange="changeValue('work_time_max', this.value)">
+							<p style="font-size: 0.9rem; font-weight: 700;">까지</p>
+						</div>
+	
+						<div style="display: flex; margin-bottom: 10px; margin-top: 5px;">
+							<!-- 협의, 스케쥴 근무 -->
+							<label class="unstyled-label"> <input type="checkbox"
+								style="font-weight: 900; font-size: 15px;">
+								<p style="font-size: 12px; font-weight: 600; margin: 0;">협의, 스케쥴 근무</p>
+							</label>
+						</div>
+	
+						<div class="Position_And_Career_Title">
+							<h2>예상연봉</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div id="Expected_Salary" style="margin-bottom: 0px;">
+							<input type="text" class="Expected_Salary_Min" name="expected_salary_min" placeholder="최소" onkeyup="changeValue('expected_salary_min', this.value)">
+							<p style="font-size: 0.9rem; font-weight: 900;">~</p>
+							<input type="text" class="Expected_Salary_Max" name="expected_salary_max" placeholder="최대" onkeyup="changeValue('expected_salary_max', this.value)">
+							<p style="font-size: 0.9rem; font-weight: 900;">만원</p>
+						</div>
+	
+						<div style="display: flex; margin-bottom: 10px; margin-top: 5px;">
+							<!-- 채용시 협의 -->
+							<label class="unstyled-label"> 
+								<input type="checkbox" name="" style="font-weight: 900; font-size: 15px;">
+								<p style="font-size: 12px; font-weight: 600; margin: 0;">채용시 협의</p>
+							</label>
+						</div>
+	
+						<div class="Position_And_Career_Title">
+							<h2>근무지 주소</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div style="display: flex;">
+							<button class="Work_Location_Address">
+								<img
+									src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png">
+								<p>지역 선택</p>
+							</button>
+							<div id="location-container">
+								<!-- 새로운 Work_Location 버튼이 추가될 곳 -->
+							</div>
+						</div>
+	
+						<div class="Position_And_Career_Title">
+							<h2
+								style="font-size: 1.5rem; font-weight: 900; margin-bottom: 20px;">선호
+								경력</h2>
+						</div>
+	
+						<div class="Position_And_Career_Title">
+							<h2>업종</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div style="display: flex;">
+							<button class="Industry_Category">
+								<img
+									src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png">
+								<p>업종 추가</p>
+							</button>
+							<div id="industry-container">
+								<!-- 새로운 Industry_Type 버튼이 추가될 곳 -->
+							</div>
+						</div>
+	
+	
+						<div class="Position_And_Career_Title">
+							<h2>전문분야 및 스킬</h2>
+							<b>
+								<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+							</b>
+						</div>
+	
+						<div id="Skill_Search">
+							<img
+								src="${pageContext.request.contextPath}/img/icons8-search-24.png"
+								id="search_Icon"> <img
+								src="${pageContext.request.contextPath}/img/icons8-vertical-line-16.png"
+								id="Vertical_Line"> <input type="text"
+								placeholder="키워드로 전문분야 - 스킬을 검색하세요" id="Skill_Search_Keyward">
+						</div>
+	
+						<p style="font-size: 0.8rem; color: #656565;">추천 스킬을 선택해보세요</p>
+	
+						<div id="skill-container">
+							<!-- 키워드가 추가될 곳 -->
+						</div>
+	
+	
+						<hr>
+	
+						<div class="Position_And_Career_Title"
+							style="margin-top: 20px; margin-bottom: 30px;">
+							<h2 style="font-size: 1.5rem;">선호 기업</h2>
+						</div>
+	
+						<div class="Position_And_Career_Title" style="margin-bottom: 0px;">
+							<h2>기업 유형</h2>
+						</div>
+						<p style="color: #656565; margin-top: 5px; margin-bottom: 20px;">특정
+							기업 유형의 과거•현재 재직자에게 우선적으로 노출하고 싶다면 입력해주세요</p>
+	
+	
+						<div id="Business_Type">
+							<div>
+								<input type="radio" id="Enterprise" name="company_type" value="대기업" checked> 
+								<label for="Enterprise">대기업</label>
+							</div>
+							<div>
+								<input type="radio" id="Medium-sized_Enterprise" name="company_type" value="중견기업"> 
+								<label for="Medium-sized_Enterprise">중견기업</label>
+							</div>
+							<div>
+								<input type="radio" id="Small_and_Medium_Enterprise" name="company_type" value="중소기업"> 
+								<label for="Small_and_Medium_Enterprise">중소기업</label>
+							</div>
+							<div>
+								<input type="radio" id="Startup" name="company_type" value="스타트업">
+								<label for="Startup">스타트업</label>
+							</div>
+							<div>
+								<input type="radio" id="Foreign_Company" name="company_type"
+									value="외국계기업"> <label for="Foreign_Company">외국계기업</label>
+							</div>
+						</div>
+	
+						<div class="Position_And_Career_Title" style="margin-bottom: 0px;">
+							<h2>특정기업</h2>
+						</div>
+						<p style="color: #656565; margin-top: 5px; margin-bottom: 20px;">특정
+							기업의 과거•현재 재직자에게 우선적으로 노출하고 싶다면 입력해주세요</p>
+	
+						<div style="display: flex;">
+							<button class="add-company-btn">
+								<img
+									src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png">
+								<p>기업 추가</p>
+							</button>
+							<div id="company-container">
+								<!-- 새로운 Company_Type 버튼이 추가될 곳 -->
+							</div>
+						</div>
+	
+						<div id="Employment_Status_with_Preferred_Company">
+							<div class="Position_And_Career_Title">
+								<h2>선호 기업에 대한 재직 여부</h2>
+								<b>
+									<p style="color: #FE0000; font-size: 18px; font-weight: 900;">*</p>
+								</b>
+							</div>
+	
+							<div
+								style="display: flex; justify-content: space-between;">
+								<div class="Currently_Employed">
+									<div class="Employment_Status">
+										<div>
+											<input type="radio" id="Currently_Employed"
+												name="employment_status" value="재직중"> <label
+												for="Currently_Employed">재직중</label>
+										</div>
+									</div>
+	
+									<p style="margin-left: 35px;">기업 유형•특정 기업의 재직자를 타겟팅합니다</p>
+								</div>
+	
+								<div class="Currently_Employed">
+									<div class="Employment_Status">
+										<div>
+											<input type="radio" id="Regardless_Of_Employment" name="employment_status" value="재직무관" checked> 
+											<label for="Regardless_Of_Employment">재직무관</label>
+										</div>
+									</div>
+	
+									<p style="margin-left: 35px;">과거•현재 재직자를 함께 타겟팅합니다</p>
+								</div>
+							</div>
+						</div>
+	
+						<div
+							style="width: 89%; display: flex; margin-top: 15px; justify-content: end;">
+							<button id="Confirm" class="close_btn" onclick="closeModal()">확인</button>
+						</div>
+	
+					</div>
+				</div>
+	
+			</div>
+		</div>
+		
+		
 </body>
 
 </html>
