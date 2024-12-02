@@ -65,52 +65,152 @@ VALUES (SEQ_UNO.NEXTVAL, 'P', 'person10', '$2a$10$n6sDIVjEmPozCHfL6mxwmuRvcqX65U
 -- 비밀번호: test2Business.
 
 -- ID: business1
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME, COMPANY_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700622', '놀부', '(주)도화엔지니어링');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700622', '박승우/손영일/곽준상/김덕구',
+    '(주)도화엔지니어링', '서울 강남구 삼성로 438', 'http://www.dohwa.co.kr',
+    '/resources/business/business1/logo/business1_logo.png',
+    '1000대기업, 중견기업, 코스피, 주식회사', 2284, '건물 및 토목 엔지니어링 서비스업', '도화엔지니어링'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business1', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business1@workdream.co.kr', '01000000000', SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
 -- ID: business2
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME, COMPANY_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700622', '변사또', '딜로이트');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700622', '배재민',
+    '딜로이트컨설팅(유)', '서울 영등포구 국제금융로 10', 'http://www2.deloitte.com/kr/ko.html',
+    '/resources/business/business2/logo/business2_logo.png',
+    '중소기업, 외국 법인기업, 유한회사', 384, '경영 컨설팅업', '딜로이트 컨설팅'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business2', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business2@workdream.co.kr', NULL, SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
 -- ID: business3
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME, COMPANY_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700623', '김상철', '네이버');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700623', '김상철',
+    '네이버(주)', '경기도 성남시 분당구 정자일로 95', 'https://www.naver.com/',
+    '/resources/business/business3/logo/business3_logo.png',
+    '대기업', 4341, '온라인 검색포털', 'Naver'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business3', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business3@workdream.co.kr', '01000000001', SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
 -- ID: business4
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME, COMPANY_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700624', '박대성', '메가스터디');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700624', '손성은',
+    '메가스터디교육(주)', '서울 서초구 효령로 321', 'http://corp.megastudy.net',
+    '/resources/business/business4/logo/business4_logo.png',
+    '코스닥, 중견기업, 주식회사, 외부감사법인', NULL, '온라인 교육 학원', '메가스터디, 엘리하이, 엠베스트, 메가스터디학원, 러셀, 메가공무원'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business4', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business4@workdream.co.kr', '01000000002', SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
 -- ID: business5
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME, COMPANY_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700625', '정은미', '데이터사이언스');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700625', '강한승/박대준',
+    '쿠팡(주)', '서울 송파구 송파대로 570, 18층', 'http://www.coupang.com',
+    '/resources/business/business5/logo/business5_logo.png',
+    '1000대기업, 대기업, 주식회사, 외부감사법인', 11276, '전자상거래 소매업', '쿠팡'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business5', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business5@workdream.co.kr', '01000000003', SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
 -- ID: business6
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME, COMPANY_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700626', '이상훈', '코웨이');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700626', '서장원',
+    '코웨이(주)', '충남 공주시 유구읍 유구마곡사로 136-23', 'https://company.coway.com/',
+    '/resources/business/business6/logo/business6_logo.png',
+    '대기업, 코스피, 주식회사, 외부감사법인, 수출입 기업', 5757, '그 외 기타 달리 분류되지 않은 개인 서비스업', '코웨이'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business6', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business6@workdream.co.kr', '01000000004', SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
 -- ID: business7
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME, COMPANY_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700627', '최유나', 'HD한국조선해양');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700627', '서흥원',
+    '에이치디현대이엔티(주)', '울산 동구 문현6길 42', 'http://www.hd-hent.co.kr',
+    '/resources/business/business7/logo/business7_logo.png',
+    '대기업, 외부감사법인', 1337, '기타 엔지니어링 서비스업', 'HD현대이엔티'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business7', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business7@workdream.co.kr', '01000000005', SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
 -- ID: business8
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700628', '한예진');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700628', '조완석',
+    '금호건설(주)', '전남 나주시 시청길 4', 'http://www.kumhoenc.com',
+    '/resources/business/business8/logo/business8_logo.png',
+    '1000대기업, 대기업, 코스피, 주식회사', 1220, '건물 건설업', '금호건설'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business8', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business8@workdream.co.kr', '01000000006', SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
 -- ID: business9
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700629', '송재희');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700629', '송재희',
+    '(주)영공조명', '서울 영등포구 양평로 146', 'http://www.youngkong.com',
+    '/resources/business/business9/logo/business9_logo.png',
+    '중소기업, 주식회사, 수출입 기업', NULL, NULL, '영공조명'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business9', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business9@workdream.co.kr', '01000000007', SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
 -- ID: business10
-INSERT INTO BUSINESS (BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME, COMPANY_NAME) VALUES (SEQ_BNO.NEXTVAL, '8518700630', '윤호성', 'CJ대한통운');
+INSERT INTO BUSINESS (
+    BUSINESS_NO, REGISTRATION_NUMBER, OWNER_NAME,
+    COMPANY_NAME, COMPANY_ADDR, COMPANY_SITE,
+    LOGO,
+    COMPANY_TYPE, EMPLOYEE_COUNT, INDUSTRY, BRAND_NAME
+) VALUES (
+    SEQ_BNO.NEXTVAL, '8518700630', '신영수/민영학',
+    '씨제이대한통운(주)', '서울 종로구 종로5길 7', 'http://www.cjlogistics.com',
+    '/resources/business/business10/logo/business10_logo.png',
+    '1000대기업, 대기업, 코스피, 주식회사', 6254, '도로 화물 운송업', '클럽나인브릿지'
+);
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
 VALUES (SEQ_UNO.NEXTVAL, 'B', 'business10', '$2a$10$5rDJxmVELPdZIEYvyaudse01mJ1bScr7kf.sppeoRh2bXK4Lz5N.K', 'business10@workdream.co.kr', '01000000008', SYSDATE, 'Y', SEQ_BNO.CURRVAL, NULL);
 
@@ -128,14 +228,15 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
-    SEQ_JOB.NEXTVAL, 1, '(주)도화엔지니어링 상하수도분야 해외시공감리 경력직 채용',
+    SEQ_JOB.NEXTVAL, 1, '도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)',
     '김철수', '개발팀', 'kim1@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 15, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(SYSDATE, 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting1.PNG',
+    '/resources/business/business1/recruitment/business1_recruitment_01.png',
     '전형단계 및 제출서류' || CHR(10) ||
     '전형단계 : 서류전형 → 면접전형 → 최종합격' || CHR(10) ||
     '제출서류' || CHR(10) ||
@@ -144,15 +245,16 @@ INSERT INTO JOB_RECRUITMENT (
     '- 자격증 사본 (해당자에 한함)' || CHR(10) ||
     '접수방법' || CHR(10) ||
     '채용시' || CHR(10) ||
-    '접수기간 : 2024.01.25.(월) ~ 채용시 마감' || CHR(10) ||
+    '접수기간 : 2024.XX.XX.(월) ~ 채용시 마감' || CHR(10) ||
     '접수방법 : 이메일 (******@*******.***)' || CHR(10) ||
     '문의사항 : 이메일 또는 ☏ ***-****-****' || CHR(10) ||
     '기타 유의사항' || CHR(10) ||
-    '입사지원서 및 제출서류에 허위사실이 있을 경우 채용이 취소될 수 있습니다.'
+    '입사지원서 및 제출서류에 허위사실이 있을 경우 채용이 취소될 수 있습니다.',
+    'P'
 );
 
 INSERT INTO JOB_POSITION (POSITION_NO, RECRUITMENT_NO, POSITION_NAME, POSITION_RANK, EMPLOYMENT_FORM, RECRUITED_PEOPLE)
-VALUES (NULL, SEQ_JOB.CURRVAL, '상하수도분야 해외감리', '감리단장', 'R', 0);
+VALUES (NULL, SEQ_JOB.CURRVAL, '단지설계(토목) 및 도시계획	', '과장, 차장, 부장', 'R', 0);
 
 INSERT INTO JOB_STAGY (
     STAGY_NO, RECRUITMENT_NO, POSITION_NO, STAGY_NAME,
@@ -186,20 +288,22 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
-    SEQ_JOB.NEXTVAL, 2, '[딜로이트] 경영자문부문 QRM 모집',
-    '박영희', '데이터팀', 'park2@example.com', 'H',
+    SEQ_JOB.NEXTVAL, 2, '[딜로이트 컨설팅] 24년 하반기 각 부문별 컨설턴트 경력직 채용',
+    '박영희', '인사팀', 'park2@example.com', 'H',
     TO_DATE(TO_CHAR(SYSDATE - 30, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting2.PNG',
+    '/resources/business/business2/recruitment/business2_recruitment_01.png',
     '설립일1987년 02월 14일' || CHR(10) ||
     '기업규모중견기업 (사원수 2,723명)' || CHR(10) ||
     '업종법률·회계' || CHR(10) ||
     '복리후생연차, 국민연금, 의료보험, 산재보험, 고용보험, 퇴직금, 건강검진' || CHR(10) ||
     '주소(07326) 서울특별시 영등포구 국제금융로 10 (여의도동,서울 국제금융 센터) ONE IFC 9F' || CHR(10) ||
-    '홈페이지http://-'
+    '홈페이지http://-',
+    'P'
 );
 
 -- business3
@@ -210,19 +314,21 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
     SEQ_JOB.NEXTVAL, 3, '네이버 인물검색 운영',
     '이민수', '기획팀', 'lee3@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 5, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 5, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting3.PNG', 
+    '/resources/business/business3/recruitment/business3_recruitment_01.png', 
     '[ 기타사항 ]' || CHR(10) ||
     '- 재택근무 중 업무 기기 장애에 따라 원활한 업무가 불가능한 경우 오피스 출근으로 업무 중단을 최소화해야 함.' || CHR(10) ||
     '- 보훈대상자(취업지원대상자) 및 장애인 등은 관련 법령에 의거하여 우대' || CHR(10) ||
     '- 불합격한 지원자 채용서류 반환 절차는 그린웹서비스 홈페이지 Recruit - 공지사항 11번 게시글 「채용서류 반환 절차 안내 」 참조' || CHR(10) ||
-    '(https://recruit.gwebscorp.com/gwebs/notice/8011367Popup)'
+    '(https://recruit.gwebscorp.com/gwebs/notice/8011367Popup)',
+    'P'
 );
 
 INSERT INTO JOB_POSITION (POSITION_NO, RECRUITMENT_NO, POSITION_NAME, POSITION_RANK, EMPLOYMENT_FORM, RECRUITED_PEOPLE)
@@ -260,18 +366,20 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
-    SEQ_JOB.NEXTVAL, 4, '[경영지원] 회계1 경력직 채용',
+    SEQ_JOB.NEXTVAL, 4, '메가스터디 입시전략연구소 (대입컨설팅센터) 입시컨설턴트 채용',
     '정다영', '회계팀', 'jung4@example.com', 'H',
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 1, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting4.PNG', 
-    '설립일2015년 04월 03일' || CHR(10) ||
-    '기업규모중견기업 (사원수 1,865명)' || CHR(10) ||
-    '업종학원·학습지' || CHR(10) ||
-    '주소(06643) 서울특별시 서초구 효령로 321 (서초동)' || CHR(10)
+    '/resources/business/business4/recruitment/business4_recruitment_01.png',
+    '근무형태	:	정규직 (수습기간)' || CHR(10) ||
+    '근무일시	:	09:00~18:00' || CHR(10) ||
+    '근무지역	:	(06634) 서울 서초구 서초중앙로22길 17 3층 대입컨설팅센터(서초동) - 서울 2호선 교대 에서 100m 이내' || CHR(10) ||
+    '※입사지원 서류에 허위사실이 발견될 경우, 채용확정 이후라도 채용이 취소될 수 있습니다.' || CHR(10),
+    'P'
 );
 
 -- business5
@@ -282,27 +390,21 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
-    SEQ_JOB.NEXTVAL, 5, '데이터사이언스 (체험형인턴)',
-    '최지훈', '인사팀', 'choi5@example.com', 'W',
+    SEQ_JOB.NEXTVAL, 5, '[쿠팡] 쿠팡 신사업(쿠팡포스) 영업사원 대규모 채용(서울권)',
+    '김수한무', '인사팀', 'choi5@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 7, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting5.PNG',
-    '우대사항' || CHR(10) ||
-    '제조 데이터 분석 경험' || CHR(10) ||
-    '관련분야 논문, 공모전 성과 우수자' || CHR(10) ||
-    '- 최신 논문(알고리즘)을 이해하고 구현할 수 있는 수준의 연구/개발 능력 보유자' || CHR(10) ||
-    '- 오픈소스 기반 최신 딥러닝 프레임워크 활용 능력 보유자 (Tensorflow, Pytorch 등)' || CHR(10) ||
-    '커뮤니케이션 역량 우수자' || CHR(10) ||
-    '전형절차' || CHR(10) ||
-    '지원서 접수(~12/6) → 코딩테스트 (12월 중) → 면접전형 (1월 중)  → 채용 검진 (1월 중) → 입사 (1월 중)' || CHR(10) ||
-    '※ 운영 상황에 따라 일부 전형은 온라인으로 진행될 수 있으며, 전형 및 일정 또한 변경될 수 있습니다.'
+    '/resources/business/business5/recruitment/business5_recruitment_01.png',
+    NULL,
+    'P'
 );
 
 INSERT INTO JOB_POSITION (POSITION_NO, RECRUITMENT_NO, POSITION_NAME, POSITION_RANK, EMPLOYMENT_FORM, RECRUITED_PEOPLE)
-VALUES (NULL, SEQ_JOB.CURRVAL, '데이터분석설계사', '인턴', 'C', 0);
+VALUES (NULL, SEQ_JOB.CURRVAL, '영업사원', '인턴', 'C', 0);
 
 INSERT INTO JOB_STAGY (
     STAGY_NO, RECRUITMENT_NO, POSITION_NO, STAGY_NAME,
@@ -310,7 +412,7 @@ INSERT INTO JOB_STAGY (
     STAGY_END,
     STATUS
 ) VALUES (
-    NULL, SEQ_JOB.CURRVAL, 1, '서류 전형',
+    NULL, SEQ_JOB.CURRVAL, 1, '서류전형',
     TO_TIMESTAMP(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 14, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     'P'
@@ -322,7 +424,7 @@ INSERT INTO JOB_STAGY (
     STAGY_END,
     STATUS
 ) VALUES (
-    NULL, SEQ_JOB.CURRVAL, 1, '코딩테스트',
+    NULL, SEQ_JOB.CURRVAL, 1, '전화면접',
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 14, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 23, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     'N'
@@ -334,21 +436,9 @@ INSERT INTO JOB_STAGY (
     STAGY_END,
     STATUS
 ) VALUES (
-    NULL, SEQ_JOB.CURRVAL, 1, '면접전형',
+    NULL, SEQ_JOB.CURRVAL, 1, '대면(화상)면접',
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 23, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 30, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
-    'N'
-);
-
-INSERT INTO JOB_STAGY (
-    STAGY_NO, RECRUITMENT_NO, POSITION_NO, STAGY_NAME,
-    STAGY_START,
-    STAGY_END,
-    STATUS
-) VALUES (
-    NULL, SEQ_JOB.CURRVAL, 1, '채용 검진',
-    TO_TIMESTAMP(TO_CHAR(SYSDATE + 30, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
-    TO_TIMESTAMP(TO_CHAR(SYSDATE + 35, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     'N'
 );
 
@@ -361,21 +451,23 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
-    SEQ_JOB.NEXTVAL, 6, '[코웨이]경영관리본부채용공고',
+    SEQ_JOB.NEXTVAL, 6, '[코웨이]24년 11월 경력직 수시채용(마케팅/경영/인사/연구소)',
     '홍길동', '관리팀', 'hong6@example.com', 'H',
     TO_DATE(TO_CHAR(SYSDATE - 60, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE - 40, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting6.PNG', 
+    '/resources/business/business6/recruitment/business6_recruitment_01.png',
     '※ 『장애인고용촉진 및 직업재활법』에 따른 등록 장애인 및 『국가유공자 등 예우 및 지원에 관한 법률』 등에 의거한 취업지원 대상자는 관련 법령에 따라 가산점을 부여하고 있습니다.' || CHR(10) ||
     '채용서류의 반환 여부' || CHR(10) ||
     '코웨이의 입사서류는 채용사이트를 통해서 온라인 작성 및 제출을 진행하고 있으므로 채용서류의 반환 의무가 없습니다.' || CHR(10) ||
     '(채용절차의 공정화에 관한 법률 제7조 제1항에 의거)' || CHR(10) ||
     '단, 코웨이가 요구하지 않았으나 자발적으로 제출한 서류가 있을 경우' || CHR(10) ||
     '최종합격 후 30일 이내에 당사 재용사이트에서 채용서류 반환 청구 양식을 작성하시어' || CHR(10) ||
-    '채용공식 메일 계정인 naler1004@coway.com 로 송부하시면 청구일로부터 14일 이내 등기우편으로 발송해드립니다.'
+    '채용공식 메일 계정인 naler1004@coway.com 로 송부하시면 청구일로부터 14일 이내 등기우편으로 발송해드립니다.',
+    'E'
 );
 
 -- business7
@@ -386,18 +478,20 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
-    SEQ_JOB.NEXTVAL, 7, '[HD한국조선해양] 신사업 지원 채용',
-    '강은혜', '디자인팀', 'kang7@example.com', 'W',
+    SEQ_JOB.NEXTVAL, 7, '[HD현대이엔티] 2025년 1/4분기 대졸신입 및 경력사원 모집',
+    '강은혜', '인사팀', 'kang7@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 30, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting1.PNG7', 
+    '/resources/business/business7/recruitment/business7_recruitment_01.png',
     '기업규모대기업 (사원수 1,237명)' || CHR(10) ||
     '업종기계·조선·자동차·운송장비' || CHR(10) ||
     '복리후생주5일근무, 연차, 월차, 보건휴가, 식대지원, 초등학자금지원, 중등학자금지원' || CHR(10) ||
-    '주소(44032) 울산광역시 동구 방어진순환도로 1000 (전하동)'
+    '주소(44032) 울산광역시 동구 방어진순환도로 1000 (전하동)',
+    'P'
 );
 
 INSERT INTO JOB_POSITION (POSITION_NO, RECRUITMENT_NO, POSITION_NAME, POSITION_RANK, EMPLOYMENT_FORM, RECRUITED_PEOPLE)
@@ -409,7 +503,7 @@ INSERT INTO JOB_STAGY (
     STAGY_END,
     STATUS
 ) VALUES (
-    NULL, SEQ_JOB.CURRVAL, 1, '서류 전형',
+    NULL, SEQ_JOB.CURRVAL, 1, '서류심사',
     TO_TIMESTAMP(TO_CHAR(SYSDATE - 20, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 10, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     'P'
@@ -421,7 +515,7 @@ INSERT INTO JOB_STAGY (
     STAGY_END,
     STATUS
 ) VALUES (
-    NULL, SEQ_JOB.CURRVAL, 1, '1차 면접',
+    NULL, SEQ_JOB.CURRVAL, 1, '1차 실무면접',
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 10, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 20, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     'N'
@@ -433,9 +527,21 @@ INSERT INTO JOB_STAGY (
     STAGY_END,
     STATUS
 ) VALUES (
-    NULL, SEQ_JOB.CURRVAL, 1, '2차 면접',
+    NULL, SEQ_JOB.CURRVAL, 1, '2차 임원면접',
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 20, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     TO_TIMESTAMP(TO_CHAR(SYSDATE + 27, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
+    'N'
+);
+
+INSERT INTO JOB_STAGY (
+    STAGY_NO, RECRUITMENT_NO, POSITION_NO, STAGY_NAME,
+    STAGY_START,
+    STAGY_END,
+    STATUS
+) VALUES (
+    NULL, SEQ_JOB.CURRVAL, 1, '채용 건강검진',
+    TO_TIMESTAMP(TO_CHAR(SYSDATE + 27, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
+    TO_TIMESTAMP(TO_CHAR(SYSDATE + 40, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),
     'N'
 );
 
@@ -447,20 +553,22 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
-    SEQ_JOB.NEXTVAL, 8, '2024년 11월 P/J전문직 채용(토목)',
+    SEQ_JOB.NEXTVAL, 8, '[금호건설(주)] 강릉회산동공동주택신축현장 건축기사 채용',
     '한예진', '토목팀', 'han8@example.com', 'H',
     TO_DATE(TO_CHAR(SYSDATE - 30, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting1.PNG8',
+    '/resources/business/business8/recruitment/business8_recruitment_01.png',
     '설립일1960년 09월 05일' || CHR(10) ||
     '기업규모대기업 (사원수 1,237명)' || CHR(10) ||
     '업종건설·건축·토목·조경' || CHR(10) ||
     '복리후생연차, 월차, 보건휴가, 국민연금, 의료보험, 산재보험, 고용보험, 퇴직금, 초등학자금지원' || CHR(10) ||
     '주소(51755) 전라남도 나주시 시청길 4 금호산업(주) (송월동)' || CHR(10) ||
-    '홈페이지http://www.kumhoenc.com'
+    '홈페이지http://www.kumhoenc.com',
+    'P'
 );
 
 -- business9
@@ -471,24 +579,24 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
-    SEQ_JOB.NEXTVAL, 9, '조명설계 경력직 채용',
+    SEQ_JOB.NEXTVAL, 9, '㈜영공조명 조명설계 디자이너 경력 및 신입사원 모집',
     '서준호', '설계팀', 'seo9@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 20, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 5, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting1.PNG9', 
+    '/resources/business/business9/recruitment/business9_recruitment_01.png', 
     '설립일1950년 01월 10일' || CHR(10) ||
-    '기업규모대기업 (사원수 7,334명)' || CHR(10) ||
+    '기업규모중소기업 (사원수 334명)' || CHR(10) ||
     '업종건설·건축·토목·조경' || CHR(10) ||
-    '복리후생주5일근무, 연차, 월차, 보건휴가, 식대지원, 초등학자금지원, 중등학자금지원' || CHR(10) ||
-    '주소(03058) 서울특별시 종로구 율곡로 75 (계동)' || CHR(10) ||
-    '홈페이지http://www.hdec.kr'
+    '복리후생주5일근무, 연차, 월차, 보건휴가, 식대지원, 초등학자금지원, 중등학자금지원',
+    'P'
 );
 
 INSERT INTO JOB_POSITION (POSITION_NO, RECRUITMENT_NO, POSITION_NAME, POSITION_RANK, EMPLOYMENT_FORM, RECRUITED_PEOPLE)
-VALUES (NULL, SEQ_JOB.CURRVAL, '조명설계', '일반사원', 'R', 5);
+VALUES (NULL, SEQ_JOB.CURRVAL, '조명디자인', '일반사원', 'R', 5);
 
 INSERT INTO JOB_STAGY (
     STAGY_NO, RECRUITMENT_NO, POSITION_NO, STAGY_NAME,
@@ -534,20 +642,22 @@ INSERT INTO JOB_RECRUITMENT (
     DEADLINE,
     POSTING_DATE,
     CONTENT_IMG,
-    CONTENT_TEXT
+    CONTENT_TEXT,
+    STATUS
 ) VALUES (
-    SEQ_JOB.NEXTVAL, 10, '[CJ대한통운](타이어 물류) 채용',
+    SEQ_JOB.NEXTVAL, 10, '[CJ대한통운] 물류 영업 경력사원 모집',
     '유지연', '물류팀', 'yoo10@example.com', 'H',
     TO_DATE(TO_CHAR(SYSDATE - 20, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     SYSDATE,
-    '/img/posting1.PNG10', 
+    '/resources/business/business10/recruitment/business10_recruitment_01.png',
     '설립일1930년 11월 15일' || CHR(10) ||
     '기업규모대기업 (사원수 7,103명)' || CHR(10) ||
     '업종물류' || CHR(10) ||
     '복리후생주5일근무, 연차, 경조휴가, 국민연금, 의료보험, 산재보험, 고용보험, 사내동호회, 휴양' || CHR(10) ||
     '주소(04513) 서울특별시 중구 세종대로9길 53 (서소문동)' || CHR(10) ||
-    '홈페이지http://www.cjlogistics.com'
+    '홈페이지http://www.cjlogistics.com',
+    'P'
 );
 
 
