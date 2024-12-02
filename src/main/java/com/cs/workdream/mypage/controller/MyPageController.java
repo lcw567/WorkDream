@@ -24,26 +24,13 @@ public class MyPageController {
 
     @Autowired
     private UserTagsService userTagsService;
+    
+    /*
+     * 
+     *	※※※※  기업 마이페이지 관련 > BusinessController로 이동했습니다.
+     * 
+     * */
 
-    @Autowired
-    private BusinessProfileService businessProfileService; // BusinessProfileService 주입
-
-    @GetMapping("business/businessMypage")
-    public String businessMypage(HttpSession session, Model model) throws Exception {
-        // 세션에서 로그인한 사용자 정보 가져오기
-        Member currentUser = (Member) session.getAttribute("loginUser");
-        if (currentUser != null) {
-            int businessNo = currentUser.getBusinessNo();
-            // Business 객체 가져오기
-            Business business = businessProfileService.viewBusinessProfile(businessNo);
-            // 모델에 추가
-            model.addAttribute("business", business);
-        } else {
-            // 로그인하지 않은 경우 처리
-            return "redirect:/login"; // 로그인 페이지로 리다이렉트하거나 적절한 처리
-        }
-        return "business/businessMypage";
-    }
     
     @GetMapping("/person/applicantsMypage")
     public String applicantsMypage(Model model, HttpSession session) {

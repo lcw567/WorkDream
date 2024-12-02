@@ -75,7 +75,7 @@
                     <h3>자기소개서 등록</h3>
                     <p>자기소개서를 등록하고 검토하세요</p>
                 </div>
-                <div class="action" onclick="location.href='#'">
+                <div class="action" onclick="location.href='${pageContext.request.contextPath}/portfolio/portfolioDashboard'">
                     <h3>포트폴리오 등록</h3>
                     <p>포트폴리오를 등록하고 검토하세요</p>
                 </div>

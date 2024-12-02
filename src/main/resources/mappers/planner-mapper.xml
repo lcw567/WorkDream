@@ -1,1 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cs.workdream.planner.model.dao.PlannerDao">
+
+    <resultMap id="PlannerResultMap" type="com.cs.workdream.planner.model.vo.Planner">
+        <id property="eventId" column="EVENT_ID" />
+        <result property="userNo" column="USER_NO" />
+        <result property="title" column="TITLE" />
+        <result property="description" column="DESCRIPTION" />
+        <result property="startDate" column="START_DATE" />
+        <result property="endDate" column="END_DATE" />
+        <result property="status" column="STATUS" />
+    </resultMap>
+
+    <!-- Insert Event -->
+    <insert id="insertPlanner" parameterType="com.cs.workdream.planner.model.vo.Planner">
+        <selectKey keyProperty="eventId" resultType="long" order="BEFORE">
+            SELECT SEQ_PLANNER_EVENT_ID.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO PLANNER (EVENT_ID, USER_NO, TITLE, DESCRIPTION, START_DATE, END_DATE, STATUS)
+        VALUES (#{eventId}, #{userNo}, #{title}, #{description}, #{startDate}, #{endDate}, #{status})
+    </insert>
+
+    <!-- Select Events by User -->
+    <select id="selectPlannersByUserNo" parameterType="long" resultMap="PlannerResultMap">
+        SELECT EVENT_ID, USER_NO, TITLE, DESCRIPTION, START_DATE, END_DATE, STATUS
+        FROM PLANNER
+        WHERE USER_NO = #{userNo} AND STATUS = 'Y'
+    </select>
+
+    <!-- Select Event by ID -->
+    <select id="selectPlannerById" parameterType="long" resultMap="PlannerResultMap">
+        SELECT EVENT_ID, USER_NO, TITLE, DESCRIPTION, START_DATE, END_DATE, STATUS
+        FROM PLANNER
+        WHERE EVENT_ID = #{eventId} AND STATUS = 'Y'
+    </select>
+
+    <!-- Update Event -->
+    <update id="updatePlanner" parameterType="com.cs.workdream.planner.model.vo.Planner">
+        UPDATE PLANNER
+        SET TITLE = #{title},
+            DESCRIPTION = #{description},
+            START_DATE = #{startDate},
+            END_DATE = #{endDate}
+        WHERE EVENT_ID = #{eventId} AND STATUS = 'Y'
+    </update>
+
+    <!-- Soft Delete Event -->
+    <update id="softDeletePlanner" parameterType="long">
+        UPDATE PLANNER
+        SET STATUS = 'N'
+        WHERE EVENT_ID = #{eventId} AND STATUS = 'Y'
+    </update>
+
+</mapper>

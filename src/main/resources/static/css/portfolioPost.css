@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+/* 색상 변수 정의 */
+:root {
+    --tekhelet: #6D47B7;     /* 메인 컬러 */
+    --grape: #5E35B0;        /* 버튼 기본 색상 */
+    --royal-purple: #4E21A8; /* 버튼 호버 등 변화 색상 */
+    --light-purple: #D8BFD8; /* 연보라색 */
+    --alert-bg: #E1DEF1;     /* 설명칸 배경색 */
+}
+
+/* 기본 스타일 */
+body, body * {
+    padding: 0;
+    margin: 0;
+    font-family: 'MonoplexKR-Regular';
+    font-size: 0.688rem;
+    color: #000000;
+}
+
+/* Summernote 전용 스타일 */
+body.portfolio-post .note-editable {
+    font-family: inherit; /* 상속 */
+    font-size: inherit;
+    color: inherit !important; /* 폰트 색상 초기화 */
+}
+
+
+body.portfolio-post .note-editable p,
+body.portfolio-post .note-editable li {
+    color: inherit;
+}
+
+body.portfolio-post .note-editable ol,
+body.portfolio-post .note-editable ul {
+    list-style-type: decimal !important; /* Summernote 기본 스타일 유지 */
+    padding-left: 20px;
+}
+
+body.portfolio-post .note-editable a {
+    color: #007bff !important; /* Bootstrap 기본 링크 색상 */
+    text-decoration: underline;
+}
+
+/* Summernote 툴바 배경 */
+.note-editor .note-toolbar,
+.note-popover .popover-content {
+    background-color: #E1DEF1;
+}
+
+/* 텍스트 필드 스타일 */
+.tekhelet-border {
+    border-color: var(--tekhelet) !important;
+}
+
+/* 페이지 제목 스타일 */
+.styled-title {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    border-bottom: 3px solid var(--tekhelet);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    text-align: center;
+}
+
+/* 버튼 스타일 */
+.btn-purple {
+    background-color: var(--grape);
+    border-color: var(--grape);
+    color: #fff;
+}
+
+.btn-purple:hover {
+    background-color: var(--royal-purple);
+    border-color: var(--royal-purple);
+    color: #fff;
+}
+
+.btn-edit {
+    background-color: #5E35B0;  
+    border-color: #5E35B0;  
+    color: #fff;
+}
+
+.btn-edit:hover {
+    background-color: var(--royal-purple);
+    border-color: var(--royal-purple);
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: #fff;
+}
+
+/* 사용설명 스타일 */
+.custom-alert {
+    background-color: #E1DEF1;
+    color: #333;
+    font-size: 1rem;
+    border-color: #E1DEF1;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.pagination button {
+    background-color: var(--tekhelet);
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination button:hover {
+    background-color: var(--royal-purple);
+    color: #fff;
+}
+
+.pagination button:disabled {
+    background-color: #ddd;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--tekhelet);
+}

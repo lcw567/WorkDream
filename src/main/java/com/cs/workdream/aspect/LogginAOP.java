@@ -18,13 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 @Component
 public class LogginAOP {
-	// [ log cannot be resolved ] ���� �ذ��
-	// ������Ʈ�� ���Ե� Maven Dependencies > lombok.jar ã�� (Maven 3.9.9 ���� lombok-1.18.34.jar�� �Ǿ�����)
-	// ��Ŭ�� > Run As > Java Application
-	// �ν��� ���� > ��ġ ��� ���� > Spring�� ����ִ� ������ STS.ini ���� ����. (ex. sts-3.9.13.RELEASE/STS.ini)
-	// ���� �� STS�� ��Ŭ���� �� ������ ��ο� ��Ÿ���ٸ� ���������� ���õ� �̴ϴ�. (��Ŭ������ ���� ������ ���� ��Ŭ���� ��ġ ���� > ini ���� �߰�)
-	// �ν����� �Ϸ�Ǹ� Project > Clean �Ǵ� Maven > Update Project ���� (������� �� �� �ϴ� ���� ��õ)
-	// �� �ش� ������ �ҽ��� ���� ���� ������ �����ϰ� �Ͼ �� �����Ƿ� �ذ� ����� �� �����صμ���.
 	
 	@Pointcut("execution(* com.cs.workdream..controller.*.*(..) )")
 	private void cut() {}
@@ -53,7 +46,7 @@ public class LogginAOP {
 	public Object displayLogInfo(ProceedingJoinPoint pJoinPoint) throws Throwable {
 		long start = System.currentTimeMillis();// 0
 		
-		Object result = pJoinPoint.proceed(); // ���� �ؾߵǴ� ����� �������ش�.
+		Object result = pJoinPoint.proceed();
 		
 		long end = System.currentTimeMillis(); // 10
 		

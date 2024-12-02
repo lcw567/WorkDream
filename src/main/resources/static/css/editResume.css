@@ -1,7 +1,7 @@
 .resume_title{
     margin-top: 50px;
     margin-bottom: 35px;
-    margin-right: 520px;
+    margin-right: 380px;
 }
 
 .resume_title h1{
@@ -835,11 +835,6 @@ input:focus{
     margin-top: 10px;
 }
 
-.awards3{
-    display: flex;
-    gap: 10px; /* 필드 간 간격 */
-    margin-top: 10px;
-}
 
 .certi_title{
     border: 1px solid #c5c5c5;
@@ -910,6 +905,9 @@ input:focus{
 
 .awards3{
     display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .pass_date{
@@ -1072,6 +1070,7 @@ input:focus{
 
 .language2{
     display: flex;
+    margin-bottom: 20px;
 }
 
 .contest1{
@@ -1149,6 +1148,7 @@ input:focus{
 
 .contest2{
     display: flex;
+    margin-bottom: 45px;
 }
 
 .contest2 button{
@@ -1442,6 +1442,19 @@ button.delete:focus {
     background-color: #4e21a8;
 }
 
+
+.resume_title > .resumeStatus{
+    float: right;
+    display: flex;
+    position: relative;
+    top: 15px;
+    left: 36px;
+}
+
+.resume_title > .resumeStatus > .resumeYorN{
+    font-size: 1rem;
+    font-weight: bold;
+}
 
 
 

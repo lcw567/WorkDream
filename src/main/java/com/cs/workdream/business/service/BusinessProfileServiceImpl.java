@@ -26,6 +26,26 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
     
     @Autowired
     private ServletContext servletContext;
+    
+    
+    /*=====================================================================================================*/
+    
+    // 기업 정보 불러오기
+    @Override
+    public Business viewBusinessProfile(int businessNo) throws Exception {
+        Business business = businessProfileDao.selectBusinessByNo(businessNo);
+        if(business == null) throw new Exception("Business not found");
+
+        // 복리후생 정보
+        List<BusinessBenefit> benefits = businessProfileDao.selectBenefitsByBusinessNo(businessNo);
+        business.setBenefits(benefits);
+
+        // 근무 환경 정보
+        List<WorkEnvironmentImage> images = businessProfileDao.selectWorkEnvironmentImagesByBusinessNo(businessNo);
+        business.setWorkEnvironmentImages(images);
+
+        return business;
+    }
 
     @Override
     @Transactional
@@ -127,20 +147,6 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
                 }
             }
         }
-    }
-
-    @Override
-    public Business viewBusinessProfile(int businessNo) throws Exception {
-        Business business = businessProfileDao.selectBusinessByNo(businessNo);
-        if(business == null) throw new Exception("Business not found");
-
-        List<BusinessBenefit> benefits = businessProfileDao.selectBenefitsByBusinessNo(businessNo);
-        business.setBenefits(benefits);
-
-        List<WorkEnvironmentImage> images = businessProfileDao.selectWorkEnvironmentImagesByBusinessNo(businessNo);
-        business.setWorkEnvironmentImages(images);
-
-        return business;
     }
 
     private String saveFile(MultipartFile file, String folderName) throws IOException {

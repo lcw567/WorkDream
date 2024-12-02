@@ -1,0 +1,77 @@
+/* portfolioView.css */
+@charset "UTF-8";
+
+/* 색상 변수 정의 */
+:root {
+    --tekhelet: #4E21A8;      /* 메인 컬러 */
+    --grape: #5E35B0;         /* 버튼 호버 등 변화 색상 */
+    --royal-purple: #6D47B7;  /* 버튼 호버 등 변화 색상 */
+}
+
+/* 포트폴리오 제목 스타일 */
+.styled-title {
+    font-size: 2.5rem; /* 제목 폰트 크기 확대 */
+    font-weight: bold;
+    border-bottom: 3px solid var(--tekhelet);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+/* 카드 스타일 */
+.card {
+    border: 1px solid var(--grape);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+/* 카드 헤더 스타일 */
+.card-header {
+    background-color: #6D47B7;
+}
+
+.card-header h2 {
+    color: #fff;
+    font-size: 1rem;
+}
+
+/* 버튼 스타일 */
+.btn-purple {
+    background-color: var(--grape);
+    border-color: var(--grape);
+    color: #fff;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-purple:hover {
+    background-color: var(--royal-purple);
+    border-color: var(--royal-purple);
+}
+
+/* 리스트 스타일 복원 */
+#summernote ul {
+    list-style-type: disc; /* 불릿 포인트 */
+    margin-left: 20px; /* 들여쓰기 */
+}
+
+#summernote ol {
+    list-style-type: decimal; /* 숫자 리스트 */
+    margin-left: 20px; /* 들여쓰기 */
+}
+
+/* 콘텐츠 스타일 */
+#portfolio-content {
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+#portfolio-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+#portfolio-content ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+}
+
+/* 필요에 따라 추가 스타일 작성 */

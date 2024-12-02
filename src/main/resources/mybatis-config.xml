@@ -27,6 +27,8 @@
  		<typeAlias alias="ApplicantsStatus" type="com.cs.workdream.business.model.vo.ApplicantsStatus" />
  		<typeAlias alias="Position" type="com.cs.workdream.business.model.vo.Position" />
  		<typeAlias alias="BusinessBookmark" type="com.cs.workdream.business.model.vo.BusinessBookmark" />
+ 		<typeAlias alias="Planner" type="com.cs.workdream.planner.model.vo.Planner"/>
+ 		<typeAlias alias="Portfolio" type="com.cs.workdream.portfolio.model.vo.Portfolio"/>
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->
@@ -38,6 +40,8 @@
 		<mapper resource="mappers/business-mapper.xml"/>
 		<mapper resource="mappers/businessprofile-mapper.xml"/>
 		<mapper resource="mappers/usertags-mapper.xml"/>
+		<mapper resource="mappers/planner-mapper.xml"/>
+		<mapper resource="mappers/portfolio-mapper.xml"/>
 	</mappers>
  	
 </configuration>

@@ -19,5 +19,5 @@ public class PageInfo {
 	
 	int maxPage;		// 가장 마지막 페이지 (총 페이지 수)
 	int startPage;		// 페이징바의 시작수
-	int endPate;		// 페이지바의 마지막 끝수
+	int endPage;		// 페이지바의 마지막 끝수
 }

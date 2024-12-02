@@ -86,11 +86,18 @@ public class Resume {
     // 취업우대사항
     private String veteranReason;
     private String serviceStatus;
-    private String unfinishedReason;
+    private String unfulfilledReason;
     private String exemptionReason;
-    private Date enlistmentDate;
-    private Date dischargeDate;
-    private String militaryBranch;
-    private String rank;
-    private String dischargeReason;
+    private Date enlistmentDate_ful;
+    private Date enlistmentDate_ser;
+    private Date dischargeDate_ful;
+    private Date dischargeDate_ser;
+    private String militaryBranch_ful;
+    private String militaryBranch_ser;
+    private String rank_ful;
+    private String rank_ser;
+    private String dischargeReason_ful;
+    
+    //공개여부
+    private String resumeStatus;
 }

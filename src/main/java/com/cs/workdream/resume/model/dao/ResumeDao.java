@@ -67,7 +67,7 @@ public class ResumeDao {
         return sqlSession.selectList(NAMESPACE + ".selectAwardsByResumeNo", resumeNo);
     }
 
-    // 이력서 수정
+    // 이력서 업데이트
     public int updateResume(Resume resume) {
         return sqlSession.update(NAMESPACE + ".updateResume", resume);
     }
@@ -75,5 +75,24 @@ public class ResumeDao {
     // 이력서 삭제
     public int deleteResumeById(int resumeNo) {
         return sqlSession.update(NAMESPACE + ".deleteResume", resumeNo);
+    }
+
+    // 자격증 삭제
+    public int deleteCertificatesByResumeNo(int resumeNo) {
+        return sqlSession.delete(NAMESPACE + ".deleteCertificatesByResumeNo", resumeNo);
+    }
+
+    // 어학시험 삭제
+    public int deleteLanguageTestsByResumeNo(int resumeNo) {
+        return sqlSession.delete(NAMESPACE + ".deleteLanguageTestsByResumeNo", resumeNo);
+    }
+
+    // 수상내역 삭제
+    public int deleteAwardsByResumeNo(int resumeNo) {
+        return sqlSession.delete(NAMESPACE + ".deleteAwardsByResumeNo", resumeNo);
+    }
+    
+    public Resume selectResumeByNo(int resumeNo) {
+        return sqlSession.selectOne(NAMESPACE + ".selectResumeByNo", resumeNo);
     }
 }

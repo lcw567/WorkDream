@@ -84,15 +84,15 @@
         	<%-- 로그인 전 --%>
             <ul class="menu">
                 <li id="menuButton"><a><img src="${pageContext.request.contextPath}/img/btn_menu.png" /></a></li>
-                <li><a href="#">채용정보</a></li>
-                <li><a href="#">공채정보</a></li>
-                <li><a href="#">신입·인턴</a></li>
-                <li><a href="#">기업·연봉</a></li>
-                <li><a href="#">커리어</a></li>
+                <li><a href="${pageContext.request.contextPath}">채용정보</a></li>
+                <li><a href="${pageContext.request.contextPath}">공채정보</a></li>
+                <li><a href="${pageContext.request.contextPath}">신입·인턴</a></li>
+                <li><a href="${pageContext.request.contextPath}">기업·연봉</a></li>
+                <li><a href="${pageContext.request.contextPath}">커리어</a></li>
                 <li><a href="${pageContext.request.contextPath}/board/communityHome">커뮤니티</a></li>
                 <%-- 포토폴리오 메뉴 (구직자 로그인 전용) --%>
                 <c:if test="${ !empty loginUser && loginUser.userType == 'P' }">
-                	<li><a href="#">포토폴리오</a></li>
+                	<li><a href="${pageContext.request.contextPath}/portfolio/portfolioDashboard">포토폴리오</a></li>
                 </c:if>
             </ul>
         </nav>
