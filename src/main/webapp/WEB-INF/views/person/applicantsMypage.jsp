@@ -26,7 +26,6 @@
                 <h2>로그인이 필요합니다</h2>
             </c:if>
             <button class="messenger" onclick="location.href='${pageContext.request.contextPath}/chat'">메신저</button>
-
         </section>
 
         <section class="tag-container">
