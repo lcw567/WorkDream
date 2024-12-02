@@ -206,18 +206,18 @@ CREATE SEQUENCE REPLY_LIKE_SEQ START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 CREATE TABLE BUSINESS (
     BUSINESS_NO NUMBER PRIMARY KEY NOT NULL,    -- SEQ_BNO
     REGISTRATION_NUMBER VARCHAR2(12) NOT NULL,
-    OWNER_NAME VARCHAR2(100) NULL,
-    COMPANY_NAME VARCHAR2(100) NULL,
+    OWNER_NAME VARCHAR2(15) NULL,
+    COMPANY_NAME VARCHAR2(50) NULL,
     COMPANY_CODE NUMBER  NULL,
     COMPANY_TEL VARCHAR2(15) NULL,
-    COMPANY_ADDR VARCHAR2(200) NULL,
+    COMPANY_ADDR VARCHAR2(50) NULL,
     COMPANY_FAX VARCHAR2(15) NULL,
-    COMPANY_SITE VARCHAR2(200) NULL,
+    COMPANY_SITE VARCHAR2(50) NULL,
     LOGO VARCHAR2(500) NULL,
     SHORT_INTRODUCTION VARCHAR2(255),
     INTRODUCTION CLOB NULL,
     VISION CLOB NULL,
-    COMPANY_TYPE VARCHAR(100) NULL,
+    COMPANY_TYPE VARCHAR(50) NULL,
     EMPLOYEE_COUNT NUMBER NULL,
     INDUSTRY VARCHAR(100) NULL,
     BRAND_NAME VARCHAR(100) NULL
@@ -286,7 +286,7 @@ CREATE TABLE JOB_RECRUITMENT (
     POSTING_DATE DATE NOT NULL,
     CONTENT_IMG VARCHAR2(100) NULL,
     CONTENT_TEXT CLOB NULL,
-    STATUS CHAR(1) NOT NULL
+    STATUS CHAR(1)
 );
 
 COMMENT ON COLUMN JOB_RECRUITMENT.RECRUITMENT_NO IS '채용공고 번호';
@@ -582,7 +582,7 @@ CREATE TABLE RESUME(
     ORGANIZATION_NAME VARCHAR2(100),                              -- 기관 이름 (organizationName)
     START_DATE_ACT DATE,                                          -- 활동 시작 날짜 (startDateAct)
     END_DATE_ACT DATE,                                            -- 활동 종료 날짜 (endDateAct)
-    DESCRIPTION VARCHAR2(300),                                    -- 설명 (description)
+    DESCRIPTION VARCHAR2(1000),                                    -- 설명 (description)
     CATEGORY VARCHAR2(50) NULL,                                    -- 카테고리 (category)
     VETERAN_REASON VARCHAR2(100),                                  -- 보훈 사유 (veteranReason)
     SERVICE_STATE VARCHAR2(20) NULL,                               -- 병역 상태 (serviceStatus)
@@ -603,7 +603,7 @@ CREATE TABLE RESUME(
     START_DATE_WORK DATE NULL,                                     -- 업무 시작 날짜 (startDateWork)
     END_DATE_WORK DATE,                                            -- 업무 종료 날짜 (endDateWork)
     STATUS_WORK VARCHAR2(20) NULL, 			-- 업무 상태 (careerStatus)
-    JOB_CONTENT VARCHAR2(100) NULL,                                -- 업무 내용 (jobContent)
+    JOB_CONTENT VARCHAR2(1000) NULL,                                -- 업무 내용 (jobContent)
     POSITION VARCHAR2(20) NULL,                                    -- 직급/직책 (position)
     CREATE_DATE DATE DEFAULT SYSDATE,                              -- 생성일자
     MODIFIED_DATE DATE DEFAULT SYSDATE,                            -- 수정일자
