@@ -144,3 +144,25 @@
     font-size: 1.1rem;
     margin-top: 15px;
 }
+
+.btn_select{
+    display: flex;
+    float: right;
+}
+
+.final_check{
+    height: 50px;
+    position: relative;
+    top: 17px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+    margin-bottom: 90px;
+}
+
+.final_check button:focus{
+    outline: none;
+}

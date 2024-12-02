@@ -582,7 +582,7 @@ CREATE TABLE RESUME(
     ORGANIZATION_NAME VARCHAR2(100),                              -- 기관 이름 (organizationName)
     START_DATE_ACT DATE,                                          -- 활동 시작 날짜 (startDateAct)
     END_DATE_ACT DATE,                                            -- 활동 종료 날짜 (endDateAct)
-    DESCRIPTION VARCHAR2(300),                                    -- 설명 (description)
+    DESCRIPTION VARCHAR2(1000),                                    -- 설명 (description)
     CATEGORY VARCHAR2(50) NULL,                                    -- 카테고리 (category)
     VETERAN_REASON VARCHAR2(100),                                  -- 보훈 사유 (veteranReason)
     SERVICE_STATE VARCHAR2(20) NULL,                               -- 병역 상태 (serviceStatus)
@@ -598,16 +598,16 @@ CREATE TABLE RESUME(
     CLASS_SELECTION_SER VARCHAR2(10),                                  -- 계급 선택(복무중) (rank)
     DISCHARGE_REASON_FUL VARCHAR2(50),                                 -- 전역 사유(군필) (dischargeReason)
     WORK VARCHAR2(20) NULL,                                        -- 직무 (work)
-    DEPARTMENT VARCHAR2(20) NULL,                                  -- 부서 (department)
+    DEPARTMENT VARCHAR2(100) NULL,                                  -- 부서 (department)
     COMPANY_TITLE VARCHAR2(50) NULL,                               -- 회사명 (companyTitle)
     START_DATE_WORK DATE NULL,                                     -- 업무 시작 날짜 (startDateWork)
     END_DATE_WORK DATE,                                            -- 업무 종료 날짜 (endDateWork)
     STATUS_WORK VARCHAR2(20) NULL, 			-- 업무 상태 (careerStatus)
-    JOB_CONTENT VARCHAR2(100) NULL,                                -- 업무 내용 (jobContent)
+    JOB_CONTENT VARCHAR2(1000) NULL,                                -- 업무 내용 (jobContent)
     POSITION VARCHAR2(20) NULL,                                    -- 직급/직책 (position)
     CREATE_DATE DATE DEFAULT SYSDATE,                              -- 생성일자
     MODIFIED_DATE DATE DEFAULT SYSDATE,                            -- 수정일자
-    RESUME_STATUS CHAR(1) DEFAULT 'Y',                             -- 이력서 상태
+    RESUME_STATUS VARCHAR2(10) DEFAULT 'Y', 		 -- 이력서 상태
     DELETED CHAR(1) DEFAULT 'N'                                     -- 삭제 여부
 );
 

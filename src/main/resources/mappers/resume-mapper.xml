@@ -13,6 +13,7 @@
         <result property="createDate" column="CREATE_DATE"/>
         <result property="modifiedDate" column="MODIFIED_DATE"/>
         <result property="deleted" column="DELETED"/>
+        <result property="resumeStatus" column="RESUME_STATUS"/>
         
         <!-- 기본 정보 -->
         <result property="userName" column="USER_NAME"/>
@@ -148,7 +149,7 @@
             ENLISTMENT_DATE_SER, DISCHARGE_DATE_SER, MILITARY_SELECTION_FUL, MILITARY_SELECTION_SER,
             CLASS_SELECTION_FUL, CLASS_SELECTION_SER, DISCHARGE_REASON_FUL, 
             WORK, DEPARTMENT, COMPANY_TITLE, START_DATE_WORK,
-            END_DATE_WORK, STATUS_WORK, JOB_CONTENT, POSITION
+            END_DATE_WORK, STATUS_WORK, JOB_CONTENT, POSITION, RESUME_STATUS
         )
         VALUES (
             #{resumeNo}, #{personNo}, #{resumeTitle}, SYSDATE, SYSDATE, 'N',
@@ -165,7 +166,7 @@
             #{unfulfilledReason}, #{exemptionReason}, #{enlistmentDate_ful}, #{dischargeDate_ful}, #{enlistmentDate_ser}, #{dischargeDate_ser},
             #{militaryBranch_ful}, #{militaryBranch_ser}, #{rank_ful}, #{rank_ser}, #{dischargeReason_ful},
             #{work}, #{department}, #{companyTitle}, #{startDateWork},
-            #{endDateWork}, #{careerStatus}, #{jobContent}, #{position}
+            #{endDateWork}, #{careerStatus}, #{jobContent}, #{position}, #{resumeStatus}
         )
     </insert>
     
@@ -296,6 +297,7 @@
             STATUS_WORK = #{careerStatus},
             JOB_CONTENT = #{jobContent},
             POSITION = #{position},
+            RESUME_STATUS = #{resumeStatus},
             MODIFIED_DATE = SYSDATE
         WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
     </update>
@@ -316,7 +318,7 @@
             ENLISTMENT_DATE_FUL, DISCHARGE_DATE_FUL,
             MILITARY_SELECTION_FUL, CLASS_SELECTION_FUL, DISCHARGE_REASON_FUL, MILITARY_SELECTION_SER, CLASS_SELECTION_SER,
             WORK, DEPARTMENT, COMPANY_TITLE, START_DATE_WORK,
-            END_DATE_WORK, STATUS_WORK, JOB_CONTENT, POSITION
+            END_DATE_WORK, STATUS_WORK, JOB_CONTENT, POSITION ,RESUME_STATUS
         FROM RESUME
         WHERE PERSON_NO = #{personNo} AND DELETED = 'N'
         ORDER BY CREATE_DATE DESC
@@ -345,8 +347,31 @@
     
     <!-- 이력서 확인 조회 -->
     <select id="selectResumeByNo" parameterType="int" resultMap="ResumeResultMap">
-	    SELECT * FROM RESUME WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
+	     SELECT 
+            RESUME_NO, PERSON_NO, RESUME_TITLE, CREATE_DATE, MODIFIED_DATE, DELETED,
+            USER_NAME, USER_GENDER, USER_BIRTH, USER_EMAIL, USER_PHONE, USER_ADDRESS,
+            USER_ROAD_ADDRESS, USER_DETAIL_ADDRESS, USER_PIC, EDUCATION_LEVEL, ACADEMIC_NAME_EL,
+            ACADEMIC_NAME_MI, ACADEMIC_NAME_HI, ACADEMIC_NAME, MAJOR, DEGREE, 
+            STATUS, STATUS_EL, STATUS_MI, STATUS_HI,
+            ENTER_DATE_EL, GRADUATION_DATE_EL, ENTER_DATE_MI, GRADUATION_DATE_MI, ENTER_DATE_HI, GRADUATION_DATE_HI, ENTER_DATE_COL, GRADUATION_DATE_COL, 
+            LOCATION_EL, LOCATION_MI, LOCATION_HI, LOCATION,
+            EXAM_PASSED_EL, EXAM_PASSED_MI, EXAM_PASSED_HI, SKILL,
+            ACTIVITY_TYPE, ORGANIZATION_NAME, START_DATE_ACT, END_DATE_ACT,
+            DESCRIPTION, CATEGORY, VETERAN_REASON, SERVICE_STATE,
+            UNFULFILLED_REASON, EXEMPTED_REASON, ENLISTMENT_DATE_SER, DISCHARGE_DATE_SER,
+            ENLISTMENT_DATE_FUL, DISCHARGE_DATE_FUL,
+            MILITARY_SELECTION_FUL, CLASS_SELECTION_FUL, DISCHARGE_REASON_FUL, MILITARY_SELECTION_SER, CLASS_SELECTION_SER,
+            WORK, DEPARTMENT, COMPANY_TITLE, START_DATE_WORK,
+            END_DATE_WORK, STATUS_WORK, JOB_CONTENT, POSITION ,RESUME_STATUS 
+	    FROM RESUME 
+	    WHERE RESUME_NO = #{resumeNo} AND DELETED = 'N'
 	</select>
+	<!-- 이력서 삭제 -->
+	 <update id="deleteResume" parameterType="int">
+       UPDATE RESUME
+        SET DELETED = 'Y', MODIFIED_DATE = SYSDATE
+        WHERE RESUME_NO = #{resumeNo}
+    </update>
     
 
 </mapper>

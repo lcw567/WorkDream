@@ -23,6 +23,14 @@
             <div class="resume_title">
                 <h1>이력서 제목</h1> 
                 <input type="text" name="resumeTitle" placeholder="이력서의 제목을 입력해주세요." required>
+                <div class="resumeStatus">
+                    <label class="resumeYorN">이력서 공개 여부</label>
+                    <input type="hidden" name="resumeStatusHidden" value="N"/>
+                    <label for="resumeY">
+                        <input type="checkbox" id="resumeY" name="resumeStatus" value="Y"/>
+                        <span></span>&nbsp;
+                    </label>
+                </div>
             </div>
             <!-- 기본정보 -->
             <div class="Info">
