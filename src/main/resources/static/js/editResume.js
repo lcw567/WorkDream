@@ -517,3 +517,37 @@ document.addEventListener("DOMContentLoaded", function() {
          }
      });
  }
+
+ function sample4_execDaumPostcode() {
+    // Daum.Postcode 라이브러리가 로드되어 있는지 확인
+    if (typeof daum === 'undefined' || !daum.Postcode) {
+        console.error("Daum.Postcode 라이브러리가 로드되지 않았습니다.");
+        return;
+    }
+
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 선택한 주소 정보를 표시
+            const postcode = document.getElementById("sample4_postcode");
+            const roadAddress = document.getElementById("roadAddress");
+            const detailAddress = document.getElementById("detailAddress");
+            const guideTextBox = document.getElementById("guide");
+
+            if (postcode) postcode.value = data.zonecode; // 우편번호
+            if (roadAddress) roadAddress.value = data.roadAddress; // 도로명 주소
+            if (detailAddress) detailAddress.focus(); // 상세주소로 포커스 이동
+
+            // 참고항목 정보 설정
+            if (guideTextBox) {
+                if (data.autoRoadAddress) {
+                    const extraAddr = data.autoRoadAddress ? data.autoRoadAddress : '';
+                    guideTextBox.innerHTML = "(예상 도로명 주소: " + extraAddr + ")";
+                    guideTextBox.style.display = "block";
+                } else {
+                    guideTextBox.innerHTML = "";
+                    guideTextBox.style.display = "none";
+                }
+            }
+        }
+    }).open();
+}
