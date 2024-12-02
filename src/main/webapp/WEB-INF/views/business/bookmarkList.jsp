@@ -73,32 +73,60 @@
 					
 					<!-- 구직자 목록 -->
 					<tbody>
-						<tr>
-							<td>
-								<label for="checkbox1">
-									<input type="checkbox" id="checkbox1" name="applicantNo" />
-									<span>&ensp;</span>
-								</label>
-							</td>
-							<td>
-								<span class="photo"></span>
-							</td>
-							<td>
-								<span class="profile">김아무개</span>
-							</td>
-							<td>
-								<button class="no-group" onClick="addGroup()"><img src="${pageContext.request.contextPath}/img/btn_folder_none.png" /> 미분류</button>
-							</td>
-							<td>지원일 2024.11.05</td>
-							<td>
-								<button><img src="${pageContext.request.contextPath}/img/btn_preview.png" /> 이력서 열람</button>
-							</td>
-							<td colspan="2">
-								<button disabled><img src="${pageContext.request.contextPath}/img/btn_call.png" /></button>
-								<button><img src="${pageContext.request.contextPath}/img/btn_mail.png" /></button>
-								<button><img src="${pageContext.request.contextPath}/img/btn_chat.png" /></button>
-							</td>
-						</tr>
+						<c:forEach var="bookmark" items="${bookmarkList}">
+							<tr>
+								<td>
+									<label for="${bookmark.resumeNo}">
+										<input type="checkbox" id="${bookmark.resumeNo}" name="resumeNo" />
+										<span>&ensp;</span>
+									</label>
+								</td>
+								<td>
+									<span class="photo">
+										<c:if test="${not empty bookmark.picture}">
+										    <img src="${bookmark.picture}">
+										</c:if>
+									</span>
+								</td>
+								<td>
+									<span class="profile">${bookmark.name}</span>
+								</td>
+								<td>
+									<c:choose>
+										<%-- 그룹 미분류 --%>
+									    <c:when test="${bookmark.folder == '미분류'}">
+									        <button class="no-group" onClick="addGroup()"><img src="${pageContext.request.contextPath}/img/btn_folder_none.png" /> 미분류</button>
+									    </c:when>
+									    
+									    <%-- 그룹 분류 있음 --%>
+									    <c:otherwise>
+									        <button><img src="${pageContext.request.contextPath}/img/btn_folder_none.png" /> ${bookmark.folder}</button>
+									    </c:otherwise>
+									</c:choose>
+								</td>
+								<td>
+									<c:choose>
+										<%-- 지원 이력 있음 --%>
+										<c:when test='${bookmark.applicantHistory == "Y"}'>
+											지원일 ${bookmark.applicantDate}
+										</c:when>
+										
+										<%-- 지원 이력 없음 --%>
+										<c:otherwise>
+											지원 이력 없음
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td>
+									<button><img src="${pageContext.request.contextPath}/img/btn_preview.png" /> 이력서 열람</button>
+								</td>
+								<td colspan="2">
+									<button disabled><img src="${pageContext.request.contextPath}/img/btn_call.png" /></button>
+									<button><img src="${pageContext.request.contextPath}/img/btn_mail.png" /></button>
+									<button><img src="${pageContext.request.contextPath}/img/btn_chat.png" /></button>
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</article>
