@@ -99,8 +99,15 @@ public class ResumeController {
         }
         resume.setPersonNo(loginUser.getPersonNo());
         
+        String status = resume.getResumeStatus();
+        if (status == null || !status.equals("Y")) {
+            resume.setResumeStatus("N");
+        }
+        logger.debug("Resume Status: {}", resume.getResumeStatus());
+
+        
         switch (resume.getServiceStatus()) {
-        case "unfulfilled":
+        case "미필":
             resume.setExemptionReason(null); // 미필일 경우 면제 사유는 null
             resume.setEnlistmentDate_ful(null);
             resume.setDischargeDate_ful(null);
@@ -109,7 +116,7 @@ public class ResumeController {
             resume.setDischargeReason_ful(null);
             break;
 
-        case "exempted":
+        case "면제":
             resume.setUnfulfilledReason(null); // 면제일 경우 미필 사유는 null
             resume.setEnlistmentDate_ful(null);
             resume.setDischargeDate_ful(null);
@@ -118,7 +125,7 @@ public class ResumeController {
             resume.setDischargeReason_ful(null);
             break;
 
-        case "fulfilled":
+        case "군필":
             resume.setUnfulfilledReason(null);
             resume.setExemptionReason(null);
             resume.setEnlistmentDate_ser(null);
@@ -127,7 +134,7 @@ public class ResumeController {
             resume.setRank_ser(null);
             break;
 
-        case "serving":
+        case "복무중":
             resume.setUnfulfilledReason(null);
             resume.setExemptionReason(null);
             resume.setDischargeDate_ful(null);

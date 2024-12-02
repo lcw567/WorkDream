@@ -598,7 +598,7 @@ CREATE TABLE RESUME(
     CLASS_SELECTION_SER VARCHAR2(10),                                  -- 계급 선택(복무중) (rank)
     DISCHARGE_REASON_FUL VARCHAR2(50),                                 -- 전역 사유(군필) (dischargeReason)
     WORK VARCHAR2(20) NULL,                                        -- 직무 (work)
-    DEPARTMENT VARCHAR2(20) NULL,                                  -- 부서 (department)
+    DEPARTMENT VARCHAR2(100) NULL,                                  -- 부서 (department)
     COMPANY_TITLE VARCHAR2(50) NULL,                               -- 회사명 (companyTitle)
     START_DATE_WORK DATE NULL,                                     -- 업무 시작 날짜 (startDateWork)
     END_DATE_WORK DATE,                                            -- 업무 종료 날짜 (endDateWork)
@@ -607,7 +607,7 @@ CREATE TABLE RESUME(
     POSITION VARCHAR2(20) NULL,                                    -- 직급/직책 (position)
     CREATE_DATE DATE DEFAULT SYSDATE,                              -- 생성일자
     MODIFIED_DATE DATE DEFAULT SYSDATE,                            -- 수정일자
-    RESUME_STATUS CHAR(1) DEFAULT 'Y',                             -- 이력서 상태
+    RESUME_STATUS VARCHAR2(10) DEFAULT 'Y', 		 -- 이력서 상태
     DELETED CHAR(1) DEFAULT 'N'                                     -- 삭제 여부
 );
 
