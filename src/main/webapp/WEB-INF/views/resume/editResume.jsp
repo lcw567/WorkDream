@@ -132,8 +132,9 @@
                                 </fieldset>
                                 <div class="exam">
                                     <label>중입 검정고시(초졸)</label>
+                                    <input type="hidden" name="examPassed_el" value="N" id="examPassed_el_hidden" />
                                     <label for="middle_exam">
-                                        <input type="checkbox" id="middle_exam" name="examPassed_el" value="Y" <c:if test="${resume.examPassed_el == 'Y'}">checked</c:if>/>
+                                        <input type="checkbox" id="middle_exam" value="Y" <c:if test="${resume.examPassed_el == 'Y'}">checked</c:if>/>
                                         <span></span>&nbsp;
                                     </label>
                                 </div>
@@ -194,8 +195,9 @@
                                 </fieldset>
                                 <div class="exam">
                                     <label>고입 검정고시(중졸)</label>
+                                    <input type="hidden" name="examPassed_mi" value="N" id="examPassed_mi_hidden" />
                                     <label for="high_exam">
-                                        <input type="checkbox" id="high_exam" name="examPassed_mi" value="Y" <c:if test="${resume.examPassed_mi eq 'Y'}">checked</c:if>/>
+                                        <input type="checkbox" id="high_exam" value="Y" <c:if test="${resume.examPassed_mi eq 'Y'}">checked</c:if>/>
                                         <span></span>&nbsp;
                                     </label>
                                 </div>
@@ -257,11 +259,12 @@
                                 </fieldset>
                                 <div class="exam">
                                     <label>대입 검정고시</label>
+                                    <input type="hidden" name="examPassed_hi" value="N" id="examPassed_hi_hidden" />
                                     <label for="college_exam">
-                                        <input type="checkbox" id="college_exam" name="examPassed_hi" value="Y" <c:if test="${resume.examPassed_hi == 'Y'}">checked</c:if>/>
+                                        <input type="checkbox" id="college_exam" value="Y" <c:if test="${resume.examPassed_hi == 'Y'}">checked</c:if>/>
                                         <span></span>&nbsp;
                                     </label>
-                                </div>
+                                </div>                                
                             </div>
                             <div class="form-group2">
                                 <fieldset class="input-group">
