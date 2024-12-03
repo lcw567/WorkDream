@@ -10,7 +10,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.cs.workdream.member.model.vo.Member;
@@ -18,7 +17,7 @@ import com.cs.workdream.member.model.vo.Member;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Component
+@Component("chatServer")
 public class ChatServer extends TextWebSocketHandler {
 
     private final ConcurrentHashMap<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
@@ -28,7 +27,13 @@ public class ChatServer extends TextWebSocketHandler {
         Member loginUser = (Member) session.getAttributes().get("loginUser");
         if (loginUser != null) {
             String userId = loginUser.getUserId();
-            userSessions.put(userId, session);
+
+            // 기존 세션 제거
+            WebSocketSession existingSession = userSessions.put(userId, session);
+            if (existingSession != null && existingSession.isOpen()) {
+                existingSession.close(CloseStatus.NORMAL);
+            }
+
             log.info("WebSocket 연결됨: UserID = {}", userId);
         } else {
             log.warn("로그인 유저 정보가 없는 세션입니다.");
@@ -50,33 +55,42 @@ public class ChatServer extends TextWebSocketHandler {
         String messageContent = json.get("message").getAsString();
         String targetUserId = json.get("target").getAsString();
 
-        MsgVo msgVo = new MsgVo();
-        msgVo.setMsg(messageContent);
-        msgVo.setUserid(userId);
-        msgVo.setTargetUserid(targetUserId);
-        msgVo.setTime(new Date().toString());
+        log.info("Received message from {} to {}: {}", userId, targetUserId, messageContent);
+
+        JsonObject msgVo = new JsonObject();
+        msgVo.addProperty("msg", messageContent);
+        msgVo.addProperty("userid", userId);
+        msgVo.addProperty("targetUserid", targetUserId);
+        msgVo.addProperty("time", new Date().toString());
 
         sendMessageToUser(msgVo);
     }
 
-    private void sendMessageToUser(MsgVo msgVo) {
-        WebSocketSession senderSession = userSessions.get(msgVo.getUserid());
-        WebSocketSession targetSession = userSessions.get(msgVo.getTargetUserid());
+    private void sendMessageToUser(JsonObject msgVo) {
+        WebSocketSession senderSession = userSessions.get(msgVo.get("userid").getAsString());
+        WebSocketSession targetSession = userSessions.get(msgVo.get("targetUserid").getAsString());
 
         if (targetSession != null && targetSession.isOpen()) {
             try {
-                String messageJson = new Gson().toJson(msgVo);
-                TextMessage textMessage = new TextMessage(messageJson);
+                msgVo.addProperty("type", "message");
+                TextMessage textMessage = new TextMessage(msgVo.toString());
                 targetSession.sendMessage(textMessage);
                 senderSession.sendMessage(textMessage);
+
+                log.info("Sent message to {}: {}", msgVo.get("targetUserid").getAsString(), msgVo.get("msg").getAsString());
             } catch (IOException e) {
                 log.error("메시지 전송 실패: {}", e.getMessage());
             }
         } else {
-            log.warn("대상 유저({})의 세션이 없습니다.", msgVo.getTargetUserid());
+            log.warn("대상 유저({})의 세션이 없습니다.", msgVo.get("targetUserid").getAsString());
             if (senderSession != null && senderSession.isOpen()) {
                 try {
-                    senderSession.sendMessage(new TextMessage("대상 사용자가 오프라인 상태입니다."));
+                    JsonObject errorJson = new JsonObject();
+                    errorJson.addProperty("type", "error");
+                    errorJson.addProperty("message", "대상 사용자가 오프라인 상태입니다.");
+                    senderSession.sendMessage(new TextMessage(errorJson.toString()));
+
+                    log.info("Sent error message to {}: 대상 사용자가 오프라인 상태입니다.", msgVo.get("userid").getAsString());
                 } catch (IOException e) {
                     log.error("오프라인 알림 전송 실패: {}", e.getMessage());
                 }
