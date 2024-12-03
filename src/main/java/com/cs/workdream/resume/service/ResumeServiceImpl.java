@@ -156,51 +156,41 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     @Transactional
-    public boolean updateResume(Resume resume) {
-        try {
-            // 기본 이력서 정보 업데이트
-            int resumeUpdateResult = resumeDao.updateResume(resume);
-            if (resumeUpdateResult <= 0) {
-                throw new RuntimeException("이력서 기본 정보 업데이트 실패");
-            }
+    public boolean updateResume(Resume resume, List<Certificate> certificates, List<LanguageTest> languageTests, List<Award> awards) {
+        int result = resumeDao.updateResume(resume);
+        if (result > 0) {
+            int resumeNo = resume.getResumeNo();
 
-            // 자격증 업데이트: 기존 데이터 유지, 새 데이터 추가
-            List<Certificate> certificates = resume.getCertificates();
-            if (certificates != null) {
+            // 기존 자격증 삭제
+            resumeDao.deleteCertificatesByResumeNo(resumeNo);
+            // 새로운 자격증 추가
+            if (certificates != null && !certificates.isEmpty()) {
                 for (Certificate cert : certificates) {
-                    if (cert.getCertificateId() == 0) {  // 기존 데이터가 아니라면 새로 추가
-                        cert.setResumeNo(resume.getResumeNo());
-                        resumeDao.insertCertificate(cert);
-                    }
+                    resumeDao.insertCertificate(cert);
                 }
             }
 
-            // 어학시험 업데이트: 기존 데이터 유지, 새 데이터 추가
-            List<LanguageTest> languageTests = resume.getLanguageTests();
-            if (languageTests != null) {
+            // 기존 어학시험 삭제
+            resumeDao.deleteLanguageTestsByResumeNo(resumeNo);
+            // 새로운 어학시험 추가
+            if (languageTests != null && !languageTests.isEmpty()) {
                 for (LanguageTest langTest : languageTests) {
-                    if (langTest.getLanguageTestId() == 0) {  // 기존 데이터가 아니라면 새로 추가
-                        langTest.setResumeNo(resume.getResumeNo());
-                        resumeDao.insertLanguageTest(langTest);
-                    }
+                    resumeDao.insertLanguageTest(langTest);
                 }
             }
 
-            // 수상내역 업데이트: 기존 데이터 유지, 새 데이터 추가
-            List<Award> awards = resume.getAwards();
-            if (awards != null) {
+            // 기존 수상내역 삭제
+            resumeDao.deleteAwardsByResumeNo(resumeNo);
+            // 새로운 수상내역 추가
+            if (awards != null && !awards.isEmpty()) {
                 for (Award award : awards) {
-                    if (award.getAwardId() == 0) {  // 기존 데이터가 아니라면 새로 추가
-                        award.setResumeNo(resume.getResumeNo());
-                        resumeDao.insertAward(award);
-                    }
+                    resumeDao.insertAward(award);
                 }
             }
 
             return true;
-        } catch (Exception e) {
-            logger.error("이력서 업데이트 중 오류 발생: ", e);
-            throw new RuntimeException("이력서 업데이트 중 오류 발생", e);
+        } else {
+            return false;
         }
     }
 

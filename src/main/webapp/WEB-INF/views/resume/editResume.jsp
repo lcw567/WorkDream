@@ -90,7 +90,7 @@
                             </fieldset>
                         </div>
                         <div id="basic5">
-                            <img src="${resume.userPic != null ? resume.userPic : pageContext.request.contextPath}/img/file.png" class="profile_img" alt="프로필 이미지">
+                            <img src="${pageContext.request.contextPath}${resume.userPic}" class="profile_img" alt="프로필 사진">
                             <input type="file" class="profile_upload" accept="image/*" name="userPicFile">
                         </div>
                     </div>
