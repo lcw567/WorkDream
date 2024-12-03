@@ -12,24 +12,37 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>WorkDream 채팅</title>
-    <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png" />
+    <title>WorkDream 메신저</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/chat.css">
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
-    <div id="chat-container">
-        <div id="msg-container"></div>
-        <form id="chat-form">
-            <input type="text" id="msg" placeholder="메시지를 입력하세요..." required>
-            <input type="text" id="target" placeholder="수신자 ID" required>
-            <button type="submit">보내기</button>
-        </form>
+    <div id="app-container">
+        <div id="app-title">WorkDream 메신저</div>
+        <div id="chat-app">
+            <!-- 채팅 목록 -->
+            <div id="chat-sidebar">
+                <h3>사용자 목록</h3>
+                <ul id="chat-list"></ul>
+                <button id="add-user-btn">사용자 추가</button>
+            </div>
+
+            <!-- 메시지 창 -->
+            <div id="chat-container">
+                <div id="status-indicator" class="offline">Offline</div>
+                <div id="msg-container"></div>
+                <form id="chat-form">
+                    <input type="text" id="msg" placeholder="메시지를 입력하세요..." required>
+                    <button type="submit">보내기</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <script type="text/javascript">
+    <script>
         const currentUserId = '<c:out value="${loginUser.userId}" />';
     </script>
     <script src="${pageContext.request.contextPath}/js/chat.js" defer></script>
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
+
