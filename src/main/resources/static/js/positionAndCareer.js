@@ -1,12 +1,12 @@
 document.querySelectorAll('input[type="radio"]').forEach((radio) => {
     radio.addEventListener('change', (event) => {
-        console.log(`선택된 값: ${event.target.value}`);
+        console.log(선택된 값: ${event.target.value});
     });
 });
 
 document.querySelectorAll('input[name="Career_Type"]').forEach((radio) => {
     radio.addEventListener('change', (event) => {
-        console.log(`선택된 경력: ${event.target.value}`);
+        console.log(선택된 경력: ${event.target.value});
     });
 });
 
@@ -15,9 +15,11 @@ document.querySelectorAll('input[type="radio"]').forEach((radio) => {
     radio.addEventListener('change', (event) => {
         const groupName = event.target.name; // 라디오 버튼 그룹 이름
         const selectedValue = event.target.value; // 선택된 값
-        console.log(`그룹 "${groupName}"에서 선택된 값: ${selectedValue}`);
+        console.log(그룹 "${groupName}"에서 선택된 값: ${selectedValue});
     });
 });
+
+
 
 
 
@@ -51,18 +53,18 @@ function createInputHandler(container, placeholderText, wrapperClass) {
 
             // 입력값이 없을 경우
             if (!enteredText) {
-                alert(`${placeholderText}를 입력해주세요.`);
+                alert(${placeholderText}를 입력해주세요.);
                 inputField.focus();
                 return;
             }
 
             // 중복 검사: container 내 p 태그의 텍스트와 비교
-            const isDuplicate = Array.from(container.querySelectorAll(`.${wrapperClass} p`)).some(
+            const isDuplicate = Array.from(container.querySelectorAll(.${wrapperClass} p)).some(
                 (p) => p.textContent.trim() === enteredText
             );
 
             if (isDuplicate) {
-                alert(`"${enteredText}"는 이미 추가된 ${placeholderText}입니다. 다른 값을 입력해주세요.`);
+                alert("${enteredText}"는 이미 추가된 ${placeholderText}입니다. 다른 값을 입력해주세요.);
                 inputField.focus();
                 return;
             }
@@ -174,7 +176,31 @@ skillSearchInput.addEventListener('keypress', function (event) {
 });
 
 
-document.querySelectorAll('label.unstyled-label').forEach((label) => {
-    label.style.setProperty('--pseudo-before', 'none'); // --pseudo-before를 설정
-    label.classList.add('unstyled-label'); // 필요한 경우 클래스 추가
+document.getElementById("Confirm").addEventListener("click", () => {
+    // 데이터를 수집
+    const jobData = {
+        rank: document.getElementById("Rank")?.value || "",
+        position: document.getElementById("Position")?.value || "",
+        employmentType: document.querySelector('input[name="Employment_Type"]:checked')?.value || "정규직",
+        careerMin: document.querySelector(".Career_Year_Min")?.value || "0",
+        careerMax: document.querySelector(".Career_Year_Max")?.value || "0",
+        education: document.querySelector('input[name="Academic"]:checked')?.value || "학력무관",
+        workDays: document.querySelector('input[name="Work_Days"]:checked')?.value || "근무요일",
+        workTimeMin: document.querySelector(".Work_Time_Min")?.value || "",
+        workTimeMax: document.querySelector(".Work_Time_Max")?.value || "",
+        salaryMin: document.querySelector(".Expected_Salary_Min")?.value || "0",
+        salaryMax: document.querySelector(".Expected_Salary_Max")?.value || "0",
+        workLocation: Array.from(document.querySelectorAll("#location-container .Work_Location"))
+            .map((location) => location.textContent.trim()) || [],
+        industry: Array.from(document.querySelectorAll("#industry-container .Industry_Type"))
+            .map((ind) => ind.textContent.trim()) || [],
+        companyType: document.querySelector('input[name="Company_Type"]:checked')?.value || "",
+        employmentStatus: document.querySelector('input[name="Employment_Status"]:checked')?.value || "재직무관",
+    };
+
+    // 데이터 저장
+    localStorage.setItem("jobData", JSON.stringify(jobData));
+
+    // 이전 페이지로 이동
+    window.location.href = "http://localhost:3333/WorkDream/business/announcementInformation2";
 });
