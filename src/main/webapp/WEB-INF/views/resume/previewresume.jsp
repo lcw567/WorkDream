@@ -45,9 +45,9 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </h2>
-                                <h2>상태: ${resume.graduationStatus_el}</h2>
-                                <h2>학교명: ${resume.academicName_el}</h2>
-                                <h2>지역: ${resume.location_el}</h2>
+                                <h2>${resume.academicName_el}</h2>
+                                <h2>${resume.location_el}</h2>
+                                <h2>${resume.graduationStatus_el}</h2>
                                 <h2>검정고시 합격 여부: ${resume.examPassed_el}</h2>
                             </div>
                         </c:when>
@@ -65,9 +65,9 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </h2>
-                                <h2>상태: ${resume.graduationStatus_mi}</h2>
-                                <h2>학교명: ${resume.academicName_mi}</h2>
-                                <h2>지역: ${resume.location_mi}</h2>
+                                <h2>${resume.academicName_mi}</h2>
+                                <h2>${resume.location_mi}</h2>
+                                <h2>${resume.graduationStatus_mi}</h2>
                                 <h2>검정고시 합격 여부: ${resume.examPassed_mi}</h2>
                             </div>
                         </c:when>
@@ -85,14 +85,14 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </h2>
-                                <h2>상태: ${resume.graduationStatus_hi}</h2>
-                                <h2>학교명: ${resume.academicName_hi}</h2>
-                                <h2>지역: ${resume.location_hi}</h2>
+                                <h2>${resume.academicName_hi}</h2>
+                                <h2>${resume.location_hi}</h2>
+                                <h2>${resume.graduationStatus_hi}</h2>
                                 <h2>검정고시 합격 여부: ${resume.examPassed_hi}</h2>
                             </div>
                         </c:when>
                         
-                        <c:when test="${resume.educationLevel == '대학교'}">
+                        <c:when test="${resume.educationLevel == '대학교/대학원 이상 졸업'}">
                             <!-- 대학교 학력 정보 -->
                             <div class="pre_inner2-1">
                                 <h2>${resume.enterDate_col} ~ 
@@ -105,12 +105,16 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </h2>
-                                <h2>상태: ${resume.graduationStatus_col}</h2>
-                                <h2>학교명: ${resume.academicName_col}</h2>
-                                <h2>전공: ${resume.majorName_col}</h2>
-                                <h2>학위: ${resume.degree_col}</h2>
-                                <h2>지역: ${resume.location_col}</h2>
-                                <h2>검정고시 합격 여부: ${resume.examPassed_col}</h2>
+                                <div class="pre_inner2-1-1">
+                                    <h2>${resume.academicName_col}</h2>
+                                </div>
+                                <div class="pre_inner2-1-2">
+                                    <h2>${resume.majorName_col}</h2>
+                                </div>
+                                <div class="pre_inner2-1-3">
+                                    <h2>${resume.degree_col}</h2><br>
+                                    <h2>${resume.graduationStatus_col}</h2><br>
+                                </div>
                             </div>
                         </c:when>
                         
@@ -137,9 +141,13 @@
                                     </c:otherwise>
                                 </c:choose>
                             </h2>
-                            <h2>회사명: ${resume.companyTitle}</h2>
-                            <h2>부서: ${resume.department}</h2>
-                            <h2>직급: ${resume.position}</h2>
+                            <div class="pre_inner3-1-1">
+                                <h2>${resume.companyTitle}</h2>
+                                <h2>${resume.department}</h2>
+                                <h2>${resume.position}</h2>
+                            </div>
+                        </div>
+                        <div class="pre_inner3-1-2">
                             <h2>담당업무: ${resume.jobContent}</h2>
                         </div>
                     </c:if>
@@ -178,9 +186,13 @@
                                     </c:otherwise>
                                 </c:choose>
                             </h2>
-                            <h2>기관명: ${resume.organizationName}</h2>
-                            <h2>활동설명: ${resume.description}</h2>
-                            <h2>활동구분: ${resume.activityType}</h2>
+                            <div class="pre_inner5-1-1">
+                                <h2>기관/장소 : ${resume.organizationName}</h2>
+                                <h2>활동 종류 : ${resume.activityType}</h2>
+                            </div>
+                        </div>
+                        <div class="pre_inner5-1-2">
+                            <h2>활동설명 : ${resume.description}</h2>
                         </div>
                     </c:if>
                     <c:if test="${empty resume.activityType}">
@@ -194,18 +206,18 @@
                 <p>자격/어학/수상</p>
                 <div class="pre_inner6">
                     <!-- 자격증 -->
-                    <c:forEach var="certificate" items="${resume.certificates}">
+                    <c:forEach var="certificates" items="${resume.certificates}">
                         <div class="pre_inner6-1">
-                            <h2>자격증명: ${Certificate.qualificationName}</h2>
-                            <h2>합격 구분: ${Certificate.passStatus}</h2>
-                            <h2>발급 기관: ${Certificate.issuingAgency}</h2>
-                            <h2>취득일: ${Certificate.testDate_cer}</h2>
+                            <h2>자격증명: ${certificates.qualificationName}</h2>
+                            <h2>합격 구분: ${certificates.passStatus}</h2>
+                            <h2>발급 기관: ${certificates.issuingAgency}</h2>
+                            <h2>취득일: ${certificates.testDate_cer}</h2>
                         </div>
                     </c:forEach>
                     
                     <!-- 어학시험 -->
                     <c:forEach var="languageTest" items="${resume.languageTests}">
-                        <div class="pre_inner6-1">
+                        <div class="pre_inner6-2">
                             <h2>어학시험명: ${languageTest.languageName}</h2>
                             <h2>급수: ${languageTest.proficiencyLevel}</h2>
                             <h2>취득 유형: ${languageTest.languageType}</h2>
@@ -215,7 +227,7 @@
                     
                     <!-- 수상/공모전 -->
                     <c:forEach var="award" items="${resume.awards}">
-                        <div class="pre_inner6-1">
+                        <div class="pre_inner6-3">
                             <h2>수상/공모전명: ${award.awardName}</h2>
                             <h2>주최자: ${award.organizer}</h2>
                             <h2>취득일: ${award.awardDate}</h2>
