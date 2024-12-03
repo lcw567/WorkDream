@@ -1,68 +1,120 @@
+// 채팅 목록 요소 가져오기
+const chatList = document.getElementById('chat-list');
+
+// WebSocket 연결 초기화
 const protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
-const socket = new WebSocket(`${protocol}${window.location.host}/WorkDream/server`);
+let socket = new WebSocket(`${protocol}${window.location.host}/WorkDream/server`);
 
+let selectedUserId = null; // 현재 선택된 사용자
+
+// WebSocket 연결 이벤트 처리
 socket.onopen = () => {
-    appendMessage("시스템", "WebSocket 연결이 성공적으로 열렸습니다.", "system-message");
-};
-
-socket.onmessage = (event) => {
-    try {
-        const data = JSON.parse(event.data);
-        if (data.type === 'error') {
-            appendMessage("시스템", data.message, "system-message");
-        } else if (data.type === 'message') {
-            const isMyMessage = data.userid === currentUserId;
-
-            // 중복 방지: 서버에서 온 메시지만 표시
-            if (!isMyMessage || !document.querySelector(`[data-msg-id="${data.time}-${data.userid}"]`)) {
-                const className = isMyMessage ? "my-message" : "other-message";
-                appendMessage(
-                    isMyMessage ? "나" : data.userid,
-                    `${data.msg} <span class="msg-time">(${data.time})</span>`,
-                    className,
-                    `${data.time}-${data.userid}` // 메시지의 고유 ID 설정
-                );
-            }
-        }
-    } catch (err) {
-        console.error("수신 메시지 처리 중 오류:", err);
-    }
+    updateStatusIndicator('Online', 'online', 'offline');
+    appendMessage('시스템', 'WebSocket 연결이 성공적으로 열렸습니다.', 'system-message');
 };
 
 socket.onclose = () => {
-    appendMessage("시스템", "WebSocket 연결이 종료되었습니다.", "system-message");
+    updateStatusIndicator('Offline', 'offline', 'online');
+    appendMessage('시스템', 'WebSocket 연결이 종료되었습니다.', 'system-message');
+
+    // WebSocket 재연결 시도
+    setTimeout(() => {
+        socket = new WebSocket(`${protocol}${window.location.host}/WorkDream/server`);
+    }, 3000);
 };
 
-socket.onerror = () => {
-    appendMessage("시스템", "WebSocket 오류가 발생했습니다.", "system-message");
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+
+    // 현재 채팅창이 선택된 사용자와 일치하는 경우에만 메시지 표시
+    if (data.userid === selectedUserId || data.target === selectedUserId) {
+        const className = data.userid === currentUserId ? 'my-message' : 'other-message';
+        appendMessage(data.userid, data.msg, className);
+    }
 };
 
-document.getElementById("chat-form").addEventListener("submit", (e) => {
-    e.preventDefault();
+// 상태 표시 업데이트 함수
+function updateStatusIndicator(text, addClass, removeClass) {
+    const statusIndicator = document.getElementById('status-indicator');
+    statusIndicator.textContent = text;
+    statusIndicator.classList.add(addClass);
+    statusIndicator.classList.remove(removeClass);
+}
 
-    const msg = document.getElementById("msg").value.trim();
-    const target = document.getElementById("target").value.trim();
-
-    if (!msg || !target) {
-        alert("메시지와 수신자 정보를 입력하세요.");
+// 채팅 목록에 사용자 추가 함수
+function addUserToChatList(userId) {
+    if (!userId || !/^[a-zA-Z0-9]+$/.test(userId)) {
+        alert('유효한 사용자 ID를 입력하세요 (영문, 숫자만 허용).');
         return;
     }
 
-    // 서버로 메시지 전송 (화면에는 추가하지 않음)
-    socket.send(JSON.stringify({ message: msg, target }));
+    if (document.querySelector(`#chat-list li[data-userid="${userId}"]`)) {
+        alert('이미 존재하는 사용자입니다.');
+        return;
+    }
 
-    // 입력 필드 초기화
-    document.getElementById("msg").value = "";
+    const newUser = document.createElement('li');
+    newUser.textContent = userId;
+    newUser.dataset.userid = userId;
+    newUser.onclick = () => selectChat(userId);
+    chatList.appendChild(newUser);
+
+    appendMessage('시스템', `${userId} 사용자가 목록에 추가되었습니다.`, 'system-message');
+}
+
+// 채팅 목록에서 사용자 선택 함수
+function selectChat(userId) {
+    selectedUserId = userId;
+    document.getElementById('msg-container').innerHTML = '';
+
+    document.querySelectorAll('#chat-list li').forEach((li) => li.classList.remove('active'));
+    const selectedListItem = document.querySelector(`#chat-list li[data-userid="${userId}"]`);
+    if (selectedListItem) selectedListItem.classList.add('active');
+
+    appendMessage('시스템', `${userId}님과의 채팅을 시작합니다.`, 'system-message');
+}
+
+// 메시지 전송
+document.getElementById('chat-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!selectedUserId) {
+        alert('먼저 채팅할 사용자를 선택하세요.');
+        return;
+    }
+
+    const msg = document.getElementById('msg').value.trim();
+    if (!msg) return;
+
+    if (socket.readyState !== WebSocket.OPEN) {
+        alert('WebSocket 연결이 끊어졌습니다. 다시 시도하세요.');
+        return;
+    }
+
+    socket.send(JSON.stringify({ message: msg, target: selectedUserId }));
+    document.getElementById('msg').value = '';
+
+    appendMessage('나', msg, 'my-message');
 });
 
-function appendMessage(sender, message, className, msgId = "") {
-    const container = document.getElementById("msg-container");
-    const messageElement = document.createElement("div");
+// 메시지 추가 함수
+function appendMessage(sender, message, className) {
+    const container = document.getElementById('msg-container');
+    const messageElement = document.createElement('div');
     messageElement.className = `message ${className}`;
-    if (msgId) {
-        messageElement.setAttribute("data-msg-id", msgId); // 고유 ID 설정
-    }
-    messageElement.innerHTML = `<strong>${sender}</strong>: ${message}`;
+    const time = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+    messageElement.innerHTML = `
+        <strong>${sender}</strong>: ${message}
+        <div class="msg-time">${time}</div>
+    `;
     container.appendChild(messageElement);
+
+    // 메시지 창 자동 스크롤
     container.scrollTop = container.scrollHeight;
 }
+
+// 사용자 추가 버튼 이벤트
+document.getElementById('add-user-btn').addEventListener('click', () => {
+    const userId = prompt('추가할 사용자 ID를 입력하세요:');
+    if (userId) addUserToChatList(userId);
+});

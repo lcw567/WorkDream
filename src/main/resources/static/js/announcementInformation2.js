@@ -38,7 +38,7 @@ const data = {
     },
 }
 
-function init(path){
+function init(path) {
     contextPath = path;
 
     const titleInput = document.getElementById('Announcement_Title');
@@ -47,11 +47,11 @@ function init(path){
         changeValue('title', event.target.value);
     });
 
-// 모든 input[type=radio]를 선택
+    // 모든 input[type=radio]를 선택
     const radioList = document.querySelectorAll("#Job_Position_content input[type=radio]");
-// 각 라디오 버튼에 onchange 이벤트 등록
-    for(let r of radioList) {
-        r.onchange = function(ev){
+    // 각 라디오 버튼에 onchange 이벤트 등록
+    for (let r of radioList) {
+        r.onchange = function (ev) {
             const radioButton = ev.target;
 
             // 라디오 버튼의 name 속성을 기반으로 tmpDyty의 key에 값 업데이트
@@ -64,7 +64,7 @@ function init(path){
 
 };
 
-function addPopupEvent(){
+function addPopupEvent() {
     // 공통 함수: 입력 필드 생성 및 처리
     function createInputHandler(container, placeholderText, wrapperClass, key) {
         return function () {
@@ -271,12 +271,12 @@ document.querySelectorAll('input[type="radio"]').forEach((radio) => {
 });
 
 
-function openModal(){
+function openModal() {
     const modal = document.querySelector('.modal');
     modal.style.display = 'block';
 }
 
-function closeModal(){
+function closeModal() {
     const modal = document.querySelector('.modal');
     modal.style.display = 'none';
 
@@ -303,8 +303,9 @@ function closeModal(){
         employment_status: "재직무관",
     },
 
-    console.log(data.dutyList)
+        console.log(data.dutyList)
     $("#Job_Position_content").html(`<div class="Position_And_Career">
+                    <div class="radio_label">
 						<div class="Position_And_Career_Title">
 							<h2>직급 및 직책</h2>
 							<b>
@@ -450,7 +451,7 @@ function closeModal(){
 									근무</label>
 							</div>
 						</div>
-
+                    </div>
 						<div class="Position_And_Career_Title">
 							<h2>근무시간</h2>
 							<b>
@@ -582,7 +583,7 @@ function closeModal(){
 						<p style="color: #656565; margin-top: 5px; margin-bottom: 20px;">특정
 							기업 유형의 과거•현재 재직자에게 우선적으로 노출하고 싶다면 입력해주세요</p>
 
-
+                    <div class="radio_label">
 						<div id="Business_Type">
 							<div>
 								<input type="radio" id="Enterprise" name="company_type"
@@ -659,7 +660,7 @@ function closeModal(){
 								</div>
 							</div>
 						</div>
-
+                    </div>
 						<div
 							style="width: 89%; display: flex; margin-top: 15px; justify-content: end;">
 							<button id="Confirm" class="close_btn" onclick="closeModal()">확인</button>
@@ -672,7 +673,6 @@ function closeModal(){
 }
 
 document.getElementById("addDutyButton").addEventListener("click", function () {
-    const MAX_DUTIES = 5; // 최대 직무 개수
     const dutyListArea = document.getElementById("duty-list-area");
 
     if (!dutyListArea) {
@@ -683,52 +683,45 @@ document.getElementById("addDutyButton").addEventListener("click", function () {
     // 현재 추가된 직무 개수 확인
     const renderedDuties = Array.from(dutyListArea.children).length;
 
-    if (renderedDuties >= MAX_DUTIES) {
+    if (renderedDuties >= 5) {
         // 최대 개수 초과 시 경고를 표시하고 추가를 막음
-        alert(`최대 ${MAX_DUTIES}개의 직무만 추가할 수 있습니다.`);
+        alert(`최대 5개의 직무만 추가할 수 있습니다.`);
         return; // 동작 중단
+    } else {
+        // 직무 개수가 초과되지 않았을 때만 모달 호출
+        openModal();
     }
-
-    // 직무 개수가 초과되지 않았을 때만 모달 호출
-    openModal();
 });
 
-function drawDutyList(){
+function drawDutyList() {
     //duty-list-area에다가 list에 있는 정보로
     /*
     <div class="Job_duty"> 
-									<p style="color: white; font-size: 12px; font-weight: 600;"
-										class="Job_duty_p">~~sdvsdv ~~년</p>
-									<button style="background: #4E21A8; border: none">
-										<img
-											src="${pageContext.request.contextPath}/img/letter-x_9215129.png"
-											style="width: 25px; height: 26px; margin-top: 2px;">
-									</button>
-								</div>
+                                    <p style="color: white; font-size: 12px; font-weight: 600;"
+                                        class="Job_duty_p">~~sdvsdv ~~년</p>
+                                    <button style="background: #4E21A8; border: none">
+                                        <img
+                                            src="${pageContext.request.contextPath}/img/letter-x_9215129.png"
+                                            style="width: 25px; height: 26px; margin-top: 2px;">
+                                    </button>
+                                </div>
                                 넣어주기
     */
- //data .dutyList를 이용해서 화면에 그려주기
- const dutyListArea = document.getElementById("duty-list-area");
+    //data .dutyList를 이용해서 화면에 그려주기
+    const dutyListArea = document.getElementById("duty-list-area");
 
- if (!dutyListArea) {
-     console.error("dutyListArea 요소를 찾을 수 없습니다.");
-     return;
- }
+    if (!dutyListArea) {
+        console.error("dutyListArea 요소를 찾을 수 없습니다.");
+        return;
+    }
 
- const MAX_DUTIES = 5; // 최대 직무 개수
 
- // 현재 추가된 직무 개수 확인
- if (data.dutyList.length > MAX_DUTIES) {
-     alert(`최대 ${MAX_DUTIES}개의 직무만 추가할 수 있습니다.`);
-     return; // 추가 중단
- }
+    // dutyListArea 초기화 (기존 내용을 유지하려면 이 부분 수정 필요)
+    dutyListArea.innerHTML = "";
 
- // dutyListArea 초기화 (기존 내용을 유지하려면 이 부분 수정 필요)
- dutyListArea.innerHTML = "";
-
- // dutyList를 기준으로 화면에 추가
- data.dutyList.forEach((duty, index) => {
-     const formattedText = `
+    // dutyList를 기준으로 화면에 추가
+    data.dutyList.forEach((duty, index) => {
+        const formattedText = `
          직급: ${duty.rank || "없음"} /
          직책: ${duty.position || "없음"} /
          고용 형태: ${duty.employment_type || "없음"} /
@@ -745,46 +738,46 @@ function drawDutyList(){
          재직 상태: ${duty.employment_status || "없음"}
      `.trim();
 
-     const jobDutyDiv = document.createElement("div");
-     jobDutyDiv.classList.add("Job_duty");
-     jobDutyDiv.dataset.index = index;
+        const jobDutyDiv = document.createElement("div");
+        jobDutyDiv.classList.add("Job_duty");
+        jobDutyDiv.dataset.index = index;
 
-     const jobDutyText = document.createElement("p");
-     jobDutyText.classList.add("Job_duty_p");
-     jobDutyText.style.color = "white";
-     jobDutyText.style.fontSize = "12px";
-     jobDutyText.style.fontWeight = "600";
-     jobDutyText.style.textOverflow = "ellipsis";
-     jobDutyText.style.overflow = "hidden";
-     jobDutyText.style.whiteSpace = "nowrap";
-     jobDutyText.textContent = formattedText;
+        const jobDutyText = document.createElement("p");
+        jobDutyText.classList.add("Job_duty_p");
+        jobDutyText.style.color = "white";
+        jobDutyText.style.fontSize = "12px";
+        jobDutyText.style.fontWeight = "600";
+        jobDutyText.style.textOverflow = "ellipsis";
+        jobDutyText.style.overflow = "hidden";
+        jobDutyText.style.whiteSpace = "nowrap";
+        jobDutyText.textContent = formattedText;
 
-     const deleteButton = document.createElement("button");
-     deleteButton.style.background = "#4E21A8";
-     deleteButton.style.border = "none";
-     deleteButton.style.height = "30px";
-     deleteButton.style.display = "flex";
-     deleteButton.style.alignItems = "center";
+        const deleteButton = document.createElement("button");
+        deleteButton.style.background = "#4E21A8";
+        deleteButton.style.border = "none";
+        deleteButton.style.height = "30px";
+        deleteButton.style.display = "flex";
+        deleteButton.style.alignItems = "center";
 
-     const deleteImg = document.createElement("img");
-     deleteImg.src = `${contextPath}/img/letter-x_9215129.png`;
-     deleteImg.style.width = "25px";
-     deleteImg.style.height = "25px";
+        const deleteImg = document.createElement("img");
+        deleteImg.src = `${contextPath}/img/letter-x_9215129.png`;
+        deleteImg.style.width = "25px";
+        deleteImg.style.height = "25px";
 
-     deleteButton.appendChild(deleteImg);
+        deleteButton.appendChild(deleteImg);
 
-     // 삭제 버튼 클릭 이벤트
-     deleteButton.addEventListener("click", () => {
-         data.dutyList.splice(index, 1); // 데이터에서 삭제
-         drawDutyList(); // 리스트 다시 그리기
-     });
+        // 삭제 버튼 클릭 이벤트
+        deleteButton.addEventListener("click", () => {
+            data.dutyList.splice(index, 1); // 데이터에서 삭제
+            drawDutyList(); // 리스트 다시 그리기
+        });
 
-     jobDutyDiv.appendChild(jobDutyText);
-     jobDutyDiv.appendChild(deleteButton);
+        jobDutyDiv.appendChild(jobDutyText);
+        jobDutyDiv.appendChild(deleteButton);
 
-     // dutyListArea에 추가
-     dutyListArea.appendChild(jobDutyDiv);
- });
+        // dutyListArea에 추가
+        dutyListArea.appendChild(jobDutyDiv);
+    });
 }
 
 
@@ -815,35 +808,35 @@ function sendData() {
         },
         body: JSON.stringify(data), // 데이터를 JSON 형식으로 변환하여 전송
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json(); // JSON 형식으로 응답 처리
-    })
-    .then(data => {
-        console.log('Success:', data); // 성공 시 응답 처리
-        alert('데이터가 성공적으로 전송되었습니다!');
-    })
-    .catch(error => {
-        console.error('Error:', error); // 에러 처리
-    });
-    
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json(); // JSON 형식으로 응답 처리
+        })
+        .then(data => {
+            console.log('Success:', data); // 성공 시 응답 처리
+            alert('임시저장 되었습니다!');
+        })
+        .catch(error => {
+            console.error('Error:', error); // 에러 처리
+        });
+
 }
 
 document.getElementById('TemporarySave').addEventListener('click', () => {
     sendData();
 });
 
-function addListValue(key,value){
+function addListValue(key, value) {
     data.tmpDyty[key].push(value);
-} 
+}
 
-function removeListValue(key, value){
+function removeListValue(key, value) {
     data.tmpDyty[key] = data.tmpDyty[key].filter(v => v !== value);
 }
 
-function changeValue(key, value){
-    console.log(data.tmpDyty); 
+function changeValue(key, value) {
+    console.log(data.tmpDyty);
     data.tmpDyty[key] = value;
 }

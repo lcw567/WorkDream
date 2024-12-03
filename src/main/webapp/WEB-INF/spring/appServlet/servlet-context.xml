@@ -24,7 +24,7 @@
 	<resources mapping="/js/**" location="classpath:/static/js/" />
 	<resources mapping="/lib/**" location="classpath:/static/lib/" />
 	<resources mapping="/resources/business/**" location="classpath:/static/business/" />
-	<resources mapping="/resources/person/**" location="classpath:/static/person/" />
+	<resources mapping="/resources/person/**" location="file:///C:/upload/person/" />
 	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

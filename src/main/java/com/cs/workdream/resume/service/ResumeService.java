@@ -13,7 +13,7 @@ public interface ResumeService {
     boolean saveResume(Resume resume, MultipartFile userPicFile);
     List<Resume> getResumesByPersonNo(int personNo);
     Resume getResumeById(int resumeNo);
-    boolean updateResume(Resume resume);
+    boolean updateResume(Resume resume, List<Certificate> certificates, List<LanguageTest> languageTests, List<Award> awards);
     int deleteResumeById(int resumeNo);
 
     // New methods to handle certificates, language tests, and awards

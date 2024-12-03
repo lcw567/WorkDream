@@ -99,8 +99,7 @@
 
 								</div>
 
-								<button class="Add_Duty" id="addDutyButton" style="backgroundcolor: none;"
-									onclick="openModal()">
+								<button class="Add_Duty" id="addDutyButton" style="backgroundcolor: none;">
 									<img src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png"
 										alt="추가" />
 									<p>직무 추가</p>
