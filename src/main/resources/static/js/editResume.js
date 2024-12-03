@@ -379,71 +379,121 @@ document.addEventListener('DOMContentLoaded', function () {
     populateExistingData();
 });
 
-// 학력 필드 표시 및 비활성화/활성화 함수 통합
-function displayEducationFields() {
-    const selectedEdu = document.getElementById("selectedu").value;
-    const educationLvElement = document.querySelector('.education_Lv'); // .education_Lv 요소
+document.addEventListener("DOMContentLoaded", function() {
+    // 학력 선택 요소
+    const selectedu = document.getElementById("selectedu");
+    const educationLvElement = document.querySelector('.education_Lv');
 
-    // 초기 높이 설정
-    educationLvElement.style.height = '150px';
+    // 학력 필드 섹션들
+    const educationFields = {
+        "초등학교": document.getElementById("elementaryFields"),
+        "중학교": document.getElementById("middleSchoolFields"),
+        "고등학교": document.getElementById("highSchoolFields"),
+        "대학교/대학원 이상 졸업": document.getElementById("collegeFields")
+    };
 
-    // 모든 학력 필드 섹션을 숨기고 비활성화
-    const educationFields = ["elementaryFields", "middleSchoolFields", "highSchoolFields", "collegeFields"];
-    educationFields.forEach(function(id) {
-        const section = document.getElementById(id);
-        if (section) {
-            section.style.display = "none";
-            // 해당 섹션의 모든 입력 필드를 비활성화
-            const inputs = section.querySelectorAll("input, select");
-            inputs.forEach(function(input) {
-                input.disabled = true;
+    // '검정고시' 체크박스와 hidden input들
+    const examSections = {
+        "exam_el": {
+            section: document.querySelector('.exam'),
+            checkbox: document.getElementById('middle_exam'),
+            hiddenInput: document.getElementById('examPassed_el_hidden')
+        },
+        "exam_mi": {
+            section: document.querySelector('.exam'),
+            checkbox: document.getElementById('high_exam'),
+            hiddenInput: document.getElementById('examPassed_mi_hidden')
+        },
+        "exam_hi": {
+            section: document.querySelector('.exam'),
+            checkbox: document.getElementById('college_exam'),
+            hiddenInput: document.getElementById('examPassed_hi_hidden')
+        }
+    };
+
+    // '검정고시' 체크박스 이벤트 리스너 추가
+    Object.values(examSections).forEach(function(exam) {
+        if (exam.checkbox && exam.hiddenInput) {
+            exam.checkbox.addEventListener('change', function() {
+                exam.hiddenInput.value = this.checked ? 'Y' : 'N';
             });
+            // 초기 상태 설정
+            exam.hiddenInput.value = exam.checkbox.checked ? 'Y' : 'N';
         }
     });
 
-    // 선택된 학력에 해당하는 필드 섹션만 표시하고 활성화
-    let activeSectionId = "";
-    switch(selectedEdu) {
-        case "초등학교":
-            activeSectionId = "elementaryFields";
-            break;
-        case "중학교":
-            activeSectionId = "middleSchoolFields";
-            break;
-        case "고등학교":
-            activeSectionId = "highSchoolFields";
-            break;
-        case "대학교/대학원 이상 졸업":
-            activeSectionId = "collegeFields";
-            break;
-        default:
-            // 선택되지 않았거나 다른 값일 경우 기본 높이 유지
-            break;
-    }
+    // 학력 필드 표시 및 비활성화/활성화 함수
+    function displayEducationFields() {
+        const selectedEduValue = selectedu.value;
 
-    if (activeSectionId) {
-        const activeSection = document.getElementById(activeSectionId);
+        // 모든 학력 필드 섹션 숨기기 및 비활성화
+        Object.values(educationFields).forEach(function(section) {
+            if (section) {
+                section.style.display = "none";
+                const inputs = section.querySelectorAll("input, select");
+                inputs.forEach(function(input) {
+                    input.disabled = true;
+                });
+            }
+        });
+
+        // 모든 '검정고시' 영역 숨기기 및 체크박스 비활성화
+        Object.values(examSections).forEach(function(exam) {
+            if (exam.section) {
+                exam.section.style.display = "none";
+            }
+            if (exam.checkbox) {
+                exam.checkbox.disabled = true;
+                //exam.checkbox.checked = false;
+            }
+            if (exam.hiddenInput) {
+                //exam.hiddenInput.value = 'N';
+            }
+        });
+
+        // 선택된 학력 필드 섹션만 표시하고 활성화
+        const activeSection = educationFields[selectedEduValue];
         if (activeSection) {
             activeSection.style.display = "block";
             const activeInputs = activeSection.querySelectorAll("input, select");
             activeInputs.forEach(function(input) {
                 input.disabled = false;
             });
-            // 높이 조절
+
+            // 높이 조절 (필요에 따라 조정)
             educationLvElement.style.height = '300px';
+
+            // 해당 학력 수준에 따른 '검정고시' 영역 표시 및 활성화
+            if (selectedEduValue === "초등학교" && examSections.exam_el.section) {
+                examSections.exam_el.section.style.display = "flex";
+                examSections.exam_el.checkbox.disabled = false;
+                // 체크박스 상태에 따른 hidden input 값 설정
+                examSections.exam_el.hiddenInput.value = examSections.exam_el.checkbox.checked ? 'Y' : 'N';
+            } else if (selectedEduValue === "중학교" && examSections.exam_mi.section) {
+                examSections.exam_mi.section.style.display = "block";
+                examSections.exam_mi.checkbox.disabled = false;
+                examSections.exam_mi.hiddenInput.value = examSections.exam_mi.checkbox.checked ? 'Y' : 'N';
+            } else if (selectedEduValue === "고등학교" && examSections.exam_hi.section) {
+                examSections.exam_hi.section.style.display = "block";
+                examSections.exam_hi.checkbox.disabled = false;
+                examSections.exam_hi.hiddenInput.value = examSections.exam_hi.checkbox.checked ? 'Y' : 'N';
+            }
+        } else {
+            // 선택되지 않았거나 다른 값일 경우 기본 높이 유지
+            educationLvElement.style.height = '150px';
         }
     }
-}
 
-// 페이지 로드 시 초기 상태 설정 및 이벤트 리스너 등록
-document.addEventListener("DOMContentLoaded", function() {
-    // 학력 필드 초기 상태 설정
+    // 페이지 로드 시 초기 상태 설정
     displayEducationFields();
 
     // 학력 선택 시 displayEducationFields 함수 호출
-    document.getElementById('selectedu').addEventListener('change', displayEducationFields);
-
+    selectedu.addEventListener('change', displayEducationFields);
 });
+
+
+
+
 
  // 군사 상태 선택 처리
  const militaryStatusSelect = document.getElementById('military_status');
