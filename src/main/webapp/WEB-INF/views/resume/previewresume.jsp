@@ -235,7 +235,9 @@
                             <h2>보훈 사유: 없음</h2>
                         </c:if>
                     </div>
-                    
+                    <br>
+                    <br>
+                    <br><br><br>
                     <!-- 병역 -->
                     <div class="pre_inner9-1">
                         <h2>병역: ${resume.serviceStatus}</h2>

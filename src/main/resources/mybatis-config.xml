@@ -18,17 +18,20 @@
  		<typeAlias alias="Resume" type="com.cs.workdream.resume.model.vo.Resume"/>
  		<typeAlias alias="Board" type="com.cs.workdream.board.model.vo.Board"/>
  		<typeAlias alias="Reply" type="com.cs.workdream.board.model.vo.Reply"/>
+ 		
  		<typeAlias alias="UserTag" type="com.cs.workdream.usertags.model.vo.UserTag"/>
- 		<typeAlias alias="SelfIntro" type="com.cs.workdream.selfintro.model.vo.SelfIntro"/>		
+ 		<typeAlias alias="SelfIntro" type="com.cs.workdream.selfintro.model.vo.SelfIntro"/>
+ 		<typeAlias alias="Planner" type="com.cs.workdream.planner.model.vo.Planner"/>
+ 		<typeAlias alias="Portfolio" type="com.cs.workdream.portfolio.model.vo.Portfolio"/>
+ 		
  		<typeAlias alias="Business" type="com.cs.workdream.business.model.vo.Business"/>
         <typeAlias alias="BusinessBenefit" type="com.cs.workdream.business.model.vo.BusinessBenefit"/>
         <typeAlias alias="WorkEnvironmentImage" type="com.cs.workdream.business.model.vo.WorkEnvironmentImage"/>
+        <typeAlias alias="Recuritment" type="com.cs.workdream.business.model.vo.Recuritment"/>
         <typeAlias alias="Applicants" type="com.cs.workdream.business.model.vo.Applicants" />
  		<typeAlias alias="ApplicantsStatus" type="com.cs.workdream.business.model.vo.ApplicantsStatus" />
  		<typeAlias alias="Position" type="com.cs.workdream.business.model.vo.Position" />
- 		<typeAlias alias="BusinessBookmark" type="com.cs.workdream.business.model.vo.BusinessBookmark" />
- 		<typeAlias alias="Planner" type="com.cs.workdream.planner.model.vo.Planner"/>
- 		<typeAlias alias="Portfolio" type="com.cs.workdream.portfolio.model.vo.Portfolio"/>
+ 		<typeAlias alias="BusinessBookmark" type="com.cs.workdream.business.model.vo.BusinessBookmark" /> 		
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->

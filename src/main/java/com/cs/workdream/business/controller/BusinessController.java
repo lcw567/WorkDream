@@ -145,8 +145,10 @@ public class BusinessController {
     /* 구직자 즐겨찾기 관련 */
     // 구직자 즐겨찾기 페이지로 이동
     @GetMapping("/bookmark")
-    public String bookmarkList() {
+    public String bookmarkList(HttpSession session, Model model) {
     	// loadBookmarkList 값을 받아서 사용
+    	loadBookmarkList(session, model);
+    	
         return "business/bookmarkList";
     }
     
