@@ -1,6 +1,7 @@
 package com.cs.workdream.chat;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ChatServer extends TextWebSocketHandler {
 
     private final ConcurrentHashMap<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
+    private static final SimpleDateFormat timeFormatter = new SimpleDateFormat("a hh:mm:ss");
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -61,7 +63,10 @@ public class ChatServer extends TextWebSocketHandler {
         msgVo.addProperty("msg", messageContent);
         msgVo.addProperty("userid", userId);
         msgVo.addProperty("targetUserid", targetUserId);
-        msgVo.addProperty("time", new Date().toString());
+
+        // 시간 포맷 적용
+        String formattedTime = timeFormatter.format(new Date());
+        msgVo.addProperty("time", formattedTime);
 
         sendMessageToUser(msgVo);
     }
