@@ -28,7 +28,6 @@
                 <button id="add-user-btn">사용자 추가</button>
             </div>
 
-
             <!-- 메시지 창 -->
             <div id="chat-container">
                 <div id="status-indicator" class="offline">Offline</div>
@@ -47,4 +46,3 @@
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
-
