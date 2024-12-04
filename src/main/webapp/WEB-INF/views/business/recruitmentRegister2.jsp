@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-		<!DOCTYPE html>
-		<html lang="ko">
-
-		<head>
-			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<title>Document</title>
-			<!-- jQuery -->
-			<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-				integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-			<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
-				integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM=" crossorigin="anonymous"></script>
-			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/announcementInformation2.css">
-			<script src="${pageContext.request.contextPath}/js/announcementInformation2.js" defer></script>
-		</head>
-
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>채용공고 작성 | 워크드림</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
+	
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
+		integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM=" crossorigin="anonymous"></script>
+		
+	<!-- css / js -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/recruitmentRegister2.css">
+	<script src="${pageContext.request.contextPath}/js/announcementInformation2.js" defer></script>
+</head>
 		<body onload="init('${pageContext.request.contextPath}')">
 			<div class="nomodal">
 				<div id="Job_Announcement_Information">

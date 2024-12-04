@@ -80,12 +80,12 @@ public class BusinessController {
     public String recruitmentRegister(@RequestParam(value="step", defaultValue="1") int step) {
     	switch(step) {
     	case 1:
-    		return "business/announcementInformation1";
+    		return "business/recruitmentRegister1";
     	case 2:
-    		return "business/announcementInformation2";
+    		return "business/recruitmentRegister2";
     	default:
     		// 값을 제대로 받지 못했을 경우에도 첫 번째 작성 페이지로 이동
-    		return "business/announcementInformation1";
+    		return "business/recruitmentRegister1";
     	}
     }
 	
