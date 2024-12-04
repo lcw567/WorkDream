@@ -2,8 +2,7 @@ package com.cs.workdream.resume.service;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
+import com.cs.workdream.portfolio.model.vo.Portfolio;
 import com.cs.workdream.resume.model.vo.Award;
 import com.cs.workdream.resume.model.vo.Certificate;
 import com.cs.workdream.resume.model.vo.LanguageTest;
@@ -24,4 +23,8 @@ public interface ResumeService {
     void deleteAwardsByResumeNo(int resumeNo);
     void insertAward(Award award);
     Resume getResumeByNo(int resumeNo);
+    List<Portfolio> getPortfoliosByUserNo(int userNo);
+    List<Portfolio> getPortfoliosByIds(List<Integer> portfolioIds);
+    void associatePortfoliosWithResume(int resumeNo, List<Integer> portfolioIds);
+    void saveResumeWithPortfolios(Resume resume, List<Integer> portfolioIds);
 }

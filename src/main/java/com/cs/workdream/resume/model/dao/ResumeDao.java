@@ -1,15 +1,20 @@
 package com.cs.workdream.resume.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cs.workdream.portfolio.model.vo.Portfolio;
 import com.cs.workdream.resume.model.vo.Award;
 import com.cs.workdream.resume.model.vo.Certificate;
 import com.cs.workdream.resume.model.vo.LanguageTest;
 import com.cs.workdream.resume.model.vo.Resume;
+import com.cs.workdream.resume.service.ResumeServiceImpl;
 
 @Repository
 public class ResumeDao {
@@ -17,6 +22,7 @@ public class ResumeDao {
     @Autowired
     private SqlSessionTemplate sqlSession;
     private static final String NAMESPACE = "com.cs.workdream.resume.mapper.ResumeMapper";
+    private static final Logger logger = LoggerFactory.getLogger(ResumeServiceImpl.class);
 
     // 이력서 기본 정보 삽입
     public boolean insertResume(Resume resume) {
@@ -94,5 +100,28 @@ public class ResumeDao {
     
     public Resume selectResumeByNo(int resumeNo) {
         return sqlSession.selectOne(NAMESPACE + ".selectResumeByNo", resumeNo);
+    }
+    
+    // 포트폴리오 불러오기
+    public List<Portfolio> selectPortfoliosByUserNo(int userNo) {
+        return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByUserNo", userNo);
+    }
+    
+    public List<Portfolio> selectPortfoliosByIds(List<Integer> portfolioIds) {
+        return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByIds", portfolioIds);
+    }
+    
+    public void insertResumePortfolio(int resumeNo, int portfolioId) {
+        logger.debug("Inserting into RESUME_PORTFOLIO: RESUME_NO = " + resumeNo + ", PORTFOLIO_ID = " + portfolioId);
+        sqlSession.insert(NAMESPACE + ".insertResumePortfolio", 
+            new HashMap<String, Integer>() {{
+                put("resumeNo", resumeNo);
+                put("portfolioId", portfolioId);
+            }}
+        );
+    }
+    
+    public void deleteResumePortfoliosByResumeNo(int resumeNo) {
+        sqlSession.delete(NAMESPACE + ".deleteResumePortfoliosByResumeNo", resumeNo);
     }
 }

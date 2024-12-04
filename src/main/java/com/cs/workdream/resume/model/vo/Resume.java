@@ -3,6 +3,8 @@ package com.cs.workdream.resume.model.vo;
 import java.sql.Date;
 import java.util.List;
 
+import com.cs.workdream.portfolio.model.vo.Portfolio;
+
 import lombok.Data;
 
 @Data
@@ -100,4 +102,7 @@ public class Resume {
     
     //공개여부
     private String resumeStatus;
+    
+    //포트폴리오
+    private List<Portfolio> portfolio;
 }
