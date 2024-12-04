@@ -1,7 +1,6 @@
 package com.cs.workdream.chat.model.vo;
 
 import java.sql.Timestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

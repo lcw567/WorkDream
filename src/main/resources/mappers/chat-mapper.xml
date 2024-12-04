@@ -5,6 +5,15 @@
 
 <mapper namespace="ChatMapper">
 
+    <!-- resultMap 정의 -->
+    <resultMap id="ChatListResultMap" type="com.cs.workdream.chat.model.vo.ChatList">
+        <id property="id" column="ID"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="chatWithId" column="CHAT_WITH_ID"/>
+        <result property="lastMessage" column="LAST_MESSAGE"/>
+        <result property="lastTimestamp" column="LAST_TIMESTAMP"/>
+    </resultMap>	
+
     <!-- 채팅 메시지 삽입 -->
     <insert id="insertChatMessage" parameterType="com.cs.workdream.chat.model.vo.ChatHistory">
         INSERT INTO CHAT_HISTORY (MESSAGE_ID, SENDER_ID, RECIPIENT_ID, MESSAGE, TIMESTAMP, READ_STATUS)
@@ -12,7 +21,7 @@
     </insert>
 
     <!-- 사용자 채팅 목록 조회 -->
-    <select id="selectChatList" parameterType="String" resultType="com.cs.workdream.chat.model.vo.ChatList">
+    <select id="selectChatList" parameterType="String" resultMap="ChatListResultMap">
         SELECT 
             ID,
             USER_ID,
