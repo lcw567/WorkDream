@@ -68,6 +68,30 @@ public class BusinessController {
 	
 	/*=====================================================================================================*/
 	
+	/* 채용공고 관련 */
+	// 채용공고관리 페이지로 이동
+	@GetMapping("/recruitmentManager")
+    public String reStatus() {
+        return "business/recruitmentManager";
+    }
+	
+	// 채용공고 작성 페이지로 이동
+    @GetMapping("/recruitmentRegister")
+    public String recruitmentRegister(@RequestParam(value="step", defaultValue="1") int step) {
+    	switch(step) {
+    	case 1:
+    		return "business/announcementInformation1";
+    	case 2:
+    		return "business/announcementInformation2";
+    	default:
+    		// 값을 제대로 받지 못했을 경우에도 첫 번째 작성 페이지로 이동
+    		return "business/announcementInformation1";
+    	}
+    }
+	
+	
+	/*=====================================================================================================*/
+	
 	
 	/* 지원자 현황&목록 관련 */
 	// 지원자 현황 페이지로 이동
@@ -149,7 +173,7 @@ public class BusinessController {
     	// loadBookmarkList 값을 받아서 사용
     	loadBookmarkList(session, model);
     	
-        return "business/bookmarkList";
+        return "business/businessBookmarkList";
     }
     
     // 즐겨찾기 목록 조회
@@ -213,17 +237,6 @@ public class BusinessController {
     
 	/*=====================================================================================================*/
 	
-    
-	// 맵핑
-	@GetMapping("/recruitmentStatus")
-    public String reStatus() {
-        return "business/recruitmentStatus";
-    }
-	
-	@GetMapping("/announcementInformation2")
-    public String announcement() {
-        return "business/announcementInformation2";
-    }
 	
 	@PostMapping("/announcementInformation2")
 	@ResponseBody
@@ -249,11 +262,5 @@ public class BusinessController {
     public String positionCareer() {
         return "business/positionAndCareer";
     }
-    
-    
-    // 페이지 매핑
-    @GetMapping("/announcementInformation1")
-    public String jobRegistration() {
-        return "business/announcementInformation1";
-    }
+	
 }

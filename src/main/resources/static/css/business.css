@@ -1,0 +1,276 @@
+@charset "UTF-8";
+
+/* header_biz.jsp */
+header.biz {
+	height: 80px;
+}
+
+header.biz > nav {
+	height: 100%;
+	justify-content: space-between;
+}
+
+header.biz > nav > ul {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+header.biz > nav > ul > li > a {
+	white-space: nowrap;
+	word-spacing: -0.3rem;
+	font-family: 'MonoplexKR-Bold';
+	font-size: 1rem;
+}
+
+#biz-nav-left {
+	justify-content: flex-start;
+	gap: 3%;
+}
+
+#biz-nav-left > li > a:hover, #biz-nav-left > li.On > a {
+	color: #4E21A8;
+}
+
+#biz-nav-left > li > a > img {
+	width: 3rem;
+	height: 3rem;
+}
+
+#biz-nav-right {
+	justify-content: flex-end;
+	gap: 7%;
+}
+
+#biz-nav-right > li > a > img {
+	width: 1.35rem;
+	height: 1.35rem;
+	margin-top: 0.35rem;
+}
+
+#biz-nav-right > li.user {
+	display: flex;
+	align-items: center;
+	gap: 3%;
+	margin: 0 1%;
+}
+
+#biz-nav-right > li.user:hover > a {
+	text-decoration: underline 1.3px solid #000;
+}
+
+#biz-nav-right > li.user > a > span {
+	width: 2rem;
+	height: 2rem;
+	display: inline-block;
+	margin-top: 0.35rem;
+	background: url("../img/icon_user.png");
+	background-size: cover;
+	background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #E1DEF1;
+    border-radius: 50px;
+}
+
+#biz-nav-right > li.user > a > span > img {
+	width: 100%;
+	height: 100%;
+}
+
+#biz-nav-right > li.logout > a {
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 0.75rem;
+	color: #807E85;
+}
+
+#biz-nav-right > li.logout > a:hover {
+	text-decoration: none;
+	color: #6D47B7;
+}
+
+
+/* recruitmentManager.jsp */
+#Recruitment_Manager {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+    padding: 3% 0;
+}
+
+#Recruitment_Manager > section {
+	width: 95%;
+	max-width: 1280px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 5%;
+}
+
+#Recruitment_Manager > section > * {
+	width: 100%;
+}
+
+#Recruitment_StatusView {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3%;
+    margin-bottom: 5%;
+}
+
+#Recruitment_StatusView .status-link {
+	width: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 3%;
+}
+
+#Recruitment_StatusView .status-link > a {
+	white-space: nowrap;
+	font-weight: 600;
+	font-size: 1.3rem;
+	color: #A09F9F;
+}
+
+#Recruitment_StatusView .status-link > a.active {
+    color: #000000;
+}
+
+#Recruitment_StatusView #Registration_Button {
+	width: 10%;
+	height: 2rem;
+    background-color: #4E21A8;
+	border: 1px solid #4E21A8;
+	border-radius: 5px;
+	white-space: nowarp;
+	text-align: center;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 0.9rem;
+	color: #FFFFFF;
+}
+
+#Registration_containers {
+	min-height: 60vh;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 600px));
+    grid-template-rows: max-content;
+    justify-content: center;
+    grid-gap: 3%;
+}
+
+#Registration_containers .Registration_First_Container {
+	width: 100%;
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 2%;
+	border: 1px solid black;
+}
+
+#Registration_sava_bar {
+	height: 40px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#Registration_sava_bar > h5 {
+	white-space: nowrap;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #A09F9F;
+}
+
+#Registration_sava_bar .dropdown-container {
+	display: inline-block;
+	position: relative;
+}
+
+#Registration_sava_bar .dropdown-container > .dropdown-Button {
+	width: 20px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+	align-items: center;
+	position: relative;
+    background-color: white;
+    border: none;
+}
+
+#Registration_sava_bar .dropdown-container > .dropdown-Button > img {
+    width: 25px;
+    height: 25px;
+}
+
+#Registration_sava_bar .dropdown-container > .dropdown-menu {
+	width: 150px;
+	display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    margin: 5px 0 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#Registration_sava_bar .dropdown-container > .dropdown-menu li {
+    width: 100%;
+}
+
+#Registration_sava_bar .dropdown-container > .dropdown-menu li a {
+    display: block;
+    padding: 10px;
+    font-size: 0.8rem;
+    color: #333;
+}
+
+#Registration_sava_bar .dropdown-container > .dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+}
+
+#Registration_sava_bar .dropdown-container > .dropdown-menu li:nth-child(2) a {
+    color: #ff4d4d !important;
+}
+
+#Registration_sava_bar .dropdown-container > .dropdown-menu li:nth-child(3) a {
+	color: rgb(61, 61, 252);
+}
+
+#Recruitment_Status_title {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	padding-right: 3%;
+	margin: 1% 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1.5rem;
+}
+
+#Recruitment_Status_Calender {
+	height: 40px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: auto;
+}
+
+#Recruitment_Status_Calender > img {
+    width: 18px;
+    height: 18px;
+}
+
+#Recruitment_Status_Calender > h6 {
+    padding-left: 1%;
+    font-size: 1rem;
+    color: #A09F9F;
+}

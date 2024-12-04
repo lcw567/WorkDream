@@ -5,13 +5,6 @@
     font-size: 1.1rem; 
 }
 
-body {
-    font-family: Arial, sans-serif;
-    color: #000000;
-    background-color: #ffffff;
-    padding: 40px;
-}
-
 .announcement-container {
     width: 100%;
     max-width: 1200px;
