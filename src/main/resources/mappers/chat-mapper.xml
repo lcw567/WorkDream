@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ChatMapper">
+
+    <!-- 채팅 메시지 삽입 -->
+    <insert id="insertChatMessage" parameterType="com.cs.workdream.chat.model.vo.ChatHistory">
+        INSERT INTO CHAT_HISTORY (MESSAGE_ID, SENDER_ID, RECIPIENT_ID, MESSAGE, TIMESTAMP, READ_STATUS)
+        VALUES (SEQ_CHAT_HISTORY_ID.NEXTVAL, #{senderId}, #{recipientId}, #{message}, #{timestamp}, #{readStatus})
+    </insert>
+
+    <!-- 사용자 채팅 목록 조회 -->
+    <select id="selectChatList" parameterType="String" resultType="com.cs.workdream.chat.model.vo.ChatList">
+        SELECT 
+            ID,
+            USER_ID,
+            CHAT_WITH_ID,
+            LAST_MESSAGE,
+            LAST_TIMESTAMP
+        FROM CHAT_LIST
+        WHERE USER_ID = #{userId}
+        ORDER BY LAST_TIMESTAMP DESC
+    </select>
+
+    <!-- 채팅 목록 개수 조회 -->
+    <select id="countChatList" parameterType="com.cs.workdream.chat.model.vo.ChatList" resultType="int">
+        SELECT COUNT(*) 
+        FROM CHAT_LIST 
+        WHERE USER_ID = #{userId} AND CHAT_WITH_ID = #{chatWithId}
+    </select>
+
+    <!-- 채팅 목록 삽입 -->
+    <insert id="insertChatList" parameterType="com.cs.workdream.chat.model.vo.ChatList">
+        INSERT INTO CHAT_LIST (ID, USER_ID, CHAT_WITH_ID, LAST_MESSAGE, LAST_TIMESTAMP)
+        VALUES (SEQ_CHAT_LIST_ID.NEXTVAL, #{userId}, #{chatWithId}, #{lastMessage}, #{lastTimestamp})
+    </insert>
+
+    <!-- 채팅 목록 업데이트 -->
+    <update id="updateChatList" parameterType="com.cs.workdream.chat.model.vo.ChatList">
+        UPDATE CHAT_LIST
+        SET LAST_MESSAGE = #{lastMessage},
+            LAST_TIMESTAMP = #{lastTimestamp}
+        WHERE USER_ID = #{userId} AND CHAT_WITH_ID = #{chatWithId}
+    </update>
+
+    <!-- 채팅 기록 조회 -->
+    <select id="selectChatHistory" parameterType="map" resultType="com.cs.workdream.chat.model.vo.ChatHistory">
+        SELECT 
+            MESSAGE_ID,
+            SENDER_ID,
+            RECIPIENT_ID,
+            MESSAGE,
+            TIMESTAMP,
+            READ_STATUS
+        FROM CHAT_HISTORY
+        WHERE (SENDER_ID = #{userId} AND RECIPIENT_ID = #{chatWithId})
+           OR (SENDER_ID = #{chatWithId} AND RECIPIENT_ID = #{userId})
+        ORDER BY TIMESTAMP ASC
+    </select>
+
+    <!-- 메시지 읽음 처리 -->
+    <update id="updateReadStatus" parameterType="int">
+        UPDATE CHAT_HISTORY
+        SET READ_STATUS = 'Y'
+        WHERE MESSAGE_ID = #{messageId}
+    </update>
+
+    <!-- 수신자의 읽지 않은 메시지 조회 -->
+    <select id="selectUnreadMessages" parameterType="String" resultType="com.cs.workdream.chat.model.vo.ChatHistory">
+        SELECT 
+            MESSAGE_ID,
+            SENDER_ID,
+            RECIPIENT_ID,
+            MESSAGE,
+            TIMESTAMP,
+            READ_STATUS
+        FROM CHAT_HISTORY
+        WHERE RECIPIENT_ID = #{recipientId} AND READ_STATUS = 'N'
+        ORDER BY TIMESTAMP ASC
+    </select>
+
+</mapper>

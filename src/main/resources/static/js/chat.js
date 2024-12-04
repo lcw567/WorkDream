@@ -26,10 +26,14 @@ socket.onclose = () => {
 socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
 
-    // 현재 채팅창이 선택된 사용자와 일치하는 경우에만 메시지 표시
-    if (data.userid === selectedUserId || data.target === selectedUserId) {
-        const className = data.userid === currentUserId ? 'my-message' : 'other-message';
-        appendMessage(data.userid, data.msg, className);
+    if (data.type === 'message') {
+        // 채팅창이 선택된 사용자와 일치하는 경우에만 메시지 표시
+        if (data.userid === selectedUserId || data.targetUserid === selectedUserId) {
+            const className = data.userid === currentUserId ? 'my-message' : 'other-message';
+            appendMessage(data.userid, data.msg, className, data.time);
+        }
+    } else if (data.type === 'error') {
+        alert(data.message);
     }
 };
 
@@ -60,7 +64,41 @@ function addUserToChatList(userId) {
     chatList.appendChild(newUser);
 
     appendMessage('시스템', `${userId} 사용자가 목록에 추가되었습니다.`, 'system-message');
+
+    // 채팅 목록 API에 추가 요청
+    fetch(`${window.location.protocol}//${window.location.host}/chat/list`)
+        .then(response => response.json())
+        .then(data => {
+            // 채팅 목록을 다시 로드
+            loadChatList();
+        })
+        .catch(error => console.error('Error:', error));
 }
+
+// 채팅 목록 로드 함수
+function loadChatList() {
+    fetch('/WorkDream/chat/list')
+        .then(response => response.json())
+        .then(data => {
+            chatList.innerHTML = '';
+            data.forEach(chat => {
+                const li = document.createElement('li');
+                li.textContent = chat.chatWithId;
+                li.dataset.userid = chat.chatWithId;
+                li.onclick = () => selectChat(chat.chatWithId);
+                if (chat.chatWithId === selectedUserId) {
+                    li.classList.add('active');
+                }
+                chatList.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// 채팅 목록 초기 로드
+document.addEventListener('DOMContentLoaded', () => {
+    loadChatList();
+});
 
 // 채팅 목록에서 사용자 선택 함수
 function selectChat(userId) {
@@ -72,6 +110,22 @@ function selectChat(userId) {
     if (selectedListItem) selectedListItem.classList.add('active');
 
     appendMessage('시스템', `${userId}님과의 채팅을 시작합니다.`, 'system-message');
+
+    // 채팅 기록 로드
+    loadChatHistory(userId);
+}
+
+// 채팅 기록 로드 함수
+function loadChatHistory(userId) {
+    fetch(`/WorkDream/chat/history?chatWithId=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(msg => {
+                const className = msg.senderId === currentUserId ? 'my-message' : 'other-message';
+                appendMessage(msg.senderId, msg.message, className, new Date(msg.timestamp).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }));
+            });
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 // 메시지 전송
@@ -98,11 +152,16 @@ document.getElementById('chat-form').addEventListener('submit', (e) => {
 });
 
 // 메시지 추가 함수
-function appendMessage(sender, message, className) {
+function appendMessage(sender, message, className, time = null) {
     const container = document.getElementById('msg-container');
     const messageElement = document.createElement('div');
     messageElement.className = `message ${className}`;
-    const time = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+    
+    // 시간 표시가 없으면 현재 시간 사용
+    if (!time) {
+        time = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+    }
+    
     messageElement.innerHTML = `
         <strong>${sender}</strong>: ${message}
         <div class="msg-time">${time}</div>

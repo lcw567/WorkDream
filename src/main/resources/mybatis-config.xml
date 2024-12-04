@@ -31,7 +31,10 @@
         <typeAlias alias="Applicants" type="com.cs.workdream.business.model.vo.Applicants" />
  		<typeAlias alias="ApplicantsStatus" type="com.cs.workdream.business.model.vo.ApplicantsStatus" />
  		<typeAlias alias="Position" type="com.cs.workdream.business.model.vo.Position" />
- 		<typeAlias alias="BusinessBookmark" type="com.cs.workdream.business.model.vo.BusinessBookmark" /> 		
+ 		<typeAlias alias="BusinessBookmark" type="com.cs.workdream.business.model.vo.BusinessBookmark" /> 
+ 		<typeAlias alias="ChatHistory" type="com.cs.workdream.chat.model.vo.ChatHistory" />
+        <typeAlias alias="ChatList" type="com.cs.workdream.chat.model.vo.ChatList" />
+ 				
 	</typeAliases>
  	
  	<!-- mapper 경로 등록 -->
@@ -45,6 +48,7 @@
 		<mapper resource="mappers/usertags-mapper.xml"/>
 		<mapper resource="mappers/planner-mapper.xml"/>
 		<mapper resource="mappers/portfolio-mapper.xml"/>
+		<mapper resource="mappers/chat-mapper.xml"/>
 	</mappers>
  	
 </configuration>
