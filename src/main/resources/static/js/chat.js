@@ -1,11 +1,28 @@
+// chat.js
+
 // 채팅 목록 요소 가져오기
 const chatList = document.getElementById('chat-list');
 
+let selectedUserId = null; // 현재 선택된 사용자
+
+// 디버깅용 로그 추가
+console.log("chat.js 시작");
+console.log("contextPath:", window.contextPath);
+console.log("currentUserId:", window.currentUserId);
+
 // WebSocket 연결 초기화
 const protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
-let socket = new WebSocket(`${protocol}${window.location.host}/WorkDream/server`);
+let socketURL = `${protocol}${window.location.host}${window.contextPath}/server`;
 
-let selectedUserId = null; // 현재 선택된 사용자
+console.log("WebSocket URL:", socketURL);
+
+let socket;
+
+try {
+    socket = new WebSocket(socketURL);
+} catch (error) {
+    console.error('WebSocket 초기화 오류:', error);
+}
 
 // WebSocket 연결 이벤트 처리
 socket.onopen = () => {
@@ -19,7 +36,11 @@ socket.onclose = () => {
 
     // WebSocket 재연결 시도
     setTimeout(() => {
-        socket = new WebSocket(`${protocol}${window.location.host}/WorkDream/server`);
+        try {
+            socket = new WebSocket(`${protocol}${window.location.host}${window.contextPath}/server`);
+        } catch (error) {
+            console.error('WebSocket 재연결 오류:', error);
+        }
     }, 3000);
 };
 
@@ -29,7 +50,7 @@ socket.onmessage = (event) => {
     if (data.type === 'message') {
         // 채팅창이 선택된 사용자와 일치하는 경우에만 메시지 표시
         if (data.userid === selectedUserId || data.targetUserid === selectedUserId) {
-            const className = data.userid === currentUserId ? 'my-message' : 'other-message';
+            const className = data.userid === window.currentUserId ? 'my-message' : 'other-message';
             appendMessage(data.userid, data.msg, className, data.time);
         }
     } else if (data.type === 'error') {
@@ -57,29 +78,49 @@ function addUserToChatList(userId) {
         return;
     }
 
-    const newUser = document.createElement('li');
-    newUser.textContent = userId;
-    newUser.dataset.userid = userId;
-    newUser.onclick = () => selectChat(userId);
-    chatList.appendChild(newUser);
-
-    appendMessage('시스템', `${userId} 사용자가 목록에 추가되었습니다.`, 'system-message');
-
-    // 채팅 목록 API에 추가 요청
-    fetch(`${window.location.protocol}//${window.location.host}/chat/list`)
-        .then(response => response.json())
-        .then(data => {
-            // 채팅 목록을 다시 로드
-            loadChatList();
+    // 서버에 사용자 추가 요청
+    fetch(`${window.contextPath}/chat/addUser`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            targetUserId: userId
         })
-        .catch(error => console.error('Error:', error));
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.text();
+        } else {
+            return response.text().then(text => { throw new Error(text) });
+        }
+    })
+    .then(message => {
+        if (message === "사용자가 채팅 목록에 추가되었습니다.") {
+            appendMessage('시스템', `${userId} 사용자가 목록에 추가되었습니다.`, 'system-message');
+            // 채팅 목록 다시 로드
+            loadChatList();
+        } else {
+            alert(message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert(`사용자 추가 중 오류가 발생했습니다: ${error.message}`);
+    });
 }
 
 // 채팅 목록 로드 함수
 function loadChatList() {
-    fetch('/WorkDream/chat/list')
-        .then(response => response.json())
+    fetch(`${window.contextPath}/chat/list`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log("Fetched chat list:", data); // 디버깅용 로그 추가
             chatList.innerHTML = '';
             data.forEach(chat => {
                 const li = document.createElement('li');
@@ -117,11 +158,16 @@ function selectChat(userId) {
 
 // 채팅 기록 로드 함수
 function loadChatHistory(userId) {
-    fetch(`/WorkDream/chat/history?chatWithId=${userId}`)
-        .then(response => response.json())
+    fetch(`${window.contextPath}/chat/history?chatWithId=${encodeURIComponent(userId)}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             data.forEach(msg => {
-                const className = msg.senderId === currentUserId ? 'my-message' : 'other-message';
+                const className = msg.senderId === window.currentUserId ? 'my-message' : 'other-message';
                 appendMessage(msg.senderId, msg.message, className, new Date(msg.timestamp).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }));
             });
         })
@@ -137,7 +183,8 @@ document.getElementById('chat-form').addEventListener('submit', (e) => {
         return;
     }
 
-    const msg = document.getElementById('msg').value.trim();
+    const msgInput = document.getElementById('msg');
+    const msg = msgInput.value.trim();
     if (!msg) return;
 
     if (socket.readyState !== WebSocket.OPEN) {
@@ -146,7 +193,7 @@ document.getElementById('chat-form').addEventListener('submit', (e) => {
     }
 
     socket.send(JSON.stringify({ message: msg, target: selectedUserId }));
-    document.getElementById('msg').value = '';
+    msgInput.value = '';
 
     appendMessage('나', msg, 'my-message');
 });

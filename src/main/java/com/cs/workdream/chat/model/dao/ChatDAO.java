@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cs.workdream.chat.model.vo.ChatHistory;
 import com.cs.workdream.chat.model.vo.ChatList;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Repository
 public class ChatDAO {
 
@@ -22,7 +24,9 @@ public class ChatDAO {
 
     // 특정 사용자의 채팅 목록 조회
     public List<ChatList> selectChatList(String userId) {
-        return sqlSession.selectList("ChatMapper.selectChatList", userId);
+        List<ChatList> chatList = sqlSession.selectList("ChatMapper.selectChatList", userId);
+        log.info("selectChatList 결과: {}", chatList);
+        return chatList;
     }
 
     // 채팅 목록에 추가 또는 업데이트
