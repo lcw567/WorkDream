@@ -114,7 +114,6 @@ public class ChatServer extends TextWebSocketHandler {
         String senderId = msgVo.get("userid").getAsString();
         String targetUserId = msgVo.get("targetUserid").getAsString();
 
-        WebSocketSession senderSession = userSessions.get(senderId);
         WebSocketSession targetSession = userSessions.get(targetUserId);
 
         if (targetSession != null && targetSession.isOpen()) {
@@ -122,8 +121,7 @@ public class ChatServer extends TextWebSocketHandler {
                 msgVo.addProperty("type", "message");
                 TextMessage textMessage = new TextMessage(msgVo.toString());
                 targetSession.sendMessage(textMessage);
-                senderSession.sendMessage(textMessage);
-
+                // senderSession.sendMessage(textMessage); // 이 줄을 제거
                 log.info("Sent message to {}: {}", targetUserId, msgVo.get("msg").getAsString());
 
                 // 메시지 읽음 처리
@@ -132,6 +130,7 @@ public class ChatServer extends TextWebSocketHandler {
                 log.error("메시지 전송 실패: {}", e.getMessage());
             }
         } else {
+            WebSocketSession senderSession = userSessions.get(senderId);
             log.warn("대상 유저({})의 세션이 없습니다.", targetUserId);
             if (senderSession != null && senderSession.isOpen()) {
                 try {
@@ -147,6 +146,7 @@ public class ChatServer extends TextWebSocketHandler {
             }
         }
     }
+
 
     // 로그인 시 오프라인 메시지 전송
     private void sendOfflineMessages(String userId) {
