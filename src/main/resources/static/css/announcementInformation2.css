@@ -697,9 +697,7 @@ input[type="text"], input[type="time"] {
 	margin: 0;
 	color: #7A35B9;
 	font-size: 1.2rem;
-	font-weight: 800;
 	padding-left: 20px;
-	padding-bottom: 15px;
 }
 
 #Job_Announcement_Information hr {
@@ -717,20 +715,18 @@ input[type="text"], input[type="time"] {
 	border: 1px solid black;
 	font-weight: 900;
 	font-size: 0.8rem;
-	align-items: center;
 	background-color: white;
 }
 
 #TemporarySave {
 	margin-right: 20px;
-	margin-left: 8px;
+	margin-left: 10px;
 	height: 30px;
 	width: 75px;
 	border-radius: 7px;
 	border: 1px solid black;
 	font-weight: 900;
 	font-size: 0.8rem;
-	align-items: center;
 	background-color: white;
 }
 
@@ -755,7 +751,6 @@ input[type="text"], input[type="time"] {
 #Job_Announcement_Information_Index_One {
 	display: flex;
 	align-items: center;
-	border: none;
 }
 
 #Job_Announcement_Information_Index_One p {
@@ -766,8 +761,6 @@ input[type="text"], input[type="time"] {
 #Job_Announcement_Information_Index_One img {
 	width: 20px;
 	height: 20px;
-	display: flex;
-	justify-content: center;
 	margin-right: 5px;
 }
 
@@ -779,7 +772,6 @@ input[type="text"], input[type="time"] {
 }
 
 .Contact_Announcement_Information_Title {
-	border: none;
 	display: flex;
 	align-items: center;
 	height: 28px;
