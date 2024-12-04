@@ -1,7 +1,9 @@
 package com.cs.workdream.resume.service;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -43,30 +45,8 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     @Transactional
-    public boolean saveResume(Resume resume, MultipartFile userPicFile) {
+    public boolean saveResume(Resume resume) {
         try {
-            // 파일 업로드 경로 설정 및 프로필 이미지 저장
-            Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
-            logger.info("절대 업로드 경로: {}", uploadPath.toString());
-
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
-                logger.info("업로드 디렉토리 생성: {}", uploadPath.toString());
-            }
-
-            if (userPicFile != null && !userPicFile.isEmpty()) {
-                String originalFilename = userPicFile.getOriginalFilename();
-                String extension = "";
-                if (originalFilename != null && originalFilename.contains(".")) {
-                    extension = originalFilename.substring(originalFilename.lastIndexOf("."));
-                }
-                String newFilename = UUID.randomUUID().toString() + extension;
-                Path destination = uploadPath.resolve(newFilename);
-                userPicFile.transferTo(destination.toFile());
-                resume.setUserPic(newFilename);
-                logger.info("프로필 이미지 업로드 성공: {}", newFilename);
-            }
-
             // 이력서 기본 정보 삽입
             boolean isResumeInserted = resumeDao.insertResume(resume);
             if (!isResumeInserted) {
@@ -124,9 +104,6 @@ public class ResumeServiceImpl implements ResumeService {
             }
 
             return true;
-        } catch (IOException e) {
-            logger.error("파일 업로드 중 오류 발생", e);
-            throw new RuntimeException("파일 업로드 중 오류 발생", e);
         } catch (Exception e) {
             logger.error("이력서 저장 중 오류 발생", e);
             throw new RuntimeException("이력서 저장 중 오류 발생", e);

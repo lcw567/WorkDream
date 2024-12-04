@@ -270,7 +270,6 @@ document.querySelectorAll('input[type="radio"]').forEach((radio) => {
     });
 });
 
-
 function openModal() {
     const modal = document.querySelector('.modal');
     modal.style.display = 'block';

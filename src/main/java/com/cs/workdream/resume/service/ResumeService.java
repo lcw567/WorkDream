@@ -10,7 +10,7 @@ import com.cs.workdream.resume.model.vo.LanguageTest;
 import com.cs.workdream.resume.model.vo.Resume;
 
 public interface ResumeService {
-    boolean saveResume(Resume resume, MultipartFile userPicFile);
+	public boolean saveResume(Resume resume);
     List<Resume> getResumesByPersonNo(int personNo);
     Resume getResumeById(int resumeNo);
     boolean updateResume(Resume resume, List<Certificate> certificates, List<LanguageTest> languageTests, List<Award> awards);
