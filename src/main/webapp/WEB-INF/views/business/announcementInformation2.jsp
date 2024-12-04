@@ -156,7 +156,7 @@
 						<div class="Contact_Announcement_Information_Title">
 							<h2>기타 안내</h2>
 						</div>
-						<textarea class="Text_Container" style="margin-bottom: 80px;"
+						<textarea class="Text_Container" style="margin-bottom: 50px;"
 							placeholder="복지 및 해택 등 알리고 싶은 기타 정보를 작성합니다." name="other"
 							onkeyup="changeValue('other', this.value)"></textarea>
 
@@ -172,6 +172,17 @@
 						</div>
 
 						<div class="Contact_Announcement_Information_Title">
+							<h2 style="margin-bottom: 20px;">지원자 모집 기간</h2>
+						</div>
+
+						<div id="Applicant_Recruitment_Period">
+							<input type="datetime-local" id="Recruitment_First_Time" name="recruitment_time_min" onchange="changeValue('recruitment_time_min', this.value)">
+							<p style="margin-bottom: 10px;">~</p>
+							<input type="datetime-local" id="Recruitment_End_Time" name="recruitment_time_max" onchange="changeValue('recruitment_time_max', this.value)">
+						</div>
+
+
+						<div class="Contact_Announcement_Information_Title">
 							<h2>지원자가 필수로 입력해야 하는 정보</h2>
 						</div>
 						<p style="margin-top: 3px; color: #A09F9F; font-size: 0.9rem;">필수
@@ -182,33 +193,28 @@
 						<div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
 							<h2 style="padding: 0 20px; width: 150px;">자격요건</h2>
 							<div class="Need_Input_Infomation">
-								<label class="Check_And_Text" style="width: 90px; padding-left: 0px;">
-									<input type="checkbox" data-key="qualification" value="외국어 능력">외국어 능력
-								</label>
-								<label class="Check_And_Text" style="width: 60px; padding-left: 0px;">
-									<input type="checkbox" data-key="qualification" value="자격증">자격증
-								</label>
-								<label class="Check_And_Text" style="width: 85px; padding-left: 0px;">
-									<input type="checkbox" data-key="qualification" value="포트폴리오">포트폴리오
-								</label>
+								<label class="Check_And_Text" style="width: 90px; padding-left: 0px;"><input
+										type="checkbox">외국어 능력</label> <label class="Check_And_Text"
+									style="width: 60px; padding-left: 0px;"><input type="checkbox">자격증</label> <label
+									class="Check_And_Text" style="width: 85px; padding-left: 0px;"><input
+										type="checkbox">포트폴리오</label>
 							</div>
 						</div>
+
+
 
 						<hr style="border: 1px solid #9E9E9E;">
 
 						<div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
 							<h2 style="padding: 0 20px; width: 150px;">우대사항</h2>
 							<div class="Need_Input_Infomation">
-								<label class="Check_And_Text" style="padding-left: 0px;">
-									<input type="checkbox" data-key="applicants_preferential" value="보훈 여부">보훈 여부
-								</label>
-								<label class="Check_And_Text" style="padding-left: 0px;">
-									<input type="checkbox" data-key="applicants_preferential" value="장애 여부">장애 여부
-								</label>
-								<label class="Check_And_Text" style="padding-left: 0px;">
-									<input type="checkbox" data-key="applicants_preferential" value="병역 정보">병역 정보
-								</label>
+								<label class="Check_And_Text" style="padding-left: 0px;"><input type="checkbox">보훈
+									여부</label> <label class="Check_And_Text" style="padding-left: 0px;"><input
+										type="checkbox">장애
+									여부</label> <label class="Check_And_Text" style="padding-left: 0px;"><input
+										type="checkbox">병역 정보</label>
 							</div>
+
 						</div>
 
 						<hr style="border: 1px solid #9E9E9E;">
@@ -216,16 +222,13 @@
 						<div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
 							<h2 style="padding: 0 20px; width: 150px;">개인정보</h2>
 							<div class="Need_Input_Infomation">
-								<label class="Check_And_Text" style="padding-left: 0px;">
-									<input type="checkbox" data-key="information" value="출생연도">출생연도
-								</label>
-								<label class="Check_And_Text" style="width: 50px; padding-left: 0px;">
-									<input type="checkbox" data-key="information" value="성별">성별
-								</label>
-								<label class="Check_And_Text" style="padding-left: 0px;">
-									<input type="checkbox" data-key="information" value="현재연봉">현재연봉
-								</label>
+								<label class="Check_And_Text" style="padding-left: 0px;"><input
+										type="checkbox">출생연도</label> <label class="Check_And_Text"
+									style="width: 50px; padding-left: 0px;"><input type="checkbox">성별</label> <label
+									class="Check_And_Text" style="padding-left: 0px;"><input
+										type="checkbox">현재연봉</label>
 							</div>
+
 						</div>
 
 
