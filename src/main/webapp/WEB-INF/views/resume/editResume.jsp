@@ -28,7 +28,7 @@
             <input type="hidden" name="resumeNo" value="${resume.resumeNo}"/>
 
             <div class="resume_title">
-                <h1>이력서 제목  현재</h1> 
+                <h1>이력서 제목</h1> 
                 <input type="text" name="resumeTitle" value="${resume.resumeTitle}" placeholder="이력서의 제목을 입력해주세요." required>
                 <div class="resumeStatus">
                     <label class="resumeYorN">이력서 공개 여부</label>
@@ -90,7 +90,14 @@
                             </fieldset>
                         </div>
                         <div id="basic5">
-                            <img src="${pageContext.request.contextPath}${resume.userPic}" class="profile_img" alt="프로필 사진">
+                            <c:choose>
+                                <c:when test="${not empty resume.userPic}">
+                                    <img src="${pageContext.request.contextPath}/${resume.userPic}?t=${resume.modifiedDate.time}" class="profile_img" alt="프로필 사진">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="${pageContext.request.contextPath}/img/file.png" class="profile_img" alt="기본 프로필 사진">
+                                </c:otherwise>
+                            </c:choose>
                             <input type="file" class="profile_upload" accept="image/*" name="userPicFile">
                         </div>
                     </div>

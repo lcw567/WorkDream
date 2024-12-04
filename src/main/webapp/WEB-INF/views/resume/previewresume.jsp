@@ -23,9 +23,19 @@
                         <h2>성별 : ${resume.userGender}</h2><br>
                         <h2>생년월일 : ${resume.userBirth}</h2>
                     </div>
-                    <h2>이메일 : ${resume.userEmail}</h2>
-                    <h2>휴대폰 : ${resume.userPhone}</h2>
-                    <h2>주소 : (${resume.userAddress}) ${resume.userRoadAddress} ${resume.userDetailAddress}</h2>
+                    <c:choose>
+                        <c:when test="${not empty resume.userPic}">
+                            <img src="${pageContext.request.contextPath}/${resume.userPic}?t=${resume.modifiedDate.time}" class="profile_img" alt="프로필 사진">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="${pageContext.request.contextPath}/img/file.png" class="profile_img" alt="기본 프로필 사진">
+                        </c:otherwise>
+                    </c:choose>
+                    <div class="pre_inner1-2">
+                        <h2>이메일 : ${resume.userEmail}</h2>
+                        <h2>휴대폰 : ${resume.userPhone}</h2>
+                        <h2>주소 : (${resume.userAddress}) ${resume.userRoadAddress} ${resume.userDetailAddress}</h2>
+                    </div>
                 </div>
                 
                 <!-- 학력 -->
@@ -142,9 +152,9 @@
                                 </c:choose>
                             </h2>
                             <div class="pre_inner3-1-1">
-                                <h2>${resume.companyTitle}</h2>
-                                <h2>${resume.department}</h2>
-                                <h2>${resume.position}</h2>
+                                <h2>회사명 : ${resume.companyTitle}</h2>
+                                <h2>근무부서 : ${resume.department}</h2>
+                                <h2>직급 : ${resume.position}</h2>
                             </div>
                         </div>
                         <div class="pre_inner3-1-2">
