@@ -9,7 +9,7 @@ import lombok.Data;
 public class Resume {
     // 이력서 기본 정보
     private Integer resumeNo;
-    private int personNo;
+    private Integer personNo;
     private String resumeTitle;
     private Date createDate;
     private Date modifiedDate;
