@@ -169,23 +169,6 @@ public class ResumeController {
                 break;
         }
 
-        // 자격증 배열 로그 출력
-        logger.debug("qualificationNames.length: {}", (qualificationNames != null ? qualificationNames.length : "null"));
-        logger.debug("issuingAgencies.length: {}", (issuingAgencies != null ? issuingAgencies.length : "null"));
-        logger.debug("passStatuses.length: {}", (passStatuses != null ? passStatuses.length : "null"));
-        logger.debug("testDates.length: {}", (testDates != null ? testDates.length : "null"));
-
-        // 어학시험 배열 로그 출력
-        logger.debug("languageNames.length: {}", (languageNames != null ? languageNames.length : "null"));
-        logger.debug("proficiencyLevels.length: {}", (proficiencyLevels != null ? proficiencyLevels.length : "null"));
-        logger.debug("languageTypes.length: {}", (languageTypes != null ? languageTypes.length : "null"));
-        logger.debug("issueDates.length: {}", (issueDates != null ? issueDates.length : "null"));
-
-        // 수상내역 배열 로그 출력
-        logger.debug("awardNames.length: {}", (awardNames != null ? awardNames.length : "null"));
-        logger.debug("organizers.length: {}", (organizers != null ? organizers.length : "null"));
-        logger.debug("awardDates.length: {}", (awardDates != null ? awardDates.length : "null"));
-
         // 자격증 리스트 생성
         List<Certificate> certificates = new ArrayList<>();
         if (qualificationNames != null && issuingAgencies != null && passStatuses != null && testDates != null) {
@@ -276,7 +259,8 @@ public class ResumeController {
 
         // 프로필 사진 처리
         try {
-            processProfilePicture(userPicFile, resume, loginUser);
+            String userPicPath = processProfilePicture(userPicFile, resume, loginUser);
+            resume.setUserPic(userPicPath);
         } catch (RuntimeException e) {
             logger.error("프로필 사진 처리 중 오류 발생: ", e);
             redirectAttributes.addFlashAttribute("error", "프로필 사진 처리 중 오류가 발생했습니다.");
@@ -285,7 +269,7 @@ public class ResumeController {
 
         // 이력서 저장
         try {
-            boolean isInserted = resumeService.saveResume(resume, userPicFile);
+            boolean isInserted = resumeService.saveResume(resume);
             if (isInserted) {
                 redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 등록되었습니다.");
                 return "redirect:/resume/resumeDashboard";
@@ -300,12 +284,16 @@ public class ResumeController {
         }
     }
 
-    private void processProfilePicture(MultipartFile userPicFile, Resume resume, Member loginUser) {
+    /**
+     * 프로필 사진을 처리하고 저장된 파일의 경로를 반환하는 메서드
+     */
+	 // 프로필 사진 처리 메서드
+    private String processProfilePicture(MultipartFile userPicFile, Resume resume, Member loginUser) {
         if (userPicFile != null && !userPicFile.isEmpty()) {
             String userFolder = "person" + loginUser.getPersonNo();
-            String uploadDir = servletContext.getRealPath("/resources/person/" + userFolder + "/profile/");
+            String uploadDir = servletContext.getRealPath("resources/person/" + userFolder + "/profile/");
             if (uploadDir == null) {
-                uploadDir = new File("src/main/resources/static/person/" + userFolder + "/profile/").getAbsolutePath();
+                uploadDir = new File("src/main/webapp/resources/person/" + userFolder + "/profile/").getAbsolutePath();
             }
             logger.debug("프로필 업로드 디렉토리: {}", uploadDir);
 
@@ -317,7 +305,11 @@ public class ResumeController {
 
             // 파일명 설정
             String originalFilename = userPicFile.getOriginalFilename();
-            String filename = UUID.randomUUID().toString() + "_" + originalFilename;
+            String extension = "";
+            if (originalFilename != null && originalFilename.contains(".")) {
+                extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+            }
+            String filename = UUID.randomUUID().toString() + extension;
 
             // 파일 저장
             try {
@@ -327,16 +319,18 @@ public class ResumeController {
                 throw new RuntimeException("프로필 사진 저장 중 오류가 발생했습니다.");
             }
 
-            // 사용자 프로필 사진 경로를 설정
-            resume.setUserPic("src/main/resources/static/person/" + userFolder + "/profile/" + filename);
+            // 사용자 프로필 사진 경로를 상대 경로로 설정 (앞에 슬래시 제거)
+            return "resources/person/" + userFolder + "/profile/" + filename;
         } else {
             // 새로운 파일이 업로드되지 않은 경우, 기존 프로필 사진을 유지
             Resume existingResume = resumeService.getResumeById(resume.getResumeNo());
             if (existingResume != null) {
-                resume.setUserPic(existingResume.getUserPic());
+                return existingResume.getUserPic();
             }
+            return null;
         }
     }
+
 
 	@GetMapping("/enrollresume")
 	public String enrollResume() {
@@ -570,7 +564,7 @@ public class ResumeController {
 			// 프로필 사진 처리
 			if (!userPicFile.isEmpty()) {
 				// 업로드할 폴더 경로 설정
-				String uploadDir = servletContext.getRealPath("/resources/profile_images/");
+				String uploadDir = servletContext.getRealPath("resources/profile_images/");
 				File dir = new File(uploadDir);
 				if (!dir.exists()) {
 					dir.mkdirs();
@@ -600,7 +594,7 @@ public class ResumeController {
 				}
 
 				// 사용자 프로필 사진 경로를 설정
-				resume.setUserPic("/resources/profile_images/" + filename);
+				resume.setUserPic("resources/profile_images/" + filename);
 			} else {
 				// 새로운 파일이 업로드되지 않은 경우, 기존 프로필 사진을 유지
 				Resume existingResume = resumeService.getResumeById(resume.getResumeNo());

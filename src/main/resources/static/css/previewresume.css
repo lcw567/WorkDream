@@ -35,7 +35,7 @@
     font-weight: bold;
 }
 
-.pre_inner1,.pre_inner2,.pre_inner3,
+.pre_inner2,.pre_inner3,
 .pre_inner4,.pre_inner5,.pre_inner6,
 .pre_inner7,.pre_inner8,.pre_inner9{
     margin-bottom: 50px;
@@ -45,6 +45,13 @@
     padding-left: 30px;
     padding-bottom: 30px;
     padding-top: 30px
+}
+
+.pre_inner1{
+    height: 175px;
+    border-top: 2px solid #4e21a8;
+    margin-left: 50px;
+    padding-left: 30px;
 }
 
 .pre_inner3-1-2 h2{
@@ -92,7 +99,7 @@
 
 .pre_inner3-1-1{
     display: flex;
-    gap: 170px;
+    gap: 80px;
 }
 
 .pre_inner3-1-2{
@@ -221,4 +228,33 @@
 
 .final_check button:focus{
     outline: none;
+}
+
+#basic5 {
+    display: flex;
+    position: relative;
+    float: right;
+    bottom: 270px;
+    right: 70px;
+    border: 2px solid #cdcdcd;
+}
+
+.profile_img {
+    width: 103px;
+    height: 119px;
+    cursor: pointer;
+    margin: 2px;
+    position: relative;
+    left: 610px;
+    bottom: 28px;
+}
+
+.profile_upload {
+    display: none;
+}
+
+.pre_inner1-2{
+    width: 490px;
+    position: relative;
+    bottom: 125px;
 }
