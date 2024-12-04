@@ -8,8 +8,8 @@
 	<title>워크드림 | 구직자 즐겨찾기</title>
 	
 	<!-- 외부 css / js 연결 -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bookmark.css">
-	<script src="${pageContext.request.contextPath}/js/bookmark.js" defer></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/businessBookmark.css">
+	<script src="${pageContext.request.contextPath}/js/businessBookmark.js" defer></script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header_biz.jsp" />

@@ -23,6 +23,7 @@
     
     <!-- 외부 css / js 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/business.css">
     <script>const contextPath = "${pageContext.request.contextPath}";</script>
     <script src="${pageContext.request.contextPath}/js/common.js" defer></script>
 </head>
@@ -34,11 +35,11 @@
     		<ul id="biz-nav-left">
     			<li><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logo_icon.png" /></a></li>
     			<li class="On"><a href="${pageContext.request.contextPath}/business/businessMypage">기업 홈</a></li>
-    			<li><a href="${pageContext.request.contextPath}/business/recruitmentStatus">채용공고관리</a></li>
+    			<li><a href="${pageContext.request.contextPath}/business/recruitmentManager">채용공고관리</a></li>
     			<li><a href="${pageContext.request.contextPath}/business/applicantsStatus">지원자 현황</a></li>
     			<li><a href="#">인재풀 검색</a></li>
     			<li><a href="#">기업정보수정</a></li>
-    			<li><a href="#">커뮤니티</a></li>
+    			<li><a href="${pageContext.request.contextPath}/board/communityHome">커뮤니티</a></li>
     		</ul>
     		
     		<!-- 유저 메뉴 -->
