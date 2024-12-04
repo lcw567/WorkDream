@@ -2,7 +2,11 @@ package com.cs.workdream.portfolio.model.dao;
 
 import com.cs.workdream.common.vo.PageInfo;
 import com.cs.workdream.portfolio.model.vo.Portfolio;
+import com.cs.workdream.resume.controller.ResumeController;
+
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +23,8 @@ public class PortfolioDao {
     // MyBatis 매퍼 XML의 네임스페이스 설정
     private static final String NAMESPACE = "com.cs.workdream.portfolio.model.dao.PortfolioDao";
 
+    private static final Logger logger = LoggerFactory.getLogger(ResumeController.class);
+    
     @Autowired
     private SqlSession sqlSession;
 
@@ -28,6 +34,11 @@ public class PortfolioDao {
      */
     public void insertPortfolio(Portfolio portfolio) {
         sqlSession.insert(NAMESPACE + ".insertPortfolio", portfolio);
+        if (portfolio.getPortfolioId() == null) { // Integer로 변경된 경우
+            throw new RuntimeException("포트폴리오 삽입 후 ID가 설정되지 않았습니다.");
+        }
+        logger.debug("Inserted Portfolio with ID: " + portfolio.getPortfolioId());
+    
     }
 
     /**

@@ -1,12 +1,7 @@
 package com.cs.workdream.resume.service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
@@ -16,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.cs.workdream.portfolio.model.dao.PortfolioDao;
+import com.cs.workdream.portfolio.model.vo.Portfolio;
 import com.cs.workdream.resume.model.dao.ResumeDao;
 import com.cs.workdream.resume.model.vo.Award;
 import com.cs.workdream.resume.model.vo.Certificate;
@@ -37,6 +33,9 @@ public class ResumeServiceImpl implements ResumeService {
     public ResumeServiceImpl(ResumeDao resumeDao) {
         this.resumeDao = resumeDao;
     }
+    
+    @Autowired
+    private PortfolioDao portfolioDao;
 
     @PostConstruct
     public void init() {
@@ -224,5 +223,48 @@ public class ResumeServiceImpl implements ResumeService {
     @Override
     public Resume getResumeByNo(int resumeNo) {
         return resumeDao.selectResumeByNo(resumeNo);
+    }
+    
+    @Override
+    public List<Portfolio> getPortfoliosByUserNo(int userNo) {
+        return resumeDao.selectPortfoliosByUserNo(userNo);
+    }
+    
+    @Override
+    public List<Portfolio> getPortfoliosByIds(List<Integer> portfolioIds) {
+        return resumeDao.selectPortfoliosByIds(portfolioIds);
+    }
+    
+    @Override
+    @Transactional
+    public void saveResumeWithPortfolios(Resume resume, List<Integer> portfolioIds) {
+        // 이력서 저장
+        resumeDao.insertResume(resume);
+        logger.debug("Inserted Resume with ID: " + resume.getResumeNo());
+
+        // 포트폴리오 연관 관계 설정
+        if (portfolioIds != null && !portfolioIds.isEmpty()) {
+            for (Integer portfolioId : portfolioIds) {
+                logger.debug("Associating ResumeNo: " + resume.getResumeNo() + " with PortfolioId: " + portfolioId);
+                // RESUME_PORTFOLIO에 삽입
+                resumeDao.insertResumePortfolio(resume.getResumeNo(), portfolioId);
+            }
+        } else {
+            logger.debug("No Portfolio IDs to associate with Resume.");
+        }
+    }
+
+
+    @Override
+    @Transactional
+    public void associatePortfoliosWithResume(int resumeNo, List<Integer> portfolioIds) {
+        // 기존 연관 데이터 삭제
+        resumeDao.deleteResumePortfoliosByResumeNo(resumeNo);
+        // 새로운 연관 데이터 삽입
+        if (portfolioIds != null && !portfolioIds.isEmpty()) {
+            for (Integer portfolioId : portfolioIds) {
+                resumeDao.insertResumePortfolio(resumeNo, portfolioId);
+            }
+        }
     }
 }

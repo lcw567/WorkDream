@@ -28,11 +28,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cs.workdream.member.model.vo.Member;
+import com.cs.workdream.portfolio.model.vo.Portfolio;
 import com.cs.workdream.resume.model.vo.Award;
 import com.cs.workdream.resume.model.vo.Certificate;
 import com.cs.workdream.resume.model.vo.LanguageTest;
@@ -96,7 +98,8 @@ public class ResumeController {
                                @RequestParam("issueDate[]") String[] issueDates,
                                @RequestParam("awardName[]") String[] awardNames, 
                                @RequestParam("organizer[]") String[] organizers,
-                               @RequestParam("awardDate[]") String[] awardDates, 
+                               @RequestParam("awardDate[]") String[] awardDates,
+                               @RequestParam(value = "resumePortfolios[]", required = false) List<Integer> resumePortfolios,
                                HttpSession session, 
                                HttpServletRequest request,
                                RedirectAttributes redirectAttributes) {
@@ -266,11 +269,24 @@ public class ResumeController {
             redirectAttributes.addFlashAttribute("error", "프로필 사진 처리 중 오류가 발생했습니다.");
             return "redirect:/resume/enrollresume";
         }
+        
+        // 포트폴리오 데이터 로그 추가
+        if (resumePortfolios != null) {
+            logger.info("Received Portfolio IDs: {}", resumePortfolios);
+        } else {
+            logger.info("No Portfolio IDs received.");
+        }
 
-        // 이력서 저장
         try {
             boolean isInserted = resumeService.saveResume(resume);
             if (isInserted) {
+                // 선택된 포트폴리오와 이력서를 연관
+                if (resumePortfolios != null && !resumePortfolios.isEmpty()) {
+                    List<Portfolio> selectedPortfolios = resumeService.getPortfoliosByIds(resumePortfolios);
+                    resume.setPortfolio(selectedPortfolios);
+                    resumeService.associatePortfoliosWithResume(resume.getResumeNo(), resumePortfolios);
+                }
+
                 redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 등록되었습니다.");
                 return "redirect:/resume/resumeDashboard";
             } else {
@@ -282,7 +298,7 @@ public class ResumeController {
             redirectAttributes.addFlashAttribute("error", "이력서 등록 중 오류가 발생했습니다.");
             return "redirect:/resume/enrollresume";
         }
-    }
+	}
 
     /**
      * 프로필 사진을 처리하고 저장된 파일의 경로를 반환하는 메서드
@@ -329,6 +345,19 @@ public class ResumeController {
             }
             return null;
         }
+    }
+    
+    @GetMapping("/getPortfolios")
+    @ResponseBody
+    public List<Portfolio> getPortfolios(HttpSession session) {
+        // 세션에서 로그인 사용자 가져오기
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            throw new RuntimeException("로그인이 필요합니다.");
+        }
+        // 사용자 번호로 포트폴리오 조회
+        List<Portfolio> portfolios = resumeService.getPortfoliosByUserNo(loginUser.getUserNo());
+        return portfolios;
     }
 
 

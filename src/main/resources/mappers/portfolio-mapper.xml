@@ -16,13 +16,14 @@
     </resultMap>
 
     <!-- Insert Portfolio -->
-    <insert id="insertPortfolio" parameterType="com.cs.workdream.portfolio.model.vo.Portfolio">
-        <selectKey keyProperty="portfolioId" resultType="int" order="BEFORE">
-            SELECT SEQ_PORTFOLIO_ID.NEXTVAL FROM dual
-        </selectKey>
-        INSERT INTO PORTFOLIO (PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, STATUS)
-        VALUES (#{portfolioId}, #{userNo}, #{title}, #{content}, SYSDATE, 'Y')
-    </insert>
+   <insert id="insertPortfolio" parameterType="com.cs.workdream.portfolio.model.vo.Portfolio">
+	    <selectKey keyProperty="portfolioId" resultType="int" order="BEFORE">
+	        SELECT SEQ_PORTFOLIO_ID.NEXTVAL FROM dual
+	    </selectKey>
+	    INSERT INTO PORTFOLIO (PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, STATUS)
+	    VALUES (#{portfolioId}, #{userNo}, #{title}, #{content}, SYSDATE, 'Y')
+	</insert>
+
 
     <!-- Select Portfolios by User with Pagination -->
     <select id="selectPortfoliosByUserNo" parameterType="map" resultMap="PortfolioResultMap">

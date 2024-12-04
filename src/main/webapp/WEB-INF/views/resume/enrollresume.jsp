@@ -775,7 +775,64 @@
                     </div>
                 </fieldset>
             </div>
-        
+            <!-- 포트폴리오 섹션 -->
+            <div class="Portfolio">
+                <fieldset class="portfolio">
+                    <legend class="por_title">포트폴리오</legend>
+                    <div class="input_port">
+                        <div class="selected_port">
+                            <!-- 선택된 포트폴리오가 여기 표시됩니다 -->
+                        </div>
+                        <div class="btn_port">
+                            <button type="button" class="btn btn-primary select_port">불러오기</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            
+            <!-- 선택된 포트폴리오의 ID를 저장할 hidden input 컨테이너 -->
+            <div id="selectedPortfolios">
+                <!-- JavaScript에서 동적으로 hidden input이 추가됩니다 -->
+            </div>
+            
+            <!-- 이력서 등록 버튼 -->
+            <button type="submit" class="btn btn-success">이력서 등록</button>
+        </form>
+
+        <!-- 포트폴리오 목록을 표시하는 모달 -->
+        <div class="modal" id="portfolioModal" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">포트폴리오 선택</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="portfolioForm">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="resumePortfolios" value="2002" id="portfolio2002">
+                                <label class="form-check-label" for="portfolio2002">
+                                    포트폴리오 제목 1
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="resumePortfolios" value="2003" id="portfolio2003">
+                                <label class="form-check-label" for="portfolio2003">
+                                    포트폴리오 제목 2
+                                </label>
+                            </div>
+                            <!-- 추가 포트폴리오 항목들 -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="selectPortfolioButton">선택</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
             <!-- 제출 버튼 -->
             <div class="btn_select">
                 <button type="submit" class="final_save">작성 완료</button>

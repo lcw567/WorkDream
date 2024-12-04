@@ -588,3 +588,87 @@ document.getElementById('resumeY').addEventListener('change', function() {
         hiddenField.value = 'N';
     }
 });
+
+// 포트폴리오 선택 버튼 클릭 시 모달 열기
+document.querySelector(".select_port").addEventListener("click", function (event) {
+    event.preventDefault(); // 기본 동작 방지
+    // 모달 표시
+    document.getElementById("portfolioModal").style.display = "flex";
+});
+
+// 모달 닫기 버튼 처리
+document.querySelectorAll(".close").forEach(closeBtn => {
+    closeBtn.addEventListener("click", function () {
+        document.getElementById("portfolioModal").style.display = "none"; // 모달 닫기
+    });
+});
+
+// 창 외부 클릭 시 모달 닫기
+window.addEventListener("click", function (event) {
+    const modal = document.getElementById("portfolioModal");
+    if (event.target === modal) {
+        modal.style.display = "none"; // 모달 닫기
+    }
+});
+
+/**
+ * 선택된 포트폴리오를 폼에 추가하는 함수
+ * @param {number} portfolioId - 포트폴리오 ID
+ * @param {string} title - 포트폴리오 제목
+ */
+function addPortfolioToForm(portfolioId, title) {
+    // 선택된 포트폴리오를 표시할 컨테이너
+    const selectedPortContainer = document.querySelector('.selected_port');
+    const hiddenPortfolioContainer = document.getElementById('selectedPortfolios');
+
+    if (!selectedPortContainer || !hiddenPortfolioContainer) {
+        console.error("selected_port 또는 selectedPortfolios 요소를 찾을 수 없습니다.");
+        return;
+    }
+
+    // 포트폴리오가 이미 선택되어 있는지 확인
+    const existingPortfolio = hiddenPortfolioContainer.querySelector(`input[value="${portfolioId}"]`);
+    if (existingPortfolio) {
+        alert("이미 선택된 포트폴리오입니다.");
+        return;
+    }
+
+    // 포트폴리오 표시 요소 생성
+    const portfolioDisplay = document.createElement('div');
+    portfolioDisplay.className = 'selected-portfolio-item';
+    portfolioDisplay.textContent = title;
+
+    // 삭제 버튼 추가
+    const removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.textContent = '삭제';
+    removeButton.className = 'btn btn-sm btn-danger ml-2';
+    removeButton.addEventListener('click', function() {
+        // 표시 요소 삭제
+        portfolioDisplay.remove();
+        // hidden input 삭제
+        hiddenInput.remove();
+    });
+
+    portfolioDisplay.appendChild(removeButton);
+    selectedPortContainer.appendChild(portfolioDisplay);
+
+    // hidden input 생성하여 폼에 추가
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = 'resumePortfolios'; // 컨트롤러에서 기대하는 이름과 일치
+    hiddenInput.value = portfolioId;
+    hiddenPortfolioContainer.appendChild(hiddenInput);
+}
+
+// 포트폴리오 선택 버튼 클릭 시 처리
+document.getElementById('selectPortfolioButton').addEventListener('click', function () {
+    const selectedCheckboxes = document.querySelectorAll('#portfolioForm input[name="resumePortfolios"]:checked');
+    selectedCheckboxes.forEach(checkbox => {
+        const portfolioId = checkbox.value;
+        const portfolioTitle = checkbox.nextElementSibling.textContent.trim();
+        addPortfolioToForm(portfolioId, portfolioTitle);
+    });
+    // 모달 닫기
+    document.getElementById("portfolioModal").style.display = "none";
+});

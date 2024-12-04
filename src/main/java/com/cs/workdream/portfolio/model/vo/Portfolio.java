@@ -17,7 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Portfolio {
-    private int portfolioId;
+    private Integer portfolioId;
     private int userNo;
     private String title;
     private String content;
