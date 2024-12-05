@@ -54,7 +54,9 @@ socket.onmessage = (event) => {
             appendMessage(data.userid, data.msg, className, data.time);
         }
     } else if (data.type === 'error') {
-        alert(data.message);
+        if (data.message !== "대상 사용자가 오프라인 상태입니다.") {
+            alert(data.message);
+        }
     }
 };
 
@@ -78,6 +80,12 @@ function addUserToChatList(userId) {
         return;
     }
 
+    // 사용자 ID가 현재 사용자와 같은지 확인
+    if (userId === window.currentUserId) {
+        alert('자기 자신을 추가할 수 없습니다.');
+        return;
+    }
+
     // 서버에 사용자 추가 요청
     fetch(`${window.contextPath}/chat/addUser`, {
         method: 'POST',
@@ -95,18 +103,22 @@ function addUserToChatList(userId) {
             return response.text().then(text => { throw new Error(text) });
         }
     })
-    .then(message => {
-        if (message === "사용자가 채팅 목록에 추가되었습니다.") {
-            appendMessage('시스템', `${userId} 사용자가 목록에 추가되었습니다.`, 'system-message');
-            // 채팅 목록 다시 로드
-            loadChatList();
-        } else {
-            alert(message);
-        }
-    })
+    .then((message) => {
+            if (message === '사용자가 채팅 목록에 추가되었습니다.') {
+                // 성공 시 팝업 메시지를 표시하지 않고 바로 목록 로드
+                loadChatList();
+            } else {
+                alert(message); // 다른 경우에만 팝업 표시
+            }
+        })
     .catch(error => {
         console.error('Error:', error);
-        alert(`사용자 추가 중 오류가 발생했습니다: ${error.message}`);
+        // 서버에서 반환한 오류 메시지가 "WorkDream에 등록되지 않은 사용자 입니다."인지 확인
+        if (error.message === "WorkDream에 등록되지 않은 사용자 입니다.") {
+            alert("WorkDream에 등록되지 않은 사용자 입니다.");
+        } else {
+            alert(`WorkDream회원이 아닌 사용자입니다.`);
+        }
     });
 }
 
