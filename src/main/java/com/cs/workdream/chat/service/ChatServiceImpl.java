@@ -44,4 +44,9 @@ public class ChatServiceImpl implements ChatService {
     public List<ChatHistory> getChatHistoryForRecipient(String recipientId) {
         return chatDAO.selectUnreadMessages(recipientId);
     }
-}  
+    
+    @Override
+    public int deleteChatList(String userId, String chatWithId) {
+        return chatDAO.deleteChatList(userId, chatWithId);
+    }
+}

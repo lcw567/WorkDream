@@ -14,6 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <title>WorkDream 메신저</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/chat.css">
     <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
 </head>
@@ -27,6 +28,7 @@
                 <h3>사용자 목록</h3>
                 <ul id="chat-list"></ul>
                 <button id="add-user-btn">사용자 추가</button>
+                <button id="delete-user-btn" disabled>사용자 삭제</button> 
             </div>
 
             <!-- 메시지 창 -->
