@@ -1534,3 +1534,22 @@ button.delete:focus {
     margin: 50px;
     cursor: pointer;
 }
+
+.portfolio-item{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+}
+
+.portfolio-item label{
+    padding-left: 10px;
+    font-size: 1rem;
+}
+
+.selected_port span{
+    font-size: 1rem;
+}
+
+.selected_port{
+    padding-top: 15px;
+}
