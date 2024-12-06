@@ -21,10 +21,10 @@
 			<aside id="Recruitment_StatusView">
 				<!-- 진행상황 탭 -->
 				<div class="status-link">
-					<a href="#" class="active">진행중 20</a>
-					<a href="#">&emsp;대기중 15</a>
-					<a href="#">&emsp;임시저장 7</a>
-					<a href="#">&emsp;마감 15</a>
+					<a href="#">진행중 ${statusMap['PROGRESS_COUNT']}</a>
+					<a href="#">대기중 ${statusMap['STANDBY_COUNT']}</a>
+					<a href="#">임시저장 ${statusMap['TEMP_COUNT']}</a>
+					<a href="#">마감 ${statusMap['END_COUNT']}</a>
 				</div>
 				
 				<!-- 상단 버튼 -->

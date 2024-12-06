@@ -25,10 +25,4 @@ public class Recuritment {
 	private String contentImg;		// 공고 이미지
 	private String contextText;		// 공고 내용(텍스트)
 	private String status;			// 공고 상태 (임시저장: T / 대기중: S / 진행중: P / 마감: E)
-	
-	private int totalCount;			// 전체 공고 개수
-	private int tempCount;			// 임시저장한 공고 개수
-	private int standByCount;		// 대기중인 공고 개수
-	private int progressCount;		// 진행중인 공고 개수
-	private int endCount;			// 마감한 공고 개수
 }
