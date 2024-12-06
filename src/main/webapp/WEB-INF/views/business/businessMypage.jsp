@@ -25,7 +25,7 @@
                 </div>
                 <div class="button-group">
                     <button class="btn btn-company-info" onclick="location.href='${pageContext.request.contextPath}/business/businessProfileView?businessNo=${business.businessNo}'">기업 정보</button>
-                    <button class="btn btn-messenger">메신저</button>
+                    <button class="btn btn-messenger"  onclick="location.href='${pageContext.request.contextPath}/chat'">메신저</button>
                 </div>
             </article>
         </div>
@@ -39,20 +39,20 @@
             </div>
             <div class="status-cards">
                 <div class="status-card">
-                    <span>진행중 공고</span>
+                    <span>총 지원자</span>
                     <p>0</p>
                 </div>
                 <div class="status-card">
-                    <span>지원자</span>
+                    <span>열람완료</span>
                     <p>0</p>
                 </div>
                 <div class="status-card">
-                    <span>즐겨찾기 지원자</span>
+                    <span>평가완료</span>
                     <p>0</p>
                 </div>
                 
                 <div class="status-card">
-                    <span>합격</span>
+                    <span>열람미완료</span>
                     <p>0</p>
                 </div>
             </div>

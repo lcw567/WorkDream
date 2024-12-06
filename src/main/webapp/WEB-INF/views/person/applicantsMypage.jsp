@@ -50,10 +50,10 @@
                 <button class="add-button" onclick="location.href='${pageContext.request.contextPath}/person/applicationmanage'">+</button>
             </div>
             <div class="status-cards">
-                <div class="status-card"><span>서류 통과</span><p>0</p></div>
-                <div class="status-card"><span>면접 대기</span><p>0</p></div>
-                <div class="status-card"><span>최종 결과</span><p>0</p></div>
-                <div class="status-card"><span>합격</span><p>0</p></div>
+                <div class="status-card"><span>지원완료</span><p>0</p></div>
+                <div class="status-card"><span>열람</span><p>0</p></div>
+                <div class="status-card"><span>미열람</span><p>0</p></div>
+                <div class="status-card"><span>지원취소</span><p>0</p></div>
             </div>
         </section>
         
