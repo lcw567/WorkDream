@@ -1,3 +1,4 @@
+
 .modal_btn {
 	display: block;
     margin: 40px auto;
@@ -104,12 +105,9 @@
 }
 
 #Rank {
-    border-radius: 5px;
-    border: 1px solid black;
     width: 35%;
     height: 40px;
     padding-left: 13px;
-    padding-top: 5px;
 }
 
 #Rank::placeholder {
@@ -121,11 +119,6 @@
 #Position {
     border-radius: 5px;
     border: 1px solid black;
-    margin-left: 10px;
-    width: 35%;
-    height: 40px;
-    padding-left: 13px;
-    padding-top: 5px;
 }
 
 #Position::placeholder {
@@ -737,7 +730,7 @@ input[type="text"], input[type="time"] {
 	margin-left: 10px;
 	margin-right: 10px;
 	width: 100px;
-	border: 2px solid black;
+	border: 1px solid black;
 }
 
 .Contact_Announcement_Information_Title {
@@ -945,7 +938,7 @@ input::placeholder {
 	width: 100%;
 	height: 150px;
 	border-radius: 5px;
-	padding-top: 10px;
+	padding-top: 8px;
 	margin-bottom: 50px;
 	line-height: 1;
 	padding-left: 10px;

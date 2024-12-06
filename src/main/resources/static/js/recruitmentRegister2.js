@@ -11,6 +11,8 @@ const data = {
         other: "",
         period_time_min: "",
         period_time_max: "",
+        recruitment_time_min: "",
+        recruitment_time_max: "",
         qualification: [],
         applicants_preferential: [],
         information: [],
