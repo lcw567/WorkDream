@@ -47,7 +47,7 @@ public class BusinessController {
 	
 	/* 기업 마이페이지 (기업 홈) 관련 */
 	// 기업홈 페이지로 이동
-	@GetMapping("/businessMypage")
+	@RequestMapping("/businessMypage")
     public String businessMypage(HttpSession session, Model model) throws Exception {
         // 세션에서 로그인한 사용자 정보 가져오기
         Member currentUser = (Member) session.getAttribute("loginUser");
@@ -70,18 +70,17 @@ public class BusinessController {
 	
 	/*=====================================================================================================*/
 	
+	
 	/* 채용공고 관련 */
 	// 채용공고관리 페이지로 이동
-	@GetMapping("/recruitmentManager")
-    public ModelAndView reStatus(ModelAndView mv, HttpSession session) {
+	@RequestMapping("/recruitmentManager")
+    public ModelAndView recruitmentManager(ModelAndView mv, HttpSession session) {
 		Member currentUser = (Member) session.getAttribute("loginUser");
 		
 		if(currentUser != null) {
-			// 기본적으로 진행중인 공고 목록 조회 > 전달
-			List<Recuritment> list = selectListProgressRecuritment(session);
-			
+			// 현재 공고 현황 조회 > 전달
 			mv.setViewName("business/recruitmentManager");
-			mv.addObject("RecuritmentList", list);
+			mv.addObject("statusMap", selectRecuritmentStatus(session));
 		} else {
 			mv.setViewName("common/errorPage");
 			mv.addObject("errorMsg", "로그인이 필요한 서비스입니다.");
@@ -92,19 +91,61 @@ public class BusinessController {
     }
 
 	// 현재 공고 현황 조회
-	public List<Recuritment> selectRecuritmentStatus(List<Recuritment> statusList) {
+	public Map<String, Integer> selectRecuritmentStatus(HttpSession session) {
+		Member currentUser = (Member)session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
 		
-		return statusList;
+		Map<String, Integer> statusMap = businessService.selectRecuritmentStatus(businessNo);
+		
+		return statusMap;
 	}
 	
 	// 진행중인 공고 목록 조회
+	@GetMapping("/progressRecuritment.biz")
+	@ResponseBody
 	public List<Recuritment> selectListProgressRecuritment(HttpSession session) {
-		Member currentUser = (Member) session.getAttribute("loginUser");
+		Member currentUser = (Member)session.getAttribute("loginUser");
     	int businessNo = currentUser.getBusinessNo();
     	
     	List<Recuritment> progressList = businessService.selectListProgressRecuritment(businessNo);
 		
 		return progressList;
+	}
+	
+	// 대기중인 공고 목록 조회
+	@RequestMapping("/standByRecuritment.biz")
+	@ResponseBody
+	public List<Recuritment> selectListStandByRecuritment(HttpSession session) {
+		Member currentUser = (Member)session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
+    	
+    	List<Recuritment> standByList = businessService.selectListStandByRecuritment(businessNo);
+		
+		return standByList;
+	}
+	
+	// 임시저장한 공고 목록 조회
+	@RequestMapping("/temporaryRecuritment.biz")
+	@ResponseBody
+	public List<Recuritment> selectListTemporaryRecuritment(HttpSession session) {
+		Member currentUser = (Member)session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
+    	
+    	List<Recuritment> temporaryList = businessService.selectListTemporaryRecuritment(businessNo);
+		
+		return temporaryList;
+	}
+	
+	// 마감된 공고 목록 조회
+	@RequestMapping("/endRecuritment.biz")
+	@ResponseBody
+	public List<Recuritment> selectListEndyRecuritment(HttpSession session) {
+		Member currentUser = (Member)session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
+    	
+    	List<Recuritment> endList = businessService.selectListEndRecuritment(businessNo);
+		
+		return endList;
 	}
 	
 	// 채용공고 작성 페이지로 이동
@@ -127,7 +168,7 @@ public class BusinessController {
 	
 	/* 지원자 현황&목록 관련 */
 	// 지원자 현황 페이지로 이동
-	@GetMapping("/applicantsStatus")
+    @RequestMapping("/applicantsStatus")
 	public String applicantsStatus() {
 		// @RequestParam("recruitmentNo") int recruitmentNo,
 		// 지원자 현황 조회 결과를 Model에 저장
@@ -200,7 +241,7 @@ public class BusinessController {
     
     /* 구직자 즐겨찾기 관련 */
     // 구직자 즐겨찾기 페이지로 이동
-    @GetMapping("/bookmark")
+    @RequestMapping("/bookmark")
     public String bookmarkList(HttpSession session, Model model) {
     	// loadBookmarkList 값을 받아서 사용
     	loadBookmarkList(session, model);
@@ -279,18 +320,18 @@ public class BusinessController {
 	}
 	
 
-	@GetMapping("/announcementDetailView")
+	@RequestMapping("/announcementDetailView")
     public String announcementDetailView() {
         return "business/announcementDetailView";
 
 	}
-	@GetMapping("/preview")
+	@RequestMapping("/preview")
     public String preview() {
         return "business/preview";
 
     }
 	
-	@GetMapping("/positionAndCareer")
+	@RequestMapping("/positionAndCareer")
     public String positionCareer() {
         return "business/positionAndCareer";
     }

@@ -27,7 +27,7 @@
     <script>const contextPath = "${pageContext.request.contextPath}";</script>
     <script src="${pageContext.request.contextPath}/js/common.js" defer></script>
 </head>
-<body onload="activeMenu(<%=menuNo%>)">
+<body>
     <!-- 기업홈용 헤더 -->
     <header class="biz">
     	<nav>
