@@ -94,6 +94,5 @@
 	    DELETE FROM CHAT_LIST
 	    WHERE USER_ID = #{userId} AND CHAT_WITH_ID = #{chatWithId}
 	</delete>
-    
-
+       
 </mapper>
