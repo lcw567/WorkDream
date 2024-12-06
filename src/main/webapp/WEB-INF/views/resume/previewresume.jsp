@@ -279,6 +279,13 @@
                         </c:choose>
                     </div>
                 </div>
+                <!-- 포트폴리오 -->
+                 <p>포트폴리오</p>
+                 <div class="pre_inner10">
+                    <div class="pre_inner10-1">
+
+                    </div>
+                 </div>
             </fieldset>
         </div>
         <form action="resumeDashboard" method="get">

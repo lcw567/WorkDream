@@ -589,86 +589,132 @@ document.getElementById('resumeY').addEventListener('change', function() {
     }
 });
 
-// 포트폴리오 선택 버튼 클릭 시 모달 열기
-document.querySelector(".select_port").addEventListener("click", function (event) {
-    event.preventDefault(); // 기본 동작 방지
-    // 모달 표시
-    document.getElementById("portfolioModal").style.display = "flex";
-});
 
-// 모달 닫기 버튼 처리
-document.querySelectorAll(".close").forEach(closeBtn => {
-    closeBtn.addEventListener("click", function () {
-        document.getElementById("portfolioModal").style.display = "none"; // 모달 닫기
+document.addEventListener("DOMContentLoaded", function () {
+    const selectPortButton = document.querySelector(".select_port");
+    const modal = document.getElementById("modal");
+    const closeButtons = document.querySelectorAll(".close");
+    const portfolioListDiv = document.getElementById("portfolio-list");
+    const selectedPortDiv = document.querySelector(".selected_port");
+    
+    // 디버깅용 로그: contextPath 확인
+    console.log('Context Path:', contextPath);
+    
+    selectPortButton.addEventListener("click", function () {
+        // 이력서 ID를 가져옵니다. (현재 페이지에서 이력서 ID를 관리하고 있다고 가정)
+        // 필요 시 이력서 ID를 fetch URL에 포함하거나, 서버에서 세션 등을 통해 관리할 수 있습니다.
+    
+        fetch(`${contextPath}/resume/getPortfolios`, {
+            method: 'GET',
+            credentials: 'same-origin' // 쿠키 포함
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("네트워크 응답에 문제가 있습니다.");
+                }
+                return response.json();
+            })
+            .then(portfolios => {
+                portfolioListDiv.innerHTML = ""; // 기존 내용을 초기화
+    
+                if (portfolios.length === 0) {
+                    portfolioListDiv.innerHTML = "<p>등록된 포트폴리오가 없습니다.</p>";
+                } else {
+                    portfolios.forEach(portfolio => {
+                        const portfolioItem = document.createElement("div");
+                        portfolioItem.classList.add("portfolio-item");
+    
+                        // 체크박스와 레이블 생성
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = "selectedPortfolios";
+                        checkbox.value = portfolio.portfolioId;
+                        checkbox.id = `portfolio-${portfolio.portfolioId}`;
+    
+                        const label = document.createElement("label");
+                        label.htmlFor = `portfolio-${portfolio.portfolioId}`;
+                        label.textContent = portfolio.title;
+    
+                        portfolioItem.appendChild(checkbox);
+                        portfolioItem.appendChild(label);
+    
+                        // 체크박스 상태 변경 시 처리
+                        checkbox.addEventListener('change', function() {
+                            if (this.checked) {
+                                // 선택된 포트폴리오 제목을 'selected_port' div에 추가
+                                const selectedItem = document.createElement("span");
+                                selectedItem.id = `selected-${portfolio.portfolioId}`;
+                                selectedItem.textContent = portfolio.title;
+                                selectedItem.classList.add("selected-portfolio");
+                                selectedPortDiv.appendChild(selectedItem);
+                            } else {
+                                // 선택 해제 시 'selected_port' div에서 해당 제목 제거
+                                const selectedItem = document.getElementById(`selected-${portfolio.portfolioId}`);
+                                if (selectedItem) {
+                                    selectedPortDiv.removeChild(selectedItem);
+                                }
+                            }
+                        });
+    
+                        portfolioListDiv.appendChild(portfolioItem);
+                    });
+                }
+    
+                // 모달 표시
+                modal.style.display = "flex";
+            })
+            .catch(error => {
+                console.error("포트폴리오 데이터를 가져오는 중 오류 발생:", error);
+                alert("포트폴리오 데이터를 불러오는 중 문제가 발생했습니다.");
+            });
     });
-});
 
-// 창 외부 클릭 시 모달 닫기
-window.addEventListener("click", function (event) {
-    const modal = document.getElementById("portfolioModal");
-    if (event.target === modal) {
-        modal.style.display = "none"; // 모달 닫기
-    }
-});
-
-/**
- * 선택된 포트폴리오를 폼에 추가하는 함수
- * @param {number} portfolioId - 포트폴리오 ID
- * @param {string} title - 포트폴리오 제목
- */
-function addPortfolioToForm(portfolioId, title) {
-    // 선택된 포트폴리오를 표시할 컨테이너
-    const selectedPortContainer = document.querySelector('.selected_port');
-    const hiddenPortfolioContainer = document.getElementById('selectedPortfolios');
-
-    if (!selectedPortContainer || !hiddenPortfolioContainer) {
-        console.error("selected_port 또는 selectedPortfolios 요소를 찾을 수 없습니다.");
-        return;
-    }
-
-    // 포트폴리오가 이미 선택되어 있는지 확인
-    const existingPortfolio = hiddenPortfolioContainer.querySelector(`input[value="${portfolioId}"]`);
-    if (existingPortfolio) {
-        alert("이미 선택된 포트폴리오입니다.");
-        return;
-    }
-
-    // 포트폴리오 표시 요소 생성
-    const portfolioDisplay = document.createElement('div');
-    portfolioDisplay.className = 'selected-portfolio-item';
-    portfolioDisplay.textContent = title;
-
-    // 삭제 버튼 추가
-    const removeButton = document.createElement('button');
-    removeButton.type = 'button';
-    removeButton.textContent = '삭제';
-    removeButton.className = 'btn btn-sm btn-danger ml-2';
-    removeButton.addEventListener('click', function() {
-        // 표시 요소 삭제
-        portfolioDisplay.remove();
-        // hidden input 삭제
-        hiddenInput.remove();
+    // 닫기 버튼 이벤트
+    closeButtons.forEach(closeBtn => {
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
     });
 
-    portfolioDisplay.appendChild(removeButton);
-    selectedPortContainer.appendChild(portfolioDisplay);
-
-    // hidden input 생성하여 폼에 추가
-    const hiddenInput = document.createElement('input');
-    hiddenInput.type = 'hidden';
-    hiddenInput.name = 'resumePortfolios'; // 컨트롤러에서 기대하는 이름과 일치
-    hiddenInput.value = portfolioId;
-    hiddenPortfolioContainer.appendChild(hiddenInput);
-}
-
-// 포트폴리오 선택 버튼 클릭 시 처리
-document.getElementById('selectPortfolioButton').addEventListener('click', function () {
-    const selectedCheckboxes = document.querySelectorAll('#portfolioForm input[name="resumePortfolios"]:checked');
-    selectedCheckboxes.forEach(checkbox => {
-        const portfolioId = checkbox.value;
-        const portfolioTitle = checkbox.nextElementSibling.textContent.trim();
-        addPortfolioToForm(portfolioId, portfolioTitle);
+    // 모달 외부 클릭 시 닫기
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
     });
-    // 모달 닫기
-    document.getElementById("portfolioModal").style.display = "none";
+
+    // 선택된 포트폴리오 제목을 클릭하면 체크박스 해제 및 제목 제거
+    selectedPortDiv.addEventListener('click', function(event) {
+        if (event.target.classList.contains('selected-portfolio')) {
+            const portfolioId = event.target.id.replace('selected-', '');
+            const checkbox = document.getElementById(`portfolio-${portfolioId}`);
+            if (checkbox) {
+                checkbox.checked = false;
+            }
+            event.target.remove();
+        }
+    });
+
+    // 폼 제출 시 선택된 포트폴리오 ID를 hidden input으로 추가
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (event) {
+        // 기존 hidden inputs 제거
+        const existingInputs = document.querySelectorAll("input[name='resumePortfolios[]']");
+        existingInputs.forEach(input => input.remove());
+
+        // 선택된 포트폴리오 ID 가져오기
+        const selectedCheckboxes = document.querySelectorAll("input[name='selectedPortfolios']:checked");
+        const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.value));
+
+        // hidden inputs 생성
+        selectedIds.forEach(id => {
+            const hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "resumePortfolios[]";
+            hiddenInput.value = id;
+            form.appendChild(hiddenInput);
+        });
+    });    
 });
+
+

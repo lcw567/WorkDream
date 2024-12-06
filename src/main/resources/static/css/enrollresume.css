@@ -1474,6 +1474,11 @@ button.delete:focus {
     padding-left: 15px;
 }
 
+.selected_port p{
+    padding-top: 15px;
+    font-size: 1rem;
+}
+
 .input_port{
     display: flex;
     margin-top: 25px;
@@ -1523,4 +1528,9 @@ button.delete:focus {
 
 .modal-content h2{
     font-size: 1rem;
+}
+
+.portfolio-title{
+    margin: 50px;
+    cursor: pointer;
 }
