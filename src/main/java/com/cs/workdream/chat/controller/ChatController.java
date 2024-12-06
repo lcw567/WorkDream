@@ -99,4 +99,27 @@ public class ChatController {
                 .body("사용자 추가에 실패했습니다.");
         }
     }
+    @DeleteMapping("/deleteUser")
+    @ResponseBody
+    public ResponseEntity<String> deleteUserFromChatList(HttpSession session, @RequestParam("targetUserId") String targetUserId) {
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            return ResponseEntity.status(401)
+                .contentType(MediaType.TEXT_PLAIN)
+                .body("로그인이 필요합니다.");
+        }
+
+        String userId = loginUser.getUserId();
+
+        int result = chatService.deleteChatList(userId, targetUserId);
+        if (result > 0) {
+            return ResponseEntity.ok()
+                .header("Content-Type", "text/plain; charset=UTF-8")
+                .body("사용자가 채팅 목록에서 삭제되었습니다.");
+        } else {
+            return ResponseEntity.status(500)
+                .header("Content-Type", "text/plain; charset=UTF-8")
+                .body("사용자 삭제에 실패했습니다.");
+        }
+    }
 }
