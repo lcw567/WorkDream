@@ -1472,6 +1472,7 @@ button.delete:focus {
     border: 1px solid #c5c5c5;
     font-size: 0.9rem;
     padding-left: 15px;
+    padding-top: 15px;
 }
 
 .selected_port p{
@@ -1548,8 +1549,4 @@ button.delete:focus {
 
 .selected_port span{
     font-size: 1rem;
-}
-
-.selected_port{
-    padding-top: 15px;
 }
