@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cs.workdream.portfolio.model.dao.PortfolioDao">
 
@@ -13,21 +13,23 @@
         <result property="createDate" column="CREATE_DATE" />
         <result property="updateDate" column="UPDATE_DATE" />
         <result property="status" column="STATUS" />
+        <result property="resumeNo" column="RESUME_NO" />
     </resultMap>
 
     <!-- Insert Portfolio -->
-   <insert id="insertPortfolio" parameterType="com.cs.workdream.portfolio.model.vo.Portfolio">
-	    <selectKey keyProperty="portfolioId" resultType="int" order="BEFORE">
-	        SELECT SEQ_PORTFOLIO_ID.NEXTVAL FROM dual
-	    </selectKey>
-	    INSERT INTO PORTFOLIO (PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, STATUS)
-	    VALUES (#{portfolioId}, #{userNo}, #{title}, #{content}, SYSDATE, 'Y')
-	</insert>
-
+    <insert id="insertPortfolio" parameterType="com.cs.workdream.portfolio.model.vo.Portfolio">
+        <selectKey keyProperty="portfolioId" resultType="int" order="BEFORE">
+            SELECT SEQ_PORTFOLIO_ID.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO PORTFOLIO 
+            (PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, STATUS, RESUME_NO) 
+        VALUES 
+            (#{portfolioId}, #{userNo}, #{title}, #{content}, SYSDATE, 'Y', #{resumeNo})
+    </insert>
 
     <!-- Select Portfolios by User with Pagination -->
     <select id="selectPortfoliosByUserNo" parameterType="map" resultMap="PortfolioResultMap">
-        SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS
+        SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS, RESUME_NO
         FROM (
             SELECT ROWNUM AS RN, A.*
             FROM (
@@ -43,7 +45,7 @@
 
     <!-- Select Portfolio by ID -->
     <select id="selectPortfolioById" parameterType="int" resultMap="PortfolioResultMap">
-        SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS
+        SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS, RESUME_NO
         FROM PORTFOLIO
         WHERE PORTFOLIO_ID = #{portfolioId} AND STATUS = 'Y'
     </select>
@@ -53,7 +55,8 @@
         UPDATE PORTFOLIO
         SET TITLE = #{title},
             CONTENT = #{content},
-            UPDATE_DATE = SYSDATE
+            UPDATE_DATE = SYSDATE,
+            RESUME_NO = #{resumeNo} <!-- 필요 시 추가 -->
         WHERE PORTFOLIO_ID = #{portfolioId} AND STATUS = 'Y'
     </update>
 
@@ -69,6 +72,43 @@
         SELECT COUNT(*)
         FROM PORTFOLIO
         WHERE USER_NO = #{userNo} AND STATUS = 'Y'
+    </select>
+    
+    <!-- Select Portfolios by UserNo without Pagination -->
+    <select id="selectPortfoliosByUserNo1" parameterType="int" resultType="com.cs.workdream.portfolio.model.vo.Portfolio">
+        SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS, RESUME_NO
+        FROM PORTFOLIO
+        WHERE user_no = #{userNo} AND status = 'Y'
+    </select>
+
+    <!-- Select Portfolios by ResumeNo -->
+    <select id="selectPortfoliosByResumeNo" parameterType="int" resultMap="PortfolioResultMap">
+        SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS, RESUME_NO
+        FROM PORTFOLIO
+        WHERE resume_no = #{resumeNo} AND status = 'Y'
+    </select>
+
+    <!-- Update Portfolio's ResumeNo -->
+    <update id="updatePortfolioResumeNo" parameterType="map">
+        UPDATE PORTFOLIO
+        SET resume_no = #{resumeNo}
+        WHERE portfolio_id = #{portfolioId}
+    </update>
+    
+    <!-- Delete Portfolios by ResumeNo -->
+    <delete id="deletePortfoliosByResumeNo" parameterType="int">
+        DELETE FROM PORTFOLIO WHERE resume_no = #{resumeNo}
+    </delete>
+    
+    <!-- Select Portfolios by IDs -->
+    <select id="selectPortfoliosByIds" parameterType="list" resultMap="PortfolioResultMap">
+        SELECT PORTFOLIO_ID, USER_NO, TITLE, CONTENT, CREATE_DATE, UPDATE_DATE, STATUS, RESUME_NO
+        FROM PORTFOLIO
+        WHERE portfolio_id IN 
+        <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        AND status = 'Y'
     </select>
 
 </mapper>

@@ -12,6 +12,7 @@ import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
+import com.cs.workdream.business.model.vo.Recuritment;
 
 @Repository
 public class BusinessDao {
@@ -22,6 +23,30 @@ public class BusinessDao {
 	
 	/*=====================================================================================================*/
 	
+	// 현재 공고 현황 조회
+	public Map<String, Integer> selectRecuritmentStatus(int businessNo) {
+        return sqlSession.selectOne("businessMapper.selectRecuritmentStatus", businessNo);
+    }
+	
+	// 진행중인 공고 목록 조회
+	public List<Recuritment> selectListProgressRecuritment(int businessNo) {
+		return sqlSession.selectList("businessMapper.selectListProgressRecuritment", businessNo);
+	}
+	
+	// 대기중인 공고 목록 조회
+	public List<Recuritment> selectListStandByRecuritment(int businessNo) {
+		return sqlSession.selectList("businessMapper.selectListStandByRecuritment", businessNo);
+	}
+	
+	// 임시저장한 공고 목록 조회
+	public List<Recuritment> selectListTemporaryRecuritment(int businessNo) {
+		return sqlSession.selectList("businessMapper.selectListTemporaryRecuritment", businessNo);
+	}
+	
+	// 마감된 공고 목록 조회
+	public List<Recuritment> selectListEndRecuritment(int businessNo) {
+		return sqlSession.selectList("businessMapper.selectListEndRecuritment", businessNo);
+	}
 
 	// 지원자 현황 조회
 	public ApplicantsStatus inquireAppsStatus(int recruitmentNo) {

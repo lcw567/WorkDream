@@ -77,4 +77,9 @@ public class ChatDAO {
             return chatWithId;
         }
     }
+    
+    public int deleteChatList(String userId, String chatWithId) {
+        return sqlSession.delete("ChatMapper.deleteChatList", new ChatList(userId, chatWithId, "", null));
+    }
+
 }

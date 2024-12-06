@@ -1,8 +1,8 @@
-// chat.js
-
 // 채팅 목록 요소 가져오기
 const chatList = document.getElementById('chat-list');
 
+// 삭제 버튼 가져오기
+const deleteUserBtn = document.getElementById('delete-user-btn');
 let selectedUserId = null; // 현재 선택된 사용자
 
 // 디버깅용 로그 추가
@@ -54,7 +54,9 @@ socket.onmessage = (event) => {
             appendMessage(data.userid, data.msg, className, data.time);
         }
     } else if (data.type === 'error') {
-        alert(data.message);
+        if (data.message !== "대상 사용자가 오프라인 상태입니다.") {
+            alert(data.message);
+        }
     }
 };
 
@@ -78,6 +80,12 @@ function addUserToChatList(userId) {
         return;
     }
 
+    // 사용자 ID가 현재 사용자와 같은지 확인
+    if (userId === window.currentUserId) {
+        alert('자기 자신을 추가할 수 없습니다.');
+        return;
+    }
+
     // 서버에 사용자 추가 요청
     fetch(`${window.contextPath}/chat/addUser`, {
         method: 'POST',
@@ -95,18 +103,50 @@ function addUserToChatList(userId) {
             return response.text().then(text => { throw new Error(text) });
         }
     })
-    .then(message => {
-        if (message === "사용자가 채팅 목록에 추가되었습니다.") {
-            appendMessage('시스템', `${userId} 사용자가 목록에 추가되었습니다.`, 'system-message');
-            // 채팅 목록 다시 로드
-            loadChatList();
+    .then((message) => {
+            if (message === '사용자가 채팅 목록에 추가되었습니다.') {
+                loadChatList(); // 목록 재로드
+            } else {
+                alert(message);
+            }
+        })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('사용자 추가 중 오류가 발생했습니다.');
+    });
+}
+
+// 채팅 목록에 사용자 삭제 함수
+function deleteUserFromChatList(userId) {
+    if (!userId) {
+        alert('삭제할 사용자를 선택하세요.');
+        return;
+    }
+
+    if (!confirm(`${userId}님을 채팅 목록에서 삭제하시겠습니까?`)) {
+        return;
+    }
+
+    // 서버에 삭제 요청
+    fetch(`${window.contextPath}/chat/deleteUser?targetUserId=${userId}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.text();
         } else {
-            alert(message);
+            return response.text().then(text => { throw new Error(text) });
         }
+    })
+    .then((message) => {
+        alert(message);
+        selectedUserId = null; // 선택 초기화
+        deleteUserBtn.disabled = true; // 삭제 버튼 비활성화
+        loadChatList(); // 채팅 목록 다시 로드
     })
     .catch(error => {
         console.error('Error:', error);
-        alert(`사용자 추가 중 오류가 발생했습니다: ${error.message}`);
+        alert('사용자 삭제 중 오류가 발생했습니다.');
     });
 }
 
@@ -120,7 +160,6 @@ function loadChatList() {
             return response.json();
         })
         .then(data => {
-            console.log("Fetched chat list:", data); // 디버깅용 로그 추가
             chatList.innerHTML = '';
             data.forEach(chat => {
                 const li = document.createElement('li');
@@ -144,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 채팅 목록에서 사용자 선택 함수
 function selectChat(userId) {
     selectedUserId = userId;
+    deleteUserBtn.disabled = false; // 삭제 버튼 활성화
     document.getElementById('msg-container').innerHTML = '';
 
     document.querySelectorAll('#chat-list li').forEach((li) => li.classList.remove('active'));
@@ -151,8 +191,6 @@ function selectChat(userId) {
     if (selectedListItem) selectedListItem.classList.add('active');
 
     appendMessage('시스템', `${userId}님과의 채팅을 시작합니다.`, 'system-message');
-
-    // 채팅 기록 로드
     loadChatHistory(userId);
 }
 
@@ -204,7 +242,6 @@ function appendMessage(sender, message, className, time = null) {
     const messageElement = document.createElement('div');
     messageElement.className = `message ${className}`;
     
-    // 시간 표시가 없으면 현재 시간 사용
     if (!time) {
         time = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
     }
@@ -215,7 +252,6 @@ function appendMessage(sender, message, className, time = null) {
     `;
     container.appendChild(messageElement);
 
-    // 메시지 창 자동 스크롤
     container.scrollTop = container.scrollHeight;
 }
 
@@ -223,4 +259,9 @@ function appendMessage(sender, message, className, time = null) {
 document.getElementById('add-user-btn').addEventListener('click', () => {
     const userId = prompt('추가할 사용자 ID를 입력하세요:');
     if (userId) addUserToChatList(userId);
+});
+
+// 사용자 삭제 버튼 이벤트
+deleteUserBtn.addEventListener('click', () => {
+    if (selectedUserId) deleteUserFromChatList(selectedUserId);
 });

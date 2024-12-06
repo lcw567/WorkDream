@@ -16,4 +16,11 @@ public class ChatList {
     private String chatWithId;         // 채팅 대상 사용자 ID
     private String lastMessage;        // 마지막 메시지 내용
     private Timestamp lastTimestamp;   // 마지막 메시지 시간
+    
+    public ChatList(String userId, String chatWithId, String lastMessage, Timestamp lastTimestamp) {
+        this.userId = userId;
+        this.chatWithId = chatWithId;
+        this.lastMessage = lastMessage;
+        this.lastTimestamp = lastTimestamp;
+    }
 }

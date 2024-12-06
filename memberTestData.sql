@@ -73,7 +73,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700622', '박승우/손영일/곽준상/김덕구',
     '(주)도화엔지니어링', '서울 강남구 삼성로 438', 'http://www.dohwa.co.kr',
-    '/resources/business/business1/logo/business1_logo.png',
+    '/resources/uploads/logos/business1_logo.png',
     '1000대기업, 중견기업, 코스피, 주식회사', 2284, '건물 및 토목 엔지니어링 서비스업', '도화엔지니어링'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
@@ -88,7 +88,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700622', '배재민',
     '딜로이트컨설팅(유)', '서울 영등포구 국제금융로 10', 'http://www2.deloitte.com/kr/ko.html',
-    '/resources/business/business2/logo/business2_logo.png',
+    '/resources/uploads/logos/business2_logo.png',
     '중소기업, 외국 법인기업, 유한회사', 384, '경영 컨설팅업', '딜로이트 컨설팅'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
@@ -103,7 +103,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700623', '김상철',
     '네이버(주)', '경기도 성남시 분당구 정자일로 95', 'https://www.naver.com/',
-    '/resources/business/business3/logo/business3_logo.png',
+    '/resources/uploads/logos/business3_logo.png',
     '대기업', 4341, '온라인 검색포털', 'Naver'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
@@ -118,7 +118,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700624', '손성은',
     '메가스터디교육(주)', '서울 서초구 효령로 321', 'http://corp.megastudy.net',
-    '/resources/business/business4/logo/business4_logo.png',
+    '/resources/uploads/logos/business4_logo.png',
     '코스닥, 중견기업, 주식회사, 외부감사법인', NULL, '온라인 교육 학원', '메가스터디, 엘리하이, 엠베스트, 메가스터디학원, 러셀, 메가공무원'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
@@ -133,7 +133,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700625', '강한승/박대준',
     '쿠팡(주)', '서울 송파구 송파대로 570, 18층', 'http://www.coupang.com',
-    '/resources/business/business5/logo/business5_logo.png',
+    '/resources/uploads/logos/business5_logo.png',
     '1000대기업, 대기업, 주식회사, 외부감사법인', 11276, '전자상거래 소매업', '쿠팡'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
@@ -148,7 +148,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700626', '서장원',
     '코웨이(주)', '충남 공주시 유구읍 유구마곡사로 136-23', 'https://company.coway.com/',
-    '/resources/business/business6/logo/business6_logo.png',
+    '/resources/uploads/logos/business6_logo.png',
     '대기업, 코스피, 주식회사, 외부감사법인, 수출입 기업', 5757, '그 외 기타 달리 분류되지 않은 개인 서비스업', '코웨이'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
@@ -163,7 +163,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700627', '서흥원',
     '에이치디현대이엔티(주)', '울산 동구 문현6길 42', 'http://www.hd-hent.co.kr',
-    '/resources/business/business7/logo/business7_logo.png',
+    '/resources/uploads/logos/business7_logo.png',
     '대기업, 외부감사법인', 1337, '기타 엔지니어링 서비스업', 'HD현대이엔티'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
@@ -178,7 +178,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700628', '조완석',
     '금호건설(주)', '전남 나주시 시청길 4', 'http://www.kumhoenc.com',
-    '/resources/business/business8/logo/business8_logo.png',
+    '/resources/uploads/logos/business8_logo.png',
     '1000대기업, 대기업, 코스피, 주식회사', 1220, '건물 건설업', '금호건설'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
@@ -193,7 +193,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700629', '송재희',
     '(주)영공조명', '서울 영등포구 양평로 146', 'http://www.youngkong.com',
-    '/resources/business/business9/logo/business9_logo.png',
+    '/resources/uploads/logos/business9_logo.png',
     '중소기업, 주식회사, 수출입 기업', NULL, NULL, '영공조명'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)
@@ -208,7 +208,7 @@ INSERT INTO BUSINESS (
 ) VALUES (
     SEQ_BNO.NEXTVAL, '8518700630', '신영수/민영학',
     '씨제이대한통운(주)', '서울 종로구 종로5길 7', 'http://www.cjlogistics.com',
-    '/resources/business/business10/logo/business10_logo.png',
+    '/resources/uploads/logos/business10_logo.png',
     '1000대기업, 대기업, 코스피, 주식회사', 6254, '도로 화물 운송업', '클럽나인브릿지'
 );
 INSERT INTO MEMBER (USER_NO, USER_TYPE, USER_ID, USER_PWD, EMAIL, PHONE, EROLL_DATE, STATUS, BUSINESS_NO, PERSON_NO)

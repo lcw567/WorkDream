@@ -89,5 +89,10 @@
         WHERE RECIPIENT_ID = #{recipientId} AND READ_STATUS = 'N'
         ORDER BY TIMESTAMP ASC
     </select>
-
+    
+    <delete id="deleteChatList" parameterType="com.cs.workdream.chat.model.vo.ChatList">
+	    DELETE FROM CHAT_LIST
+	    WHERE USER_ID = #{userId} AND CHAT_WITH_ID = #{chatWithId}
+	</delete>
+       
 </mapper>

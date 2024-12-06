@@ -87,4 +87,10 @@ public class PortfolioDao {
     public int selectPortfolioCountByUserNo(int userNo) {
         return sqlSession.selectOne(NAMESPACE + ".selectPortfolioCountByUserNo", userNo);
     }
+    
+    public List<Portfolio> selectPortfoliosByUserNo(int userNo) {
+        return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByUserNo1", userNo);
+    }
+    
+    
 }

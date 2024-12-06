@@ -7,6 +7,7 @@
     <title>워크드림</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/previewresume.css">
+    <script src="${pageContext.request.contextPath}/js/previewresume.js" defer></script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
@@ -279,6 +280,25 @@
                         </c:choose>
                     </div>
                 </div>
+                <!-- 포트폴리오 -->
+                 <p>포트폴리오</p>
+                 <div class="pre_inner10">
+                    <div class="pre_inner10-1">
+                        <c:if test="${not empty portfolios}">
+                            <ul>
+                                <c:forEach var="portfolio" items="${portfolios}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/portfolio/portfolioView?id=${portfolio.portfolioId}" class="btn btn-sm btn-purple"><strong>제목:</strong> ${portfolio.title}</a>
+                                        <strong>등록일:</strong> ${portfolio.createDate}
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:if>
+                        <c:if test="${empty portfolios}">
+                            <p>등록된 포트폴리오가 없습니다.</p>
+                        </c:if>
+                    </div>
+                 </div>
             </fieldset>
         </div>
         <form action="resumeDashboard" method="get">

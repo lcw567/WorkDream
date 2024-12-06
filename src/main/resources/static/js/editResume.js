@@ -601,3 +601,184 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }).open();
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const selectPortButton = document.querySelector(".select_port");
+    const modal = document.getElementById("modal");
+    const closeButtons = document.querySelectorAll(".close");
+    const portfolioListDiv = document.getElementById("portfolio-list");
+    const selectedPortDiv = document.querySelector(".selected_port");
+    const resumeNoInput = document.getElementById("resumeNo");
+    const resumeNo = resumeNoInput ? resumeNoInput.value : null;
+
+    // 디버깅용 로그: contextPath 및 resumeNo 확인
+    console.log('Context Path:', contextPath);
+    console.log('Resume No:', resumeNo);
+
+    // 페이지 로드 시 이미 등록된 포트폴리오 표시
+    function loadSelectedPortfolios() {
+        if (!resumeNo) {
+            console.error('resumeNo가 정의되지 않았습니다.');
+            return;
+        }
+
+        fetch(`${contextPath}/resume/getPortfoliosByResumeNo?resumeNo=${resumeNo}`, {
+            method: 'GET',
+            credentials: 'same-origin' // 쿠키 포함
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("네트워크 응답에 문제가 있습니다.");
+                }
+                return response.json();
+            })
+            .then(portfolios => {
+                selectedPortDiv.innerHTML = ""; // 기존 내용을 초기화
+
+                if (portfolios.length === 0) {
+                    selectedPortDiv.innerHTML = "<p>등록된 포트폴리오가 없습니다.</p>";
+                } else {
+                    portfolios.forEach(portfolio => {
+                        const selectedItem = document.createElement("span");
+                        selectedItem.id = `selected-${portfolio.portfolioId}`;
+                        selectedItem.textContent = portfolio.title;
+                        selectedItem.classList.add("selected-portfolio");
+                        selectedPortDiv.appendChild(selectedItem);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("포트폴리오 데이터를 가져오는 중 오류 발생:", error);
+                alert("포트폴리오 데이터를 불러오는 중 문제가 발생했습니다.");
+            });
+    }
+
+    // 페이지 로드 시 포트폴리오 목록 가져오기
+    loadSelectedPortfolios();
+
+    // "불러오기" 버튼 클릭 시 포트폴리오 목록 모달 표시
+    selectPortButton.addEventListener("click", function () {
+        if (!resumeNo) {
+            console.error('resumeNo가 정의되지 않았습니다.');
+            alert("이력서 번호가 정의되지 않았습니다.");
+            return;
+        }
+
+        fetch(`${contextPath}/resume/getPortfoliosByResumeNo?resumeNo=${resumeNo}`, {
+            method: 'GET',
+            credentials: 'same-origin' // 쿠키 포함
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("네트워크 응답에 문제가 있습니다.");
+                }
+                return response.json();
+            })
+            .then(portfolios => {
+                portfolioListDiv.innerHTML = ""; // 기존 내용을 초기화
+
+                if (portfolios.length === 0) {
+                    portfolioListDiv.innerHTML = "<p>등록된 포트폴리오가 없습니다.</p>";
+                } else {
+                    portfolios.forEach(portfolio => {
+                        const portfolioItem = document.createElement("div");
+                        portfolioItem.classList.add("portfolio-item");
+
+                        // 체크박스와 레이블 생성
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = "selectedPortfolios";
+                        checkbox.value = portfolio.portfolioId;
+                        checkbox.id = `portfolio-${portfolio.portfolioId}`;
+
+                        // 이미 선택된 포트폴리오인지 확인
+                        const isSelected = document.getElementById(`selected-${portfolio.portfolioId}`) !== null;
+                        if (isSelected) {
+                            checkbox.checked = true;
+                        }
+
+                        const label = document.createElement("label");
+                        label.htmlFor = `portfolio-${portfolio.portfolioId}`;
+                        label.textContent = portfolio.title;
+
+                        portfolioItem.appendChild(checkbox);
+                        portfolioItem.appendChild(label);
+
+                        // 체크박스 상태 변경 시 처리
+                        checkbox.addEventListener('change', function () {
+                            if (this.checked) {
+                                // 선택된 포트폴리오 제목을 'selected_port' div에 추가
+                                const selectedItem = document.createElement("span");
+                                selectedItem.id = `selected-${portfolio.portfolioId}`;
+                                selectedItem.textContent = portfolio.title;
+                                selectedItem.classList.add("selected-portfolio");
+                                selectedPortDiv.appendChild(selectedItem);
+                            } else {
+                                // 선택 해제 시 'selected_port' div에서 해당 제목 제거
+                                const selectedItem = document.getElementById(`selected-${portfolio.portfolioId}`);
+                                if (selectedItem) {
+                                    selectedPortDiv.removeChild(selectedItem);
+                                }
+                            }
+                        });
+
+                        portfolioListDiv.appendChild(portfolioItem);
+                    });
+                }
+
+                // 모달 표시
+                modal.style.display = "flex";
+            })
+            .catch(error => {
+                console.error("포트폴리오 데이터를 가져오는 중 오류 발생:", error);
+                alert("포트폴리오 데이터를 불러오는 중 문제가 발생했습니다.");
+            });
+    });
+
+    // 닫기 버튼 이벤트
+    closeButtons.forEach(closeBtn => {
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+    });
+
+    // 모달 외부 클릭 시 닫기
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    // 선택된 포트폴리오 제목을 클릭하면 체크박스 해제 및 제목 제거
+    selectedPortDiv.addEventListener('click', function (event) {
+        if (event.target.classList.contains('selected-portfolio')) {
+            const portfolioId = event.target.id.replace('selected-', '');
+            const checkbox = document.getElementById(`portfolio-${portfolioId}`);
+            if (checkbox) {
+                checkbox.checked = false;
+            }
+            event.target.remove();
+        }
+    });
+
+    // 폼 제출 시 선택된 포트폴리오 ID를 hidden input으로 추가
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (event) {
+        // 기존 hidden inputs 제거
+        const existingInputs = document.querySelectorAll("input[name='resumePortfolios[]']");
+        existingInputs.forEach(input => input.remove());
+
+        // 선택된 포트폴리오 ID 가져오기
+        const selectedCheckboxes = document.querySelectorAll("input[name='selectedPortfolios']:checked");
+        const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.value));
+
+        // hidden inputs 생성
+        selectedIds.forEach(id => {
+            const hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "resumePortfolios[]";
+            hiddenInput.value = id;
+            form.appendChild(hiddenInput);
+        });
+    });
+});

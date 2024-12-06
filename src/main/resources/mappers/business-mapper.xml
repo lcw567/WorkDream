@@ -17,10 +17,6 @@
 		<result column="CONTENT_IMG" property="contentImg" />
 		<result column="CONTENT_TEXT" property="contextText" />
 		<result column="STATUS" property="status" />
-		<result column="TOTAL_COUNT" property="totalCount" />
-		<result column="TEMP_COUNT" property="tempCount" />
-		<result column="PROGRESS_COUNT" property="progressCount" />
-		<result column="END_COUNT" property="endCount" />
 	</resultMap>
 	
 	<!-- Applicants -->
@@ -87,17 +83,51 @@
 	
 	<!-- [공고 현황&목록] ================================================================================================== -->
 	
-	<!-- 전체 공고 목록 불러오기 -->
-	<select id="selectListRecuritment" parameterType="int" resultMap="recuritmentResultSet">
-		SELECT	RECRUITMENT_NO, BUSINESS_NO, TITLE, MANAGER_NAME, MANAGER_DEPT, METHOD,
-				TO_CHAR(START_DATE, 'YYYY.MM.DD') AS START_DATE, TO_CHAR(DEADLINE, 'YYYY.MM.DD') AS DEADLINE,
-				STATUS,
-				COUNT(*) AS TOTAL_COUNT,
+	<!-- 현재 공고현황 조회 -->
+	<select id="selectRecuritmentStatus" parameterType="int" resultType="java.util.Map">
+		SELECT	COUNT(*) AS total,
 				COUNT(CASE WHEN STATUS = 'T' THEN 1 END) AS TEMP_COUNT,
+				COUNT(CASE WHEN STATUS = 'S' THEN 1 END) AS STANDBY_COUNT,
 				COUNT(CASE WHEN STATUS = 'P' THEN 1 END) AS PROGRESS_COUNT,
 				COUNT(CASE WHEN STATUS = 'E' THEN 1 END) AS END_COUNT
-		  FROM	RECRUITMENT
+		  FROM	JOB_RECRUITMENT
 		 WHERE	BUSINESS_NO = #{businessNo}
+	</select>
+	
+	<!-- 진행중인 목록 조회 -->
+	<select id="selectListProgressRecuritment" parameterType="int" resultMap="recuritmentResultSet">
+		SELECT	RECRUITMENT_NO, BUSINESS_NO, TITLE, MANAGER_NAME, MANAGER_DEPT, METHOD,
+				TO_CHAR(START_DATE, 'YYYY.MM.DD') AS START_DATE, TO_CHAR(DEADLINE, 'YYYY.MM.DD') AS DEADLINE, STATUS
+		  FROM	JOB_RECRUITMENT
+		 WHERE	BUSINESS_NO = #{businessNo}
+		   AND	STATUS = 'P'
+	</select>
+	
+	<!-- 대기중인 목록 조회 -->
+	<select id="selectListStandByRecuritment" parameterType="int" resultMap="recuritmentResultSet">
+		SELECT	RECRUITMENT_NO, BUSINESS_NO, TITLE, MANAGER_NAME, MANAGER_DEPT, METHOD,
+				TO_CHAR(START_DATE, 'YYYY.MM.DD') AS START_DATE, TO_CHAR(DEADLINE, 'YYYY.MM.DD') AS DEADLINE, STATUS
+		  FROM	JOB_RECRUITMENT
+		 WHERE	BUSINESS_NO = #{businessNo}
+		   AND	STATUS = 'S'
+	</select>
+	
+	<!-- 임시저장한 목록 조회 -->
+	<select id="selectListTemporaryRecuritment" parameterType="int" resultMap="recuritmentResultSet">
+		SELECT	RECRUITMENT_NO, BUSINESS_NO, TITLE, MANAGER_NAME, MANAGER_DEPT, METHOD,
+				TO_CHAR(START_DATE, 'YYYY.MM.DD') AS START_DATE, TO_CHAR(DEADLINE, 'YYYY.MM.DD') AS DEADLINE, STATUS
+		  FROM	JOB_RECRUITMENT
+		 WHERE	BUSINESS_NO = #{businessNo}
+		   AND	STATUS = 'T'
+	</select>
+	
+	<!-- 마감된 목록 조회 -->
+	<select id="selectListEndRecuritment" parameterType="int" resultMap="recuritmentResultSet">
+		SELECT	RECRUITMENT_NO, BUSINESS_NO, TITLE, MANAGER_NAME, MANAGER_DEPT, METHOD,
+				TO_CHAR(START_DATE, 'YYYY.MM.DD') AS START_DATE, TO_CHAR(DEADLINE, 'YYYY.MM.DD') AS DEADLINE, STATUS
+		  FROM	JOB_RECRUITMENT
+		 WHERE	BUSINESS_NO = #{businessNo}
+		   AND	STATUS = 'E'
 	</select>
 	
 	

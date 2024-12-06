@@ -26,5 +26,6 @@ public interface ResumeService {
     List<Portfolio> getPortfoliosByUserNo(int userNo);
     List<Portfolio> getPortfoliosByIds(List<Integer> portfolioIds);
     void associatePortfoliosWithResume(int resumeNo, List<Integer> portfolioIds);
-    void saveResumeWithPortfolios(Resume resume, List<Integer> portfolioIds);
+    void updatePortfolioResumeNo(int portfolioId, int resumeNo);
+    List<Portfolio> getPortfoliosByResumeNo(int resumeNo);
 }

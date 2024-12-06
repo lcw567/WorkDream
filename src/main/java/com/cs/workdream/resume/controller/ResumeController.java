@@ -7,7 +7,10 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -18,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -26,6 +30,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -350,15 +355,57 @@ public class ResumeController {
     @GetMapping("/getPortfolios")
     @ResponseBody
     public List<Portfolio> getPortfolios(HttpSession session) {
-        // 세션에서 로그인 사용자 가져오기
         Member loginUser = (Member) session.getAttribute("loginUser");
         if (loginUser == null) {
             throw new RuntimeException("로그인이 필요합니다.");
         }
-        // 사용자 번호로 포트폴리오 조회
-        List<Portfolio> portfolios = resumeService.getPortfoliosByUserNo(loginUser.getUserNo());
-        return portfolios;
+
+        int userNo = loginUser.getUserNo(); // Member 클래스에 getUserNo() 메서드가 있어야 합니다.
+        return resumeService.getPortfoliosByUserNo(userNo);
     }
+
+    
+    @PostMapping("/savePortfolio")
+    @ResponseBody
+    public ResponseEntity<?> savePortfolio(@RequestBody Map<String, Integer> data) {
+        int resumeId = data.get("resumeId");
+        int portfolioId = data.get("portfolioId");
+        
+        logger.info("Received resumeId: {}, portfolioId: {}", resumeId, portfolioId);
+        
+        try {
+            // Portfolio와 Resume 연관 관계 설정 (1대 다 관계로 변경)
+            resumeService.associatePortfoliosWithResume(resumeId, Arrays.asList(portfolioId));
+
+            // 성공 응답
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            // 실패 응답
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            response.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+    
+    // 로그인 상태 확인 및 포트폴리오 가져오기
+    @GetMapping("/getPortfoliosByResumeNo")
+    public ResponseEntity<?> getPortfoliosByResumeNo(@RequestParam("resumeNo") int resumeNo, HttpSession session) {
+        Object user = session.getAttribute("loginUser"); // 세션에 저장된 사용자 정보 확인
+        if (user == null) {
+            // 로그 추가
+            // logger.warn("인증되지 않은 사용자가 /resume/getPortfoliosByResumeNo에 접근 시도");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                                 .body("로그인이 필요합니다.");
+        }
+
+        List<Portfolio> portfolios = resumeService.getPortfoliosByResumeNo(resumeNo);
+        // logger.info("사용자 {}의 포트폴리오 목록을 반환합니다.", user.toString());
+        return ResponseEntity.ok(portfolios);
+    }
+
 
 
 	@GetMapping("/enrollresume")
@@ -370,6 +417,10 @@ public class ResumeController {
 	public String viewResume(@RequestParam("id") int resumeNo, Model model) {
 		Resume resume = resumeService.getResumeByNo(resumeNo);
 		model.addAttribute("resume", resume);
+		
+		 // 포트폴리오 목록 가져오기
+        List<Portfolio> portfolios = resumeService.getPortfoliosByResumeNo(resume.getResumeNo());
+        model.addAttribute("portfolios", portfolios);
 		return "resume/previewresume"; // JSP 파일의 경로
 	}
 

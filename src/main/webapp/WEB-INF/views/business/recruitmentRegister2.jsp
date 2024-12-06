@@ -1,23 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-		<!DOCTYPE html>
-		<html lang="ko">
-
-		<head>
-			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<title>Document</title>
-			<!-- jQuery -->
-			<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-				integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-			<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
-				integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM=" crossorigin="anonymous"></script>
-			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/announcementInformation2.css">
-			<script src="${pageContext.request.contextPath}/js/announcementInformation2.js" defer></script>
-		</head>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>채용공고 작성 | 워크드림</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
+	
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.min.js"
+		integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM=" crossorigin="anonymous"></script>
+		
+	<!-- css / js -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/recruitmentRegister2.css">
+	<script src="${pageContext.request.contextPath}/js/announcementInformation2.js" defer></script>
+</head>
 		<body onload="init('${pageContext.request.contextPath}')">
+			<div class="nomodal">
 				<div id="Job_Announcement_Information">
 					<div id="announcement_Information">
 						<h2>채용 공고 등록</h2>
@@ -83,6 +85,7 @@
 								<p style="color: #FE0000; font-weight: 900;">*</p>
 							</b>
 						</div>
+
 						<p style="margin-top: 0px; color: #757575; font-weight: 200;">최대 5개까지 추가 가능합니다.</p>
 
 						<main>
@@ -110,6 +113,7 @@
 							<input type="file" id="Announcement-file" hidden onchange="changeFile(this)">
 							<label for="Announcement-file" id="Announcement_custom-file-upload">파일첨부</label>
 						</div>
+
 						<p style="font-weight: 900; margin-bottom: 2px;">*
 							공고와 관련된 이미지를 올려주세요. 소개문 이전에 노출됩니다. 공고와 관련없는 이미지는 제지를 받을 수 있습니다.</p>
 						<p style="font-weight: 900; margin-top: 2px; margin-bottom: 40px;">*
@@ -118,37 +122,44 @@
 						<div class="Contact_Announcement_Information_Title">
 							<h2>공고 소개</h2>
 						</div>
+            
 						<textarea class="Text_Container" placeholder="회사나 제품 / 서비스 또는 공고에 대한 소개를 작성해주세요." name="introduction" onkeyup="changeValue('introduction', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>주요 업무</h2>
 						</div>
+
 						<textarea class="Text_Container" placeholder="해당 포지션에서 어떤 업무를 하는지 작성해주세요." name="major" onkeyup="changeValue('major', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>자격 요건</h2>
 						</div>
+
 						<textarea class="Text_Container" placeholder="업무상 꼭 필요한 필수 요건을 작성해 주세요." name="qualification" onkeyup="changeValue('qualification', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>우대 사항</h2>
 						</div>
+
 						<textarea class="Text_Container" placeholder="우대하는 요건을 작성해 주세요." name="Preferential" onkeyup="changeValue('preferential', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>채용 절차</h2>
 						</div>
+
 						<textarea class="Text_Container" placeholder="서류 전형, 면접 등 채용 절차를 작성해 주세요." name="recruitment" onkeyup="changeValue('recruitment', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>기타 안내</h2>
 						</div>
+            
 						<textarea class="Text_Container" style="margin-bottom: 50px;" placeholder="복지 및 해택 등 알리고 싶은 기타 정보를 작성합니다." name="other" onkeyup="changeValue('other', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2 style="margin-bottom: 20px;">공고 게시 기간</h2>
 						</div>
 						<div id="Announcement_Post_Time">
+
 							<input type="datetime-local" id="Post_First_Time" name="period_time_min" onchange="changeValue('period_time_min', this.value)">
 							<p style="margin-bottom: 10px;">~</p>
 							<input type="datetime-local" id="Post_End_Time" name="period_time_max" onchange="changeValue('period_time_max', this.value)">

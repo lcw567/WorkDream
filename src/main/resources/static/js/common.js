@@ -49,7 +49,11 @@ function dropMenu(index) {
 }
 
 // 메뉴탭 활성화
-function activeMenu(menuNo) {
-    const menuItems = document.querySelectorAll("#header-nav-bottom .menu > li");
-    menuItems[menuNo].classList.add("On");
+try {
+    function activeMenu(menuNo) {
+        const menuItems = document.querySelectorAll("#header-nav-bottom .menu > li");
+        menuItems[menuNo].classList.add("On");
+    }
+} catch {
+    console.log("activeMenu: ", error);
 }

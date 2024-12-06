@@ -2,6 +2,7 @@ package com.cs.workdream.resume.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -102,7 +103,6 @@ public class ResumeDao {
         return sqlSession.selectOne(NAMESPACE + ".selectResumeByNo", resumeNo);
     }
     
-    // 포트폴리오 불러오기
     public List<Portfolio> selectPortfoliosByUserNo(int userNo) {
         return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByUserNo", userNo);
     }
@@ -111,17 +111,32 @@ public class ResumeDao {
         return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByIds", portfolioIds);
     }
     
+    // 포트폴리오를 이력서에 연결
     public void insertResumePortfolio(int resumeNo, int portfolioId) {
-        logger.debug("Inserting into RESUME_PORTFOLIO: RESUME_NO = " + resumeNo + ", PORTFOLIO_ID = " + portfolioId);
-        sqlSession.insert(NAMESPACE + ".insertResumePortfolio", 
-            new HashMap<String, Integer>() {{
-                put("resumeNo", resumeNo);
-                put("portfolioId", portfolioId);
-            }}
-        );
+        Map<String, Integer> params = new HashMap<>();
+        params.put("resumeNo", resumeNo);
+        params.put("portfolioId", portfolioId);
+
+        sqlSession.insert(NAMESPACE + ".insertResumePortfolio", params);
+    }
+
+    // 포트폴리오 업데이트: resume_no 변경
+    public void updatePortfolioResumeNo(int portfolioId, int resumeNo) {
+        Map<String, Integer> params = new HashMap<>();
+        params.put("portfolioId", portfolioId);
+        params.put("resumeNo", resumeNo);
+        sqlSession.update(NAMESPACE + ".updatePortfolioResumeNo", params);
+    }
+
+    
+    // 포트폴리오 삭제 by resume_no
+    public void deletePortfoliosByResumeNo(int resumeNo) {
+        sqlSession.delete(NAMESPACE + ".deletePortfoliosByResumeNo", resumeNo);
     }
     
-    public void deleteResumePortfoliosByResumeNo(int resumeNo) {
-        sqlSession.delete(NAMESPACE + ".deleteResumePortfoliosByResumeNo", resumeNo);
+    // 포트폴리오 목록 조회 by resumeNo
+    public List<Portfolio> selectPortfoliosByResumeNo(int resumeNo) {
+        return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByResumeNo", resumeNo);
     }
+
 }
