@@ -10,6 +10,7 @@ import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
+import com.cs.workdream.business.model.vo.Recuritment;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -20,6 +21,11 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	/*=====================================================================================================*/
 	
+	// 진행중인 공고 목록 조회
+	@Override
+	public List<Recuritment> selectListProgressRecuritment(int businessNo) {
+		return businessDao.selectListProgressRecuritment(businessNo);
+	}
 	
 	// 지원자 현황 조회
 	@Override
@@ -74,4 +80,5 @@ public class BusinessServiceImpl implements BusinessService {
 	public int deleteFolder(int businessNo, int folder) {
 		return businessDao.deleteFolder(businessNo, folder);
 	}
+
 }

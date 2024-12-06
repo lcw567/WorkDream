@@ -23,4 +23,7 @@ public interface ChatService {
     
     // 수신자의 읽지 않은 메시지 조회
     List<ChatHistory> getChatHistoryForRecipient(String recipientId);
+    
+    // 사용자 목록 삭제
+    int deleteChatList(String userId, String chatWithId);
 }

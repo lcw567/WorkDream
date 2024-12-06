@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import com.cs.workdream.chat.model.vo.ChatList;
 import com.cs.workdream.chat.service.ChatService;
 import com.cs.workdream.member.model.vo.Member;
 
-@Controller // @RestController 대신 @Controller 사용
+@Controller 
 @RequestMapping("/chat")
 public class ChatController {
 
@@ -57,19 +58,19 @@ public class ChatController {
     public ResponseEntity<String> addUserToChatList(HttpSession session, @RequestParam("targetUserId") String targetUserId) {
         Member loginUser = (Member) session.getAttribute("loginUser");
         if (loginUser == null) {
-            return ResponseEntity.status(401).body("로그인이 필요합니다.");
+            return ResponseEntity.status(401)
+                .contentType(MediaType.TEXT_PLAIN)
+                .body("로그인이 필요합니다.");
         }
 
         String userId = loginUser.getUserId();
 
         // 자기 자신을 추가하려는 경우
         if (userId.equals(targetUserId)) {
-            return ResponseEntity.badRequest().body("자기 자신을 추가할 수 없습니다.");
+            return ResponseEntity.badRequest()
+                .contentType(MediaType.TEXT_PLAIN)
+                .body("자기 자신을 추가할 수 없습니다.");
         }
-
-        // 대상 사용자가 존재하는지 확인 (필요 시 추가)
-        // 예: userService.exists(targetUserId)
-        // 여기서는 간단히 넘어갑니다.
 
         // 채팅 목록 업데이트 (발신자)
         ChatList senderChatList = new ChatList();
@@ -89,12 +90,36 @@ public class ChatController {
         int recipientResult = chatService.updateChatList(recipientChatList);
 
         if (senderResult > 0 && recipientResult > 0) {
-            // 사용자에게 채팅 목록이 업데이트되었음을 알리기 위해 WebSocket을 통해 알림 전송 가능
-            // 현재 구현된 WebSocket 핸들러는 메시지 전송만 처리하므로, 시스템 메시지를 보내기 위해 별도의 로직 필요
-            // 여기서는 간단히 HTTP 응답만 반환
-            return ResponseEntity.ok("사용자가 채팅 목록에 추가되었습니다.");
+            return ResponseEntity.ok()
+                .header("Content-Type", "text/plain; charset=UTF-8")
+                .body("사용자가 채팅 목록에 추가되었습니다.");
         } else {
-            return ResponseEntity.status(500).body("사용자 추가에 실패했습니다.");
+            return ResponseEntity.status(500)
+                .header("Content-Type", "text/plain; charset=UTF-8")
+                .body("사용자 추가에 실패했습니다.");
+        }
+    }
+    @DeleteMapping("/deleteUser")
+    @ResponseBody
+    public ResponseEntity<String> deleteUserFromChatList(HttpSession session, @RequestParam("targetUserId") String targetUserId) {
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            return ResponseEntity.status(401)
+                .contentType(MediaType.TEXT_PLAIN)
+                .body("로그인이 필요합니다.");
+        }
+
+        String userId = loginUser.getUserId();
+
+        int result = chatService.deleteChatList(userId, targetUserId);
+        if (result > 0) {
+            return ResponseEntity.ok()
+                .header("Content-Type", "text/plain; charset=UTF-8")
+                .body("사용자가 채팅 목록에서 삭제되었습니다.");
+        } else {
+            return ResponseEntity.status(500)
+                .header("Content-Type", "text/plain; charset=UTF-8")
+                .body("사용자 삭제에 실패했습니다.");
         }
     }
 }
