@@ -7,8 +7,12 @@ import com.cs.workdream.business.model.vo.ApplicantsStatus;
 import com.cs.workdream.business.model.vo.Business;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
+import com.cs.workdream.business.model.vo.Recuritment;
 
 public interface BusinessService {
+	
+	// 진행중인 공고 목록 조회
+	List<Recuritment> selectListProgressRecuritment(int businessNo);
 
 	// 지원자 현황 조회
 	ApplicantsStatus inquireAppsStatus(int recruitmentNo);

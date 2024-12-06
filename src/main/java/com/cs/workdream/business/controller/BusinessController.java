@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cs.workdream.business.model.vo.Applicants;
 import com.cs.workdream.business.model.vo.ApplicantsStatus;
 import com.cs.workdream.business.model.vo.Business;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
+import com.cs.workdream.business.model.vo.Recuritment;
 import com.cs.workdream.business.service.BusinessProfileService;
 import com.cs.workdream.business.service.BusinessService;
 import com.cs.workdream.member.model.vo.Member;
@@ -71,9 +73,39 @@ public class BusinessController {
 	/* 채용공고 관련 */
 	// 채용공고관리 페이지로 이동
 	@GetMapping("/recruitmentManager")
-    public String reStatus() {
-        return "business/recruitmentManager";
+    public ModelAndView reStatus(ModelAndView mv, HttpSession session) {
+		Member currentUser = (Member) session.getAttribute("loginUser");
+		
+		if(currentUser != null) {
+			// 기본적으로 진행중인 공고 목록 조회 > 전달
+			List<Recuritment> list = selectListProgressRecuritment(session);
+			
+			mv.setViewName("business/recruitmentManager");
+			mv.addObject("RecuritmentList", list);
+		} else {
+			mv.setViewName("common/errorPage");
+			mv.addObject("errorMsg", "로그인이 필요한 서비스입니다.");
+			mv.addObject("returnPage", "/login?ut=B");
+		}
+		
+        return mv;
     }
+
+	// 현재 공고 현황 조회
+	public List<Recuritment> selectRecuritmentStatus(List<Recuritment> statusList) {
+		
+		return statusList;
+	}
+	
+	// 진행중인 공고 목록 조회
+	public List<Recuritment> selectListProgressRecuritment(HttpSession session) {
+		Member currentUser = (Member) session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
+    	
+    	List<Recuritment> progressList = businessService.selectListProgressRecuritment(businessNo);
+		
+		return progressList;
+	}
 	
 	// 채용공고 작성 페이지로 이동
     @GetMapping("/recruitmentRegister")
@@ -178,8 +210,8 @@ public class BusinessController {
     
     // 즐겨찾기 목록 조회
     public Model loadBookmarkList(HttpSession session, Model model) {
-    	Member loginMember = (Member) session.getAttribute("loginUser");
-    	int businessNo = loginMember.getBusinessNo();
+    	Member currentUser = (Member) session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
     	
     	List<BusinessBookmark> bookmarkList = businessService.loadBookmarkList(businessNo);
     	model.addAttribute("bookmarkList", bookmarkList);
@@ -191,8 +223,8 @@ public class BusinessController {
     @RequestMapping("/deleteBookmark.biz")
     @ResponseBody
     public int deleteBookmarkList(@RequestParam("no") int resumeNo, HttpSession session) {
-    	Member loginMember = (Member) session.getAttribute("loginUser");
-    	int businessNo = loginMember.getBusinessNo();
+    	Member currentUser = (Member) session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
     	
     	return businessService.deleteBookmarkList(businessNo, resumeNo);
     }
@@ -208,8 +240,8 @@ public class BusinessController {
     @RequestMapping("/insertFolder.biz")
     @ResponseBody
     public int insertFolder(@RequestParam("folderName") String folderName, HttpSession session) {
-    	Member loginMember = (Member) session.getAttribute("loginUser");
-    	int businessNo = loginMember.getBusinessNo();
+    	Member currentUser = (Member) session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
     	
     	return businessService.insertFolder(businessNo, folderName);
     }
@@ -218,8 +250,8 @@ public class BusinessController {
     @RequestMapping("/updateFolder.biz")
     @ResponseBody
     public int updateFolder(@RequestParam("folder") int folder, @RequestParam(value = "order") int order, @RequestParam(value = "folderName") String folderName, HttpSession session) {
-    	Member loginMember = (Member) session.getAttribute("loginUser");
-    	int businessNo = loginMember.getBusinessNo();
+    	Member currentUser = (Member) session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
     	
     	return businessService.updateFolder(businessNo, folder, order, folderName);
     }
@@ -228,8 +260,8 @@ public class BusinessController {
     @RequestMapping("/deleteFolder.biz")
     @ResponseBody
     public int deleteFolder(@RequestParam("folder") int folder, HttpSession session) {
-    	Member loginMember = (Member) session.getAttribute("loginUser");
-    	int businessNo = loginMember.getBusinessNo();
+    	Member currentUser = (Member) session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
     	
     	return businessService.deleteFolder(businessNo, folder);
     }
