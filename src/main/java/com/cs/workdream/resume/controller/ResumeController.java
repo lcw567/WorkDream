@@ -417,6 +417,10 @@ public class ResumeController {
 	public String viewResume(@RequestParam("id") int resumeNo, Model model) {
 		Resume resume = resumeService.getResumeByNo(resumeNo);
 		model.addAttribute("resume", resume);
+		
+		 // 포트폴리오 목록 가져오기
+        List<Portfolio> portfolios = resumeService.getPortfoliosByResumeNo(resume.getResumeNo());
+        model.addAttribute("portfolios", portfolios);
 		return "resume/previewresume"; // JSP 파일의 경로
 	}
 
