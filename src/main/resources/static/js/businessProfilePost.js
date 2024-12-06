@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 reader.readAsDataURL(file);
             } else {
-                img.src = `${window.contextPath}/img/add-image.png`; // 기본 이미지로 복귀
+                img.src = window.contextPath + "/img/add-image.png"; // 기본 이미지로 복귀
             }
         });
     });
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isExistingImage = item.querySelector('input[name="existingImageIds"]') !== null;
 
             // 기존 이미지 또는 새로운 이미지 여부 확인
-            if (fileInput.files.length > 0 || (!fileInput.files.length && isExistingImage && img.src !== `${window.contextPath}/img/add-image.png`)) {
+            if (fileInput.files.length > 0 || (!fileInput.files.length && isExistingImage && img.src !== window.contextPath + "/img/add-image.png")) {
                 const title = titleInput.value.trim();
                 workEnvImageTitles.push(title);
             }
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 디버깅을 위한 로그 출력
         console.log("Context Path:", window.contextPath);
-        const url = `${window.contextPath}/business/register`;
+        const url = window.contextPath + "/business/register";
         console.log("AJAX URL:", url);
         console.log("Form Data Entries:");
         for (let pair of formData.entries()) {
