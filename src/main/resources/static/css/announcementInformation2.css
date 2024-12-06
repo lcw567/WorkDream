@@ -135,12 +135,9 @@ button {
 }
 
 #Rank {
-    border-radius: 5px;
-    border: 1px solid black;
     width: 35%;
     height: 40px;
     padding-left: 13px;
-    padding-top: 5px;
 }
 
 #Rank::placeholder {
@@ -150,13 +147,10 @@ button {
 }
 
 #Position {
-    border-radius: 5px;
-    border: 1px solid black;
     margin-left: 10px;
     width: 35%;
     height: 40px;
     padding-left: 13px;
-    padding-top: 5px;
 }
 
 #Position::placeholder {
@@ -739,7 +733,6 @@ input[type="text"], input[type="time"] {
 }
 
 #Job_Announcement_Information_Index {
-	width: 100%;
 	height: 50px;
 	background-color: #D9D9D9;
 	margin-top: 30px;
@@ -768,7 +761,7 @@ input[type="text"], input[type="time"] {
 	margin-left: 10px;
 	margin-right: 10px;
 	width: 100px;
-	border: 2px solid black;
+	border: 1px solid black;
 }
 
 .Contact_Announcement_Information_Title {
@@ -828,7 +821,6 @@ input[type="text"], input[type="time"] {
 }
 
 #Announcement_Title {
-	border: 1px solid black;
 	border-radius: 8px;
 	height: 40px;
 	width: 500px;
@@ -902,7 +894,6 @@ input::placeholder {
     align-items: center;
     width: 100px;
     height: 32px;
-    margin-top: 10px;
     margin-bottom: 40px;
     border-radius: 20px;
     border: 1px solid black;
@@ -976,13 +967,12 @@ input::placeholder {
 	width: 100%;
 	height: 150px;
 	border-radius: 5px;
-	padding-top: 10px;
+	padding-top: 8px;
 	margin-bottom: 50px;
 	line-height: 1;
 	padding-left: 10px;
 	font-size: 1rem;
 	font-weight: 700;
-	color: #000000;
 	vertical-align: top;
 	resize: none;
 }
@@ -1012,7 +1002,6 @@ input::placeholder {
 	border-radius: 5px;
 	border: 1px solid black;
 	width: 170px;
-	height: 45px;
 	padding: 0 10px;
 }
 
@@ -1020,7 +1009,6 @@ input::placeholder {
 	border-radius: 5px;
 	border: 1px solid black;
 	width: 170px;
-	height: 45px;
 	padding: 0 10px;
 }
 
@@ -1041,7 +1029,6 @@ input::placeholder {
 	border-radius: 5px;
 	border: 1px solid black;
 	width: 170px;
-	height: 45px;
 	padding: 0 10px;
 }
 
@@ -1049,25 +1036,20 @@ input::placeholder {
 	border-radius: 5px;
 	border: 1px solid black;
 	width: 170px;
-	height: 45px;
 	padding: 0 10px;
 }
 
 .Need_Input_Infomation {
-	border: none;
 	width: 90%;
 	display: flex;
-	align-items: center;
 	justify-content: space-around;
 }
 
 .Check_And_Text {
 	width: 75px;
 	display: flex;
-	align-items: center;
 	justify-content: space-around;
-	font-size: 12px;
-	font-weight: 900;
+	font-size: 12px; 
 }
 
 #Job_Posting_division_zones {

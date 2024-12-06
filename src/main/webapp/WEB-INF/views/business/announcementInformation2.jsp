@@ -18,7 +18,6 @@
 		</head>
 
 		<body onload="init('${pageContext.request.contextPath}')">
-			<div class="nomodal">
 				<div id="Job_Announcement_Information">
 					<div id="announcement_Information">
 						<h2>채용 공고 등록</h2>
@@ -52,15 +51,14 @@
 
 						<div class="radio_label">
 							<div id="WorkDream_Applied">
-								<input type="radio" name="workdream" id="WorkDream_Applied_input"
-									value="WorkDream_Applied_input" name="Method" checked> <label
-									for="WorkDream_Applied_input">
+								<input type="radio" name="workdream" id="WorkDream_Applied_input" value="WorkDream_Applied_input" checked> 
+								<label for="WorkDream_Applied_input">
 									<h2>워크드림 프로필로 간편 지원</h2>
 								</label>
 							</div>
 							<div id="Homepage_Applied">
-								<input type="radio" name="workdream" id="Homepage_Applied_input"
-									value="Homepage_Applied_input" name="Method"> <label for="Homepage_Applied_input">
+								<input type="radio" name="workdream" id="Homepage_Applied_input" value="Homepage_Applied_input"> 
+								<label for="Homepage_Applied_input">
 									<h2>자사 홈페이지에서 지원</h2>
 								</label>
 							</div>
@@ -73,16 +71,11 @@
 							</b>
 						</div>
 
-						<input id="Announcement_Title" type="text"
-							onkeyup="checkTextLength(event); changeValue('title', this.value)"
-							placeholder="공고 제목을 입력해주세요." name="title">
+						<input id="Announcement_Title" type="text" onkeyup="checkTextLength(event); changeValue('title', this.value)" placeholder="공고 제목을 입력해주세요." name="title">
 						<div style="display: flex;">
-							<p style="color: #000000; font-weight: 900; margin-top: 3px; margin-bottom: 1px;">*
-								25자 이내의 글자 수를 입력해주세요.</p>
+							<p style="font-weight: 900; margin-top: 3px; margin-bottom: 1px;">* 25자 이내의 글자 수를 입력해주세요.</p>
 						</div>
-						<div id="charCount"
-							style="font-size: 0.8rem; color: #757575; margin-bottom: 40px; margin-left: 5px;">현재
-							글자 수: 0/25</div>
+						<div id="charCount" style="font-size: 0.8rem; color: #757575; margin-bottom: 40px; margin-left: 5px;">현재 글자 수: 0/25</div>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>직무</h2>
@@ -90,8 +83,7 @@
 								<p style="color: #FE0000; font-weight: 900;">*</p>
 							</b>
 						</div>
-						<p style="margin-top: 0px; color: #757575; font-weight: 200;">최대
-							5개까지 추가 가능합니다.</p>
+						<p style="margin-top: 0px; color: #757575; font-weight: 200;">최대 5개까지 추가 가능합니다.</p>
 
 						<main>
 							<section>
@@ -99,7 +91,7 @@
 
 								</div>
 
-								<button class="Add_Duty" id="addDutyButton" style="backgroundcolor: none;">
+								<button class="Add_Duty" id="addDutyButton">
 									<img src="${pageContext.request.contextPath}/img/free-icon-plus-3524388.png"
 										alt="추가" />
 									<p>직무 추가</p>
@@ -118,57 +110,48 @@
 							<input type="file" id="Announcement-file" hidden onchange="changeFile(this)">
 							<label for="Announcement-file" id="Announcement_custom-file-upload">파일첨부</label>
 						</div>
-						<p style="color: #000000; font-weight: 900; margin-bottom: 2px;">*
+						<p style="font-weight: 900; margin-bottom: 2px;">*
 							공고와 관련된 이미지를 올려주세요. 소개문 이전에 노출됩니다. 공고와 관련없는 이미지는 제지를 받을 수 있습니다.</p>
-						<p style="color: #000000; font-weight: 900; margin-top: 2px; margin-bottom: 40px;">*
+						<p style="font-weight: 900; margin-top: 2px; margin-bottom: 40px;">*
 							최소 1200 x 800px 이상, 3:2 비율의 이미지</p>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>공고 소개</h2>
 						</div>
-						<textarea class="Text_Container" placeholder="회사나 제품 / 서비스 또는 공고에 대한 소개를 작성해주세요."
-							name="introduction" onkeyup="changeValue('introduction', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="회사나 제품 / 서비스 또는 공고에 대한 소개를 작성해주세요." name="introduction" onkeyup="changeValue('introduction', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>주요 업무</h2>
 						</div>
-						<textarea class="Text_Container" placeholder="해당 포지션에서 어떤 업무를 하는지 작성해주세요." name="major"
-							onkeyup="changeValue('major', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="해당 포지션에서 어떤 업무를 하는지 작성해주세요." name="major" onkeyup="changeValue('major', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>자격 요건</h2>
 						</div>
-						<textarea class="Text_Container" placeholder="업무상 꼭 필요한 필수 요건을 작성해 주세요." name="qualification"
-							onkeyup="changeValue('qualification', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="업무상 꼭 필요한 필수 요건을 작성해 주세요." name="qualification" onkeyup="changeValue('qualification', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>우대 사항</h2>
 						</div>
-						<textarea class="Text_Container" placeholder="우대하는 요건을 작성해 주세요." name="Preferential"
-							onkeyup="changeValue('preferential', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="우대하는 요건을 작성해 주세요." name="Preferential" onkeyup="changeValue('preferential', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>채용 절차</h2>
 						</div>
-						<textarea class="Text_Container" placeholder="서류 전형, 면접 등 채용 절차를 작성해 주세요." name="recruitment"
-							onkeyup="changeValue('recruitment', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="서류 전형, 면접 등 채용 절차를 작성해 주세요." name="recruitment" onkeyup="changeValue('recruitment', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>기타 안내</h2>
 						</div>
-						<textarea class="Text_Container" style="margin-bottom: 50px;"
-							placeholder="복지 및 해택 등 알리고 싶은 기타 정보를 작성합니다." name="other"
-							onkeyup="changeValue('other', this.value)"></textarea>
+						<textarea class="Text_Container" style="margin-bottom: 50px;" placeholder="복지 및 해택 등 알리고 싶은 기타 정보를 작성합니다." name="other" onkeyup="changeValue('other', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2 style="margin-bottom: 20px;">공고 게시 기간</h2>
 						</div>
 						<div id="Announcement_Post_Time">
-							<input type="datetime-local" id="Post_First_Time" name="period_time_min"
-								onchange="changeValue('period_time_min', this.value)">
+							<input type="datetime-local" id="Post_First_Time" name="period_time_min" onchange="changeValue('period_time_min', this.value)">
 							<p style="margin-bottom: 10px;">~</p>
-							<input type="datetime-local" id="Post_End_Time" name="period_time_max"
-								onchange="changeValue('period_time_max', this.value)">
+							<input type="datetime-local" id="Post_End_Time" name="period_time_max" onchange="changeValue('period_time_max', this.value)">
 						</div>
 
 						<div class="Contact_Announcement_Information_Title">
