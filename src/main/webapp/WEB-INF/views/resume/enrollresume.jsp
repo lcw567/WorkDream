@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
     <!-- contextPath를 JavaScript 변수로 정의 -->
     <script type="text/javascript">
-        var contextPath = '${pageContext.request.contextPath}';
+        const contextPath = "${pageContext.request.contextPath}";
     </script>
     <script src="${pageContext.request.contextPath}/js/dynamicFields.js" defer></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -781,58 +781,21 @@
                     <legend class="por_title">포트폴리오</legend>
                     <div class="input_port">
                         <div class="selected_port">
-                            <!-- 선택된 포트폴리오가 여기 표시됩니다 -->
                         </div>
-                        <div class="btn_port">
-                            <button type="button" class="btn btn-primary select_port">불러오기</button>
-                        </div>
+                        <button type="button" class="select_port">불러오기</button>        
                     </div>
                 </fieldset>
             </div>
-            
-            <!-- 선택된 포트폴리오의 ID를 저장할 hidden input 컨테이너 -->
-            <div id="selectedPortfolios">
-                <!-- JavaScript에서 동적으로 hidden input이 추가됩니다 -->
-            </div>
-            
-            <!-- 이력서 등록 버튼 -->
-            <button type="submit" class="btn btn-success">이력서 등록</button>
-        </form>
 
-        <!-- 포트폴리오 목록을 표시하는 모달 -->
-        <div class="modal" id="portfolioModal" style="display: none;">
-            <div class="modal-dialog">
+            <div id="modal" class="modal" style="display: none;">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">포트폴리오 선택</h5>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="portfolioForm">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="resumePortfolios" value="2002" id="portfolio2002">
-                                <label class="form-check-label" for="portfolio2002">
-                                    포트폴리오 제목 1
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="resumePortfolios" value="2003" id="portfolio2003">
-                                <label class="form-check-label" for="portfolio2003">
-                                    포트폴리오 제목 2
-                                </label>
-                            </div>
-                            <!-- 추가 포트폴리오 항목들 -->
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="selectPortfolioButton">선택</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    </div>
+                    <span class="close">&times;</span>
+                    <h2>포트폴리오 불러오기</h2>
+                    <!-- 포트폴리오 데이터를 표시할 영역 -->
+                    <div id="portfolio-list"></div>
+                    <button type="button" class="close">닫기</button>
                 </div>
             </div>
-        </div>
-
-
             <!-- 제출 버튼 -->
             <div class="btn_select">
                 <button type="submit" class="final_save">작성 완료</button>

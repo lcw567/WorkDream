@@ -857,6 +857,27 @@
                     </div>
                 </fieldset>
             </div>
+            <input type="hidden" id="resumeNo" name="resumeNo" value="${resume.resumeNo}">
+             <!-- 포트폴리오 섹션 -->
+             <div class="Portfolio">
+                <fieldset class="portfolio">
+                    <legend class="por_title">포트폴리오</legend>
+                    <div class="input_port">
+                        <div class="selected_port">
+                        </div>
+                        <button type="button" class="select_port">불러오기</button>        
+                    </div>
+                </fieldset>
+            </div>
+            <div id="modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>포트폴리오 불러오기</h2>
+                    <!-- 포트폴리오 데이터를 표시할 영역 -->
+                    <div id="portfolio-list"></div>
+                    <button type="button" class="close">닫기</button>
+                </div>
+            </div>
 
             <!-- 제출 버튼 -->
             <div class="btn_select">

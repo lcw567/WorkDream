@@ -237,34 +237,22 @@ public class ResumeServiceImpl implements ResumeService {
     
     @Override
     @Transactional
-    public void saveResumeWithPortfolios(Resume resume, List<Integer> portfolioIds) {
-        // 이력서 저장
-        resumeDao.insertResume(resume);
-        logger.debug("Inserted Resume with ID: " + resume.getResumeNo());
-
-        // 포트폴리오 연관 관계 설정
-        if (portfolioIds != null && !portfolioIds.isEmpty()) {
-            for (Integer portfolioId : portfolioIds) {
-                logger.debug("Associating ResumeNo: " + resume.getResumeNo() + " with PortfolioId: " + portfolioId);
-                // RESUME_PORTFOLIO에 삽입
-                resumeDao.insertResumePortfolio(resume.getResumeNo(), portfolioId);
-            }
-        } else {
-            logger.debug("No Portfolio IDs to associate with Resume.");
+    public void associatePortfoliosWithResume(int resumeNo, List<Integer> portfolioIds) {
+        // 기존 포트폴리오의 resume_no를 업데이트
+        for (Integer portfolioId : portfolioIds) {
+            resumeDao.updatePortfolioResumeNo(portfolioId, resumeNo);
         }
     }
 
-
+    
     @Override
     @Transactional
-    public void associatePortfoliosWithResume(int resumeNo, List<Integer> portfolioIds) {
-        // 기존 연관 데이터 삭제
-        resumeDao.deleteResumePortfoliosByResumeNo(resumeNo);
-        // 새로운 연관 데이터 삽입
-        if (portfolioIds != null && !portfolioIds.isEmpty()) {
-            for (Integer portfolioId : portfolioIds) {
-                resumeDao.insertResumePortfolio(resumeNo, portfolioId);
-            }
-        }
+    public void updatePortfolioResumeNo(int portfolioId, int resumeNo) {
+        resumeDao.updatePortfolioResumeNo(portfolioId, resumeNo);
+    }
+    
+    @Override
+    public List<Portfolio> getPortfoliosByResumeNo(int resumeNo) {
+        return resumeDao.selectPortfoliosByResumeNo(resumeNo);
     }
 }

@@ -24,4 +24,5 @@ public class Portfolio {
     private Date createDate;
     private Date updateDate;
     private String status;
+    private Integer resumeNo;
 }

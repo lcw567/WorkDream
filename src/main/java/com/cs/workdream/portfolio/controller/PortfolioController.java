@@ -4,14 +4,20 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.cs.workdream.common.vo.PageInfo;
 import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.portfolio.model.service.PortfolioService;
 import com.cs.workdream.portfolio.model.vo.Portfolio;
+import com.cs.workdream.resume.controller.ResumeController;
+import com.cs.workdream.resume.service.ResumeService;
 
 /**
  * 포트폴리오 컨트롤러 클래스
@@ -19,9 +25,14 @@ import com.cs.workdream.portfolio.model.vo.Portfolio;
 @Controller
 @RequestMapping("/portfolio")
 public class PortfolioController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ResumeController.class);
 
     @Autowired
     private PortfolioService portfolioService;
+    
+    @Autowired
+    private ResumeService resumeService;
 
     /**
      * 포트폴리오 작성 페이지 표시
@@ -39,16 +50,38 @@ public class PortfolioController {
      * 포트폴리오 저장
      */
     @PostMapping("/save")
-    public String savePortfolio(@ModelAttribute Portfolio portfolio, HttpSession session) {
+    public String savePortfolio(@ModelAttribute Portfolio portfolio, HttpSession session, RedirectAttributes redirectAttributes) {
         Member loginUser = (Member) session.getAttribute("loginUser");
         if (loginUser == null) {
             return "redirect:/login";
         }
         int userNo = loginUser.getUserNo();
         portfolio.setUserNo(userNo);
-        portfolioService.addPortfolio(portfolio);
-        return "redirect:/portfolio/portfolioDashboard";
+
+        // 사용자가 선택한 이력서 번호 설정
+        // 폼에서 resumeNo를 전송받아 설정
+        // 폼에 'resumeNo' 필드가 반드시 포함되어야 합니다
+        // 예: <input type="hidden" name="resumeNo" value="${selectedResumeNo}" />
+        // 폼이 이를 포함하지 않으면 resumeNo가 0으로 설정될 수 있습니다
+
+        // 로그를 통해 resumeNo 확인
+        logger.debug("Saving portfolio with resumeNo: {}", portfolio.getResumeNo());
+
+        try {
+            portfolioService.addPortfolio(portfolio);
+            redirectAttributes.addFlashAttribute("message", "포트폴리오가 성공적으로 저장되었습니다.");
+            return "redirect:/portfolio/portfolioDashboard";
+        } catch (IllegalArgumentException e) {
+            logger.warn("포트폴리오 저장 경고: {}", e.getMessage());
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/portfolio/portfolioPost";
+        } catch (Exception e) {
+            logger.error("포트폴리오 저장 중 오류 발생: ", e);
+            redirectAttributes.addFlashAttribute("error", "포트폴리오 저장에 실패했습니다.");
+            return "redirect:/portfolio/portfolioPost";
+        }
     }
+
 
     /**
      * 포트폴리오 관리 대시보드 표시
