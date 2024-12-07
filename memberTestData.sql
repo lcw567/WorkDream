@@ -1334,5 +1334,379 @@ INSERT INTO BUSINESS_BENEFIT (BUSINESS_NO, BENEFIT) VALUES (10, '공연 할인')
 INSERT INTO BUSINESS_BENEFIT (BUSINESS_NO, BENEFIT) VALUES (10, '해외 콘도 지원');
 
 --=======================================================================================================================
+--사내 근무환경 추가
 
+    -- BUSINESS_NO = 1: (주)도화엔지니어링
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        1,
+        '/resources/uploads/work_env_images/business1building1.png',
+        '도화엔지니어링 건물 1'
+    );
+    
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        1,
+        '/resources/uploads/work_env_images/business1building2.png',
+        '도화엔지니어링 건물 2'
+    );
+    
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        1,
+        '/resources/uploads/work_env_images/business1cabinet1.png',
+        '도화엔지니어링 회의실 1'
+    );
+    
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        1,
+        '/resources/uploads/work_env_images/business1foyer1.png',
+        '도화엔지니어링 휴게실 1'
+    );
+    
+    
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        1,
+        '/resources/uploads/work_env_images/business1office1.png',
+        '도화엔지니어링 사무실 1'
+    );
+
+    -- BUSINESS_NO = 2: 딜로이트컨설팅(유)
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        2,
+        '/resources/uploads/work_env_images/business2building1.png',
+        '딜로이트컨설팅 건물 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        2,
+        '/resources/uploads/work_env_images/business2building2.png',
+        '딜로이트컨설팅 건물 2'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        2,
+        '/resources/uploads/work_env_images/business2office.png',
+        '딜로이트컨설팅 사무실'
+    );
+
+    -- BUSINESS_NO = 3: 네이버(주)
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        3,
+        '/resources/uploads/work_env_images/business3building1.png',
+        '네이버 건물 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        3,
+        '/resources/uploads/work_env_images/business3cabinet1.png',
+        '네이버 회의실 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        3,
+        '/resources/uploads/work_env_images/business3library1.png',
+        '네이버 도서관 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        3,
+        '/resources/uploads/work_env_images/business3office1.png',
+        '네이버 사무실 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        3,
+        '/resources/uploads/work_env_images/business3restaurant1.png',
+        '네이버 식당 1'
+    );
+
+    -- BUSINESS_NO = 4: 메가스터디교육(주)
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        4,
+        '/resources/uploads/work_env_images/business4building1.png',
+        '메가스터디교육 건물 1'
+    );
+
+    -- BUSINESS_NO = 5: 쿠팡(주)
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        5,
+        '/resources/uploads/work_env_images/business5building1.png',
+        '쿠팡 건물 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        5,
+        '/resources/uploads/work_env_images/business5foyer1.png',
+        '쿠팡 휴게실 1'
+    );
+
+
+    -- BUSINESS_NO = 6: 코웨이(주)
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        6,
+        '/resources/uploads/work_env_images/business6building1.png',
+        '코웨이 건물 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        6,
+        '/resources/uploads/work_env_images/business6building2.png',
+        '코웨이 건물 2'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        6,
+        '/resources/uploads/work_env_images/business6building3.png',
+        '코웨이 건물 3'
+    );
+
+    -- BUSINESS_NO = 7: 에이치디현대이엔티(주)
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        7,
+        '/resources/uploads/work_env_images/business7building1.png',
+        '에이치디현대이엔티 건물 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        7,
+        '/resources/uploads/work_env_images/business7foyer1.png',
+        '에이치디현대이엔티 휴게실 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        7,
+        '/resources/uploads/work_env_images/business7office1.png',
+        '에이치디현대이엔티 사무실 1'
+    );
+
+    -- BUSINESS_NO = 8: 금호건설(주)
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        8,
+        '/resources/uploads/work_env_images/business8building1.png',
+        '금호건설 건물 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        8,
+        '/resources/uploads/work_env_images/business8building2.png',
+        '금호건설 건물 2'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        8,
+        '/resources/uploads/work_env_images/business8building3.png',
+        '금호건설 건물 3'
+    );
+
+    -- BUSINESS_NO = 9: ㈜영공조명
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        9,
+        '/resources/uploads/work_env_images/business9building1.png',
+        '영공조명 건물 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        9,
+        '/resources/uploads/work_env_images/business9cabinet1.png',
+        '영공조명 회의실 1'
+    );
+
+    -- BUSINESS_NO = 10: 씨제이대한통운(주)
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        10,
+        '/resources/uploads/work_env_images/business10building1.png',
+        '씨제이대한통운 건물 1'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        10,
+        '/resources/uploads/work_env_images/business10building2.png',
+        '씨제이대한통운 건물 2'
+    );
+
+    INSERT INTO WORK_ENVIRONMENT_IMAGE (
+        WORK_ENVIRONMENT_IMAGE_NO,
+        BUSINESS_NO,
+        IMAGE_URL,
+        TITLE
+    ) VALUES (
+        WORK_ENVIRONMENT_IMAGE_SEQ.NEXTVAL,
+        10,
+        '/resources/uploads/work_env_images/business10office1.png',
+        '씨제이대한통운 사무실 1'
+    );
+
+--=======================================================================================================================
 COMMIT;
