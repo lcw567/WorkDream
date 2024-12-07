@@ -13,6 +13,7 @@
         window.contextPath = "${pageContext.request.contextPath}";
     </script>
     <script src="${pageContext.request.contextPath}/js/businessProfileView.js" defer></script>
+    
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header_biz.jsp" />
@@ -23,6 +24,11 @@
                 <a href="${pageContext.request.contextPath}/business/businessProfilePost?businessNo=${business.businessNo}" class="btn btn-edit" aria-label="기업 정보 수정">
                     기업정보 수정
                 </a>
+                <!-- 관심 기업 추가 버튼 -->
+					<button id="add-favorite-btn" class="btn btn-add-favorite" data-business-no="${business.businessNo}">
+					    관심 기업 추가
+					</button>
+                
             </div>
         </div>
 
