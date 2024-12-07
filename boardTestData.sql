@@ -365,4 +365,983 @@ END;
 /
 
 -- 커밋
-COMMIT;
+-- 변수 대체 기능 비활성화
+SET DEFINE OFF;
+
+BEGIN
+    -- =========================
+    -- USER_NO = 1 (person1) 포트폴리오 1
+    -- =========================
+    DECLARE
+        v_content CLOB;
+    BEGIN
+        DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+        
+        DBMS_LOB.APPEND(v_content, q'[
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+            <p><span style="font-size: 14px;">본 프로젝트는 대규모 전자상거래 플랫폼을 개발하여 사용자 경험을 극대화하고, 안정적인 트랜잭션 처리를 구현하는 것을 목표로 하였습니다.</span></p>
+            <p><span style="font-size: 14px;">주요 기능으로는 실시간 재고 관리, 주문 처리 시스템, 사용자 리뷰 및 평점 시스템 등이 포함됩니다.</span></p>
+            <p><br></p>
+
+            <h2><span style="font-size: 14px;">기술 스택</span></h2>
+            <ul>
+                <li><span style="font-size: 14px;">프론트엔드: React.js, Redux, TypeScript</span></li>
+                <li><span style="font-size: 14px;">백엔드: Node.js, Express.js, GraphQL</span></li>
+                <li><span style="font-size: 14px;">데이터베이스: PostgreSQL, Redis</span></li>
+                <li><span style="font-size: 14px;">배포: AWS EC2, Kubernetes, Docker</span></li>
+            </ul>
+            <p><br></p>
+
+            <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+            <p>React.js와 Redux를 활용하여 동적인 사용자 인터페이스를 구현하였고, TypeScript를 사용하여 코드의 안정성을 높였습니다.</p>
+            <p>백엔드에서는 Node.js와 Express.js를 이용하여 RESTful API를 구축하였으며, GraphQL을 도입하여 클라이언트와의 효율적인 데이터 통신을 구현하였습니다.</p>
+            <p>PostgreSQL을 사용하여 데이터의 신뢰성을 보장하고, Redis를 통해 캐싱 메커니즘을 구현하여 응답 속도를 향상시켰습니다.</p>
+            <p>AWS EC2와 Kubernetes를 활용하여 애플리케이션을 컨테이너화하고, Docker를 이용하여 배포 자동화를 실현하였습니다.</p>
+            <p><br></p>
+
+            <!-- 코드 블록 추가 -->
+            <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
+                <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:6px;border-right:2px solid #e5e5e5">
+                                <div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div>
+                                <div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div>
+                                <div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div>
+                                <div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div>
+                                <div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div>
+                                <div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div>
+                                <div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div>
+                                <div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div>
+                                <div style="line-height:130%">33</div><div style="line-height:130%">34</div>
+                            </div>
+                            </td>
+                            <td style="padding:6px 0;text-align:left">
+                                <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Express.js API 예제</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">const express = require('express');</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">const app = express();</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">app.use(express.json());</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">app.get('/api/customers', (req, res) => {</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    // 고객 목록 조회 로직</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    res.json(customers);</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">});</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">app.listen(5000, () => {</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    console.log('Server is running on port 5000');</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">});</div>
+                                </div>
+                            </td>
+                            <td style="vertical-align:bottom;padding:0 2px 4px 0">
+                                <a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white">
+                                    <span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+            <p><span style="font-size: 18px;">본 프로젝트를 통해 대규모 애플리케이션의 풀스택 개발에 대한 깊은 이해를 얻게 되었으며, </span></p>
+            <p><span style="font-size: 18px;">React.js와 Redux를 활용한 상태 관리의 중요성을 체감하였습니다. </span></p>
+            <p><span style="font-size: 18px;">또한, AWS와 Kubernetes를 이용한 컨테이너화 및 배포 자동화 과정을 경험함으로써 클라우드 환경에서의 애플리케이션 운영에 대한 실무 지식을 습득하였습니다.</span></p>
+        ]');
+        
+        -- 포트폴리오 삽입
+        INSERT INTO PORTFOLIO (
+            PORTFOLIO_ID,
+            USER_NO,
+            TITLE,
+            CONTENT,
+            RESUME_NO
+        ) VALUES (
+            SEQ_PORTFOLIO_ID.NEXTVAL,
+            1,
+            '대규모 전자상거래 플랫폼 개발',
+            v_content,
+            NULL
+        );
+        
+        -- 임시 CLOB 해제
+        DBMS_LOB.FREETEMPORARY(v_content);
+    END;
+    
+    -- =========================
+    -- USER_NO = 1 (person1) 포트폴리오 2
+    -- =========================
+    DECLARE
+        v_content CLOB;
+    BEGIN
+        DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+        
+        -- 프로젝트 개요
+        DBMS_LOB.APPEND(v_content, q'[
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+            <p><span style="font-size: 14px;">본 프로젝트는 실시간 데이터 분석 및 시각화를 통해 기업의 의사결정을 지원하는 대시보드 시스템을 개발하는 것을 목표로 하였습니다.</span></p>
+            <p><span style="font-size: 14px;">주요 기능으로는 실시간 데이터 스트리밍, 사용자 맞춤형 대시보드, 데이터 필터링 및 탐색 기능 등이 포함됩니다.</span></p>
+            <p><br></p>
+
+            <h2><span style="font-size: 14px;">기술 스택</span></h2>
+            <ul>
+                <li><span style="font-size: 14px;">프론트엔드: React.js, D3.js, TypeScript</span></li>
+                <li><span style="font-size: 14px;">백엔드: Python, Flask, WebSocket</span></li>
+                <li><span style="font-size: 14px;">데이터베이스: MongoDB, InfluxDB</span></li>
+                <li><span style="font-size: 14px;">배포: AWS Lambda, Docker</span></li>
+            </ul>
+            <p><br></p>
+
+            <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+            <p>React.js와 D3.js를 활용하여 인터랙티브한 데이터 시각화 그래프를 구현하였으며, </p>
+            <p>TypeScript를 사용하여 코드의 안정성과 유지보수성을 향상시켰습니다. </p>
+            <p>백엔드에서는 Python과 Flask를 이용하여 실시간 데이터 스트리밍을 처리하였고, WebSocket을 통해 프론트엔드와의 실시간 통신을 구현하였습니다.</p>
+            <p>MongoDB와 InfluxDB를 사용하여 다양한 형식의 데이터를 효율적으로 저장하고 관리하였으며, AWS Lambda와 Docker를 통해 서버리스 아키텍처로 배포하여 확장성을 확보하였습니다.</p>
+            <p><br></p>
+
+            <!-- 코드 블록 추가 -->
+            <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
+                <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:6px;border-right:2px solid #e5e5e5">
+                                <div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div>
+                                <div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div>
+                                <div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div>
+                                <div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div>
+                                <div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div>
+                                <div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div>
+                                <div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div>
+                                <div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div>
+                                <div style="line-height:130%">33</div><div style="line-height:130%">34</div>
+                            </div>
+                            </td>
+                            <td style="padding:6px 0;text-align:left">
+                                <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask WebSocket 예제</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">from flask import Flask</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">from flask_socketio import SocketIO, emit</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">app = Flask(__name__)</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">app.config["SECRET_KEY"] = "secret!"</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">socketio = SocketIO(app)</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">@socketio.on("connect")</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">def handle_connect():</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    emit("response", {"data": "Connected"})</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">if __name__ == "__main__":</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    socketio.run(app, host="0.0.0.0", port=5000)</div>
+                                </div>
+                            </td>
+                            <td style="vertical-align:bottom;padding:0 2px 4px 0">
+                                <a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white">
+                                    <span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+            <p><span style="font-size: 18px;">본 프로젝트를 통해 실시간 데이터 처리 및 시각화의 중요성을 이해하게 되었으며, </span></p>
+            <p><span style="font-size: 18px;">React.js와 D3.js를 활용한 복잡한 데이터 시각화 그래프를 효과적으로 구현하는 능력을 배양하였습니다. </span></p>
+            <p><span style="font-size: 18px;">Flask와 WebSocket을 이용한 실시간 데이터 스트리밍 구현을 통해 백엔드와 프론트엔드 간의 효율적인 데이터 통신 방법을 익혔습니다.</span></p>
+            <p><span style="font-size: 18px;">MongoDB와 InfluxDB를 활용한 다양한 데이터베이스 관리 경험을 쌓았으며, </span></p>
+            <p><span style="font-size: 18px;">AWS Lambda와 Docker를 이용한 서버리스 아키텍처 배포를 통해 클라우드 환경에서의 애플리케이션 확장성을 확보하는 방법을 학습하였습니다.</span></p>
+        ]');
+    
+        -- 포트폴리오 삽입
+        INSERT INTO PORTFOLIO (
+            PORTFOLIO_ID,
+            USER_NO,
+            TITLE,
+            CONTENT,
+            RESUME_NO
+        ) VALUES (
+            SEQ_PORTFOLIO_ID.NEXTVAL,
+            1,
+            '실시간 데이터 분석 및 시각화 대시보드 개발',
+            v_content,
+            NULL
+        );
+
+        -- 임시 CLOB 해제
+        DBMS_LOB.FREETEMPORARY(v_content);
+    END;
+    
+    -- =========================
+    -- USER_NO = 1 (person1) 포트폴리오 3
+    -- =========================
+    DECLARE
+        v_content CLOB;
+    BEGIN
+        DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+        
+        -- 프로젝트 개요
+        DBMS_LOB.APPEND(v_content, q'[
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+            <p><span style="font-size: 14px;">본 프로젝트는 머신러닝 알고리즘을 활용하여 사용자 행동을 예측하고, 맞춤형 추천 시스템을 개발하는 것을 목표로 하였습니다.</span></p>
+            <p><span style="font-size: 14px;">주요 기능으로는 사용자 데이터 분석, 예측 모델 개발, 실시간 추천 서비스 등이 포함됩니다.</span></p>
+            <p><br></p>
+
+            <h2><span style="font-size: 14px;">기술 스택</span></h2>
+            <ul>
+                <li><span style="font-size: 14px;">프론트엔드: Angular, NgRx</span></li>
+                <li><span style="font-size: 14px;">백엔드: Python, Django, TensorFlow</span></li>
+                <li><span style="font-size: 14px;">데이터베이스: MySQL, Elasticsearch</span></li>
+                <li><span style="font-size: 14px;">배포: Google Cloud Platform, Docker</span></li>
+            </ul>
+            <p><br></p>
+
+            <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+            <p>Angular과 NgRx를 활용하여 복잡한 상태 관리를 효과적으로 처리하였고, </p>
+            <p>Django와 TensorFlow를 이용하여 머신러닝 모델을 개발하였습니다. </p>
+            <p>MySQL과 Elasticsearch를 사용하여 대용량 데이터를 효율적으로 저장하고 검색하는 시스템을 구축하였습니다.</p>
+            <p>Google Cloud Platform과 Docker를 사용하여 애플리케이션을 컨테이너화하고, 클라우드 환경에서의 자동 배포를 구현하였습니다.</p>
+            <p><br></p>
+
+            <!-- 코드 블록 추가 -->
+            <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
+                <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:6px;border-right:2px solid #e5e5e5">
+                                <div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div>
+                                <div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div>
+                                <div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div>
+                                <div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div>
+                                <div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div>
+                                <div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div>
+                                <div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div>
+                                <div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div>
+                                <div style="line-height:130%">33</div><div style="line-height:130%">34</div>
+                            </div>
+                            </td>
+                            <td style="padding:6px 0;text-align:left">
+                                <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// TensorFlow 모델 예제</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">import tensorflow as tf</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">from tensorflow.keras.models import Sequential</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">from tensorflow.keras.layers import Dense</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"># 모델 정의</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">model = Sequential()</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">model.add(Dense(64, activation='relu', input_shape=(input_dim,)))</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">model.add(Dense(1, activation='sigmoid'))</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"># 모델 컴파일</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"># 모델 훈련</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_val, y_val))</div>
+                                </div>
+                            </td>
+                            <td style="vertical-align:bottom;padding:0 2px 4px 0">
+                                <a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white">
+                                    <span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+            <p><span style="font-size: 18px;">머신러닝 알고리즘을 실제 비즈니스 문제에 적용하여, 사용자 행동 예측의 정확성을 향상시킬 수 있었습니다. </span></p>
+            <p><span style="font-size: 18px;">React.js와 D3.js를 활용한 데이터 시각화 경험을 통해, 복잡한 데이터를 효과적으로 전달하는 방법을 익혔습니다. </span></p>
+            <p><span style="font-size: 18px;">Django와 TensorFlow를 이용한 백엔드 개발을 통해, 머신러닝 모델의 통합 및 배포 과정을 경험하였으며, </span></p>
+            <p><span style="font-size: 18px;">Google Cloud Platform과 Docker를 활용한 클라우드 배포 경험을 통해, 애플리케이션의 확장성과 안정성을 확보하는 방법을 학습하였습니다.</span></p>
+        ]');
+
+        -- 포트폴리오 삽입
+        INSERT INTO PORTFOLIO (
+            PORTFOLIO_ID,
+            USER_NO,
+            TITLE,
+            CONTENT,
+            RESUME_NO
+        ) VALUES (
+            SEQ_PORTFOLIO_ID.NEXTVAL,
+            1,
+            '머신러닝 기반 사용자 행동 예측 및 추천 시스템 개발',
+            v_content,
+            NULL
+        );
+        
+        -- 임시 CLOB 해제
+        DBMS_LOB.FREETEMPORARY(v_content);
+    END;
+
+    -- =========================
+    -- USER_NO = 1 (person1) 포트폴리오 4
+    -- =========================
+    DECLARE
+        v_content CLOB;
+    BEGIN
+        DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+        
+        -- 프로젝트 개요
+        DBMS_LOB.APPEND(v_content, q'[
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+            <p><span style="font-size: 14px;">본 프로젝트는 IoT 디바이스를 활용하여 스마트 팩토리 솔루션을 개발하는 것을 목표로 하였습니다.</span></p>
+            <p><span style="font-size: 14px;">주요 기능으로는 실시간 생산 모니터링, 예측 유지보수, 에너지 효율 최적화 등이 포함됩니다.</span></p>
+            <p><br></p>
+
+            <h2><span style="font-size: 14px;">기술 스택</span></h2>
+            <ul>
+                <li><span style="font-size: 14px;">IoT 플랫폼: AWS IoT Core, MQTT</span></li>
+                <li><span style="font-size: 14px;">프로그래밍 언어: Python, C++</span></li>
+                <li><span style="font-size: 14px;">데이터베이스: InfluxDB, TimescaleDB</span></li>
+                <li><span style="font-size: 14px;">배포: Azure IoT Hub, Docker</span></li>
+            </ul>
+            <p><br></p>
+
+            <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+            <p>Python과 C++을 사용하여 다양한 IoT 센서를 제어하고, 실시간 데이터를 수집 및 처리하는 시스템을 개발하였습니다. </p>
+            <p>AWS IoT Core와 MQTT 프로토콜을 활용하여 IoT 디바이스와 클라우드 간의 안정적인 데이터 통신을 구현하였습니다.</p>
+            <p>InfluxDB와 TimescaleDB를 이용하여 시계열 데이터를 효율적으로 저장하고, 실시간 데이터 분석을 통해 생산 공정의 상태를 모니터링하였습니다.</p>
+            <p>Azure IoT Hub와 Docker를 사용하여 스마트 팩토리 솔루션을 컨테이너화하고, 클라우드 환경에 배포하여 높은 확장성과 안정성을 확보하였습니다.</p>
+            <p><br></p>
+
+            <!-- 코드 블록 추가 -->
+            <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
+                <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:6px;border-right:2px solid #e5e5e5">
+                                <div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div>
+                                <div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div>
+                                <div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div>
+                                <div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div>
+                                <div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div>
+                                <div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div>
+                                <div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div>
+                                <div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div>
+                                <div style="line-height:130%">33</div><div style="line-height:130%">34</div>
+                            </div>
+                            </td>
+                            <td style="padding:6px 0;text-align:left">
+                                <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// MQTT 메시지 수신 예제</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">import paho.mqtt.client as mqtt</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">def on_connect(client, userdata, flags, rc):</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    print("Connected with result code "+str(rc))</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    client.subscribe("factory/sensors")</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">def on_message(client, userdata, msg):</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    print(msg.topic+" "+str(msg.payload))</div>
+                                </div>
+                            </td>
+                            <td style="vertical-align:bottom;padding:0 2px 4px 0">
+                                <a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white">
+                                    <span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+            <p><span style="font-size: 18px;">머신러닝 알고리즘을 실제 비즈니스 문제에 적용하여, 사용자 행동 예측의 정확성을 향상시킬 수 있었습니다. </span></p>
+            <p><span style="font-size: 18px;">React.js와 D3.js를 활용한 데이터 시각화 경험을 통해, 복잡한 데이터를 효과적으로 전달하는 방법을 익혔습니다. </span></p>
+            <p><span style="font-size: 18px;">Django와 TensorFlow를 이용한 백엔드 개발을 통해, 머신러닝 모델의 통합 및 배포 과정을 경험하였으며, </span></p>
+            <p><span style="font-size: 18px;">Google Cloud Platform과 Docker를 활용한 클라우드 배포 경험을 통해, 애플리케이션의 확장성과 안정성을 확보하는 방법을 학습하였습니다.</span></p>
+        ]');
+
+        -- 포트폴리오 삽입
+        INSERT INTO PORTFOLIO (
+            PORTFOLIO_ID,
+            USER_NO,
+            TITLE,
+            CONTENT,
+            RESUME_NO
+        ) VALUES (
+            SEQ_PORTFOLIO_ID.NEXTVAL,
+            1,
+            '블록체인 기반 탈중앙화 금융 플랫폼 개발',
+            v_content,
+            NULL
+        );
+        
+        -- 임시 CLOB 해제
+        DBMS_LOB.FREETEMPORARY(v_content);
+    END;
+
+    -- =========================
+    -- USER_NO = 2 (person2) 포트폴리오 1
+    -- =========================
+    DECLARE
+        v_content CLOB;
+    BEGIN
+        DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+        
+        -- 프로젝트 개요
+        DBMS_LOB.APPEND(v_content, q'[
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+            <p><span style="font-size: 14px;">본 프로젝트는 모바일 애플리케이션을 개발하여 사용자에게 편리한 금융 서비스를 제공하는 것을 목표로 하였습니다.</span></p>
+            <p><span style="font-size: 14px;">주요 기능으로는 실시간 계좌 조회, 송금, 지출 관리 등이 포함됩니다.</span></p>
+            <p><br></p>
+
+            <h2><span style="font-size: 14px;">기술 스택</span></h2>
+            <ul>
+                <li><span style="font-size: 14px;">프론트엔드: React Native</span></li>
+                <li><span style="font-size: 14px;">백엔드: Node.js, Express.js</span></li>
+                <li><span style="font-size: 14px;">데이터베이스: PostgreSQL</span></li>
+                <li><span style="font-size: 14px;">배포: Firebase, Docker</span></li>
+            </ul>
+            <p><br></p>
+
+            <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+            <p>React Native를 활용하여 iOS와 Android에서 동작하는 크로스 플랫폼 모바일 애플리케이션을 개발하였으며, </p>
+            <p>Node.js와 Express.js를 사용하여 RESTful API를 구축하였습니다. </p>
+            <p>PostgreSQL을 이용하여 안정적인 데이터 저장을 보장하였으며, Firebase와 Docker를 활용하여 애플리케이션을 효율적으로 배포하였습니다.</p>
+            <p><br></p>
+
+            <!-- 코드 블록 추가 -->
+            <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
+                <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:6px;border-right:2px solid #e5e5e5">
+                                <div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div>
+                                <div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div>
+                                <div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div>
+                                <div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div>
+                                <div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div>
+                                <div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div>
+                                <div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div>
+                                <div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div>
+                                <div style="line-height:130%">33</div><div style="line-height:130%">34</div>
+                            </div>
+                            </td>
+                            <td style="padding:6px 0;text-align:left">
+                                <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// React Native 컴포넌트 예제</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">import React from 'react';</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">import { View, Text, StyleSheet } from 'react-native';</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">const AccountBalance = ({ balance }) => {</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    return (</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">        <View style={styles.container}>${balance}</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">            <Text style={styles.label}>계좌 잔액:</Text></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">            <Text style={styles.balance}>${balance}</Text></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">        </View></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    );</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">};</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">export default AccountBalance;</div>
+                                </div>
+                            </td>
+                            <td style="vertical-align:bottom;padding:0 2px 4px 0">
+                                <a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white">
+                                    <span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+            <p><span style="font-size: 18px;">React Native를 활용한 크로스 플랫폼 모바일 애플리케이션 개발을 통해, </span></p>
+            <p><span style="font-size: 18px;">모바일 사용자 인터페이스 설계 및 상태 관리에 대한 실무 경험을 쌓았습니다. </span></p>
+            <p><span style="font-size: 18px;">Node.js와 Express.js를 이용한 백엔드 개발을 통해, RESTful API 구축 및 서버 측 로직 구현 능력을 향상시켰습니다.</span></p>
+            <p><span style="font-size: 18px;">PostgreSQL을 사용한 데이터베이스 설계 및 최적화 경험을 통해, 데이터 관리의 중요성을 이해하게 되었습니다.</span></p>
+            <p><span style="font-size: 18px;">Firebase와 Docker를 활용한 클라우드 배포를 통해, 애플리케이션의 확장성과 유지보수성을 높이는 방법을 학습하였습니다.</span></p>
+        ]');
+
+        -- 포트폴리오 삽입
+        INSERT INTO PORTFOLIO (
+            PORTFOLIO_ID,
+            USER_NO,
+            TITLE,
+            CONTENT,
+            RESUME_NO
+        ) VALUES (
+            SEQ_PORTFOLIO_ID.NEXTVAL,
+            2,
+            '모바일 금융 애플리케이션 개발',
+            v_content,
+            NULL
+        );
+        
+        -- 임시 CLOB 해제
+        DBMS_LOB.FREETEMPORARY(v_content);
+    END;
+
+    -- =========================
+    -- USER_NO = 2 (person2) 포트폴리오 2
+    -- =========================
+    DECLARE
+        v_content CLOB;
+    BEGIN
+        DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+        
+        -- 프로젝트 개요
+        DBMS_LOB.APPEND(v_content, q'[
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+            <p><span style="font-size: 14px;">본 프로젝트는 소셜 미디어 플랫폼을 개발하여 사용자 간의 소통과 정보 공유를 촉진하는 것을 목표로 하였습니다.</span></p>
+            <p><span style="font-size: 14px;">주요 기능으로는 게시물 작성, 댓글, 좋아요, 실시간 알림 등이 포함됩니다.</span></p>
+            <p><br></p>
+
+            <h2><span style="font-size: 14px;">기술 스택</span></h2>
+            <ul>
+                <li><span style="font-size: 14px;">프론트엔드: Vue.js, Vuex</span></li>
+                <li><span style="font-size: 14px;">백엔드: Ruby on Rails</span></li>
+                <li><span style="font-size: 14px;">데이터베이스: MySQL</span></li>
+                <li><span style="font-size: 14px;">배포: Heroku, Docker</span></li>
+            </ul>
+            <p><br></p>
+
+            <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+            <p>Vue.js와 Vuex를 활용하여 반응형 사용자 인터페이스를 구현하였으며, </p>
+            <p>Ruby on Rails를 사용하여 RESTful API를 구축하였습니다. </p>
+            <p>MySQL을 이용하여 사용자 데이터 및 게시물 데이터를 효율적으로 관리하였으며, </p>
+            <p>Heroku와 Docker를 사용하여 애플리케이션을 클라우드 환경에 배포하고, 지속적인 통합 및 배포(CI/CD)를 구현하였습니다.</p>
+            <p><br></p>
+
+            <!-- 코드 블록 추가 -->
+            <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
+                <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:6px;border-right:2px solid #e5e5e5">
+                                <div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div>
+                                <div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div>
+                                <div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div>
+                                <div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div>
+                                <div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div>
+                                <div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div>
+                                <div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div>
+                                <div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div>
+                                <div style="line-height:130%">33</div><div style="line-height:130%">34</div>
+                            </div>
+                            </td>
+                            <td style="padding:6px 0;text-align:left">
+                                <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Ruby on Rails 컨트롤러 예제</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">class PostsController < ApplicationController</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    def index</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">        @posts = Post.all</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">        render json: @posts</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    end</div>
+                                </div>
+                            </td>
+                            <td style="vertical-align:bottom;padding:0 2px 4px 0">
+                                <a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white">
+                                    <span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+            <p><span style="font-size: 18px;">Vue.js와 Vuex를 활용한 반응형 사용자 인터페이스 개발을 통해, </span></p>
+            <p><span style="font-size: 18px;">효율적인 상태 관리와 컴포넌트 재사용의 중요성을 체감하였습니다. </span></p>
+            <p><span style="font-size: 18px;">Ruby on Rails를 이용한 백엔드 개발을 통해, RESTful API 설계 및 데이터베이스 연동 능력을 향상시켰습니다.</span></p>
+            <p><span style="font-size: 18px;">Firebase와 Docker를 활용한 클라우드 배포를 통해, 애플리케이션의 확장성과 유지보수성을 높이는 방법을 학습하였습니다.</span></p>
+        ]');
+
+        -- 포트폴리오 삽입
+        INSERT INTO PORTFOLIO (
+            PORTFOLIO_ID,
+            USER_NO,
+            TITLE,
+            CONTENT,
+            RESUME_NO
+        ) VALUES (
+            SEQ_PORTFOLIO_ID.NEXTVAL,
+            2,
+            '소셜 미디어 플랫폼 개발',
+            v_content,
+            NULL
+        );
+        
+        -- 임시 CLOB 해제
+        DBMS_LOB.FREETEMPORARY(v_content);
+    END;
+
+    -- =========================
+    -- USER_NO = 2 (person2) 포트폴리오 2
+    -- =========================
+    DECLARE
+        v_content CLOB;
+    BEGIN
+        DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+        
+        -- 프로젝트 개요
+        DBMS_LOB.APPEND(v_content, q'[
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+            <p><span style="font-size: 14px;">본 프로젝트는 데이터 분석 도구를 개발하여 기업의 비즈니스 인사이트를 도출하는 것을 목표로 하였습니다.</span></p>
+            <p><span style="font-size: 14px;">주요 기능으로는 데이터 시각화, 보고서 생성, 대시보드 커스터마이징 등이 포함됩니다.</span></p>
+            <p><br></p>
+
+            <h2><span style="font-size: 14px;">기술 스택</span></h2>
+            <ul>
+                <li><span style="font-size: 14px;">프론트엔드: React.js, Chart.js</span></li>
+                <li><span style="font-size: 14px;">백엔드: Python, Flask, Pandas</span></li>
+                <li><span style="font-size: 14px;">데이터베이스: SQLite</span></li>
+                <li><span style="font-size: 14px;">배포: AWS Elastic Beanstalk, Docker</span></li>
+            </ul>
+            <p><br></p>
+
+            <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+            <p>React.js와 Chart.js를 활용하여 사용자 친화적인 데이터 시각화 인터페이스를 구현하였으며, </p>
+            <p>Python과 Flask를 사용하여 데이터 분석 및 보고서 생성을 위한 백엔드 시스템을 개발하였습니다.</p>
+            <p>SQLite를 이용하여 경량화된 데이터베이스를 구축하고, Pandas를 활용하여 효율적인 데이터 처리 및 분석을 수행하였습니다.</p>
+            <p>AWS Elastic Beanstalk과 Docker를 활용하여 애플리케이션을 클라우드 환경에 배포하고, 지속적인 통합 및 배포(CI/CD) 파이프라인을 구현하였습니다.</p>
+            <p><br></p>
+
+            <!-- 코드 블록 추가 -->
+            <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
+                <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:6px;border-right:2px solid #e5e5e5">
+                                <div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div>
+                                <div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div>
+                                <div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div>
+                                <div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div>
+                                <div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div>
+                                <div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div>
+                                <div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div>
+                                <div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div>
+                                <div style="line-height:130%">33</div><div style="line-height:130%">34</div>
+                            </div>
+                            </td>
+                            <td style="padding:6px 0;text-align:left">
+                                <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask API 엔드포인트 예제</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">from flask import Flask, jsonify</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">app = Flask(__name__)</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">@app.route('/api/posts', methods=['GET'])</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">def get_posts():</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    # 게시물 데이터 조회 로직</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    posts = [{'id': 1, 'title': '첫 번째 게시물'}, {'id': 2, 'title': '두 번째 게시물'}]</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    return jsonify(posts)</div>
+                                </div>
+                            </td>
+                            <td style="vertical-align:bottom;padding:0 2px 4px 0">
+                                <a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white">
+                                    <span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+            <p><span style="font-size: 18px;">Vue.js와 Vuex를 활용한 사용자 인터페이스 개발을 통해, </span></p>
+            <p><span style="font-size: 18px;">효율적인 상태 관리와 컴포넌트 재사용의 중요성을 체감하였습니다. </span></p>
+            <p><span style="font-size: 18px;">Ruby on Rails를 이용한 백엔드 개발을 통해, RESTful API 설계 및 데이터베이스 연동 능력을 향상시켰습니다.</span></p>
+            <p><span style="font-size: 18px;">Firebase와 Docker를 활용한 클라우드 배포를 통해, 애플리케이션의 확장성과 유지보수성을 높이는 방법을 학습하였습니다.</span></p>
+        ]');
+
+        -- 포트폴리오 삽입
+        INSERT INTO PORTFOLIO (
+            PORTFOLIO_ID,
+            USER_NO,
+            TITLE,
+            CONTENT,
+            RESUME_NO
+        ) VALUES (
+            SEQ_PORTFOLIO_ID.NEXTVAL,
+            2,
+            '데이터 분석 도구 개발',
+            v_content,
+            NULL
+        );
+        
+        -- 임시 CLOB 해제
+        DBMS_LOB.FREETEMPORARY(v_content);
+    END;
+    
+    -- =========================
+    -- USER_NO = 1 (person1) 포트폴리오 5
+    -- =========================
+    DECLARE
+        v_content CLOB;
+    BEGIN
+        DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+        
+        -- 프로젝트 개요
+        DBMS_LOB.APPEND(v_content, q'[
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+            <p><span style="font-size: 14px;">본 프로젝트는 인공지능 기반 챗봇을 개발하여 고객 지원을 자동화하고, 사용자 만족도를 향상시키는 것을 목표로 하였습니다.</span></p>
+            <p><span style="font-size: 14px;">주요 기능으로는 자연어 처리, 대화 관리, 학습 기능, 멀티 플랫폼 지원 등이 포함됩니다.</span></p>
+            <p><br></p>
+
+            <h2><span style="font-size: 14px;">기술 스택</span></h2>
+            <ul>
+                <li><span style="font-size: 14px;">프론트엔드: React.js</span></li>
+                <li><span style="font-size: 14px;">백엔드: Python, Flask, TensorFlow</span></li>
+                <li><span style="font-size: 14px;">NLP 라이브러리: NLTK, spaCy</span></li>
+                <li><span style="font-size: 14px;">배포: AWS Lambda, Docker</span></li>
+            </ul>
+            <p><br></p>
+
+            <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+            <p>Python과 Flask를 사용하여 챗봇의 백엔드를 개발하였으며, TensorFlow를 이용하여 딥러닝 기반의 자연어 처리 모델을 구축하였습니다. </p>
+            <p>NLTK와 spaCy를 활용하여 사용자 입력을 전처리하고, 다양한 자연어 처리 기법을 적용하여 대화의 정확성을 향상시켰습니다.</p>
+            <p>React.js를 사용하여 사용자 친화적인 웹 인터페이스를 구현하였으며, </p>
+            <p>AWS Lambda와 Docker를 활용하여 챗봇을 서버리스 아키텍처로 배포하여 높은 확장성과 안정성을 확보하였습니다.</p>
+            <p><br></p>
+
+            <!-- 코드 블록 추가 -->
+            <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
+                <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:6px;border-right:2px solid #e5e5e5">
+                                <div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div>
+                                <div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div>
+                                <div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div>
+                                <div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div>
+                                <div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div>
+                                <div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div>
+                                <div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div>
+                                <div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div>
+                                <div style="line-height:130%">33</div><div style="line-height:130%">34</div>
+                            </div>
+                            </td>
+                            <td style="padding:6px 0;text-align:left">
+                                <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask 챗봇 API 예제</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">from flask import Flask, request, jsonify</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">import tensorflow as tf</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">import numpy as np</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">app = Flask(__name__)</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">model = tf.keras.models.load_model('chatbot_model.h5')</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">@app.route('/chat', methods=['POST'])</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">def chat():</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    user_input = request.json['message']</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    # 입력 전처리 로직</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    processed_input = preprocess(user_input)</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    prediction = model.predict(np.array([processed_input]))</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    response = generate_response(prediction)</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    return jsonify({'reply': response})</div>
+                                </div>
+                            </td>
+                            <td style="vertical-align:bottom;padding:0 2px 4px 0">
+                                <a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white">
+                                    <span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+            <p><span style="font-size: 18px;">머신러닝 알고리즘을 실제 애플리케이션에 적용하여, </span></p>
+            <p><span style="font-size: 18px;">사용자 행동 예측 및 맞춤형 추천 시스템의 정확성을 향상시킬 수 있었습니다. </span></p>
+            <p><span style="font-size: 18px;">React Native를 사용한 크로스 플랫폼 모바일 애플리케이션 개발 경험을 통해, </span></p>
+            <p><span style="font-size: 18px;">효율적인 사용자 인터페이스 설계 및 상태 관리 능력을 강화하였습니다.</span></p>
+            <p><span style="font-size: 18px;">Flask와 TensorFlow를 이용한 백엔드 개발을 통해, </span></p>
+            <p><span style="font-size: 18px;">딥러닝 모델의 통합 및 실시간 데이터 처리 능력을 향상시켰습니다.</span></p>
+            <p><span style="font-size: 18px;">AWS Lambda와 Docker를 활용한 서버리스 아키텍처 배포를 통해, </span></p>
+            <p><span style="font-size: 18px;">애플리케이션의 확장성과 유지보수성을 높이는 방법을 학습하였습니다.</span></p>
+        ]');
+
+        -- 포트폴리오 삽입
+        INSERT INTO PORTFOLIO (
+            PORTFOLIO_ID,
+            USER_NO,
+            TITLE,
+            CONTENT,
+            RESUME_NO
+        ) VALUES (
+            SEQ_PORTFOLIO_ID.NEXTVAL,
+            1,
+            '인공지능 챗봇 개발 프로젝트',
+            v_content,
+            NULL
+        );
+        
+        -- 임시 CLOB 해제
+        DBMS_LOB.FREETEMPORARY(v_content);
+    END;
+    
+    -- =========================
+-- USER_NO = 1 (person1) 포트폴리오 6
+-- =========================
+DECLARE
+    v_content CLOB;
+BEGIN
+    DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+    
+    -- 프로젝트 개요
+    DBMS_LOB.APPEND(v_content, q'[
+        <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+        <p><span style="font-size: 14px;">본 프로젝트는 인공지능 기반 챗봇을 개발하여 고객 지원을 자동화하고, 사용자 만족도를 향상시키는 것을 목표로 하였습니다.</span></p>
+        <p><span style="font-size: 14px;">주요 기능으로는 자연어 처리, 대화 관리, 학습 기능, 멀티 플랫폼 지원 등이 포함됩니다.</span></p>
+        <p><br></p>
+
+        <h2><span style="font-size: 14px;">기술 스택</span></h2>
+        <ul>
+            <li><span style="font-size: 14px;">프론트엔드: React.js</span></li>
+            <li><span style="font-size: 14px;">백엔드: Python, Flask, TensorFlow</span></li>
+            <li><span style="font-size: 14px;">NLP 라이브러리: NLTK, spaCy</span></li>
+            <li><span style="font-size: 14px;">배포: AWS Lambda, Docker</span></li>
+        </ul>
+        <p><br></p>
+
+        <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+        <p>Python과 Flask를 사용하여 챗봇의 백엔드를 개발하였으며, TensorFlow를 이용하여 딥러닝 기반의 자연어 처리 모델을 구축하였습니다.</p>
+        <p>NLTK와 spaCy를 활용하여 사용자 입력을 전처리하고, 다양한 자연어 처리 기법을 적용하여 대화의 정확성을 향상시켰습니다.</p>
+        <p>React.js를 사용하여 사용자 친화적인 웹 인터페이스를 구현하였으며, </p>
+        <p>AWS Lambda와 Docker를 활용하여 챗봇을 서버리스 아키텍처로 배포하여 높은 확장성과 안정성을 확보하였습니다.</p>
+        <p><br></p>
+
+        <!-- 코드 블록 추가 -->
+        <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
+            <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td style="padding:6px;border-right:2px solid #e5e5e5">
+                            <div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div>
+                            <div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div>
+                            <div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div>
+                            <div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div>
+                            <div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div>
+                            <div style="line-height:130%">21</div><div style="line-height:130%">22</div><div style="line-height:130%">23</div><div style="line-height:130%">24</div>
+                            <div style="line-height:130%">25</div><div style="line-height:130%">26</div><div style="line-height:130%">27</div><div style="line-height:130%">28</div>
+                            <div style="line-height:130%">29</div><div style="line-height:130%">30</div><div style="line-height:130%">31</div><div style="line-height:130%">32</div>
+                            <div style="line-height:130%">33</div><div style="line-height:130%">34</div>
+                        </div>
+                        </td>
+                        <td style="padding:6px 0;text-align:left">
+                            <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
+                                <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask 챗봇 API 예제</span></div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">from flask import Flask, request, jsonify</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">import tensorflow as tf</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">import numpy as np</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">app = Flask(__name__)</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">model = tf.keras.models.load_model('chatbot_model.h5')</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">@app.route('/chat', methods=['POST'])</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">def chat():</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">    user_input = request.json['message']</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">    # 입력 전처리 로직</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">    processed_input = preprocess(user_input)</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">    prediction = model.predict(np.array([processed_input]))</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">    response = generate_response(prediction)</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">    return jsonify({'reply': response})</div>
+                            </div>
+                        </td>
+                        <td style="vertical-align:bottom;padding:0 2px 4px 0">
+                            <a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white">
+                                <span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+        <p><span style="font-size: 18px;">머신러닝 알고리즘을 실제 애플리케이션에 적용하여, </span></p>
+        <p><span style="font-size: 18px;">사용자 행동 예측 및 맞춤형 추천 시스템의 정확성을 향상시킬 수 있었습니다. </span></p>
+        <p><span style="font-size: 18px;">React Native를 사용한 크로스 플랫폼 모바일 애플리케이션 개발 경험을 통해, </span></p>
+        <p><span style="font-size: 18px;">효율적인 사용자 인터페이스 설계 및 상태 관리 능력을 강화하였습니다.</span></p>
+        <p><span style="font-size: 18px;">Flask와 TensorFlow를 이용한 백엔드 개발을 통해, </span></p>
+        <p><span style="font-size: 18px;">딥러닝 모델의 통합 및 실시간 데이터 처리 능력을 향상시켰습니다.</span></p>
+        <p><span style="font-size: 18px;">AWS Lambda와 Docker를 활용한 서버리스 아키텍처 배포를 통해, </span></p>
+        <p><span style="font-size: 18px;">애플리케이션의 확장성과 유지보수성을 높이는 방법을 학습하였습니다.</span></p>
+    ]');
+
+    -- 포트폴리오 삽입
+    INSERT INTO PORTFOLIO (
+        PORTFOLIO_ID,
+        USER_NO,
+        TITLE,
+        CONTENT,
+        RESUME_NO
+    ) VALUES (
+        SEQ_PORTFOLIO_ID.NEXTVAL,
+        1,
+        '인공지능 챗봇 개발 프로젝트',
+        v_content,
+        NULL
+    );
+    
+    -- 임시 CLOB 해제
+    DBMS_LOB.FREETEMPORARY(v_content);
+END;
+
+-- =========================
+-- USER_NO = 1 (person1) 포트폴리오 6
+-- =========================
+DECLARE
+    v_content CLOB;
+BEGIN
+    DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
+    
+    -- 프로젝트 개요
+    DBMS_LOB.APPEND(v_content, q'[
+        <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">프로젝트 개요</span></h2>
+        <p><span style="font-size: 14px;">본 프로젝트는 인공지능 기반 예측 유지보수 시스템을 개발하여 제조 공정의 효율성을 극대화하는 것을 목표로 하였습니다.</span></p>
+        <p><span style="font-size: 14px;">주요 기능으로는 장비 상태 모니터링, 고장 예측, 자동 알림 시스템 등이 포함됩니다.</span></p>
+        <p><br></p>
+
+        <h2><span style="font-size: 14px;">기술 스택</span></h2>
+        <ul>
+            <li><span style="font-size: 14px;">프론트엔드: Angular, NgRx</span></li>
+            <li><span style="font-size: 14px;">백엔드: Python, Django, Scikit-learn</span></li>
+            <li><span style="font-size: 14px;">데이터베이스: PostgreSQL, Redis</span></li>
+            <li><span style="font-size: 14px;">배포: AWS EC2, Docker</span></li>
+        </ul>
+        <p><br></p>
+
+        <h2><span style="font-size: 18px;">주요 구현 사항</span></h2>
+        <p>Angular과 NgRx를 활용하여 실시간 데이터 시각화 대시보드를 구현하였으며, </p>
+        <p>Python과 Django를 사용하여 예측 모델을 개발하고, RESTful API를 구축하였습니다.</p>
+        <p>Scikit-learn을 이용하여 장비 고장을 예측하는 머신러닝 모델을 훈련시켰으며, PostgreSQL과 Redis를 활용하여 대용량 데이터를 효율적으로 관리하였습니다.</p>
+        <p>AWS EC2와 Docker를 사용하여 애플리케이션을 컨테이너화하고, 클라우드 환경에 배포하여 높은 확장성과 안정성을 확보하였습니다.</p>
+        <p><br></p>
+
+        <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">성과 및 배운 점</span></h2>
+        <p><span style="font-size: 18px;">머신러닝 모델을 실제 제조 공정에 적용하여 고장 예측의 정확성을 크게 향상시킬 수 있었습니다.</span></p>
+        <p><span style="font-size: 18px;">Angular과 NgRx를 활용한 상태 관리 및 실시간 데이터 시각화 경험을 통해, 복잡한 사용자 인터페이스를 효과적으로 구현하는 방법을 익혔습니다.</span></p>
+        <p><span style="font-size: 18px;">Python과 Django를 이용한 백엔드 개발을 통해, 데이터 처리 및 API 설계 능력을 향상시켰으며, </span></p>
+        <p><span style="font-size: 18px;">AWS와 Docker를 활용한 클라우드 배포 경험을 통해, 애플리케이션의 확장성과 유지보수성을 확보하는 방법을 학습하였습니다.</span></p>
+    ]');
+
+    -- 포트폴리오 삽입
+    INSERT INTO PORTFOLIO (
+        PORTFOLIO_ID,
+        USER_NO,
+        TITLE,
+        CONTENT,
+        RESUME_NO
+    ) VALUES (
+        SEQ_PORTFOLIO_ID.NEXTVAL,
+        1,
+        '인공지능 기반 예측 유지보수 시스템 개발',
+        v_content,
+        NULL
+    );
+    
+    -- 임시 CLOB 해제
+    DBMS_LOB.FREETEMPORARY(v_content);
+END;
+
+
+    
+    
+    -- 전체 트랜잭션 커밋
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
+END;
+/
+
+
+
+
