@@ -5,6 +5,7 @@
 */
 
 --=======================================================================================================================
+SET DEFINE OFF;
 
 
 /* 개인 회원 */
@@ -384,7 +385,7 @@ INSERT INTO JOB_RECRUITMENT (
     '김철수', '개발팀', 'kim1@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 15, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(SYSDATE, 'YYYY-MM-DD'),
-    SYSDATE,
+    TO_DATE(TO_CHAR(SYSDATE - 20, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     '/resources/business/business1/recruitment/business1_recruitment_01.png',
     '전형단계 및 제출서류' || CHR(10) ||
     '전형단계 : 서류전형 → 면접전형 → 최종합격' || CHR(10) ||
@@ -444,7 +445,7 @@ INSERT INTO JOB_RECRUITMENT (
     '박영희', '인사팀', 'park2@example.com', 'H',
     TO_DATE(TO_CHAR(SYSDATE - 30, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
-    SYSDATE,
+    TO_DATE(TO_CHAR(SYSDATE - 33, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     '/resources/business/business2/recruitment/business2_recruitment_01.png',
     '설립일1987년 02월 14일' || CHR(10) ||
     '기업규모중견기업 (사원수 2,723명)' || CHR(10) ||
@@ -470,7 +471,7 @@ INSERT INTO JOB_RECRUITMENT (
     '이민수', '기획팀', 'lee3@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 5, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 5, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
-    SYSDATE,
+    TO_DATE(TO_CHAR(SYSDATE - 8, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     '/resources/business/business3/recruitment/business3_recruitment_01.png', 
     '[ 기타사항 ]' || CHR(10) ||
     '- 재택근무 중 업무 기기 장애에 따라 원활한 업무가 불가능한 경우 오피스 출근으로 업무 중단을 최소화해야 함.' || CHR(10) ||
@@ -522,7 +523,7 @@ INSERT INTO JOB_RECRUITMENT (
     '정다영', '회계팀', 'jung4@example.com', 'H',
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 1, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
-    SYSDATE,
+    TO_DATE(TO_CHAR(SYSDATE - 15, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     '/resources/business/business4/recruitment/business4_recruitment_01.png',
     '근무형태	:	정규직 (수습기간)' || CHR(10) ||
     '근무일시	:	09:00~18:00' || CHR(10) ||
@@ -546,7 +547,7 @@ INSERT INTO JOB_RECRUITMENT (
     '김수한무', '인사팀', 'choi5@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 7, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
-    SYSDATE,
+    TO_DATE(TO_CHAR(SYSDATE - 12, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     '/resources/business/business5/recruitment/business5_recruitment_01.png',
     NULL,
     'P'
@@ -634,7 +635,7 @@ INSERT INTO JOB_RECRUITMENT (
     '강은혜', '인사팀', 'kang7@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 30, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
-    SYSDATE,
+    TO_DATE(TO_CHAR(SYSDATE - 40, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     '/resources/business/business7/recruitment/business7_recruitment_01.png',
     '기업규모대기업 (사원수 1,237명)' || CHR(10) ||
     '업종기계·조선·자동차·운송장비' || CHR(10) ||
@@ -709,7 +710,7 @@ INSERT INTO JOB_RECRUITMENT (
     '한예진', '토목팀', 'han8@example.com', 'H',
     TO_DATE(TO_CHAR(SYSDATE - 30, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE - 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
-    SYSDATE,
+    TO_DATE(TO_CHAR(SYSDATE - 35, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     '/resources/business/business8/recruitment/business8_recruitment_01.png',
     '설립일1960년 09월 05일' || CHR(10) ||
     '기업규모대기업 (사원수 1,237명)' || CHR(10) ||
@@ -735,7 +736,7 @@ INSERT INTO JOB_RECRUITMENT (
     '서준호', '설계팀', 'seo9@example.com', 'W',
     TO_DATE(TO_CHAR(SYSDATE - 20, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 5, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
-    SYSDATE,
+    TO_DATE(TO_CHAR(SYSDATE - 20, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     '/resources/business/business9/recruitment/business9_recruitment_01.png', 
     '설립일1950년 01월 10일' || CHR(10) ||
     '기업규모중소기업 (사원수 334명)' || CHR(10) ||
@@ -798,7 +799,7 @@ INSERT INTO JOB_RECRUITMENT (
     '유지연', '물류팀', 'yoo10@example.com', 'H',
     TO_DATE(TO_CHAR(SYSDATE - 20, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     TO_DATE(TO_CHAR(SYSDATE + 10, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
-    SYSDATE,
+    TO_DATE(TO_CHAR(SYSDATE - 21, 'YYYY-MM-DD'), 'YYYY-MM-DD'),
     '/resources/business/business10/recruitment/business10_recruitment_01.png',
     '설립일1930년 11월 15일' || CHR(10) ||
     '기업규모대기업 (사원수 7,103명)' || CHR(10) ||
