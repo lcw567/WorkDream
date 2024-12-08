@@ -16,7 +16,18 @@
     
 </head>
 <body>
-    <c:import url="/WEB-INF/views/common/header_biz.jsp" />
+    <c:choose>
+	    <c:when test="${not empty sessionScope.loginUser && sessionScope.loginUser.userType == 'B'}">
+	        <!-- 기업회원일 경우 -->
+	        <c:import url="/WEB-INF/views/common/header_biz.jsp" />
+	    </c:when>
+	    <c:otherwise>
+	        <!-- 일반회원 또는 비로그인일 경우 -->
+	        <c:import url="/WEB-INF/views/common/header.jsp" />
+	    </c:otherwise>
+	</c:choose>
+
+    
     <main class="profile-view-container">
         <div class="profile-header">
             <h2>기업 프로필</h2>
