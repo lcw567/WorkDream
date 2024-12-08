@@ -27,10 +27,6 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
     @Autowired
     private ServletContext servletContext;
     
-    
-    /*=====================================================================================================*/
-    
-    // 기업 정보 불러오기
     @Override
     public Business viewBusinessProfile(int businessNo) throws Exception {
         Business business = businessProfileDao.selectBusinessByNo(businessNo);
@@ -66,7 +62,10 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
             }
         }
 
-        // 1. 삭제할 이미지 처리
+        // workEnvImageTitlesJson 파싱
+        List<String> workEnvImageTitles = parseJsonArray(workEnvImageTitlesJson);
+
+        // 삭제할 이미지 처리
         if(deleteImageIds != null && !deleteImageIds.isEmpty()) {
             for(Integer imageId : deleteImageIds) {
                 WorkEnvironmentImage image = businessProfileDao.selectWorkEnvironmentImageById(imageId);
@@ -76,11 +75,7 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
                     File imageFile = new File(imagePath);
                     if(imageFile.exists()) {
                         boolean deleted = imageFile.delete();
-                        if(deleted) {
-                            System.out.println("Deleted image file: " + imagePath);
-                        } else {
-                            System.out.println("Failed to delete image file: " + imagePath);
-                            // Optionally, throw an exception to rollback the transaction
+                        if(!deleted) {
                             throw new Exception("Failed to delete image file: " + imagePath);
                         }
                     }
@@ -93,47 +88,74 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
             }
         }
 
-        // 2. 기존 이미지 업데이트
+        // 기존 이미지 처리
+        int existingCount = 0;
+        if(existingImageIds != null) {
+            existingCount = existingImageIds.size();
+        }
+
+        // 기존 이미지 업데이트 (파일 변경 + 제목 변경)
         if(workEnvironmentFiles != null && !workEnvironmentFiles.isEmpty() && existingImageIds != null) {
-            List<String> workEnvImageTitles = parseJsonArray(workEnvImageTitlesJson);
             for(int i = 0; i < workEnvironmentFiles.size(); i++) {
                 MultipartFile file = workEnvironmentFiles.get(i);
-                Integer imageId = existingImageIds.size() > i ? existingImageIds.get(i) : null;
-                String title = workEnvImageTitles.size() > i ? workEnvImageTitles.get(i) : "";
-                if(!file.isEmpty() && imageId != null) {
-                    // 기존 이미지 파일 삭제
+                Integer imageId = (existingImageIds.size() > i) ? existingImageIds.get(i) : null;
+                String title = (workEnvImageTitles.size() > i) ? workEnvImageTitles.get(i) : ""; 
+                
+                if(imageId != null) {
                     WorkEnvironmentImage existingImage = businessProfileDao.selectWorkEnvironmentImageById(imageId);
-                    if(existingImage != null) {
-                        String imagePath = servletContext.getRealPath(existingImage.getImageUrl());
-                        File imageFile = new File(imagePath);
-                        if(imageFile.exists()) {
-                            boolean deleted = imageFile.delete();
-                            if(deleted) {
-                                System.out.println("Deleted image file: " + imagePath);
-                            } else {
-                                System.out.println("Failed to delete image file: " + imagePath);
-                                throw new Exception("Failed to delete image file: " + imagePath);
+                    if(existingImage == null) {
+                        continue; // 해당 이미지가 DB에 없으면 스킵
+                    }
+                    
+                    // 파일이 새로 업로드되었을 경우 기존 파일 삭제 후 업데이트
+                    if(!file.isEmpty()) {
+                        // 기존 파일 삭제
+                        String oldImagePath = servletContext.getRealPath(existingImage.getImageUrl());
+                        File oldImageFile = new File(oldImagePath);
+                        if(oldImageFile.exists()) {
+                            boolean deleted = oldImageFile.delete();
+                            if(!deleted) {
+                                throw new Exception("Failed to delete old image file: " + oldImagePath);
                             }
                         }
-                        // 파일 업로드
+                        // 새 파일 업로드
                         String imageUrl = saveFile(file, "work_env_images");
                         existingImage.setImageUrl(imageUrl);
-                        existingImage.setTitle(title);
-                        int updateResult = businessProfileDao.updateWorkEnvironmentImage(existingImage);
-                        if(updateResult <= 0) {
-                            throw new Exception("Failed to update WorkEnvironmentImage for ID: " + imageId);
-                        }
+                    }
+                    
+                    // 제목 업데이트
+                    existingImage.setTitle(title);
+                    int updateResult = businessProfileDao.updateWorkEnvironmentImage(existingImage);
+                    if(updateResult <= 0) {
+                        throw new Exception("Failed to update WorkEnvironmentImage for ID: " + imageId);
+                    }
+                }
+            }
+        } else if (existingImageIds != null && !existingImageIds.isEmpty()) {
+            // 파일 업로드는 없지만 제목만 수정해야 할 수도 있으니 이 경우 처리
+            for (int i = 0; i < existingImageIds.size(); i++) {
+                Integer imageId = existingImageIds.get(i);
+                String title = (workEnvImageTitles.size() > i) ? workEnvImageTitles.get(i) : "";
+                WorkEnvironmentImage existingImage = businessProfileDao.selectWorkEnvironmentImageById(imageId);
+                if(existingImage != null) {
+                    existingImage.setTitle(title);
+                    int updateResult = businessProfileDao.updateWorkEnvironmentImage(existingImage);
+                    if(updateResult <= 0) {
+                        throw new Exception("Failed to update WorkEnvironmentImage title for ID: " + imageId);
                     }
                 }
             }
         }
 
-        // 3. 새로운 이미지 추가
+        // 새로운 이미지 추가
         if(newWorkEnvironmentFiles != null && !newWorkEnvironmentFiles.isEmpty()) {
-            List<String> workEnvImageTitles = parseJsonArray(workEnvImageTitlesJson);
+            // 새로운 이미지는 기존 이미지 개수만큼 인덱스를 건너뛰고 시작
+            int newImagesStartIndex = existingCount;
             for(int i = 0; i < newWorkEnvironmentFiles.size(); i++) {
                 MultipartFile file = newWorkEnvironmentFiles.get(i);
-                String title = workEnvImageTitles.size() > i ? workEnvImageTitles.get(i) : "";
+                // 기존 이미지 수를 건너뛴 인덱스로 제목 가져오기
+                String title = (workEnvImageTitles.size() > (newImagesStartIndex + i)) ? workEnvImageTitles.get(newImagesStartIndex + i) : "";
+
                 if(!file.isEmpty()) {
                     String imageUrl = saveFile(file, "work_env_images");
                     WorkEnvironmentImage newImage = new WorkEnvironmentImage();
@@ -150,7 +172,6 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
     }
 
     private String saveFile(MultipartFile file, String folderName) throws IOException {
-        // 업로드 디렉토리의 경로 설정
         String uploadDir = servletContext.getRealPath("/resources/uploads/" + folderName + "/");
         File dir = new File(uploadDir);
         if (!dir.exists()) {
@@ -174,7 +195,6 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
             throw new IOException("파일 저장 중 오류 발생");
         }
 
-        // 반환되는 URL 설정
         return "/resources/uploads/" + folderName + "/" + fileName;
     }
 
