@@ -85,6 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 이미지 제목 입력란에서 엔터키 막기 (form submit 방지)
+    document.querySelectorAll('.photo-title').forEach(input => {
+        input.addEventListener('keydown', function(e) {
+            if(e.key === 'Enter') {
+                e.preventDefault(); // 폼 제출 막기
+            }
+        });
+    });
+
     // 등록 버튼 클릭 핸들러
     const registerButton = document.querySelector('.register-btn');
     registerButton.addEventListener('click', () => {
@@ -104,34 +113,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 근무 환경 이미지 제목 수집
         const workEnvImageTitles = [];
-        const imageItems = document.querySelectorAll('.image-item');
-        imageItems.forEach(item => {
+        const allImageItems = document.querySelectorAll('.image-item');
+        allImageItems.forEach(item => {
             const titleInput = item.querySelector('.photo-title');
             const fileInput = item.querySelector('.hidden-file-input');
-            const img = item.querySelector('.add-icon');
-            const isExistingImage = item.querySelector('input[name="existingImageIds"]') !== null;
+            const existingImageIdInput = item.querySelector('input[name="existingImageIds"]');
 
-            // 기존 이미지 또는 새로운 이미지 여부 확인
-            if (fileInput.files.length > 0 || (!fileInput.files.length && isExistingImage && img.src !== window.contextPath + "/img/add-image.png")) {
+            // 기존 이미지가 있거나 새로 업로드한 이미지가 있으면 제목 반영
+            if (existingImageIdInput !== null || fileInput.files.length > 0) {
                 const title = titleInput.value.trim();
                 workEnvImageTitles.push(title);
             }
         });
         formData.append('workEnvImageTitles', JSON.stringify(workEnvImageTitles));
 
-        // 기존 이미지 IDs 수집 및 개별 파라미터로 추가
+        // 기존 이미지 IDs 수집
         const existingImageIdInputs = document.querySelectorAll('input[name="existingImageIds"]');
         existingImageIdInputs.forEach(input => {
             formData.append('existingImageIds', input.value);
         });
 
-        // 삭제할 이미지 IDs 수집 및 개별 파라미터로 추가
+        // 삭제할 이미지 IDs 수집
         const deleteImageIdInputs = document.querySelectorAll('input[name="deleteImageIds"]:checked');
         deleteImageIdInputs.forEach(input => {
             formData.append('deleteImageIds', input.value);
         });
 
-        // 디버깅을 위한 로그 출력
+        // 디버깅 로그
         console.log("Context Path:", window.contextPath);
         const url = window.contextPath + "/business/register";
         console.log("AJAX URL:", url);
@@ -152,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             throw new Error('네트워크 응답이 정상적이지 않습니다.');
         })
         .then(data => {
-            // 보기 페이지로 리다이렉트
+            // 응답으로 받은 URL로 리다이렉트하여 수정 사항 바로 반영
             window.location.href = data;
         })
         .catch(error => {
