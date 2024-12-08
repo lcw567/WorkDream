@@ -49,7 +49,7 @@ checkboxes.forEach(checkbox => {
 function bookmark(event, applicantNo) {
     const btnStar = event.currentTarget;
     const img = btnStar.querySelector("img");
- 
+
     if (!btnStar.classList.contains("On")) {
         btnStar.classList.add("On");
         img.src = "../img/btn_star_on.png";

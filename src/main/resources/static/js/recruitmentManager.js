@@ -1,8 +1,6 @@
 /* recruitmentManager.jsp */
 const statusLinks = document.querySelectorAll(".status-link a");
 const btnRegister = document.getElementById("Registration_Button");
-const dropdownButtons = document.querySelectorAll(".dropdown-Button");
-const dropdownMenus = document.querySelectorAll(".dropdown-menu");
 let recruitmentList = [];
 
 // 리스트 출력
@@ -35,10 +33,10 @@ function displayRecruitmentList(list) {
                     + '<img src="' + contextPath + '/img/kebab.png">'
                     + '</button>';
             html += '<ul class="dropdown-menu">';
-            html += '<li><a href="#">공고 수정</a></li>'
-                    + '<li><a href="#">공고 삭제</a></li>';
+            html += '<li><a href="">공고 수정</a></li>';
+            html += '<li><a href="" onClick="deleteRecruitment(' + recruitment.recuritmentNo + ')">공고 삭제</a></li>';
             if(recruitment.status == "P" || recruitment.status == "E") {
-                html += '<li><a href="#">지원자 현황</a></li>';
+                html += '<li><a href="' + contextPath + '/business/applicantsStatus?no=' + recruitment.recuritmentNo +'">지원자 현황</a></li>';
             }
             html += '</ul>';
             html += '</div>';
@@ -157,41 +155,70 @@ statusLinks.forEach((link, index) => {
     });
 });
 
-
-dropdownButtons.forEach((button, index) => {
-    const correspondingMenu = dropdownMenus[index]; // 각 버튼에 대응하는 메뉴
-
-    button.addEventListener("click", (event) => {
-        event.stopPropagation();
-
-        // 클릭한 버튼의 메뉴 표시/숨기기
-        correspondingMenu.style.display = correspondingMenu.style.display === "block" ? "none" : "block";
-
-        // 다른 모든 메뉴 닫기
-        dropdownMenus.forEach((menu, menuIndex) => {
-            if (menuIndex !== index) {
-                menu.style.display = "none";
-            }
-        });
-    });
-});
-
 // 채용공고 등록 버튼 클릭 시 공고 작성 페이지로 이동
 try {
     btnRegister.addEventListener("click", () => {
         location.href = contextPath + "/business/recruitmentRegister";
-    })
-} catch {
+    });
+} catch (error) {  // error를 catch 블록에서 정의
     console.log("recruitmentManager btnRegister.addEventListener : " + error);
 }
 
+// 공고 드롭다운 메뉴 펼치기
+$(document).on('click', '.dropdown-Button', function(event) {
+    event.stopPropagation();  // 이벤트 전파 방지
+    var correspondingMenu = $(this).next('.dropdown-menu'); // 각 버튼에 대응하는 메뉴
+
+    // 클릭한 버튼의 메뉴 표시/숨기기
+    correspondingMenu.toggle();
+
+    // 다른 모든 메뉴 닫기
+    $(".dropdown-menu").not(correspondingMenu).hide();
+});
 
 // 드롭다운 메뉴 외부 클릭 시 모든 메뉴 닫기
-document.addEventListener("click", () => {
-    dropdownMenus.forEach(menu => {
-        menu.style.display = "none";
-    });
+$(document).click(function(event) {
+    // 클릭된 대상이 .dropdown-Button 또는 .dropdown-menu 내부에 있지 않으면 모든 메뉴 닫기
+    if (!$(event.target).closest('.dropdown-Button').length && !$(event.target).closest('.dropdown-menu').length) {
+        $(".dropdown-menu").hide();
+    }
 });
+
+
+// 공고 삭제 버튼
+function ajaxDeleteRecruitment(no) {
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: contextPath + '/business/deleteRecruitment.biz?no=' + no,
+            type: 'GET',
+            dataType: 'json',
+            success: function(result) {
+                resolve(result); // 요청 성공 시 Promise resolve
+            },
+            error: function(error) {
+                reject(error); // 요청 실패 시 Promise reject
+            }
+        });
+    });
+}
+
+async function deleteRecruitment(no) {
+    var result = confirm("삭제하시겠습니까? 삭제 후에는 복구할 수 없습니다.");
+    if(result) {
+        try {
+            const response = await ajaxDeleteRecruitment(no); // 비동기적으로 AJAX 결과 기다리기
+            if(response > 0) {
+                alert("삭제되었습니다.");
+            } else {
+                alert("삭제에 실패했습니다. 다시 시도해주세요.");
+            }
+        } catch(error) {
+            alert("오류가 발생하였습니다. 다시 시도해주세요.");
+            console.log(error);
+        }
+    }
+}
+
 
 // 초기 설정
 document.addEventListener("DOMContentLoaded", function() {

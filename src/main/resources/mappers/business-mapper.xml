@@ -131,6 +131,12 @@
 		   AND	STATUS = 'E'
 	</select>
 	
+	<!-- 공고 삭제 -->
+	<delete id="deleteRecruitment" parameterType="int">
+		DELETE	FROM JOB_RECRUITMENT
+		 WHERE	RECRUITMENT_NO = #{recuritmentNo}
+	</delete>
+	
 	
 	<!-- [지원자 현황&목록] ================================================================================================== -->
 	
