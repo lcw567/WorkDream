@@ -33,75 +33,8 @@
 			
 			<!-- 공고 목록 영역 -->
 			<article id="Registration_containers">
-				<%-- 아래 요소 반복 --%>
-				<div class="Registration_First_Container">
-					<div id="Registration_sava_bar">
-						<h5>임시저장</h5>
-						<div class="dropdown-container">
-							<button class="dropdown-Button">
-								<img src="${pageContext.request.contextPath}/img/kebab.png">
-							</button>
-							
-							<ul class="dropdown-menu">
-								<li><a href="#">공고 수정</a></li>
-								<li><a href="#">공고 삭제</a></li>
-								<li><a href="#">지원자 현황</a></li>
-							</ul>
-						</div>
-					</div>
-	
-					<a id="Recruitment_Status_title" href="#">제목이 입력되지 않았습니다.</a>
-					<div id="Recruitment_Status_Calender">
-						<img src="${pageContext.request.contextPath}/img/calendar-blank.png">
-						<h6>게시기간 입력 되지 않음</h6>
-					</div>
-				</div>
-				
-				<div class="Registration_First_Container">
-					<div id="Registration_sava_bar">
-						<h5>임시저장</h5>
-						<div class="dropdown-container">
-							<button class="dropdown-Button">
-								<img src="${pageContext.request.contextPath}/img/kebab.png">
-							</button>
-							
-							<ul class="dropdown-menu">
-								<li><a href="#">공고 수정</a></li>
-								<li><a href="#">공고 삭제</a></li>
-								<li><a href="#">지원자 현황</a></li>
-							</ul>
-						</div>
-					</div>
-	
-					<a id="Recruitment_Status_title" href="#">제목이 입력되지 않았습니다.</a>
-					<div id="Recruitment_Status_Calender">
-						<img src="${pageContext.request.contextPath}/img/calendar-blank.png">
-						<h6>게시기간 입력 되지 않음</h6>
-					</div>
-				</div>
-				
-				<div class="Registration_First_Container">
-					<div id="Registration_sava_bar">
-						<h5>임시저장</h5>
-						<div class="dropdown-container">
-							<button class="dropdown-Button">
-								<img src="${pageContext.request.contextPath}/img/kebab.png">
-							</button>
-							
-							<ul class="dropdown-menu">
-								<li><a href="#">공고 수정</a></li>
-								<li><a href="#">공고 삭제</a></li>
-								<li><a href="#">지원자 현황</a></li>
-							</ul>
-						</div>
-					</div>
-	
-					<a id="Recruitment_Status_title" href="#">제목이 입력되지 않았습니다.</a>
-					<div id="Recruitment_Status_Calender">
-						<img src="${pageContext.request.contextPath}/img/calendar-blank.png">
-						<h6>게시기간 입력 되지 않음</h6>
-					</div>
-				</div>
+			
+				<%-- js를 통해 작성 --%>
 
 			</article>
 		</section>
