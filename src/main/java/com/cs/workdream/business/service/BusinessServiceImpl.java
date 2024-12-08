@@ -22,8 +22,8 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	/*=====================================================================================================*/
 	
-	// 현재 공고 현황 조회
 	
+	// 현재 공고 현황 조회
 	public Map<String, Integer> selectRecuritmentStatus(int businessNo) {
 		return businessDao.selectRecuritmentStatus(businessNo);
 	}
@@ -50,6 +50,12 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public List<Recuritment> selectListEndRecuritment(int businessNo) {
 		return businessDao.selectListEndRecuritment(businessNo);
+	}
+	
+	// 공고 삭제
+	@Override
+	public int deleteRecruitment(int recuritmentNo) {
+		return businessDao.deleteRecruitment(recuritmentNo);
 	}
 	
 	// 지원자 현황 조회

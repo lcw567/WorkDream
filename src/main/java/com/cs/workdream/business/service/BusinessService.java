@@ -25,6 +25,9 @@ public interface BusinessService {
 	
 	// 마감된 공고 목록 조회
 	List<Recuritment> selectListEndRecuritment(int businessNo);
+	
+	// 공고 삭제
+	int deleteRecruitment(int recuritmentNo);
 
 	// 지원자 현황 조회
 	ApplicantsStatus inquireAppsStatus(int recruitmentNo);

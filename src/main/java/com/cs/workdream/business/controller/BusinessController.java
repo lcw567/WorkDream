@@ -161,6 +161,19 @@ public class BusinessController {
     		return "business/recruitmentRegister1";
     	}
     }
+    
+    // 공고 수정
+    public int updateRecruitment(@RequestParam("no") int recuritmentNo) {
+    	// 여긴 구상중
+    	return 0;
+    }
+    
+    // 공고 삭제
+    @GetMapping("/deleteRecruitment.biz")
+    @ResponseBody
+    public int deleteRecruitment(@RequestParam("no") int recuritmentNo) {
+    	return businessService.deleteRecruitment(recuritmentNo);
+    }
 	
 	
 	/*=====================================================================================================*/
