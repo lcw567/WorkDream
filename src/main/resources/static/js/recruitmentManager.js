@@ -7,30 +7,59 @@ let recruitmentList = [];
 
 // 리스트 출력
 function displayRecruitmentList(list) {
+    // 기존에 있는 HTML을 초기화
+    var html = '';
+    $('#Registration_containers').empty();
+
     if (list && list.length > 0) {
-        var html = '<ul>';
-        // 진행중 공고 목록을 순차적으로 리스트로 표시
+        // 리스트 목록 생성
         list.forEach(function(recruitment) {
-            html += '<li>' + recruitment.title + ' - ' + recruitment.status + '</li>';
+            html += '<div class="Registration_First_Container">';
+
+            html += '<div id="Registration_sava_bar">';
+
+            html += '<h5>';
+            if(recruitment.status == "T") {
+                html += "임시저장";
+            } else if(recruitment.status == "P") {
+                html += "진행중";
+            } else if(recruitment.status == "S") {
+                html += "대기중";
+            } else {
+                html += "마감";
+            }
+            html += '</h5>';
+
+            html += '<div class="dropdown-container">';
+            html += '<button class="dropdown-Button">'
+                    + '<img src="' + contextPath + '/img/kebab.png">'
+                    + '</button>';
+            html += '<ul class="dropdown-menu">';
+            html += '<li><a href="#">공고 수정</a></li>'
+                    + '<li><a href="#">공고 삭제</a></li>';
+            if(recruitment.status == "P" || recruitment.status == "E") {
+                html += '<li><a href="#">지원자 현황</a></li>';
+            }
+            html += '</ul>';
+            html += '</div>';
+
+            html += '</div>';
+
+            html += '<a id="Recruitment_Status_title" href="#">' + (recruitment.title || '제목없는 공고') + '</a>';
+            html += '<div id="Recruitment_Status_Calender">'
+            + '<img src="' + contextPath + '/img/calendar-blank.png">'
+            + '<h6>' + (recruitment.startDate || '공고시작일 미지정') + ' ~ ' + (recruitment.deadline || '공고마감일 미지정') + '</h6>'
+            + '</div>';
+
+            html += '</div>';
         });
-        html += '</ul>';
-        $('#Registration_containers').html(html);
     } else {
-        $('#Registration_containers').html('진행중 공고가 없습니다.');
+        html += '<h4>해당되는 공고가 없습니다.</h4>';
     }
+
+    // 출력
+    $('#Registration_containers').append(html);
 };
-
-// 초기 설정
-document.addEventListener("DOMContentLoaded", function() {
-	console.log("됨?");
-
-    // 진행중인 공고 목록 불러오기 (ajax 요청)
-    loadProgressList();
-
-    // 탭 초기화 및 진행중 탭 활성화
-    statusLinks.forEach(link => link.classList.remove("active"));
-    statusLinks[0].classList.add("active");
-});
 
 // 진행중인 공고 목록 불러오기
 function loadProgressList() {
@@ -49,10 +78,59 @@ function loadProgressList() {
     });
 }
 
+// 대기중인 공고 목록 불러오기
+function loadStandByList() {
+    $.ajax({
+        url: contextPath + '/business/standByRecuritment.biz',
+        type: 'GET',
+        dataType: 'json',
+        success: function(resultList) {
+            recruitmentList = resultList;
+            displayRecruitmentList(recruitmentList);
+        },
+        error: function(error) {
+            alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
+            console.log(error);
+        }
+    });
+}
 
-// 미수정
-// '진행중', '대기중', '임시저장', '마감' 상태 버튼 클릭 시 지원자 현황 항목 제어
-statusLinks.forEach(link => {
+// 임시저장한 공고 목록 불러오기
+function loadTemporaryList() {
+    $.ajax({
+        url: contextPath + '/business/temporaryRecuritment.biz',
+        type: 'GET',
+        dataType: 'json',
+        success: function(resultList) {
+            recruitmentList = resultList;
+            displayRecruitmentList(recruitmentList);
+        },
+        error: function(error) {
+            alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
+            console.log(error);
+        }
+    });
+}
+
+// 마감된 공고 목록 불러오기
+function loadEndList() {
+    $.ajax({
+        url: contextPath + '/business/endRecuritment.biz',
+        type: 'GET',
+        dataType: 'json',
+        success: function(resultList) {
+            recruitmentList = resultList;
+            displayRecruitmentList(recruitmentList);
+        },
+        error: function(error) {
+            alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
+            console.log(error);
+        }
+    });
+}
+
+// 탭 변경 및 목록 새로 불러오기
+statusLinks.forEach((link, index) => {
     link.addEventListener("click", (event) => {
         event.preventDefault();
 
@@ -62,19 +140,24 @@ statusLinks.forEach(link => {
         // 클릭된 링크에 'active' 클래스 추가
         event.currentTarget.classList.add("active");
 
-        dropdownMenus.forEach(menu => {
-            const supportStatusItem = menu.querySelector("li:last-child"); // 지원자 현황 항목 선택
-
-            // '진행중' 상태일 때만 지원자 현황을 표시
-            if (event.currentTarget.textContent.includes("진행중")) {
-                supportStatusItem.style.display = "block";
-            } else {
-                supportStatusItem.style.display = "none";
-            }
-        });
+        // 탭 인덱스에 따라 목록 변경
+        switch(index) {
+            case 0:
+                loadProgressList();
+                break;
+            case 1:
+                loadStandByList();
+                break;
+            case 2:
+                loadTemporaryList();
+                break;
+            default:
+                loadEndList();
+        }
     });
 });
-    
+
+
 dropdownButtons.forEach((button, index) => {
     const correspondingMenu = dropdownMenus[index]; // 각 버튼에 대응하는 메뉴
 
@@ -102,10 +185,20 @@ try {
     console.log("recruitmentManager btnRegister.addEventListener : " + error);
 }
 
-    
+
 // 드롭다운 메뉴 외부 클릭 시 모든 메뉴 닫기
 document.addEventListener("click", () => {
     dropdownMenus.forEach(menu => {
         menu.style.display = "none";
     });
+});
+
+// 초기 설정
+document.addEventListener("DOMContentLoaded", function() {
+    // 진행중인 공고 목록 불러오기 (ajax 요청)
+    loadProgressList();
+
+    // 탭 초기화 및 진행중 탭 활성화
+    statusLinks.forEach(link => link.classList.remove("active"));
+    statusLinks[0].classList.add("active");
 });

@@ -101,6 +101,7 @@
 		  FROM	JOB_RECRUITMENT
 		 WHERE	BUSINESS_NO = #{businessNo}
 		   AND	STATUS = 'P'
+		 ORDER	BY POSTING_DATE DESC
 	</select>
 	
 	<!-- 대기중인 목록 조회 -->
