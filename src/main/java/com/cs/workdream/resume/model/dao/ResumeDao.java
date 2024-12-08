@@ -16,6 +16,7 @@ import com.cs.workdream.resume.model.vo.Certificate;
 import com.cs.workdream.resume.model.vo.LanguageTest;
 import com.cs.workdream.resume.model.vo.Resume;
 import com.cs.workdream.resume.service.ResumeServiceImpl;
+import com.cs.workdream.selfintro.model.vo.SelfIntro;
 
 @Repository
 public class ResumeDao {
@@ -107,8 +108,16 @@ public class ResumeDao {
         return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByUserNo", userNo);
     }
     
+    public List<SelfIntro> selectSelfIntrosByUserNo(int userNo) {
+        return sqlSession.selectList(NAMESPACE + ".selectSelfintrosByUserNo", userNo);
+    }
+    
     public List<Portfolio> selectPortfoliosByIds(List<Integer> portfolioIds) {
         return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByIds", portfolioIds);
+    }
+    
+    public List<SelfIntro> selectSelfIntrosByIds(List<Integer> selfIntroIds) {
+        return sqlSession.selectList(NAMESPACE + ".selectSelfintrosByIds", selfIntroIds);
     }
     
     // 포트폴리오를 이력서에 연결
@@ -119,6 +128,14 @@ public class ResumeDao {
 
         sqlSession.insert(NAMESPACE + ".insertResumePortfolio", params);
     }
+    
+    public void insertResumeSelfintro(int resumeNo, int selfIntroId) {
+        Map<String, Integer> params = new HashMap<>();
+        params.put("resumeNo", resumeNo);
+        params.put("selfIntroId", selfIntroId);
+
+        sqlSession.insert(NAMESPACE + ".insertResumSelfintro", params);
+    }
 
     // 포트폴리오 업데이트: resume_no 변경
     public void updatePortfolioResumeNo(int portfolioId, int resumeNo) {
@@ -126,6 +143,13 @@ public class ResumeDao {
         params.put("portfolioId", portfolioId);
         params.put("resumeNo", resumeNo);
         sqlSession.update(NAMESPACE + ".updatePortfolioResumeNo", params);
+    }
+    
+    public void updateSelfintroResumeNo(int selfintroNo, int resumeNo) {
+        Map<String, Integer> params = new HashMap<>();
+        params.put("selfintroNo", selfintroNo);
+        params.put("resumeNo", resumeNo);
+        sqlSession.update(NAMESPACE + ".updateSelfintroResumeNo", params);
     }
 
     
@@ -138,5 +162,14 @@ public class ResumeDao {
     public List<Portfolio> selectPortfoliosByResumeNo(int resumeNo) {
         return sqlSession.selectList(NAMESPACE + ".selectPortfoliosByResumeNo", resumeNo);
     }
-
+    
+ // 포트폴리오 목록 조회 by resumeNo
+    public List<SelfIntro> selectSelfintrosByResumeNo(int resumeNo) {
+        return sqlSession.selectList(NAMESPACE + ".selectSelfintrosByResumeNo", resumeNo);
+    }
+    
+    public boolean insertSelfIntro(SelfIntro selfIntro) {
+        int result = sqlSession.insert(NAMESPACE + ".insertSelfIntro", selfIntro);
+        return result > 0;
+    }
 }

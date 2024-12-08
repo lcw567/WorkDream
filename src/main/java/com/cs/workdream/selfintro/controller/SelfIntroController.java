@@ -55,21 +55,30 @@ public class SelfIntroController {
 	        if (loginUser == null) {
 	            return "redirect:/login?error=sessionExpired";
 	        }
-
-	        Integer personNo = loginUser.getPersonNo();
-	        if (personNo == null) {
-	            logger.error("PersonNo is null for userId: {}", loginUser.getUserId());
-	            return "redirect:/errorPage?error=noPersonNo"; 
+	        
+	        Integer userNo = loginUser.getUserNo(); 
+	        Integer personNo = loginUser.getPersonNo(); 
+	        Integer resumeNo = (Integer) session.getAttribute("resumeNo");
+	        
+	        // resumeNo 확인
+	        if (resumeNo == null) {
+	            logger.error("resumeNo is null. Please ensure it is set in the session before calling insertSelfIntro.");
+	            return "redirect:/errorPage?error=noResumeNo";
 	        }
-
+	        
 	        SelfIntro selfIntro = new SelfIntro();
 	        selfIntro.setUserId(loginUser.getUserId());
-	        selfIntro.setResumeNo((Integer) session.getAttribute("resumeNo"));
+	        selfIntro.setResumeNo(resumeNo);
 	        selfIntro.setIntroTitle(introTitle);
 	        selfIntro.setIntroContent(introContent);
 	        selfIntro.setDeleted("N");
 	        selfIntro.setPersonNo(personNo); 
+	        selfIntro.setUserNo(userNo);
 
+	        
+	        logger.info("Inserting SelfIntro: resumeNo={}, userNo={}, personNo={}, userId={}", 
+	        	    resumeNo, userNo, personNo, loginUser.getUserId());
+	        
 	        try {
 	            int result = selfIntroService.insertSelfIntro(selfIntro);
 	            if (result > 0) {

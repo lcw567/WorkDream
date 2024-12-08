@@ -45,6 +45,7 @@ import com.cs.workdream.resume.model.vo.Certificate;
 import com.cs.workdream.resume.model.vo.LanguageTest;
 import com.cs.workdream.resume.model.vo.Resume;
 import com.cs.workdream.resume.service.ResumeService;
+import com.cs.workdream.selfintro.model.vo.SelfIntro;
 
 @Controller
 @RequestMapping("/resume")
@@ -105,6 +106,9 @@ public class ResumeController {
                                @RequestParam("organizer[]") String[] organizers,
                                @RequestParam("awardDate[]") String[] awardDates,
                                @RequestParam(value = "resumePortfolios[]", required = false) List<Integer> resumePortfolios,
+                               @RequestParam(value = "resumeSelfintro[]", required = false) List<Integer> resumeSelfintros,
+                               @RequestParam(value = "selfintroTitle[]", required = false) String[] selfintroTitles,
+                               @RequestParam(value = "selfintroContent[]", required = false) String[] selfintroContents,
                                HttpSession session, 
                                HttpServletRequest request,
                                RedirectAttributes redirectAttributes) {
@@ -122,6 +126,25 @@ public class ResumeController {
             resume.setResumeStatus("N");
         }
         logger.debug("Resume Status: {}", resume.getResumeStatus());
+        
+     // 자기소개서 리스트 생성
+        List<SelfIntro> selfIntros = new ArrayList<>();
+        if (selfintroTitles != null && selfintroContents != null) {
+            int minLength = Math.min(selfintroTitles.length, selfintroContents.length);
+            for (int i = 0; i < minLength; i++) {
+                if (selfintroTitles[i] != null && !selfintroTitles[i].isEmpty()) {
+                    SelfIntro selfIntro = new SelfIntro();
+                    selfIntro.setUserNo(loginUser.getUserNo());
+                    selfIntro.setUserId(loginUser.getUserId());
+                    selfIntro.setIntroTitle(selfintroTitles[i]);
+                    selfIntro.setIntroContent(selfintroContents[i]);
+                    // personNo가 필요 없다면 setPersonNo 생략 또는 주석 처리
+                    // selfIntro.setPersonNo(loginUser.getPersonNo());
+                    selfIntros.add(selfIntro);
+                }
+            }
+        }
+        resume.setSelfintro(selfIntros);
 
         // 군복무 상태 처리
         switch (resume.getServiceStatus()) {
@@ -406,6 +429,65 @@ public class ResumeController {
         return ResponseEntity.ok(portfolios);
     }
 
+    /**
+     * 자기소개서 목록 가져오기
+     */
+    @GetMapping("/getSelfIntros")
+    @ResponseBody
+    public List<SelfIntro> getSelfIntros(HttpSession session) {
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            throw new RuntimeException("로그인이 필요합니다.");
+        }
+
+        int userNo = loginUser.getUserNo(); // Member 클래스에 getUserNo() 메서드가 있어야 합니다.
+        return resumeService.getSelfIntrosByUserNo(userNo);
+    }
+
+    /**
+     * 자기소개서와 이력서 연관짓기
+     */
+    @PostMapping("/saveSelfIntro")
+    @ResponseBody
+    public ResponseEntity<?> saveSelfIntro(@RequestBody Map<String, Integer> data) {
+        int resumeNo = data.get("resumeNo");
+        int selfintroNo = data.get("selfintroNo");
+        
+        logger.info("Received resumeId: {}, selfIntroId: {}", resumeNo, selfintroNo);
+        
+        try {
+            // SelfIntro와 Resume 연관 관계 설정 (resumeNo 업데이트)
+        	resumeService.associateSelfIntroWithResume(resumeNo, Arrays.asList(selfintroNo));
+     
+            // 성공 응답
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            // 실패 응답
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            response.put("error", "SelfIntro와 Resume 연관짓기에 실패했습니다.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    /**
+     * 이력서 번호로 자기소개서 목록 가져오기
+     */
+    @GetMapping("/getSelfIntrosByResumeNo")
+    public ResponseEntity<?> getSelfIntrosByResumeNo(@RequestParam("resumeNo") int resumeNo, HttpSession session) {
+        Object user = session.getAttribute("loginUser"); // 세션에 저장된 사용자 정보 확인
+        if (user == null) {
+            // logger.warn("인증되지 않은 사용자가 /resume/getSelfIntrosByResumeNo에 접근 시도");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                                 .body("로그인이 필요합니다.");
+        }
+
+        List<SelfIntro> selfIntros = resumeService.getSelfIntrosByResumeNo(resumeNo);
+        // logger.info("사용자 {}의 자기소개서 목록을 반환합니다.", user.toString());
+        return ResponseEntity.ok(selfIntros);
+    }
 
 
 	@GetMapping("/enrollresume")
