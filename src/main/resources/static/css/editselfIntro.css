@@ -156,3 +156,22 @@ label {
 .help-btn:hover .tooltip {
     visibility: visible;
 }
+
+.portfolio-item{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+}
+
+.portfolio-item label{
+    padding-left: 10px;
+    font-size: 1rem;
+}
+
+.selected-portfolio{
+    font-size: 1rem;
+}
+
+.selected_port{
+    padding-top: 15px;
+}

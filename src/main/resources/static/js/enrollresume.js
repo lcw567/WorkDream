@@ -591,23 +591,32 @@ document.getElementById('resumeY').addEventListener('change', function() {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    // 포트폴리오 관련 요소
     const selectPortButton = document.querySelector(".select_port");
-    const modal = document.getElementById("modal");
-    const closeButtons = document.querySelectorAll(".close");
+    const modalPort = document.getElementById("modal");
+    const closeButtonsPort = modalPort ? modalPort.querySelectorAll(".close") : [];
     const portfolioListDiv = document.getElementById("portfolio-list");
     const selectedPortDiv = document.querySelector(".selected_port");
     
+    // 자기소개서 관련 요소
+    const selectSelfButton = document.querySelector(".Selfintro .select_self"); // "불러오기" 버튼
+    const modalSelfIntro = document.getElementById("modal_selfintro"); // 모달 요소
+    const closeButtonsSelfIntro = modalSelfIntro ? modalSelfIntro.querySelectorAll(".close1") : [];
+    const selfIntroListDiv = document.getElementById("selfintro-list"); // 자기소개서 목록을 표시할 영역
+    const selectedSelfDiv = document.querySelector(".selected_self"); // 선택된 자기소개서를 표시할 div
+
     // 디버깅용 로그: contextPath 확인
     console.log('Context Path:', contextPath);
-    
-    selectPortButton.addEventListener("click", function () {
-        // 이력서 ID를 가져옵니다. (현재 페이지에서 이력서 ID를 관리하고 있다고 가정)
-        // 필요 시 이력서 ID를 fetch URL에 포함하거나, 서버에서 세션 등을 통해 관리할 수 있습니다.
-    
-        fetch(`${contextPath}/resume/getPortfolios`, {
-            method: 'GET',
-            credentials: 'same-origin' // 쿠키 포함
-        })
+
+    // **포트폴리오 "불러오기" 버튼 클릭 시 모달 열기 및 데이터 가져오기**
+    if (selectPortButton && modalPort && portfolioListDiv && selectedPortDiv) {
+        selectPortButton.addEventListener("click", function () {
+            console.log("포트폴리오 '불러오기' 버튼 클릭됨.");
+            // 서버에서 포트폴리오 데이터 가져오기
+            fetch(`${contextPath}/resume/getPortfolios`, {
+                method: 'GET',
+                credentials: 'same-origin' // 쿠키 포함
+            })
             .then(response => {
                 if (!response.ok) {
                     throw new Error("네트워크 응답에 문제가 있습니다.");
@@ -615,6 +624,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(portfolios => {
+                console.log("포트폴리오 데이터:", portfolios);
                 portfolioListDiv.innerHTML = ""; // 기존 내용을 초기화
     
                 if (portfolios.length === 0) {
@@ -661,60 +671,197 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
     
                 // 모달 표시
-                modal.style.display = "flex";
+                modalPort.style.display = "flex";
             })
             .catch(error => {
                 console.error("포트폴리오 데이터를 가져오는 중 오류 발생:", error);
                 alert("포트폴리오 데이터를 불러오는 중 문제가 발생했습니다.");
             });
-    });
-
-    // 닫기 버튼 이벤트
-    closeButtons.forEach(closeBtn => {
-        closeBtn.addEventListener("click", function () {
-            modal.style.display = "none";
         });
-    });
+    } else {
+        console.error("포트폴리오 관련 요소들이 올바르게 선택되지 않았습니다.");
+    }
 
-    // 모달 외부 클릭 시 닫기
+    // **자기소개서 "불러오기" 버튼 클릭 시 모달 열기 및 데이터 가져오기**
+    if (selectSelfButton && modalSelfIntro && selfIntroListDiv && selectedSelfDiv) {
+        selectSelfButton.addEventListener("click", function () {
+            console.log("자기소개서 '불러오기' 버튼 클릭됨.");
+            // 서버에서 자기소개서 데이터 가져오기
+            fetch(`${contextPath}/resume/getSelfIntros`, {
+                method: 'GET',
+                credentials: 'same-origin' // 쿠키 포함
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("네트워크 응답에 문제가 있습니다.");
+                }
+                return response.json();
+            })
+            .then(selfIntros => {
+                console.log("자기소개서 데이터:", selfIntros);
+                selfIntroListDiv.innerHTML = ""; // 기존 내용을 초기화
+
+                if (selfIntros.length === 0) {
+                    selfIntroListDiv.innerHTML = "<p>등록된 자기소개서가 없습니다.</p>";
+                } else {
+                    selfIntros.forEach(selfIntro => { // 변수명 소문자 사용
+                        console.log(`SelfIntro No: ${selfIntro.selfintroNo}, Title: ${selfIntro.introTitle}`);
+                        const selfIntroItem = document.createElement("div");
+                        selfIntroItem.classList.add("selfintro-item");
+
+                        // 체크박스와 레이블 생성
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = "selectedSelfintros";
+                        checkbox.value = selfIntro.selfintroNo;
+                        checkbox.id = `selfintro-${selfIntro.selfintroNo}`;
+
+                        const label = document.createElement("label");
+                        label.htmlFor = `selfintro-${selfIntro.selfintroNo}`;
+                        label.textContent = selfIntro.introTitle;
+
+                        selfIntroItem.appendChild(checkbox);
+                        selfIntroItem.appendChild(label);
+
+                        // 체크박스 상태 변경 시 처리
+                        checkbox.addEventListener('change', function() {
+                            if (this.checked) {
+                                // 선택된 자기소개서 제목을 'selected_self' div에 추가
+                                const selectedItem = document.createElement("span");
+                                selectedItem.id = `selected-${selfIntro.selfintroNo}`;
+                                selectedItem.textContent = selfIntro.introTitle;
+                                selectedItem.classList.add("selected-selfintro");
+                                selectedSelfDiv.appendChild(selectedItem);
+                            } else {
+                                // 선택 해제 시 'selected_self' div에서 해당 제목 제거
+                                const selectedItem = document.getElementById(`selected-${selfIntro.selfintroNo}`);
+                                if (selectedItem) {
+                                    selectedSelfDiv.removeChild(selectedItem);
+                                }
+                            }
+                        });
+
+                        selfIntroListDiv.appendChild(selfIntroItem);
+                    });
+                }
+
+                // 모달 표시
+                modalSelfIntro.style.display = "flex";
+            })
+            .catch(error => {
+                console.error("자소서 데이터를 가져오는 중 오류 발생:", error);
+                alert("자소서 데이터를 불러오는 중 문제가 발생했습니다.");
+            });
+        });
+    } else {
+        console.error("자기소개서 관련 요소들이 올바르게 선택되지 않았습니다.");
+    }
+
+    // **모든 포트폴리오 모달 닫기 버튼에 이벤트 리스너 추가**
+    if (closeButtonsPort.length > 0 && modalPort) {
+        closeButtonsPort.forEach(closeBtn => {
+            closeBtn.addEventListener("click", function () {
+                modalPort.style.display = "none";
+            });
+        });
+    }
+
+    // **모든 자기소개서 모달 닫기 버튼에 이벤트 리스너 추가**
+    if (closeButtonsSelfIntro.length > 0 && modalSelfIntro) {
+        closeButtonsSelfIntro.forEach(closeBtn => {
+            closeBtn.addEventListener("click", function () {
+                modalSelfIntro.style.display = "none";
+            });
+        });
+    }
+
+    // **모달 외부 클릭 시 닫기 (포트폴리오 및 자기소개서 모달)**
     window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
+        if (event.target === modalPort) {
+            modalPort.style.display = "none";
+        }
+        if (event.target === modalSelfIntro) {
+            modalSelfIntro.style.display = "none";
         }
     });
 
-    // 선택된 포트폴리오 제목을 클릭하면 체크박스 해제 및 제목 제거
-    selectedPortDiv.addEventListener('click', function(event) {
-        if (event.target.classList.contains('selected-portfolio')) {
-            const portfolioId = event.target.id.replace('selected-', '');
-            const checkbox = document.getElementById(`portfolio-${portfolioId}`);
-            if (checkbox) {
-                checkbox.checked = false;
+    // **선택된 포트폴리오 제목을 클릭하면 체크박스 해제 및 제목 제거**
+    if (selectedPortDiv) {
+        selectedPortDiv.addEventListener('click', function(event) {
+            if (event.target.classList.contains('selected-portfolio')) {
+                const portfolioId = event.target.id.replace('selected-', '');
+                const checkbox = document.getElementById(`portfolio-${portfolioId}`);
+                if (checkbox) {
+                    checkbox.checked = false;
+                }
+                event.target.remove();
             }
-            event.target.remove();
-        }
-    });
-
-    // 폼 제출 시 선택된 포트폴리오 ID를 hidden input으로 추가
-    const form = document.querySelector("form");
-    form.addEventListener("submit", function (event) {
-        // 기존 hidden inputs 제거
-        const existingInputs = document.querySelectorAll("input[name='resumePortfolios[]']");
-        existingInputs.forEach(input => input.remove());
-
-        // 선택된 포트폴리오 ID 가져오기
-        const selectedCheckboxes = document.querySelectorAll("input[name='selectedPortfolios']:checked");
-        const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.value));
-
-        // hidden inputs 생성
-        selectedIds.forEach(id => {
-            const hiddenInput = document.createElement("input");
-            hiddenInput.type = "hidden";
-            hiddenInput.name = "resumePortfolios[]";
-            hiddenInput.value = id;
-            form.appendChild(hiddenInput);
         });
-    });    
+    }
+
+    // **선택된 자기소개서 제목을 클릭하면 체크박스 해제 및 제목 제거**
+    if (selectedSelfDiv) {
+        selectedSelfDiv.addEventListener('click', function(event) {
+            if (event.target.classList.contains('selected-selfintro')) { // 클래스명 변경
+                const selfIntroId = event.target.id.replace('selected-', '');
+                const checkbox = document.getElementById(`selfintro-${selfIntroId}`);
+                if (checkbox) {
+                    checkbox.checked = false;
+                }
+                event.target.remove();
+            }
+        });
+    }
+
+    // **포트폴리오 폼 제출 시 선택된 포트폴리오 ID를 hidden input으로 추가**
+    if (selectPortButton) { // Ensure form exists
+        const formPort = document.querySelector("form");
+        if (formPort) {
+            formPort.addEventListener("submit", function (event) {
+                // 기존 hidden inputs 제거
+                const existingInputs = document.querySelectorAll("input[name='resumePortfolios[]']");
+                existingInputs.forEach(input => input.remove());
+    
+                // 선택된 포트폴리오 ID 가져오기
+                const selectedCheckboxes = document.querySelectorAll("input[name='selectedPortfolios']:checked");
+                const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.value));
+    
+                // hidden inputs 생성
+                selectedIds.forEach(id => {
+                    const hiddenInput = document.createElement("input");
+                    hiddenInput.type = "hidden";
+                    hiddenInput.name = "resumePortfolios[]";
+                    hiddenInput.value = id;
+                    formPort.appendChild(hiddenInput);
+                });
+            });
+        } else {
+            console.error("포트폴리오 폼 요소가 존재하지 않습니다.");
+        }
+    }
+
+    // **자기소개서 폼 제출 시 선택된 자기소개서 ID를 hidden input으로 추가**
+    const formSelf = document.querySelector("form");
+    if (formSelf) {
+        formSelf.addEventListener("submit", function (event) {
+            // 기존 hidden inputs 제거
+            const existingInputs = document.querySelectorAll("input[name='resumeSelfintro[]']");
+            existingInputs.forEach(input => input.remove());
+
+            // 선택된 자기소개서 ID 가져오기
+            const selectedCheckboxes = document.querySelectorAll("input[name='selectedSelfintros']:checked"); // 일치시키기
+            const selectedIds = Array.from(selectedCheckboxes).map(cb => parseInt(cb.value));
+
+            // hidden inputs 생성
+            selectedIds.forEach(id => {
+                const hiddenInput = document.createElement("input");
+                hiddenInput.type = "hidden";
+                hiddenInput.name = "resumeSelfintro[]";
+                hiddenInput.value = id;
+                formSelf.appendChild(hiddenInput);
+            });
+        });
+    } else {
+        console.error("자기소개서 폼 요소가 존재하지 않습니다.");
+    }
 });
-
-

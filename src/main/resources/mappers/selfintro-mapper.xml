@@ -30,7 +30,8 @@
         CREATED_DATE,
         MODIFIED_DATE,
         DELETED,
-        PERSON_NO
+        PERSON_NO,
+        USER_NO
     ) VALUES (
         #{selfintroNo},    
         #{resumeNo},       
@@ -40,7 +41,8 @@
         SYSDATE,          
         NULL,             
         #{deleted},       
-        #{personNo}       
+        #{personNo},
+        #{userNo}  
     )
 </insert>
 
@@ -55,7 +57,8 @@
 	        CREATED_DATE AS createDate,
 	        MODIFIED_DATE AS modifiedDate,
 	        DELETED AS deleted,
-	        PERSON_NO AS personNo
+	        PERSON_NO AS personNo,
+	        USER_NO AS userNo
 	    FROM SELF_INTRODUCTION
 	    WHERE USER_ID = #{userId}
 	      AND DELETED = 'N'
@@ -74,7 +77,8 @@
 	        CREATED_DATE AS createDate,
 	        MODIFIED_DATE AS modifiedDate,
 	        DELETED AS deleted,
-	        PERSON_NO AS personNo
+	        PERSON_NO AS personNo,
+	        USER_NO AS userNo
 	    FROM SELF_INTRODUCTION
 	    WHERE SELF_INTRODUCTION_NO = #{value}
 	      AND DELETED = 'N'

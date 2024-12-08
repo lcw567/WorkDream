@@ -37,7 +37,7 @@
 
 .pre_inner2,.pre_inner3,
 .pre_inner4,.pre_inner5,.pre_inner6,
-.pre_inner7,.pre_inner8,.pre_inner9{
+.pre_inner7,.pre_inner8,.pre_inner9, .pre_inner10{
     margin-bottom: 50px;
     border-top: 2px solid #4e21a8;
     margin-left: 50px;
@@ -257,4 +257,21 @@
     width: 490px;
     position: relative;
     bottom: 125px;
+}
+
+.pre_inner10-1 ul li a{
+    font-size: 1.1rem;
+}
+
+.pre_inner10-1 ul li strong{
+    font-size: 1.1rem;
+}
+
+.pre_inner10-1 ul li {
+    display: flex;
+    gap: 60px;
+}
+
+.port_info{
+    font-size: 0.8rem;
 }
