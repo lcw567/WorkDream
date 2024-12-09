@@ -105,8 +105,8 @@
 }
 
 #Rank {
-    width: 35%;
-    height: 40px;
+    width: 250px;
+    height: 32px;
     padding-left: 13px;
 }
 
@@ -117,8 +117,10 @@
 }
 
 #Position {
-    border-radius: 5px;
-    border: 1px solid black;
+    width: 250px;
+    height: 32px;
+    padding-left: 13px;
+    margin-left: 13px;
 }
 
 #Position::placeholder {
@@ -238,8 +240,8 @@ input[type="text"], input[type="time"] {
     border: 1px solid black;
     padding: 5px;
     font-size: 1rem;
-    width: 130px;
-    height: 50px;
+    width: 120px;
+    height: 40px;
 }
 
 /* 특정 label의 스타일 초기화 */
@@ -263,7 +265,7 @@ input[type="text"], input[type="time"] {
 #Wark_Time {
     border: none;
     display: flex;
-    width: 310px;
+    width: 330px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
@@ -446,7 +448,7 @@ input[type="text"], input[type="time"] {
     font-weight: bold;
     cursor: pointer;
     position: absolute;
-    top: 5px;
+    top: 9px;
     right: 15px;
 }
 
@@ -660,10 +662,6 @@ input[type="text"], input[type="time"] {
 	color: #7A35B9;
 	font-size: 1.2rem;
 	padding-left: 20px;
-}
-
-#Job_Announcement_Information hr {
-	height: 2px;
 }
 
 #preview_and_TemporarySave {
@@ -960,7 +958,7 @@ input::placeholder {
 #Announcement_Post_Time {
 	display: flex;
 	border: none;
-	width: 380px;
+	width: 430px;
 	justify-content: space-between;
 	margin-bottom: 50px;
 }
@@ -973,7 +971,7 @@ input::placeholder {
 #Post_First_Time {
 	border-radius: 5px;
 	border: 1px solid black;
-	width: 170px;
+	width: 180px;
 	height: 45px;
 	padding: 0 10px;
 }
@@ -981,7 +979,7 @@ input::placeholder {
 #Post_End_Time {
 	border-radius: 5px;
 	border: 1px solid black;
-	width: 170px;
+	width: 180px;
 	height: 45px;
 	padding: 0 10px;
 }
@@ -989,7 +987,7 @@ input::placeholder {
 #Applicant_Recruitment_Period {
 	display: flex;
 	border: none;
-	width: 380px;
+	width: 430px;
 	justify-content: space-between;
 	margin-bottom: 70px;
 }
@@ -1002,7 +1000,7 @@ input::placeholder {
 #Recruitment_First_Time {
 	border-radius: 5px;
 	border: 1px solid black;
-	width: 170px;
+	width: 180px;
 	height: 45px;
 	padding: 0 10px;
 }
@@ -1010,7 +1008,7 @@ input::placeholder {
 #Recruitment_End_Time {
 	border-radius: 5px;
 	border: 1px solid black;
-	width: 170px;
+	width: 180px;
 	height: 45px;
 	padding: 0 10px;
 }

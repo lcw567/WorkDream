@@ -16,7 +16,7 @@
 		
 	<!-- css / js -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/recruitmentRegister2.css">
-	<script src="${pageContext.request.contextPath}/js/announcementInformation2.js" defer></script>
+	<script src="${pageContext.request.contextPath}/js/recruitmentRegister2.js" defer></script>
 </head>
 		<body onload="init('${pageContext.request.contextPath}')">
 			<div class="nomodal">
@@ -73,7 +73,7 @@
 							</b>
 						</div>
 
-						<input id="Announcement_Title" type="text" onkeyup="checkTextLength(event); changeValue('title', this.value)" placeholder="공고 제목을 입력해주세요." name="title">
+						<input id="Announcement_Title" type="text" onkeyup="checkTextLength(event); changeFormValue('title', this.value)" placeholder="공고 제목을 입력해주세요." name="title">
 						<div style="display: flex;">
 							<p style="font-weight: 900; margin-top: 3px; margin-bottom: 1px;">* 25자 이내의 글자 수를 입력해주세요.</p>
 						</div>
@@ -123,46 +123,46 @@
 							<h2>공고 소개</h2>
 						</div>
             
-						<textarea class="Text_Container" placeholder="회사나 제품 / 서비스 또는 공고에 대한 소개를 작성해주세요." name="introduction" onkeyup="changeValue('introduction', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="회사나 제품 / 서비스 또는 공고에 대한 소개를 작성해주세요." name="introduction" onkeyup="changeFormValue('introduction', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>주요 업무</h2>
 						</div>
 
-						<textarea class="Text_Container" placeholder="해당 포지션에서 어떤 업무를 하는지 작성해주세요." name="major" onkeyup="changeValue('major', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="해당 포지션에서 어떤 업무를 하는지 작성해주세요." name="major" onkeyup="changeFormValue('major', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>자격 요건</h2>
 						</div>
 
-						<textarea class="Text_Container" placeholder="업무상 꼭 필요한 필수 요건을 작성해 주세요." name="qualification" onkeyup="changeValue('qualification', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="업무상 꼭 필요한 필수 요건을 작성해 주세요." name="qualification" onkeyup="changeFormValue('qualification', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>우대 사항</h2>
 						</div>
 
-						<textarea class="Text_Container" placeholder="우대하는 요건을 작성해 주세요." name="Preferential" onkeyup="changeValue('preferential', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="우대하는 요건을 작성해 주세요." name="Preferential" onkeyup="changeFormValue('preferential', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>채용 절차</h2>
 						</div>
 
-						<textarea class="Text_Container" placeholder="서류 전형, 면접 등 채용 절차를 작성해 주세요." name="recruitment" onkeyup="changeValue('recruitment', this.value)"></textarea>
+						<textarea class="Text_Container" placeholder="서류 전형, 면접 등 채용 절차를 작성해 주세요." name="recruitment" onkeyup="changeFormValue('recruitment', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2>기타 안내</h2>
 						</div>
             
-						<textarea class="Text_Container" style="margin-bottom: 50px;" placeholder="복지 및 해택 등 알리고 싶은 기타 정보를 작성합니다." name="other" onkeyup="changeValue('other', this.value)"></textarea>
+						<textarea class="Text_Container" style="margin-bottom: 50px;" placeholder="복지 및 해택 등 알리고 싶은 기타 정보를 작성합니다." name="other" onkeyup="changeFormValue('other', this.value)"></textarea>
 
 						<div class="Contact_Announcement_Information_Title">
 							<h2 style="margin-bottom: 20px;">공고 게시 기간</h2>
 						</div>
 						<div id="Announcement_Post_Time">
 
-							<input type="datetime-local" id="Post_First_Time" name="period_time_min" onchange="changeValue('period_time_min', this.value)">
+							<input type="datetime-local" id="Post_First_Time" name="period_time_min" onchange="changeFormValue('period_time_min', this.value)">
 							<p style="margin-bottom: 10px;">~</p>
-							<input type="datetime-local" id="Post_End_Time" name="period_time_max" onchange="changeValue('period_time_max', this.value)">
+							<input type="datetime-local" id="Post_End_Time" name="period_time_max" onchange="changeFormValue('period_time_max', this.value)">
 						</div>
 
 						<div class="Contact_Announcement_Information_Title">
@@ -170,9 +170,9 @@
 						</div>
 
 						<div id="Applicant_Recruitment_Period">
-							<input type="datetime-local" id="Recruitment_First_Time" name="recruitment_time_min" onchange="changeValue('recruitment_time_min', this.value)">
+							<input type="datetime-local" id="Recruitment_First_Time" name="recruitment_time_min" onchange="changeFormValue('recruitment_time_min', this.value)">
 							<p style="margin-bottom: 10px;">~</p>
-							<input type="datetime-local" id="Recruitment_End_Time" name="recruitment_time_max" onchange="changeValue('recruitment_time_max', this.value)">
+							<input type="datetime-local" id="Recruitment_End_Time" name="recruitment_time_max" onchange="changeFormValue('recruitment_time_max', this.value)">
 						</div>
 
 
@@ -187,11 +187,12 @@
 						<div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
 							<h2 style="padding: 0 20px; width: 150px;">자격요건</h2>
 							<div class="Need_Input_Infomation">
-								<label class="Check_And_Text" style="width: 90px; padding-left: 0px;"><input
-										type="checkbox">외국어 능력</label> <label class="Check_And_Text"
-									style="width: 60px; padding-left: 0px;"><input type="checkbox">자격증</label> <label
-									class="Check_And_Text" style="width: 85px; padding-left: 0px;"><input
-										type="checkbox">포트폴리오</label>
+								<label class="Check_And_Text" style="width: 90px; padding-left: 0px;">
+									<input type="checkbox" onchange="changeListValue('requirements', this.checked, '외국어 능력')">외국어 능력</label> 
+								<label class="Check_And_Text" style="width: 60px; padding-left: 0px;">
+									<input type="checkbox" onchange="changeListValue('requirements', this.checked, '자격증')">자격증</label>
+								<label class="Check_And_Text" style="width: 85px; padding-left: 0px;">
+									<input type="checkbox" onchange="changeListValue('requirements', this.checked, '포트폴리오')">포트폴리오</label>
 							</div>
 						</div>
 
@@ -202,11 +203,12 @@
 						<div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
 							<h2 style="padding: 0 20px; width: 150px;">우대사항</h2>
 							<div class="Need_Input_Infomation">
-								<label class="Check_And_Text" style="padding-left: 0px;"><input type="checkbox">보훈
-									여부</label> <label class="Check_And_Text" style="padding-left: 0px;"><input
-										type="checkbox">장애
-									여부</label> <label class="Check_And_Text" style="padding-left: 0px;"><input
-										type="checkbox">병역 정보</label>
+								<label class="Check_And_Text" style="padding-left: 0px;">
+									<input type="checkbox" onchange="changeListValue('applicants_preferential', this.checked, '보훈여부')">보훈여부</label> 
+								<label class="Check_And_Text" style="padding-left: 0px;">
+									<input type="checkbox" onchange="changeListValue('applicants_preferential', this.checked, '장애여부')">장애여부</label>
+								<label class="Check_And_Text" style="padding-left: 0px;">
+									<input type="checkbox" onchange="changeListValue('applicants_preferential', this.checked, '병역정보')">병역정보</label>
 							</div>
 
 						</div>
@@ -216,11 +218,12 @@
 						<div class="Contact_Announcement_Information_Title" style="padding: 35px 0;">
 							<h2 style="padding: 0 20px; width: 150px;">개인정보</h2>
 							<div class="Need_Input_Infomation">
-								<label class="Check_And_Text" style="padding-left: 0px;"><input
-										type="checkbox">출생연도</label> <label class="Check_And_Text"
-									style="width: 50px; padding-left: 0px;"><input type="checkbox">성별</label> <label
-									class="Check_And_Text" style="padding-left: 0px;"><input
-										type="checkbox">현재연봉</label>
+								<label class="Check_And_Text" style="padding-left: 0px;">
+									<input type="checkbox" onchange="changeListValue('information', this.checked, '출생연도')">출생연도</label> 
+								<label class="Check_And_Text" style="width: 50px; padding-left: 0px;">
+									<input type="checkbox" onchange="changeListValue('information', this.checked, '성별')">성별</label> 
+								<label class="Check_And_Text" style="padding-left: 0px;">
+										<input type="checkbox" onchange="changeListValue('information', this.checked, '현재연봉')">현재연봉</label>
 							</div>
 
 						</div>
@@ -234,7 +237,7 @@
 
 					<div class="Next_Or_Back">
 						<button class="Cancel_Push">취소</button>
-						<button class="Next_Push">다음</button>
+						<button class="Next_Push" onclick="addRecruitment()">다음</button>
 					</div>
 				</div>
 
@@ -253,9 +256,9 @@
 
 									<div id="Rank_And_Position">
 										<input type="text" id="Rank" name="Rank" placeholder="직급을 선택해 주세요."
-											onkeyup="changeValue('rank', this.value)"> <input type="text" id="Position"
+											onkeyup="changeFormValue('rank', this.value)"> <input type="text" id="Position"
 											name="Position" placeholder="직책을 선택해 주세요."
-											onkeyup="changeValue('position', this.value)">
+											onkeyup="changeFormValue('position', this.value)">
 									</div>
 
 									<div class="Position_And_Career_Title">
@@ -302,10 +305,10 @@
 
 									<div id="Career_Year">
 										<input type="text" class="Career_Year_Min" name="career_year_min"
-											placeholder="최소" onkeyup="changeValue('career_year_min', this.value)">
+											placeholder="최소" onkeyup="changeFormValue('career_year_min', this.value)">
 										<p style="font-size: 0.9rem; font-weight: 700;">~</p>
 										<input type="text" class="Career_Year_Max" name="career_year_max"
-											placeholder="최대" onkeyup="changeValue('career_year_max', this.value)">
+											placeholder="최대" onkeyup="changeFormValue('career_year_max', this.value)">
 										<p style="font-size: 0.9rem; font-weight: 700;">년차</p>
 									</div>
 
@@ -397,10 +400,10 @@
 
 								<div id="Wark_Time" style="margin-bottom: 5px;">
 									<input type="time" class="Wark_Time_Min"
-										onchange="changeValue('work_time_min', this.value)">
+										onchange="changeFormValue('work_time_min', this.value)">
 									<p style="font-size: 0.9rem; font-weight: 900;">~</p>
 									<input type="time" class="Wark_Time_Min"
-										onchange="changeValue('work_time_max', this.value)">
+										onchange="changeFormValue('work_time_max', this.value)">
 									<p style="font-size: 0.9rem; font-weight: 700;">까지</p>
 								</div>
 
@@ -421,10 +424,10 @@
 
 								<div id="Expected_Salary" style="margin-bottom: 0px;">
 									<input type="text" class="Expected_Salary_Min" name="expected_salary_min"
-										placeholder="최소" onkeyup="changeValue('expected_salary_min', this.value)">
+										placeholder="최소" onkeyup="changeFormValue('expected_salary_min', this.value)">
 									<p style="font-size: 0.9rem; font-weight: 900;">~</p>
 									<input type="text" class="Expected_Salary_Max" name="expected_salary_max"
-										placeholder="최대" onkeyup="changeValue('expected_salary_max', this.value)">
+										placeholder="최대" onkeyup="changeFormValue('expected_salary_max', this.value)">
 									<p style="font-size: 0.9rem; font-weight: 900;">만원</p>
 								</div>
 
@@ -588,7 +591,7 @@
 									</div>
 								</div>
 
-								<div style="width: 89%; display: flex; margin-top: 15px; justify-content: end;">
+								<div style="width: 800px; display: flex; margin-top: 15px; justify-content: end;">
 									<button id="Confirm" class="close_btn" onclick="closeModal()">확인</button>
 								</div>
 
