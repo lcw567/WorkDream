@@ -13,7 +13,7 @@ const data = {
         period_time_max: "",
         recruitment_time_min: "",
         recruitment_time_max: "",
-        qualification: [],
+        requirements: [],
         applicants_preferential: [],
         information: [],
     },
@@ -840,4 +840,48 @@ function removeListValue(key, value) {
 function changeValue(key, value) {
     console.log(data.tmpDyty);
     data.tmpDyty[key] = value;
+}
+
+function changeFormValue(key, value) {
+    console.log(data.form);
+    data.form[key] = value;
+}
+
+function changeListValue(key, isAdd, value) {
+    if(isAdd) {
+        data.form[key].push(value);
+    } else {
+        data.form[key] = data.form[key].filter(v => v !== value);
+    }
+    console.log(data.form)
+}
+
+function addRecruitment(){
+    let sendData = {};
+  
+    for(let key in data.form) {
+        sendData[key] = data.form[key];
+    }
+    sendData["dutyList"] = []
+    for(let duty of data.dutyList){
+        sendData["dutyList"].push(duty);
+    }
+
+    console.log(sendData)
+    $.ajax({
+        url: "addRecuruitment",
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        type: "POST",
+        data: JSON.stringify(sendData),
+        success: function(result) {
+            console.log(result)
+        },
+        error: function(error) {
+            console.log("아이디 중복체크 ajax 실패 : ", error);
+            idCheck.innerHTML = checkImg + "오류가 발생했습니다. 다시 입력해주세요.";
+            idCheck.className = "check";
+            reject(false);
+        }
+    });
 }

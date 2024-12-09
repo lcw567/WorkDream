@@ -10,7 +10,7 @@
 	
 	<!-- css / js -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/recruitmentRegister1.css">
-	<script src="${pageContext.request.contextPath}/js/announcementInformation1.js" defer></script>
+	<script src="${pageContext.request.contextPath}/js/recruitmentRegister1.js" defer></script>
 </head>
 <body>
 
