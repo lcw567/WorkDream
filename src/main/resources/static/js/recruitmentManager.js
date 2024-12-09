@@ -60,71 +60,63 @@ function displayRecruitmentList(list) {
 };
 
 // 진행중인 공고 목록 불러오기
-function loadProgressList() {
-    $.ajax({
-        url: contextPath + '/business/progressRecuritment.biz',
-        type: 'GET',
-        dataType: 'json',
-        success: function(resultList) {
-            recruitmentList = resultList;
-            displayRecruitmentList(recruitmentList);
-        },
-        error: function(error) {
-            alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
-            console.log(error);
-        }
-    });
+async function loadProgressList() {
+    try {
+        const resultList = await $.ajax({
+            url: contextPath + '/business/progressRecuritment.biz',
+            type: 'GET',
+            dataType: 'json'
+        });
+        displayRecruitmentList(resultList);
+    } catch (error) {
+        alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
+        console.log(error);
+    }
 }
 
 // 대기중인 공고 목록 불러오기
-function loadStandByList() {
-    $.ajax({
-        url: contextPath + '/business/standByRecuritment.biz',
-        type: 'GET',
-        dataType: 'json',
-        success: function(resultList) {
-            recruitmentList = resultList;
-            displayRecruitmentList(recruitmentList);
-        },
-        error: function(error) {
-            alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
-            console.log(error);
-        }
-    });
+async function loadStandByList() {
+    try {
+        const resultList = await $.ajax({
+            url: contextPath + '/business/standByRecuritment.biz',
+            type: 'GET',
+            dataType: 'json'
+        });
+        displayRecruitmentList(resultList);
+    } catch (error) {
+        alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
+        console.log(error);
+    }
 }
 
 // 임시저장한 공고 목록 불러오기
-function loadTemporaryList() {
-    $.ajax({
-        url: contextPath + '/business/temporaryRecuritment.biz',
-        type: 'GET',
-        dataType: 'json',
-        success: function(resultList) {
-            recruitmentList = resultList;
-            displayRecruitmentList(recruitmentList);
-        },
-        error: function(error) {
-            alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
-            console.log(error);
-        }
-    });
+async function loadTemporaryList() {
+    try {
+        const resultList = await $.ajax({
+            url: contextPath + '/business/temporaryRecuritment.biz',
+            type: 'GET',
+            dataType: 'json'
+        });
+        displayRecruitmentList(resultList);
+    } catch (error) {
+        alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
+        console.log(error);
+    }
 }
 
 // 마감된 공고 목록 불러오기
-function loadEndList() {
-    $.ajax({
-        url: contextPath + '/business/endRecuritment.biz',
-        type: 'GET',
-        dataType: 'json',
-        success: function(resultList) {
-            recruitmentList = resultList;
-            displayRecruitmentList(recruitmentList);
-        },
-        error: function(error) {
-            alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
-            console.log(error);
-        }
-    });
+async function loadEndList() {
+    try {
+        const resultList = await $.ajax({
+            url: contextPath + '/business/endRecuritment.biz',
+            type: 'GET',
+            dataType: 'json'
+        });
+        displayRecruitmentList(resultList);
+    } catch (error) {
+        alert('공고 목록을 불러오는 데 실패했습니다. 다시 시도해주세요.');
+        console.log(error);
+    }
 }
 
 // 탭 변경 및 목록 새로 불러오기
@@ -184,8 +176,7 @@ $(document).click(function(event) {
     }
 });
 
-
-// 공고 삭제 버튼
+// 공고 삭제를 위한 AJAX 함수
 function ajaxDeleteRecruitment(no) {
     return new Promise(function(resolve, reject) {
         $.ajax({
@@ -193,37 +184,40 @@ function ajaxDeleteRecruitment(no) {
             type: 'GET',
             dataType: 'json',
             success: function(result) {
-                resolve(result); // 요청 성공 시 Promise resolve
+                if (result === 1) {
+                    resolve(result);  // 삭제 성공 시 resolve
+                } else {
+                    reject('삭제 실패: 서버에서 0을 반환했습니다.');  // 실패 시 reject
+                }
             },
             error: function(error) {
-                reject(error); // 요청 실패 시 Promise reject
+                reject('AJAX 요청 실패: ' + error);  // 요청 실패 시 reject
             }
         });
     });
 }
 
+// 공고 삭제 함수
 async function deleteRecruitment(no) {
     var result = confirm("삭제하시겠습니까? 삭제 후에는 복구할 수 없습니다.");
     if(result) {
         try {
             const response = await ajaxDeleteRecruitment(no); // 비동기적으로 AJAX 결과 기다리기
-            if(response > 0) {
+            if(response === 1) {  // 응답이 1이면 삭제 성공
                 alert("삭제되었습니다.");
-            } else {
-                alert("삭제에 실패했습니다. 다시 시도해주세요.");
+                window.location.href = window.location.href;
             }
         } catch(error) {
-            alert("오류가 발생하였습니다. 다시 시도해주세요.");
+            alert(error);  // 실패한 경우, reject에서 전달된 메시지 출력
             console.log(error);
         }
     }
 }
 
-
 // 초기 설정
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
     // 진행중인 공고 목록 불러오기 (ajax 요청)
-    loadProgressList();
+    await loadProgressList();
 
     // 탭 초기화 및 진행중 탭 활성화
     statusLinks.forEach(link => link.classList.remove("active"));
