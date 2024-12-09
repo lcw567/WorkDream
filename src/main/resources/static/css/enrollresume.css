@@ -1472,6 +1472,7 @@ button.delete:focus {
     border: 1px solid #c5c5c5;
     font-size: 0.9rem;
     padding-left: 15px;
+    padding-top: 15px;
 }
 
 .selected_port p{
@@ -1550,6 +1551,135 @@ button.delete:focus {
     font-size: 1rem;
 }
 
-.selected_port{
+.selfintro{
+    border: none;
+    box-shadow: 0 4px 16px 0 rgba(97, 17, 128, 0.08);
+    min-height: 170px;
+    height: auto;
+    overflow: visible;
+    border-top: 5px solid #4e21a8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    transition: height 0.3s;
+}
+
+.self_title{
+    font-size: 1.5rem;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.select_self{
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #4e21a8;
+    margin-left: 65px;
+}
+
+.selected_self{
+    width: 800px;
+    height: 50px;
+    margin-left: 140px;
+    border: 1px solid #c5c5c5;
+    font-size: 0.9rem;
+    padding-left: 15px;
     padding-top: 15px;
 }
+
+.selected_self p{
+    padding-top: 15px;
+    font-size: 1rem;
+}
+
+.input_self{
+    display: flex;
+    margin-top: 25px;
+}
+
+.modal1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content1 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close1 {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 14px;
+    width: 60px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    background: #4e21a8;
+    border-radius: 5px;
+}
+
+.close1:hover {
+    color: #ffffff;
+    background: #8f69db;
+}
+
+.modal-content1 h2{
+    font-size: 1rem;
+}
+
+.portfolio-title{
+    margin: 50px;
+    cursor: pointer;
+}
+
+.portfolio-item{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+}
+
+.portfolio-item label{
+    padding-left: 10px;
+    font-size: 1rem;
+}
+
+.selected_port span{
+    font-size: 1rem;
+}
+
+#selfintro-list > .selfintro-item{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px;
+}
+
+.selfintro-item label{
+    font-size: 1rem;
+}
+
+.selected_self span{
+    font-size: 1rem;
+}
+
+

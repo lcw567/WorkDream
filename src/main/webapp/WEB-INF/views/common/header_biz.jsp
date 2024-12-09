@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	// 테스트용 (차후 서블릿 연결 후에 수정됩니다)
-	int menuNo = 1;
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +30,7 @@
     		<!-- 카테고리 -->
     		<ul id="biz-nav-left">
     			<li><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/img/logo_icon.png" /></a></li>
-    			<li class="On"><a href="${pageContext.request.contextPath}/business/businessMypage">기업 홈</a></li>
+    			<li><a href="${pageContext.request.contextPath}/business/businessMypage">기업 홈</a></li>
     			<li><a href="${pageContext.request.contextPath}/business/recruitmentManager">채용공고관리</a></li>
     			<li><a href="${pageContext.request.contextPath}/business/applicantsStatus">지원자 현황</a></li>
     			<li><a href="#">인재풀 검색</a></li>

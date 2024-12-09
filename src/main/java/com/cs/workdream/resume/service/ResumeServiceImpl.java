@@ -19,6 +19,8 @@ import com.cs.workdream.resume.model.vo.Award;
 import com.cs.workdream.resume.model.vo.Certificate;
 import com.cs.workdream.resume.model.vo.LanguageTest;
 import com.cs.workdream.resume.model.vo.Resume;
+import com.cs.workdream.selfintro.model.dao.SelfIntroDao;
+import com.cs.workdream.selfintro.model.vo.SelfIntro;
 
 @Service
 public class ResumeServiceImpl implements ResumeService {
@@ -36,6 +38,9 @@ public class ResumeServiceImpl implements ResumeService {
     
     @Autowired
     private PortfolioDao portfolioDao;
+    
+    @Autowired
+    private SelfIntroDao selfintroDao;
 
     @PostConstruct
     public void init() {
@@ -101,6 +106,23 @@ public class ResumeServiceImpl implements ResumeService {
                     }
                 }
             }
+         // 자기소개서 삽입
+            List<SelfIntro> selfIntros = resume.getSelfintro();
+            if (selfIntros != null && !selfIntros.isEmpty()) {
+                for (SelfIntro selfIntro : selfIntros) {
+                    selfIntro.setResumeNo(resume.getResumeNo());
+                    boolean isSelfIntroInserted = resumeDao.insertSelfIntro(selfIntro);
+                    if (isSelfIntroInserted) {
+                        logger.debug("Inserted SelfIntro: {}", selfIntro.getIntroTitle());
+                    } else {
+                        logger.error("자기소개서 정보 저장 실패: {}", selfIntro.getIntroTitle());
+                        throw new RuntimeException("자기소개서 정보 저장 실패");
+                    }
+                }
+            } else {
+                logger.warn("자기소개서 리스트가 비어있거나 null입니다.");
+            }
+
 
             return true;
         } catch (Exception e) {
@@ -231,8 +253,18 @@ public class ResumeServiceImpl implements ResumeService {
     }
     
     @Override
+    public List<SelfIntro> getSelfIntrosByUserNo(int userNo) {
+        return resumeDao.selectSelfIntrosByUserNo(userNo);
+    }
+    
+    @Override
     public List<Portfolio> getPortfoliosByIds(List<Integer> portfolioIds) {
         return resumeDao.selectPortfoliosByIds(portfolioIds);
+    }
+    
+    @Override
+    public List<SelfIntro> getSelfIntrosByIds(List<Integer> selfIntroIds) {
+        return resumeDao.selectSelfIntrosByIds(selfIntroIds);
     }
     
     @Override
@@ -243,7 +275,15 @@ public class ResumeServiceImpl implements ResumeService {
             resumeDao.updatePortfolioResumeNo(portfolioId, resumeNo);
         }
     }
-
+    
+    @Override
+    @Transactional
+    public void associateSelfIntroWithResume(int resumeNo, List<Integer> selfIntroIds) {
+        // 기존 포트폴리오의 resume_no를 업데이트
+        for (Integer selfIntroId : selfIntroIds) {
+            resumeDao.updateSelfintroResumeNo(selfIntroId, resumeNo);
+        }
+    }
     
     @Override
     @Transactional
@@ -252,7 +292,18 @@ public class ResumeServiceImpl implements ResumeService {
     }
     
     @Override
+    @Transactional
+    public void updateSeflintroResumeNo(int selfIntroId, int resumeNo) {
+        resumeDao.updateSelfintroResumeNo(selfIntroId, resumeNo);
+    }
+    
+    @Override
     public List<Portfolio> getPortfoliosByResumeNo(int resumeNo) {
         return resumeDao.selectPortfoliosByResumeNo(resumeNo);
+    }
+    
+    @Override
+    public List<SelfIntro> getSelfIntrosByResumeNo(int resumeNo) {
+        return resumeDao.selectSelfintrosByResumeNo(resumeNo);
     }
 }

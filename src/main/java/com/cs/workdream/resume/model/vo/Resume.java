@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.cs.workdream.portfolio.model.vo.Portfolio;
+import com.cs.workdream.selfintro.model.vo.SelfIntro;
 
 import lombok.Data;
 
@@ -105,4 +106,7 @@ public class Resume {
     
     //포트폴리오
     private List<Portfolio> portfolio;
+    
+    //자기소개서
+    private List<SelfIntro> selfintro;
 }

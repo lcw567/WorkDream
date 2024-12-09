@@ -13,25 +13,46 @@
         window.contextPath = "${pageContext.request.contextPath}";
     </script>
     <script src="${pageContext.request.contextPath}/js/businessProfileView.js" defer></script>
+    
 </head>
 <body>
-    <c:import url="/WEB-INF/views/common/header_biz.jsp" />
+    <c:choose>
+	    <c:when test="${not empty sessionScope.loginUser && sessionScope.loginUser.userType == 'B'}">
+	        <!-- 기업회원일 경우 -->
+	        <c:import url="/WEB-INF/views/common/header_biz.jsp" />
+	    </c:when>
+	    <c:otherwise>
+	        <!-- 일반회원 또는 비로그인일 경우 -->
+	        <c:import url="/WEB-INF/views/common/header.jsp" />
+	    </c:otherwise>
+	</c:choose>
+
+    
     <main class="profile-view-container">
         <div class="profile-header">
             <h2>기업 프로필</h2>
             <div class="action-buttons">
-                <a href="${pageContext.request.contextPath}/business/businessProfilePost?businessNo=${business.businessNo}" class="btn btn-edit" aria-label="기업 정보 수정">
-                    기업정보 수정
-                </a>
+                <!-- 로그인 상태일 때만 '기업 정보 수정' 버튼 표시 -->
+				<c:if test="${not empty sessionScope.loginUser
+				    and sessionScope.loginUser.userType eq 'B'
+				    and sessionScope.loginUser.businessNo eq business.businessNo}">
+				    <a href="${pageContext.request.contextPath}/business/businessProfilePost?businessNo=${business.businessNo}" class="btn btn-edit" aria-label="기업 정보 수정">
+				        기업정보 수정
+				    </a>
+				</c:if>
+
+                
+                <!-- 관심 기업 추가 버튼 -->
+                <button id="add-favorite-btn" class="btn btn-add-favorite" data-business-no="${business.businessNo}">
+                    관심 기업 추가
+                </button>
             </div>
         </div>
 
         <div class="profile-details">
             <!-- 기본 정보 -->
             <div class="profile-info border-box">
-                <!-- 기본 정보 제목 -->
                 <h3 class="info-title">기본 정보</h3>
-                <!-- 기본 정보 내용 -->
                 <div class="basic-info">
                     <div class="basic-info-item">
                         <span class="label">기업로고:</span>

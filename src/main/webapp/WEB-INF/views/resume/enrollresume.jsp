@@ -796,6 +796,28 @@
                     <button type="button" class="close">닫기</button>
                 </div>
             </div>
+
+            <!-- 자기소개서 섹션 -->
+            <div class="Selfintro">
+                <fieldset class="selfintro">
+                    <legend class="self_title">자기소개서</legend>
+                    <div class="input_self">
+                        <div class="selected_self">
+                        </div>
+                        <button type="button" class="select_self">불러오기</button>        
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="modal_selfintro" class="modal1" style="display: none;">
+                <div class="modal-content1">
+                    <span class="close1">&times;</span>
+                    <h2>자기소개서 불러오기</h2>
+                    <!-- 자기소개서 데이터를 표시할 영역 -->
+                    <div id="selfintro-list"></div>
+                    <button type="button" class="close1">닫기</button>
+                </div>
+            </div>
             <!-- 제출 버튼 -->
             <div class="btn_select">
                 <button type="submit" class="final_save">작성 완료</button>

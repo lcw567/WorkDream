@@ -54,6 +54,22 @@ try {
         const menuItems = document.querySelectorAll("#header-nav-bottom .menu > li");
         menuItems[menuNo].classList.add("On");
     }
-} catch {
+} catch(error) {
     console.log("activeMenu: ", error);
 }
+
+
+/* header_biz.jsp */
+// 메뉴 활성화
+function activeMenuBiz(activeBizNo) {
+    const menuItems = document.querySelectorAll("#biz-nav-left > li");
+    menuItems[activeBizNo].classList.add("On");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    try {
+        activeMenuBiz(activeBizNo); 
+    } catch(error) {
+        console.log("activeMenuBiz: ", error);
+    }
+});

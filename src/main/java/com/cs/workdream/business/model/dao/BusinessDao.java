@@ -23,6 +23,7 @@ public class BusinessDao {
 	
 	/*=====================================================================================================*/
 	
+	
 	// 현재 공고 현황 조회
 	public Map<String, Integer> selectRecuritmentStatus(int businessNo) {
         return sqlSession.selectOne("businessMapper.selectRecuritmentStatus", businessNo);
@@ -46,6 +47,11 @@ public class BusinessDao {
 	// 마감된 공고 목록 조회
 	public List<Recuritment> selectListEndRecuritment(int businessNo) {
 		return sqlSession.selectList("businessMapper.selectListEndRecuritment", businessNo);
+	}
+	
+	// 공고 삭제
+	public int deleteRecruitment(int recuritmentNo) {
+		return sqlSession.delete("businessMapper.deleteRecruitment", recuritmentNo);
 	}
 
 	// 지원자 현황 조회
@@ -116,5 +122,6 @@ public class BusinessDao {
 		
 		return sqlSession.delete("businessMapper.deleteFolder", numbers);
 	}
+
 
 }

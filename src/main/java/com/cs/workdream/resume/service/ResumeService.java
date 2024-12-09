@@ -7,6 +7,7 @@ import com.cs.workdream.resume.model.vo.Award;
 import com.cs.workdream.resume.model.vo.Certificate;
 import com.cs.workdream.resume.model.vo.LanguageTest;
 import com.cs.workdream.resume.model.vo.Resume;
+import com.cs.workdream.selfintro.model.vo.SelfIntro;
 
 public interface ResumeService {
 	public boolean saveResume(Resume resume);
@@ -28,4 +29,10 @@ public interface ResumeService {
     void associatePortfoliosWithResume(int resumeNo, List<Integer> portfolioIds);
     void updatePortfolioResumeNo(int portfolioId, int resumeNo);
     List<Portfolio> getPortfoliosByResumeNo(int resumeNo);
+    
+    List<SelfIntro> getSelfIntrosByUserNo(int userNo);
+    List<SelfIntro> getSelfIntrosByIds(List<Integer> selfIntroIds);
+    void associateSelfIntroWithResume(int resumeNo, List<Integer> selfintroIds);
+    void updateSeflintroResumeNo(int selfintroNo, int resumeNo);
+    List<SelfIntro> getSelfIntrosByResumeNo(int resuemNo);
 }

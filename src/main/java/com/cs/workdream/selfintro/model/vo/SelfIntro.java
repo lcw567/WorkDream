@@ -9,6 +9,7 @@ public class SelfIntro {
 
 	private Integer selfintroNo;
 	private Integer resumeNo;
+	private Integer userNo;
 	private String userId;
 	private String introTitle;
 	private String introContent;

@@ -128,6 +128,19 @@
         <result property="organizer" column="ORGANIZER"/>
         <result property="awardDate" column="AWARD_DATE"/>
     </resultMap>
+    
+    <resultMap id="SelfIntroResultMap" type="com.cs.workdream.selfintro.model.vo.SelfIntro">
+	    <id property="selfintroNo" column="SELF_INTRODUCTION_NO"/>
+	    <result property="resumeNo" column="RESUME_NO"/>
+	    <result property="userNo" column="USER_NO"/>
+	    <result property="userId" column="USER_ID"/>
+	    <result property="introTitle" column="TITLE"/>
+	    <result property="introContent" column="CONTENT"/>
+	    <result property="createDate" column="CREATED_DATE"/>
+	    <result property="modifiedDate" column="MODIFIED_DATE"/>
+	    <result property="deleted" column="DELETED"/>
+	    <result property="personNo" column="PERSON_NO"/>
+</resultMap>
 
     <!-- 이력서 삽입 -->
     <insert id="insertResume" parameterType="com.cs.workdream.resume.model.vo.Resume">
@@ -391,6 +404,26 @@
             AND status = 'Y'
     </select>
     
+    <!-- 자기소개서 목록 조회 -->
+    <select id="selectSelfintrosByUserNo" parameterType="int" resultMap="SelfIntroResultMap">
+        SELECT 
+            SELF_INTRODUCTION_NO,
+			RESUME_NO,
+			USER_ID,
+			TITLE,
+			CONTENT,
+			CREATED_DATE,
+			MODIFIED_DATE,
+			DELETED,
+			PERSON_NO,
+			USER_NO
+        FROM 
+            SELF_INTRODUCTION
+        WHERE 
+            user_no = #{userNo} 
+            AND DELETED = 'N'
+    </select>
+    
     <!-- 포트폴리오 목록을 resume_no로 조회 -->
     <select id="selectPortfoliosByResumeNo" parameterType="int" resultType="com.cs.workdream.portfolio.model.vo.Portfolio">
         SELECT 
@@ -409,17 +442,67 @@
             AND status = 'Y'
     </select>
     
+    <!-- 자기소개서 목록 조회 -->
+    <select id="selectSelfintrosByResumeNo" parameterType="int" resultMap="SelfIntroResultMap">
+        SELECT 
+            SELF_INTRODUCTION_NO,
+			RESUME_NO,
+			USER_ID,
+			TITLE,
+			CONTENT,
+			CREATED_DATE,
+			MODIFIED_DATE,
+			DELETED,
+			PERSON_NO,
+			USER_NO
+        FROM 
+            SELF_INTRODUCTION
+        WHERE 
+            resume_no = #{resumeNo} 
+            AND DELETED = 'N'
+    </select>
+    
     <!-- 포트폴리오 업데이트 (resume_no 변경) -->
     <update id="updatePortfolioResumeNo" parameterType="map">
 	    UPDATE PORTFOLIO
 	    SET resume_no = #{resumeNo}
 	    WHERE portfolio_id = #{portfolioId}
 	</update>
+	
+	<!-- 포트폴리오 업데이트 (resume_no 변경) -->
+    <update id="updateSelfintroResumeNo" parameterType="map">
+	    UPDATE SELF_INTRODUCTION
+	    SET resume_no = #{resumeNo}
+	    WHERE SELF_INTRODUCTION_NO = #{selfintroNo}
+	</update>
     
     <!-- 포트폴리오 삭제 (resume_no 기준) -->
     <delete id="deletePortfoliosByResumeNo" parameterType="int">
         DELETE FROM PORTFOLIO WHERE resume_no = #{resumeNo}
     </delete>
+    
+    <select id="selectSelfintrosByIds" parameterType="list" resultMap="SelfIntroResultMap">
+    SELECT 
+       SELF_INTRODUCTION_NO,
+        RESUME_NO,
+        USER_ID,
+        TITLE,
+        CONTENT,
+        CREATED_DATE,
+        MODIFIED_DATE,
+        DELETED,
+        PERSON_NO,
+        USER_NO
+    FROM 
+        SELF_INTRODUCTION
+    WHERE 
+        SELF_INTRODUCTION_NO IN 
+        <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        AND DELETED = 'N'
+</select>
+
     
     <!-- 포트폴리오 ID 리스트로 포트폴리오 목록 조회 -->
     <select id="selectPortfoliosByIds" parameterType="list" resultType="com.cs.workdream.portfolio.model.vo.Portfolio">
@@ -441,5 +524,17 @@
             </foreach>
             AND status = 'Y'
     </select>
-
+    
+    <!-- 자기소개서 삽입 -->
+	<insert id="insertSelfIntro" parameterType="com.cs.workdream.selfintro.model.vo.SelfIntro">
+	    <selectKey keyProperty="selfintroNo" resultType="int" order="BEFORE">
+	        SELECT SELF_INTRODUCTION_SEQ.NEXTVAL FROM dual
+	    </selectKey>
+	    INSERT INTO SELF_INTRODUCTION (
+	        SELF_INTRODUCTION_NO, RESUME_NO, USER_NO, USER_ID, TITLE, CONTENT, CREATED_DATE, MODIFIED_DATE, DELETED
+	    )
+	    VALUES (
+	        #{selfintroNo}, #{resumeNo}, #{userNo}, #{userId}, #{introTitle}, #{introContent}, SYSDATE, SYSDATE, 'N'
+	    )
+	</insert>
 </mapper>

@@ -33,10 +33,4 @@ public class Business {
     private String brandName; // 브랜드명
     private List<BusinessBenefit> benefits; // 복리후생 목록
     private List<WorkEnvironmentImage> workEnvironmentImages; // 근무 환경 이미지 목록
-    
-    // 현재 지원자 현황용
-    private int recuritmentProgressCount;
-    private int applicantsTotal;
-    private int passCount;
-    private int bookmarkTotal;
 }

@@ -145,7 +145,7 @@ header.biz > nav > ul > li > a {
     background-color: #4E21A8;
 	border: 1px solid #4E21A8;
 	border-radius: 5px;
-	white-space: nowarp;
+	white-space: nowrap;
 	text-align: center;
 	font-family: 'MonoplexKR-SemiBold';
 	font-size: 0.9rem;
@@ -159,6 +159,13 @@ header.biz > nav > ul > li > a {
     grid-template-rows: max-content;
     justify-content: center;
     grid-gap: 3%;
+}
+
+#Registration_containers > h4 {
+	padding-left: 3%;
+	white-space: nowrap;
+	text-align: left;
+	font-size: 1rem;
 }
 
 #Registration_containers .Registration_First_Container {
@@ -202,8 +209,7 @@ header.biz > nav > ul > li > a {
 }
 
 #Registration_sava_bar .dropdown-container > .dropdown-Button > img {
-    width: 25px;
-    height: 25px;
+    width: 100%;
 }
 
 #Registration_sava_bar .dropdown-container > .dropdown-menu {
@@ -225,8 +231,9 @@ header.biz > nav > ul > li > a {
 }
 
 #Registration_sava_bar .dropdown-container > .dropdown-menu li a {
-    display: block;
+	display: block;
     padding: 10px;
+    white-space: nowrap;
     font-size: 0.8rem;
     color: #333;
 }

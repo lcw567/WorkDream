@@ -289,7 +289,8 @@
                                 <c:forEach var="portfolio" items="${portfolios}">
                                     <li>
                                         <a href="${pageContext.request.contextPath}/portfolio/portfolioView?id=${portfolio.portfolioId}" class="btn btn-sm btn-purple"><strong>제목:</strong> ${portfolio.title}</a>
-                                        <strong>등록일:</strong> ${portfolio.createDate}
+                                        <strong>등록일 : ${portfolio.createDate}</strong>
+                                        <strong class="port_info">포트폴리오는 열람하시려면 제목을 클릭해주세요.</strong>
                                     </li>
                                 </c:forEach>
                             </ul>

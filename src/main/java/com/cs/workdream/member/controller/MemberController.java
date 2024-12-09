@@ -1,6 +1,7 @@
 package com.cs.workdream.member.controller;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.member.service.MemberService;
@@ -21,9 +21,10 @@ import com.cs.workdream.member.service.MemberService;
 @CrossOrigin
 @Controller
 public class MemberController {
+	@Autowired
 	private final MemberService memberService;
 	private final BCryptPasswordEncoder bcryptPasswordEncoder;
-	
+    
 	@Autowired
 	public MemberController(MemberService memberService, BCryptPasswordEncoder bcryptPasswordEncoder) {
 		this.memberService = memberService;
@@ -50,11 +51,11 @@ public class MemberController {
 	
 	// 로그인 판별
 	@RequestMapping("login.me")
-	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
+	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response, HttpServletRequest request) {
 	    Member loginMember = memberService.loginMember(m);
-	    System.out.println(m.toString());
-	    System.out.println(loginMember.toString());
-	    System.out.println("암호화: " + bcryptPasswordEncoder.encode(m.getUserPwd()));
+	    System.out.println("loginMember: " + m.toString());
+	    System.out.println("loginUser: " + loginMember.toString());
+	    System.out.println("암호화: " + bcryptPasswordEncoder.encode(m.getUserPwd()) + "\n");
 	    
 	    if(loginMember == null || !bcryptPasswordEncoder.matches(m.getUserPwd(), loginMember.getUserPwd())) {
 	        // 로그인 실패
@@ -64,13 +65,22 @@ public class MemberController {
 	    }
 	    else {
 	        // 로그인 성공
+	    	session.setAttribute("loginUser", loginMember);
+	    	
 	        Cookie ck = new Cookie("saveId", loginMember.getUserId());
 	        if(saveId == null) {
 	            ck.setMaxAge(0);
 	        }
 	        response.addCookie(ck);
-	        session.setAttribute("loginUser", loginMember);
-	        mv.setViewName("redirect:/");
+	        
+        	if("B".equals(loginMember.getUserType())) {
+        		// 기업 회원 > 기업 홈으로 이동
+        		String contextPath = request.getContextPath();
+        		mv.setViewName("redirect:/business/businessMypage");
+        	} else {
+        		// 개인 회원 > 메인 홈으로 이동
+        		mv.setViewName("redirect:/");
+        	}
 	    }
 	    
 	    return mv;
