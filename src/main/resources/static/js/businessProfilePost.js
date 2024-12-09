@@ -59,13 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 사내 근무 환경 이미지 첨부 및 변경
+    // 이미지 클릭 시 파일 선택창 오픈 & 이미지 미리보기
     const imageItems = document.querySelectorAll('.image-item');
-
     imageItems.forEach(item => {
         const img = item.querySelector('.add-icon');
         const fileInput = item.querySelector('.hidden-file-input');
-        const photoTitleInput = item.querySelector('.photo-title');
 
         img.addEventListener('click', () => {
             fileInput.click();
@@ -85,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 이미지 제목 입력란에서 엔터키 막기 (form submit 방지)
+    // 이미지 제목 입력란에서 엔터키 막기
     document.querySelectorAll('.photo-title').forEach(input => {
         input.addEventListener('keydown', function(e) {
             if(e.key === 'Enter') {
@@ -105,33 +103,58 @@ document.addEventListener('DOMContentLoaded', () => {
         const benefitItems = benefitsList.querySelectorAll('.benefit-item');
         benefitItems.forEach(item => {
             const benefitText = item.textContent.replace('×', '').trim();
-            if (benefitText !== '') { // 빈 문자열 필터링
+            if (benefitText !== '') {
                 benefits.push(benefitText);
             }
         });
         formData.append('benefits', JSON.stringify(benefits));
 
-        // 근무 환경 이미지 제목 수집
-        const workEnvImageTitles = [];
+        // 기존/신규 이미지 분리 처리
         const allImageItems = document.querySelectorAll('.image-item');
+        const existingImageIdInputs = document.querySelectorAll('input[name="existingImageIds"]');
+        const existingCount = existingImageIdInputs.length;
+
+        // 기존 이미지 제목 배열
+        const existingTitles = [];
+        // 신규 이미지 제목 배열
+        const newTitles = [];
+
+        // 먼저 existingImageIds가 있는 이미지들을 순서대로 처리
+        let existingIdx = 0;
         allImageItems.forEach(item => {
             const titleInput = item.querySelector('.photo-title');
             const fileInput = item.querySelector('.hidden-file-input');
             const existingImageIdInput = item.querySelector('input[name="existingImageIds"]');
 
-            // 기존 이미지가 있거나 새로 업로드한 이미지가 있으면 제목 반영
-            if (existingImageIdInput !== null || fileInput.files.length > 0) {
+            if (existingImageIdInput !== null) {
+                // 이 슬럿은 기존 이미지
                 const title = titleInput.value.trim();
-                workEnvImageTitles.push(title);
+                existingTitles.push(title);
+                existingIdx++;
+            } else {
+                // 이 슬럿은 신규 이미지
+                // 신규 이미지가 실제로 업로드 되었거나(파일 있음), 제목이 있다면 반영
+                // 여기서는 파일이 없어도 제목만 있으면 반영할 수도 있음
+                // 하지만 서버로직에 맞추어 파일이 있어야 new 이미지로 인식하므로
+                // fileInput.files.length > 0인 경우에만 신규 이미지로 처리
+                if (fileInput.files.length > 0) {
+                    const title = titleInput.value.trim();
+                    newTitles.push(title);
+                }
             }
         });
-        formData.append('workEnvImageTitles', JSON.stringify(workEnvImageTitles));
 
-        // 기존 이미지 IDs 수집
-        const existingImageIdInputs = document.querySelectorAll('input[name="existingImageIds"]');
+        // 기존 이미지 IDs 추가
         existingImageIdInputs.forEach(input => {
             formData.append('existingImageIds', input.value);
         });
+
+        // 신규 이미지의 경우 파일이 이미 formData에 name="newWorkEnvironmentFiles"로 자동 들어감
+        // 지금은 제목만 처리하면 됨.
+
+        // 최종 배열: 기존 이미지 제목들 + 신규 이미지 제목들
+        const workEnvImageTitles = [...existingTitles, ...newTitles];
+        formData.append('workEnvImageTitles', JSON.stringify(workEnvImageTitles));
 
         // 삭제할 이미지 IDs 수집
         const deleteImageIdInputs = document.querySelectorAll('input[name="deleteImageIds"]:checked');
@@ -160,11 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
             throw new Error('네트워크 응답이 정상적이지 않습니다.');
         })
         .then(data => {
-            // 응답으로 받은 URL로 리다이렉트하여 수정 사항 바로 반영
+            // 응답으로 받은 URL로 리다이렉트
             window.location.href = data;
         })
         .catch(error => {
-            console.error('오류:', error);
+            console.error('오류:', erraor);
             alert('기업 정보 등록 중 오류가 발생했습니다.');
         });
     });
