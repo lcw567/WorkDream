@@ -71,7 +71,7 @@
         <!-- 주요 액션 섹션 -->
         <section class="action-section">
             <div class="action-buttons">
-                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/recruitmentStatus'">
+                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/recruitmentManager'">
                     <h3>채용 공고 등록</h3>
                     <p>이상적인 인재를 손쉽게 모집하세요</p>
                 </div>
