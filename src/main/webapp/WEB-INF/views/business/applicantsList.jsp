@@ -10,6 +10,7 @@
 	
 	<!-- 외부 css / js 연결 -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicants.css">
+    <script>var activeBizNo = 3;</script>
     <script src="${pageContext.request.contextPath}/js/applicants.js" defer></script>
 </head>
 <body>

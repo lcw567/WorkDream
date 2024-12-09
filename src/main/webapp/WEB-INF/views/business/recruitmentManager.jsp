@@ -9,6 +9,14 @@
 	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
 	
 	<!-- css / js 연결 -->
+	<script>
+		var activeBizNo = 2;
+	
+		var progressCount = ${statusMap['PROGRESS_COUNT']};
+		var standbyCount = ${statusMap['STANDBY_COUNT']};
+		var tempCount = ${statusMap['TEMP_COUNT']};
+		var endCount = ${statusMap['END_COUNT']};
+	</script>
 	<script src="${pageContext.request.contextPath}/js/recruitmentManager.js" defer></script>
 </head>
 <body>

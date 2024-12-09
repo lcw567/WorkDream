@@ -323,15 +323,6 @@ public class BusinessController {
     
 	/*=====================================================================================================*/
 	
-	
-	@PostMapping("/announcementInformation2")
-	@ResponseBody
-	public Map<String, String> handleJobData(@RequestBody Map<String, String> jobData) {
-	    // 데이터 처리 로직 (DB 저장, 검증 등)
-	    // 여기서는 요청 데이터를 그대로 반환
-	    return jobData;
-	}
-	
 
 	@RequestMapping("/announcementDetailView")
     public String announcementDetailView() {

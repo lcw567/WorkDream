@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkDream - 기업 마이페이지</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
+    
+    <!-- css / js 연결  -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/businessMypage.css">
+    <script>var activeBizNo = 1;</script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header_biz.jsp" />
