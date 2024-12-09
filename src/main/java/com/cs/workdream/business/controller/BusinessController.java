@@ -164,7 +164,7 @@ public class BusinessController {
     
     // 공고 수정
     public int updateRecruitment(@RequestParam("no") int recuritmentNo) {
-    	// 여긴 구상중
+    	// 여긴 구상중 - 채용공고 작성 페이지가 완료 되어야 수정 가능할듯.
     	return 0;
     }
     
@@ -182,26 +182,49 @@ public class BusinessController {
 	/* 지원자 현황&목록 관련 */
 	// 지원자 현황 페이지로 이동
     @RequestMapping("/applicantsStatus")
-	public String applicantsStatus() {
-		// @RequestParam("recruitmentNo") int recruitmentNo,
-		// 지원자 현황 조회 결과를 Model에 저장
-	    // model = inquiryAppStatus(recruitmentNo, model);
+	public ModelAndView applicantsStatus(@RequestParam(value="no", defaultValue="0") int recuritmentNo, ModelAndView mv, HttpSession session) {
+    	Member currentUser = (Member) session.getAttribute("loginUser");
 		
-		// 조회 결과에 따라 페이지 이동
-//	    int result = (int) model.getAttribute("result");
-//	    if (result == 1) {
-//	        // 조회 성공 시 business/applicantsStatus 페이지로 이동
-//	        return "business/applicantsStatus";
-//	    } else {
-//	        // 조회 실패 시 common/errorPage로 이동
-//	        return "common/errorPage";
-//	    }
+		if(currentUser != null) {
+			// 지원자 현황 조회 -> 전달
+			mv.setViewName("business/applicantsStatus");
+			
+			// 전달받은 공고 고유키가 없을 경우 현재 진행 중인 공고 현황 전체 조회
+			if(recuritmentNo == 0) {
+				// 리스트 객체를 반환
+				// List<Map<String, Object>> 형식으로 세트들 관리
+//				List<Map<String, Object>> data = new ArrayList<>();
+//
+//				// 첫 번째 세트
+//				Map<String, Object> set1 = new HashMap<>();
+//				set1.put("count1", 10);
+//				set1.put("count2", 20);
+//				set1.put("count3", 30);
+//				set1.put("list", Arrays.asList("item1", "item2", "item3"));
+//				data.add(set1);
+			} else {
+				mv.addObject("statusMap", (session));
+			}
+		} else {
+			mv.setViewName("common/errorPage");
+			mv.addObject("errorMsg", "로그인이 필요한 서비스입니다.");
+			mv.addObject("returnPage", "/login?ut=B");
+		}
 		
-		
-		return "business/applicantsStatus";
+        return mv;
 	}
 	
-	// 지원자 현황 조회
+	// 지원자 전체 현황 조회
+    public Map<String, Integer> selectAppStatus(HttpSession session) {
+		Member currentUser = (Member)session.getAttribute("loginUser");
+    	int businessNo = currentUser.getBusinessNo();
+		
+		Map<String, Integer> statusMap = businessService.selectRecuritmentStatus(businessNo);
+		
+		return statusMap;
+	}
+    
+    // 지원자 현황 조회
 	public Model inquiryAppStatus(int recruitmentNo, Model model) {
 		// 전달받은 공고 고유키로 지원자 현황 조회
 		ApplicantsStatus appsStatus = businessService.inquireAppsStatus(recruitmentNo);
