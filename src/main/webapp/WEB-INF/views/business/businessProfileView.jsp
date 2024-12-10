@@ -42,10 +42,11 @@
 				</c:if>
 
                 
-                <!-- 관심 기업 추가 버튼 -->
+                <!-- 관심 기업 추가 버튼 
                 <button id="add-favorite-btn" class="btn btn-add-favorite" data-business-no="${business.businessNo}">
                     관심 기업 추가
                 </button>
+                -->
             </div>
         </div>
 

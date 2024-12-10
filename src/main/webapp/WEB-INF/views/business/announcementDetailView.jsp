@@ -164,9 +164,11 @@
             <div class="company-info">
                 <div class="company-header">
                     <span class="company-name">(주) 아이더스에프앤비</span>
+                    <!-- 관심 기업버튼(기능 구현x)
                     <button class="interest-button">
                         <span class="icon">🌙</span> 관심기업
                     </button>
+                     -->
                 </div>
                 <div class="company-content">
                     <div class="company-details">
