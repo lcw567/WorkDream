@@ -55,6 +55,7 @@
 	<resultMap type="Position" id="positionResultSet">
 		<result column="POSITION_NO" property="positionNo" />
 		<result column="RECRUITMENT_NO" property="recuritmentNo" />
+		<result column="STAGY_NO" property="stagyNo" />
 		<result column="POSITION_NAME" property="positionName" />
 		<result column="POSITION_RANK" property="positionRank" />
 		<result column="EMPLOYMENT_FORM" property="employmentForm" />
