@@ -314,6 +314,10 @@ public class ResumeController {
                     resume.setPortfolio(selectedPortfolios);
                     resumeService.associatePortfoliosWithResume(resume.getResumeNo(), resumePortfolios);
                 }
+                
+                if (resumeSelfintros != null && !resumeSelfintros.isEmpty()) {
+                    resumeService.associateSelfIntroWithResume(resume.getResumeNo(), resumeSelfintros);
+                }
 
                 redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 등록되었습니다.");
                 return "redirect:/resume/resumeDashboard";
@@ -503,7 +507,11 @@ public class ResumeController {
 		 // 포트폴리오 목록 가져오기
         List<Portfolio> portfolios = resumeService.getPortfoliosByResumeNo(resume.getResumeNo());
         model.addAttribute("portfolios", portfolios);
+        
+        List<SelfIntro> selfIntros = resumeService.getSelfIntrosByResumeNo(resume.getResumeNo());
+        model.addAttribute("selfIntros", selfIntros);
 		return "resume/previewresume"; // JSP 파일의 경로
+		
 	}
 
 	@GetMapping("/resumeDashboard")

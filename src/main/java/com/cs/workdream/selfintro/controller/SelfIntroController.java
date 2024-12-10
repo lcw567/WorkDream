@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cs.workdream.member.model.vo.Member;
+import com.cs.workdream.portfolio.model.vo.Portfolio;
 import com.cs.workdream.resume.controller.ResumeController;
+import com.cs.workdream.resume.model.vo.Resume;
 import com.cs.workdream.selfintro.model.vo.SelfIntro;
 import com.cs.workdream.selfintro.service.SelfIntroService;
 @Controller
@@ -59,12 +62,7 @@ public class SelfIntroController {
 	        Integer userNo = loginUser.getUserNo(); 
 	        Integer personNo = loginUser.getPersonNo(); 
 	        Integer resumeNo = (Integer) session.getAttribute("resumeNo");
-	        
-	        // resumeNo 확인
-	        if (resumeNo == null) {
-	            logger.error("resumeNo is null. Please ensure it is set in the session before calling insertSelfIntro.");
-	            return "redirect:/errorPage?error=noResumeNo";
-	        }
+	       
 	        
 	        SelfIntro selfIntro = new SelfIntro();
 	        selfIntro.setUserId(loginUser.getUserId());
@@ -148,6 +146,34 @@ public class SelfIntroController {
 	        selfIntroService.updateSelfIntro(selfIntro);
 	        logger.info("SelfIntro updated successfully for id: {}", selfIntro.getSelfintroNo());
 	        return "redirect:/resume/selfIntroDashboard"; // 리다이렉션할 URL 확인
+	    }
+	    
+	    @GetMapping("/viewIntro")
+		public String viewResume(@RequestParam("id") int selfintroNo, Model model) {
+	    	SelfIntro selfintro = selfIntroService.getSelfintroByNo(selfintroNo);
+			model.addAttribute("selfintro", selfintro);
+			
+			return "resume/selfintroview"; // JSP 파일의 경로
+		}
+	    
+	    @GetMapping("/selfintroDashboard")
+	    public String selfintroDashboard(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+	    	Member loginUser = (Member) session.getAttribute("loginUser");
+			if (loginUser == null) {
+				redirectAttributes.addFlashAttribute("message", "로그인이 필요합니다.");
+				return "redirect:/login?error=sessionExpired";
+			}
+			
+			int personNo = loginUser.getPersonNo();
+			
+			List<SelfIntro> selfintroList = selfIntroService.getSelfintroByPersonNo(personNo);
+			model.addAttribute("selfintroList", selfintroList);
+			for(SelfIntro selfintro : selfintroList) {
+				logger.info("Selfintro Title: {}", selfintro.getIntroTitle());
+				logger.info("createDate: {}", selfintro.getCreateDate());
+				logger.info("modifiedDate: {}", selfintro.getModifiedDate());
+			}
+			return "resume/selfIntroDashboard";
 	    }
 
 	}

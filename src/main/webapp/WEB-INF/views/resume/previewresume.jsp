@@ -288,9 +288,11 @@
                             <ul>
                                 <c:forEach var="portfolio" items="${portfolios}">
                                     <li>
-                                        <a href="${pageContext.request.contextPath}/portfolio/portfolioView?id=${portfolio.portfolioId}" class="btn btn-sm btn-purple"><strong>제목:</strong> ${portfolio.title}</a>
-                                        <strong>등록일 : ${portfolio.createDate}</strong>
-                                        <strong class="port_info">포트폴리오는 열람하시려면 제목을 클릭해주세요.</strong>
+                                        <a href="${pageContext.request.contextPath}/portfolio/portfolioView?id=${portfolio.portfolioId}" class="btn btn-sm btn-purple"><strong>제목 : ${portfolio.title}</strong></a>
+                                        <strong>등록일 : ${portfolio.createDate}</strong> <br>
+                                    </li>
+                                    <li>
+                                        <h2>(제목 클릭시 열람됩니다.)</h2>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -300,6 +302,30 @@
                         </c:if>
                     </div>
                  </div>
+                 <!-- 자기소개서 -->
+                <p>자기소개서</p>
+                <div class="pre_inner10">
+                    <div class="pre_inner10-1">
+                        <c:if test="${not empty selfIntros}">
+                            <ul>
+                                <c:forEach var="selfIntro" items="${selfIntros}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/resume/viewIntro?id=${selfIntro.selfintroNo}" class="btn btn-sm btn-purple">
+                                            <strong>제목 : ${selfIntro.introTitle}</strong>
+                                        </a>
+                                        <strong>등록일 : ${selfIntro.createDate}</strong> <br>
+                                    </li>
+                                    <li>
+                                        <h2>(제목 클릭시 열람됩니다.)</h2>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:if>
+                        <c:if test="${empty selfIntros}">
+                            <p>등록된 자기소개서가 없습니다.</p>
+                        </c:if>
+                    </div>
+                </div>
             </fieldset>
         </div>
         <form action="resumeDashboard" method="get">

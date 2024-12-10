@@ -103,5 +103,18 @@
             SELF_INTRODUCTION_NO = #{selfintroNo}
             AND DELETED = 'N'
     </update>
+    
+    <select id="selectSelfIntroByNo" parameterType="int" resultMap="selfintroResultSet">
+	    SELECT *
+	    FROM SELF_INTRODUCTION
+	    WHERE SELF_INTRODUCTION_NO = #{selfintroNo} AND DELETED ='N'
+    </select>
+    
+    <select id="selectSelfIntroByPersonNo" parameterType="int" resultMap="selfintroResultSet">
+    	SELECT *
+    	FROM SELF_INTRODUCTION
+    	WHERE PERSON_NO = #{personNo} AND DELETED ='N'
+    	ORDER BY CREATED_DATE DESC
+    </select>
 
 </mapper>

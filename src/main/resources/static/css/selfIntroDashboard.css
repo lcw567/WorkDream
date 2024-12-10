@@ -176,7 +176,8 @@ body {
 }
 
 .edit-button,
-.delete-button {
+.delete-button,
+.view-button {
     padding: 10px 20px;
     background: none;
     border: none;
@@ -184,6 +185,10 @@ body {
     text-align: left;
     cursor: pointer;
     font-size: 0.9rem;
+}
+
+.view-button{
+    color: #4E21A8;
 }
 
 .edit-button {
@@ -195,7 +200,8 @@ body {
 }
 
 .edit-button:hover,
-.delete-button:hover {
+.delete-button:hover,
+.view-button:hover {
     background-color: #f1f1f1;
 }
 

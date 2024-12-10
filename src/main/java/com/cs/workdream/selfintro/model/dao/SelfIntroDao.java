@@ -45,5 +45,12 @@ public class SelfIntroDao {
             // 예외를 던지거나 추가적인 처리를 할 수 있습니다.
         }
     }
-
+    
+    public SelfIntro selectSelfIntroByNo(Integer selfIntroNo) {
+    	return sqlSession.selectOne(NAMESPACE + ".selectSelfIntroByNo", selfIntroNo);
+    }
+    
+    public List<SelfIntro> selectSelfintroByPersonNo(int personNo){
+    	return sqlSession.selectList(NAMESPACE + ".selectSelfIntroByPersonNo", personNo);
+    }
 }
