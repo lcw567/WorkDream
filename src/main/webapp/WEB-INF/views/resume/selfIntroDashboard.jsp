@@ -61,6 +61,11 @@
                                     <input type="hidden" name="id" value="${intro.selfintroNo}">
                                     <button type="submit" class="delete-button">삭제</button>
                                 </form>
+                                <!-- 자소서확인 폼 -->
+                                <form action="${pageContext.request.contextPath}/resume/viewIntro" method="get">
+                                    <input type="hidden" name="id" value="${intro.selfintroNo}">
+                                    <button type="submit" class="view-button">열람</button>
+                                </form>
                             </div>
                         </div>
                     </div>

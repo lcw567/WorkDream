@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
     applyButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             alert('입사지원했습니다');
-            window.location.href = contextPath + '/member/applicationmanage';
+            window.location.href = contextPath + '/person/applicationmanage';
         });
     });
 
     // 관심기업 버튼 클릭 이벤트
     interestButton.addEventListener('click', function() {
         alert('관심기업에 추가되었습니다.');
-        window.location.href = contextPath + '/member/clippingcompany';
+        window.location.href = contextPath + '/person/clippingcompany';
     });
 });

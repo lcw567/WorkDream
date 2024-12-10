@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cs.workdream.resume.controller.ResumeController;
+import com.cs.workdream.resume.model.vo.Resume;
 import com.cs.workdream.selfintro.model.dao.SelfIntroDao;
 import com.cs.workdream.selfintro.model.vo.SelfIntro;
 @Service
@@ -47,6 +48,16 @@ public class SelfIntroServiceImpl implements SelfIntroService {
 	@Override
 	public SelfIntro getSelfIntroById(Integer selfintroNo) {
 		return selfIntroDao.selectSelfIntroById(selfintroNo);
+	}
+	
+	@Override
+    public SelfIntro getSelfintroByNo(Integer selfintroNo) {
+        return selfIntroDao.selectSelfIntroByNo(selfintroNo);
+    }
+
+	@Override
+	public List<SelfIntro> getSelfintroByPersonNo(int personNo) {
+		return selfIntroDao.selectSelfintroByPersonNo(personNo);
 	}
 
 
