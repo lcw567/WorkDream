@@ -2,6 +2,7 @@ SET DEFINE OFF;
 
 -- 커뮤니티 테스트 데이터 생성(멤버 테스트 데이터 실행 한 다음 실행)
 
+
 -- 신입 카테고리 게시글
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
 VALUES (POSTING_SEQ.NEXTVAL, '신입', '첫 직장 생활을 시작하며 느낀 점', 
@@ -1344,4 +1345,94 @@ END;
 
 
 
+-- ===========================================================================
+-- 1. 시퀀스 생성 (이미 존재하지 않는 경우에만 실행)
+-- ===========================================================================
+BEGIN
+    EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_TAG_ID START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE = -955 THEN
+            -- 시퀀스가 이미 존재하는 경우 무시
+            NULL;
+        ELSE
+            RAISE;
+        END IF;
+END;
+/
+        
+-- ===========================================================================
+-- 2. 시퀀스의 현재 값이 USER_TAGS의 최대 TAG_ID보다 큰지 확인하고, 필요 시 조정
+-- ===========================================================================
+DECLARE
+    v_max_tag_id NUMBER;
+    v_seq_val NUMBER;
+BEGIN
+    -- USER_TAGS 테이블의 최대 TAG_ID 조회
+    SELECT NVL(MAX(TAG_ID), 0) INTO v_max_tag_id FROM USER_TAGS;
+    
+    -- 시퀀스의 현재 값 조회
+    BEGIN
+        SELECT SEQ_TAG_ID.CURRVAL INTO v_seq_val FROM dual;
+    EXCEPTION
+        WHEN OTHERS THEN
+            -- SEQ_TAG_ID.NEXTVAL을 먼저 호출하여 CURRVAL을 사용할 수 있게 함
+            SELECT SEQ_TAG_ID.NEXTVAL INTO v_seq_val FROM dual;
+    END;
+    
+    -- 시퀀스가 최대 TAG_ID보다 작거나 같으면 시퀀스를 조정
+    IF v_seq_val <= v_max_tag_id THEN
+        EXECUTE IMMEDIATE 'ALTER SEQUENCE SEQ_TAG_ID INCREMENT BY ' || (v_max_tag_id - v_seq_val + 1);
+        SELECT SEQ_TAG_ID.NEXTVAL INTO v_seq_val FROM dual;
+        EXECUTE IMMEDIATE 'ALTER SEQUENCE SEQ_TAG_ID INCREMENT BY 1';
+    END IF;
+END;
+/
+        
+-- ===========================================================================
+-- 3. 관심 태그 삽입 (중복 방지)
+-- ===========================================================================
+BEGIN
+    -- 관심 태그 목록
+    DECLARE
+        TYPE TagList IS VARRAY(25) OF VARCHAR2(100);
+        tags TagList := TagList(
+            '개발자취업',
+            '개발자',
+            '취업준비',
+            '코딩',
+            '프로그램밍',
+            'IT취업',
+            '개발자커리어',
+            '취업성공',
+            '코딩취업',
+            '소프트웨어개발',
+            '포트폴리오',
+            '취업사이트',
+            '기술직취업',
+            '개발직무',
+            '취업기회',
+            '연봉협상',
+            '복지혜택'
+        );
+    BEGIN
+        FOR i IN 1 .. tags.COUNT LOOP
+            BEGIN
+                INSERT INTO USER_TAGS (TAG_ID, USER_NO, TAG_NAME)
+                VALUES (SEQ_TAG_ID.NEXTVAL, 1, tags(i));
+            EXCEPTION
+                WHEN DUP_VAL_ON_INDEX THEN
+                    -- 중복된 TAG_NAME이 이미 존재하는 경우 무시
+                    NULL;
+            END;
+        END LOOP;
+        
+        COMMIT;
+    END;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
+END;
+/
 
