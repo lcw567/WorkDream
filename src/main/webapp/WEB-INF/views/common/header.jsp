@@ -84,7 +84,7 @@
         	<%-- 로그인 전 --%>
             <ul class="menu">
                 <li id="menuButton"><a><img src="${pageContext.request.contextPath}/img/btn_menu.png" /></a></li>
-                <li><a href="${pageContext.request.contextPath}">채용정보</a></li>
+                <li><a href="${pageContext.request.contextPath}/board/listOfJobOpening">채용정보</a></li>
                 <li><a href="${pageContext.request.contextPath}">공채정보</a></li>
                 <li><a href="${pageContext.request.contextPath}">신입·인턴</a></li>
                 <li><a href="${pageContext.request.contextPath}">기업·연봉</a></li>
