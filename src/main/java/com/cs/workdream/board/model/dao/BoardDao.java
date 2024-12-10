@@ -216,4 +216,15 @@ public class BoardDao {
         String searchTitle = "%" + title + "%";
         return sqlSession.selectOne("boardMapper.countSearchPostsByTitle", searchTitle);
     }
+    
+    // BoardDao.java
+    public int deleteHashtagsByPost(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.delete("boardMapper.deleteHashtagsByPost", postingNo);
+    }
+    
+    public int deleteJobCategoriesByPost(SqlSessionTemplate sqlSession, int postingNo) {
+        return sqlSession.delete("boardMapper.deleteJobCategoriesByPost", postingNo);
+    }
+
+
 }
