@@ -46,9 +46,10 @@
 		<section id="login-section-person">
 			<!-- 광고 영역 -->
 			<article id="login-article-ad">
-				 대충 광고
+				 <img src="${pageContext.request.contextPath}/img/banner_login.png" />
 			</article>
 			
+		
 			<!-- 로그인 영역 -->
 			<article>
 				<!-- 탭 -->
@@ -115,7 +116,7 @@
 		<section id="login-section-business">
 			<!-- 광고 -->
 			<article>
-				기업용 광고
+				<img src="${pageContext.request.contextPath}/img/banner_login2.png" />
 			</article>
 			
 			<!-- 로그인 영역 -->
