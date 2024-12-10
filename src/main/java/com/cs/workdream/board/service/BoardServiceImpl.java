@@ -63,8 +63,39 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public int updatePost(Board board) {
-        return boardDao.updatePost(sqlSession, board);
+        // 게시글 기본 정보 업데이트
+        int result = boardDao.updatePost(sqlSession, board);
+        
+        if (result > 0) {
+            // 기존 해시태그 삭제
+            boardDao.deleteHashtagsByPost(sqlSession, board.getPostingNo());
+            
+            // 새로운 해시태그 삽입
+            if (board.getHashtags() != null && !board.getHashtags().isEmpty()) {
+                for (String hashtag : board.getHashtags()) {
+                    Map<String, Object> params = new HashMap<>();
+                    params.put("postingNo", board.getPostingNo());
+                    params.put("hashtag", hashtag);
+                    boardDao.insertHashtag(sqlSession, params);
+                }
+            }
+            
+            // 기존 직무 카테고리 삭제
+            boardDao.deleteJobCategoriesByPost(sqlSession, board.getPostingNo());
+
+            // 새로운 직무 카테고리 삽입
+            if (board.getJobCategories() != null && !board.getJobCategories().isEmpty()) {
+                for (String job : board.getJobCategories()) {
+                    if (!"선택 안 함".equals(job)) {
+                        boardDao.insertJobCategory(sqlSession, board.getPostingNo(), job);
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     @Override
@@ -203,8 +234,6 @@ public class BoardServiceImpl implements BoardService {
     public int addReply(Reply reply) {
         return boardDao.insertReply(sqlSession, reply);
     }
-    
-    
 
     @Override
     public int deleteReply(int replyNo) {

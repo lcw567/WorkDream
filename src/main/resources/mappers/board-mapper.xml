@@ -426,5 +426,18 @@
         WHERE TITLE LIKE #{title} AND STATUS = 'Y'
     </select>
     
+    <!-- 기존 해시태그 전체 삭제 -->
+	<delete id="deleteHashtagsByPost" parameterType="int">
+	    DELETE FROM COMMUNITY_POST_HASHTAG
+	    WHERE POSTING_NO = #{postingNo}
+	</delete>
+	
+	<delete id="deleteJobCategoriesByPost" parameterType="int">
+	    DELETE FROM COMMUNITY_POST_JOB_CATEGORY
+	    WHERE POSTING_NO = #{postingNo}
+	</delete>
+	
+    
+    
 
 </mapper>
