@@ -47,7 +47,7 @@
         <section class="application-status">
             <div class="header">
                 <h2>지원현황 전체보기</h2>
-                <button class="add-button" onclick="location.href='${pageContext.request.contextPath}/person/applicationmanage'">+</button>
+                <button class="add-button" onclick="location.href='${pageContext.request.contextPath}/person/applicationManager'">+</button>
             </div>
             <div class="status-cards">
                 <div class="status-card"><span>지원완료</span><p>0</p></div>

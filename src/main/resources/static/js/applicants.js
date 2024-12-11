@@ -1,3 +1,15 @@
+/* applicantsStatus.jsp */
+
+// 진행중인 공고가 있는지 우선 판별
+window.onload = function() {
+    // 'method' 값이 '0'이라면 알림을 띄우고 페이지 리다이렉트
+    if (method === '0') {
+        alert("워크드림에서 진행 중인 공고가 없습니다.");
+        window.location.href = contextPath + "/business/recruitmentManager";
+    }
+};
+
+
 /* applicantsList.jsp */
 
 // 필터창 온오프

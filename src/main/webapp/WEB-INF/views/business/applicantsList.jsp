@@ -21,10 +21,10 @@
 		<!-- 지원자 대시보드 -->
 		<section id="applicantsList-section-board">
 			<article class="postionInfo">
-				<h2>자바 웹개발자</h2>
+				<h2>${positionDetail.positionName}</h2>
 				<div>
-					<h4>서류전형 심사</h4>
-					<p>2024.10.31 ~ 2024.11.11</p>
+					<h4>${positionDetail.stagyName}</h4>
+					<p>${positionDetail.stagyStart} ~ ${positionDetail.stagyEnd}</p>
 					<h5>D - 12</h5>
 				</div>
 			</article>
@@ -32,17 +32,17 @@
 			<article class="positionStats">
 				<div>
 					<h6>총 지원수</h6>
-					<h1>40</h1>
+					<h1>${positionDetail.totalPeople}</h1>
 				</div>
 				
 				<div>
 					<h6>평가 완료</h6>
-					<h1>18</h1>
+					<h1>${positionDetail.evaluationPeople}</h1>
 				</div>
 				
 				<div>
 					<h6>최종 합격</h6>
-					<h1>0</h1>
+					<h1>${positionDetail.passPeople}</h1>
 				</div>
 			</article>
 		</section>

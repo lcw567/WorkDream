@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>이력서 관리</title>
-<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicationmanage.css">
-<script src="${pageContext.request.contextPath}/js/resumeDashboard.js" defer></script>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>이력서 관리</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
+	
+	<!-- css / js -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/applicationManager.css">
+	<script>var activeNo = 5;</script>
+	<script src="${pageContext.request.contextPath}/js/resumeDashboard.js" defer></script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header.jsp" />
+    
         <div class="manage_main">
             <div class="main_header">
                 <div class="supporter">
@@ -104,6 +109,7 @@
                 </div>
             </div>
         </div>
+        
     <c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

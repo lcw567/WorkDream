@@ -1,10 +1,8 @@
 package com.cs.workdream.business.model.vo;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,12 +13,17 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@EqualsAndHashCode
-public class JobPosting2 {
-
-    private int recruitmentNo;  // 채용 번호
-    private int businessNo;     // 기업 번호
-    private String method;        // 채용 방법
+public class JobPosting {
+    private int recruitmentNo;        		// 채용 번호
+    private int businessNo;           		// 기업 번호
+    private String representativeName;		// 대표 이름
+    private String representativeDept;		// 대표 부서
+    private String representativeEmail; 	// 대표 이메일
+    private String companyName;       		// 기업명
+    private String website;          		// 홈페이지 주소
+    private String logoPath;        		// 로고 경로
+    
+    private String method;       			// 채용 방법
     private String title;       // 채용 제목
     private String contentImg;  // 내용 이미지
     private String contentText; // 공고 소개 내용 텍스트
@@ -36,5 +39,5 @@ public class JobPosting2 {
     private String requirements;	//지원자 입력정보 자격요건
     private String applicantsPreferential;	//지원자 입력정보 우대사항
     private String information;	//지원자 입력정보 개인정보
-    
 }
+

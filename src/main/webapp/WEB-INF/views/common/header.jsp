@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	// 테스트용 (차후 서블릿 연결 후에 수정됩니다)
-	int menuNo = 1;
-%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
     
     <!-- jQuery -->
     <script 
@@ -32,7 +29,7 @@
 	</script>
     <script src="${pageContext.request.contextPath}/js/common.js" defer></script>
 </head>
-<body onload="activeMenu(<%=menuNo%>)">
+<body>
     <!-- 헤더 -->
     <header>
     	<!-- 로고, 검색창 등 -->
@@ -88,7 +85,7 @@
                 <li><a href="${pageContext.request.contextPath}/planner/planner">플래너</a></li>
                 <li><a href="${pageContext.request.contextPath}/resume/resumeDashboard">이력서</a></li>
                 <li><a href="${pageContext.request.contextPath}/resume/selfIntroDashboard">자기소개서</a></li>
-                <li><a href="${pageContext.request.contextPath}/person/applicationmanage">지원현황</a></li>
+                <li><a href="${pageContext.request.contextPath}/person/applicationManager">지원현황</a></li>
                 <li><a href="${pageContext.request.contextPath}/board/communityHome">커뮤니티</a></li>
                 <%-- 포토폴리오 메뉴 (구직자 로그인 전용) --%>
                 <c:if test="${ !empty loginUser && loginUser.userType == 'P' }">

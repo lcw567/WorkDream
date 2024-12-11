@@ -13,8 +13,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Recuritment {
-	private int recuritmentNo;			// 공고 고유키
+public class Recruitment {
+	private int recruitmentNo;			// 공고 고유키
 	private int businessNo;				// 기업 고유키
 	private String title;				// 공고 제목
 	private String managerName;			// 담당자 이름

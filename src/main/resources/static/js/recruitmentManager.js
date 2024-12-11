@@ -34,9 +34,9 @@ function displayRecruitmentList(list) {
                     + '</button>';
             html += '<ul class="dropdown-menu">';
             html += '<li><a href="">공고 수정</a></li>';
-            html += '<li><a href="" onClick="deleteRecruitment(' + recruitment.recuritmentNo + ')">공고 삭제</a></li>';
+            html += '<li><a href="" onClick="deleteRecruitment(' + recruitment.recruitmentNo + ')">공고 삭제</a></li>';
             if(recruitment.status == "P" || recruitment.status == "E") {
-                html += '<li><a href="' + contextPath + '/business/applicantsStatus?no=' + recruitment.recuritmentNo +'">지원자 현황</a></li>';
+                html += '<li><a href="' + contextPath + '/business/applicantsStatus?no=' + recruitment.recruitmentNo +'">지원자 현황</a></li>';
             }
             html += '</ul>';
             html += '</div>';
@@ -63,7 +63,7 @@ function displayRecruitmentList(list) {
 async function loadProgressList() {
     try {
         const resultList = await $.ajax({
-            url: contextPath + '/business/progressRecuritment.biz',
+            url: contextPath + '/business/progressRecruitment.biz',
             type: 'GET',
             dataType: 'json'
         });
@@ -78,7 +78,7 @@ async function loadProgressList() {
 async function loadStandByList() {
     try {
         const resultList = await $.ajax({
-            url: contextPath + '/business/standByRecuritment.biz',
+            url: contextPath + '/business/standByRecruitment.biz',
             type: 'GET',
             dataType: 'json'
         });
@@ -93,7 +93,7 @@ async function loadStandByList() {
 async function loadTemporaryList() {
     try {
         const resultList = await $.ajax({
-            url: contextPath + '/business/temporaryRecuritment.biz',
+            url: contextPath + '/business/temporaryRecruitment.biz',
             type: 'GET',
             dataType: 'json'
         });
@@ -108,7 +108,7 @@ async function loadTemporaryList() {
 async function loadEndList() {
     try {
         const resultList = await $.ajax({
-            url: contextPath + '/business/endRecuritment.biz',
+            url: contextPath + '/business/endRecruitment.biz',
             type: 'GET',
             dataType: 'json'
         });
