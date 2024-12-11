@@ -28,11 +28,12 @@
  		<typeAlias alias="Business" type="com.cs.workdream.business.model.vo.Business"/>
         <typeAlias alias="BusinessBenefit" type="com.cs.workdream.business.model.vo.BusinessBenefit"/>
         <typeAlias alias="WorkEnvironmentImage" type="com.cs.workdream.business.model.vo.WorkEnvironmentImage"/>
-        <typeAlias alias="Recuritment" type="com.cs.workdream.business.model.vo.Recuritment"/>
+        
+        <typeAlias alias="Recruitment" type="com.cs.workdream.business.model.vo.Recruitment"/>
         <typeAlias alias="Applicants" type="com.cs.workdream.business.model.vo.Applicants" />
- 		<typeAlias alias="ApplicantsStatus" type="com.cs.workdream.business.model.vo.ApplicantsStatus" />
  		<typeAlias alias="Position" type="com.cs.workdream.business.model.vo.Position" />
- 		<typeAlias alias="BusinessBookmark" type="com.cs.workdream.business.model.vo.BusinessBookmark" /> 
+ 		<typeAlias alias="BusinessBookmark" type="com.cs.workdream.business.model.vo.BusinessBookmark" />
+ 		
  		<typeAlias alias="ChatHistory" type="com.cs.workdream.chat.model.vo.ChatHistory" />
         <typeAlias alias="ChatList" type="com.cs.workdream.chat.model.vo.ChatList" />
  				
@@ -42,10 +43,14 @@
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
+		
+		<mapper resource="mappers/person-mapper.xml"/>
 		<mapper resource="mappers/resume-mapper.xml"/>
 		<mapper resource="mappers/selfintro-mapper.xml"/>
+		
 		<mapper resource="mappers/business-mapper.xml"/>
 		<mapper resource="mappers/businessprofile-mapper.xml"/>
+		
 		<mapper resource="mappers/usertags-mapper.xml"/>
 		<mapper resource="mappers/planner-mapper.xml"/>
 		<mapper resource="mappers/portfolio-mapper.xml"/>

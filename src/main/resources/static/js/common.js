@@ -50,9 +50,9 @@ function dropMenu(index) {
 
 // 메뉴탭 활성화
 try {
-    function activeMenu(menuNo) {
+    function activeMenu(activeNo) {
         const menuItems = document.querySelectorAll("#header-nav-bottom .menu > li");
-        menuItems[menuNo].classList.add("On");
+        menuItems[activeNo].classList.add("On");
     }
 } catch(error) {
     console.log("activeMenu: ", error);
@@ -66,9 +66,16 @@ function activeMenuBiz(activeBizNo) {
     menuItems[activeBizNo].classList.add("On");
 }
 
+
 document.addEventListener("DOMContentLoaded", function() {
+try {
+
+} catch(error) {
+    console.log(": ", error);
+}
+
     try {
-        activeMenuBiz(activeBizNo); 
+        activeMenuBiz(activeBizNo);
     } catch(error) {
         console.log("activeMenuBiz: ", error);
     }

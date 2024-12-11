@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.cs.workdream.business.model.vo.Business;
 import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.usertags.model.vo.UserTag;
 import com.cs.workdream.usertags.service.UserTagsService;
@@ -51,19 +53,32 @@ public class PersonController {
 	
 	/*=====================================================================================================*/
 	
-
-	@GetMapping("/applicationmanage")
-	public String applicationmanage(Model model, HttpSession session) {
+	
+	/* 지원현황 관련 */
+	// 지원현황 페이지로 이동
+	@GetMapping("/applicationManager")
+	public ModelAndView applicationManager(ModelAndView mv, HttpSession session) {
+		// 세션에서 로그인한 사용자 정보 가져오기
+        Member currentUser = (Member) session.getAttribute("loginUser");
 		
-		Member loginUser = (Member) session.getAttribute("loginUser");
-		
-		if(loginUser != null) {
-			return "person/applicationmanage";
-		}else {
-			return "member/login";
-		}
-		
+        if (currentUser != null) {
+        	int personNo = currentUser.getPersonNo();
+        	
+        	// 이력서 > personNo으로 검색 > 반환
+        	mv.setViewName("person/applicationManage");
+        } else {
+            // 로그인하지 않은 경우 처리
+        	mv.setViewName("common/errorPage");
+			mv.addObject("errorMsg", "로그인이 필요한 서비스입니다.");
+			mv.addObject("returnPage", "/login?ut=P");
+        }
+        
+        return mv;
 	}
+	
+	
+	/*=====================================================================================================*/
+	
 	
 	@GetMapping("/clipping")
 	public String clipping() {

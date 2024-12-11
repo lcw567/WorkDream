@@ -14,7 +14,6 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Applicants {
-	
 	private int applicantsNo;			// 지원자 고유키
 	private int recuritmentNo;			// 채용공고 고유키
 	private int positionNo;				// 채용 포지션 고유키

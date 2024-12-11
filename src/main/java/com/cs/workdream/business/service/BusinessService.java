@@ -4,40 +4,52 @@ import java.util.List;
 import java.util.Map;
 
 import com.cs.workdream.business.model.vo.Applicants;
-import com.cs.workdream.business.model.vo.ApplicantsStatus;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
-import com.cs.workdream.business.model.vo.Recuritment;
+import com.cs.workdream.business.model.vo.Recruitment;
 
 public interface BusinessService {
 	
 	// 현재 공고 현황 조회
-	Map<String, Integer> selectRecuritmentStatus(int businessNo);
+	Map<String, Integer> selectRecruitmentStatus(int businessNo);
 	
 	// 진행중인 공고 목록 조회
-	List<Recuritment> selectListProgressRecuritment(int businessNo);
+	List<Recruitment> selectListProgressRecruitment(int businessNo);
 	
 	// 대기중인 공고 목록 조회
-	List<Recuritment> selectListStandByRecuritment(int businessNo);
+	List<Recruitment> selectListStandByRecruitment(int businessNo);
 	
 	// 임시저장한 공고 목록 조회
-	List<Recuritment> selectListTemporaryRecuritment(int businessNo);
+	List<Recruitment> selectListTemporaryRecruitment(int businessNo);
 	
 	// 마감된 공고 목록 조회
-	List<Recuritment> selectListEndRecuritment(int businessNo);
+	List<Recruitment> selectListEndRecruitment(int businessNo);
 	
 	// 공고 삭제
-	int deleteRecruitment(int recuritmentNo);
+	int deleteRecruitment(int recruitmentNo);
+	
+	
+	/*=====================================================================================================*/
 
 	// 지원자 현황 조회
-	ApplicantsStatus inquireAppsStatus(int recruitmentNo);
+	Map<String, Integer> selectApplicantsDashboard(int businessNo, int recruitmentNo);
 
-	// 포지션 목록 조회(현황 페이지용)
-	List<Position> inquirePositionList(int recruitmentNo);
+	// 포지션 목록 조회
+	List<Position> selectPositionList(int businessNo, int recruitmentNo);
+	
+	// 포지션 현황 조회
+	List<Position> selectPositionDashboard(List<Position> positionList);
+	
+	// 포지션 상세 조회
+	Position selectPositionDetail(int recruitmentNo, int positionNo);
 	
 	// 지원자 목록 조회
-	List<Applicants> loadAppList(int recruitmentNo, int positionNo);
+	List<Applicants> selectApplicantsList(int recruitmentNo, int positionNo, int stagyNo);
+	
+	
+	/*=====================================================================================================*/
 
+	
 	// 즐겨찾기 목록 조회
 	List<BusinessBookmark> loadBookmarkList(int businessNo);
 
@@ -55,6 +67,7 @@ public interface BusinessService {
 
 	// 즐겨찾기 그룹 삭제
 	int deleteFolder(int businessNo, int folder);
+
 
 
 }

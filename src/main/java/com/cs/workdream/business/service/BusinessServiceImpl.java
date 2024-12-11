@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.cs.workdream.business.model.dao.BusinessDao;
 import com.cs.workdream.business.model.vo.Applicants;
-import com.cs.workdream.business.model.vo.ApplicantsStatus;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
-import com.cs.workdream.business.model.vo.Recuritment;
+import com.cs.workdream.business.model.vo.Recruitment;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -24,57 +23,77 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	
 	// 현재 공고 현황 조회
-	public Map<String, Integer> selectRecuritmentStatus(int businessNo) {
-		return businessDao.selectRecuritmentStatus(businessNo);
+	public Map<String, Integer> selectRecruitmentStatus(int businessNo) {
+		return businessDao.selectRecruitmentStatus(businessNo);
 	}
 	
 	// 진행중인 공고 목록 조회
 	@Override
-	public List<Recuritment> selectListProgressRecuritment(int businessNo) {
-		return businessDao.selectListProgressRecuritment(businessNo);
+	public List<Recruitment> selectListProgressRecruitment(int businessNo) {
+		return businessDao.selectListProgressRecruitment(businessNo);
 	}
 	
 	// 대기중인 공고 목록 조회
 	@Override
-	public List<Recuritment> selectListStandByRecuritment(int businessNo) {
-		return businessDao.selectListStandByRecuritment(businessNo);
+	public List<Recruitment> selectListStandByRecruitment(int businessNo) {
+		return businessDao.selectListStandByRecruitment(businessNo);
 	}
 		
 	// 임시저장한 공고 목록 조회
 	@Override
-	public List<Recuritment> selectListTemporaryRecuritment(int businessNo) {
-		return businessDao.selectListTemporaryRecuritment(businessNo);
+	public List<Recruitment> selectListTemporaryRecruitment(int businessNo) {
+		return businessDao.selectListTemporaryRecruitment(businessNo);
 	}
 	
 	// 마감된 공고 목록 조회
 	@Override
-	public List<Recuritment> selectListEndRecuritment(int businessNo) {
-		return businessDao.selectListEndRecuritment(businessNo);
+	public List<Recruitment> selectListEndRecruitment(int businessNo) {
+		return businessDao.selectListEndRecruitment(businessNo);
 	}
 	
 	// 공고 삭제
 	@Override
-	public int deleteRecruitment(int recuritmentNo) {
-		return businessDao.deleteRecruitment(recuritmentNo);
+	public int deleteRecruitment(int recruitmentNo) {
+		return businessDao.deleteRecruitment(recruitmentNo);
 	}
+	
+	
+	/*=====================================================================================================*/
 	
 	// 지원자 현황 조회
 	@Override
-	public ApplicantsStatus inquireAppsStatus(int applicantsNo) {
-		return businessDao.inquireAppsStatus(applicantsNo);
+	public Map<String, Integer> selectApplicantsDashboard(int businessNo, int recruitmentNo) {
+		return businessDao.selectApplicantsDashboard(businessNo, recruitmentNo);
 	}
 	
-	// 포지션 목록 조회(현황 페이지용)
+	// 포지션 목록 조회
 	@Override
-	public List<Position> inquirePositionList(int recruitmentNo) {
-		return businessDao.inquirePositionList(recruitmentNo);
+	public List<Position> selectPositionList(int businessNo, int recruitmentNo) {
+		return businessDao.selectPositionList(businessNo, recruitmentNo);
 	}
-
+	
+	// 포지션 현황 조회
+	@Override
+	public List<Position> selectPositionDashboard(List<Position> positionList) {
+		return businessDao.selectPositionDashboard(positionList);
+	}
+	
+	// 포지션 상세 조회
+	@Override
+	public Position selectPositionDetail(int recruitmentNo, int positionNo) {
+		return businessDao.selectPositionDetail(recruitmentNo, positionNo);
+	}
+	
 	// 지원자 목록 조회
 	@Override
-	public List<Applicants> loadAppList(int recruitmentNo, int positionNo) {
-		return businessDao.loadAppList(recruitmentNo, positionNo);
+	public List<Applicants> selectApplicantsList(int recruitmentNo, int positionNo, int stagyNo) {
+		return businessDao.selectApplicantsList(recruitmentNo, positionNo, stagyNo);
 	}
+	
+	
+	
+	/*=====================================================================================================*/
+	
 
 	// 즐겨찾기 목록 조회
 	@Override
@@ -111,5 +130,7 @@ public class BusinessServiceImpl implements BusinessService {
 	public int deleteFolder(int businessNo, int folder) {
 		return businessDao.deleteFolder(businessNo, folder);
 	}
+
+	
 
 }
