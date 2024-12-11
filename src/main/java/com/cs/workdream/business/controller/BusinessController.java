@@ -1,7 +1,5 @@
 package com.cs.workdream.business.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +46,7 @@ public class BusinessController {
 	@RequestMapping("/businessMypage")
     public ModelAndView businessMypage(HttpSession session, ModelAndView mv) throws Exception {
         // 세션에서 로그인한 사용자 정보 가져오기
-        Member currentUser = (Member) session.getAttribute("loginUser");
+        Member currentUser = (Member)session.getAttribute("loginUser");
         
         if (currentUser != null) {
         	// 기업 정보 가져오기

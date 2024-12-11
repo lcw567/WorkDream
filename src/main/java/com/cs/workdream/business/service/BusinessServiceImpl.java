@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cs.workdream.business.model.dao.BusinessDao;
 import com.cs.workdream.business.model.vo.Applicants;
+import com.cs.workdream.business.model.vo.Business;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
 import com.cs.workdream.business.model.vo.Recruitment;
@@ -91,7 +92,6 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	
-	
 	/*=====================================================================================================*/
 	
 
@@ -131,6 +131,8 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.deleteFolder(businessNo, folder);
 	}
 
+	
+	/*=====================================================================================================*/
 	
 
 }

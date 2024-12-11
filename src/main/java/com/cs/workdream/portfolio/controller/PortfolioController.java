@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cs.workdream.common.vo.PageInfo;
+import com.cs.workdream.common.model.vo.PageInfo;
 import com.cs.workdream.member.model.vo.Member;
 import com.cs.workdream.portfolio.model.service.PortfolioService;
 import com.cs.workdream.portfolio.model.vo.Portfolio;

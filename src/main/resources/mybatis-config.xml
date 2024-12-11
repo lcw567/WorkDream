@@ -41,6 +41,7 @@
  	
  	<!-- mapper 경로 등록 -->
 	<mappers>
+		<mapper resource="mappers/common-mapper.xml"/>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		
