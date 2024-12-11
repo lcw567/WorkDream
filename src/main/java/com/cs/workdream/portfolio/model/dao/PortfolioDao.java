@@ -1,6 +1,6 @@
 package com.cs.workdream.portfolio.model.dao;
 
-import com.cs.workdream.common.vo.PageInfo;
+import com.cs.workdream.common.model.vo.PageInfo;
 import com.cs.workdream.portfolio.model.vo.Portfolio;
 import com.cs.workdream.resume.controller.ResumeController;
 

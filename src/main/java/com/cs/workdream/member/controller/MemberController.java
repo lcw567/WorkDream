@@ -51,7 +51,7 @@ public class MemberController {
 	
 	// 로그인 판별
 	@RequestMapping("login.me")
-	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response, HttpServletRequest request) {
+	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv, String saveId, HttpServletResponse response) {
 	    Member loginMember = memberService.loginMember(m);
 	    System.out.println("loginMember: " + m.toString());
 	    System.out.println("loginUser: " + loginMember.toString());
@@ -75,7 +75,6 @@ public class MemberController {
 	        
         	if("B".equals(loginMember.getUserType())) {
         		// 기업 회원 > 기업 홈으로 이동
-        		String contextPath = request.getContextPath();
         		mv.setViewName("redirect:/business/businessMypage");
         	} else {
         		// 개인 회원 > 메인 홈으로 이동

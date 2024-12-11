@@ -1,6 +1,6 @@
 package com.cs.workdream.common.template;
 
-import com.cs.workdream.common.vo.PageInfo;
+import com.cs.workdream.common.model.vo.PageInfo;
 
 public class Template {
 	

@@ -1,4 +1,4 @@
-package com.cs.workdream.common.vo;
+package com.cs.workdream.common.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

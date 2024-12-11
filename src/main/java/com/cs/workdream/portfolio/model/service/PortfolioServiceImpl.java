@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cs.workdream.common.vo.PageInfo;
+import com.cs.workdream.common.model.vo.PageInfo;
 import com.cs.workdream.portfolio.model.dao.PortfolioDao;
 import com.cs.workdream.portfolio.model.vo.Portfolio;
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="commonMapper">
+	<!-- Recruitment  -->
+	<resultMap type="Recruitment" id="recruitmentResultSet">
+		<result column="RECRUITMENT_NO" property="recruitmentNo" />
+		<result column="BUSINESS_NO" property="businessNo" />
+		<result column="TITLE" property="title" />
+		<result column="MANAGER_NAME" property="managerName" />
+		<result column="MANAGER_DEPT" property="managerDept" />
+		<result column="MANAGER_EMAIL" property="managerEmail" />
+		<result column="METHOD" property="method" />
+		<result column="START_DATE" property="startDate" />
+		<result column="DEADLINE" property="deadline" />
+		<result column="POSTING_DATE" property="postingDate" />
+		<result column="CONTENT_IMG" property="contentImg" />
+		<result column="CONTENT_TEXT" property="contextText" />
+		<result column="STATUS" property="status" />
+	</resultMap>
+	
+	
+	<!-- [메인 홈 관련] ================================================================================================== -->
+	
+	<!-- 공고 목록 조회 -->
+	<select id="selectRecruitmentList">
+		SELECT	RECRUITMENT_NO, BUSINESS_NO
+		  FROM	RECRUITMENT
+	</select>
+	
+	<!-- 관심 태그 적용 -->
+	<select id="selectRecruitmentTagList" parameterType="int">
+		SELECT	RECRUITMENT_NO, BUSINESS_NO
+		  FROM	RECRUITMENT
+	</select>
+</mapper>
