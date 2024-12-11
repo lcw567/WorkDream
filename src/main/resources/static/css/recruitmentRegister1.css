@@ -1,64 +1,49 @@
-
+/* recruitmentRegister1.jsp */
 #Job_Posting {
-    border: none;
-    padding: 8px;
-    width: 95%;
-    max-width: 1264px;
-    height: 100%;
+	width: 95%;
+	max-width: 1280px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    padding: 1% 3%;
 }
 
 #Job_Posting_Registration {
-    border: none;
-    height: 60px;
-    width: 100%;
-    padding-top: 10px;
+	width: 100%;
+	padding: 3%;
+	border-bottom: 2px solid #4E21A8;
 }
 
-#Job_Posting_Registration h2 {
-    margin: 0;
-    color: #7A35B9;
-    font-size: 1.2rem;
-    font-weight: 800;
-    padding-left: 20px;
-    padding-bottom: 15px;
-}
-
-#Job_Posting hr {
-    color: #3333ff;
-    height: 2px;
-    border: 2px solid #7A35B9;
+#Job_Posting_Registration > h2 {
+	white-space: nowrap;
+	font-family: 'MonoplexKR-SemiBold';
+    font-size: 1.3rem;
+    color: #4E21A8;
 }
 
 #Job_Posting_Registration_content {
-    margin-left: 100px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1% 5%;
 }
 
-#Job_Posting_Registration_content h2 {
-    font-size: 1.2rem;
+#Job_Posting_Registration_content > * {
+	width: 100%;
+	margin: 1% 0;
 }
 
 #Job_Posting_Registration_Index {
-    width: 90%;
-    height: 50px;
-    background-color: #D9D9D9;
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid #B4A3DB;
+	border-radius: 3px;
 }
 
-#Job_Posting_Registration_Index_One {
-    display: flex;
-    align-items: center;
-    border: none;
-}
-
-#Job_Posting_Registration_Index_One p {
-    font-size: 13px;
-    font-weight: bold;
-}
-
-#Job_Posting_Registration_Index_One img {
+#Job_Posting_Registration_Index > img {
     width: 20px;
     height: 20px;
     display: flex;
@@ -66,116 +51,113 @@
     margin-right: 5px;
 }
 
-#Job_Posting_Registration_Index_One hr {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 100px;
+#Job_Posting_Registration_Index > p {
+	font-weight: bold;
+    font-size: 1rem;
+}
+
+#Job_Posting_Registration_Index > p.nonactivation {
+	color: #B4A3DB;
+}
+
+#Job_Posting_Registration_Index > hr {
+	width: 100px;
+    margin: 0 3%;
     border: 2px solid black;
 }
 
-.Contact_Information_Title {
-    border: none;
-    display: flex;
-    align-items: center;
-    height: 28px;
+#Job_Posting_Registration_content > article {
+	display: flex;
+	flex-direction: column;
 }
 
-.Contact_Information_Title h2 {
-    margin: 0px;
+#Job_Posting_Registration_content h2.Information_Title {
+	margin-top: 3%;
+	font-size: 1.5rem;
 }
 
-.Contact_Information_Title p {
-    border: none;
-    margin-left: 5px;
-    font-size: 15px;
-    height: 9px;
+#Job_Posting_Registration_content p {
+	margin: 1% 0;
+	word-spacing: -0.2rem;
+	font-size: 0.9rem;
 }
 
-.Contact_Information p {
-    margin-top: 0px;
-    margin-bottom: 11px;
-    color: #656565;
-    font-weight: 200;
+#Job_Posting_Registration_content p.notice {
+	color: #656565;
 }
 
-#Contact_Information_Name {
-    display: flex;
-    align-items: center;
-    height: 38px;
+#Job_Posting_Registration_content .Information {
+	width: 100%;
+	max-width: 400px;
+	min-height: 40px;
+	height: auto;
+	display: flex;
+	align-items: center;
+	margin: 1% 0;
 }
 
-#Contact_Information_Name input {
-    height: 32px;
-    width: 180px;
-    margin-left: 51px;
+#Job_Posting_Registration_content .Information > h3 {
+	min-width: 100px;
+	margin-right: 3%;
+	white-space: nowrap;
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+#Job_Posting_Registration_content .Information > span {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 1% 0;
+}
+
+#Job_Posting_Registration_content .Information input {
+	width: 100%;
+	height: 2.5rem;
+	padding: 0 2%;
+	border: 1.5px solid #000;
+	border-radius: 5px;
+	font-family: 'MonoplexKR-SemiBold';
+	font-size: 1rem;
+}
+
+#Job_Posting_Registration_content .Information input::placeholder {
+	font-family: 'MonoplexKR-Regular';
+	font-size: 0.8rem;
+	color: #B4A3DB;
+}
+
+#Job_Posting_Registration_content .Information button {
+	min-width: 80px;
+	height: 2.5rem;
+	margin-left: 3%;
+	background-color: #4E21A8;
+    border: 1px solid #4E21A8;
     border-radius: 5px;
-    padding-left: 5px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1rem;
+	color: #FFFFFF;
 }
 
-#Contact_Information_Department {
-    display: flex;
-    align-items: center;
-    height: 38px;
-}
-
-#Contact_Information_Department input {
-    height: 32px;
-    width: 180px;
-    margin-left: 51px;
-    border-radius: 5px;
-    padding-left: 5px;
-}
-
-#Contact_Information_Email {
-    display: flex;
-    align-items: center;
-    height: 38px;
-    margin-bottom: 40px;
-}
-
-#Contact_Information_Email input {
-    height: 32px;
-    width: 300px;
-    margin-left: 35px;
-    border-radius: 5px;
-    padding-left: 5px;
-}
-
-#Contact_Information_Company_Name {
-    display: flex;
-    align-items: center;
-    height: 38px;
-    margin-bottom: 40px;
-}
-
-#Website_Address {
-    margin-bottom: 40px;
-}
-
-#Website_Address input {
-    border-radius: 5px;
-    border: 1px solid black;
-    width: 350px;
-    height: 40px;
-    padding-left: 10px;
-    background-color: #E1DEF1;
-}
-
-#Website_Address button {
-    margin-left: 8px;
-    width: 65px;
-    height: 35px;
-    border-radius: 5px;
-    border: 1px solid black;
-    background-color: #4E21A8;
-    color: white;
-    font-weight: 600;
-}
-
-#Website_Address button:hover {
+#Job_Posting_Registration_content .Information button:hover {
     background-color: #3d1a85;
-    /* 호버 시 색상 */
 }
+
+#Job_Posting_Registration_content .Information.column {
+	flex-direction: column;
+	align-items: flex-start;
+	margin-top: 5%;
+}
+
+#Job_Posting_Registration_content .Information.column input {
+	margin: 3% 0;
+}
+
+
+/* 미수정 */
+
 
 #Company_logo {
     border: 1px solid black;
