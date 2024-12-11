@@ -1,0 +1,370 @@
+        /* 공통 적용 */
+        *,
+        *:before,
+        *:after,
+        html {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            min-width: 1024px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: auto;
+        }
+
+        body,
+        body * {
+            padding: 0;
+            margin: 0;
+            font-family: 'MonoplexKR-Regular';
+            font-size: 0.688rem;
+            color: #000000;
+        }
+
+        main {
+            min-height: 80vh;
+        }
+
+        ul,
+        ol,
+        a {
+            list-style: none;
+            text-decoration: none;
+            margin: 0;
+        }
+
+        ul,
+        ol,
+        table {
+            border-collapse: collapse;
+        }
+
+        input,
+        select,
+        input:focus,
+        select:focus {
+            outline: none;
+        }
+
+        a,
+        button,
+        input[type="button"],
+        input[type="submit"],
+        input[type="reset"] {
+            cursor: pointer;
+        }
+
+        #Job_Posting {
+            border: none;
+            padding: 8px;
+            width: 85%;
+            max-width: 1000px;
+            height: 100%;
+            margin-top: 80px;
+        }
+
+        #searchHeader {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            margin-left: 18px;
+        }
+
+        #searchHeader input {
+            border: none;
+            height: 100px;
+            width: 750px;
+            font-size: 3.8rem;
+            margin-left: 15px;
+        }
+
+        #searchHeader input::placeholder {
+            font-size: 3.8rem;
+            font-weight: 600;
+            color: #949494;
+        }
+
+        #searchHeader button {
+            border-radius: 50px;
+            border: solid #4E21A8;
+            background-color: white;
+
+        }
+
+        #searchHeader img {
+            width: 93px;
+            height: 70px;
+        }
+
+        #searchedKeyword {
+            width: none;
+            height: 50px;
+            margin: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        #searchedKeyword pre {
+            font-size: 25px;
+            font-weight: 600;
+            color: #525252;
+        }
+
+        #searchedKeyword button {
+            border: none;
+            background-color: white;
+            font-size: 25px;
+            font-weight: 900px;
+        }
+
+        .Initialization {
+            display: flex;
+        }
+
+        .Initialization img {
+            width: 34px;
+        }
+
+        #searchFind {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        #searchFind img {
+            width: 45px;
+        }
+
+        #searchFind pre {
+            font-size: 25px;
+            font-weight: 600;
+            margin-left: 20px;
+            margin-bottom: 7px;
+            color: #949494;
+        }
+
+        #searchSection {
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            height: 51px;
+            display: flex;
+            margin-bottom: 40px;
+        }
+
+        #contentSearch {
+            background-color: #D4CDE3;
+            border: 1px solid #4E21A8;
+            border-radius: 10px 0 0 10px;
+            color: #3a3a3a;
+            width: 300px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        #recruitmentSearch {
+            width: 353px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #3a3a3a;
+            background-color: #D4CDE3;
+            border: 1px solid #4E21A8;
+        }
+
+        #corporateSearch {
+            width: 353px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #3a3a3a;
+            border-radius: 0 10px 10px 0;
+            background-color: #D4CDE3;
+            border: 1px solid #4E21A8;
+        }
+
+        #recruitmentInformation {
+            border: 1px solid black;
+            border-radius: 40px;
+			margin-bottom: 100px;
+    		height: 1800px;
+            width: 100%;
+        }
+
+        #recruitmentCategory {
+            width: 100%;
+            height: 150px;
+            background-color: #D4CDE3;
+            border-radius: 40px 40px 0 0;
+        }
+
+        #recruitmentCategory p {
+            padding-top: 30px;
+            padding-left: 50px;
+            padding-bottom: 40px;
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+        #recruitmentDropDown{
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+        }
+
+        .dropdown{
+            position : relative;
+            display : inline-block;
+        }
+          
+        .dropbtn_icon{
+            font-family : 'Material Icons';
+        }
+        
+        .dropbtn_icon pre{
+        	font-size: 16px;
+    		font-weight: 900;
+    		color: #525252;
+        }
+
+        .dropbtn{
+            border: none;
+            background-color: #D4CDE3;
+            cursor : pointer;
+        }
+
+        .dropdown-content{
+        	border: 2px solid black;
+            display : none;
+            position : absolute;
+            z-index : 1; /*다른 요소들보다 앞에 배치*/
+            font-weight: 400;
+            background-color: white;
+        }
+          
+        .dropdown-content a{
+            display : block;
+            text-decoration : none;
+            color : rgb(37, 37, 37);
+            font-size: 12px;
+            padding : 12px 20px;
+        }
+          
+        .dropdown-content a:hover{
+            background-color : #ececec
+        }
+          
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        
+        .recruitmentContentTitle {
+            display: flex;
+            align-items: center;
+            margin-top: 50px;
+            margin-left: 70px;
+            margin-bottom: 10px;
+        }
+
+        .recruitmentContentTitle h1 {
+            font-size: 23px;
+            font-weight: 900;
+            margin-right: 5px;
+        }
+
+        .recruitmentContentTitle img {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+        }
+
+        .recruitmentContentTitle p {
+            font-size: 14px;
+            font-weight: 600;
+            color: #949494;
+        }
+        
+        .recruitmentContentSubTitle p {
+            font-size: 16px;
+            margin-left: 70px;
+            color: #565656;
+        }
+
+        .recruitmentContentCompany{
+            border: none;
+            width: 150px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-left: 75%;
+            margin-top: -14px
+        }
+
+        .recruitmentContentCompany h1 {
+            font-size: 20px;
+            font-weight: 900;
+            margin-right: 10px;
+            margin-bottom: 20px;
+        }
+
+        .recruitmentContentCompany img{
+            width: 20px;
+            height: 20px;
+            margin-bottom: 20px;
+        }
+
+        .recruitmentContentCompany button{
+            width: 60px;
+            background-color: #FFFFFF;
+            color: #717171;
+            border: 1px solid #797979;
+            margin-left: 5px;
+        }
+
+        .recruitmentContentSkill p {
+            font-size: 16px;
+            margin-left: 70px;
+            margin-bottom: 35px;
+            margin-top: 10px;
+            color: #565656;
+        }
+        
+        .pageview{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            border: none;
+            width: 100%;
+            height: 30px;
+        }
+
+        #pageCountInterval{
+    		border: none;
+    		width: 450px;
+    		display: flex;
+    		justify-content: space-between;
+        }
+
+        .pageviewCount{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #b4b4b4;
+            background: white;
+            width: 35px;
+            height: 35px;
+            font-size: 
+        }
+        
+        .pageviewCount p{
+        	font-size: 13px;
+        }
