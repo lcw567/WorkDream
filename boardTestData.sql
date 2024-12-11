@@ -1436,3 +1436,185 @@ EXCEPTION
 END;
 /
 
+INSERT INTO SELF_INTRODUCTION(
+    SELF_INTRODUCTION_NO, 
+    RESUME_NO, 
+    USER_ID, 
+    TITLE, 
+    CONTENT, 
+    CREATED_DATE, 
+    MODIFIED_DATE, 
+    DELETED, 
+    PERSON_NO, 
+    USER_NO
+)
+VALUES (
+    SELF_INTRO_SEQ.NEXTVAL, -- PK 시퀀스
+    null,                      -- RESUME_NO
+    'person1',              -- USER_ID
+    '자기소개서 1',         -- TITLE
+    '저는 항상 새로운 도전을 즐기는 사람입니다. 어려운 문제를 해결하는 과정에서 얻는 성취감을 중요하게 생각하며, 이를 통해 스스로의 한계를 확장해왔습니다. 특히, 팀 프로젝트를 진행하며 서로의 아이디어를 공유하고 협력하는 과정에서 큰 보람을 느꼈습니다. 이를 통해 효율적인 의사소통의 중요성을 깨달았고, 끊임없이 성장하는 자세를 배우게 되었습니다. 앞으로도 배움을 멈추지 않고, 도전과 성장을 지속하며 주어진 역할에 최선을 다하겠습니다.', 
+    SYSDATE,                -- CREATED_DATE
+    SYSDATE,                -- MODIFIED_DATE
+    1,                      -- DELETED (e.g., 1: 사용, 0: 삭제)
+    1,                      -- PERSON_NO
+    1                       -- USER_NO
+);
+
+INSERT INTO SELF_INTRODUCTION(
+    SELF_INTRODUCTION_NO, 
+    RESUME_NO, 
+    USER_ID, 
+    TITLE, 
+    CONTENT, 
+    CREATED_DATE, 
+    MODIFIED_DATE, 
+    DELETED, 
+    PERSON_NO, 
+    USER_NO
+)
+VALUES (
+    SELF_INTRO_SEQ.NEXTVAL, -- PK 시퀀스
+    null,                      -- RESUME_NO
+    'person1',              -- USER_ID
+    '자기소개서 2',         -- TITLE
+    '저는 항상 새로운 도전을 즐기는 사람입니다. 어려운 문제를 해결하는 과정에서 얻는 성취감을 중요하게 생각하며, 이를 통해 스스로의 한계를 확장해왔습니다. 특히, 팀 프로젝트를 진행하며 서로의 아이디어를 공유하고 협력하는 과정에서 큰 보람을 느꼈습니다. 이를 통해 효율적인 의사소통의 중요성을 깨달았고, 끊임없이 성장하는 자세를 배우게 되었습니다. 앞으로도 배움을 멈추지 않고, 도전과 성장을 지속하며 주어진 역할에 최선을 다하겠습니다.',
+    SYSDATE,                -- CREATED_DATE
+    SYSDATE,                -- MODIFIED_DATE
+    'N',                    -- DELETED ('Y' 또는 'N')
+    1,                      -- PERSON_NO
+    1                       -- USER_NO
+);
+
+
+INSERT INTO SELF_INTRODUCTION(
+    SELF_INTRODUCTION_NO, 
+    RESUME_NO, 
+    USER_ID, 
+    TITLE, 
+    CONTENT, 
+    CREATED_DATE, 
+    MODIFIED_DATE, 
+    DELETED, 
+    PERSON_NO, 
+    USER_NO
+)
+VALUES (
+    SELF_INTRO_SEQ.NEXTVAL, -- PK 시퀀스
+    null,                      -- RESUME_NO
+    'person1',              -- USER_ID
+    '자기소개서 3',         -- TITLE
+    '저는 항상 새로운 도전을 즐기는 사람입니다. 어려운 문제를 해결하는 과정에서 얻는 성취감을 중요하게 생각하며, 이를 통해 스스로의 한계를 확장해왔습니다. 특히, 팀 프로젝트를 진행하며 서로의 아이디어를 공유하고 협력하는 과정에서 큰 보람을 느꼈습니다. 이를 통해 효율적인 의사소통의 중요성을 깨달았고, 끊임없이 성장하는 자세를 배우게 되었습니다. 앞으로도 배움을 멈추지 않고, 도전과 성장을 지속하며 주어진 역할에 최선을 다하겠습니다.',
+    SYSDATE,                -- CREATED_DATE
+    SYSDATE,                -- MODIFIED_DATE
+    'N',                    -- DELETED ('Y' 또는 'N')
+    1,                      -- PERSON_NO
+    1                       -- USER_NO
+);
+
+
+INSERT INTO SELF_INTRODUCTION(
+    SELF_INTRODUCTION_NO, 
+    RESUME_NO, 
+    USER_ID, 
+    TITLE, 
+    CONTENT, 
+    CREATED_DATE, 
+    MODIFIED_DATE, 
+    DELETED, 
+    PERSON_NO, 
+    USER_NO
+)
+VALUES (
+    SELF_INTRO_SEQ.NEXTVAL, -- PK 시퀀스
+    null,                      -- RESUME_NO
+    'person1',              -- USER_ID
+    '자기소개서 4',         -- TITLE
+    '저는 항상 새로운 도전을 즐기는 사람입니다. 어려운 문제를 해결하는 과정에서 얻는 성취감을 중요하게 생각하며, 이를 통해 스스로의 한계를 확장해왔습니다. 특히, 팀 프로젝트를 진행하며 서로의 아이디어를 공유하고 협력하는 과정에서 큰 보람을 느꼈습니다. 이를 통해 효율적인 의사소통의 중요성을 깨달았고, 끊임없이 성장하는 자세를 배우게 되었습니다. 앞으로도 배움을 멈추지 않고, 도전과 성장을 지속하며 주어진 역할에 최선을 다하겠습니다.',
+    SYSDATE,                -- CREATED_DATE
+    SYSDATE,                -- MODIFIED_DATE
+    'N',                    -- DELETED ('Y' 또는 'N')
+    1,                      -- PERSON_NO
+    1                       -- USER_NO
+);
+
+
+INSERT INTO SELF_INTRODUCTION(
+    SELF_INTRODUCTION_NO, 
+    RESUME_NO, 
+    USER_ID, 
+    TITLE, 
+    CONTENT, 
+    CREATED_DATE, 
+    MODIFIED_DATE, 
+    DELETED, 
+    PERSON_NO, 
+    USER_NO
+)
+VALUES (
+    SELF_INTRO_SEQ.NEXTVAL, -- PK 시퀀스
+    null,                      -- RESUME_NO
+    'person1',              -- USER_ID
+    '자기소개서 5',         -- TITLE
+    '저는 항상 새로운 도전을 즐기는 사람입니다. 어려운 문제를 해결하는 과정에서 얻는 성취감을 중요하게 생각하며, 이를 통해 스스로의 한계를 확장해왔습니다. 특히, 팀 프로젝트를 진행하며 서로의 아이디어를 공유하고 협력하는 과정에서 큰 보람을 느꼈습니다. 이를 통해 효율적인 의사소통의 중요성을 깨달았고, 끊임없이 성장하는 자세를 배우게 되었습니다. 앞으로도 배움을 멈추지 않고, 도전과 성장을 지속하며 주어진 역할에 최선을 다하겠습니다.',
+    SYSDATE,                -- CREATED_DATE
+    SYSDATE,                -- MODIFIED_DATE
+    'N',                    -- DELETED ('Y' 또는 'N')
+    1,                      -- PERSON_NO
+    1                       -- USER_NO
+);
+
+
+INSERT INTO SELF_INTRODUCTION(
+    SELF_INTRODUCTION_NO, 
+    RESUME_NO, 
+    USER_ID, 
+    TITLE, 
+    CONTENT, 
+    CREATED_DATE, 
+    MODIFIED_DATE, 
+    DELETED, 
+    PERSON_NO, 
+    USER_NO
+)
+VALUES (
+    SELF_INTRO_SEQ.NEXTVAL, -- PK 시퀀스
+    null,                      -- RESUME_NO
+    'person1',              -- USER_ID
+    '자기소개서 6',         -- TITLE
+    '저는 항상 새로운 도전을 즐기는 사람입니다. 어려운 문제를 해결하는 과정에서 얻는 성취감을 중요하게 생각하며, 이를 통해 스스로의 한계를 확장해왔습니다. 특히, 팀 프로젝트를 진행하며 서로의 아이디어를 공유하고 협력하는 과정에서 큰 보람을 느꼈습니다. 이를 통해 효율적인 의사소통의 중요성을 깨달았고, 끊임없이 성장하는 자세를 배우게 되었습니다. 앞으로도 배움을 멈추지 않고, 도전과 성장을 지속하며 주어진 역할에 최선을 다하겠습니다.',
+    SYSDATE,                -- CREATED_DATE
+    SYSDATE,                -- MODIFIED_DATE
+    'N',                    -- DELETED ('Y' 또는 'N')
+    1,                      -- PERSON_NO
+    1                       -- USER_NO
+);
+
+
+INSERT INTO SELF_INTRODUCTION(
+    SELF_INTRODUCTION_NO, 
+    RESUME_NO, 
+    USER_ID, 
+    TITLE, 
+    CONTENT, 
+    CREATED_DATE, 
+    MODIFIED_DATE, 
+    DELETED, 
+    PERSON_NO, 
+    USER_NO
+)
+VALUES (
+    SELF_INTRO_SEQ.NEXTVAL, -- PK 시퀀스
+    null,                      -- RESUME_NO
+    'person1',              -- USER_ID
+    '자기소개서 7',         -- TITLE
+    '저는 항상 새로운 도전을 즐기는 사람입니다. 어려운 문제를 해결하는 과정에서 얻는 성취감을 중요하게 생각하며, 이를 통해 스스로의 한계를 확장해왔습니다. 특히, 팀 프로젝트를 진행하며 서로의 아이디어를 공유하고 협력하는 과정에서 큰 보람을 느꼈습니다. 이를 통해 효율적인 의사소통의 중요성을 깨달았고, 끊임없이 성장하는 자세를 배우게 되었습니다. 앞으로도 배움을 멈추지 않고, 도전과 성장을 지속하며 주어진 역할에 최선을 다하겠습니다.',
+    SYSDATE,                -- CREATED_DATE
+    SYSDATE,                -- MODIFIED_DATE
+    'N',                    -- DELETED ('Y' 또는 'N')
+    1,                      -- PERSON_NO
+    1                       -- USER_NO
+);
+
+commit;
+
