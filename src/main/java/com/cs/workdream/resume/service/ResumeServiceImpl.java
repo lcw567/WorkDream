@@ -306,4 +306,16 @@ public class ResumeServiceImpl implements ResumeService {
     public List<SelfIntro> getSelfIntrosByResumeNo(int resumeNo) {
         return resumeDao.selectSelfintrosByResumeNo(resumeNo);
     }
+    
+    @Override
+    @Transactional
+    public void clearPortfolioResumeNo(int resumeNo) {
+        resumeDao.clearPortfolioResumeNo(resumeNo);
+    }
+
+    @Override
+    @Transactional
+    public void clearSelfIntroResumeNo(int resumeNo) {
+        resumeDao.clearSelfIntroResumeNo(resumeNo);
+    }
 }

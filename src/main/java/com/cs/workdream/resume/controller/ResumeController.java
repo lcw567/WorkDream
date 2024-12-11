@@ -720,6 +720,8 @@ public class ResumeController {
 			@RequestParam(value = "awardName[]", required = false) String[] awardNames,
 			@RequestParam(value = "organizer[]", required = false) String[] organizers,
 			@RequestParam(value = "awardDate[]", required = false) String[] awardDates, HttpSession session,
+			@RequestParam(value = "resumePortfolios[]", required = false) Integer[] resumePortfolios,
+            @RequestParam(value = "resumeSelfIntros[]", required = false) Integer[] resumeSelfIntros,
 			RedirectAttributes redirectAttributes, HttpServletRequest request) {
 
 		try {
@@ -899,22 +901,49 @@ public class ResumeController {
 				}
 			}
 
-			// 이력서 업데이트
-			boolean isUpdated = resumeService.updateResume(resume, certificates, languageTests, awards);
-			if (isUpdated) {
-				redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 업데이트되었습니다.");
-				return "redirect:/resume/resumeDashboard";
-			} else {
-				redirectAttributes.addFlashAttribute("error", "이력서 업데이트에 실패했습니다.");
-				return "redirect:/resume/editResume?id=" + resume.getResumeNo();
-			}
+			 // 이력서 기본정보 업데이트 성공 시 포트폴리오/자기소개서 업데이트 로직 추가
+		    boolean isUpdated = resumeService.updateResume(resume, certificates, languageTests, awards);
+		    if (isUpdated) {
+		        int resumeNo = resume.getResumeNo();
 
+		        // 기존 포트폴리오/자기소개서와의 연관관계를 제거 후
+		        
+		        resumeService.clearPortfolioResumeNo(resumeNo);
+		        resumeService.clearSelfIntroResumeNo(resumeNo);
+		        
+		        // 새로운 ID들로 다시 연관관계 설정 (포트폴리오 및 자소서 업데이트 로직 추가)
+		        // 포트폴리오 업데이트
+		        List<Integer> portfolioIdList = (resumePortfolios != null) ? Arrays.asList(resumePortfolios) : new ArrayList<>();
+		        
+		        for (Integer portfolioId : portfolioIdList) {
+		            resumeService.updatePortfolioResumeNo(portfolioId, resumeNo);
+		        }
+
+		        // 자기소개서 업데이트
+		        List<Integer> selfIntroIdList = (resumeSelfIntros != null) ? Arrays.asList(resumeSelfIntros) : new ArrayList<>();
+		        // 기존 자소서 삭제 로직(필요하다면)
+		        // 그리고 새로운 자소서 연결
+		        for (Integer selfIntroId : selfIntroIdList) {
+		            resumeService.updateSeflintroResumeNo(selfIntroId, resumeNo);
+		        }
+
+		        redirectAttributes.addFlashAttribute("message", "이력서가 성공적으로 업데이트되었습니다.");
+		        return "redirect:/resume/resumeDashboard";
+		    } else {
+		        // 실패 처리
+		        redirectAttributes.addFlashAttribute("error", "이력서 업데이트에 실패했습니다.");
+		        return "redirect:/resume/editResume?id=" + resume.getResumeNo();
+		    }
 		} catch (Exception e) {
-			logger.error("Error while updating resume: ", e);
-			redirectAttributes.addFlashAttribute("error", "이력서 업데이트 중 오류가 발생했습니다.");
-			return "redirect:/resume/editResume?id=" + resume.getResumeNo();
+		    // 예외 처리 로직이 있다면 추가
+		    logger.error("이력서 업데이트 중 오류 발생: ", e);
+		    redirectAttributes.addFlashAttribute("error", "이력서 업데이트 중 오류가 발생했습니다.");
+		    return "redirect:/resume/editResume?id=" + resume.getResumeNo();
 		}
-	}
+
+		// 메서드 종료를 위한 마지막 중괄호
+		}
+				
 
 	@PostMapping("/deleteResume")
 	public String deleteResume(@RequestParam("id") int resumeNo, RedirectAttributes redirectAttributes) {

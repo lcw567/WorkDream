@@ -172,4 +172,12 @@ public class ResumeDao {
         int result = sqlSession.insert(NAMESPACE + ".insertSelfIntro", selfIntro);
         return result > 0;
     }
+    
+    public void clearPortfolioResumeNo(int resumeNo) {
+        sqlSession.update(NAMESPACE + ".clearPortfolioResumeNo", resumeNo);
+    }
+
+    public void clearSelfIntroResumeNo(int resumeNo) {
+        sqlSession.update(NAMESPACE + ".clearSelfIntroResumeNo", resumeNo);
+    }
 }
