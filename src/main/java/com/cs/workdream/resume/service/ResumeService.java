@@ -35,4 +35,7 @@ public interface ResumeService {
     void associateSelfIntroWithResume(int resumeNo, List<Integer> selfintroIds);
     void updateSeflintroResumeNo(int selfintroNo, int resumeNo);
     List<SelfIntro> getSelfIntrosByResumeNo(int resuemNo);
+    
+    void clearPortfolioResumeNo(int resumeNo);
+    void clearSelfIntroResumeNo(int resumeNo);
 }

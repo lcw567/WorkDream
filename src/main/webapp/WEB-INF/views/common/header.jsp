@@ -84,11 +84,11 @@
         	<%-- 로그인 전 --%>
             <ul class="menu">
                 <li id="menuButton"><a><img src="${pageContext.request.contextPath}/img/btn_menu.png" /></a></li>
-                <li><a href="${pageContext.request.contextPath}">채용정보</a></li>
-                <li><a href="${pageContext.request.contextPath}">공채정보</a></li>
-                <li><a href="${pageContext.request.contextPath}">신입·인턴</a></li>
-                <li><a href="${pageContext.request.contextPath}">기업·연봉</a></li>
-                <li><a href="${pageContext.request.contextPath}">커리어</a></li>
+                <li><a href="${pageContext.request.contextPath}/board/listOfJobOpening">채용정보</a></li>
+                <li><a href="${pageContext.request.contextPath}/planner/planner">플래너</a></li>
+                <li><a href="${pageContext.request.contextPath}/resume/resumeDashboard">이력서</a></li>
+                <li><a href="${pageContext.request.contextPath}/resume/selfIntroDashboard">자기소개서</a></li>
+                <li><a href="${pageContext.request.contextPath}/person/applicationmanage">지원현황</a></li>
                 <li><a href="${pageContext.request.contextPath}/board/communityHome">커뮤니티</a></li>
                 <%-- 포토폴리오 메뉴 (구직자 로그인 전용) --%>
                 <c:if test="${ !empty loginUser && loginUser.userType == 'P' }">
@@ -111,28 +111,22 @@
     			<td><a href="">외국인 채용</a></td>
     		</tr>
     		<tr>
-    			<th>공채정보</th>
-    			<td><a href="">공채달력</a></td>
-    			<td><a href="">공공기관 채용일정</a></td>
+    			<th>플래너</th>
+    			<td><a href="${pageContext.request.contextPath}/planner/planner">플래너등록</a></td>
     		</tr>
     		<tr>
-    			<th>신입·인턴</th>
-    			<td><a href="">실시간 공고</a></td>
-    			<td><a href="">채용달력</a></td>
-    			<td><a href="">신입연봉</a></td>
+    			<th>이력서</th>
+    			<td><a href="${pageContext.request.contextPath}/resume/resumeDashboard">이력서 관리</a></td>
+    			<td><a href="${pageContext.request.contextPath}/resume/enrollresume">이력서 등록</a></td>
     		</tr>
     		<tr>
-    			<th>기업·연봉</th>
-    			<td><a href="">기업리뷰</a></td>
-    			<td><a href="">연봉정보</a></td>
-    			<td><a href="">면접후기</a></td>
+    			<th>자기소개서</th>
+    			<td><a href="${pageContext.request.contextPath}/resume/selfIntroDashboard">자기소개서 관리</a></td>
+    			<td><a href="${pageContext.request.contextPath}/resume/selfIntro">자기소개서 등록</a></td>
     		</tr>
     		<tr>
-    			<th>커리어</th>
-    			<td><a href="">합격자소서</a></td>
-    			<td><a href="">인적성 면접후기</a></td>
-    			<td><a href="">공기업 모의고사</a></td>
-    			<td><a href="">문서 서식 자료</a></td>
+    			<th>지원현황</th>
+    			<td><a href="${pageContext.request.contextPath}/person/applicationmanage">지원현황</a></td>
     		</tr>
     		<tr>
     			<th>커뮤니티</th>

@@ -53,8 +53,16 @@ public class PersonController {
 	
 
 	@GetMapping("/applicationmanage")
-	public String applicationmanage() {
-		return "person/applicationmanage";
+	public String applicationmanage(Model model, HttpSession session) {
+		
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			return "person/applicationmanage";
+		}else {
+			return "member/login";
+		}
+		
 	}
 	
 	@GetMapping("/clipping")
