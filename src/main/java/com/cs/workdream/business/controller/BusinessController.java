@@ -53,7 +53,7 @@ public class BusinessController {
         	int businessNo = currentUser.getBusinessNo();
             Business business = businessProfileService.viewBusinessProfile(businessNo);
             
-            mv.setViewName("common/errorPage");
+            mv.setViewName("business/businessMypage");
             mv.addObject("business", business);
         } else {
             // 로그인하지 않은 경우 처리
