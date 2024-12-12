@@ -1,285 +1,285 @@
 SET DEFINE OFF;
 
--- Ä¿¹Â´ÏÆ¼ Å×½ºÆ® µ¥ÀÌÅÍ »ý¼º(¸â¹ö Å×½ºÆ® µ¥ÀÌÅÍ ½ÇÇà ÇÑ ´ÙÀ½ ½ÇÇà)
+-- ì»¤ë®¤ë‹ˆí‹° í…ŒìŠ¤íŠ¸ ë°ì´í„° ìƒì„±(ë©¤ë²„ í…ŒìŠ¤íŠ¸ ë°ì´í„° ì‹¤í–‰ í•œ ë‹¤ìŒ ì‹¤í–‰)
 
 
--- ½ÅÀÔ Ä«Å×°í¸® °Ô½Ã±Û
+-- ì‹ ìž… ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '½ÅÀÔ', 'Ã¹ Á÷Àå »ýÈ°À» ½ÃÀÛÇÏ¸ç ´À³¤ Á¡', 
-'¾È³çÇÏ¼¼¿ä! Àú´Â ÀÌ¹ø¿¡ Ã¹ Á÷ÀåÀ¸·Î µµÈ­¿£Áö´Ï¾î¸µ¿¡ ÀÔ»çÇÏ°Ô µÇ¾ú½À´Ï´Ù. »õ·Î¿î È¯°æ¿¡ ÀûÀÀÇÏ´Â °úÁ¤¿¡¼­ ´À³¤ Á¡µé°ú ÇÔ²² ¿©·¯ºÐÀÇ Ã¹ Á÷Àå °æÇè´ãÀ» µè°í ½Í½À´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì‹ ìž…', 'ì²« ì§ìž¥ ìƒí™œì„ ì‹œìž‘í•˜ë©° ëŠë‚€ ì ', 
+'ì•ˆë…•í•˜ì„¸ìš”! ì €ëŠ” ì´ë²ˆì— ì²« ì§ìž¥ìœ¼ë¡œ ë„í™”ì—”ì§€ë‹ˆì–´ë§ì— ìž…ì‚¬í•˜ê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤. ìƒˆë¡œìš´ í™˜ê²½ì— ì ì‘í•˜ëŠ” ê³¼ì •ì—ì„œ ëŠë‚€ ì ë“¤ê³¼ í•¨ê»˜ ì—¬ëŸ¬ë¶„ì˜ ì²« ì§ìž¥ ê²½í—˜ë‹´ì„ ë“£ê³  ì‹¶ìŠµë‹ˆë‹¤.', 
 NULL, 'person1', 1, SYSDATE, 150, 25, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '½ÅÀÔ', '½ÅÀÔ»ç¿øÀ¸·Î¼­ ¾Ë¾ÆµÎ¸é ÁÁÀº È¸»ç ¹®È­', 
-'»õ·Î¿î È¸»ç¿¡ ÀûÀÀÇÏ±â À§ÇØ ²À ¾Ë¾Æ¾ß ÇÒ È¸»ç ¹®È­¿Í ¿¹Àý¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¸·Á ÇÕ´Ï´Ù. °æÇèÀÌ ÀÖÀ¸½Å ºÐµéÀÇ Á¶¾ð ºÎÅ¹µå¸³´Ï´Ù!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì‹ ìž…', 'ì‹ ìž…ì‚¬ì›ìœ¼ë¡œì„œ ì•Œì•„ë‘ë©´ ì¢‹ì€ íšŒì‚¬ ë¬¸í™”', 
+'ìƒˆë¡œìš´ íšŒì‚¬ì— ì ì‘í•˜ê¸° ìœ„í•´ ê¼­ ì•Œì•„ì•¼ í•  íšŒì‚¬ ë¬¸í™”ì™€ ì˜ˆì ˆì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë³´ë ¤ í•©ë‹ˆë‹¤. ê²½í—˜ì´ ìžˆìœ¼ì‹  ë¶„ë“¤ì˜ ì¡°ì–¸ ë¶€íƒë“œë¦½ë‹ˆë‹¤!', 
 NULL, 'person2', 2, SYSDATE, 250, 50, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '½ÅÀÔ', 'Ã¹ Ãâ±Ù³¯ ÁØºñ Ã¼Å©¸®½ºÆ®', 
-'Ã¹ Ãâ±Ù³¯¿¡ ÁØºñÇØ¾ß ÇÒ °Íµé¿¡ ´ëÇÑ Ã¼Å©¸®½ºÆ®¸¦ °øÀ¯ÇÕ´Ï´Ù. ¿©·¯ºÐÀÌ ÁØºñÇß´ø °Íµé°ú Ãß°¡·Î ÇÊ¿äÇÑ °ÍµéÀ» ¾Ë·ÁÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì‹ ìž…', 'ì²« ì¶œê·¼ë‚  ì¤€ë¹„ ì²´í¬ë¦¬ìŠ¤íŠ¸', 
+'ì²« ì¶œê·¼ë‚ ì— ì¤€ë¹„í•´ì•¼ í•  ê²ƒë“¤ì— ëŒ€í•œ ì²´í¬ë¦¬ìŠ¤íŠ¸ë¥¼ ê³µìœ í•©ë‹ˆë‹¤. ì—¬ëŸ¬ë¶„ì´ ì¤€ë¹„í–ˆë˜ ê²ƒë“¤ê³¼ ì¶”ê°€ë¡œ í•„ìš”í•œ ê²ƒë“¤ì„ ì•Œë ¤ì£¼ì„¸ìš”.', 
 NULL, 'person3', 3, SYSDATE, 300, 75, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '½ÅÀÔ', '½ÅÀÔ»ç¿øÀÇ Ä¿¸®¾î ¼ºÀå Àü·«', 
-'½ÅÀÔ»ç¿øÀ¸·Î¼­ Ä¿¸®¾î¸¦ ¾î¶»°Ô ¹ßÀü½ÃÄÑ ³ª°¥Áö¿¡ ´ëÇÑ Àü·«À» °øÀ¯ÇÕ´Ï´Ù. ¼º°øÀûÀÎ Ä¿¸®¾î¸¦ ½×±â À§ÇÑ ÆÁÀ» ¾Ë·ÁÁÖ¼¼¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì‹ ìž…', 'ì‹ ìž…ì‚¬ì›ì˜ ì»¤ë¦¬ì–´ ì„±ìž¥ ì „ëžµ', 
+'ì‹ ìž…ì‚¬ì›ìœ¼ë¡œì„œ ì»¤ë¦¬ì–´ë¥¼ ì–´ë–»ê²Œ ë°œì „ì‹œì¼œ ë‚˜ê°ˆì§€ì— ëŒ€í•œ ì „ëžµì„ ê³µìœ í•©ë‹ˆë‹¤. ì„±ê³µì ì¸ ì»¤ë¦¬ì–´ë¥¼ ìŒ“ê¸° ìœ„í•œ íŒì„ ì•Œë ¤ì£¼ì„¸ìš”!', 
 NULL, 'person4', 4, SYSDATE, 400, 100, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '½ÅÀÔ', 'Á÷Àå ³» ÀÎ°£°ü°è Çü¼ºÇÏ±â', 
-'Á÷Àå »ýÈ°¿¡¼­ Áß¿äÇÑ ÀÎ°£°ü°è Çü¼º¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¸°í ½Í½À´Ï´Ù. ÁÁÀº µ¿·á °ü°è¸¦ ¸Î±â À§ÇÑ ÆÁÀÌ ÀÖ´Ù¸é °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì‹ ìž…', 'ì§ìž¥ ë‚´ ì¸ê°„ê´€ê³„ í˜•ì„±í•˜ê¸°', 
+'ì§ìž¥ ìƒí™œì—ì„œ ì¤‘ìš”í•œ ì¸ê°„ê´€ê³„ í˜•ì„±ì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë³´ê³  ì‹¶ìŠµë‹ˆë‹¤. ì¢‹ì€ ë™ë£Œ ê´€ê³„ë¥¼ ë§ºê¸° ìœ„í•œ íŒì´ ìžˆë‹¤ë©´ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person5', 5, SYSDATE, 500, 125, 'Y');
 
--- Ã¤¿ë°ø°í Ä«Å×°í¸® °Ô½Ã±Û
+-- ì±„ìš©ê³µê³  ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ã¤¿ë°ø°í', '»õ·Î¿î ÇÁ·ÎÁ§Æ® ÆÀ¿ø ¸ðÁý', 
-'ÀúÈñ ÆÀ¿¡¼­´Â »õ·Î¿î ÇÁ·ÎÁ§Æ®¸¦ À§ÇØ ¿­Á¤ÀûÀÌ°í Ã¢ÀÇÀûÀÎ ÆÀ¿øÀ» ¸ðÁýÇÏ°í ÀÖ½À´Ï´Ù. °ü½É ÀÖÀ¸½Å ºÐµéÀº ´ñ±Û·Î Áö¿ø ÀÇ»ç¸¦ ¹àÇôÁÖ¼¼¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì±„ìš©ê³µê³ ', 'ìƒˆë¡œìš´ í”„ë¡œì íŠ¸ íŒ€ì› ëª¨ì§‘', 
+'ì €í¬ íŒ€ì—ì„œëŠ” ìƒˆë¡œìš´ í”„ë¡œì íŠ¸ë¥¼ ìœ„í•´ ì—´ì •ì ì´ê³  ì°½ì˜ì ì¸ íŒ€ì›ì„ ëª¨ì§‘í•˜ê³  ìžˆìŠµë‹ˆë‹¤. ê´€ì‹¬ ìžˆìœ¼ì‹  ë¶„ë“¤ì€ ëŒ“ê¸€ë¡œ ì§€ì› ì˜ì‚¬ë¥¼ ë°í˜€ì£¼ì„¸ìš”!', 
 NULL, 'business1', 6, SYSDATE, 200, 40, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ã¤¿ë°ø°í', '¸¶ÄÉÆÃ ºÎ¼­ ÀÎÅÏ½Ê ±âÈ¸', 
-'´Ù°¡¿À´Â ¿©¸§ ¹æÇÐÀ» ¸Â¾Æ ¸¶ÄÉÆÃ ºÎ¼­¿¡¼­ ÀÎÅÏÀ» ¸ðÁýÇÕ´Ï´Ù. °ü·Ã °æÇèÀÌ ÀÖ°Å³ª °ü½É ÀÖ´Â ÇÐ»ýµéÀÇ ¸¹Àº Áö¿ø ¹Ù¶ø´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì±„ìš©ê³µê³ ', 'ë§ˆì¼€íŒ… ë¶€ì„œ ì¸í„´ì‹­ ê¸°íšŒ', 
+'ë‹¤ê°€ì˜¤ëŠ” ì—¬ë¦„ ë°©í•™ì„ ë§žì•„ ë§ˆì¼€íŒ… ë¶€ì„œì—ì„œ ì¸í„´ì„ ëª¨ì§‘í•©ë‹ˆë‹¤. ê´€ë ¨ ê²½í—˜ì´ ìžˆê±°ë‚˜ ê´€ì‹¬ ìžˆëŠ” í•™ìƒë“¤ì˜ ë§Žì€ ì§€ì› ë°”ëžë‹ˆë‹¤.', 
 NULL, 'business2', 7, SYSDATE, 350, 60, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ã¤¿ë°ø°í', '°³¹ßÆÀ Á¤±ÔÁ÷ Ã¤¿ë ¾È³»', 
-'¿ì¸® È¸»ç °³¹ßÆÀ¿¡¼­ Á¤±ÔÁ÷ °³¹ßÀÚ¸¦ Ã¤¿ëÇÕ´Ï´Ù. ÃÖ½Å ±â¼úÀ» ´Ù·ç´Â È¯°æ¿¡¼­ ÇÔ²² ¼ºÀåÇÒ ÀÎÀç¸¦ Ã£°í ÀÖ½À´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì±„ìš©ê³µê³ ', 'ê°œë°œíŒ€ ì •ê·œì§ ì±„ìš© ì•ˆë‚´', 
+'ìš°ë¦¬ íšŒì‚¬ ê°œë°œíŒ€ì—ì„œ ì •ê·œì§ ê°œë°œìžë¥¼ ì±„ìš©í•©ë‹ˆë‹¤. ìµœì‹  ê¸°ìˆ ì„ ë‹¤ë£¨ëŠ” í™˜ê²½ì—ì„œ í•¨ê»˜ ì„±ìž¥í•  ì¸ìž¬ë¥¼ ì°¾ê³  ìžˆìŠµë‹ˆë‹¤.', 
 NULL, 'business3', 8, SYSDATE, 450, 80, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ã¤¿ë°ø°í', 'µðÀÚÀÎ ÆÀ ½Å±Ô Æ÷Áö¼Ç ¿ÀÇÂ', 
-'Ã¢ÀÇÀûÀÎ µðÀÚÀÎÀ» Ãß±¸ÇÏ´Â ÀúÈñ µðÀÚÀÎ ÆÀ¿¡¼­ »õ·Î¿î Æ÷Áö¼ÇÀ» ¿ÀÇÂÇß½À´Ï´Ù. Æ÷Æ®Æú¸®¿À Á¦Ãâ ÇÊ¼ö!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì±„ìš©ê³µê³ ', 'ë””ìžì¸ íŒ€ ì‹ ê·œ í¬ì§€ì…˜ ì˜¤í”ˆ', 
+'ì°½ì˜ì ì¸ ë””ìžì¸ì„ ì¶”êµ¬í•˜ëŠ” ì €í¬ ë””ìžì¸ íŒ€ì—ì„œ ìƒˆë¡œìš´ í¬ì§€ì…˜ì„ ì˜¤í”ˆí–ˆìŠµë‹ˆë‹¤. í¬íŠ¸í´ë¦¬ì˜¤ ì œì¶œ í•„ìˆ˜!', 
 NULL, 'business4', 9, SYSDATE, 550, 100, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ã¤¿ë°ø°í', 'ÀÎ»çÆÀ ¸®´õ Ã¤¿ë °ø°í', 
-'ÀÎ»çÆÀÀÇ ¸®´õ·Î¼­ ÆÀÀ» ÀÌ²ø¾î °¥ °æÇè ¸¹Àº ºÐÀ» ¸ðÁýÇÕ´Ï´Ù. ¸®´õ½Ê°ú ÀÎ»ç °ü¸®¿¡ ÀÚ½Å ÀÖ´Â ºÐµéÀÇ ¸¹Àº Áö¿ø ¹Ù¶ø´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì±„ìš©ê³µê³ ', 'ì¸ì‚¬íŒ€ ë¦¬ë” ì±„ìš© ê³µê³ ', 
+'ì¸ì‚¬íŒ€ì˜ ë¦¬ë”ë¡œì„œ íŒ€ì„ ì´ëŒì–´ ê°ˆ ê²½í—˜ ë§Žì€ ë¶„ì„ ëª¨ì§‘í•©ë‹ˆë‹¤. ë¦¬ë”ì‹­ê³¼ ì¸ì‚¬ ê´€ë¦¬ì— ìžì‹  ìžˆëŠ” ë¶„ë“¤ì˜ ë§Žì€ ì§€ì› ë°”ëžë‹ˆë‹¤.', 
 NULL, 'business5', 10, SYSDATE, 650, 120, 'Y');
 
--- ÃëÁØ Ä«Å×°í¸® °Ô½Ã±Û
+-- ì·¨ì¤€ ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÃëÁØ', 'È¿°úÀûÀÎ Ãë¾÷ ÁØºñ ¹æ¹ý', 
-'Ãë¾÷À» ÁØºñÇÏ¸é¼­ ¾î¶² ¹æ¹ýµéÀÌ È¿°úÀûÀÎÁö °øÀ¯ÇÏ°í ½Í½À´Ï´Ù. °¢ÀÚÀÇ °æÇè°ú ÆÁÀ» ³ª´²ÁÖ¼¼¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì·¨ì¤€', 'íš¨ê³¼ì ì¸ ì·¨ì—… ì¤€ë¹„ ë°©ë²•', 
+'ì·¨ì—…ì„ ì¤€ë¹„í•˜ë©´ì„œ ì–´ë–¤ ë°©ë²•ë“¤ì´ íš¨ê³¼ì ì¸ì§€ ê³µìœ í•˜ê³  ì‹¶ìŠµë‹ˆë‹¤. ê°ìžì˜ ê²½í—˜ê³¼ íŒì„ ë‚˜ëˆ ì£¼ì„¸ìš”!', 
 NULL, 'person6', 6, SYSDATE, 180, 30, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÃëÁØ', 'Ãë¾÷¹Ú¶÷È¸ Âü°¡ ÈÄ±â', 
-'ÃÖ±Ù Âü°¡ÇÑ Ãë¾÷¹Ú¶÷È¸¿¡ ´ëÇÑ ÈÄ±â¸¦ °øÀ¯ÇÕ´Ï´Ù. À¯ÀÍÇß´ø Á¡°ú °³¼±µÇ¾úÀ¸¸é ÇÏ´Â Á¡À» ÀÌ¾ß±âÇØº¸¾Æ¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì·¨ì¤€', 'ì·¨ì—…ë°•ëžŒíšŒ ì°¸ê°€ í›„ê¸°', 
+'ìµœê·¼ ì°¸ê°€í•œ ì·¨ì—…ë°•ëžŒíšŒì— ëŒ€í•œ í›„ê¸°ë¥¼ ê³µìœ í•©ë‹ˆë‹¤. ìœ ìµí–ˆë˜ ì ê³¼ ê°œì„ ë˜ì—ˆìœ¼ë©´ í•˜ëŠ” ì ì„ ì´ì•¼ê¸°í•´ë³´ì•„ìš”.', 
 NULL, 'person7', 7, SYSDATE, 280, 50, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÃëÁØ', 'È¿°úÀûÀÎ ÀÚ±â¼Ò°³¼­ ÀÛ¼º¹ý', 
-'ÀÚ±â¼Ò°³¼­¸¦ ¾î¶»°Ô ÀÛ¼ºÇÏ¸é ÁÁÀºÁö¿¡ ´ëÇÑ ÆÁÀ» °øÀ¯ÇÕ´Ï´Ù. ÁÁÀº ÀÚ±â¼Ò°³¼­ ÀÛ¼º¿¡ µµ¿òÀÌ µÇ´Â Á¤º¸°¡ ÀÖ´Ù¸é ¾Ë·ÁÁÖ¼¼¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì·¨ì¤€', 'íš¨ê³¼ì ì¸ ìžê¸°ì†Œê°œì„œ ìž‘ì„±ë²•', 
+'ìžê¸°ì†Œê°œì„œë¥¼ ì–´ë–»ê²Œ ìž‘ì„±í•˜ë©´ ì¢‹ì€ì§€ì— ëŒ€í•œ íŒì„ ê³µìœ í•©ë‹ˆë‹¤. ì¢‹ì€ ìžê¸°ì†Œê°œì„œ ìž‘ì„±ì— ë„ì›€ì´ ë˜ëŠ” ì •ë³´ê°€ ìžˆë‹¤ë©´ ì•Œë ¤ì£¼ì„¸ìš”!', 
 NULL, 'person8', 8, SYSDATE, 380, 70, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÃëÁØ', '¸éÁ¢ ´ëºñ Àü·«', 
-'¸éÁ¢¿¡¼­ ÁÁÀº ÀÎ»óÀ» ³²±â±â À§ÇÑ Àü·«°ú ÁØºñ ¹æ¹ýÀ» °øÀ¯ÇÕ´Ï´Ù. ¸éÁ¢ °æÇèÀÌ ÀÖÀ¸½Å ºÐµéÀÇ Á¶¾ð ºÎÅ¹µå¸³´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì·¨ì¤€', 'ë©´ì ‘ ëŒ€ë¹„ ì „ëžµ', 
+'ë©´ì ‘ì—ì„œ ì¢‹ì€ ì¸ìƒì„ ë‚¨ê¸°ê¸° ìœ„í•œ ì „ëžµê³¼ ì¤€ë¹„ ë°©ë²•ì„ ê³µìœ í•©ë‹ˆë‹¤. ë©´ì ‘ ê²½í—˜ì´ ìžˆìœ¼ì‹  ë¶„ë“¤ì˜ ì¡°ì–¸ ë¶€íƒë“œë¦½ë‹ˆë‹¤.', 
 NULL, 'person9', 9, SYSDATE, 480, 90, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÃëÁØ', '³×Æ®¿öÅ·ÀÇ Áß¿ä¼º', 
-'Ãë¾÷ ÁØºñ °úÁ¤¿¡¼­ ³×Æ®¿öÅ·ÀÌ ¾ó¸¶³ª Áß¿äÇÑÁö¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¸°í ½Í½À´Ï´Ù. È¿°úÀûÀÎ ³×Æ®¿öÅ· ¹æ¹ýÀÌ ÀÖ´Ù¸é °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì·¨ì¤€', 'ë„¤íŠ¸ì›Œí‚¹ì˜ ì¤‘ìš”ì„±', 
+'ì·¨ì—… ì¤€ë¹„ ê³¼ì •ì—ì„œ ë„¤íŠ¸ì›Œí‚¹ì´ ì–¼ë§ˆë‚˜ ì¤‘ìš”í•œì§€ì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë³´ê³  ì‹¶ìŠµë‹ˆë‹¤. íš¨ê³¼ì ì¸ ë„¤íŠ¸ì›Œí‚¹ ë°©ë²•ì´ ìžˆë‹¤ë©´ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person10', 10, SYSDATE, 580, 110, 'Y');
 
--- ÀÚ¼Ò¼­ Ä«Å×°í¸® °Ô½Ã±Û
+-- ìžì†Œì„œ ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ¼Ò¼­', 'ÀÚ±â¼Ò°³¼­ ÀÛ¼º ÆÁ °øÀ¯', 
-'ÀÚ±â¼Ò°³¼­¸¦ ÀÛ¼ºÇÒ ¶§ À¯¿ëÇÑ ÆÁÀÌ³ª ¹æ¹ýÀ» °øÀ¯ÇÕ´Ï´Ù. °¢ÀÚÀÇ °æÇèÀ» ³ª´²ÁÖ¼¼¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžì†Œì„œ', 'ìžê¸°ì†Œê°œì„œ ìž‘ì„± íŒ ê³µìœ ', 
+'ìžê¸°ì†Œê°œì„œë¥¼ ìž‘ì„±í•  ë•Œ ìœ ìš©í•œ íŒì´ë‚˜ ë°©ë²•ì„ ê³µìœ í•©ë‹ˆë‹¤. ê°ìžì˜ ê²½í—˜ì„ ë‚˜ëˆ ì£¼ì„¸ìš”!', 
 NULL, 'person1', 1, SYSDATE, 220, 40, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ¼Ò¼­', '¼º°øÀûÀÎ ÀÚ¼Ò¼­ »ç·Ê', 
-'¼º°øÀûÀ¸·Î Ã¤¿ëµÈ ÀÚ¼Ò¼­ »ç·Ê¸¦ °øÀ¯ÇÕ´Ï´Ù. ¾î¶² ³»¿ëÀÌ ÁÁ¾Ò´ÂÁö ÇÔ²² ºÐ¼®ÇØºÁ¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžì†Œì„œ', 'ì„±ê³µì ì¸ ìžì†Œì„œ ì‚¬ë¡€', 
+'ì„±ê³µì ìœ¼ë¡œ ì±„ìš©ëœ ìžì†Œì„œ ì‚¬ë¡€ë¥¼ ê³µìœ í•©ë‹ˆë‹¤. ì–´ë–¤ ë‚´ìš©ì´ ì¢‹ì•˜ëŠ”ì§€ í•¨ê»˜ ë¶„ì„í•´ë´ìš”.', 
 NULL, 'person2', 2, SYSDATE, 320, 60, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ¼Ò¼­', 'ÀÚ±â¼Ò°³¼­ ¿À·ù ÇÇÇÏ±â', 
-'ÀÚ±â¼Ò°³¼­ ÀÛ¼º ½Ã ÈçÈ÷ ¹üÇÏ´Â ¿À·ùµé°ú ÀÌ¸¦ ÇÇÇÏ´Â ¹æ¹ý¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¾½Ã´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžì†Œì„œ', 'ìžê¸°ì†Œê°œì„œ ì˜¤ë¥˜ í”¼í•˜ê¸°', 
+'ìžê¸°ì†Œê°œì„œ ìž‘ì„± ì‹œ í”ížˆ ë²”í•˜ëŠ” ì˜¤ë¥˜ë“¤ê³¼ ì´ë¥¼ í”¼í•˜ëŠ” ë°©ë²•ì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë´…ì‹œë‹¤.', 
 NULL, 'person3', 3, SYSDATE, 420, 80, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ¼Ò¼­', 'ÀÚ±â¼Ò°³¼­ Ã·»è ¿äÃ»', 
-'ÀÛ¼ºÇÑ ÀÚ±â¼Ò°³¼­¸¦ Ã·»è¹Þ°í ½Í½À´Ï´Ù. ÀÇ°ßÀ» ÁÖ½Å´Ù¸é °¨»çÇÏ°Ú½À´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžì†Œì„œ', 'ìžê¸°ì†Œê°œì„œ ì²¨ì‚­ ìš”ì²­', 
+'ìž‘ì„±í•œ ìžê¸°ì†Œê°œì„œë¥¼ ì²¨ì‚­ë°›ê³  ì‹¶ìŠµë‹ˆë‹¤. ì˜ê²¬ì„ ì£¼ì‹ ë‹¤ë©´ ê°ì‚¬í•˜ê² ìŠµë‹ˆë‹¤.', 
 NULL, 'person4', 4, SYSDATE, 520, 100, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ¼Ò¼­', 'ÀÚ±â¼Ò°³¼­ ¿¹Á¦ °øÀ¯', 
-'´Ù¾çÇÑ ÀÚ±â¼Ò°³¼­ ¿¹Á¦¸¦ °øÀ¯ÇÕ´Ï´Ù. Âü°íÇÏ¼Å¼­ ÁÁÀº ÀÚ¼Ò¼­ ÀÛ¼ºÇÏ½Ã±æ ¹Ù¶ø´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžì†Œì„œ', 'ìžê¸°ì†Œê°œì„œ ì˜ˆì œ ê³µìœ ', 
+'ë‹¤ì–‘í•œ ìžê¸°ì†Œê°œì„œ ì˜ˆì œë¥¼ ê³µìœ í•©ë‹ˆë‹¤. ì°¸ê³ í•˜ì…”ì„œ ì¢‹ì€ ìžì†Œì„œ ìž‘ì„±í•˜ì‹œê¸¸ ë°”ëžë‹ˆë‹¤.', 
 NULL, 'person5', 5, SYSDATE, 620, 120, 'Y');
 
--- ÀÚ°ÝÁõ Ä«Å×°í¸® °Ô½Ã±Û
+-- ìžê²©ì¦ ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ°ÝÁõ', 'À¯¿ëÇÑ ÀÚ°ÝÁõ ÃßÃµ', 
-'Ãë¾÷ ÁØºñ¿¡ µµ¿òÀÌ µÇ´Â ÀÚ°ÝÁõÀ» ÃßÃµÇØµå¸³´Ï´Ù. ¿©·¯ºÐÀÌ ÃëµæÇÑ ÀÚ°ÝÁõµµ °øÀ¯ÇØÁÖ¼¼¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžê²©ì¦', 'ìœ ìš©í•œ ìžê²©ì¦ ì¶”ì²œ', 
+'ì·¨ì—… ì¤€ë¹„ì— ë„ì›€ì´ ë˜ëŠ” ìžê²©ì¦ì„ ì¶”ì²œí•´ë“œë¦½ë‹ˆë‹¤. ì—¬ëŸ¬ë¶„ì´ ì·¨ë“í•œ ìžê²©ì¦ë„ ê³µìœ í•´ì£¼ì„¸ìš”!', 
 NULL, 'person6', 6, SYSDATE, 120, 20, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ°ÝÁõ', 'ÀÚ°ÝÁõ °øºÎ ¹æ¹ý', 
-'È¿°úÀûÀ¸·Î ÀÚ°ÝÁõÀ» °øºÎÇÏ´Â ¹æ¹ý¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¸°í ½Í½À´Ï´Ù. °øºÎ ÆÁÀÌ ÀÖÀ¸½Å ºÐµéÀº °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžê²©ì¦', 'ìžê²©ì¦ ê³µë¶€ ë°©ë²•', 
+'íš¨ê³¼ì ìœ¼ë¡œ ìžê²©ì¦ì„ ê³µë¶€í•˜ëŠ” ë°©ë²•ì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë³´ê³  ì‹¶ìŠµë‹ˆë‹¤. ê³µë¶€ íŒì´ ìžˆìœ¼ì‹  ë¶„ë“¤ì€ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person7', 7, SYSDATE, 220, 40, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ°ÝÁõ', 'ÀÚ°ÝÁõ Ãëµæ ÈÄ±â', 
-'ÃÖ±Ù¿¡ ÃëµæÇÑ ÀÚ°ÝÁõ¿¡ ´ëÇÑ ÈÄ±â¸¦ °øÀ¯ÇÕ´Ï´Ù. Ãëµæ °úÁ¤°ú ´À³¤ Á¡À» ÀÌ¾ß±âÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžê²©ì¦', 'ìžê²©ì¦ ì·¨ë“ í›„ê¸°', 
+'ìµœê·¼ì— ì·¨ë“í•œ ìžê²©ì¦ì— ëŒ€í•œ í›„ê¸°ë¥¼ ê³µìœ í•©ë‹ˆë‹¤. ì·¨ë“ ê³¼ì •ê³¼ ëŠë‚€ ì ì„ ì´ì•¼ê¸°í•´ì£¼ì„¸ìš”.', 
 NULL, 'person8', 8, SYSDATE, 320, 60, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ°ÝÁõ', 'ÀÚ°ÝÁõ °ü·Ã ÀÚ·á °øÀ¯', 
-'ÀÚ°ÝÁõ °øºÎ¿¡ µµ¿òÀÌ µÇ´Â ÀÚ·á³ª »çÀÌÆ®¸¦ °øÀ¯ÇÕ´Ï´Ù. À¯¿ëÇÑ ÀÚ·á°¡ ÀÖ´Ù¸é ¾Ë·ÁÁÖ¼¼¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžê²©ì¦', 'ìžê²©ì¦ ê´€ë ¨ ìžë£Œ ê³µìœ ', 
+'ìžê²©ì¦ ê³µë¶€ì— ë„ì›€ì´ ë˜ëŠ” ìžë£Œë‚˜ ì‚¬ì´íŠ¸ë¥¼ ê³µìœ í•©ë‹ˆë‹¤. ìœ ìš©í•œ ìžë£Œê°€ ìžˆë‹¤ë©´ ì•Œë ¤ì£¼ì„¸ìš”!', 
 NULL, 'person9', 9, SYSDATE, 420, 80, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÚ°ÝÁõ', 'ÀÚ°ÝÁõ ½ÃÇè ÀÏÁ¤ ¾È³»', 
-'´Ù°¡¿À´Â ÀÚ°ÝÁõ ½ÃÇè ÀÏÁ¤°ú ÁØºñ ¹æ¹ý¿¡ ´ëÇØ °øÀ¯ÇÕ´Ï´Ù. ½ÃÇèÀ» ÁØºñ ÁßÀÎ ºÐµéÀÇ Á¤º¸µµ ÇÔ²² ³ª´²ÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìžê²©ì¦', 'ìžê²©ì¦ ì‹œí—˜ ì¼ì • ì•ˆë‚´', 
+'ë‹¤ê°€ì˜¤ëŠ” ìžê²©ì¦ ì‹œí—˜ ì¼ì •ê³¼ ì¤€ë¹„ ë°©ë²•ì— ëŒ€í•´ ê³µìœ í•©ë‹ˆë‹¤. ì‹œí—˜ì„ ì¤€ë¹„ ì¤‘ì¸ ë¶„ë“¤ì˜ ì •ë³´ë„ í•¨ê»˜ ë‚˜ëˆ ì£¼ì„¸ìš”.', 
 NULL, 'person10', 10, SYSDATE, 520, 100, 'Y');
 
--- Q&A Ä«Å×°í¸® °Ô½Ã±Û
+-- Q&A ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', 'Ãë¾÷ ÁØºñ °ü·Ã Áú¹®', 
-'Ãë¾÷ ÁØºñ °úÁ¤¿¡¼­ °Þ°í ÀÖ´Â ¾î·Á¿òÀÌ³ª ±Ã±ÝÇÑ Á¡ÀÌ ÀÖ½À´Ï´Ù. ÀÚÀ¯·Ó°Ô Áú¹®ÇØÁÖ¼¼¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', 'ì·¨ì—… ì¤€ë¹„ ê´€ë ¨ ì§ˆë¬¸', 
+'ì·¨ì—… ì¤€ë¹„ ê³¼ì •ì—ì„œ ê²ªê³  ìžˆëŠ” ì–´ë ¤ì›€ì´ë‚˜ ê¶ê¸ˆí•œ ì ì´ ìžˆìŠµë‹ˆë‹¤. ìžìœ ë¡­ê²Œ ì§ˆë¬¸í•´ì£¼ì„¸ìš”!', 
 NULL, 'person1', 1, SYSDATE, 140, 30, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', 'ÀÚ±â¼Ò°³¼­ ÀÛ¼º¹ý¿¡ ´ëÇÑ Áú¹®', 
-'ÀÚ±â¼Ò°³¼­¸¦ ÀÛ¼ºÇÒ ¶§ ¾î¶² Á¡À» ÁßÁ¡ÀûÀ¸·Î ÀÛ¼ºÇØ¾ß ÇÏ´ÂÁö ±Ã±ÝÇÕ´Ï´Ù. Á¶¾ð ºÎÅ¹µå¸³´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', 'ìžê¸°ì†Œê°œì„œ ìž‘ì„±ë²•ì— ëŒ€í•œ ì§ˆë¬¸', 
+'ìžê¸°ì†Œê°œì„œë¥¼ ìž‘ì„±í•  ë•Œ ì–´ë–¤ ì ì„ ì¤‘ì ì ìœ¼ë¡œ ìž‘ì„±í•´ì•¼ í•˜ëŠ”ì§€ ê¶ê¸ˆí•©ë‹ˆë‹¤. ì¡°ì–¸ ë¶€íƒë“œë¦½ë‹ˆë‹¤.', 
 NULL, 'person2', 2, SYSDATE, 240, 50, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', '¸éÁ¢ ´ëºñ Àü·«', 
-'¸éÁ¢¿¡¼­ ÁÁÀº ÀÎ»óÀ» ³²±â±â À§ÇÑ Àü·«¿¡ ´ëÇØ ¾Ë°í ½Í½À´Ï´Ù. °æÇèÀÌ ÀÖÀ¸½Å ºÐµéÀÇ Á¶¾ð ºÎÅ¹µå¸³´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', 'ë©´ì ‘ ëŒ€ë¹„ ì „ëžµ', 
+'ë©´ì ‘ì—ì„œ ì¢‹ì€ ì¸ìƒì„ ë‚¨ê¸°ê¸° ìœ„í•œ ì „ëžµì— ëŒ€í•´ ì•Œê³  ì‹¶ìŠµë‹ˆë‹¤. ê²½í—˜ì´ ìžˆìœ¼ì‹  ë¶„ë“¤ì˜ ì¡°ì–¸ ë¶€íƒë“œë¦½ë‹ˆë‹¤.', 
 NULL, 'person3', 3, SYSDATE, 340, 70, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', 'È¿°úÀûÀÎ ³×Æ®¿öÅ· ¹æ¹ý', 
-'Ãë¾÷ ÁØºñ Áß ³×Æ®¿öÅ·À» È¿°úÀûÀ¸·Î ÇÏ´Â ¹æ¹ý¿¡ ´ëÇØ Áú¹®µå¸³´Ï´Ù. ÆÁÀÌ³ª °æÇèÀ» °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', 'íš¨ê³¼ì ì¸ ë„¤íŠ¸ì›Œí‚¹ ë°©ë²•', 
+'ì·¨ì—… ì¤€ë¹„ ì¤‘ ë„¤íŠ¸ì›Œí‚¹ì„ íš¨ê³¼ì ìœ¼ë¡œ í•˜ëŠ” ë°©ë²•ì— ëŒ€í•´ ì§ˆë¬¸ë“œë¦½ë‹ˆë‹¤. íŒì´ë‚˜ ê²½í—˜ì„ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person4', 4, SYSDATE, 440, 90, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', 'ÀÚ°ÝÁõ ¼±ÅÃ¿¡ ´ëÇÑ Á¶¾ð', 
-'¾î¶² ÀÚ°ÝÁõÀ» ÃëµæÇÏ´Â °ÍÀÌ Ãë¾÷¿¡ µµ¿òÀÌ µÉÁö °í¹Î ÁßÀÔ´Ï´Ù. ÃßÃµÇØÁÖ½Ç ÀÚ°ÝÁõÀÌ ÀÖ³ª¿ä?', 
+VALUES (POSTING_SEQ.NEXTVAL, 'Q&A', 'ìžê²©ì¦ ì„ íƒì— ëŒ€í•œ ì¡°ì–¸', 
+'ì–´ë–¤ ìžê²©ì¦ì„ ì·¨ë“í•˜ëŠ” ê²ƒì´ ì·¨ì—…ì— ë„ì›€ì´ ë ì§€ ê³ ë¯¼ ì¤‘ìž…ë‹ˆë‹¤. ì¶”ì²œí•´ì£¼ì‹¤ ìžê²©ì¦ì´ ìžˆë‚˜ìš”?', 
 NULL, 'person5', 5, SYSDATE, 540, 110, 'Y');
 
--- Ä¿¸®¾î Ä«Å×°í¸® °Ô½Ã±Û
+-- ì»¤ë¦¬ì–´ ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ä¿¸®¾î', 'Ä¿¸®¾î ÀüÈ¯À» À§ÇÑ Á¶¾ð', 
-'ÇöÀç Á÷Àå¿¡¼­ ´Ù¸¥ ºÐ¾ß·Î Ä¿¸®¾î¸¦ ÀüÈ¯ÇÏ°í ½Í½À´Ï´Ù. ¼º°øÀûÀ¸·Î ÀüÈ¯ÇÑ ºÐµéÀÇ °æÇèÀ» µè°í ½Í¾î¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì»¤ë¦¬ì–´', 'ì»¤ë¦¬ì–´ ì „í™˜ì„ ìœ„í•œ ì¡°ì–¸', 
+'í˜„ìž¬ ì§ìž¥ì—ì„œ ë‹¤ë¥¸ ë¶„ì•¼ë¡œ ì»¤ë¦¬ì–´ë¥¼ ì „í™˜í•˜ê³  ì‹¶ìŠµë‹ˆë‹¤. ì„±ê³µì ìœ¼ë¡œ ì „í™˜í•œ ë¶„ë“¤ì˜ ê²½í—˜ì„ ë“£ê³  ì‹¶ì–´ìš”.', 
 NULL, 'person6', 6, SYSDATE, 160, 30, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ä¿¸®¾î', 'Á÷Àå¿¡¼­ÀÇ ¼ºÀå Àü·«', 
-'Á÷Àå¿¡¼­ Áö¼ÓÀûÀ¸·Î ¼ºÀåÇÏ±â À§ÇÑ Àü·«¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¸°í ½Í½À´Ï´Ù. ¿©·¯ºÐÀÇ ¼º°øÀûÀÎ ¼ºÀå ¹æ¹ýÀ» °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì»¤ë¦¬ì–´', 'ì§ìž¥ì—ì„œì˜ ì„±ìž¥ ì „ëžµ', 
+'ì§ìž¥ì—ì„œ ì§€ì†ì ìœ¼ë¡œ ì„±ìž¥í•˜ê¸° ìœ„í•œ ì „ëžµì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë³´ê³  ì‹¶ìŠµë‹ˆë‹¤. ì—¬ëŸ¬ë¶„ì˜ ì„±ê³µì ì¸ ì„±ìž¥ ë°©ë²•ì„ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person7', 7, SYSDATE, 260, 50, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ä¿¸®¾î', '¸®´õ½Ê °³¹ß ¹æ¹ý', 
-'È¿°úÀûÀÎ ¸®´õ°¡ µÇ±â À§ÇÑ ¸®´õ½Ê °³¹ß ¹æ¹ý¿¡ ´ëÇØ ³íÀÇÇØº¾½Ã´Ù. À¯¿ëÇÑ ¸®´õ½Ê ½ºÅ³ÀÌ ÀÖ´Ù¸é °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì»¤ë¦¬ì–´', 'ë¦¬ë”ì‹­ ê°œë°œ ë°©ë²•', 
+'íš¨ê³¼ì ì¸ ë¦¬ë”ê°€ ë˜ê¸° ìœ„í•œ ë¦¬ë”ì‹­ ê°œë°œ ë°©ë²•ì— ëŒ€í•´ ë…¼ì˜í•´ë´…ì‹œë‹¤. ìœ ìš©í•œ ë¦¬ë”ì‹­ ìŠ¤í‚¬ì´ ìžˆë‹¤ë©´ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person8', 8, SYSDATE, 360, 70, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ä¿¸®¾î', '¿öÅ©¶óÀÌÇÁ ¹ë·±½º À¯ÁöÇÏ±â', 
-'Á÷Àå »ýÈ°°ú °³ÀÎ »ýÈ°ÀÇ ±ÕÇüÀ» ¾î¶»°Ô À¯ÁöÇÒ ¼ö ÀÖÀ»Áö¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¸°í ½Í½À´Ï´Ù. ÆÁÀÌ³ª °æÇèÀ» °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì»¤ë¦¬ì–´', 'ì›Œí¬ë¼ì´í”„ ë°¸ëŸ°ìŠ¤ ìœ ì§€í•˜ê¸°', 
+'ì§ìž¥ ìƒí™œê³¼ ê°œì¸ ìƒí™œì˜ ê· í˜•ì„ ì–´ë–»ê²Œ ìœ ì§€í•  ìˆ˜ ìžˆì„ì§€ì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë³´ê³  ì‹¶ìŠµë‹ˆë‹¤. íŒì´ë‚˜ ê²½í—˜ì„ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person9', 9, SYSDATE, 460, 90, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Ä¿¸®¾î', 'È¿°úÀûÀÎ ½Ã°£ °ü¸® ¹æ¹ý', 
-'¾÷¹« È¿À²¼ºÀ» ³ôÀÌ±â À§ÇÑ ½Ã°£ °ü¸® ¹æ¹ý¿¡ ´ëÇØ ³íÀÇÇØº¾½Ã´Ù. ¿©·¯ºÐÀÇ ½Ã°£ °ü¸® ÆÁÀ» °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì»¤ë¦¬ì–´', 'íš¨ê³¼ì ì¸ ì‹œê°„ ê´€ë¦¬ ë°©ë²•', 
+'ì—…ë¬´ íš¨ìœ¨ì„±ì„ ë†’ì´ê¸° ìœ„í•œ ì‹œê°„ ê´€ë¦¬ ë°©ë²•ì— ëŒ€í•´ ë…¼ì˜í•´ë´…ì‹œë‹¤. ì—¬ëŸ¬ë¶„ì˜ ì‹œê°„ ê´€ë¦¬ íŒì„ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person10', 10, SYSDATE, 560, 110, 'Y');
 
--- ÀÌÁ÷ Ä«Å×°í¸® °Ô½Ã±Û
+-- ì´ì§ ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÌÁ÷', 'ÀÌÁ÷À» °á½ÉÇÏ°Ô µÈ ÀÌÀ¯', 
-'ÃÖ±Ù¿¡ ÀÌÁ÷À» °á½ÉÇÏ°Ô µÈ ÀÌÀ¯¿Í °úÁ¤¿¡ ´ëÇØ °øÀ¯ÇÏ°í ½Í½À´Ï´Ù. ºñ½ÁÇÑ °í¹ÎÀ» ÇÏ°í ÀÖ´Â ºÐµé¿¡°Ô µµ¿òÀÌ µÇ¾úÀ¸¸é ÁÁ°Ú¾î¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì´ì§', 'ì´ì§ì„ ê²°ì‹¬í•˜ê²Œ ëœ ì´ìœ ', 
+'ìµœê·¼ì— ì´ì§ì„ ê²°ì‹¬í•˜ê²Œ ëœ ì´ìœ ì™€ ê³¼ì •ì— ëŒ€í•´ ê³µìœ í•˜ê³  ì‹¶ìŠµë‹ˆë‹¤. ë¹„ìŠ·í•œ ê³ ë¯¼ì„ í•˜ê³  ìžˆëŠ” ë¶„ë“¤ì—ê²Œ ë„ì›€ì´ ë˜ì—ˆìœ¼ë©´ ì¢‹ê² ì–´ìš”.', 
 NULL, 'person1', 1, SYSDATE, 170, 30, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÌÁ÷', 'ÀÌÁ÷ ÁØºñ °úÁ¤ °øÀ¯', 
-'ÀÌÁ÷À» ÁØºñÇÏ¸é¼­ ¾î¶² °úÁ¤À» °ÅÃÆ´ÂÁö °øÀ¯ÇÕ´Ï´Ù. ÀÌÁ÷À» °í·Á ÁßÀÎ ºÐµé¿¡°Ô µµ¿òÀÌ µÇ¾úÀ¸¸é ÁÁ°Ú¾î¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì´ì§', 'ì´ì§ ì¤€ë¹„ ê³¼ì • ê³µìœ ', 
+'ì´ì§ì„ ì¤€ë¹„í•˜ë©´ì„œ ì–´ë–¤ ê³¼ì •ì„ ê±°ì³¤ëŠ”ì§€ ê³µìœ í•©ë‹ˆë‹¤. ì´ì§ì„ ê³ ë ¤ ì¤‘ì¸ ë¶„ë“¤ì—ê²Œ ë„ì›€ì´ ë˜ì—ˆìœ¼ë©´ ì¢‹ê² ì–´ìš”.', 
 NULL, 'person2', 2, SYSDATE, 270, 50, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÌÁ÷', 'ÀÌÁ÷ ½Ã °í·ÁÇØ¾ß ÇÒ »çÇ×', 
-'ÀÌÁ÷À» °áÁ¤ÇÏ±â Àü¿¡ °í·ÁÇØ¾ß ÇÒ Áß¿äÇÑ »çÇ×µé¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¾½Ã´Ù. ¿©·¯ºÐÀÇ °æÇèÀ» °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì´ì§', 'ì´ì§ ì‹œ ê³ ë ¤í•´ì•¼ í•  ì‚¬í•­', 
+'ì´ì§ì„ ê²°ì •í•˜ê¸° ì „ì— ê³ ë ¤í•´ì•¼ í•  ì¤‘ìš”í•œ ì‚¬í•­ë“¤ì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë´…ì‹œë‹¤. ì—¬ëŸ¬ë¶„ì˜ ê²½í—˜ì„ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person3', 3, SYSDATE, 370, 70, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÌÁ÷', '¼º°øÀûÀÎ ÀÌÁ÷À» À§ÇÑ Àü·«', 
-'¼º°øÀûÀ¸·Î ÀÌÁ÷ÇÏ±â À§ÇÑ Àü·«°ú ÆÁÀ» °øÀ¯ÇÕ´Ï´Ù. È¿°úÀûÀÎ ÀÌÁ÷À» À§ÇØ ¾î¶² ³ë·ÂÀ» ÇÏ¼Ì´ÂÁö ¾Ë·ÁÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì´ì§', 'ì„±ê³µì ì¸ ì´ì§ì„ ìœ„í•œ ì „ëžµ', 
+'ì„±ê³µì ìœ¼ë¡œ ì´ì§í•˜ê¸° ìœ„í•œ ì „ëžµê³¼ íŒì„ ê³µìœ í•©ë‹ˆë‹¤. íš¨ê³¼ì ì¸ ì´ì§ì„ ìœ„í•´ ì–´ë–¤ ë…¸ë ¥ì„ í•˜ì…¨ëŠ”ì§€ ì•Œë ¤ì£¼ì„¸ìš”.', 
 NULL, 'person4', 4, SYSDATE, 470, 90, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'ÀÌÁ÷', 'ÀÌÁ÷ ÈÄ ÀûÀÀÇÏ±â', 
-'ÀÌÁ÷ÇÑ ÈÄ »õ·Î¿î È¯°æ¿¡ ¾î¶»°Ô ÀûÀÀÇß´ÂÁö¿¡ ´ëÇØ °øÀ¯ÇÕ´Ï´Ù. ÀÌÁ÷ ÈÄ °ÞÀº ¾î·Á¿ò°ú ±Øº¹ ¹æ¹ýÀ» ¾Ë·ÁÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ì´ì§', 'ì´ì§ í›„ ì ì‘í•˜ê¸°', 
+'ì´ì§í•œ í›„ ìƒˆë¡œìš´ í™˜ê²½ì— ì–´ë–»ê²Œ ì ì‘í–ˆëŠ”ì§€ì— ëŒ€í•´ ê³µìœ í•©ë‹ˆë‹¤. ì´ì§ í›„ ê²ªì€ ì–´ë ¤ì›€ê³¼ ê·¹ë³µ ë°©ë²•ì„ ì•Œë ¤ì£¼ì„¸ìš”.', 
 NULL, 'person5', 5, SYSDATE, 570, 110, 'Y');
 
--- Àâ´ã Ä«Å×°í¸® °Ô½Ã±Û
+-- ìž¡ë‹´ ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Àâ´ã', 'ÁÖ¸»¿¡ ¹¹ ÇÏ¼¼¿ä?', 
-'ÀÌ¹ø ÁÖ¸»¿¡ Æ¯º°ÇÑ °èÈ¹ÀÌ ÀÖ³ª¿ä? ÀÚÀ¯·Ó°Ô ÀÌ¾ß±âÇØºÁ¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìž¡ë‹´', 'ì£¼ë§ì— ë­ í•˜ì„¸ìš”?', 
+'ì´ë²ˆ ì£¼ë§ì— íŠ¹ë³„í•œ ê³„íšì´ ìžˆë‚˜ìš”? ìžìœ ë¡­ê²Œ ì´ì•¼ê¸°í•´ë´ìš”!', 
 NULL, 'person6', 6, SYSDATE, 130, 20, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Àâ´ã', 'ÃÖ±Ù º» ¿µÈ­ ÃßÃµ', 
-'ÃÖ±Ù¿¡ º» ¿µÈ­ Áß¿¡ ÃßÃµÇÒ ¸¸ÇÑ ¿µÈ­°¡ ÀÖ³ª¿ä? ¿©·¯ºÐÀÇ ¿µÈ­ ÈÄ±â¸¦ °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìž¡ë‹´', 'ìµœê·¼ ë³¸ ì˜í™” ì¶”ì²œ', 
+'ìµœê·¼ì— ë³¸ ì˜í™” ì¤‘ì— ì¶”ì²œí•  ë§Œí•œ ì˜í™”ê°€ ìžˆë‚˜ìš”? ì—¬ëŸ¬ë¶„ì˜ ì˜í™” í›„ê¸°ë¥¼ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person7', 7, SYSDATE, 230, 40, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Àâ´ã', 'Ãë¹Ì »ýÈ° ÀÌ¾ß±â', 
-'¿©·¯ºÐÀÇ Ãë¹Ì »ýÈ°¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¾½Ã´Ù. »õ·Î¿î Ãë¹Ì¸¦ Ã£°í ÀÖ´Â ºÐµé¿¡°Ô µµ¿òÀÌ µÇ¾úÀ¸¸é ÁÁ°Ú¾î¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìž¡ë‹´', 'ì·¨ë¯¸ ìƒí™œ ì´ì•¼ê¸°', 
+'ì—¬ëŸ¬ë¶„ì˜ ì·¨ë¯¸ ìƒí™œì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë´…ì‹œë‹¤. ìƒˆë¡œìš´ ì·¨ë¯¸ë¥¼ ì°¾ê³  ìžˆëŠ” ë¶„ë“¤ì—ê²Œ ë„ì›€ì´ ë˜ì—ˆìœ¼ë©´ ì¢‹ê² ì–´ìš”.', 
 NULL, 'person8', 8, SYSDATE, 330, 60, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Àâ´ã', 'ÃÖ±Ù¿¡ ÀÐÀº Ã¥', 
-'ÃÖ±Ù¿¡ ÀÐÀº Ã¥ Áß¿¡ ÃßÃµÇÒ ¸¸ÇÑ Ã¥ÀÌ ÀÖ³ª¿ä? Ã¥ ¸®ºä¸¦ °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìž¡ë‹´', 'ìµœê·¼ì— ì½ì€ ì±…', 
+'ìµœê·¼ì— ì½ì€ ì±… ì¤‘ì— ì¶”ì²œí•  ë§Œí•œ ì±…ì´ ìžˆë‚˜ìš”? ì±… ë¦¬ë·°ë¥¼ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person9', 9, SYSDATE, 430, 80, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, 'Àâ´ã', '¿©Çà °æÇè °øÀ¯', 
-'ÃÖ±Ù ´Ù³à¿Â ¿©ÇàÁö¿¡ ´ëÇÑ °æÇèÀ» °øÀ¯ÇÕ´Ï´Ù. ¾Æ¸§´Ù¿ü´ø Àå¼Ò³ª Àç¹ÌÀÖ¾ú´ø ÀÌ¾ß±â¸¦ µé·ÁÁÖ¼¼¿ä!', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ìž¡ë‹´', 'ì—¬í–‰ ê²½í—˜ ê³µìœ ', 
+'ìµœê·¼ ë‹¤ë…€ì˜¨ ì—¬í–‰ì§€ì— ëŒ€í•œ ê²½í—˜ì„ ê³µìœ í•©ë‹ˆë‹¤. ì•„ë¦„ë‹¤ì› ë˜ ìž¥ì†Œë‚˜ ìž¬ë¯¸ìžˆì—ˆë˜ ì´ì•¼ê¸°ë¥¼ ë“¤ë ¤ì£¼ì„¸ìš”!', 
 NULL, 'person10', 10, SYSDATE, 530, 100, 'Y');
 
--- ¸éÁ¢ Ä«Å×°í¸® °Ô½Ã±Û
+-- ë©´ì ‘ ì¹´í…Œê³ ë¦¬ ê²Œì‹œê¸€
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '¸éÁ¢', '¸éÁ¢ Áú¹® ÁØºñÇÏ±â', 
-'¸éÁ¢¿¡¼­ ÀÚÁÖ ³ª¿À´Â Áú¹®µéÀ» ¾î¶»°Ô ÁØºñÇÏ¸é ÁÁÀ»Áö ÀÌ¾ß±âÇØº¾½Ã´Ù. È¿°úÀûÀÎ ´äº¯ ¹æ¹ýÀ» °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ë©´ì ‘', 'ë©´ì ‘ ì§ˆë¬¸ ì¤€ë¹„í•˜ê¸°', 
+'ë©´ì ‘ì—ì„œ ìžì£¼ ë‚˜ì˜¤ëŠ” ì§ˆë¬¸ë“¤ì„ ì–´ë–»ê²Œ ì¤€ë¹„í•˜ë©´ ì¢‹ì„ì§€ ì´ì•¼ê¸°í•´ë´…ì‹œë‹¤. íš¨ê³¼ì ì¸ ë‹µë³€ ë°©ë²•ì„ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person1', 1, SYSDATE, 190, 30, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '¸éÁ¢', '½ºÆ®·¹½º °ü¸® ¹æ¹ý', 
-'¸éÁ¢ ÁØºñ Áß ´À³¢´Â ½ºÆ®·¹½º¸¦ ¾î¶»°Ô °ü¸®ÇÏ°í ÀÖ³ª¿ä? È¿°úÀûÀÎ ½ºÆ®·¹½º ÇØ¼Ò¹ýÀ» °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ë©´ì ‘', 'ìŠ¤íŠ¸ë ˆìŠ¤ ê´€ë¦¬ ë°©ë²•', 
+'ë©´ì ‘ ì¤€ë¹„ ì¤‘ ëŠë¼ëŠ” ìŠ¤íŠ¸ë ˆìŠ¤ë¥¼ ì–´ë–»ê²Œ ê´€ë¦¬í•˜ê³  ìžˆë‚˜ìš”? íš¨ê³¼ì ì¸ ìŠ¤íŠ¸ë ˆìŠ¤ í•´ì†Œë²•ì„ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person2', 2, SYSDATE, 290, 50, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '¸éÁ¢', '¸éÁ¢Àå¿¡¼­ÀÇ Ã¹ÀÎ»ó', 
-'¸éÁ¢Àå¿¡¼­ ÁÁÀº Ã¹ÀÎ»óÀ» ³²±â±â À§ÇÑ ¹æ¹ý¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¾½Ã´Ù. º¹ÀåºÎÅÍ ÅÂµµ±îÁö ´Ù¾çÇÑ ÆÁÀ» °øÀ¯ÇØÁÖ¼¼¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ë©´ì ‘', 'ë©´ì ‘ìž¥ì—ì„œì˜ ì²«ì¸ìƒ', 
+'ë©´ì ‘ìž¥ì—ì„œ ì¢‹ì€ ì²«ì¸ìƒì„ ë‚¨ê¸°ê¸° ìœ„í•œ ë°©ë²•ì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë´…ì‹œë‹¤. ë³µìž¥ë¶€í„° íƒœë„ê¹Œì§€ ë‹¤ì–‘í•œ íŒì„ ê³µìœ í•´ì£¼ì„¸ìš”.', 
 NULL, 'person3', 3, SYSDATE, 390, 70, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '¸éÁ¢', '¸éÁ¢ ÈÄ °¨»ç ÀÌ¸ÞÀÏ ÀÛ¼º¹ý', 
-'¸éÁ¢ ÈÄ °¨»ç ÀÌ¸ÞÀÏÀ» ÀÛ¼ºÇÒ ¶§ À¯ÀÇÇÒ Á¡°ú ÁÁÀº ¿¹½Ã¿¡ ´ëÇØ °øÀ¯ÇÕ´Ï´Ù.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ë©´ì ‘', 'ë©´ì ‘ í›„ ê°ì‚¬ ì´ë©”ì¼ ìž‘ì„±ë²•', 
+'ë©´ì ‘ í›„ ê°ì‚¬ ì´ë©”ì¼ì„ ìž‘ì„±í•  ë•Œ ìœ ì˜í•  ì ê³¼ ì¢‹ì€ ì˜ˆì‹œì— ëŒ€í•´ ê³µìœ í•©ë‹ˆë‹¤.', 
 NULL, 'person4', 4, SYSDATE, 490, 90, 'Y');
 
 INSERT INTO POSTING (POSTING_NO, CATEGORY, TITLE, CONTENT, IMAGE, AUTHOR, USER_NO, CREATED_TIME, VIEW_COUNT, LIKE_COUNT, STATUS)
-VALUES (POSTING_SEQ.NEXTVAL, '¸éÁ¢', '°¡»ó ¸éÁ¢ ¿¬½ÀÇÏ±â', 
-'°¡»ó ¸éÁ¢À» È¿°úÀûÀ¸·Î ¿¬½ÀÇÏ´Â ¹æ¹ý¿¡ ´ëÇØ ÀÌ¾ß±âÇØº¾½Ã´Ù. ¿¬½À ÆÄÆ®³Ê°¡ ÇÊ¿äÇÑ ºÐµéµµ ÀÖÀ¸´Ï ÇÔ²² ¿¬½ÀÇØº¸¾Æ¿ä.', 
+VALUES (POSTING_SEQ.NEXTVAL, 'ë©´ì ‘', 'ê°€ìƒ ë©´ì ‘ ì—°ìŠµí•˜ê¸°', 
+'ê°€ìƒ ë©´ì ‘ì„ íš¨ê³¼ì ìœ¼ë¡œ ì—°ìŠµí•˜ëŠ” ë°©ë²•ì— ëŒ€í•´ ì´ì•¼ê¸°í•´ë´…ì‹œë‹¤. ì—°ìŠµ íŒŒíŠ¸ë„ˆê°€ í•„ìš”í•œ ë¶„ë“¤ë„ ìžˆìœ¼ë‹ˆ í•¨ê»˜ ì—°ìŠµí•´ë³´ì•„ìš”.', 
 NULL, 'person5', 5, SYSDATE, 590, 110, 'Y');
 
--- Á÷¹« Ä«Å×°í¸® ¹× ÇØ½ÃÅÂ±× Ãß°¡
+-- ì§ë¬´ ì¹´í…Œê³ ë¦¬ ë° í•´ì‹œíƒœê·¸ ì¶”ê°€
 DECLARE
     TYPE JobCategoryArray IS TABLE OF VARCHAR2(100);
     TYPE HashtagArray IS TABLE OF VARCHAR2(100);
     
     jobCategories JobCategoryArray := JobCategoryArray(
-        '±âÈ¹¡¤Àü·«', '¸¶ÄÉÆÃ¡¤È«º¸¡¤Á¶»ç', 'È¸°è¡¤¼¼¹«¡¤Àç¹«', 'ÀÎ»ç¡¤³ë¹«¡¤HRD', 'ÃÑ¹«¡¤¹ý¹«¡¤»ç¹«',
-        'IT°³¹ß¡¤µ¥ÀÌÅÍ', 'µðÀÚÀÎ', '¿µ¾÷¡¤ÆÇ¸Å¡¤¹«¿ª', '°í°´»ó´ã¡¤TM', '±¸¸Å¡¤ÀÚÀç¡¤¹°·ù',
-        '»óÇ°±âÈ¹¡¤MD', '¿îÀü¡¤¿î¼Û¡¤¹è¼Û', '¼­ºñ½º', '»ý»ê', '°Ç¼³¡¤°ÇÃà',
-        'ÀÇ·á', '¿¬±¸¡¤R&D', '±³À°', '¹Ìµð¾î¡¤¹®È­¡¤½ºÆ÷Ã÷', '±ÝÀ¶¡¤º¸Çè', '°ø°ø¡¤º¹Áö'
+        'ê¸°íšÂ·ì „ëžµ', 'ë§ˆì¼€íŒ…Â·í™ë³´Â·ì¡°ì‚¬', 'íšŒê³„Â·ì„¸ë¬´Â·ìž¬ë¬´', 'ì¸ì‚¬Â·ë…¸ë¬´Â·HRD', 'ì´ë¬´Â·ë²•ë¬´Â·ì‚¬ë¬´',
+        'ITê°œë°œÂ·ë°ì´í„°', 'ë””ìžì¸', 'ì˜ì—…Â·íŒë§¤Â·ë¬´ì—­', 'ê³ ê°ìƒë‹´Â·TM', 'êµ¬ë§¤Â·ìžìž¬Â·ë¬¼ë¥˜',
+        'ìƒí’ˆê¸°íšÂ·MD', 'ìš´ì „Â·ìš´ì†¡Â·ë°°ì†¡', 'ì„œë¹„ìŠ¤', 'ìƒì‚°', 'ê±´ì„¤Â·ê±´ì¶•',
+        'ì˜ë£Œ', 'ì—°êµ¬Â·R&D', 'êµìœ¡', 'ë¯¸ë””ì–´Â·ë¬¸í™”Â·ìŠ¤í¬ì¸ ', 'ê¸ˆìœµÂ·ë³´í—˜', 'ê³µê³µÂ·ë³µì§€'
     );
     
     hashtags HashtagArray := HashtagArray(
-        '#Ãë¾÷ÁØºñ', '#Ã¹Á÷Àå', '#Ä¿¸®¾î', '#ÀÚ±â¼Ò°³¼­', '#¸éÁ¢ÆÁ',
-        '#ÀÎ°£°ü°è', '#³×Æ®¿öÅ·', '#ÀÚ°ÝÁõ', '#ÀÌÁ÷', '#½ºÆ®·¹½º°ü¸®',
-        '#½Ã°£°ü¸®', '#¼ºÀåÀü·«', '#¸®´õ½Ê', '#¿öÅ©¶óÀÌÇÁ¹ë·±½º', '#Ãë¹Ì»ýÈ°',
-        '#¿µÈ­ÃßÃµ', '#Ã¥¸®ºä', '#¿©ÇàÈÄ±â', '#½ºÆ®·¹½ºÇØ¼Ò', '#ÀÚ±â°³¹ß'
+        '#ì·¨ì—…ì¤€ë¹„', '#ì²«ì§ìž¥', '#ì»¤ë¦¬ì–´', '#ìžê¸°ì†Œê°œì„œ', '#ë©´ì ‘íŒ',
+        '#ì¸ê°„ê´€ê³„', '#ë„¤íŠ¸ì›Œí‚¹', '#ìžê²©ì¦', '#ì´ì§', '#ìŠ¤íŠ¸ë ˆìŠ¤ê´€ë¦¬',
+        '#ì‹œê°„ê´€ë¦¬', '#ì„±ìž¥ì „ëžµ', '#ë¦¬ë”ì‹­', '#ì›Œí¬ë¼ì´í”„ë°¸ëŸ°ìŠ¤', '#ì·¨ë¯¸ìƒí™œ',
+        '#ì˜í™”ì¶”ì²œ', '#ì±…ë¦¬ë·°', '#ì—¬í–‰í›„ê¸°', '#ìŠ¤íŠ¸ë ˆìŠ¤í•´ì†Œ', '#ìžê¸°ê°œë°œ'
     );
 
     v_posting_no NUMBER;
@@ -291,41 +291,41 @@ BEGIN
     FOR rec IN (SELECT POSTING_NO, CATEGORY FROM POSTING) LOOP
         v_posting_no := rec.POSTING_NO;
 
-        -- Á÷¹« Ä«Å×°í¸® ·£´ý ÇÒ´ç (Ä«Å×°í¸®¿¡ ¸Â´Â Á÷¹« ¼±ÅÃ °¡´ÉÇÏµµ·Ï Á¶Á¤)
-        IF rec.CATEGORY = '½ÅÀÔ' THEN
-            v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(1, 6))); -- ±âÈ¹~IT°³¹ß
-        ELSIF rec.CATEGORY = 'Ã¤¿ë°ø°í' THEN
-            v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(6, 11))); -- µðÀÚÀÎ~±¸¸Å
-        ELSIF rec.CATEGORY = 'ÃëÁØ' THEN
-            v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(11, 16))); -- ¿î¼Û~ÀÇ·á
-        ELSIF rec.CATEGORY = 'ÀÚ¼Ò¼­' THEN
-            v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(16, 21))); -- ¿¬±¸~°ø°ø
-        ELSIF rec.CATEGORY = 'ÀÚ°ÝÁõ' THEN
+        -- ì§ë¬´ ì¹´í…Œê³ ë¦¬ ëžœë¤ í• ë‹¹ (ì¹´í…Œê³ ë¦¬ì— ë§žëŠ” ì§ë¬´ ì„ íƒ ê°€ëŠ¥í•˜ë„ë¡ ì¡°ì •)
+        IF rec.CATEGORY = 'ì‹ ìž…' THEN
+            v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(1, 6))); -- ê¸°íš~ITê°œë°œ
+        ELSIF rec.CATEGORY = 'ì±„ìš©ê³µê³ ' THEN
+            v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(6, 11))); -- ë””ìžì¸~êµ¬ë§¤
+        ELSIF rec.CATEGORY = 'ì·¨ì¤€' THEN
+            v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(11, 16))); -- ìš´ì†¡~ì˜ë£Œ
+        ELSIF rec.CATEGORY = 'ìžì†Œì„œ' THEN
+            v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(16, 21))); -- ì—°êµ¬~ê³µê³µ
+        ELSIF rec.CATEGORY = 'ìžê²©ì¦' THEN
             v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(1, 21)));
         ELSIF rec.CATEGORY = 'Q&A' THEN
             v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(1, 21)));
-        ELSIF rec.CATEGORY = 'Ä¿¸®¾î' THEN
+        ELSIF rec.CATEGORY = 'ì»¤ë¦¬ì–´' THEN
             v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(1, 21)));
-        ELSIF rec.CATEGORY = 'ÀÌÁ÷' THEN
+        ELSIF rec.CATEGORY = 'ì´ì§' THEN
             v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(1, 21)));
-        ELSIF rec.CATEGORY = 'Àâ´ã' THEN
+        ELSIF rec.CATEGORY = 'ìž¡ë‹´' THEN
             v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(1, 21)));
-        ELSIF rec.CATEGORY = '¸éÁ¢' THEN
+        ELSIF rec.CATEGORY = 'ë©´ì ‘' THEN
             v_random_job := jobCategories(TRUNC(DBMS_RANDOM.VALUE(1, 21)));
         END IF;
 
-        -- COMMUNITY_POST_JOB_CATEGORY Å×ÀÌºí¿¡ Á÷¹« Ä«Å×°í¸® »ðÀÔ
+        -- COMMUNITY_POST_JOB_CATEGORY í…Œì´ë¸”ì— ì§ë¬´ ì¹´í…Œê³ ë¦¬ ì‚½ìž…
         INSERT INTO COMMUNITY_POST_JOB_CATEGORY (POSTING_NO, JOB_CATEGORY)
         VALUES (v_posting_no, v_random_job);
 
-        -- ÇØ½ÃÅÂ±× ·£´ý ¼±ÅÃ
+        -- í•´ì‹œíƒœê·¸ ëžœë¤ ì„ íƒ
         v_random_hashtag1 := hashtags(TRUNC(DBMS_RANDOM.VALUE(1, hashtags.COUNT + 1)));
         v_random_hashtag2 := hashtags(TRUNC(DBMS_RANDOM.VALUE(1, hashtags.COUNT + 1)));
         v_random_hashtag3 := hashtags(TRUNC(DBMS_RANDOM.VALUE(1, hashtags.COUNT + 1)));
 
-        -- Áßº¹ ¹æÁö¸¦ À§ÇØ ´Ù¸¥ ÇØ½ÃÅÂ±×ÀÎÁö È®ÀÎ
+        -- ì¤‘ë³µ ë°©ì§€ë¥¼ ìœ„í•´ ë‹¤ë¥¸ í•´ì‹œíƒœê·¸ì¸ì§€ í™•ì¸
         IF v_random_hashtag1 != v_random_hashtag2 AND v_random_hashtag1 != v_random_hashtag3 AND v_random_hashtag2 != v_random_hashtag3 THEN
-            -- ÇØ½ÃÅÂ±× »ðÀÔ
+            -- í•´ì‹œíƒœê·¸ ì‚½ìž…
             INSERT INTO COMMUNITY_POST_HASHTAG (POSTING_NO, HASHTAG)
             VALUES (v_posting_no, v_random_hashtag1);
 
@@ -341,8 +341,8 @@ BEGIN
 END;
 /
     
--- ´ñ±Û Ãß°¡
--- °¢ °Ô½Ã±Û¿¡ ÃÖ¼Ò 2°³ÀÇ ´ñ±ÛÀ» Ãß°¡ÇÕ´Ï´Ù.
+-- ëŒ“ê¸€ ì¶”ê°€
+-- ê° ê²Œì‹œê¸€ì— ìµœì†Œ 2ê°œì˜ ëŒ“ê¸€ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 DECLARE
     CURSOR posting_cursor IS
@@ -350,28 +350,28 @@ DECLARE
     v_reply_no NUMBER;
 BEGIN
     FOR post IN posting_cursor LOOP
-        -- Ã¹ ¹øÂ° ´ñ±Û
+        -- ì²« ë²ˆì§¸ ëŒ“ê¸€
         INSERT INTO REPLY (REPLY_NO, POSTING_NO, USER_NO, CONTENT, CREATED_TIME, STATUS)
         VALUES (REPLY_SEQ.NEXTVAL, post.POSTING_NO, TRUNC(DBMS_RANDOM.VALUE(1, 11)), 
-                'ÀÌ °Ô½Ã±Û Á¤¸» À¯ÀÍÇÕ´Ï´Ù! °¨»çÇÕ´Ï´Ù.', SYSDATE, 'Y');
+                'ì´ ê²Œì‹œê¸€ ì •ë§ ìœ ìµí•©ë‹ˆë‹¤! ê°ì‚¬í•©ë‹ˆë‹¤.', SYSDATE, 'Y');
 
-        -- µÎ ¹øÂ° ´ñ±Û
+        -- ë‘ ë²ˆì§¸ ëŒ“ê¸€
         INSERT INTO REPLY (REPLY_NO, POSTING_NO, USER_NO, CONTENT, CREATED_TIME, STATUS)
         VALUES (REPLY_SEQ.NEXTVAL, post.POSTING_NO, TRUNC(DBMS_RANDOM.VALUE(1, 11)), 
-                '°ø°¨ÇÕ´Ï´Ù. Àúµµ ºñ½ÁÇÑ °æÇèÀÌ ÀÖ¾î¿ä.', SYSDATE, 'Y');
+                'ê³µê°í•©ë‹ˆë‹¤. ì €ë„ ë¹„ìŠ·í•œ ê²½í—˜ì´ ìžˆì–´ìš”.', SYSDATE, 'Y');
     END LOOP;
 
     COMMIT;
 END;
 /
 
--- Ä¿¹Ô
--- º¯¼ö ´ëÃ¼ ±â´É ºñÈ°¼ºÈ­
+-- ì»¤ë°‹
+-- ë³€ìˆ˜ ëŒ€ì²´ ê¸°ëŠ¥ ë¹„í™œì„±í™”
 SET DEFINE OFF;
 
 BEGIN
     -- =========================
-    -- USER_NO = 1 (person1) Æ÷Æ®Æú¸®¿À 1
+    -- USER_NO = 1 (person1) í¬íŠ¸í´ë¦¬ì˜¤ 1
     -- =========================
     DECLARE
         v_content CLOB;
@@ -379,28 +379,28 @@ BEGIN
         DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
         
         DBMS_LOB.APPEND(v_content, q'[
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-            <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â ´ë±Ô¸ð ÀüÀÚ»ó°Å·¡ ÇÃ·§ÆûÀ» °³¹ßÇÏ¿© »ç¿ëÀÚ °æÇèÀ» ±Ø´ëÈ­ÇÏ°í, ¾ÈÁ¤ÀûÀÎ Æ®·£Àè¼Ç Ã³¸®¸¦ ±¸ÇöÇÏ´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â ½Ç½Ã°£ Àç°í °ü¸®, ÁÖ¹® Ã³¸® ½Ã½ºÅÛ, »ç¿ëÀÚ ¸®ºä ¹× ÆòÁ¡ ½Ã½ºÅÛ µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+            <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” ëŒ€ê·œëª¨ ì „ìžìƒê±°ëž˜ í”Œëž«í¼ì„ ê°œë°œí•˜ì—¬ ì‚¬ìš©ìž ê²½í—˜ì„ ê·¹ëŒ€í™”í•˜ê³ , ì•ˆì •ì ì¸ íŠ¸ëžœìž­ì…˜ ì²˜ë¦¬ë¥¼ êµ¬í˜„í•˜ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ì‹¤ì‹œê°„ ìž¬ê³  ê´€ë¦¬, ì£¼ë¬¸ ì²˜ë¦¬ ì‹œìŠ¤í…œ, ì‚¬ìš©ìž ë¦¬ë·° ë° í‰ì  ì‹œìŠ¤í…œ ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
             <p><br></p>
 
-            <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+            <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
             <ul>
-                <li><span style="font-size: 14px;">ÇÁ·ÐÆ®¿£µå: React.js, Redux, TypeScript</span></li>
-                <li><span style="font-size: 14px;">¹é¿£µå: Node.js, Express.js, GraphQL</span></li>
-                <li><span style="font-size: 14px;">µ¥ÀÌÅÍº£ÀÌ½º: PostgreSQL, Redis</span></li>
-                <li><span style="font-size: 14px;">¹èÆ÷: AWS EC2, Kubernetes, Docker</span></li>
+                <li><span style="font-size: 14px;">í”„ë¡ íŠ¸ì—”ë“œ: React.js, Redux, TypeScript</span></li>
+                <li><span style="font-size: 14px;">ë°±ì—”ë“œ: Node.js, Express.js, GraphQL</span></li>
+                <li><span style="font-size: 14px;">ë°ì´í„°ë² ì´ìŠ¤: PostgreSQL, Redis</span></li>
+                <li><span style="font-size: 14px;">ë°°í¬: AWS EC2, Kubernetes, Docker</span></li>
             </ul>
             <p><br></p>
 
-            <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-            <p>React.js¿Í Redux¸¦ È°¿ëÇÏ¿© µ¿ÀûÀÎ »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¿´°í, TypeScript¸¦ »ç¿ëÇÏ¿© ÄÚµåÀÇ ¾ÈÁ¤¼ºÀ» ³ô¿´½À´Ï´Ù.</p>
-            <p>¹é¿£µå¿¡¼­´Â Node.js¿Í Express.js¸¦ ÀÌ¿ëÇÏ¿© RESTful API¸¦ ±¸ÃàÇÏ¿´À¸¸ç, GraphQLÀ» µµÀÔÇÏ¿© Å¬¶óÀÌ¾ðÆ®¿ÍÀÇ È¿À²ÀûÀÎ µ¥ÀÌÅÍ Åë½ÅÀ» ±¸ÇöÇÏ¿´½À´Ï´Ù.</p>
-            <p>PostgreSQLÀ» »ç¿ëÇÏ¿© µ¥ÀÌÅÍÀÇ ½Å·Ú¼ºÀ» º¸ÀåÇÏ°í, Redis¸¦ ÅëÇØ Ä³½Ì ¸ÞÄ¿´ÏÁòÀ» ±¸ÇöÇÏ¿© ÀÀ´ä ¼Óµµ¸¦ Çâ»ó½ÃÄ×½À´Ï´Ù.</p>
-            <p>AWS EC2¿Í Kubernetes¸¦ È°¿ëÇÏ¿© ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» ÄÁÅ×ÀÌ³ÊÈ­ÇÏ°í, Docker¸¦ ÀÌ¿ëÇÏ¿© ¹èÆ÷ ÀÚµ¿È­¸¦ ½ÇÇöÇÏ¿´½À´Ï´Ù.</p>
+            <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+            <p>React.jsì™€ Reduxë¥¼ í™œìš©í•˜ì—¬ ë™ì ì¸ ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ì˜€ê³ , TypeScriptë¥¼ ì‚¬ìš©í•˜ì—¬ ì½”ë“œì˜ ì•ˆì •ì„±ì„ ë†’ì˜€ìŠµë‹ˆë‹¤.</p>
+            <p>ë°±ì—”ë“œì—ì„œëŠ” Node.jsì™€ Express.jsë¥¼ ì´ìš©í•˜ì—¬ RESTful APIë¥¼ êµ¬ì¶•í•˜ì˜€ìœ¼ë©°, GraphQLì„ ë„ìž…í•˜ì—¬ í´ë¼ì´ì–¸íŠ¸ì™€ì˜ íš¨ìœ¨ì ì¸ ë°ì´í„° í†µì‹ ì„ êµ¬í˜„í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+            <p>PostgreSQLì„ ì‚¬ìš©í•˜ì—¬ ë°ì´í„°ì˜ ì‹ ë¢°ì„±ì„ ë³´ìž¥í•˜ê³ , Redisë¥¼ í†µí•´ ìºì‹± ë©”ì»¤ë‹ˆì¦˜ì„ êµ¬í˜„í•˜ì—¬ ì‘ë‹µ ì†ë„ë¥¼ í–¥ìƒì‹œì¼°ìŠµë‹ˆë‹¤.</p>
+            <p>AWS EC2ì™€ Kubernetesë¥¼ í™œìš©í•˜ì—¬ ì• í”Œë¦¬ì¼€ì´ì…˜ì„ ì»¨í…Œì´ë„ˆí™”í•˜ê³ , Dockerë¥¼ ì´ìš©í•˜ì—¬ ë°°í¬ ìžë™í™”ë¥¼ ì‹¤í˜„í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
             <p><br></p>
 
-            <!-- ÄÚµå ºí·Ï Ãß°¡ -->
+            <!-- ì½”ë“œ ë¸”ë¡ ì¶”ê°€ -->
             <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
                 <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -419,13 +419,13 @@ BEGIN
                             </td>
                             <td style="padding:6px 0;text-align:left">
                                 <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Express.js API ¿¹Á¦</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Express.js API ì˜ˆì œ</span></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">const express = require('express');</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">const app = express();</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">app.use(express.json());</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">app.get('/api/customers', (req, res) => {</div>
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    // °í°´ ¸ñ·Ï Á¶È¸ ·ÎÁ÷</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    // ê³ ê° ëª©ë¡ ì¡°íšŒ ë¡œì§</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    res.json(customers);</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">});</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
@@ -444,13 +444,13 @@ BEGIN
                 </table>
             </div>
             
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-            <p><span style="font-size: 18px;">º» ÇÁ·ÎÁ§Æ®¸¦ ÅëÇØ ´ë±Ô¸ð ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ Ç®½ºÅÃ °³¹ß¿¡ ´ëÇÑ ±íÀº ÀÌÇØ¸¦ ¾ò°Ô µÇ¾úÀ¸¸ç, </span></p>
-            <p><span style="font-size: 18px;">React.js¿Í Redux¸¦ È°¿ëÇÑ »óÅÂ °ü¸®ÀÇ Áß¿ä¼ºÀ» Ã¼°¨ÇÏ¿´½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">¶ÇÇÑ, AWS¿Í Kubernetes¸¦ ÀÌ¿ëÇÑ ÄÁÅ×ÀÌ³ÊÈ­ ¹× ¹èÆ÷ ÀÚµ¿È­ °úÁ¤À» °æÇèÇÔÀ¸·Î½á Å¬¶ó¿ìµå È¯°æ¿¡¼­ÀÇ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç ¿î¿µ¿¡ ´ëÇÑ ½Ç¹« Áö½ÄÀ» ½ÀµæÇÏ¿´½À´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+            <p><span style="font-size: 18px;">ë³¸ í”„ë¡œì íŠ¸ë¥¼ í†µí•´ ëŒ€ê·œëª¨ ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ í’€ìŠ¤íƒ ê°œë°œì— ëŒ€í•œ ê¹Šì€ ì´í•´ë¥¼ ì–»ê²Œ ë˜ì—ˆìœ¼ë©°, </span></p>
+            <p><span style="font-size: 18px;">React.jsì™€ Reduxë¥¼ í™œìš©í•œ ìƒíƒœ ê´€ë¦¬ì˜ ì¤‘ìš”ì„±ì„ ì²´ê°í•˜ì˜€ìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">ë˜í•œ, AWSì™€ Kubernetesë¥¼ ì´ìš©í•œ ì»¨í…Œì´ë„ˆí™” ë° ë°°í¬ ìžë™í™” ê³¼ì •ì„ ê²½í—˜í•¨ìœ¼ë¡œì¨ í´ë¼ìš°ë“œ í™˜ê²½ì—ì„œì˜ ì• í”Œë¦¬ì¼€ì´ì…˜ ìš´ì˜ì— ëŒ€í•œ ì‹¤ë¬´ ì§€ì‹ì„ ìŠµë“í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
         ]');
         
-        -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+        -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
         INSERT INTO PORTFOLIO (
             PORTFOLIO_ID,
             USER_NO,
@@ -460,47 +460,47 @@ BEGIN
         ) VALUES (
             SEQ_PORTFOLIO_ID.NEXTVAL,
             1,
-            '´ë±Ô¸ð ÀüÀÚ»ó°Å·¡ ÇÃ·§Æû °³¹ß',
+            'ëŒ€ê·œëª¨ ì „ìžìƒê±°ëž˜ í”Œëž«í¼ ê°œë°œ',
             v_content,
             NULL
         );
         
-        -- ÀÓ½Ã CLOB ÇØÁ¦
+        -- ìž„ì‹œ CLOB í•´ì œ
         DBMS_LOB.FREETEMPORARY(v_content);
     END;
     
     -- =========================
-    -- USER_NO = 1 (person1) Æ÷Æ®Æú¸®¿À 2
+    -- USER_NO = 1 (person1) í¬íŠ¸í´ë¦¬ì˜¤ 2
     -- =========================
     DECLARE
         v_content CLOB;
     BEGIN
         DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
         
-        -- ÇÁ·ÎÁ§Æ® °³¿ä
+        -- í”„ë¡œì íŠ¸ ê°œìš”
         DBMS_LOB.APPEND(v_content, q'[
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-            <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â ½Ç½Ã°£ µ¥ÀÌÅÍ ºÐ¼® ¹× ½Ã°¢È­¸¦ ÅëÇØ ±â¾÷ÀÇ ÀÇ»ç°áÁ¤À» Áö¿øÇÏ´Â ´ë½Ãº¸µå ½Ã½ºÅÛÀ» °³¹ßÇÏ´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â ½Ç½Ã°£ µ¥ÀÌÅÍ ½ºÆ®¸®¹Ö, »ç¿ëÀÚ ¸ÂÃãÇü ´ë½Ãº¸µå, µ¥ÀÌÅÍ ÇÊÅÍ¸µ ¹× Å½»ö ±â´É µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+            <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” ì‹¤ì‹œê°„ ë°ì´í„° ë¶„ì„ ë° ì‹œê°í™”ë¥¼ í†µí•´ ê¸°ì—…ì˜ ì˜ì‚¬ê²°ì •ì„ ì§€ì›í•˜ëŠ” ëŒ€ì‹œë³´ë“œ ì‹œìŠ¤í…œì„ ê°œë°œí•˜ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ì‹¤ì‹œê°„ ë°ì´í„° ìŠ¤íŠ¸ë¦¬ë°, ì‚¬ìš©ìž ë§žì¶¤í˜• ëŒ€ì‹œë³´ë“œ, ë°ì´í„° í•„í„°ë§ ë° íƒìƒ‰ ê¸°ëŠ¥ ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
             <p><br></p>
 
-            <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+            <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
             <ul>
-                <li><span style="font-size: 14px;">ÇÁ·ÐÆ®¿£µå: React.js, D3.js, TypeScript</span></li>
-                <li><span style="font-size: 14px;">¹é¿£µå: Python, Flask, WebSocket</span></li>
-                <li><span style="font-size: 14px;">µ¥ÀÌÅÍº£ÀÌ½º: MongoDB, InfluxDB</span></li>
-                <li><span style="font-size: 14px;">¹èÆ÷: AWS Lambda, Docker</span></li>
+                <li><span style="font-size: 14px;">í”„ë¡ íŠ¸ì—”ë“œ: React.js, D3.js, TypeScript</span></li>
+                <li><span style="font-size: 14px;">ë°±ì—”ë“œ: Python, Flask, WebSocket</span></li>
+                <li><span style="font-size: 14px;">ë°ì´í„°ë² ì´ìŠ¤: MongoDB, InfluxDB</span></li>
+                <li><span style="font-size: 14px;">ë°°í¬: AWS Lambda, Docker</span></li>
             </ul>
             <p><br></p>
 
-            <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-            <p>React.js¿Í D3.js¸¦ È°¿ëÇÏ¿© ÀÎÅÍ·¢Æ¼ºêÇÑ µ¥ÀÌÅÍ ½Ã°¢È­ ±×·¡ÇÁ¸¦ ±¸ÇöÇÏ¿´À¸¸ç, </p>
-            <p>TypeScript¸¦ »ç¿ëÇÏ¿© ÄÚµåÀÇ ¾ÈÁ¤¼º°ú À¯Áöº¸¼ö¼ºÀ» Çâ»ó½ÃÄ×½À´Ï´Ù. </p>
-            <p>¹é¿£µå¿¡¼­´Â Python°ú Flask¸¦ ÀÌ¿ëÇÏ¿© ½Ç½Ã°£ µ¥ÀÌÅÍ ½ºÆ®¸®¹ÖÀ» Ã³¸®ÇÏ¿´°í, WebSocketÀ» ÅëÇØ ÇÁ·ÐÆ®¿£µå¿ÍÀÇ ½Ç½Ã°£ Åë½ÅÀ» ±¸ÇöÇÏ¿´½À´Ï´Ù.</p>
-            <p>MongoDB¿Í InfluxDB¸¦ »ç¿ëÇÏ¿© ´Ù¾çÇÑ Çü½ÄÀÇ µ¥ÀÌÅÍ¸¦ È¿À²ÀûÀ¸·Î ÀúÀåÇÏ°í °ü¸®ÇÏ¿´À¸¸ç, AWS Lambda¿Í Docker¸¦ ÅëÇØ ¼­¹ö¸®½º ¾ÆÅ°ÅØÃ³·Î ¹èÆ÷ÇÏ¿© È®Àå¼ºÀ» È®º¸ÇÏ¿´½À´Ï´Ù.</p>
+            <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+            <p>React.jsì™€ D3.jsë¥¼ í™œìš©í•˜ì—¬ ì¸í„°ëž™í‹°ë¸Œí•œ ë°ì´í„° ì‹œê°í™” ê·¸ëž˜í”„ë¥¼ êµ¬í˜„í•˜ì˜€ìœ¼ë©°, </p>
+            <p>TypeScriptë¥¼ ì‚¬ìš©í•˜ì—¬ ì½”ë“œì˜ ì•ˆì •ì„±ê³¼ ìœ ì§€ë³´ìˆ˜ì„±ì„ í–¥ìƒì‹œì¼°ìŠµë‹ˆë‹¤. </p>
+            <p>ë°±ì—”ë“œì—ì„œëŠ” Pythonê³¼ Flaskë¥¼ ì´ìš©í•˜ì—¬ ì‹¤ì‹œê°„ ë°ì´í„° ìŠ¤íŠ¸ë¦¬ë°ì„ ì²˜ë¦¬í•˜ì˜€ê³ , WebSocketì„ í†µí•´ í”„ë¡ íŠ¸ì—”ë“œì™€ì˜ ì‹¤ì‹œê°„ í†µì‹ ì„ êµ¬í˜„í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+            <p>MongoDBì™€ InfluxDBë¥¼ ì‚¬ìš©í•˜ì—¬ ë‹¤ì–‘í•œ í˜•ì‹ì˜ ë°ì´í„°ë¥¼ íš¨ìœ¨ì ìœ¼ë¡œ ì €ìž¥í•˜ê³  ê´€ë¦¬í•˜ì˜€ìœ¼ë©°, AWS Lambdaì™€ Dockerë¥¼ í†µí•´ ì„œë²„ë¦¬ìŠ¤ ì•„í‚¤í…ì²˜ë¡œ ë°°í¬í•˜ì—¬ í™•ìž¥ì„±ì„ í™•ë³´í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
             <p><br></p>
 
-            <!-- ÄÚµå ºí·Ï Ãß°¡ -->
+            <!-- ì½”ë“œ ë¸”ë¡ ì¶”ê°€ -->
             <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
                 <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -519,7 +519,7 @@ BEGIN
                             </td>
                             <td style="padding:6px 0;text-align:left">
                                 <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask WebSocket ¿¹Á¦</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask WebSocket ì˜ˆì œ</span></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">from flask import Flask</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">from flask_socketio import SocketIO, emit</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">app = Flask(__name__)</div>
@@ -542,15 +542,15 @@ BEGIN
                 </table>
             </div>
             
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-            <p><span style="font-size: 18px;">º» ÇÁ·ÎÁ§Æ®¸¦ ÅëÇØ ½Ç½Ã°£ µ¥ÀÌÅÍ Ã³¸® ¹× ½Ã°¢È­ÀÇ Áß¿ä¼ºÀ» ÀÌÇØÇÏ°Ô µÇ¾úÀ¸¸ç, </span></p>
-            <p><span style="font-size: 18px;">React.js¿Í D3.js¸¦ È°¿ëÇÑ º¹ÀâÇÑ µ¥ÀÌÅÍ ½Ã°¢È­ ±×·¡ÇÁ¸¦ È¿°úÀûÀ¸·Î ±¸ÇöÇÏ´Â ´É·ÂÀ» ¹è¾çÇÏ¿´½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">Flask¿Í WebSocketÀ» ÀÌ¿ëÇÑ ½Ç½Ã°£ µ¥ÀÌÅÍ ½ºÆ®¸®¹Ö ±¸ÇöÀ» ÅëÇØ ¹é¿£µå¿Í ÇÁ·ÐÆ®¿£µå °£ÀÇ È¿À²ÀûÀÎ µ¥ÀÌÅÍ Åë½Å ¹æ¹ýÀ» ÀÍÇû½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 18px;">MongoDB¿Í InfluxDB¸¦ È°¿ëÇÑ ´Ù¾çÇÑ µ¥ÀÌÅÍº£ÀÌ½º °ü¸® °æÇèÀ» ½×¾ÒÀ¸¸ç, </span></p>
-            <p><span style="font-size: 18px;">AWS Lambda¿Í Docker¸¦ ÀÌ¿ëÇÑ ¼­¹ö¸®½º ¾ÆÅ°ÅØÃ³ ¹èÆ÷¸¦ ÅëÇØ Å¬¶ó¿ìµå È¯°æ¿¡¼­ÀÇ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç È®Àå¼ºÀ» È®º¸ÇÏ´Â ¹æ¹ýÀ» ÇÐ½ÀÇÏ¿´½À´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+            <p><span style="font-size: 18px;">ë³¸ í”„ë¡œì íŠ¸ë¥¼ í†µí•´ ì‹¤ì‹œê°„ ë°ì´í„° ì²˜ë¦¬ ë° ì‹œê°í™”ì˜ ì¤‘ìš”ì„±ì„ ì´í•´í•˜ê²Œ ë˜ì—ˆìœ¼ë©°, </span></p>
+            <p><span style="font-size: 18px;">React.jsì™€ D3.jsë¥¼ í™œìš©í•œ ë³µìž¡í•œ ë°ì´í„° ì‹œê°í™” ê·¸ëž˜í”„ë¥¼ íš¨ê³¼ì ìœ¼ë¡œ êµ¬í˜„í•˜ëŠ” ëŠ¥ë ¥ì„ ë°°ì–‘í•˜ì˜€ìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">Flaskì™€ WebSocketì„ ì´ìš©í•œ ì‹¤ì‹œê°„ ë°ì´í„° ìŠ¤íŠ¸ë¦¬ë° êµ¬í˜„ì„ í†µí•´ ë°±ì—”ë“œì™€ í”„ë¡ íŠ¸ì—”ë“œ ê°„ì˜ íš¨ìœ¨ì ì¸ ë°ì´í„° í†µì‹  ë°©ë²•ì„ ìµí˜”ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 18px;">MongoDBì™€ InfluxDBë¥¼ í™œìš©í•œ ë‹¤ì–‘í•œ ë°ì´í„°ë² ì´ìŠ¤ ê´€ë¦¬ ê²½í—˜ì„ ìŒ“ì•˜ìœ¼ë©°, </span></p>
+            <p><span style="font-size: 18px;">AWS Lambdaì™€ Dockerë¥¼ ì´ìš©í•œ ì„œë²„ë¦¬ìŠ¤ ì•„í‚¤í…ì²˜ ë°°í¬ë¥¼ í†µí•´ í´ë¼ìš°ë“œ í™˜ê²½ì—ì„œì˜ ì• í”Œë¦¬ì¼€ì´ì…˜ í™•ìž¥ì„±ì„ í™•ë³´í•˜ëŠ” ë°©ë²•ì„ í•™ìŠµí•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
         ]');
     
-        -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+        -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
         INSERT INTO PORTFOLIO (
             PORTFOLIO_ID,
             USER_NO,
@@ -560,47 +560,47 @@ BEGIN
         ) VALUES (
             SEQ_PORTFOLIO_ID.NEXTVAL,
             1,
-            '½Ç½Ã°£ µ¥ÀÌÅÍ ºÐ¼® ¹× ½Ã°¢È­ ´ë½Ãº¸µå °³¹ß',
+            'ì‹¤ì‹œê°„ ë°ì´í„° ë¶„ì„ ë° ì‹œê°í™” ëŒ€ì‹œë³´ë“œ ê°œë°œ',
             v_content,
             NULL
         );
 
-        -- ÀÓ½Ã CLOB ÇØÁ¦
+        -- ìž„ì‹œ CLOB í•´ì œ
         DBMS_LOB.FREETEMPORARY(v_content);
     END;
     
     -- =========================
-    -- USER_NO = 1 (person1) Æ÷Æ®Æú¸®¿À 3
+    -- USER_NO = 1 (person1) í¬íŠ¸í´ë¦¬ì˜¤ 3
     -- =========================
     DECLARE
         v_content CLOB;
     BEGIN
         DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
         
-        -- ÇÁ·ÎÁ§Æ® °³¿ä
+        -- í”„ë¡œì íŠ¸ ê°œìš”
         DBMS_LOB.APPEND(v_content, q'[
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-            <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â ¸Ó½Å·¯´× ¾Ë°í¸®ÁòÀ» È°¿ëÇÏ¿© »ç¿ëÀÚ Çàµ¿À» ¿¹ÃøÇÏ°í, ¸ÂÃãÇü ÃßÃµ ½Ã½ºÅÛÀ» °³¹ßÇÏ´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â »ç¿ëÀÚ µ¥ÀÌÅÍ ºÐ¼®, ¿¹Ãø ¸ðµ¨ °³¹ß, ½Ç½Ã°£ ÃßÃµ ¼­ºñ½º µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+            <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” ë¨¸ì‹ ëŸ¬ë‹ ì•Œê³ ë¦¬ì¦˜ì„ í™œìš©í•˜ì—¬ ì‚¬ìš©ìž í–‰ë™ì„ ì˜ˆì¸¡í•˜ê³ , ë§žì¶¤í˜• ì¶”ì²œ ì‹œìŠ¤í…œì„ ê°œë°œí•˜ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ì‚¬ìš©ìž ë°ì´í„° ë¶„ì„, ì˜ˆì¸¡ ëª¨ë¸ ê°œë°œ, ì‹¤ì‹œê°„ ì¶”ì²œ ì„œë¹„ìŠ¤ ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
             <p><br></p>
 
-            <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+            <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
             <ul>
-                <li><span style="font-size: 14px;">ÇÁ·ÐÆ®¿£µå: Angular, NgRx</span></li>
-                <li><span style="font-size: 14px;">¹é¿£µå: Python, Django, TensorFlow</span></li>
-                <li><span style="font-size: 14px;">µ¥ÀÌÅÍº£ÀÌ½º: MySQL, Elasticsearch</span></li>
-                <li><span style="font-size: 14px;">¹èÆ÷: Google Cloud Platform, Docker</span></li>
+                <li><span style="font-size: 14px;">í”„ë¡ íŠ¸ì—”ë“œ: Angular, NgRx</span></li>
+                <li><span style="font-size: 14px;">ë°±ì—”ë“œ: Python, Django, TensorFlow</span></li>
+                <li><span style="font-size: 14px;">ë°ì´í„°ë² ì´ìŠ¤: MySQL, Elasticsearch</span></li>
+                <li><span style="font-size: 14px;">ë°°í¬: Google Cloud Platform, Docker</span></li>
             </ul>
             <p><br></p>
 
-            <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-            <p>Angular°ú NgRx¸¦ È°¿ëÇÏ¿© º¹ÀâÇÑ »óÅÂ °ü¸®¸¦ È¿°úÀûÀ¸·Î Ã³¸®ÇÏ¿´°í, </p>
-            <p>Django¿Í TensorFlow¸¦ ÀÌ¿ëÇÏ¿© ¸Ó½Å·¯´× ¸ðµ¨À» °³¹ßÇÏ¿´½À´Ï´Ù. </p>
-            <p>MySQL°ú Elasticsearch¸¦ »ç¿ëÇÏ¿© ´ë¿ë·® µ¥ÀÌÅÍ¸¦ È¿À²ÀûÀ¸·Î ÀúÀåÇÏ°í °Ë»öÇÏ´Â ½Ã½ºÅÛÀ» ±¸ÃàÇÏ¿´½À´Ï´Ù.</p>
-            <p>Google Cloud Platform°ú Docker¸¦ »ç¿ëÇÏ¿© ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» ÄÁÅ×ÀÌ³ÊÈ­ÇÏ°í, Å¬¶ó¿ìµå È¯°æ¿¡¼­ÀÇ ÀÚµ¿ ¹èÆ÷¸¦ ±¸ÇöÇÏ¿´½À´Ï´Ù.</p>
+            <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+            <p>Angularê³¼ NgRxë¥¼ í™œìš©í•˜ì—¬ ë³µìž¡í•œ ìƒíƒœ ê´€ë¦¬ë¥¼ íš¨ê³¼ì ìœ¼ë¡œ ì²˜ë¦¬í•˜ì˜€ê³ , </p>
+            <p>Djangoì™€ TensorFlowë¥¼ ì´ìš©í•˜ì—¬ ë¨¸ì‹ ëŸ¬ë‹ ëª¨ë¸ì„ ê°œë°œí•˜ì˜€ìŠµë‹ˆë‹¤. </p>
+            <p>MySQLê³¼ Elasticsearchë¥¼ ì‚¬ìš©í•˜ì—¬ ëŒ€ìš©ëŸ‰ ë°ì´í„°ë¥¼ íš¨ìœ¨ì ìœ¼ë¡œ ì €ìž¥í•˜ê³  ê²€ìƒ‰í•˜ëŠ” ì‹œìŠ¤í…œì„ êµ¬ì¶•í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+            <p>Google Cloud Platformê³¼ Dockerë¥¼ ì‚¬ìš©í•˜ì—¬ ì• í”Œë¦¬ì¼€ì´ì…˜ì„ ì»¨í…Œì´ë„ˆí™”í•˜ê³ , í´ë¼ìš°ë“œ í™˜ê²½ì—ì„œì˜ ìžë™ ë°°í¬ë¥¼ êµ¬í˜„í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
             <p><br></p>
 
-            <!-- ÄÚµå ºí·Ï Ãß°¡ -->
+            <!-- ì½”ë“œ ë¸”ë¡ ì¶”ê°€ -->
             <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
                 <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -619,20 +619,20 @@ BEGIN
                             </td>
                             <td style="padding:6px 0;text-align:left">
                                 <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// TensorFlow ¸ðµ¨ ¿¹Á¦</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// TensorFlow ëª¨ë¸ ì˜ˆì œ</span></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">import tensorflow as tf</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">from tensorflow.keras.models import Sequential</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">from tensorflow.keras.layers import Dense</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"># ¸ðµ¨ Á¤ÀÇ</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"># ëª¨ë¸ ì •ì˜</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">model = Sequential()</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">model.add(Dense(64, activation='relu', input_shape=(input_dim,)))</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">model.add(Dense(1, activation='sigmoid'))</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"># ¸ðµ¨ ÄÄÆÄÀÏ</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"># ëª¨ë¸ ì»´íŒŒì¼</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"># ¸ðµ¨ ÈÆ·Ã</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"># ëª¨ë¸ í›ˆë ¨</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_val, y_val))</div>
                                 </div>
                             </td>
@@ -646,14 +646,14 @@ BEGIN
                 </table>
             </div>
             
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-            <p><span style="font-size: 18px;">¸Ó½Å·¯´× ¾Ë°í¸®ÁòÀ» ½ÇÁ¦ ºñÁî´Ï½º ¹®Á¦¿¡ Àû¿ëÇÏ¿©, »ç¿ëÀÚ Çàµ¿ ¿¹ÃøÀÇ Á¤È®¼ºÀ» Çâ»ó½ÃÅ³ ¼ö ÀÖ¾ú½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">React.js¿Í D3.js¸¦ È°¿ëÇÑ µ¥ÀÌÅÍ ½Ã°¢È­ °æÇèÀ» ÅëÇØ, º¹ÀâÇÑ µ¥ÀÌÅÍ¸¦ È¿°úÀûÀ¸·Î Àü´ÞÇÏ´Â ¹æ¹ýÀ» ÀÍÇû½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">Django¿Í TensorFlow¸¦ ÀÌ¿ëÇÑ ¹é¿£µå °³¹ßÀ» ÅëÇØ, ¸Ó½Å·¯´× ¸ðµ¨ÀÇ ÅëÇÕ ¹× ¹èÆ÷ °úÁ¤À» °æÇèÇÏ¿´À¸¸ç, </span></p>
-            <p><span style="font-size: 18px;">Google Cloud Platform°ú Docker¸¦ È°¿ëÇÑ Å¬¶ó¿ìµå ¹èÆ÷ °æÇèÀ» ÅëÇØ, ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ È®Àå¼º°ú ¾ÈÁ¤¼ºÀ» È®º¸ÇÏ´Â ¹æ¹ýÀ» ÇÐ½ÀÇÏ¿´½À´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+            <p><span style="font-size: 18px;">ë¨¸ì‹ ëŸ¬ë‹ ì•Œê³ ë¦¬ì¦˜ì„ ì‹¤ì œ ë¹„ì¦ˆë‹ˆìŠ¤ ë¬¸ì œì— ì ìš©í•˜ì—¬, ì‚¬ìš©ìž í–‰ë™ ì˜ˆì¸¡ì˜ ì •í™•ì„±ì„ í–¥ìƒì‹œí‚¬ ìˆ˜ ìžˆì—ˆìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">React.jsì™€ D3.jsë¥¼ í™œìš©í•œ ë°ì´í„° ì‹œê°í™” ê²½í—˜ì„ í†µí•´, ë³µìž¡í•œ ë°ì´í„°ë¥¼ íš¨ê³¼ì ìœ¼ë¡œ ì „ë‹¬í•˜ëŠ” ë°©ë²•ì„ ìµí˜”ìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">Djangoì™€ TensorFlowë¥¼ ì´ìš©í•œ ë°±ì—”ë“œ ê°œë°œì„ í†µí•´, ë¨¸ì‹ ëŸ¬ë‹ ëª¨ë¸ì˜ í†µí•© ë° ë°°í¬ ê³¼ì •ì„ ê²½í—˜í•˜ì˜€ìœ¼ë©°, </span></p>
+            <p><span style="font-size: 18px;">Google Cloud Platformê³¼ Dockerë¥¼ í™œìš©í•œ í´ë¼ìš°ë“œ ë°°í¬ ê²½í—˜ì„ í†µí•´, ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ í™•ìž¥ì„±ê³¼ ì•ˆì •ì„±ì„ í™•ë³´í•˜ëŠ” ë°©ë²•ì„ í•™ìŠµí•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
         ]');
 
-        -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+        -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
         INSERT INTO PORTFOLIO (
             PORTFOLIO_ID,
             USER_NO,
@@ -663,47 +663,47 @@ BEGIN
         ) VALUES (
             SEQ_PORTFOLIO_ID.NEXTVAL,
             1,
-            '¸Ó½Å·¯´× ±â¹Ý »ç¿ëÀÚ Çàµ¿ ¿¹Ãø ¹× ÃßÃµ ½Ã½ºÅÛ °³¹ß',
+            'ë¨¸ì‹ ëŸ¬ë‹ ê¸°ë°˜ ì‚¬ìš©ìž í–‰ë™ ì˜ˆì¸¡ ë° ì¶”ì²œ ì‹œìŠ¤í…œ ê°œë°œ',
             v_content,
             NULL
         );
         
-        -- ÀÓ½Ã CLOB ÇØÁ¦
+        -- ìž„ì‹œ CLOB í•´ì œ
         DBMS_LOB.FREETEMPORARY(v_content);
     END;
 
     -- =========================
-    -- USER_NO = 1 (person1) Æ÷Æ®Æú¸®¿À 4
+    -- USER_NO = 1 (person1) í¬íŠ¸í´ë¦¬ì˜¤ 4
     -- =========================
     DECLARE
         v_content CLOB;
     BEGIN
         DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
         
-        -- ÇÁ·ÎÁ§Æ® °³¿ä
+        -- í”„ë¡œì íŠ¸ ê°œìš”
         DBMS_LOB.APPEND(v_content, q'[
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-            <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â IoT µð¹ÙÀÌ½º¸¦ È°¿ëÇÏ¿© ½º¸¶Æ® ÆÑÅä¸® ¼Ö·ç¼ÇÀ» °³¹ßÇÏ´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â ½Ç½Ã°£ »ý»ê ¸ð´ÏÅÍ¸µ, ¿¹Ãø À¯Áöº¸¼ö, ¿¡³ÊÁö È¿À² ÃÖÀûÈ­ µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+            <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” IoT ë””ë°”ì´ìŠ¤ë¥¼ í™œìš©í•˜ì—¬ ìŠ¤ë§ˆíŠ¸ íŒ©í† ë¦¬ ì†”ë£¨ì…˜ì„ ê°œë°œí•˜ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ì‹¤ì‹œê°„ ìƒì‚° ëª¨ë‹ˆí„°ë§, ì˜ˆì¸¡ ìœ ì§€ë³´ìˆ˜, ì—ë„ˆì§€ íš¨ìœ¨ ìµœì í™” ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
             <p><br></p>
 
-            <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+            <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
             <ul>
-                <li><span style="font-size: 14px;">IoT ÇÃ·§Æû: AWS IoT Core, MQTT</span></li>
-                <li><span style="font-size: 14px;">ÇÁ·Î±×·¡¹Ö ¾ð¾î: Python, C++</span></li>
-                <li><span style="font-size: 14px;">µ¥ÀÌÅÍº£ÀÌ½º: InfluxDB, TimescaleDB</span></li>
-                <li><span style="font-size: 14px;">¹èÆ÷: Azure IoT Hub, Docker</span></li>
+                <li><span style="font-size: 14px;">IoT í”Œëž«í¼: AWS IoT Core, MQTT</span></li>
+                <li><span style="font-size: 14px;">í”„ë¡œê·¸ëž˜ë° ì–¸ì–´: Python, C++</span></li>
+                <li><span style="font-size: 14px;">ë°ì´í„°ë² ì´ìŠ¤: InfluxDB, TimescaleDB</span></li>
+                <li><span style="font-size: 14px;">ë°°í¬: Azure IoT Hub, Docker</span></li>
             </ul>
             <p><br></p>
 
-            <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-            <p>Python°ú C++À» »ç¿ëÇÏ¿© ´Ù¾çÇÑ IoT ¼¾¼­¸¦ Á¦¾îÇÏ°í, ½Ç½Ã°£ µ¥ÀÌÅÍ¸¦ ¼öÁý ¹× Ã³¸®ÇÏ´Â ½Ã½ºÅÛÀ» °³¹ßÇÏ¿´½À´Ï´Ù. </p>
-            <p>AWS IoT Core¿Í MQTT ÇÁ·ÎÅäÄÝÀ» È°¿ëÇÏ¿© IoT µð¹ÙÀÌ½º¿Í Å¬¶ó¿ìµå °£ÀÇ ¾ÈÁ¤ÀûÀÎ µ¥ÀÌÅÍ Åë½ÅÀ» ±¸ÇöÇÏ¿´½À´Ï´Ù.</p>
-            <p>InfluxDB¿Í TimescaleDB¸¦ ÀÌ¿ëÇÏ¿© ½Ã°è¿­ µ¥ÀÌÅÍ¸¦ È¿À²ÀûÀ¸·Î ÀúÀåÇÏ°í, ½Ç½Ã°£ µ¥ÀÌÅÍ ºÐ¼®À» ÅëÇØ »ý»ê °øÁ¤ÀÇ »óÅÂ¸¦ ¸ð´ÏÅÍ¸µÇÏ¿´½À´Ï´Ù.</p>
-            <p>Azure IoT Hub¿Í Docker¸¦ »ç¿ëÇÏ¿© ½º¸¶Æ® ÆÑÅä¸® ¼Ö·ç¼ÇÀ» ÄÁÅ×ÀÌ³ÊÈ­ÇÏ°í, Å¬¶ó¿ìµå È¯°æ¿¡ ¹èÆ÷ÇÏ¿© ³ôÀº È®Àå¼º°ú ¾ÈÁ¤¼ºÀ» È®º¸ÇÏ¿´½À´Ï´Ù.</p>
+            <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+            <p>Pythonê³¼ C++ì„ ì‚¬ìš©í•˜ì—¬ ë‹¤ì–‘í•œ IoT ì„¼ì„œë¥¼ ì œì–´í•˜ê³ , ì‹¤ì‹œê°„ ë°ì´í„°ë¥¼ ìˆ˜ì§‘ ë° ì²˜ë¦¬í•˜ëŠ” ì‹œìŠ¤í…œì„ ê°œë°œí•˜ì˜€ìŠµë‹ˆë‹¤. </p>
+            <p>AWS IoT Coreì™€ MQTT í”„ë¡œí† ì½œì„ í™œìš©í•˜ì—¬ IoT ë””ë°”ì´ìŠ¤ì™€ í´ë¼ìš°ë“œ ê°„ì˜ ì•ˆì •ì ì¸ ë°ì´í„° í†µì‹ ì„ êµ¬í˜„í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+            <p>InfluxDBì™€ TimescaleDBë¥¼ ì´ìš©í•˜ì—¬ ì‹œê³„ì—´ ë°ì´í„°ë¥¼ íš¨ìœ¨ì ìœ¼ë¡œ ì €ìž¥í•˜ê³ , ì‹¤ì‹œê°„ ë°ì´í„° ë¶„ì„ì„ í†µí•´ ìƒì‚° ê³µì •ì˜ ìƒíƒœë¥¼ ëª¨ë‹ˆí„°ë§í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+            <p>Azure IoT Hubì™€ Dockerë¥¼ ì‚¬ìš©í•˜ì—¬ ìŠ¤ë§ˆíŠ¸ íŒ©í† ë¦¬ ì†”ë£¨ì…˜ì„ ì»¨í…Œì´ë„ˆí™”í•˜ê³ , í´ë¼ìš°ë“œ í™˜ê²½ì— ë°°í¬í•˜ì—¬ ë†’ì€ í™•ìž¥ì„±ê³¼ ì•ˆì •ì„±ì„ í™•ë³´í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
             <p><br></p>
 
-            <!-- ÄÚµå ºí·Ï Ãß°¡ -->
+            <!-- ì½”ë“œ ë¸”ë¡ ì¶”ê°€ -->
             <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
                 <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -722,7 +722,7 @@ BEGIN
                             </td>
                             <td style="padding:6px 0;text-align:left">
                                 <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// MQTT ¸Þ½ÃÁö ¼ö½Å ¿¹Á¦</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// MQTT ë©”ì‹œì§€ ìˆ˜ì‹  ì˜ˆì œ</span></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">import paho.mqtt.client as mqtt</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">def on_connect(client, userdata, flags, rc):</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    print("Connected with result code "+str(rc))</div>
@@ -741,14 +741,14 @@ BEGIN
                 </table>
             </div>
             
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-            <p><span style="font-size: 18px;">¸Ó½Å·¯´× ¾Ë°í¸®ÁòÀ» ½ÇÁ¦ ºñÁî´Ï½º ¹®Á¦¿¡ Àû¿ëÇÏ¿©, »ç¿ëÀÚ Çàµ¿ ¿¹ÃøÀÇ Á¤È®¼ºÀ» Çâ»ó½ÃÅ³ ¼ö ÀÖ¾ú½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">React.js¿Í D3.js¸¦ È°¿ëÇÑ µ¥ÀÌÅÍ ½Ã°¢È­ °æÇèÀ» ÅëÇØ, º¹ÀâÇÑ µ¥ÀÌÅÍ¸¦ È¿°úÀûÀ¸·Î Àü´ÞÇÏ´Â ¹æ¹ýÀ» ÀÍÇû½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">Django¿Í TensorFlow¸¦ ÀÌ¿ëÇÑ ¹é¿£µå °³¹ßÀ» ÅëÇØ, ¸Ó½Å·¯´× ¸ðµ¨ÀÇ ÅëÇÕ ¹× ¹èÆ÷ °úÁ¤À» °æÇèÇÏ¿´À¸¸ç, </span></p>
-            <p><span style="font-size: 18px;">Google Cloud Platform°ú Docker¸¦ È°¿ëÇÑ Å¬¶ó¿ìµå ¹èÆ÷ °æÇèÀ» ÅëÇØ, ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ È®Àå¼º°ú ¾ÈÁ¤¼ºÀ» È®º¸ÇÏ´Â ¹æ¹ýÀ» ÇÐ½ÀÇÏ¿´½À´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+            <p><span style="font-size: 18px;">ë¨¸ì‹ ëŸ¬ë‹ ì•Œê³ ë¦¬ì¦˜ì„ ì‹¤ì œ ë¹„ì¦ˆë‹ˆìŠ¤ ë¬¸ì œì— ì ìš©í•˜ì—¬, ì‚¬ìš©ìž í–‰ë™ ì˜ˆì¸¡ì˜ ì •í™•ì„±ì„ í–¥ìƒì‹œí‚¬ ìˆ˜ ìžˆì—ˆìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">React.jsì™€ D3.jsë¥¼ í™œìš©í•œ ë°ì´í„° ì‹œê°í™” ê²½í—˜ì„ í†µí•´, ë³µìž¡í•œ ë°ì´í„°ë¥¼ íš¨ê³¼ì ìœ¼ë¡œ ì „ë‹¬í•˜ëŠ” ë°©ë²•ì„ ìµí˜”ìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">Djangoì™€ TensorFlowë¥¼ ì´ìš©í•œ ë°±ì—”ë“œ ê°œë°œì„ í†µí•´, ë¨¸ì‹ ëŸ¬ë‹ ëª¨ë¸ì˜ í†µí•© ë° ë°°í¬ ê³¼ì •ì„ ê²½í—˜í•˜ì˜€ìœ¼ë©°, </span></p>
+            <p><span style="font-size: 18px;">Google Cloud Platformê³¼ Dockerë¥¼ í™œìš©í•œ í´ë¼ìš°ë“œ ë°°í¬ ê²½í—˜ì„ í†µí•´, ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ í™•ìž¥ì„±ê³¼ ì•ˆì •ì„±ì„ í™•ë³´í•˜ëŠ” ë°©ë²•ì„ í•™ìŠµí•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
         ]');
 
-        -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+        -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
         INSERT INTO PORTFOLIO (
             PORTFOLIO_ID,
             USER_NO,
@@ -758,46 +758,46 @@ BEGIN
         ) VALUES (
             SEQ_PORTFOLIO_ID.NEXTVAL,
             1,
-            'ºí·ÏÃ¼ÀÎ ±â¹Ý Å»Áß¾ÓÈ­ ±ÝÀ¶ ÇÃ·§Æû °³¹ß',
+            'ë¸”ë¡ì²´ì¸ ê¸°ë°˜ íƒˆì¤‘ì•™í™” ê¸ˆìœµ í”Œëž«í¼ ê°œë°œ',
             v_content,
             NULL
         );
         
-        -- ÀÓ½Ã CLOB ÇØÁ¦
+        -- ìž„ì‹œ CLOB í•´ì œ
         DBMS_LOB.FREETEMPORARY(v_content);
     END;
 
     -- =========================
-    -- USER_NO = 2 (person2) Æ÷Æ®Æú¸®¿À 1
+    -- USER_NO = 2 (person2) í¬íŠ¸í´ë¦¬ì˜¤ 1
     -- =========================
     DECLARE
         v_content CLOB;
     BEGIN
         DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
         
-        -- ÇÁ·ÎÁ§Æ® °³¿ä
+        -- í”„ë¡œì íŠ¸ ê°œìš”
         DBMS_LOB.APPEND(v_content, q'[
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-            <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â ¸ð¹ÙÀÏ ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» °³¹ßÇÏ¿© »ç¿ëÀÚ¿¡°Ô Æí¸®ÇÑ ±ÝÀ¶ ¼­ºñ½º¸¦ Á¦°øÇÏ´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â ½Ç½Ã°£ °èÁÂ Á¶È¸, ¼Û±Ý, ÁöÃâ °ü¸® µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+            <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” ëª¨ë°”ì¼ ì• í”Œë¦¬ì¼€ì´ì…˜ì„ ê°œë°œí•˜ì—¬ ì‚¬ìš©ìžì—ê²Œ íŽ¸ë¦¬í•œ ê¸ˆìœµ ì„œë¹„ìŠ¤ë¥¼ ì œê³µí•˜ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ì‹¤ì‹œê°„ ê³„ì¢Œ ì¡°íšŒ, ì†¡ê¸ˆ, ì§€ì¶œ ê´€ë¦¬ ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
             <p><br></p>
 
-            <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+            <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
             <ul>
-                <li><span style="font-size: 14px;">ÇÁ·ÐÆ®¿£µå: React Native</span></li>
-                <li><span style="font-size: 14px;">¹é¿£µå: Node.js, Express.js</span></li>
-                <li><span style="font-size: 14px;">µ¥ÀÌÅÍº£ÀÌ½º: PostgreSQL</span></li>
-                <li><span style="font-size: 14px;">¹èÆ÷: Firebase, Docker</span></li>
+                <li><span style="font-size: 14px;">í”„ë¡ íŠ¸ì—”ë“œ: React Native</span></li>
+                <li><span style="font-size: 14px;">ë°±ì—”ë“œ: Node.js, Express.js</span></li>
+                <li><span style="font-size: 14px;">ë°ì´í„°ë² ì´ìŠ¤: PostgreSQL</span></li>
+                <li><span style="font-size: 14px;">ë°°í¬: Firebase, Docker</span></li>
             </ul>
             <p><br></p>
 
-            <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-            <p>React Native¸¦ È°¿ëÇÏ¿© iOS¿Í Android¿¡¼­ µ¿ÀÛÇÏ´Â Å©·Î½º ÇÃ·§Æû ¸ð¹ÙÀÏ ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» °³¹ßÇÏ¿´À¸¸ç, </p>
-            <p>Node.js¿Í Express.js¸¦ »ç¿ëÇÏ¿© RESTful API¸¦ ±¸ÃàÇÏ¿´½À´Ï´Ù. </p>
-            <p>PostgreSQLÀ» ÀÌ¿ëÇÏ¿© ¾ÈÁ¤ÀûÀÎ µ¥ÀÌÅÍ ÀúÀåÀ» º¸ÀåÇÏ¿´À¸¸ç, Firebase¿Í Docker¸¦ È°¿ëÇÏ¿© ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» È¿À²ÀûÀ¸·Î ¹èÆ÷ÇÏ¿´½À´Ï´Ù.</p>
+            <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+            <p>React Nativeë¥¼ í™œìš©í•˜ì—¬ iOSì™€ Androidì—ì„œ ë™ìž‘í•˜ëŠ” í¬ë¡œìŠ¤ í”Œëž«í¼ ëª¨ë°”ì¼ ì• í”Œë¦¬ì¼€ì´ì…˜ì„ ê°œë°œí•˜ì˜€ìœ¼ë©°, </p>
+            <p>Node.jsì™€ Express.jsë¥¼ ì‚¬ìš©í•˜ì—¬ RESTful APIë¥¼ êµ¬ì¶•í•˜ì˜€ìŠµë‹ˆë‹¤. </p>
+            <p>PostgreSQLì„ ì´ìš©í•˜ì—¬ ì•ˆì •ì ì¸ ë°ì´í„° ì €ìž¥ì„ ë³´ìž¥í•˜ì˜€ìœ¼ë©°, Firebaseì™€ Dockerë¥¼ í™œìš©í•˜ì—¬ ì• í”Œë¦¬ì¼€ì´ì…˜ì„ íš¨ìœ¨ì ìœ¼ë¡œ ë°°í¬í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
             <p><br></p>
 
-            <!-- ÄÚµå ºí·Ï Ãß°¡ -->
+            <!-- ì½”ë“œ ë¸”ë¡ ì¶”ê°€ -->
             <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
                 <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -816,14 +816,14 @@ BEGIN
                             </td>
                             <td style="padding:6px 0;text-align:left">
                                 <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// React Native ÄÄÆ÷³ÍÆ® ¿¹Á¦</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// React Native ì»´í¬ë„ŒíŠ¸ ì˜ˆì œ</span></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">import React from 'react';</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">import { View, Text, StyleSheet } from 'react-native';</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%"></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">const AccountBalance = ({ balance }) => {</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    return (</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">        <View style={styles.container}>${balance}</div>
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%">            <Text style={styles.label}>°èÁÂ ÀÜ¾×:</Text></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">            <Text style={styles.label}>ê³„ì¢Œ ìž”ì•¡:</Text></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">            <Text style={styles.balance}>${balance}</Text></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">        </View></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    );</div>
@@ -841,15 +841,15 @@ BEGIN
                 </table>
             </div>
             
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-            <p><span style="font-size: 18px;">React Native¸¦ È°¿ëÇÑ Å©·Î½º ÇÃ·§Æû ¸ð¹ÙÀÏ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç °³¹ßÀ» ÅëÇØ, </span></p>
-            <p><span style="font-size: 18px;">¸ð¹ÙÀÏ »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º ¼³°è ¹× »óÅÂ °ü¸®¿¡ ´ëÇÑ ½Ç¹« °æÇèÀ» ½×¾Ò½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">Node.js¿Í Express.js¸¦ ÀÌ¿ëÇÑ ¹é¿£µå °³¹ßÀ» ÅëÇØ, RESTful API ±¸Ãà ¹× ¼­¹ö Ãø ·ÎÁ÷ ±¸Çö ´É·ÂÀ» Çâ»ó½ÃÄ×½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 18px;">PostgreSQLÀ» »ç¿ëÇÑ µ¥ÀÌÅÍº£ÀÌ½º ¼³°è ¹× ÃÖÀûÈ­ °æÇèÀ» ÅëÇØ, µ¥ÀÌÅÍ °ü¸®ÀÇ Áß¿ä¼ºÀ» ÀÌÇØÇÏ°Ô µÇ¾ú½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 18px;">Firebase¿Í Docker¸¦ È°¿ëÇÑ Å¬¶ó¿ìµå ¹èÆ÷¸¦ ÅëÇØ, ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ È®Àå¼º°ú À¯Áöº¸¼ö¼ºÀ» ³ôÀÌ´Â ¹æ¹ýÀ» ÇÐ½ÀÇÏ¿´½À´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+            <p><span style="font-size: 18px;">React Nativeë¥¼ í™œìš©í•œ í¬ë¡œìŠ¤ í”Œëž«í¼ ëª¨ë°”ì¼ ì• í”Œë¦¬ì¼€ì´ì…˜ ê°œë°œì„ í†µí•´, </span></p>
+            <p><span style="font-size: 18px;">ëª¨ë°”ì¼ ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ ì„¤ê³„ ë° ìƒíƒœ ê´€ë¦¬ì— ëŒ€í•œ ì‹¤ë¬´ ê²½í—˜ì„ ìŒ“ì•˜ìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">Node.jsì™€ Express.jsë¥¼ ì´ìš©í•œ ë°±ì—”ë“œ ê°œë°œì„ í†µí•´, RESTful API êµ¬ì¶• ë° ì„œë²„ ì¸¡ ë¡œì§ êµ¬í˜„ ëŠ¥ë ¥ì„ í–¥ìƒì‹œì¼°ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 18px;">PostgreSQLì„ ì‚¬ìš©í•œ ë°ì´í„°ë² ì´ìŠ¤ ì„¤ê³„ ë° ìµœì í™” ê²½í—˜ì„ í†µí•´, ë°ì´í„° ê´€ë¦¬ì˜ ì¤‘ìš”ì„±ì„ ì´í•´í•˜ê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 18px;">Firebaseì™€ Dockerë¥¼ í™œìš©í•œ í´ë¼ìš°ë“œ ë°°í¬ë¥¼ í†µí•´, ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ í™•ìž¥ì„±ê³¼ ìœ ì§€ë³´ìˆ˜ì„±ì„ ë†’ì´ëŠ” ë°©ë²•ì„ í•™ìŠµí•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
         ]');
 
-        -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+        -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
         INSERT INTO PORTFOLIO (
             PORTFOLIO_ID,
             USER_NO,
@@ -859,47 +859,47 @@ BEGIN
         ) VALUES (
             SEQ_PORTFOLIO_ID.NEXTVAL,
             2,
-            '¸ð¹ÙÀÏ ±ÝÀ¶ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç °³¹ß',
+            'ëª¨ë°”ì¼ ê¸ˆìœµ ì• í”Œë¦¬ì¼€ì´ì…˜ ê°œë°œ',
             v_content,
             NULL
         );
         
-        -- ÀÓ½Ã CLOB ÇØÁ¦
+        -- ìž„ì‹œ CLOB í•´ì œ
         DBMS_LOB.FREETEMPORARY(v_content);
     END;
 
     -- =========================
-    -- USER_NO = 2 (person2) Æ÷Æ®Æú¸®¿À 2
+    -- USER_NO = 2 (person2) í¬íŠ¸í´ë¦¬ì˜¤ 2
     -- =========================
     DECLARE
         v_content CLOB;
     BEGIN
         DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
         
-        -- ÇÁ·ÎÁ§Æ® °³¿ä
+        -- í”„ë¡œì íŠ¸ ê°œìš”
         DBMS_LOB.APPEND(v_content, q'[
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-            <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â ¼Ò¼È ¹Ìµð¾î ÇÃ·§ÆûÀ» °³¹ßÇÏ¿© »ç¿ëÀÚ °£ÀÇ ¼ÒÅë°ú Á¤º¸ °øÀ¯¸¦ ÃËÁøÇÏ´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â °Ô½Ã¹° ÀÛ¼º, ´ñ±Û, ÁÁ¾Æ¿ä, ½Ç½Ã°£ ¾Ë¸² µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+            <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” ì†Œì…œ ë¯¸ë””ì–´ í”Œëž«í¼ì„ ê°œë°œí•˜ì—¬ ì‚¬ìš©ìž ê°„ì˜ ì†Œí†µê³¼ ì •ë³´ ê³µìœ ë¥¼ ì´‰ì§„í•˜ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ê²Œì‹œë¬¼ ìž‘ì„±, ëŒ“ê¸€, ì¢‹ì•„ìš”, ì‹¤ì‹œê°„ ì•Œë¦¼ ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
             <p><br></p>
 
-            <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+            <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
             <ul>
-                <li><span style="font-size: 14px;">ÇÁ·ÐÆ®¿£µå: Vue.js, Vuex</span></li>
-                <li><span style="font-size: 14px;">¹é¿£µå: Ruby on Rails</span></li>
-                <li><span style="font-size: 14px;">µ¥ÀÌÅÍº£ÀÌ½º: MySQL</span></li>
-                <li><span style="font-size: 14px;">¹èÆ÷: Heroku, Docker</span></li>
+                <li><span style="font-size: 14px;">í”„ë¡ íŠ¸ì—”ë“œ: Vue.js, Vuex</span></li>
+                <li><span style="font-size: 14px;">ë°±ì—”ë“œ: Ruby on Rails</span></li>
+                <li><span style="font-size: 14px;">ë°ì´í„°ë² ì´ìŠ¤: MySQL</span></li>
+                <li><span style="font-size: 14px;">ë°°í¬: Heroku, Docker</span></li>
             </ul>
             <p><br></p>
 
-            <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-            <p>Vue.js¿Í Vuex¸¦ È°¿ëÇÏ¿© ¹ÝÀÀÇü »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¿´À¸¸ç, </p>
-            <p>Ruby on Rails¸¦ »ç¿ëÇÏ¿© RESTful API¸¦ ±¸ÃàÇÏ¿´½À´Ï´Ù. </p>
-            <p>MySQLÀ» ÀÌ¿ëÇÏ¿© »ç¿ëÀÚ µ¥ÀÌÅÍ ¹× °Ô½Ã¹° µ¥ÀÌÅÍ¸¦ È¿À²ÀûÀ¸·Î °ü¸®ÇÏ¿´À¸¸ç, </p>
-            <p>Heroku¿Í Docker¸¦ »ç¿ëÇÏ¿© ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» Å¬¶ó¿ìµå È¯°æ¿¡ ¹èÆ÷ÇÏ°í, Áö¼ÓÀûÀÎ ÅëÇÕ ¹× ¹èÆ÷(CI/CD)¸¦ ±¸ÇöÇÏ¿´½À´Ï´Ù.</p>
+            <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+            <p>Vue.jsì™€ Vuexë¥¼ í™œìš©í•˜ì—¬ ë°˜ì‘í˜• ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ì˜€ìœ¼ë©°, </p>
+            <p>Ruby on Railsë¥¼ ì‚¬ìš©í•˜ì—¬ RESTful APIë¥¼ êµ¬ì¶•í•˜ì˜€ìŠµë‹ˆë‹¤. </p>
+            <p>MySQLì„ ì´ìš©í•˜ì—¬ ì‚¬ìš©ìž ë°ì´í„° ë° ê²Œì‹œë¬¼ ë°ì´í„°ë¥¼ íš¨ìœ¨ì ìœ¼ë¡œ ê´€ë¦¬í•˜ì˜€ìœ¼ë©°, </p>
+            <p>Herokuì™€ Dockerë¥¼ ì‚¬ìš©í•˜ì—¬ ì• í”Œë¦¬ì¼€ì´ì…˜ì„ í´ë¼ìš°ë“œ í™˜ê²½ì— ë°°í¬í•˜ê³ , ì§€ì†ì ì¸ í†µí•© ë° ë°°í¬(CI/CD)ë¥¼ êµ¬í˜„í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
             <p><br></p>
 
-            <!-- ÄÚµå ºí·Ï Ãß°¡ -->
+            <!-- ì½”ë“œ ë¸”ë¡ ì¶”ê°€ -->
             <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
                 <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -918,7 +918,7 @@ BEGIN
                             </td>
                             <td style="padding:6px 0;text-align:left">
                                 <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Ruby on Rails ÄÁÆ®·Ñ·¯ ¿¹Á¦</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Ruby on Rails ì»¨íŠ¸ë¡¤ëŸ¬ ì˜ˆì œ</span></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">class PostsController < ApplicationController</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    def index</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">        @posts = Post.all</div>
@@ -936,14 +936,14 @@ BEGIN
                 </table>
             </div>
             
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-            <p><span style="font-size: 18px;">Vue.js¿Í Vuex¸¦ È°¿ëÇÑ ¹ÝÀÀÇü »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º °³¹ßÀ» ÅëÇØ, </span></p>
-            <p><span style="font-size: 18px;">È¿À²ÀûÀÎ »óÅÂ °ü¸®¿Í ÄÄÆ÷³ÍÆ® Àç»ç¿ëÀÇ Áß¿ä¼ºÀ» Ã¼°¨ÇÏ¿´½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">Ruby on Rails¸¦ ÀÌ¿ëÇÑ ¹é¿£µå °³¹ßÀ» ÅëÇØ, RESTful API ¼³°è ¹× µ¥ÀÌÅÍº£ÀÌ½º ¿¬µ¿ ´É·ÂÀ» Çâ»ó½ÃÄ×½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 18px;">Firebase¿Í Docker¸¦ È°¿ëÇÑ Å¬¶ó¿ìµå ¹èÆ÷¸¦ ÅëÇØ, ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ È®Àå¼º°ú À¯Áöº¸¼ö¼ºÀ» ³ôÀÌ´Â ¹æ¹ýÀ» ÇÐ½ÀÇÏ¿´½À´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+            <p><span style="font-size: 18px;">Vue.jsì™€ Vuexë¥¼ í™œìš©í•œ ë°˜ì‘í˜• ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ ê°œë°œì„ í†µí•´, </span></p>
+            <p><span style="font-size: 18px;">íš¨ìœ¨ì ì¸ ìƒíƒœ ê´€ë¦¬ì™€ ì»´í¬ë„ŒíŠ¸ ìž¬ì‚¬ìš©ì˜ ì¤‘ìš”ì„±ì„ ì²´ê°í•˜ì˜€ìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">Ruby on Railsë¥¼ ì´ìš©í•œ ë°±ì—”ë“œ ê°œë°œì„ í†µí•´, RESTful API ì„¤ê³„ ë° ë°ì´í„°ë² ì´ìŠ¤ ì—°ë™ ëŠ¥ë ¥ì„ í–¥ìƒì‹œì¼°ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 18px;">Firebaseì™€ Dockerë¥¼ í™œìš©í•œ í´ë¼ìš°ë“œ ë°°í¬ë¥¼ í†µí•´, ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ í™•ìž¥ì„±ê³¼ ìœ ì§€ë³´ìˆ˜ì„±ì„ ë†’ì´ëŠ” ë°©ë²•ì„ í•™ìŠµí•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
         ]');
 
-        -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+        -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
         INSERT INTO PORTFOLIO (
             PORTFOLIO_ID,
             USER_NO,
@@ -953,47 +953,47 @@ BEGIN
         ) VALUES (
             SEQ_PORTFOLIO_ID.NEXTVAL,
             2,
-            '¼Ò¼È ¹Ìµð¾î ÇÃ·§Æû °³¹ß',
+            'ì†Œì…œ ë¯¸ë””ì–´ í”Œëž«í¼ ê°œë°œ',
             v_content,
             NULL
         );
         
-        -- ÀÓ½Ã CLOB ÇØÁ¦
+        -- ìž„ì‹œ CLOB í•´ì œ
         DBMS_LOB.FREETEMPORARY(v_content);
     END;
 
     -- =========================
-    -- USER_NO = 2 (person2) Æ÷Æ®Æú¸®¿À 2
+    -- USER_NO = 2 (person2) í¬íŠ¸í´ë¦¬ì˜¤ 2
     -- =========================
     DECLARE
         v_content CLOB;
     BEGIN
         DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
         
-        -- ÇÁ·ÎÁ§Æ® °³¿ä
+        -- í”„ë¡œì íŠ¸ ê°œìš”
         DBMS_LOB.APPEND(v_content, q'[
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-            <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â µ¥ÀÌÅÍ ºÐ¼® µµ±¸¸¦ °³¹ßÇÏ¿© ±â¾÷ÀÇ ºñÁî´Ï½º ÀÎ»çÀÌÆ®¸¦ µµÃâÇÏ´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â µ¥ÀÌÅÍ ½Ã°¢È­, º¸°í¼­ »ý¼º, ´ë½Ãº¸µå Ä¿½ºÅÍ¸¶ÀÌÂ¡ µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+            <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” ë°ì´í„° ë¶„ì„ ë„êµ¬ë¥¼ ê°œë°œí•˜ì—¬ ê¸°ì—…ì˜ ë¹„ì¦ˆë‹ˆìŠ¤ ì¸ì‚¬ì´íŠ¸ë¥¼ ë„ì¶œí•˜ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ë°ì´í„° ì‹œê°í™”, ë³´ê³ ì„œ ìƒì„±, ëŒ€ì‹œë³´ë“œ ì»¤ìŠ¤í„°ë§ˆì´ì§• ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
             <p><br></p>
 
-            <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+            <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
             <ul>
-                <li><span style="font-size: 14px;">ÇÁ·ÐÆ®¿£µå: React.js, Chart.js</span></li>
-                <li><span style="font-size: 14px;">¹é¿£µå: Python, Flask, Pandas</span></li>
-                <li><span style="font-size: 14px;">µ¥ÀÌÅÍº£ÀÌ½º: SQLite</span></li>
-                <li><span style="font-size: 14px;">¹èÆ÷: AWS Elastic Beanstalk, Docker</span></li>
+                <li><span style="font-size: 14px;">í”„ë¡ íŠ¸ì—”ë“œ: React.js, Chart.js</span></li>
+                <li><span style="font-size: 14px;">ë°±ì—”ë“œ: Python, Flask, Pandas</span></li>
+                <li><span style="font-size: 14px;">ë°ì´í„°ë² ì´ìŠ¤: SQLite</span></li>
+                <li><span style="font-size: 14px;">ë°°í¬: AWS Elastic Beanstalk, Docker</span></li>
             </ul>
             <p><br></p>
 
-            <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-            <p>React.js¿Í Chart.js¸¦ È°¿ëÇÏ¿© »ç¿ëÀÚ Ä£È­ÀûÀÎ µ¥ÀÌÅÍ ½Ã°¢È­ ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¿´À¸¸ç, </p>
-            <p>Python°ú Flask¸¦ »ç¿ëÇÏ¿© µ¥ÀÌÅÍ ºÐ¼® ¹× º¸°í¼­ »ý¼ºÀ» À§ÇÑ ¹é¿£µå ½Ã½ºÅÛÀ» °³¹ßÇÏ¿´½À´Ï´Ù.</p>
-            <p>SQLite¸¦ ÀÌ¿ëÇÏ¿© °æ·®È­µÈ µ¥ÀÌÅÍº£ÀÌ½º¸¦ ±¸ÃàÇÏ°í, Pandas¸¦ È°¿ëÇÏ¿© È¿À²ÀûÀÎ µ¥ÀÌÅÍ Ã³¸® ¹× ºÐ¼®À» ¼öÇàÇÏ¿´½À´Ï´Ù.</p>
-            <p>AWS Elastic Beanstalk°ú Docker¸¦ È°¿ëÇÏ¿© ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» Å¬¶ó¿ìµå È¯°æ¿¡ ¹èÆ÷ÇÏ°í, Áö¼ÓÀûÀÎ ÅëÇÕ ¹× ¹èÆ÷(CI/CD) ÆÄÀÌÇÁ¶óÀÎÀ» ±¸ÇöÇÏ¿´½À´Ï´Ù.</p>
+            <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+            <p>React.jsì™€ Chart.jsë¥¼ í™œìš©í•˜ì—¬ ì‚¬ìš©ìž ì¹œí™”ì ì¸ ë°ì´í„° ì‹œê°í™” ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ì˜€ìœ¼ë©°, </p>
+            <p>Pythonê³¼ Flaskë¥¼ ì‚¬ìš©í•˜ì—¬ ë°ì´í„° ë¶„ì„ ë° ë³´ê³ ì„œ ìƒì„±ì„ ìœ„í•œ ë°±ì—”ë“œ ì‹œìŠ¤í…œì„ ê°œë°œí•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+            <p>SQLiteë¥¼ ì´ìš©í•˜ì—¬ ê²½ëŸ‰í™”ëœ ë°ì´í„°ë² ì´ìŠ¤ë¥¼ êµ¬ì¶•í•˜ê³ , Pandasë¥¼ í™œìš©í•˜ì—¬ íš¨ìœ¨ì ì¸ ë°ì´í„° ì²˜ë¦¬ ë° ë¶„ì„ì„ ìˆ˜í–‰í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+            <p>AWS Elastic Beanstalkê³¼ Dockerë¥¼ í™œìš©í•˜ì—¬ ì• í”Œë¦¬ì¼€ì´ì…˜ì„ í´ë¼ìš°ë“œ í™˜ê²½ì— ë°°í¬í•˜ê³ , ì§€ì†ì ì¸ í†µí•© ë° ë°°í¬(CI/CD) íŒŒì´í”„ë¼ì¸ì„ êµ¬í˜„í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
             <p><br></p>
 
-            <!-- ÄÚµå ºí·Ï Ãß°¡ -->
+            <!-- ì½”ë“œ ë¸”ë¡ ì¶”ê°€ -->
             <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
                 <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -1012,13 +1012,13 @@ BEGIN
                             </td>
                             <td style="padding:6px 0;text-align:left">
                                 <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask API ¿£µåÆ÷ÀÎÆ® ¿¹Á¦</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask API ì—”ë“œí¬ì¸íŠ¸ ì˜ˆì œ</span></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">from flask import Flask, jsonify</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">app = Flask(__name__)</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">@app.route('/api/posts', methods=['GET'])</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">def get_posts():</div>
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    # °Ô½Ã¹° µ¥ÀÌÅÍ Á¶È¸ ·ÎÁ÷</div>
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    posts = [{'id': 1, 'title': 'Ã¹ ¹øÂ° °Ô½Ã¹°'}, {'id': 2, 'title': 'µÎ ¹øÂ° °Ô½Ã¹°'}]</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    # ê²Œì‹œë¬¼ ë°ì´í„° ì¡°íšŒ ë¡œì§</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    posts = [{'id': 1, 'title': 'ì²« ë²ˆì§¸ ê²Œì‹œë¬¼'}, {'id': 2, 'title': 'ë‘ ë²ˆì§¸ ê²Œì‹œë¬¼'}]</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    return jsonify(posts)</div>
                                 </div>
                             </td>
@@ -1032,14 +1032,14 @@ BEGIN
                 </table>
             </div>
             
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-            <p><span style="font-size: 18px;">Vue.js¿Í Vuex¸¦ È°¿ëÇÑ »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º °³¹ßÀ» ÅëÇØ, </span></p>
-            <p><span style="font-size: 18px;">È¿À²ÀûÀÎ »óÅÂ °ü¸®¿Í ÄÄÆ÷³ÍÆ® Àç»ç¿ëÀÇ Áß¿ä¼ºÀ» Ã¼°¨ÇÏ¿´½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">Ruby on Rails¸¦ ÀÌ¿ëÇÑ ¹é¿£µå °³¹ßÀ» ÅëÇØ, RESTful API ¼³°è ¹× µ¥ÀÌÅÍº£ÀÌ½º ¿¬µ¿ ´É·ÂÀ» Çâ»ó½ÃÄ×½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 18px;">Firebase¿Í Docker¸¦ È°¿ëÇÑ Å¬¶ó¿ìµå ¹èÆ÷¸¦ ÅëÇØ, ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ È®Àå¼º°ú À¯Áöº¸¼ö¼ºÀ» ³ôÀÌ´Â ¹æ¹ýÀ» ÇÐ½ÀÇÏ¿´½À´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+            <p><span style="font-size: 18px;">Vue.jsì™€ Vuexë¥¼ í™œìš©í•œ ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ ê°œë°œì„ í†µí•´, </span></p>
+            <p><span style="font-size: 18px;">íš¨ìœ¨ì ì¸ ìƒíƒœ ê´€ë¦¬ì™€ ì»´í¬ë„ŒíŠ¸ ìž¬ì‚¬ìš©ì˜ ì¤‘ìš”ì„±ì„ ì²´ê°í•˜ì˜€ìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">Ruby on Railsë¥¼ ì´ìš©í•œ ë°±ì—”ë“œ ê°œë°œì„ í†µí•´, RESTful API ì„¤ê³„ ë° ë°ì´í„°ë² ì´ìŠ¤ ì—°ë™ ëŠ¥ë ¥ì„ í–¥ìƒì‹œì¼°ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 18px;">Firebaseì™€ Dockerë¥¼ í™œìš©í•œ í´ë¼ìš°ë“œ ë°°í¬ë¥¼ í†µí•´, ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ í™•ìž¥ì„±ê³¼ ìœ ì§€ë³´ìˆ˜ì„±ì„ ë†’ì´ëŠ” ë°©ë²•ì„ í•™ìŠµí•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
         ]');
 
-        -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+        -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
         INSERT INTO PORTFOLIO (
             PORTFOLIO_ID,
             USER_NO,
@@ -1049,47 +1049,47 @@ BEGIN
         ) VALUES (
             SEQ_PORTFOLIO_ID.NEXTVAL,
             2,
-            'µ¥ÀÌÅÍ ºÐ¼® µµ±¸ °³¹ß',
+            'ë°ì´í„° ë¶„ì„ ë„êµ¬ ê°œë°œ',
             v_content,
             NULL
         );
         
-        -- ÀÓ½Ã CLOB ÇØÁ¦
+        -- ìž„ì‹œ CLOB í•´ì œ
         DBMS_LOB.FREETEMPORARY(v_content);
     END;
     
     -- =========================
-    -- USER_NO = 1 (person1) Æ÷Æ®Æú¸®¿À 5
+    -- USER_NO = 1 (person1) í¬íŠ¸í´ë¦¬ì˜¤ 5
     -- =========================
     DECLARE
         v_content CLOB;
     BEGIN
         DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
         
-        -- ÇÁ·ÎÁ§Æ® °³¿ä
+        -- í”„ë¡œì íŠ¸ ê°œìš”
         DBMS_LOB.APPEND(v_content, q'[
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-            <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â ÀÎ°øÁö´É ±â¹Ý Ãªº¿À» °³¹ßÇÏ¿© °í°´ Áö¿øÀ» ÀÚµ¿È­ÇÏ°í, »ç¿ëÀÚ ¸¸Á·µµ¸¦ Çâ»ó½ÃÅ°´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â ÀÚ¿¬¾î Ã³¸®, ´ëÈ­ °ü¸®, ÇÐ½À ±â´É, ¸ÖÆ¼ ÇÃ·§Æû Áö¿ø µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+            <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” ì¸ê³µì§€ëŠ¥ ê¸°ë°˜ ì±—ë´‡ì„ ê°œë°œí•˜ì—¬ ê³ ê° ì§€ì›ì„ ìžë™í™”í•˜ê³ , ì‚¬ìš©ìž ë§Œì¡±ë„ë¥¼ í–¥ìƒì‹œí‚¤ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ìžì—°ì–´ ì²˜ë¦¬, ëŒ€í™” ê´€ë¦¬, í•™ìŠµ ê¸°ëŠ¥, ë©€í‹° í”Œëž«í¼ ì§€ì› ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
             <p><br></p>
 
-            <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+            <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
             <ul>
-                <li><span style="font-size: 14px;">ÇÁ·ÐÆ®¿£µå: React.js</span></li>
-                <li><span style="font-size: 14px;">¹é¿£µå: Python, Flask, TensorFlow</span></li>
-                <li><span style="font-size: 14px;">NLP ¶óÀÌºê·¯¸®: NLTK, spaCy</span></li>
-                <li><span style="font-size: 14px;">¹èÆ÷: AWS Lambda, Docker</span></li>
+                <li><span style="font-size: 14px;">í”„ë¡ íŠ¸ì—”ë“œ: React.js</span></li>
+                <li><span style="font-size: 14px;">ë°±ì—”ë“œ: Python, Flask, TensorFlow</span></li>
+                <li><span style="font-size: 14px;">NLP ë¼ì´ë¸ŒëŸ¬ë¦¬: NLTK, spaCy</span></li>
+                <li><span style="font-size: 14px;">ë°°í¬: AWS Lambda, Docker</span></li>
             </ul>
             <p><br></p>
 
-            <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-            <p>Python°ú Flask¸¦ »ç¿ëÇÏ¿© Ãªº¿ÀÇ ¹é¿£µå¸¦ °³¹ßÇÏ¿´À¸¸ç, TensorFlow¸¦ ÀÌ¿ëÇÏ¿© µö·¯´× ±â¹ÝÀÇ ÀÚ¿¬¾î Ã³¸® ¸ðµ¨À» ±¸ÃàÇÏ¿´½À´Ï´Ù. </p>
-            <p>NLTK¿Í spaCy¸¦ È°¿ëÇÏ¿© »ç¿ëÀÚ ÀÔ·ÂÀ» ÀüÃ³¸®ÇÏ°í, ´Ù¾çÇÑ ÀÚ¿¬¾î Ã³¸® ±â¹ýÀ» Àû¿ëÇÏ¿© ´ëÈ­ÀÇ Á¤È®¼ºÀ» Çâ»ó½ÃÄ×½À´Ï´Ù.</p>
-            <p>React.js¸¦ »ç¿ëÇÏ¿© »ç¿ëÀÚ Ä£È­ÀûÀÎ À¥ ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¿´À¸¸ç, </p>
-            <p>AWS Lambda¿Í Docker¸¦ È°¿ëÇÏ¿© Ãªº¿À» ¼­¹ö¸®½º ¾ÆÅ°ÅØÃ³·Î ¹èÆ÷ÇÏ¿© ³ôÀº È®Àå¼º°ú ¾ÈÁ¤¼ºÀ» È®º¸ÇÏ¿´½À´Ï´Ù.</p>
+            <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+            <p>Pythonê³¼ Flaskë¥¼ ì‚¬ìš©í•˜ì—¬ ì±—ë´‡ì˜ ë°±ì—”ë“œë¥¼ ê°œë°œí•˜ì˜€ìœ¼ë©°, TensorFlowë¥¼ ì´ìš©í•˜ì—¬ ë”¥ëŸ¬ë‹ ê¸°ë°˜ì˜ ìžì—°ì–´ ì²˜ë¦¬ ëª¨ë¸ì„ êµ¬ì¶•í•˜ì˜€ìŠµë‹ˆë‹¤. </p>
+            <p>NLTKì™€ spaCyë¥¼ í™œìš©í•˜ì—¬ ì‚¬ìš©ìž ìž…ë ¥ì„ ì „ì²˜ë¦¬í•˜ê³ , ë‹¤ì–‘í•œ ìžì—°ì–´ ì²˜ë¦¬ ê¸°ë²•ì„ ì ìš©í•˜ì—¬ ëŒ€í™”ì˜ ì •í™•ì„±ì„ í–¥ìƒì‹œì¼°ìŠµë‹ˆë‹¤.</p>
+            <p>React.jsë¥¼ ì‚¬ìš©í•˜ì—¬ ì‚¬ìš©ìž ì¹œí™”ì ì¸ ì›¹ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ì˜€ìœ¼ë©°, </p>
+            <p>AWS Lambdaì™€ Dockerë¥¼ í™œìš©í•˜ì—¬ ì±—ë´‡ì„ ì„œë²„ë¦¬ìŠ¤ ì•„í‚¤í…ì²˜ë¡œ ë°°í¬í•˜ì—¬ ë†’ì€ í™•ìž¥ì„±ê³¼ ì•ˆì •ì„±ì„ í™•ë³´í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
             <p><br></p>
 
-            <!-- ÄÚµå ºí·Ï Ãß°¡ -->
+            <!-- ì½”ë“œ ë¸”ë¡ ì¶”ê°€ -->
             <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
                 <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -1108,7 +1108,7 @@ BEGIN
                             </td>
                             <td style="padding:6px 0;text-align:left">
                                 <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask Ãªº¿ API ¿¹Á¦</span></div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask ì±—ë´‡ API ì˜ˆì œ</span></div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">from flask import Flask, request, jsonify</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">import tensorflow as tf</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">import numpy as np</div>
@@ -1119,7 +1119,7 @@ BEGIN
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">@app.route('/chat', methods=['POST'])</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">def chat():</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    user_input = request.json['message']</div>
-                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    # ÀÔ·Â ÀüÃ³¸® ·ÎÁ÷</div>
+                                    <div style="padding:0 6px; white-space:pre; line-height:130%">    # ìž…ë ¥ ì „ì²˜ë¦¬ ë¡œì§</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    processed_input = preprocess(user_input)</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    prediction = model.predict(np.array([processed_input]))</div>
                                     <div style="padding:0 6px; white-space:pre; line-height:130%">    response = generate_response(prediction)</div>
@@ -1136,18 +1136,18 @@ BEGIN
                 </table>
             </div>
             
-            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-            <p><span style="font-size: 18px;">¸Ó½Å·¯´× ¾Ë°í¸®ÁòÀ» ½ÇÁ¦ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç¿¡ Àû¿ëÇÏ¿©, </span></p>
-            <p><span style="font-size: 18px;">»ç¿ëÀÚ Çàµ¿ ¿¹Ãø ¹× ¸ÂÃãÇü ÃßÃµ ½Ã½ºÅÛÀÇ Á¤È®¼ºÀ» Çâ»ó½ÃÅ³ ¼ö ÀÖ¾ú½À´Ï´Ù. </span></p>
-            <p><span style="font-size: 18px;">React Native¸¦ »ç¿ëÇÑ Å©·Î½º ÇÃ·§Æû ¸ð¹ÙÀÏ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç °³¹ß °æÇèÀ» ÅëÇØ, </span></p>
-            <p><span style="font-size: 18px;">È¿À²ÀûÀÎ »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º ¼³°è ¹× »óÅÂ °ü¸® ´É·ÂÀ» °­È­ÇÏ¿´½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 18px;">Flask¿Í TensorFlow¸¦ ÀÌ¿ëÇÑ ¹é¿£µå °³¹ßÀ» ÅëÇØ, </span></p>
-            <p><span style="font-size: 18px;">µö·¯´× ¸ðµ¨ÀÇ ÅëÇÕ ¹× ½Ç½Ã°£ µ¥ÀÌÅÍ Ã³¸® ´É·ÂÀ» Çâ»ó½ÃÄ×½À´Ï´Ù.</span></p>
-            <p><span style="font-size: 18px;">AWS Lambda¿Í Docker¸¦ È°¿ëÇÑ ¼­¹ö¸®½º ¾ÆÅ°ÅØÃ³ ¹èÆ÷¸¦ ÅëÇØ, </span></p>
-            <p><span style="font-size: 18px;">¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ È®Àå¼º°ú À¯Áöº¸¼ö¼ºÀ» ³ôÀÌ´Â ¹æ¹ýÀ» ÇÐ½ÀÇÏ¿´½À´Ï´Ù.</span></p>
+            <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+            <p><span style="font-size: 18px;">ë¨¸ì‹ ëŸ¬ë‹ ì•Œê³ ë¦¬ì¦˜ì„ ì‹¤ì œ ì• í”Œë¦¬ì¼€ì´ì…˜ì— ì ìš©í•˜ì—¬, </span></p>
+            <p><span style="font-size: 18px;">ì‚¬ìš©ìž í–‰ë™ ì˜ˆì¸¡ ë° ë§žì¶¤í˜• ì¶”ì²œ ì‹œìŠ¤í…œì˜ ì •í™•ì„±ì„ í–¥ìƒì‹œí‚¬ ìˆ˜ ìžˆì—ˆìŠµë‹ˆë‹¤. </span></p>
+            <p><span style="font-size: 18px;">React Nativeë¥¼ ì‚¬ìš©í•œ í¬ë¡œìŠ¤ í”Œëž«í¼ ëª¨ë°”ì¼ ì• í”Œë¦¬ì¼€ì´ì…˜ ê°œë°œ ê²½í—˜ì„ í†µí•´, </span></p>
+            <p><span style="font-size: 18px;">íš¨ìœ¨ì ì¸ ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ ì„¤ê³„ ë° ìƒíƒœ ê´€ë¦¬ ëŠ¥ë ¥ì„ ê°•í™”í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 18px;">Flaskì™€ TensorFlowë¥¼ ì´ìš©í•œ ë°±ì—”ë“œ ê°œë°œì„ í†µí•´, </span></p>
+            <p><span style="font-size: 18px;">ë”¥ëŸ¬ë‹ ëª¨ë¸ì˜ í†µí•© ë° ì‹¤ì‹œê°„ ë°ì´í„° ì²˜ë¦¬ ëŠ¥ë ¥ì„ í–¥ìƒì‹œì¼°ìŠµë‹ˆë‹¤.</span></p>
+            <p><span style="font-size: 18px;">AWS Lambdaì™€ Dockerë¥¼ í™œìš©í•œ ì„œë²„ë¦¬ìŠ¤ ì•„í‚¤í…ì²˜ ë°°í¬ë¥¼ í†µí•´, </span></p>
+            <p><span style="font-size: 18px;">ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ í™•ìž¥ì„±ê³¼ ìœ ì§€ë³´ìˆ˜ì„±ì„ ë†’ì´ëŠ” ë°©ë²•ì„ í•™ìŠµí•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
         ]');
 
-        -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+        -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
         INSERT INTO PORTFOLIO (
             PORTFOLIO_ID,
             USER_NO,
@@ -1157,47 +1157,47 @@ BEGIN
         ) VALUES (
             SEQ_PORTFOLIO_ID.NEXTVAL,
             1,
-            'ÀÎ°øÁö´É Ãªº¿ °³¹ß ÇÁ·ÎÁ§Æ®',
+            'ì¸ê³µì§€ëŠ¥ ì±—ë´‡ ê°œë°œ í”„ë¡œì íŠ¸',
             v_content,
             NULL
         );
         
-        -- ÀÓ½Ã CLOB ÇØÁ¦
+        -- ìž„ì‹œ CLOB í•´ì œ
         DBMS_LOB.FREETEMPORARY(v_content);
     END;
     
     -- =========================
--- USER_NO = 1 (person1) Æ÷Æ®Æú¸®¿À 6
+-- USER_NO = 1 (person1) í¬íŠ¸í´ë¦¬ì˜¤ 6
 -- =========================
 DECLARE
     v_content CLOB;
 BEGIN
     DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
     
-    -- ÇÁ·ÎÁ§Æ® °³¿ä
+    -- í”„ë¡œì íŠ¸ ê°œìš”
     DBMS_LOB.APPEND(v_content, q'[
-        <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-        <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â ÀÎ°øÁö´É ±â¹Ý Ãªº¿À» °³¹ßÇÏ¿© °í°´ Áö¿øÀ» ÀÚµ¿È­ÇÏ°í, »ç¿ëÀÚ ¸¸Á·µµ¸¦ Çâ»ó½ÃÅ°´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-        <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â ÀÚ¿¬¾î Ã³¸®, ´ëÈ­ °ü¸®, ÇÐ½À ±â´É, ¸ÖÆ¼ ÇÃ·§Æû Áö¿ø µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+        <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+        <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” ì¸ê³µì§€ëŠ¥ ê¸°ë°˜ ì±—ë´‡ì„ ê°œë°œí•˜ì—¬ ê³ ê° ì§€ì›ì„ ìžë™í™”í•˜ê³ , ì‚¬ìš©ìž ë§Œì¡±ë„ë¥¼ í–¥ìƒì‹œí‚¤ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+        <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ìžì—°ì–´ ì²˜ë¦¬, ëŒ€í™” ê´€ë¦¬, í•™ìŠµ ê¸°ëŠ¥, ë©€í‹° í”Œëž«í¼ ì§€ì› ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
         <p><br></p>
 
-        <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+        <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
         <ul>
-            <li><span style="font-size: 14px;">ÇÁ·ÐÆ®¿£µå: React.js</span></li>
-            <li><span style="font-size: 14px;">¹é¿£µå: Python, Flask, TensorFlow</span></li>
-            <li><span style="font-size: 14px;">NLP ¶óÀÌºê·¯¸®: NLTK, spaCy</span></li>
-            <li><span style="font-size: 14px;">¹èÆ÷: AWS Lambda, Docker</span></li>
+            <li><span style="font-size: 14px;">í”„ë¡ íŠ¸ì—”ë“œ: React.js</span></li>
+            <li><span style="font-size: 14px;">ë°±ì—”ë“œ: Python, Flask, TensorFlow</span></li>
+            <li><span style="font-size: 14px;">NLP ë¼ì´ë¸ŒëŸ¬ë¦¬: NLTK, spaCy</span></li>
+            <li><span style="font-size: 14px;">ë°°í¬: AWS Lambda, Docker</span></li>
         </ul>
         <p><br></p>
 
-        <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-        <p>Python°ú Flask¸¦ »ç¿ëÇÏ¿© Ãªº¿ÀÇ ¹é¿£µå¸¦ °³¹ßÇÏ¿´À¸¸ç, TensorFlow¸¦ ÀÌ¿ëÇÏ¿© µö·¯´× ±â¹ÝÀÇ ÀÚ¿¬¾î Ã³¸® ¸ðµ¨À» ±¸ÃàÇÏ¿´½À´Ï´Ù.</p>
-        <p>NLTK¿Í spaCy¸¦ È°¿ëÇÏ¿© »ç¿ëÀÚ ÀÔ·ÂÀ» ÀüÃ³¸®ÇÏ°í, ´Ù¾çÇÑ ÀÚ¿¬¾î Ã³¸® ±â¹ýÀ» Àû¿ëÇÏ¿© ´ëÈ­ÀÇ Á¤È®¼ºÀ» Çâ»ó½ÃÄ×½À´Ï´Ù.</p>
-        <p>React.js¸¦ »ç¿ëÇÏ¿© »ç¿ëÀÚ Ä£È­ÀûÀÎ À¥ ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¿´À¸¸ç, </p>
-        <p>AWS Lambda¿Í Docker¸¦ È°¿ëÇÏ¿© Ãªº¿À» ¼­¹ö¸®½º ¾ÆÅ°ÅØÃ³·Î ¹èÆ÷ÇÏ¿© ³ôÀº È®Àå¼º°ú ¾ÈÁ¤¼ºÀ» È®º¸ÇÏ¿´½À´Ï´Ù.</p>
+        <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+        <p>Pythonê³¼ Flaskë¥¼ ì‚¬ìš©í•˜ì—¬ ì±—ë´‡ì˜ ë°±ì—”ë“œë¥¼ ê°œë°œí•˜ì˜€ìœ¼ë©°, TensorFlowë¥¼ ì´ìš©í•˜ì—¬ ë”¥ëŸ¬ë‹ ê¸°ë°˜ì˜ ìžì—°ì–´ ì²˜ë¦¬ ëª¨ë¸ì„ êµ¬ì¶•í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+        <p>NLTKì™€ spaCyë¥¼ í™œìš©í•˜ì—¬ ì‚¬ìš©ìž ìž…ë ¥ì„ ì „ì²˜ë¦¬í•˜ê³ , ë‹¤ì–‘í•œ ìžì—°ì–´ ì²˜ë¦¬ ê¸°ë²•ì„ ì ìš©í•˜ì—¬ ëŒ€í™”ì˜ ì •í™•ì„±ì„ í–¥ìƒì‹œì¼°ìŠµë‹ˆë‹¤.</p>
+        <p>React.jsë¥¼ ì‚¬ìš©í•˜ì—¬ ì‚¬ìš©ìž ì¹œí™”ì ì¸ ì›¹ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ì˜€ìœ¼ë©°, </p>
+        <p>AWS Lambdaì™€ Dockerë¥¼ í™œìš©í•˜ì—¬ ì±—ë´‡ì„ ì„œë²„ë¦¬ìŠ¤ ì•„í‚¤í…ì²˜ë¡œ ë°°í¬í•˜ì—¬ ë†’ì€ í™•ìž¥ì„±ê³¼ ì•ˆì •ì„±ì„ í™•ë³´í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
         <p><br></p>
 
-        <!-- ÄÚµå ºí·Ï Ãß°¡ -->
+        <!-- ì½”ë“œ ë¸”ë¡ ì¶”ê°€ -->
         <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto">
             <table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0">
                 <tbody>
@@ -1216,7 +1216,7 @@ BEGIN
                         </td>
                         <td style="padding:6px 0;text-align:left">
                             <div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%">
-                                <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask Ãªº¿ API ¿¹Á¦</span></div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#999999">// Flask ì±—ë´‡ API ì˜ˆì œ</span></div>
                                 <div style="padding:0 6px; white-space:pre; line-height:130%">from flask import Flask, request, jsonify</div>
                                 <div style="padding:0 6px; white-space:pre; line-height:130%">import tensorflow as tf</div>
                                 <div style="padding:0 6px; white-space:pre; line-height:130%">import numpy as np</div>
@@ -1227,7 +1227,7 @@ BEGIN
                                 <div style="padding:0 6px; white-space:pre; line-height:130%">@app.route('/chat', methods=['POST'])</div>
                                 <div style="padding:0 6px; white-space:pre; line-height:130%">def chat():</div>
                                 <div style="padding:0 6px; white-space:pre; line-height:130%">    user_input = request.json['message']</div>
-                                <div style="padding:0 6px; white-space:pre; line-height:130%">    # ÀÔ·Â ÀüÃ³¸® ·ÎÁ÷</div>
+                                <div style="padding:0 6px; white-space:pre; line-height:130%">    # ìž…ë ¥ ì „ì²˜ë¦¬ ë¡œì§</div>
                                 <div style="padding:0 6px; white-space:pre; line-height:130%">    processed_input = preprocess(user_input)</div>
                                 <div style="padding:0 6px; white-space:pre; line-height:130%">    prediction = model.predict(np.array([processed_input]))</div>
                                 <div style="padding:0 6px; white-space:pre; line-height:130%">    response = generate_response(prediction)</div>
@@ -1244,18 +1244,18 @@ BEGIN
             </table>
         </div>
         
-        <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-        <p><span style="font-size: 18px;">¸Ó½Å·¯´× ¾Ë°í¸®ÁòÀ» ½ÇÁ¦ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç¿¡ Àû¿ëÇÏ¿©, </span></p>
-        <p><span style="font-size: 18px;">»ç¿ëÀÚ Çàµ¿ ¿¹Ãø ¹× ¸ÂÃãÇü ÃßÃµ ½Ã½ºÅÛÀÇ Á¤È®¼ºÀ» Çâ»ó½ÃÅ³ ¼ö ÀÖ¾ú½À´Ï´Ù. </span></p>
-        <p><span style="font-size: 18px;">React Native¸¦ »ç¿ëÇÑ Å©·Î½º ÇÃ·§Æû ¸ð¹ÙÀÏ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç °³¹ß °æÇèÀ» ÅëÇØ, </span></p>
-        <p><span style="font-size: 18px;">È¿À²ÀûÀÎ »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º ¼³°è ¹× »óÅÂ °ü¸® ´É·ÂÀ» °­È­ÇÏ¿´½À´Ï´Ù.</span></p>
-        <p><span style="font-size: 18px;">Flask¿Í TensorFlow¸¦ ÀÌ¿ëÇÑ ¹é¿£µå °³¹ßÀ» ÅëÇØ, </span></p>
-        <p><span style="font-size: 18px;">µö·¯´× ¸ðµ¨ÀÇ ÅëÇÕ ¹× ½Ç½Ã°£ µ¥ÀÌÅÍ Ã³¸® ´É·ÂÀ» Çâ»ó½ÃÄ×½À´Ï´Ù.</span></p>
-        <p><span style="font-size: 18px;">AWS Lambda¿Í Docker¸¦ È°¿ëÇÑ ¼­¹ö¸®½º ¾ÆÅ°ÅØÃ³ ¹èÆ÷¸¦ ÅëÇØ, </span></p>
-        <p><span style="font-size: 18px;">¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ È®Àå¼º°ú À¯Áöº¸¼ö¼ºÀ» ³ôÀÌ´Â ¹æ¹ýÀ» ÇÐ½ÀÇÏ¿´½À´Ï´Ù.</span></p>
+        <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+        <p><span style="font-size: 18px;">ë¨¸ì‹ ëŸ¬ë‹ ì•Œê³ ë¦¬ì¦˜ì„ ì‹¤ì œ ì• í”Œë¦¬ì¼€ì´ì…˜ì— ì ìš©í•˜ì—¬, </span></p>
+        <p><span style="font-size: 18px;">ì‚¬ìš©ìž í–‰ë™ ì˜ˆì¸¡ ë° ë§žì¶¤í˜• ì¶”ì²œ ì‹œìŠ¤í…œì˜ ì •í™•ì„±ì„ í–¥ìƒì‹œí‚¬ ìˆ˜ ìžˆì—ˆìŠµë‹ˆë‹¤. </span></p>
+        <p><span style="font-size: 18px;">React Nativeë¥¼ ì‚¬ìš©í•œ í¬ë¡œìŠ¤ í”Œëž«í¼ ëª¨ë°”ì¼ ì• í”Œë¦¬ì¼€ì´ì…˜ ê°œë°œ ê²½í—˜ì„ í†µí•´, </span></p>
+        <p><span style="font-size: 18px;">íš¨ìœ¨ì ì¸ ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ ì„¤ê³„ ë° ìƒíƒœ ê´€ë¦¬ ëŠ¥ë ¥ì„ ê°•í™”í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+        <p><span style="font-size: 18px;">Flaskì™€ TensorFlowë¥¼ ì´ìš©í•œ ë°±ì—”ë“œ ê°œë°œì„ í†µí•´, </span></p>
+        <p><span style="font-size: 18px;">ë”¥ëŸ¬ë‹ ëª¨ë¸ì˜ í†µí•© ë° ì‹¤ì‹œê°„ ë°ì´í„° ì²˜ë¦¬ ëŠ¥ë ¥ì„ í–¥ìƒì‹œì¼°ìŠµë‹ˆë‹¤.</span></p>
+        <p><span style="font-size: 18px;">AWS Lambdaì™€ Dockerë¥¼ í™œìš©í•œ ì„œë²„ë¦¬ìŠ¤ ì•„í‚¤í…ì²˜ ë°°í¬ë¥¼ í†µí•´, </span></p>
+        <p><span style="font-size: 18px;">ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ í™•ìž¥ì„±ê³¼ ìœ ì§€ë³´ìˆ˜ì„±ì„ ë†’ì´ëŠ” ë°©ë²•ì„ í•™ìŠµí•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
     ]');
 
-    -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+    -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
     INSERT INTO PORTFOLIO (
         PORTFOLIO_ID,
         USER_NO,
@@ -1265,54 +1265,54 @@ BEGIN
     ) VALUES (
         SEQ_PORTFOLIO_ID.NEXTVAL,
         1,
-        'ÀÎ°øÁö´É Ãªº¿ °³¹ß ÇÁ·ÎÁ§Æ®',
+        'ì¸ê³µì§€ëŠ¥ ì±—ë´‡ ê°œë°œ í”„ë¡œì íŠ¸',
         v_content,
         NULL
     );
     
-    -- ÀÓ½Ã CLOB ÇØÁ¦
+    -- ìž„ì‹œ CLOB í•´ì œ
     DBMS_LOB.FREETEMPORARY(v_content);
 END;
 
 -- =========================
--- USER_NO = 1 (person1) Æ÷Æ®Æú¸®¿À 6
+-- USER_NO = 1 (person1) í¬íŠ¸í´ë¦¬ì˜¤ 6
 -- =========================
 DECLARE
     v_content CLOB;
 BEGIN
     DBMS_LOB.CREATETEMPORARY(v_content, TRUE);
     
-    -- ÇÁ·ÎÁ§Æ® °³¿ä
+    -- í”„ë¡œì íŠ¸ ê°œìš”
     DBMS_LOB.APPEND(v_content, q'[
-        <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">ÇÁ·ÎÁ§Æ® °³¿ä</span></h2>
-        <p><span style="font-size: 14px;">º» ÇÁ·ÎÁ§Æ®´Â ÀÎ°øÁö´É ±â¹Ý ¿¹Ãø À¯Áöº¸¼ö ½Ã½ºÅÛÀ» °³¹ßÇÏ¿© Á¦Á¶ °øÁ¤ÀÇ È¿À²¼ºÀ» ±Ø´ëÈ­ÇÏ´Â °ÍÀ» ¸ñÇ¥·Î ÇÏ¿´½À´Ï´Ù.</span></p>
-        <p><span style="font-size: 14px;">ÁÖ¿ä ±â´ÉÀ¸·Î´Â Àåºñ »óÅÂ ¸ð´ÏÅÍ¸µ, °íÀå ¿¹Ãø, ÀÚµ¿ ¾Ë¸² ½Ã½ºÅÛ µîÀÌ Æ÷ÇÔµË´Ï´Ù.</span></p>
+        <h2><span style="font-size: 24px; color: rgb(0, 0, 255);">í”„ë¡œì íŠ¸ ê°œìš”</span></h2>
+        <p><span style="font-size: 14px;">ë³¸ í”„ë¡œì íŠ¸ëŠ” ì¸ê³µì§€ëŠ¥ ê¸°ë°˜ ì˜ˆì¸¡ ìœ ì§€ë³´ìˆ˜ ì‹œìŠ¤í…œì„ ê°œë°œí•˜ì—¬ ì œì¡° ê³µì •ì˜ íš¨ìœ¨ì„±ì„ ê·¹ëŒ€í™”í•˜ëŠ” ê²ƒì„ ëª©í‘œë¡œ í•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
+        <p><span style="font-size: 14px;">ì£¼ìš” ê¸°ëŠ¥ìœ¼ë¡œëŠ” ìž¥ë¹„ ìƒíƒœ ëª¨ë‹ˆí„°ë§, ê³ ìž¥ ì˜ˆì¸¡, ìžë™ ì•Œë¦¼ ì‹œìŠ¤í…œ ë“±ì´ í¬í•¨ë©ë‹ˆë‹¤.</span></p>
         <p><br></p>
 
-        <h2><span style="font-size: 14px;">±â¼ú ½ºÅÃ</span></h2>
+        <h2><span style="font-size: 14px;">ê¸°ìˆ  ìŠ¤íƒ</span></h2>
         <ul>
-            <li><span style="font-size: 14px;">ÇÁ·ÐÆ®¿£µå: Angular, NgRx</span></li>
-            <li><span style="font-size: 14px;">¹é¿£µå: Python, Django, Scikit-learn</span></li>
-            <li><span style="font-size: 14px;">µ¥ÀÌÅÍº£ÀÌ½º: PostgreSQL, Redis</span></li>
-            <li><span style="font-size: 14px;">¹èÆ÷: AWS EC2, Docker</span></li>
+            <li><span style="font-size: 14px;">í”„ë¡ íŠ¸ì—”ë“œ: Angular, NgRx</span></li>
+            <li><span style="font-size: 14px;">ë°±ì—”ë“œ: Python, Django, Scikit-learn</span></li>
+            <li><span style="font-size: 14px;">ë°ì´í„°ë² ì´ìŠ¤: PostgreSQL, Redis</span></li>
+            <li><span style="font-size: 14px;">ë°°í¬: AWS EC2, Docker</span></li>
         </ul>
         <p><br></p>
 
-        <h2><span style="font-size: 18px;">ÁÖ¿ä ±¸Çö »çÇ×</span></h2>
-        <p>Angular°ú NgRx¸¦ È°¿ëÇÏ¿© ½Ç½Ã°£ µ¥ÀÌÅÍ ½Ã°¢È­ ´ë½Ãº¸µå¸¦ ±¸ÇöÇÏ¿´À¸¸ç, </p>
-        <p>Python°ú Django¸¦ »ç¿ëÇÏ¿© ¿¹Ãø ¸ðµ¨À» °³¹ßÇÏ°í, RESTful API¸¦ ±¸ÃàÇÏ¿´½À´Ï´Ù.</p>
-        <p>Scikit-learnÀ» ÀÌ¿ëÇÏ¿© Àåºñ °íÀåÀ» ¿¹ÃøÇÏ´Â ¸Ó½Å·¯´× ¸ðµ¨À» ÈÆ·Ã½ÃÄ×À¸¸ç, PostgreSQL°ú Redis¸¦ È°¿ëÇÏ¿© ´ë¿ë·® µ¥ÀÌÅÍ¸¦ È¿À²ÀûÀ¸·Î °ü¸®ÇÏ¿´½À´Ï´Ù.</p>
-        <p>AWS EC2¿Í Docker¸¦ »ç¿ëÇÏ¿© ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» ÄÁÅ×ÀÌ³ÊÈ­ÇÏ°í, Å¬¶ó¿ìµå È¯°æ¿¡ ¹èÆ÷ÇÏ¿© ³ôÀº È®Àå¼º°ú ¾ÈÁ¤¼ºÀ» È®º¸ÇÏ¿´½À´Ï´Ù.</p>
+        <h2><span style="font-size: 18px;">ì£¼ìš” êµ¬í˜„ ì‚¬í•­</span></h2>
+        <p>Angularê³¼ NgRxë¥¼ í™œìš©í•˜ì—¬ ì‹¤ì‹œê°„ ë°ì´í„° ì‹œê°í™” ëŒ€ì‹œë³´ë“œë¥¼ êµ¬í˜„í•˜ì˜€ìœ¼ë©°, </p>
+        <p>Pythonê³¼ Djangoë¥¼ ì‚¬ìš©í•˜ì—¬ ì˜ˆì¸¡ ëª¨ë¸ì„ ê°œë°œí•˜ê³ , RESTful APIë¥¼ êµ¬ì¶•í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+        <p>Scikit-learnì„ ì´ìš©í•˜ì—¬ ìž¥ë¹„ ê³ ìž¥ì„ ì˜ˆì¸¡í•˜ëŠ” ë¨¸ì‹ ëŸ¬ë‹ ëª¨ë¸ì„ í›ˆë ¨ì‹œì¼°ìœ¼ë©°, PostgreSQLê³¼ Redisë¥¼ í™œìš©í•˜ì—¬ ëŒ€ìš©ëŸ‰ ë°ì´í„°ë¥¼ íš¨ìœ¨ì ìœ¼ë¡œ ê´€ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
+        <p>AWS EC2ì™€ Dockerë¥¼ ì‚¬ìš©í•˜ì—¬ ì• í”Œë¦¬ì¼€ì´ì…˜ì„ ì»¨í…Œì´ë„ˆí™”í•˜ê³ , í´ë¼ìš°ë“œ í™˜ê²½ì— ë°°í¬í•˜ì—¬ ë†’ì€ í™•ìž¥ì„±ê³¼ ì•ˆì •ì„±ì„ í™•ë³´í•˜ì˜€ìŠµë‹ˆë‹¤.</p>
         <p><br></p>
 
-        <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">¼º°ú ¹× ¹è¿î Á¡</span></h2>
-        <p><span style="font-size: 18px;">¸Ó½Å·¯´× ¸ðµ¨À» ½ÇÁ¦ Á¦Á¶ °øÁ¤¿¡ Àû¿ëÇÏ¿© °íÀå ¿¹ÃøÀÇ Á¤È®¼ºÀ» Å©°Ô Çâ»ó½ÃÅ³ ¼ö ÀÖ¾ú½À´Ï´Ù.</span></p>
-        <p><span style="font-size: 18px;">Angular°ú NgRx¸¦ È°¿ëÇÑ »óÅÂ °ü¸® ¹× ½Ç½Ã°£ µ¥ÀÌÅÍ ½Ã°¢È­ °æÇèÀ» ÅëÇØ, º¹ÀâÇÑ »ç¿ëÀÚ ÀÎÅÍÆäÀÌ½º¸¦ È¿°úÀûÀ¸·Î ±¸ÇöÇÏ´Â ¹æ¹ýÀ» ÀÍÇû½À´Ï´Ù.</span></p>
-        <p><span style="font-size: 18px;">Python°ú Django¸¦ ÀÌ¿ëÇÑ ¹é¿£µå °³¹ßÀ» ÅëÇØ, µ¥ÀÌÅÍ Ã³¸® ¹× API ¼³°è ´É·ÂÀ» Çâ»ó½ÃÄ×À¸¸ç, </span></p>
-        <p><span style="font-size: 18px;">AWS¿Í Docker¸¦ È°¿ëÇÑ Å¬¶ó¿ìµå ¹èÆ÷ °æÇèÀ» ÅëÇØ, ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ È®Àå¼º°ú À¯Áöº¸¼ö¼ºÀ» È®º¸ÇÏ´Â ¹æ¹ýÀ» ÇÐ½ÀÇÏ¿´½À´Ï´Ù.</span></p>
+        <h2><span style="font-size: 24px; color: rgb(0, 0, 255); background-color: rgb(255, 255, 0);">ì„±ê³¼ ë° ë°°ìš´ ì </span></h2>
+        <p><span style="font-size: 18px;">ë¨¸ì‹ ëŸ¬ë‹ ëª¨ë¸ì„ ì‹¤ì œ ì œì¡° ê³µì •ì— ì ìš©í•˜ì—¬ ê³ ìž¥ ì˜ˆì¸¡ì˜ ì •í™•ì„±ì„ í¬ê²Œ í–¥ìƒì‹œí‚¬ ìˆ˜ ìžˆì—ˆìŠµë‹ˆë‹¤.</span></p>
+        <p><span style="font-size: 18px;">Angularê³¼ NgRxë¥¼ í™œìš©í•œ ìƒíƒœ ê´€ë¦¬ ë° ì‹¤ì‹œê°„ ë°ì´í„° ì‹œê°í™” ê²½í—˜ì„ í†µí•´, ë³µìž¡í•œ ì‚¬ìš©ìž ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ íš¨ê³¼ì ìœ¼ë¡œ êµ¬í˜„í•˜ëŠ” ë°©ë²•ì„ ìµí˜”ìŠµë‹ˆë‹¤.</span></p>
+        <p><span style="font-size: 18px;">Pythonê³¼ Djangoë¥¼ ì´ìš©í•œ ë°±ì—”ë“œ ê°œë°œì„ í†µí•´, ë°ì´í„° ì²˜ë¦¬ ë° API ì„¤ê³„ ëŠ¥ë ¥ì„ í–¥ìƒì‹œì¼°ìœ¼ë©°, </span></p>
+        <p><span style="font-size: 18px;">AWSì™€ Dockerë¥¼ í™œìš©í•œ í´ë¼ìš°ë“œ ë°°í¬ ê²½í—˜ì„ í†µí•´, ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ í™•ìž¥ì„±ê³¼ ìœ ì§€ë³´ìˆ˜ì„±ì„ í™•ë³´í•˜ëŠ” ë°©ë²•ì„ í•™ìŠµí•˜ì˜€ìŠµë‹ˆë‹¤.</span></p>
     ]');
 
-    -- Æ÷Æ®Æú¸®¿À »ðÀÔ
+    -- í¬íŠ¸í´ë¦¬ì˜¤ ì‚½ìž…
     INSERT INTO PORTFOLIO (
         PORTFOLIO_ID,
         USER_NO,
@@ -1322,19 +1322,19 @@ BEGIN
     ) VALUES (
         SEQ_PORTFOLIO_ID.NEXTVAL,
         1,
-        'ÀÎ°øÁö´É ±â¹Ý ¿¹Ãø À¯Áöº¸¼ö ½Ã½ºÅÛ °³¹ß',
+        'ì¸ê³µì§€ëŠ¥ ê¸°ë°˜ ì˜ˆì¸¡ ìœ ì§€ë³´ìˆ˜ ì‹œìŠ¤í…œ ê°œë°œ',
         v_content,
         NULL
     );
     
-    -- ÀÓ½Ã CLOB ÇØÁ¦
+    -- ìž„ì‹œ CLOB í•´ì œ
     DBMS_LOB.FREETEMPORARY(v_content);
 END;
 
 
     
     
-    -- ÀüÃ¼ Æ®·£Àè¼Ç Ä¿¹Ô
+    -- ì „ì²´ íŠ¸ëžœìž­ì…˜ ì»¤ë°‹
     COMMIT;
 EXCEPTION
     WHEN OTHERS THEN
@@ -1346,14 +1346,14 @@ END;
 
 
 -- ===========================================================================
--- 1. ½ÃÄö½º »ý¼º (ÀÌ¹Ì Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì¿¡¸¸ ½ÇÇà)
+-- 1. ì‹œí€€ìŠ¤ ìƒì„± (ì´ë¯¸ ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°ì—ë§Œ ì‹¤í–‰)
 -- ===========================================================================
 BEGIN
     EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_TAG_ID START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE';
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE = -955 THEN
-            -- ½ÃÄö½º°¡ ÀÌ¹Ì Á¸ÀçÇÏ´Â °æ¿ì ¹«½Ã
+            -- ì‹œí€€ìŠ¤ê°€ ì´ë¯¸ ì¡´ìž¬í•˜ëŠ” ê²½ìš° ë¬´ì‹œ
             NULL;
         ELSE
             RAISE;
@@ -1362,25 +1362,25 @@ END;
 /
         
 -- ===========================================================================
--- 2. ½ÃÄö½ºÀÇ ÇöÀç °ªÀÌ USER_TAGSÀÇ ÃÖ´ë TAG_IDº¸´Ù Å«Áö È®ÀÎÇÏ°í, ÇÊ¿ä ½Ã Á¶Á¤
+-- 2. ì‹œí€€ìŠ¤ì˜ í˜„ìž¬ ê°’ì´ USER_TAGSì˜ ìµœëŒ€ TAG_IDë³´ë‹¤ í°ì§€ í™•ì¸í•˜ê³ , í•„ìš” ì‹œ ì¡°ì •
 -- ===========================================================================
 DECLARE
     v_max_tag_id NUMBER;
     v_seq_val NUMBER;
 BEGIN
-    -- USER_TAGS Å×ÀÌºíÀÇ ÃÖ´ë TAG_ID Á¶È¸
+    -- USER_TAGS í…Œì´ë¸”ì˜ ìµœëŒ€ TAG_ID ì¡°íšŒ
     SELECT NVL(MAX(TAG_ID), 0) INTO v_max_tag_id FROM USER_TAGS;
     
-    -- ½ÃÄö½ºÀÇ ÇöÀç °ª Á¶È¸
+    -- ì‹œí€€ìŠ¤ì˜ í˜„ìž¬ ê°’ ì¡°íšŒ
     BEGIN
         SELECT SEQ_TAG_ID.CURRVAL INTO v_seq_val FROM dual;
     EXCEPTION
         WHEN OTHERS THEN
-            -- SEQ_TAG_ID.NEXTVALÀ» ¸ÕÀú È£ÃâÇÏ¿© CURRVALÀ» »ç¿ëÇÒ ¼ö ÀÖ°Ô ÇÔ
+            -- SEQ_TAG_ID.NEXTVALì„ ë¨¼ì € í˜¸ì¶œí•˜ì—¬ CURRVALì„ ì‚¬ìš©í•  ìˆ˜ ìžˆê²Œ í•¨
             SELECT SEQ_TAG_ID.NEXTVAL INTO v_seq_val FROM dual;
     END;
     
-    -- ½ÃÄö½º°¡ ÃÖ´ë TAG_IDº¸´Ù ÀÛ°Å³ª °°À¸¸é ½ÃÄö½º¸¦ Á¶Á¤
+    -- ì‹œí€€ìŠ¤ê°€ ìµœëŒ€ TAG_IDë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ìœ¼ë©´ ì‹œí€€ìŠ¤ë¥¼ ì¡°ì •
     IF v_seq_val <= v_max_tag_id THEN
         EXECUTE IMMEDIATE 'ALTER SEQUENCE SEQ_TAG_ID INCREMENT BY ' || (v_max_tag_id - v_seq_val + 1);
         SELECT SEQ_TAG_ID.NEXTVAL INTO v_seq_val FROM dual;
@@ -1390,30 +1390,30 @@ END;
 /
         
 -- ===========================================================================
--- 3. °ü½É ÅÂ±× »ðÀÔ (Áßº¹ ¹æÁö)
+-- 3. ê´€ì‹¬ íƒœê·¸ ì‚½ìž… (ì¤‘ë³µ ë°©ì§€)
 -- ===========================================================================
 BEGIN
-    -- °ü½É ÅÂ±× ¸ñ·Ï
+    -- ê´€ì‹¬ íƒœê·¸ ëª©ë¡
     DECLARE
         TYPE TagList IS VARRAY(25) OF VARCHAR2(100);
         tags TagList := TagList(
-            '°³¹ßÀÚÃë¾÷',
-            '°³¹ßÀÚ',
-            'Ãë¾÷ÁØºñ',
-            'ÄÚµù',
-            'ÇÁ·Î±×·¥¹Ö',
-            'ITÃë¾÷',
-            '°³¹ßÀÚÄ¿¸®¾î',
-            'Ãë¾÷¼º°ø',
-            'ÄÚµùÃë¾÷',
-            '¼ÒÇÁÆ®¿þ¾î°³¹ß',
-            'Æ÷Æ®Æú¸®¿À',
-            'Ãë¾÷»çÀÌÆ®',
-            '±â¼úÁ÷Ãë¾÷',
-            '°³¹ßÁ÷¹«',
-            'Ãë¾÷±âÈ¸',
-            '¿¬ºÀÇù»ó',
-            'º¹ÁöÇýÅÃ'
+            'ê°œë°œìžì·¨ì—…',
+            'ê°œë°œìž',
+            'ì·¨ì—…ì¤€ë¹„',
+            'ì½”ë”©',
+            'í”„ë¡œê·¸ëž¨ë°',
+            'ITì·¨ì—…',
+            'ê°œë°œìžì»¤ë¦¬ì–´',
+            'ì·¨ì—…ì„±ê³µ',
+            'ì½”ë”©ì·¨ì—…',
+            'ì†Œí”„íŠ¸ì›¨ì–´ê°œë°œ',
+            'í¬íŠ¸í´ë¦¬ì˜¤',
+            'ì·¨ì—…ì‚¬ì´íŠ¸',
+            'ê¸°ìˆ ì§ì·¨ì—…',
+            'ê°œë°œì§ë¬´',
+            'ì·¨ì—…ê¸°íšŒ',
+            'ì—°ë´‰í˜‘ìƒ',
+            'ë³µì§€í˜œíƒ'
         );
     BEGIN
         FOR i IN 1 .. tags.COUNT LOOP
@@ -1422,7 +1422,7 @@ BEGIN
                 VALUES (SEQ_TAG_ID.NEXTVAL, 1, tags(i));
             EXCEPTION
                 WHEN DUP_VAL_ON_INDEX THEN
-                    -- Áßº¹µÈ TAG_NAMEÀÌ ÀÌ¹Ì Á¸ÀçÇÏ´Â °æ¿ì ¹«½Ã
+                    -- ì¤‘ë³µëœ TAG_NAMEì´ ì´ë¯¸ ì¡´ìž¬í•˜ëŠ” ê²½ìš° ë¬´ì‹œ
                     NULL;
             END;
         END LOOP;
@@ -1449,14 +1449,14 @@ INSERT INTO SELF_INTRODUCTION(
     USER_NO
 )
 VALUES (
-    SELF_INTRO_SEQ.NEXTVAL, -- PK ½ÃÄö½º
+    SELF_INTRO_SEQ.NEXTVAL, -- PK ì‹œí€€ìŠ¤
     null,                      -- RESUME_NO
     'person1',              -- USER_ID
-    'ÀÚ±â¼Ò°³¼­ 1',         -- TITLE
-    'Àú´Â Ç×»ó »õ·Î¿î µµÀüÀ» Áñ±â´Â »ç¶÷ÀÔ´Ï´Ù. ¾î·Á¿î ¹®Á¦¸¦ ÇØ°áÇÏ´Â °úÁ¤¿¡¼­ ¾ò´Â ¼ºÃë°¨À» Áß¿äÇÏ°Ô »ý°¢ÇÏ¸ç, ÀÌ¸¦ ÅëÇØ ½º½º·ÎÀÇ ÇÑ°è¸¦ È®ÀåÇØ¿Ô½À´Ï´Ù. Æ¯È÷, ÆÀ ÇÁ·ÎÁ§Æ®¸¦ ÁøÇàÇÏ¸ç ¼­·ÎÀÇ ¾ÆÀÌµð¾î¸¦ °øÀ¯ÇÏ°í Çù·ÂÇÏ´Â °úÁ¤¿¡¼­ Å« º¸¶÷À» ´À²¼½À´Ï´Ù. ÀÌ¸¦ ÅëÇØ È¿À²ÀûÀÎ ÀÇ»ç¼ÒÅëÀÇ Áß¿ä¼ºÀ» ±ú´Þ¾Ò°í, ²÷ÀÓ¾øÀÌ ¼ºÀåÇÏ´Â ÀÚ¼¼¸¦ ¹è¿ì°Ô µÇ¾ú½À´Ï´Ù. ¾ÕÀ¸·Îµµ ¹è¿òÀ» ¸ØÃßÁö ¾Ê°í, µµÀü°ú ¼ºÀåÀ» Áö¼ÓÇÏ¸ç ÁÖ¾îÁø ¿ªÇÒ¿¡ ÃÖ¼±À» ´ÙÇÏ°Ú½À´Ï´Ù.', 
+    'ìžê¸°ì†Œê°œì„œ 1',         -- TITLE
+    'ì €ëŠ” í•­ìƒ ìƒˆë¡œìš´ ë„ì „ì„ ì¦ê¸°ëŠ” ì‚¬ëžŒìž…ë‹ˆë‹¤. ì–´ë ¤ìš´ ë¬¸ì œë¥¼ í•´ê²°í•˜ëŠ” ê³¼ì •ì—ì„œ ì–»ëŠ” ì„±ì·¨ê°ì„ ì¤‘ìš”í•˜ê²Œ ìƒê°í•˜ë©°, ì´ë¥¼ í†µí•´ ìŠ¤ìŠ¤ë¡œì˜ í•œê³„ë¥¼ í™•ìž¥í•´ì™”ìŠµë‹ˆë‹¤. íŠ¹ížˆ, íŒ€ í”„ë¡œì íŠ¸ë¥¼ ì§„í–‰í•˜ë©° ì„œë¡œì˜ ì•„ì´ë””ì–´ë¥¼ ê³µìœ í•˜ê³  í˜‘ë ¥í•˜ëŠ” ê³¼ì •ì—ì„œ í° ë³´ëžŒì„ ëŠê¼ˆìŠµë‹ˆë‹¤. ì´ë¥¼ í†µí•´ íš¨ìœ¨ì ì¸ ì˜ì‚¬ì†Œí†µì˜ ì¤‘ìš”ì„±ì„ ê¹¨ë‹¬ì•˜ê³ , ëŠìž„ì—†ì´ ì„±ìž¥í•˜ëŠ” ìžì„¸ë¥¼ ë°°ìš°ê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤. ì•žìœ¼ë¡œë„ ë°°ì›€ì„ ë©ˆì¶”ì§€ ì•Šê³ , ë„ì „ê³¼ ì„±ìž¥ì„ ì§€ì†í•˜ë©° ì£¼ì–´ì§„ ì—­í• ì— ìµœì„ ì„ ë‹¤í•˜ê² ìŠµë‹ˆë‹¤.', 
     SYSDATE,                -- CREATED_DATE
     SYSDATE,                -- MODIFIED_DATE
-    1,                      -- DELETED (e.g., 1: »ç¿ë, 0: »èÁ¦)
+    1,                      -- DELETED (e.g., 1: ì‚¬ìš©, 0: ì‚­ì œ)
     1,                      -- PERSON_NO
     1                       -- USER_NO
 );
@@ -1474,40 +1474,14 @@ INSERT INTO SELF_INTRODUCTION(
     USER_NO
 )
 VALUES (
-    SELF_INTRO_SEQ.NEXTVAL, -- PK ½ÃÄö½º
+    SELF_INTRO_SEQ.NEXTVAL, -- PK ì‹œí€€ìŠ¤
     null,                      -- RESUME_NO
     'person1',              -- USER_ID
-    'ÀÚ±â¼Ò°³¼­ 2',         -- TITLE
-    'Àú´Â Ç×»ó »õ·Î¿î µµÀüÀ» Áñ±â´Â »ç¶÷ÀÔ´Ï´Ù. ¾î·Á¿î ¹®Á¦¸¦ ÇØ°áÇÏ´Â °úÁ¤¿¡¼­ ¾ò´Â ¼ºÃë°¨À» Áß¿äÇÏ°Ô »ý°¢ÇÏ¸ç, ÀÌ¸¦ ÅëÇØ ½º½º·ÎÀÇ ÇÑ°è¸¦ È®ÀåÇØ¿Ô½À´Ï´Ù. Æ¯È÷, ÆÀ ÇÁ·ÎÁ§Æ®¸¦ ÁøÇàÇÏ¸ç ¼­·ÎÀÇ ¾ÆÀÌµð¾î¸¦ °øÀ¯ÇÏ°í Çù·ÂÇÏ´Â °úÁ¤¿¡¼­ Å« º¸¶÷À» ´À²¼½À´Ï´Ù. ÀÌ¸¦ ÅëÇØ È¿À²ÀûÀÎ ÀÇ»ç¼ÒÅëÀÇ Áß¿ä¼ºÀ» ±ú´Þ¾Ò°í, ²÷ÀÓ¾øÀÌ ¼ºÀåÇÏ´Â ÀÚ¼¼¸¦ ¹è¿ì°Ô µÇ¾ú½À´Ï´Ù. ¾ÕÀ¸·Îµµ ¹è¿òÀ» ¸ØÃßÁö ¾Ê°í, µµÀü°ú ¼ºÀåÀ» Áö¼ÓÇÏ¸ç ÁÖ¾îÁø ¿ªÇÒ¿¡ ÃÖ¼±À» ´ÙÇÏ°Ú½À´Ï´Ù.',
+    'ìžê¸°ì†Œê°œì„œ 2',         -- TITLE
+    'ì €ëŠ” í•­ìƒ ìƒˆë¡œìš´ ë„ì „ì„ ì¦ê¸°ëŠ” ì‚¬ëžŒìž…ë‹ˆë‹¤. ì–´ë ¤ìš´ ë¬¸ì œë¥¼ í•´ê²°í•˜ëŠ” ê³¼ì •ì—ì„œ ì–»ëŠ” ì„±ì·¨ê°ì„ ì¤‘ìš”í•˜ê²Œ ìƒê°í•˜ë©°, ì´ë¥¼ í†µí•´ ìŠ¤ìŠ¤ë¡œì˜ í•œê³„ë¥¼ í™•ìž¥í•´ì™”ìŠµë‹ˆë‹¤. íŠ¹ížˆ, íŒ€ í”„ë¡œì íŠ¸ë¥¼ ì§„í–‰í•˜ë©° ì„œë¡œì˜ ì•„ì´ë””ì–´ë¥¼ ê³µìœ í•˜ê³  í˜‘ë ¥í•˜ëŠ” ê³¼ì •ì—ì„œ í° ë³´ëžŒì„ ëŠê¼ˆìŠµë‹ˆë‹¤. ì´ë¥¼ í†µí•´ íš¨ìœ¨ì ì¸ ì˜ì‚¬ì†Œí†µì˜ ì¤‘ìš”ì„±ì„ ê¹¨ë‹¬ì•˜ê³ , ëŠìž„ì—†ì´ ì„±ìž¥í•˜ëŠ” ìžì„¸ë¥¼ ë°°ìš°ê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤. ì•žìœ¼ë¡œë„ ë°°ì›€ì„ ë©ˆì¶”ì§€ ì•Šê³ , ë„ì „ê³¼ ì„±ìž¥ì„ ì§€ì†í•˜ë©° ì£¼ì–´ì§„ ì—­í• ì— ìµœì„ ì„ ë‹¤í•˜ê² ìŠµë‹ˆë‹¤.',
     SYSDATE,                -- CREATED_DATE
     SYSDATE,                -- MODIFIED_DATE
-    'N',                    -- DELETED ('Y' ¶Ç´Â 'N')
-    1,                      -- PERSON_NO
-    1                       -- USER_NO
-);
-
-
-INSERT INTO SELF_INTRODUCTION(
-    SELF_INTRODUCTION_NO, 
-    RESUME_NO, 
-    USER_ID, 
-    TITLE, 
-    CONTENT, 
-    CREATED_DATE, 
-    MODIFIED_DATE, 
-    DELETED, 
-    PERSON_NO, 
-    USER_NO
-)
-VALUES (
-    SELF_INTRO_SEQ.NEXTVAL, -- PK ½ÃÄö½º
-    null,                      -- RESUME_NO
-    'person1',              -- USER_ID
-    'ÀÚ±â¼Ò°³¼­ 3',         -- TITLE
-    'Àú´Â Ç×»ó »õ·Î¿î µµÀüÀ» Áñ±â´Â »ç¶÷ÀÔ´Ï´Ù. ¾î·Á¿î ¹®Á¦¸¦ ÇØ°áÇÏ´Â °úÁ¤¿¡¼­ ¾ò´Â ¼ºÃë°¨À» Áß¿äÇÏ°Ô »ý°¢ÇÏ¸ç, ÀÌ¸¦ ÅëÇØ ½º½º·ÎÀÇ ÇÑ°è¸¦ È®ÀåÇØ¿Ô½À´Ï´Ù. Æ¯È÷, ÆÀ ÇÁ·ÎÁ§Æ®¸¦ ÁøÇàÇÏ¸ç ¼­·ÎÀÇ ¾ÆÀÌµð¾î¸¦ °øÀ¯ÇÏ°í Çù·ÂÇÏ´Â °úÁ¤¿¡¼­ Å« º¸¶÷À» ´À²¼½À´Ï´Ù. ÀÌ¸¦ ÅëÇØ È¿À²ÀûÀÎ ÀÇ»ç¼ÒÅëÀÇ Áß¿ä¼ºÀ» ±ú´Þ¾Ò°í, ²÷ÀÓ¾øÀÌ ¼ºÀåÇÏ´Â ÀÚ¼¼¸¦ ¹è¿ì°Ô µÇ¾ú½À´Ï´Ù. ¾ÕÀ¸·Îµµ ¹è¿òÀ» ¸ØÃßÁö ¾Ê°í, µµÀü°ú ¼ºÀåÀ» Áö¼ÓÇÏ¸ç ÁÖ¾îÁø ¿ªÇÒ¿¡ ÃÖ¼±À» ´ÙÇÏ°Ú½À´Ï´Ù.',
-    SYSDATE,                -- CREATED_DATE
-    SYSDATE,                -- MODIFIED_DATE
-    'N',                    -- DELETED ('Y' ¶Ç´Â 'N')
+    'N',                    -- DELETED ('Y' ë˜ëŠ” 'N')
     1,                      -- PERSON_NO
     1                       -- USER_NO
 );
@@ -1526,14 +1500,14 @@ INSERT INTO SELF_INTRODUCTION(
     USER_NO
 )
 VALUES (
-    SELF_INTRO_SEQ.NEXTVAL, -- PK ½ÃÄö½º
+    SELF_INTRO_SEQ.NEXTVAL, -- PK ì‹œí€€ìŠ¤
     null,                      -- RESUME_NO
     'person1',              -- USER_ID
-    'ÀÚ±â¼Ò°³¼­ 4',         -- TITLE
-    'Àú´Â Ç×»ó »õ·Î¿î µµÀüÀ» Áñ±â´Â »ç¶÷ÀÔ´Ï´Ù. ¾î·Á¿î ¹®Á¦¸¦ ÇØ°áÇÏ´Â °úÁ¤¿¡¼­ ¾ò´Â ¼ºÃë°¨À» Áß¿äÇÏ°Ô »ý°¢ÇÏ¸ç, ÀÌ¸¦ ÅëÇØ ½º½º·ÎÀÇ ÇÑ°è¸¦ È®ÀåÇØ¿Ô½À´Ï´Ù. Æ¯È÷, ÆÀ ÇÁ·ÎÁ§Æ®¸¦ ÁøÇàÇÏ¸ç ¼­·ÎÀÇ ¾ÆÀÌµð¾î¸¦ °øÀ¯ÇÏ°í Çù·ÂÇÏ´Â °úÁ¤¿¡¼­ Å« º¸¶÷À» ´À²¼½À´Ï´Ù. ÀÌ¸¦ ÅëÇØ È¿À²ÀûÀÎ ÀÇ»ç¼ÒÅëÀÇ Áß¿ä¼ºÀ» ±ú´Þ¾Ò°í, ²÷ÀÓ¾øÀÌ ¼ºÀåÇÏ´Â ÀÚ¼¼¸¦ ¹è¿ì°Ô µÇ¾ú½À´Ï´Ù. ¾ÕÀ¸·Îµµ ¹è¿òÀ» ¸ØÃßÁö ¾Ê°í, µµÀü°ú ¼ºÀåÀ» Áö¼ÓÇÏ¸ç ÁÖ¾îÁø ¿ªÇÒ¿¡ ÃÖ¼±À» ´ÙÇÏ°Ú½À´Ï´Ù.',
+    'ìžê¸°ì†Œê°œì„œ 3',         -- TITLE
+    'ì €ëŠ” í•­ìƒ ìƒˆë¡œìš´ ë„ì „ì„ ì¦ê¸°ëŠ” ì‚¬ëžŒìž…ë‹ˆë‹¤. ì–´ë ¤ìš´ ë¬¸ì œë¥¼ í•´ê²°í•˜ëŠ” ê³¼ì •ì—ì„œ ì–»ëŠ” ì„±ì·¨ê°ì„ ì¤‘ìš”í•˜ê²Œ ìƒê°í•˜ë©°, ì´ë¥¼ í†µí•´ ìŠ¤ìŠ¤ë¡œì˜ í•œê³„ë¥¼ í™•ìž¥í•´ì™”ìŠµë‹ˆë‹¤. íŠ¹ížˆ, íŒ€ í”„ë¡œì íŠ¸ë¥¼ ì§„í–‰í•˜ë©° ì„œë¡œì˜ ì•„ì´ë””ì–´ë¥¼ ê³µìœ í•˜ê³  í˜‘ë ¥í•˜ëŠ” ê³¼ì •ì—ì„œ í° ë³´ëžŒì„ ëŠê¼ˆìŠµë‹ˆë‹¤. ì´ë¥¼ í†µí•´ íš¨ìœ¨ì ì¸ ì˜ì‚¬ì†Œí†µì˜ ì¤‘ìš”ì„±ì„ ê¹¨ë‹¬ì•˜ê³ , ëŠìž„ì—†ì´ ì„±ìž¥í•˜ëŠ” ìžì„¸ë¥¼ ë°°ìš°ê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤. ì•žìœ¼ë¡œë„ ë°°ì›€ì„ ë©ˆì¶”ì§€ ì•Šê³ , ë„ì „ê³¼ ì„±ìž¥ì„ ì§€ì†í•˜ë©° ì£¼ì–´ì§„ ì—­í• ì— ìµœì„ ì„ ë‹¤í•˜ê² ìŠµë‹ˆë‹¤.',
     SYSDATE,                -- CREATED_DATE
     SYSDATE,                -- MODIFIED_DATE
-    'N',                    -- DELETED ('Y' ¶Ç´Â 'N')
+    'N',                    -- DELETED ('Y' ë˜ëŠ” 'N')
     1,                      -- PERSON_NO
     1                       -- USER_NO
 );
@@ -1552,14 +1526,14 @@ INSERT INTO SELF_INTRODUCTION(
     USER_NO
 )
 VALUES (
-    SELF_INTRO_SEQ.NEXTVAL, -- PK ½ÃÄö½º
+    SELF_INTRO_SEQ.NEXTVAL, -- PK ì‹œí€€ìŠ¤
     null,                      -- RESUME_NO
     'person1',              -- USER_ID
-    'ÀÚ±â¼Ò°³¼­ 5',         -- TITLE
-    'Àú´Â Ç×»ó »õ·Î¿î µµÀüÀ» Áñ±â´Â »ç¶÷ÀÔ´Ï´Ù. ¾î·Á¿î ¹®Á¦¸¦ ÇØ°áÇÏ´Â °úÁ¤¿¡¼­ ¾ò´Â ¼ºÃë°¨À» Áß¿äÇÏ°Ô »ý°¢ÇÏ¸ç, ÀÌ¸¦ ÅëÇØ ½º½º·ÎÀÇ ÇÑ°è¸¦ È®ÀåÇØ¿Ô½À´Ï´Ù. Æ¯È÷, ÆÀ ÇÁ·ÎÁ§Æ®¸¦ ÁøÇàÇÏ¸ç ¼­·ÎÀÇ ¾ÆÀÌµð¾î¸¦ °øÀ¯ÇÏ°í Çù·ÂÇÏ´Â °úÁ¤¿¡¼­ Å« º¸¶÷À» ´À²¼½À´Ï´Ù. ÀÌ¸¦ ÅëÇØ È¿À²ÀûÀÎ ÀÇ»ç¼ÒÅëÀÇ Áß¿ä¼ºÀ» ±ú´Þ¾Ò°í, ²÷ÀÓ¾øÀÌ ¼ºÀåÇÏ´Â ÀÚ¼¼¸¦ ¹è¿ì°Ô µÇ¾ú½À´Ï´Ù. ¾ÕÀ¸·Îµµ ¹è¿òÀ» ¸ØÃßÁö ¾Ê°í, µµÀü°ú ¼ºÀåÀ» Áö¼ÓÇÏ¸ç ÁÖ¾îÁø ¿ªÇÒ¿¡ ÃÖ¼±À» ´ÙÇÏ°Ú½À´Ï´Ù.',
+    'ìžê¸°ì†Œê°œì„œ 4',         -- TITLE
+    'ì €ëŠ” í•­ìƒ ìƒˆë¡œìš´ ë„ì „ì„ ì¦ê¸°ëŠ” ì‚¬ëžŒìž…ë‹ˆë‹¤. ì–´ë ¤ìš´ ë¬¸ì œë¥¼ í•´ê²°í•˜ëŠ” ê³¼ì •ì—ì„œ ì–»ëŠ” ì„±ì·¨ê°ì„ ì¤‘ìš”í•˜ê²Œ ìƒê°í•˜ë©°, ì´ë¥¼ í†µí•´ ìŠ¤ìŠ¤ë¡œì˜ í•œê³„ë¥¼ í™•ìž¥í•´ì™”ìŠµë‹ˆë‹¤. íŠ¹ížˆ, íŒ€ í”„ë¡œì íŠ¸ë¥¼ ì§„í–‰í•˜ë©° ì„œë¡œì˜ ì•„ì´ë””ì–´ë¥¼ ê³µìœ í•˜ê³  í˜‘ë ¥í•˜ëŠ” ê³¼ì •ì—ì„œ í° ë³´ëžŒì„ ëŠê¼ˆìŠµë‹ˆë‹¤. ì´ë¥¼ í†µí•´ íš¨ìœ¨ì ì¸ ì˜ì‚¬ì†Œí†µì˜ ì¤‘ìš”ì„±ì„ ê¹¨ë‹¬ì•˜ê³ , ëŠìž„ì—†ì´ ì„±ìž¥í•˜ëŠ” ìžì„¸ë¥¼ ë°°ìš°ê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤. ì•žìœ¼ë¡œë„ ë°°ì›€ì„ ë©ˆì¶”ì§€ ì•Šê³ , ë„ì „ê³¼ ì„±ìž¥ì„ ì§€ì†í•˜ë©° ì£¼ì–´ì§„ ì—­í• ì— ìµœì„ ì„ ë‹¤í•˜ê² ìŠµë‹ˆë‹¤.',
     SYSDATE,                -- CREATED_DATE
     SYSDATE,                -- MODIFIED_DATE
-    'N',                    -- DELETED ('Y' ¶Ç´Â 'N')
+    'N',                    -- DELETED ('Y' ë˜ëŠ” 'N')
     1,                      -- PERSON_NO
     1                       -- USER_NO
 );
@@ -1578,14 +1552,14 @@ INSERT INTO SELF_INTRODUCTION(
     USER_NO
 )
 VALUES (
-    SELF_INTRO_SEQ.NEXTVAL, -- PK ½ÃÄö½º
+    SELF_INTRO_SEQ.NEXTVAL, -- PK ì‹œí€€ìŠ¤
     null,                      -- RESUME_NO
     'person1',              -- USER_ID
-    'ÀÚ±â¼Ò°³¼­ 6',         -- TITLE
-    'Àú´Â Ç×»ó »õ·Î¿î µµÀüÀ» Áñ±â´Â »ç¶÷ÀÔ´Ï´Ù. ¾î·Á¿î ¹®Á¦¸¦ ÇØ°áÇÏ´Â °úÁ¤¿¡¼­ ¾ò´Â ¼ºÃë°¨À» Áß¿äÇÏ°Ô »ý°¢ÇÏ¸ç, ÀÌ¸¦ ÅëÇØ ½º½º·ÎÀÇ ÇÑ°è¸¦ È®ÀåÇØ¿Ô½À´Ï´Ù. Æ¯È÷, ÆÀ ÇÁ·ÎÁ§Æ®¸¦ ÁøÇàÇÏ¸ç ¼­·ÎÀÇ ¾ÆÀÌµð¾î¸¦ °øÀ¯ÇÏ°í Çù·ÂÇÏ´Â °úÁ¤¿¡¼­ Å« º¸¶÷À» ´À²¼½À´Ï´Ù. ÀÌ¸¦ ÅëÇØ È¿À²ÀûÀÎ ÀÇ»ç¼ÒÅëÀÇ Áß¿ä¼ºÀ» ±ú´Þ¾Ò°í, ²÷ÀÓ¾øÀÌ ¼ºÀåÇÏ´Â ÀÚ¼¼¸¦ ¹è¿ì°Ô µÇ¾ú½À´Ï´Ù. ¾ÕÀ¸·Îµµ ¹è¿òÀ» ¸ØÃßÁö ¾Ê°í, µµÀü°ú ¼ºÀåÀ» Áö¼ÓÇÏ¸ç ÁÖ¾îÁø ¿ªÇÒ¿¡ ÃÖ¼±À» ´ÙÇÏ°Ú½À´Ï´Ù.',
+    'ìžê¸°ì†Œê°œì„œ 5',         -- TITLE
+    'ì €ëŠ” í•­ìƒ ìƒˆë¡œìš´ ë„ì „ì„ ì¦ê¸°ëŠ” ì‚¬ëžŒìž…ë‹ˆë‹¤. ì–´ë ¤ìš´ ë¬¸ì œë¥¼ í•´ê²°í•˜ëŠ” ê³¼ì •ì—ì„œ ì–»ëŠ” ì„±ì·¨ê°ì„ ì¤‘ìš”í•˜ê²Œ ìƒê°í•˜ë©°, ì´ë¥¼ í†µí•´ ìŠ¤ìŠ¤ë¡œì˜ í•œê³„ë¥¼ í™•ìž¥í•´ì™”ìŠµë‹ˆë‹¤. íŠ¹ížˆ, íŒ€ í”„ë¡œì íŠ¸ë¥¼ ì§„í–‰í•˜ë©° ì„œë¡œì˜ ì•„ì´ë””ì–´ë¥¼ ê³µìœ í•˜ê³  í˜‘ë ¥í•˜ëŠ” ê³¼ì •ì—ì„œ í° ë³´ëžŒì„ ëŠê¼ˆìŠµë‹ˆë‹¤. ì´ë¥¼ í†µí•´ íš¨ìœ¨ì ì¸ ì˜ì‚¬ì†Œí†µì˜ ì¤‘ìš”ì„±ì„ ê¹¨ë‹¬ì•˜ê³ , ëŠìž„ì—†ì´ ì„±ìž¥í•˜ëŠ” ìžì„¸ë¥¼ ë°°ìš°ê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤. ì•žìœ¼ë¡œë„ ë°°ì›€ì„ ë©ˆì¶”ì§€ ì•Šê³ , ë„ì „ê³¼ ì„±ìž¥ì„ ì§€ì†í•˜ë©° ì£¼ì–´ì§„ ì—­í• ì— ìµœì„ ì„ ë‹¤í•˜ê² ìŠµë‹ˆë‹¤.',
     SYSDATE,                -- CREATED_DATE
     SYSDATE,                -- MODIFIED_DATE
-    'N',                    -- DELETED ('Y' ¶Ç´Â 'N')
+    'N',                    -- DELETED ('Y' ë˜ëŠ” 'N')
     1,                      -- PERSON_NO
     1                       -- USER_NO
 );
@@ -1604,14 +1578,40 @@ INSERT INTO SELF_INTRODUCTION(
     USER_NO
 )
 VALUES (
-    SELF_INTRO_SEQ.NEXTVAL, -- PK ½ÃÄö½º
+    SELF_INTRO_SEQ.NEXTVAL, -- PK ì‹œí€€ìŠ¤
     null,                      -- RESUME_NO
     'person1',              -- USER_ID
-    'ÀÚ±â¼Ò°³¼­ 7',         -- TITLE
-    'Àú´Â Ç×»ó »õ·Î¿î µµÀüÀ» Áñ±â´Â »ç¶÷ÀÔ´Ï´Ù. ¾î·Á¿î ¹®Á¦¸¦ ÇØ°áÇÏ´Â °úÁ¤¿¡¼­ ¾ò´Â ¼ºÃë°¨À» Áß¿äÇÏ°Ô »ý°¢ÇÏ¸ç, ÀÌ¸¦ ÅëÇØ ½º½º·ÎÀÇ ÇÑ°è¸¦ È®ÀåÇØ¿Ô½À´Ï´Ù. Æ¯È÷, ÆÀ ÇÁ·ÎÁ§Æ®¸¦ ÁøÇàÇÏ¸ç ¼­·ÎÀÇ ¾ÆÀÌµð¾î¸¦ °øÀ¯ÇÏ°í Çù·ÂÇÏ´Â °úÁ¤¿¡¼­ Å« º¸¶÷À» ´À²¼½À´Ï´Ù. ÀÌ¸¦ ÅëÇØ È¿À²ÀûÀÎ ÀÇ»ç¼ÒÅëÀÇ Áß¿ä¼ºÀ» ±ú´Þ¾Ò°í, ²÷ÀÓ¾øÀÌ ¼ºÀåÇÏ´Â ÀÚ¼¼¸¦ ¹è¿ì°Ô µÇ¾ú½À´Ï´Ù. ¾ÕÀ¸·Îµµ ¹è¿òÀ» ¸ØÃßÁö ¾Ê°í, µµÀü°ú ¼ºÀåÀ» Áö¼ÓÇÏ¸ç ÁÖ¾îÁø ¿ªÇÒ¿¡ ÃÖ¼±À» ´ÙÇÏ°Ú½À´Ï´Ù.',
+    'ìžê¸°ì†Œê°œì„œ 6',         -- TITLE
+    'ì €ëŠ” í•­ìƒ ìƒˆë¡œìš´ ë„ì „ì„ ì¦ê¸°ëŠ” ì‚¬ëžŒìž…ë‹ˆë‹¤. ì–´ë ¤ìš´ ë¬¸ì œë¥¼ í•´ê²°í•˜ëŠ” ê³¼ì •ì—ì„œ ì–»ëŠ” ì„±ì·¨ê°ì„ ì¤‘ìš”í•˜ê²Œ ìƒê°í•˜ë©°, ì´ë¥¼ í†µí•´ ìŠ¤ìŠ¤ë¡œì˜ í•œê³„ë¥¼ í™•ìž¥í•´ì™”ìŠµë‹ˆë‹¤. íŠ¹ížˆ, íŒ€ í”„ë¡œì íŠ¸ë¥¼ ì§„í–‰í•˜ë©° ì„œë¡œì˜ ì•„ì´ë””ì–´ë¥¼ ê³µìœ í•˜ê³  í˜‘ë ¥í•˜ëŠ” ê³¼ì •ì—ì„œ í° ë³´ëžŒì„ ëŠê¼ˆìŠµë‹ˆë‹¤. ì´ë¥¼ í†µí•´ íš¨ìœ¨ì ì¸ ì˜ì‚¬ì†Œí†µì˜ ì¤‘ìš”ì„±ì„ ê¹¨ë‹¬ì•˜ê³ , ëŠìž„ì—†ì´ ì„±ìž¥í•˜ëŠ” ìžì„¸ë¥¼ ë°°ìš°ê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤. ì•žìœ¼ë¡œë„ ë°°ì›€ì„ ë©ˆì¶”ì§€ ì•Šê³ , ë„ì „ê³¼ ì„±ìž¥ì„ ì§€ì†í•˜ë©° ì£¼ì–´ì§„ ì—­í• ì— ìµœì„ ì„ ë‹¤í•˜ê² ìŠµë‹ˆë‹¤.',
     SYSDATE,                -- CREATED_DATE
     SYSDATE,                -- MODIFIED_DATE
-    'N',                    -- DELETED ('Y' ¶Ç´Â 'N')
+    'N',                    -- DELETED ('Y' ë˜ëŠ” 'N')
+    1,                      -- PERSON_NO
+    1                       -- USER_NO
+);
+
+
+INSERT INTO SELF_INTRODUCTION(
+    SELF_INTRODUCTION_NO, 
+    RESUME_NO, 
+    USER_ID, 
+    TITLE, 
+    CONTENT, 
+    CREATED_DATE, 
+    MODIFIED_DATE, 
+    DELETED, 
+    PERSON_NO, 
+    USER_NO
+)
+VALUES (
+    SELF_INTRO_SEQ.NEXTVAL, -- PK ì‹œí€€ìŠ¤
+    null,                      -- RESUME_NO
+    'person1',              -- USER_ID
+    'ìžê¸°ì†Œê°œì„œ 7',         -- TITLE
+    'ì €ëŠ” í•­ìƒ ìƒˆë¡œìš´ ë„ì „ì„ ì¦ê¸°ëŠ” ì‚¬ëžŒìž…ë‹ˆë‹¤. ì–´ë ¤ìš´ ë¬¸ì œë¥¼ í•´ê²°í•˜ëŠ” ê³¼ì •ì—ì„œ ì–»ëŠ” ì„±ì·¨ê°ì„ ì¤‘ìš”í•˜ê²Œ ìƒê°í•˜ë©°, ì´ë¥¼ í†µí•´ ìŠ¤ìŠ¤ë¡œì˜ í•œê³„ë¥¼ í™•ìž¥í•´ì™”ìŠµë‹ˆë‹¤. íŠ¹ížˆ, íŒ€ í”„ë¡œì íŠ¸ë¥¼ ì§„í–‰í•˜ë©° ì„œë¡œì˜ ì•„ì´ë””ì–´ë¥¼ ê³µìœ í•˜ê³  í˜‘ë ¥í•˜ëŠ” ê³¼ì •ì—ì„œ í° ë³´ëžŒì„ ëŠê¼ˆìŠµë‹ˆë‹¤. ì´ë¥¼ í†µí•´ íš¨ìœ¨ì ì¸ ì˜ì‚¬ì†Œí†µì˜ ì¤‘ìš”ì„±ì„ ê¹¨ë‹¬ì•˜ê³ , ëŠìž„ì—†ì´ ì„±ìž¥í•˜ëŠ” ìžì„¸ë¥¼ ë°°ìš°ê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤. ì•žìœ¼ë¡œë„ ë°°ì›€ì„ ë©ˆì¶”ì§€ ì•Šê³ , ë„ì „ê³¼ ì„±ìž¥ì„ ì§€ì†í•˜ë©° ì£¼ì–´ì§„ ì—­í• ì— ìµœì„ ì„ ë‹¤í•˜ê² ìŠµë‹ˆë‹¤.',
+    SYSDATE,                -- CREATED_DATE
+    SYSDATE,                -- MODIFIED_DATE
+    'N',                    -- DELETED ('Y' ë˜ëŠ” 'N')
     1,                      -- PERSON_NO
     1                       -- USER_NO
 );
@@ -1690,24 +1690,24 @@ INSERT INTO RESUME (
 ) VALUES (
     RESUME_SEQ.NEXTVAL,
     1,
-    'ÀÌ·Â¼­ Å×½ºÆ® µ¥ÀÌÅÍ1',
-    'È«±æµ¿',
-    '³²ÀÚ',
+    'ì´ë ¥ì„œ í…ŒìŠ¤íŠ¸ ë°ì´í„°1',
+    'í™ê¸¸ë™',
+    'ë‚¨ìž',
     '00/01/01',
     'person1@workdream.co.kr',
     '01011112222',
     '06234',
-    '¼­¿ï °­³²±¸ Å×Çì¶õ·Î14±æ 6',
-    '3Ãþ I¹Ý',
+    'ì„œìš¸ ê°•ë‚¨êµ¬ í…Œí—¤ëž€ë¡œ14ê¸¸ 6',
+    '3ì¸µ Ië°˜',
     'resources/person/person1/profile/17b9ab80-e21e-49b3e-997c-8022b3e8ad79.png',
-    '´ëÇÐ±³/´ëÇÐ¿ø ÀÌ»ó Á¹¾÷',
+    'ëŒ€í•™êµ/ëŒ€í•™ì› ì´ìƒ ì¡¸ì—…',
     NULL,
     NULL,
     NULL,
-    'ÇÑ±¹´ëÇÐ±³',
-    'ÄÄÇ»ÅÍÇÐ°ú',
-    '4³âÁ¦',
-    'ÀçÇÐÁß',
+    'í•œêµ­ëŒ€í•™êµ',
+    'ì»´í“¨í„°í•™ê³¼',
+    '4ë…„ì œ',
+    'ìž¬í•™ì¤‘',
     NULL,
     NULL,
     NULL,
@@ -1722,38 +1722,38 @@ INSERT INTO RESUME (
     NULL,
     NULL,
     NULL,
-    '¼­¿ï',
+    'ì„œìš¸',
     NULL,
     NULL,
     NULL,
     'java, qwer',
-    '±³³»È°µ¿',
+    'êµë‚´í™œë™',
     NULL,
     '24/12/02',
     '24/12/10',
-    'È°µ¿¼³¸í',
-    '¼ö»ó³»¿ª/°ø¸ðÀü',
-    'Àü»ó±º°æ',
-    '±ºÇÊ',
+    'í™œë™ì„¤ëª…',
+    'ìˆ˜ìƒë‚´ì—­/ê³µëª¨ì „',
+    'ì „ìƒêµ°ê²½',
+    'êµ°í•„',
     NULL,
     NULL,
     '24/12/01',
     NULL,
     '24/12/09',
     NULL,
-    'Àü°æ',
+    'ì „ê²½',
     NULL,
-    'Áß·É',
+    'ì¤‘ë ¹',
     NULL,
-    'ÀÇ°¡»çÀü¿ª',
-    'À¥°³¹ß',
-    '¹é¿£µå',
-    'khÁ¤º¸±³À°¿ø',
+    'ì˜ê°€ì‚¬ì „ì—­',
+    'ì›¹ê°œë°œ',
+    'ë°±ì—”ë“œ',
+    'khì •ë³´êµìœ¡ì›',
     '24/12/09',
     '24/12/13',
-    'Åð»ç',
-    '´ã´ç¾÷¹«',
-    '¼ö°­»ý',
+    'í‡´ì‚¬',
+    'ë‹´ë‹¹ì—…ë¬´',
+    'ìˆ˜ê°•ìƒ',
     '24/12/12',
     '24/12/12',
     'Y',
@@ -1834,24 +1834,24 @@ INSERT INTO RESUME (
 ) VALUES (
     RESUME_SEQ.NEXTVAL,
     1,
-    'ÀÌ·Â¼­ Å×½ºÆ® µ¥ÀÌÅÍ2',
-    'È«±æµ¿',
-    '³²ÀÚ',
+    'ì´ë ¥ì„œ í…ŒìŠ¤íŠ¸ ë°ì´í„°2',
+    'í™ê¸¸ë™',
+    'ë‚¨ìž',
     '00/01/01',
     'person1@workdream.co.kr',
     '01011112222',
     '06234',
-    '¼­¿ï °­³²±¸ Å×Çì¶õ·Î14±æ 6',
-    '3Ãþ I¹Ý',
+    'ì„œìš¸ ê°•ë‚¨êµ¬ í…Œí—¤ëž€ë¡œ14ê¸¸ 6',
+    '3ì¸µ Ië°˜',
     'resources/person/person1/profile/17b9ab80-e21e-49b3e-997c-8022b3e8ad79.png',
-    '´ëÇÐ±³/´ëÇÐ¿ø ÀÌ»ó Á¹¾÷',
+    'ëŒ€í•™êµ/ëŒ€í•™ì› ì´ìƒ ì¡¸ì—…',
     NULL,
     NULL,
     NULL,
-    'ÇÑ±¹´ëÇÐ±³',
-    'ÄÄÇ»ÅÍÇÐ°ú',
-    '4³âÁ¦',
-    'ÀçÇÐÁß',
+    'í•œêµ­ëŒ€í•™êµ',
+    'ì»´í“¨í„°í•™ê³¼',
+    '4ë…„ì œ',
+    'ìž¬í•™ì¤‘',
     NULL,
     NULL,
     NULL,
@@ -1866,38 +1866,38 @@ INSERT INTO RESUME (
     NULL,
     NULL,
     NULL,
-    '¼­¿ï',
+    'ì„œìš¸',
     NULL,
     NULL,
     NULL,
     'java, qwer',
-    '±³³»È°µ¿',
+    'êµë‚´í™œë™',
     NULL,
     '24/12/02',
     '24/12/10',
-    'È°µ¿¼³¸í',
-    '¼ö»ó³»¿ª/°ø¸ðÀü',
-    'Àü»ó±º°æ',
-    '±ºÇÊ',
+    'í™œë™ì„¤ëª…',
+    'ìˆ˜ìƒë‚´ì—­/ê³µëª¨ì „',
+    'ì „ìƒêµ°ê²½',
+    'êµ°í•„',
     NULL,
     NULL,
     '24/12/01',
     NULL,
     '24/12/09',
     NULL,
-    'Àü°æ',
+    'ì „ê²½',
     NULL,
-    'Áß·É',
+    'ì¤‘ë ¹',
     NULL,
-    'ÀÇ°¡»çÀü¿ª',
-    'À¥°³¹ß',
-    '¹é¿£µå',
-    'khÁ¤º¸±³À°¿ø',
+    'ì˜ê°€ì‚¬ì „ì—­',
+    'ì›¹ê°œë°œ',
+    'ë°±ì—”ë“œ',
+    'khì •ë³´êµìœ¡ì›',
     '24/12/09',
     '24/12/13',
-    'Åð»ç',
-    '´ã´ç¾÷¹«',
-    '¼ö°­»ý',
+    'í‡´ì‚¬',
+    'ë‹´ë‹¹ì—…ë¬´',
+    'ìˆ˜ê°•ìƒ',
     '24/12/12',
     '24/12/12',
     'Y',
@@ -1978,24 +1978,24 @@ INSERT INTO RESUME (
 ) VALUES (
     RESUME_SEQ.NEXTVAL,
     1,
-    'ÀÌ·Â¼­ Å×½ºÆ® µ¥ÀÌÅÍ3',
-    'È«±æµ¿',
-    '³²ÀÚ',
+    'ì´ë ¥ì„œ í…ŒìŠ¤íŠ¸ ë°ì´í„°3',
+    'í™ê¸¸ë™',
+    'ë‚¨ìž',
     '00/01/01',
     'person1@workdream.co.kr',
     '01011112222',
     '06234',
-    '¼­¿ï °­³²±¸ Å×Çì¶õ·Î14±æ 6',
-    '3Ãþ I¹Ý',
+    'ì„œìš¸ ê°•ë‚¨êµ¬ í…Œí—¤ëž€ë¡œ14ê¸¸ 6',
+    '3ì¸µ Ië°˜',
     'resources/person/person1/profile/17b9ab80-e21e-49b3e-997c-8022b3e8ad79.png',
-    '´ëÇÐ±³/´ëÇÐ¿ø ÀÌ»ó Á¹¾÷',
+    'ëŒ€í•™êµ/ëŒ€í•™ì› ì´ìƒ ì¡¸ì—…',
     NULL,
     NULL,
     NULL,
-    'ÇÑ±¹´ëÇÐ±³',
-    'ÄÄÇ»ÅÍÇÐ°ú',
-    '4³âÁ¦',
-    'ÀçÇÐÁß',
+    'í•œêµ­ëŒ€í•™êµ',
+    'ì»´í“¨í„°í•™ê³¼',
+    '4ë…„ì œ',
+    'ìž¬í•™ì¤‘',
     NULL,
     NULL,
     NULL,
@@ -2010,38 +2010,38 @@ INSERT INTO RESUME (
     NULL,
     NULL,
     NULL,
-    '¼­¿ï',
+    'ì„œìš¸',
     NULL,
     NULL,
     NULL,
     'java, qwer',
-    '±³³»È°µ¿',
+    'êµë‚´í™œë™',
     NULL,
     '24/12/02',
     '24/12/10',
-    'È°µ¿¼³¸í',
-    '¼ö»ó³»¿ª/°ø¸ðÀü',
-    'Àü»ó±º°æ',
-    '±ºÇÊ',
+    'í™œë™ì„¤ëª…',
+    'ìˆ˜ìƒë‚´ì—­/ê³µëª¨ì „',
+    'ì „ìƒêµ°ê²½',
+    'êµ°í•„',
     NULL,
     NULL,
     '24/12/01',
     NULL,
     '24/12/09',
     NULL,
-    'Àü°æ',
+    'ì „ê²½',
     NULL,
-    'Áß·É',
+    'ì¤‘ë ¹',
     NULL,
-    'ÀÇ°¡»çÀü¿ª',
-    'À¥°³¹ß',
-    '¹é¿£µå',
-    'khÁ¤º¸±³À°¿ø',
+    'ì˜ê°€ì‚¬ì „ì—­',
+    'ì›¹ê°œë°œ',
+    'ë°±ì—”ë“œ',
+    'khì •ë³´êµìœ¡ì›',
     '24/12/09',
     '24/12/13',
-    'Åð»ç',
-    '´ã´ç¾÷¹«',
-    '¼ö°­»ý',
+    'í‡´ì‚¬',
+    'ë‹´ë‹¹ì—…ë¬´',
+    'ìˆ˜ê°•ìƒ',
     '24/12/12',
     '24/12/12',
     'Y',
@@ -2049,4 +2049,3 @@ INSERT INTO RESUME (
 );
 
 commit;
-

@@ -28,22 +28,7 @@
 	<main id="index-main">
 		<!-- 메인 메뉴 -->
 		<section id="index-section-menu">
-			<c:choose>
-    			<%-- 로그인(개인) --%>
-    			<c:when test="${ !empty loginUser && loginUser.userType == 'P' }">
-    				<h1>개인회원 로그인 상태입니다.</h1>
-    			</c:when>
-    			
-    			<%--로그인(기업) --%>
-    			<c:when test="${ !empty loginUser && loginUser.userType == 'B' }">
-    				<h1>기업회원 로그인 상태입니다.</h1>
-    			</c:when>
-    			
-    			<%-- 로그인 전 --%>
-    			<c:otherwise>
-    				<h1>로그인 전</h1>
-    			</c:otherwise>
-    		</c:choose>
+			<img src="${pageContext.request.contextPath}/img/banner_serviceCenter.png">
 		</section>
 		
 		<!-- 광고 -->
@@ -53,9 +38,186 @@
 		
 		<!-- 추천 공고 목록 -->
 		<section id="index-section-list">
-			<%-- 
-				테스트 데이터 정비 후 js로 html 추가하는 식으로 편집 예정
-			 --%>
+			
+			<!-- 일반 공고 -->
+			<article id="index-article-commonList">
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+				
+				<div class="index-appContent">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+					</div>
+					<h2>도화엔지니어링</h2>
+					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-10 ☆</button>
+					</span>
+				</div>
+			</article>
+			
 		</section>
 		
 		<!-- 광고 -->

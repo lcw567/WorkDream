@@ -69,9 +69,9 @@ function activeMenuBiz(activeBizNo) {
 
 document.addEventListener("DOMContentLoaded", function() {
 try {
-
+    activeMenu(activeNo);
 } catch(error) {
-    console.log(": ", error);
+    console.log("activeMenu: ", error);
 }
 
     try {
