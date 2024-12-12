@@ -33,7 +33,7 @@ function displayRecruitmentList(list) {
                     + '<img src="' + contextPath + '/img/kebab.png">'
                     + '</button>';
             html += '<ul class="dropdown-menu">';
-            html += '<li><a href="">공고 수정</a></li>';
+            html += '<li><a href="' + contextPath + '/business/recruitmentRegister?no=' + recruitment.recruitmentNo + '">공고 수정</a></li>';
             html += '<li><a href="" onClick="deleteRecruitment(' + recruitment.recruitmentNo + ')">공고 삭제</a></li>';
             if(recruitment.status == "P" || recruitment.status == "E") {
                 html += '<li><a href="' + contextPath + '/business/applicantsStatus?no=' + recruitment.recruitmentNo +'">지원자 현황</a></li>';

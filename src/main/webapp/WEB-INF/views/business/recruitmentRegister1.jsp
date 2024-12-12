@@ -9,8 +9,12 @@
 	<link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
 	
 	<!-- css / js -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/recruitmentRegister1.css">
-	<script src="${pageContext.request.contextPath}/js/recruitmentRegister1.js" defer></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/recruitmentRegister.css">
+	<script>
+		const contextPath = "${pageContext.request.contextPath}";
+		var jobPosting = JSON.parse('${jobPostingJson}');
+	</script>
+	<script src="${pageContext.request.contextPath}/js/recruitmentRegister.js" defer></script>
 </head>
 <body>
 
@@ -38,19 +42,28 @@
 			<!-- 기업 정보 -->
 			<article id="Job_Posting_Company_Information">
 				<h2 class="Information_Title">기업 정보<font style="color: #FE0000">*</font></h2>
-				<p class="notice">기업 정보 수정은 '기업 홈' > '기업 정보 관리'에서 가능합니다.</p>
 				
 				<!-- 기업명 -->
 				<div class="Information column">
 					<h3>기업명</h3>
-                    <input type="text" value="워크드림" readonly>
+                    <input type="text" name="companyName" value="${jobPosting.companyName}" readonly>
+                    <p>* 기업명 수정은 '기업 홈' > '기업 정보 관리'에서 가능합니다.</p>
 				</div>
 				
 				<!-- 기업 로고 -->
 				<div class="Information column">
 					<h3>기업 로고</h3>
-					<div id="Company_logo">
-						<img src="${pageContext.request.contextPath}/img/icons8-img-48.png" id="logoPreview" style="max-width: 100px; display: block;">
+					<div class="Company_logo">
+						<c:choose>
+							<c:when test="${ !empty jobPosting.logo }">
+								<img src="${pageContext.request.contextPath}${jobPosting.logo}">
+							</c:when>
+							<c:otherwise>
+								<img src="${pageContext.request.contextPath}/img/icon_noImg.png">
+							</c:otherwise>
+						</c:choose>
+						
+						<input type="hidden" name="logo" value="${jobPosting.logo}">
 					</div>
 					<p>* 최소 120 x 120px 이상, 1MB 이하의 정방형 이미지</p>
 				</div>
@@ -59,7 +72,7 @@
 				<div class="Information column">
 					<h3>홈페이지 주소</h3>
 					<span>
-						<input type="text" name="site" value="https://codesync.com" readonly>
+						<input type="text" name="site" value="${jobPosting.site}" placeholder="홈페이지 주소를 입력해주세요" readonly>
                     	<button type="button" id="editButton" onclick="enableWebsiteInput()">수정</button>
 					</span>
 					<p>* 채용 안내 사이트로만 변경 가능합니다.</p>
@@ -75,15 +88,15 @@
 				<!-- 정보 입력 -->
 				<div class="Information">
 					<h3>이름</h3>
-                    <input type="text" placeholder="담당자 이름을 입력해주세요">
+                    <input type="text" name="managerName" value="${jobPosting.managerName}" placeholder="담당자 이름을 입력해주세요">
 				</div>
 				<div class="Information">
 					<h3>부서</h3>
-                    <input type="text" placeholder="담당 부서명을 입력해주세요">
+                    <input type="text" name="managerDept" value="${jobPosting.managerDept}" placeholder="담당 부서명을 입력해주세요">
 				</div>
 				<div class="Information">
 					<h3>이메일</h3>
-                    <input type="text" placeholder="이메일 주소를 입력해주세요">
+                    <input type="text" name="managerEmail" value="${jobPosting.managerEmail}" placeholder="이메일 주소를 입력해주세요">
 				</div>
 			</article>
 			
@@ -93,7 +106,7 @@
 
 		<div class="Next_Or_Back">
 			<button class="Cancel_Push">취소</button>
-			<button class="Next_Push">다음</button>
+			<button class="Next_Push" onclick="nextStep(1)">다음</button>
 		</div>
 
 	</main>

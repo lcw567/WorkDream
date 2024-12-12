@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cs.workdream.business.model.vo.Applicants;
+import com.cs.workdream.business.model.vo.Business;
 import com.cs.workdream.business.model.vo.BusinessBookmark;
 import com.cs.workdream.business.model.vo.Position;
 import com.cs.workdream.business.model.vo.Recruitment;
@@ -46,6 +47,29 @@ public class BusinessDao {
 	// 마감된 공고 목록 조회
 	public List<Recruitment> selectListEndRecruitment(int businessNo) {
 		return sqlSession.selectList("businessMapper.selectListEndRecruitment", businessNo);
+	}
+	
+	// 공고 정보 불러오기
+	public Recruitment selectJobPosting(int businessNo, int recruitmentNo) {
+		if(recruitmentNo == 0) {
+			// 기본 설정
+			Recruitment jobPosting = new Recruitment();
+			
+			Business b = sqlSession.selectOne("businessProfileMapper.selectBusinessByNo", businessNo);
+			jobPosting.setBusinessNo(b.getBusinessNo());
+			jobPosting.setCompanyName(b.getCompanyName());
+			jobPosting.setSite(b.getCompanySite());
+			jobPosting.setLogo(b.getLogo());
+			
+			return jobPosting;
+		} else {
+			// 저장된 공고 정보 조회
+			Map<String, Integer> numbers = new HashMap<>();
+			numbers.put("businessNo", businessNo);
+			numbers.put("recruitmentNo", recruitmentNo);
+			
+			return sqlSession.selectOne("businessMapper.selectJobPosting", numbers);
+		}
 	}
 	
 	// 공고 삭제

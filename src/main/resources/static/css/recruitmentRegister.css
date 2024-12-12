@@ -78,6 +78,7 @@
 
 #Job_Posting_Registration_content p {
 	margin: 1% 0;
+	white-space: nowrap;
 	word-spacing: -0.2rem;
 	font-size: 0.9rem;
 }
@@ -116,10 +117,15 @@
 	width: 100%;
 	height: 2.5rem;
 	padding: 0 2%;
+	background-color: #FFFFFF;
 	border: 1.5px solid #000;
 	border-radius: 5px;
 	font-family: 'MonoplexKR-SemiBold';
 	font-size: 1rem;
+}
+
+#Job_Posting_Registration_content .Information input[readonly] {
+	background-color: #E1DEF1;
 }
 
 #Job_Posting_Registration_content .Information input::placeholder {
@@ -131,7 +137,7 @@
 #Job_Posting_Registration_content .Information button {
 	min-width: 80px;
 	height: 2.5rem;
-	margin-left: 3%;
+	margin-left: 1%;
 	background-color: #4E21A8;
     border: 1px solid #4E21A8;
     border-radius: 5px;
@@ -143,6 +149,21 @@
 
 #Job_Posting_Registration_content .Information button:hover {
     background-color: #3d1a85;
+}
+
+#Job_Posting_Registration_content .Information .Company_logo {
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
+	margin: 3% 0;
+	border: 1px solid black;
+    border-radius: 5px;
+}
+
+#Job_Posting_Registration_content .Information .Company_logo > img {
+	width: 100%;
+	object-fit: contain;
+    object-position: center;
 }
 
 #Job_Posting_Registration_content .Information.column {
@@ -157,55 +178,6 @@
 
 
 /* 미수정 */
-
-
-#Company_logo {
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 120px;
-    height: 100px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f4f4f4;
-    margin-bottom: 20px;
-}
-
-#Company_logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* 또는 cover */
-    object-position: center; /* 이미지 위치를 중앙으로 설정 */
-}
-
-#Company_logo_file {
-    margin-bottom: 8px;
-}
-
-#Company_logo_file input[type="text"] {
-    border-radius: 5px;
-    border: 1px solid black;
-    width: 250px;
-    height: 40px;
-    padding-left: 10px;
-}
-
-.custom-file-upload {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 1px solid black;
-    background-color: #4E21A8;
-    color: white;
-    font-weight: 600;
-    margin-left: 8px;
-}
-
-.custom-file-upload:hover {
-    background-color: #3d1a85;
-    /* 호버 시 색상 */
-}
 
 #Job_Posting_division_zones {
     border: none;

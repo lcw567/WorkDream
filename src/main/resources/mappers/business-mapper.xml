@@ -7,10 +7,13 @@
 		<result column="RECRUITMENT_NO" property="recruitmentNo" />
 		<result column="BUSINESS_NO" property="businessNo" />
 		<result column="TITLE" property="title" />
+		<result column="COMPANY_NAME" property="companyName" />
 		<result column="MANAGER_NAME" property="managerName" />
 		<result column="MANAGER_DEPT" property="managerDept" />
 		<result column="MANAGER_EMAIL" property="managerEmail" />
 		<result column="METHOD" property="method" />
+		<result column="RECRUITED_SITE" property="site" />
+		<result column="RECRUITED_LOGO" property="logo" />
 		<result column="START_DATE" property="startDate" />
 		<result column="DEADLINE" property="deadline" />
 		<result column="POSTING_DATE" property="postingDate" />
@@ -36,6 +39,7 @@
 		<result column="EVALUATION_PEOPLE" property="evaluationPeople" />
 		<result column="PASS_PEOPLE" property="passPeople" />
 	</resultMap>
+
 	
 	<!-- Applicants -->
 	<resultMap type="Applicants" id="applicantsResultSet">
@@ -75,7 +79,7 @@
 		<result column="APPLICANTS_DATE" property="applicantDate" />
 		<result column="ADD_DATE" property="addDate" />
 	</resultMap>
-	
+
 	
 	<!-- [공고 현황&목록] ================================================================================================== -->
 	
@@ -135,6 +139,22 @@
 		 ORDER	BY RECRUITMENT_NO DESC
 	</select>
 	
+	<!-- 공고 정보 불러오기 -->
+	<select id="selectJobPosting" parameterType="map" resultMap="recruitmentResultSet">
+		SELECT	R.RECRUITMENT_NO AS RECRUITMENT_NO,
+				R.BUSINESS_NO AS BUSINESS_NO,
+				TITLE, 
+				COMPANY_NAME, MANAGER_NAME, MANAGER_DEPT, MANAGER_EMAIL,
+				METHOD, RECRUITED_SITE, RECRUITED_LOGO,
+				TO_CHAR(START_DATE, 'YYYY.MM.DD') AS START_DATE,
+				TO_CHAR(DEADLINE, 'YYYY.MM.DD') AS DEADLINE,
+				TO_CHAR(POSTING_DATE, 'YYYY.MM.DD') AS POSTING_DATE
+		  FROM	JOB_RECRUITMENT R
+		  JOIN	BUSINESS B ON (R.BUSINESS_NO = B.BUSINESS_NO)
+		 WHERE	R.RECRUITMENT_NO = #{recruitmentNo}
+		   AND	R.BUSINESS_NO = #{businessNo}
+	</select>
+	
 	<!-- 공고 삭제 (실제 삭제X / DELETE_STATUS 업데이트) -->
 	<update id="deleteRecruitment" parameterType="int">
 		UPDATE	JOB_RECRUITMENT
@@ -144,7 +164,6 @@
 	
 	
 	<!-- [지원자 현황&목록] ================================================================================================== -->
-	
 	
 	<!-- 전체 지원자 현황 조회 -->
 	<select id="selectAllApplicantsDashboard" parameterType="int" resultType="java.util.Map">
@@ -260,7 +279,6 @@
 				USER_PHONE AS APPLICANTS_PHONE,
 				USER_EMAIL AS APPLICANTS_EMAIL,
 				NVL(FOLDER_NAME, '미분류') AS FOLDER_NAME,
-				A.RESUME_STATUS,
 				CASE
 		            WHEN A.RESUME_NO IS NOT NULL THEN 'Y'
 		            ELSE 'N'
@@ -325,27 +343,5 @@
 	
 	<!-- ================================================================================================== -->
 	
-
-    <!-- 담당자 정보 저장 -->
-    <insert id="insertRepresentativeInfo">
-        INSERT INTO JOB_POSTING (RECRUITMENT_NO, REPRESENTATIVE_NAME, REPRESENTATIVE_DEPT, REPRESENTATIVE_EMAIL)
-        VALUES (#{recruitmentNo}, #{representativeName}, #{representativeDept}, #{representativeEmail})
-    </insert>
-
-    <!-- 홈페이지 주소 저장 -->
-    <update id="saveWebsite">
-        UPDATE JOB_POSTING
-        SET WEBSITE = #{website}
-        WHERE RECRUITMENT_NO = #{recruitmentNo}
-    </update>
-
-    <!-- 특정 공고 조회 -->
-    <select id="selectJobPostingById" resultType="com.cs.workdream.business.model.vo.JobPosting">
-        SELECT 
-            RECRUITMENT_NO, BUSINESS_NO, REPRESENTATIVE_NAME, REPRESENTATIVE_DEPT, REPRESENTATIVE_EMAIL, 
-            COMPANY_NAME, WEBSITE, LOGO_PATH
-        FROM JOB_POSTING
-        WHERE RECRUITMENT_NO = #{recruitmentNo}
-    </select>
 
 </mapper>

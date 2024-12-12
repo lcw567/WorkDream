@@ -5,19 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorkDream - 기업 정보 등록</title>
+    <title>기업 정보 등록 | 워크드림 - 기업서비스</title>
     <link rel="icon" href="${pageContext.request.contextPath}/img/logo_icon.png"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/businessProfilePost.css">
     
+    <!-- css / js -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/businessProfilePost.css">
     <!-- window.contextPath 설정 -->
     <script type="text/javascript">
+    	var activeBizNo = 5;
         window.contextPath = "${pageContext.request.contextPath}";
     </script>
-    
     <script src="${pageContext.request.contextPath}/js/businessProfilePost.js" defer></script>
 </head>
 <body>
     <c:import url="/WEB-INF/views/common/header_biz.jsp" />
+    
     <div class="post-container">
         <div class="header">
             <h1>기업 정보 등록</h1>
@@ -192,6 +194,7 @@
             </div>
         </form>  
     </div>
+   
+	<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
-<c:import url="/WEB-INF/views/common/footer.jsp" />
 </html>

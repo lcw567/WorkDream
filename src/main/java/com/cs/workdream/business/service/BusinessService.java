@@ -26,6 +26,9 @@ public interface BusinessService {
 	// 마감된 공고 목록 조회
 	List<Recruitment> selectListEndRecruitment(int businessNo);
 	
+	// 공고 정보 불러오기
+	Recruitment selectJobPosting(int businessNo, int recruitmentNo);
+	
 	// 공고 삭제
 	int deleteRecruitment(int recruitmentNo);
 	
