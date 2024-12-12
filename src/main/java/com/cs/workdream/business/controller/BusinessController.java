@@ -161,7 +161,6 @@ public class BusinessController {
         	
         	switch(step) {
         	case 1:
-        		session.removeAttribute("jobPosting");
         		mv.setViewName("business/recruitmentRegister1");
         	case 2:
         		mv.setViewName("business/recruitmentRegister2");
@@ -193,7 +192,7 @@ public class BusinessController {
     // 페이지 이동 시 편집 정보 저장
     @PostMapping("/updateJobPosting.biz")
     @ResponseBody
-    public int recruitmentRegisterNextStep(@RequestBody Recruitment updatedJobPosting, HttpSession session) {
+    public int updateJobPosting(@RequestBody Recruitment updatedJobPosting, HttpSession session) {
     	if (updatedJobPosting != null) {
             // updatedJobPosting이 null이 아닐 경우 > 기존 세션에 덮어쓰기
             session.setAttribute("jobPosting", updatedJobPosting);
@@ -202,6 +201,13 @@ public class BusinessController {
         	// updatedJobPosting이 null일 경우
             return 0;
         }
+    }
+    
+    @RequestMapping("/deleteJobPosting.biz")
+    @ResponseBody
+    public int deleteJobPosting(HttpSession session) {
+    	session.removeAttribute("jobPosting");
+    	return 1;
     }
     
     // 공고 수정

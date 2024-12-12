@@ -105,7 +105,7 @@
 		<div id="Job_Posting_division_zones"></div>
 
 		<div class="Next_Or_Back">
-			<button class="Cancel_Push">취소</button>
+			<button class="Cancel_Push" onclick="">취소</button>
 			<button class="Next_Push" onclick="nextStep(1)">다음</button>
 		</div>
 
