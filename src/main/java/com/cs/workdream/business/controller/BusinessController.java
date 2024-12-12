@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,8 @@ import com.cs.workdream.business.model.vo.Recruitment;
 import com.cs.workdream.business.service.BusinessProfileService;
 import com.cs.workdream.business.service.BusinessService;
 import com.cs.workdream.member.model.vo.Member;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/business")
@@ -148,16 +151,57 @@ public class BusinessController {
 	
 	// 채용공고 작성 페이지로 이동
     @GetMapping("/recruitmentRegister")
-    public String recruitmentRegister(@RequestParam(value="step", defaultValue="1") int step) {
-    	switch(step) {
-    	case 1:
-    		return "business/recruitmentRegister1";
-    	case 2:
-    		return "business/recruitmentRegister2";
-    	default:
-    		// 값을 제대로 받지 못했을 경우에도 첫 번째 작성 페이지로 이동
-    		return "business/recruitmentRegister1";
+    public ModelAndView recruitmentRegister(@RequestParam(value="no", defaultValue="0") int recruitmentNo, @RequestParam(value="step", defaultValue="1") int step, ModelAndView mv, HttpSession session) throws JsonProcessingException {
+    	// 공고 정보 불러오기
+    	Member currentUser = (Member)session.getAttribute("loginUser");
+    	Recruitment jobPosting = (Recruitment)session.getAttribute("jobPosting");
+    	
+    	if(currentUser != null) {
+    		int businessNo = currentUser.getBusinessNo();
+        	
+        	switch(step) {
+        	case 1:
+        		session.removeAttribute("jobPosting");
+        		mv.setViewName("business/recruitmentRegister1");
+        	case 2:
+        		mv.setViewName("business/recruitmentRegister2");
+        	default:
+        		// 값을 제대로 받지 못했을 경우에도 첫 번째 작성 페이지로 이동
+        		mv.setViewName("business/recruitmentRegister1");
+        	}
+        	
+        	if(jobPosting == null) {
+        		// 편집 중인 공고가 없을 경우 > 기존 공고 or 기본 설정 불러온 후 반환
+        		jobPosting = businessService.selectJobPosting(businessNo, recruitmentNo);
+        	}
+        	
+        	// 객체를 JSON 문자열로 변환
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jobPostingJson = objectMapper.writeValueAsString(jobPosting);
+        	
+    		mv.addObject("jobPosting", jobPosting);
+    		mv.addObject("jobPostingJson", jobPostingJson);
+    	} else {
+    		mv.setViewName("common/errorPage");
+			mv.addObject("errorMsg", "로그인이 필요한 서비스입니다.");
+			mv.addObject("returnPage", "/login?ut=B");
     	}
+    	
+    	return mv;
+    }
+    
+    // 페이지 이동 시 편집 정보 저장
+    @PostMapping("/updateJobPosting.biz")
+    @ResponseBody
+    public int recruitmentRegisterNextStep(@RequestBody Recruitment updatedJobPosting, HttpSession session) {
+    	if (updatedJobPosting != null) {
+            // updatedJobPosting이 null이 아닐 경우 > 기존 세션에 덮어쓰기
+            session.setAttribute("jobPosting", updatedJobPosting);
+            return 1;
+        } else {
+        	// updatedJobPosting이 null일 경우
+            return 0;
+        }
     }
     
     // 공고 수정
@@ -345,5 +389,17 @@ public class BusinessController {
     public String positionCareer() {
         return "business/positionAndCareer";
     }
+	
+	
+	/*=====================================================================================================*/
+	
+	
+	/* 인재풀 검색 관련 */
+	// 인재풀 검색 페이지로 이동
+	@RequestMapping("/serachTalent")
+	public String serachTalent(HttpSession session) {
+		session.setAttribute("alertMsg", "오픈 준비중입니다!");
+		return "business/businessMypage";
+	}
 	
 }

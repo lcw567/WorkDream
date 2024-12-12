@@ -52,6 +52,12 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.selectListEndRecruitment(businessNo);
 	}
 	
+	// 공고 정보 불러오기
+	@Override
+	public Recruitment selectJobPosting(int businessNo, int recruitmentNo) {
+		return businessDao.selectJobPosting(businessNo, recruitmentNo);
+	}
+	
 	// 공고 삭제
 	@Override
 	public int deleteRecruitment(int recruitmentNo) {

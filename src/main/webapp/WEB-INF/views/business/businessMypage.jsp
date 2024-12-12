@@ -71,15 +71,15 @@
         <!-- 주요 액션 섹션 -->
         <section class="action-section">
             <div class="action-buttons">
-                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/recruitmentManager'">
+                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/recruitmentRegister'">
                     <h3>채용 공고 등록</h3>
                     <p>이상적인 인재를 손쉽게 모집하세요</p>
                 </div>
-                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/applicantsStatus'">
+                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/recruitmentManager'">
                     <h3>채용 공고 현황</h3>
                     <p>등록된 공고를 한눈에 확인하세요</p>
                 </div>
-                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/applicantsList'">
+                <div class="action-item" onclick="location.href='${pageContext.request.contextPath}/business/applicantsStatus'">
                     <h3>지원자 현황</h3>
                     <p>지원자의 정보를 확인하고 검토하세요</p>
                 </div>
