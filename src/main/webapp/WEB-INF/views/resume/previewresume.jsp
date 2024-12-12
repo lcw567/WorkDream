@@ -107,14 +107,7 @@
                             <!-- 대학교 학력 정보 -->
                             <div class="pre_inner2-1">
                                 <h2>${resume.enterDate_col} ~ 
-                                    <c:choose>
-                                        <c:when test="${resume.graduationStatus_col == '졸업'}">
-                                            ${resume.graduationDate_col}
-                                        </c:when>
-                                        <c:otherwise>
-                                            재학중
-                                        </c:otherwise>
-                                    </c:choose>
+                                    ${resume.graduationDate_col}
                                 </h2>
                                 <div class="pre_inner2-1-1">
                                     <h2>${resume.academicName_col}</h2>
