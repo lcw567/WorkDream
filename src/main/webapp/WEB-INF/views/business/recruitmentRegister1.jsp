@@ -100,15 +100,15 @@
 				</div>
 			</article>
 			
+			<!-- 구분선 -->
+			<div id="Job_Posting_division_zones"></div>
+
+			<div class="Next_Or_Back">
+				<button class="Cancel_Push" onclick="previousStep(1)">취소</button>
+				<button class="Next_Push" onclick="nextStep(1)">다음</button>
+			</div>
+			
 		</section>
-		
-		<div id="Job_Posting_division_zones"></div>
-
-		<div class="Next_Or_Back">
-			<button class="Cancel_Push" onclick="">취소</button>
-			<button class="Next_Push" onclick="nextStep(1)">다음</button>
-		</div>
-
 	</main>
 
 	<c:import url="/WEB-INF/views/common/footer.jsp" />

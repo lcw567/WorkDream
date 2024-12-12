@@ -37,7 +37,7 @@ async function nextStep(step) {
                 managerDept: document.querySelector("input[name='managerDept']").value,
                 managerEmail: document.querySelector("input[name='managerEmail']").value
             });
-            URL = contextPath + "/recruitmentRegister?step=2";
+            URL = contextPath + "/business/recruitmentRegister?step=2";
             break;
         case 2:
             URL = contextPath;
@@ -49,7 +49,7 @@ async function nextStep(step) {
     // 세션 업데이트 (ajax 호출)
     try {
         const result = await ajaxUpdateJobPosting();
-        
+
         // 서버가 1을 반환하면 페이지 이동
         if (result === 1) {
             location.href = URL;
@@ -65,15 +65,41 @@ async function nextStep(step) {
 
 // 이전 단계로 이동
 function previousStep(step) {
+    const backConfirm = false;
     let URL;
 
     switch(step) {
         case 1:
-            const backConfirm = confirm("취소 시 지금까지 작성한 내용이 사라집니다.\n취소하겠습니까?");
             URL = contextPath + "/business/recruitmentManager";
+            backConfirm = confirm("취소 시 지금까지 작성한 내용이 사라집니다.\n취소하겠습니까?");
+            if(backConfirm) {
+                // 취소 시 현재 세션 삭제 후 페이지 이동
+                $.ajax({
+                    url: contextPath + "/business//deleteJobPosting.biz",
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    type: "POST",
+                    data: JSON.stringify(jobPosting),
+                    success: function(result) {
+                        console.log(result)
+                    },
+                    error: function(error) {
+                        console.log("공고 수정 세션 삭제 실패 : ", error);
+                        reject(false);
+                    }
+                });
+
+                location.href = URL;
+            }
             break;
         case 2:
-            
+            URL = contextPath + "business/recruitmentRegister?step=1";
+            backConfirm = confirm("이전 단계로 돌아가시겠습니까? 현재 작성 중인 내용이 초기화될 수도 있습니다.");
+            if(backConfirm) {
+                location.href = URL;
+            }
+            break;
+        default :
     }
 }
 
@@ -132,4 +158,3 @@ function updateFileName() {
         logoPreview.style.display = "none";  // 이미지 숨기기
     }
 }
-

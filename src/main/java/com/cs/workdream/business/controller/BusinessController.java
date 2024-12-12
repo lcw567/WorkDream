@@ -56,8 +56,12 @@ public class BusinessController {
         	int businessNo = currentUser.getBusinessNo();
             Business business = businessProfileService.viewBusinessProfile(businessNo);
             
+            // 지원자 현황 정보 가져오기
+            Map<String, Integer> dashboard = businessService.selectApplicantsDashboard(businessNo, 0);
+            
             mv.setViewName("business/businessMypage");
             mv.addObject("business", business);
+            mv.addObject("dashboard", dashboard);
         } else {
             // 로그인하지 않은 경우 처리
         	mv.setViewName("common/errorPage");
@@ -162,8 +166,10 @@ public class BusinessController {
         	switch(step) {
         	case 1:
         		mv.setViewName("business/recruitmentRegister1");
+        		break;
         	case 2:
         		mv.setViewName("business/recruitmentRegister2");
+        		break;
         	default:
         		// 값을 제대로 받지 못했을 경우에도 첫 번째 작성 페이지로 이동
         		mv.setViewName("business/recruitmentRegister1");
@@ -203,6 +209,7 @@ public class BusinessController {
         }
     }
     
+    // 페이지 이동 시 편집 정보 저장된 세션 삭제
     @RequestMapping("/deleteJobPosting.biz")
     @ResponseBody
     public int deleteJobPosting(HttpSession session) {

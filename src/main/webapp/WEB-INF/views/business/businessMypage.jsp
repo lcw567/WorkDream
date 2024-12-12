@@ -43,20 +43,20 @@
             <div class="status-cards">
                 <div class="status-card">
                     <span>총 지원자</span>
-                    <p>0</p>
+                    <p>${dashboard['TOTAL']}</p>
                 </div>
                 <div class="status-card">
                     <span>열람완료</span>
-                    <p>0</p>
+                    <p>${dashboard['VIEW_COMPLETE']}</p>
                 </div>
                 <div class="status-card">
                     <span>평가완료</span>
-                    <p>0</p>
+                    <p>${dashboard['EVALUATION_COMPLETE']}</p>
                 </div>
                 
                 <div class="status-card">
                     <span>열람미완료</span>
-                    <p>0</p>
+                    <p>${dashboard['PASS_TOTAL']}</p>
                 </div>
             </div>
         </section>

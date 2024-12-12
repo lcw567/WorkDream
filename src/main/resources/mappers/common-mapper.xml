@@ -23,14 +23,32 @@
 	<!-- [메인 홈 관련] ================================================================================================== -->
 	
 	<!-- 공고 목록 조회 -->
-	<select id="selectRecruitmentList">
-		SELECT	RECRUITMENT_NO, BUSINESS_NO
-		  FROM	RECRUITMENT
+	<select id="selectRecruitmentList" resultMap="recruitmentResultSet">
+		<![CDATA[
+		    SELECT RECRUITMENT_NO, BUSINESS_NO, TITLE, RECRUITED_LOGO
+		    FROM (
+		        SELECT RECRUITMENT_NO, BUSINESS_NO, TITLE, RECRUITED_LOGO
+		        FROM JOB_RECRUITMENT
+		        WHERE SYSDATE BETWEEN START_DATE AND DEADLINE
+		          AND DELETE_STATUS = 'N'
+		        ORDER BY DEADLINE
+		    )
+		    WHERE ROWNUM <= 50
+	  	]]>
 	</select>
 	
 	<!-- 관심 태그 적용 -->
 	<select id="selectRecruitmentTagList" parameterType="int">
-		SELECT	RECRUITMENT_NO, BUSINESS_NO
-		  FROM	RECRUITMENT
+		<![CDATA[
+		    SELECT RECRUITMENT_NO, BUSINESS_NO, TITLE, RECRUITED_LOGO
+		    FROM (
+		        SELECT RECRUITMENT_NO, BUSINESS_NO, TITLE, RECRUITED_LOGO
+		        FROM JOB_RECRUITMENT
+		        WHERE SYSDATE BETWEEN START_DATE AND DEADLINE
+		          AND DELETE_STATUS = 'N'
+		        ORDER BY DEADLINE
+		    )
+		    WHERE ROWNUM <= 50
+	  	]]>
 	</select>
 </mapper>
