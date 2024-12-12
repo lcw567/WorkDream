@@ -127,6 +127,10 @@
     		</tr>
     		<tr>
     			<th>커뮤니티</th>
+				<td><a href="${pageContext.request.contextPath}//board/communityList?category=신입">신입</a></td>
+				<td><a href="${pageContext.request.contextPath}//board/communityList?category=채용공고">채용공고</a></td>
+				<td><a href="${pageContext.request.contextPath}//board/communityList?category=취준">취준</a></td>
+				<td><a href="${pageContext.request.contextPath}//board/communityList?category=자소서">자소서</a></td>
     		</tr>
     	</table>
     
