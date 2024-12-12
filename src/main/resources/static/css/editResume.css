@@ -1608,7 +1608,6 @@ button.delete:focus {
 }
 
 .selected_self p{
-    padding-top: 15px;
     font-size: 1rem;
 }
 
@@ -1679,7 +1678,7 @@ button.delete:focus {
     font-size: 1rem;
 }
 
-.selected_port span{
+.selected_port p{
     font-size: 1rem;
 }
 
