@@ -527,3 +527,8 @@ footer > * {
 #index-main .index-ad > img {
 	height: 100%;
 }
+
+#index-article-commonList{
+	position: relative;
+    left: 150px;
+}
