@@ -41,181 +41,270 @@
 			
 			<!-- 일반 공고 -->
 			<article id="index-article-commonList">
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
 						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
+					<h2>(주)도화엔지니어링</h2>
 					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business4_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<h2>메가스터디교육(주)</h2>
+					<h3>메가스터디 입시전략연구소 (대입컨설팅센터) 입시컨설턴트 채용</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business10_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<h2>씨제이대한통운(주)</h2>
+					<h3>[CJ대한통운] 물류 영업 경력사원 모집</h3>
+					<span>
+						<button>D-11 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business9_logo.png">
+					</div>
+					<h2>(주)영공조명</h2>
+					<h3>㈜영공조명 조명설계 디자이너 경력 및 신입사원 모집</h3>
+					<span>
+						<button>D-6 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business5_logo.png">
+					</div>
+					<h2>쿠팡(주)</h2>
+					<h3>[쿠팡] 쿠팡 신사업(쿠팡포스) 영업사원 대규모 채용(서울권)</h3>
+					<span>
+						<button>D-16 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business6_logo.png">
+					</div>
+					<h2>코웨이(주)</h2>
+					<h3>[코웨이]24년 11월 경력직 수시채용(마케팅/경영/인사/연구소)</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business3_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<h2>네이버(주)</h2>
+					<h3>네이버 인물검색 운영</h3>
+					<span>
+						<button>D-3 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business8_logo.png">
+					</div>
+					<h2>금호건설(주)</h2>
+					<h3>[금호건설(주)] 강릉회산동공동주택신축현장 건축기사 채용</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business9_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<h2>(주)영공조명</h2>
+					<h3>㈜영공조명 조명설계 디자이너 경력 및 신입사원 모집</h3>
+					<span>
+						<button>D-6 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business5_logo.png">
+					</div>
+					<h2>쿠팡(주)</h2>
+					<h3>[쿠팡] 쿠팡 신사업(쿠팡포스) 영업사원 대규모 채용(서울권)</h3>
+					<span>
+						<button>D-16 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business7_logo.png">
+					</div>
+					<h2>에이치디현대이엔티(주)</h2>
+					<h3>[HD현대이엔티] 2025년 1/4분기 대졸신입 및 경력사원 모집</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business2_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<h2>딜로이트컨설팅(유)</h2>
+					<h3>[딜로이트 컨설팅] 24년 하반기 각 부문별 컨설턴트 경력직 채용</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business4_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<h2>메가스터디교육(주)</h2>
+					<h3>메가스터디 입시전략연구소 (대입컨설팅센터) 입시컨설턴트 채용</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business10_logo.png">
+					</div>
+					<h2>씨제이대한통운(주)</h2>
+					<h3>[CJ대한통운] 물류 영업 경력사원 모집</h3>
+					<span>
+						<button>D-11 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
 					<div class="logo">
 						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
 					</div>
 					<h2>도화엔지니어링</h2>
 					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<span>
+						<button>D-3 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business4_logo.png">
+					</div>
+					<h2>메가스터디교육(주)</h2>
+					<h3>메가스터디 입시전략연구소 (대입컨설팅센터) 입시컨설턴트 채용</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business10_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<h2>씨제이대한통운(주)</h2>
+					<h3>[CJ대한통운] 물류 영업 경력사원 모집</h3>
+					<span>
+						<button>D-11 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business9_logo.png">
+					</div>
+					<h2>(주)영공조명</h2>
+					<h3>㈜영공조명 조명설계 디자이너 경력 및 신입사원 모집</h3>
+					<span>
+						<button>D-6 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business5_logo.png">
+					</div>
+					<h2>쿠팡(주)</h2>
+					<h3>[쿠팡] 쿠팡 신사업(쿠팡포스) 영업사원 대규모 채용(서울권)</h3>
+					<span>
+						<button>D-16 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business8_logo.png">
+					</div>
+					<h2>금호건설(주)</h2>
+					<h3>[금호건설(주)] 강릉회산동공동주택신축현장 건축기사 채용</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business9_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<h2>(주)영공조명</h2>
+					<h3>㈜영공조명 조명설계 디자이너 경력 및 신입사원 모집</h3>
+					<span>
+						<button>D-6 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business5_logo.png">
+					</div>
+					<h2>쿠팡(주)</h2>
+					<h3>[쿠팡] 쿠팡 신사업(쿠팡포스) 영업사원 대규모 채용(서울권)</h3>
+					<span>
+						<button>D-16 ☆</button>
+					</span>
+				</div>
+				
+				<div class="list-common">
+					<div class="logo">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business7_logo.png">
+					</div>
+					<h2>에이치디현대이엔티(주)</h2>
+					<h3>[HD현대이엔티] 2025년 1/4분기 대졸신입 및 경력사원 모집</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
+				<div class="list-common">
 					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
+						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business2_logo.png">
 					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
+					<h2>딜로이트컨설팅(유)</h2>
+					<h3>[딜로이트 컨설팅] 24년 하반기 각 부문별 컨설턴트 경력직 채용</h3>
 					<span>
 						<button>D-10 ☆</button>
 					</span>
 				</div>
 				
-				<div class="index-appContent">
-					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
-					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
-					<span>
-						<button>D-10 ☆</button>
-					</span>
-				</div>
-				
-				<div class="index-appContent">
-					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
-					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
-					<span>
-						<button>D-10 ☆</button>
-					</span>
-				</div>
-				
-				<div class="index-appContent">
-					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
-					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
-					<span>
-						<button>D-10 ☆</button>
-					</span>
-				</div>
-				
-				<div class="index-appContent">
-					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
-					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
-					<span>
-						<button>D-10 ☆</button>
-					</span>
-				</div>
-				
-				<div class="index-appContent">
-					<div class="logo">
-						<img src="${pageContext.request.contextPath}/resources/uploads/logos/business1_logo.png">
-					</div>
-					<h2>도화엔지니어링</h2>
-					<h3>도화엔지니어링 도시단지1부 경력직 모집(단지설계, 계획)</h3>
-					<span>
-						<button>D-10 ☆</button>
-					</span>
-				</div>
 			</article>
 			
 		</section>

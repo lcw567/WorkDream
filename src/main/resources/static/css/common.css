@@ -419,23 +419,17 @@ footer > * {
 
 #index-main > section {
 	width: 100%;
-}
-
-#index-main > section > h1 {
-	margin: 5%;
-	text-align: center;
-	font-size: 2rem;
+	max-width: 1280px;
+	padding: 0 5%;
 }
 
 #index-section-menu {
-	height: 350px;
-	padding: 0 5%;
+	height: 400px;
 	margin-bottom: 5%;
 }
 
 #index-section-menu > img {
 	width: 100%;
-	height: 100%;
 }
 
 #index-section-list {
@@ -450,12 +444,15 @@ footer > * {
 	width: 100%;
 	display: grid;
 	justify-items: center;
+}
+
+#index-article-commonList {
 	grid-template-columns: repeat(4, minmax(270px, 300px));
     grid-template-rows: max-content;
     grid-row-gap: 1rem;
 }
 
-#index-section-list .index-appContent {
+#index-article-commonList .list-common {
 	width: 250px;
 	height: 200px;
 	display: flex;
@@ -463,39 +460,40 @@ footer > * {
 	align-items: center;
 	gap: 3%;
 	padding: 3% 5%;
-	border: 2px solid #4E21A8;
 	background-color: #FFFFFF;
+	border: 3px solid transparent;
+	border-image: linear-gradient(to bottom, #4E21A8, #FFD000) 1;
 	border-radius: 5px;
 }
 
-#index-section-list .index-appContent > * {
+#index-article-commonList .list-common > * {
 	width: 100%;
 }
 
-#index-section-list .index-appContent .logo {
+#index-article-commonList .list-common .logo {
 	height: 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-#index-section-list .index-appContent .logo img {
+#index-article-commonList .list-common .logo img {
 	max-width: 50%
 }
 
-#index-section-list .index-appContent > h2 {
+#index-article-commonList .list-common > h2 {
 	text-align: left;
 	font-family: 'MonoplexKR-SemiBold';
 	font-size: 0.9rem;
 }
 
-#index-section-list .index-appContent > h3 {
+#index-article-commonList .list-common > h3 {
 	text-align: left;
 	font-weight: 400;
 	font-size: 0.9rem;
 }
 
-#index-section-list .index-appContent > span {
+#index-article-commonList .list-common > span {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -503,7 +501,7 @@ footer > * {
 	margin-top: 5%;
 }
 
-#index-section-list .index-appContent > span button {
+#index-article-commonList .list-common > span button {
 	width: 100px;
 	height: 1.8rem;
 	padding: 0 3%;
@@ -526,9 +524,4 @@ footer > * {
 
 #index-main .index-ad > img {
 	height: 100%;
-}
-
-#index-article-commonList{
-	position: relative;
-    left: 150px;
 }
