@@ -45,7 +45,7 @@ public class BoardController {
         return "board/communityPost"; // communityPost.jsp
     }
 
-    // 寃뚯떆湲� 蹂닿린 �럹�씠吏� �몴�떆
+    // 寃뚯떆湲� 蹂닿린 �럹�씠吏� �몴�ㅇㄴㄹㄴㅇㄹㅇ떆
     @GetMapping("/communityView")
     public String showCommunityView(@RequestParam("postId") int postId, Model model, HttpSession session) {
         // 寃뚯떆湲� 議고쉶 (吏곷Т 移댄뀒怨좊━ �룷�븿)
