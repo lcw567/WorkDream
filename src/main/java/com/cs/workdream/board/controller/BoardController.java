@@ -82,7 +82,7 @@ public class BoardController {
         // 寃뚯떆湲� 議고쉶
         Board post = boardService.getPostWithJobCategories(postId);
         if(post != null && "Y".equals(post.getStatus())) {
-            // �쁽�옱 �궗�슜�옄 �젙蹂�
+            // �쁽�옱 �궗�슜�옄 �젙蹂ㅌㅊㅌㅋㅊ�
             Member currentUser = (Member) session.getAttribute("loginUser");
             if(currentUser != null && post.getUserNo() == currentUser.getUserNo()) {
                 model.addAttribute("post", post);
