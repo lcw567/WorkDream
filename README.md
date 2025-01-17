@@ -18,7 +18,7 @@
 2024-10-15 ~ 2024-12-13
 
 
-## 기술 스택
+## 기술 스택🖥️
 `Front-End` 
 
 <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white"/>
